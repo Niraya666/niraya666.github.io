@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>杂 on LZY Blog</title>
-    <link>http://localhost:1313/tags/%E6%9D%82/</link>
+    <link>https://niraya666.github.io/tags/%E6%9D%82/</link>
     <description>Recent content in 杂 on LZY Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 30 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E6%9D%82/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/%E6%9D%82/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My First Post: Hello-World!</title>
-      <link>http://localhost:1313/posts/helloworld/</link>
+      <link>https://niraya666.github.io/posts/helloworld/</link>
       <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/helloworld/</guid>
+      <guid>https://niraya666.github.io/posts/helloworld/</guid>
       <description>Hello-World! 欢迎来到我的博客
 在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。
 为什么我决定写博客 在生活的纷扰和无尽的日常中，我发现自己一直在与拖延症作斗争。直到今天，我终于下定决心，决定将心中的思绪和感悟记录下来，开启我的博客之旅。
