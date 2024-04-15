@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on LZY Blog</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on LZY Blog</description>
+    <title>RAG on LZY Blog</title>
+    <link>http://localhost:1313/tags/rag/</link>
+    <description>Recent content in RAG on LZY Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2024 11:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/rag/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RAG工具箱：评估RAG系统的方法论</title>
       <link>http://localhost:1313/posts/rag_toolkit_eval/</link>
@@ -41,20 +41,6 @@ UpTrain
 question：这是RAG流程的输入，即用户的查询问题。
 answer：这是由RAG流程生成的答案，也就是输出结果。
 contexts：这是为了解答question而从外部知识源检索到的相关上下文信息。</description>
-    </item>
-    <item>
-      <title>My First Post: Hello-World!</title>
-      <link>http://localhost:1313/posts/helloworld/</link>
-      <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/helloworld/</guid>
-      <description>Hello-World! 欢迎来到我的博客
-在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。
-为什么我决定写博客 在生活的纷扰和无尽的日常中，我发现自己一直在与拖延症作斗争。直到今天，我终于下定决心，决定将心中的思绪和感悟记录下来，开启我的博客之旅。
-有几个原因驱使我做出了这个决定。
-首先，岁月不饶人，尤其是经历了新冠疫情之后，我明显感觉到我的记忆力不如以往。过去能够轻松驾驭多重任务的我，如今却常在走入客厅的半路上忘记初衷，或是在浏览器的搜索框前失去了寻找的目的。这种突如其来的迷茫，让我开始思索，我的思绪是否正如秋日里的落叶，悄然飘落。
-其次，在深夜的静思中，我时常回想起坂本龙一那句引人深思的话：“我还能看到几次满月？”这不仅是对时间流逝的感慨，更是一种对生命有限性的深刻体悟。在这有限的时光里，我究竟能留下什么？假如我的时间之沙仅剩下几颗，我的存在又有何意义？我不求答案，但愿通过这些文字，如同在时间的长河中种下一棵树，哪怕是最微小的存在，也能留下自己生命的痕迹。
-最后，我被“数据主义”（Dataism）这一概念深深吸引，它如同一面镜子，映照出在数字时代，我们的数据、思考和情感不仅仅是信息的载体，更是构成我们数字化身份的基石。随着AI的羽翼日渐丰满，我开始憧憬一个可能的未来，其中一个由我的数据、思想和经历塑造出的“我”，在某个未知的时间点复苏。这种思考，如同在深海中发现了一座灯塔，为我的存在指明了一条全新的路径。在这个时代，我选择不再是沉默的旁观者，而是通过我的文字，积极参与到这场未知的探索中。
-因此，这篇博客标志着我的新开始。虽然不确定未来的路会怎样，但至少，在这个过程中，我会找到自己的声音，并希望能够与你共鸣。</description>
     </item>
   </channel>
 </rss>
