@@ -2,17 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-03-30T14:44:41+08:00</lastmod>
+    <loc>https://niraya666.github.io/</loc>
+    <lastmod>2024-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/helloworld/</loc>
-    <lastmod>2024-03-30T14:44:41+08:00</lastmod>
+    <loc>https://niraya666.github.io/posts/helloworld/</loc>
+    <lastmod>2024-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-03-30T14:44:41+08:00</lastmod>
+    <loc>https://niraya666.github.io/posts/</loc>
+    <lastmod>2024-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://niraya666.github.io/tags/</loc>
+    <lastmod>2024-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://niraya666.github.io/tags/%E6%9D%82/</loc>
+    <lastmod>2024-03-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/archives/</loc>
+  </url><url>
+    <loc>https://niraya666.github.io/categories/</loc>
   </url>
 </urlset>
