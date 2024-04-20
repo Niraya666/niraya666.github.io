@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on LZY Blog</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://niraya666.github.io/posts/</link>
     <description>Recent content in Posts on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 20 Apr 2024 17:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RAG工具箱：文档解析与表格处理</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
       <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
       <description>引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
 对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
 人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
@@ -38,9 +38,9 @@ from typing import Optional, List import io import fitz from pathlib import Path
     </item>
     <item>
       <title>游记：2024-春 昆明大理</title>
-      <link>http://localhost:1313/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</link>
       <pubDate>Wed, 10 Apr 2024 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</guid>
+      <guid>https://niraya666.github.io/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</guid>
       <description>游记：2024-春 昆明大理 昆明 时间似乎停止了 不知为何在昆明有一种回到兰州的感觉，一样的三线省会，似曾相识的破败老城区街道，赫鲁晓夫楼，砖瓦房，和五六十年代的家属大院，似乎时间就停止流动了。我不认为这是种贬义的表达，至少清晨行走在老街区，唤起了我上学时，清晨走出校园到火车站赶火车的尘封记忆。 不过需要提一嘴的是，似乎当前的实体经济，特别是在老城区，不论是这次旅行所看到的，还是之前在故乡和别的城市所看到的，可以说是很糟糕了。目光所及有一半的店面处于关门转让的状态，而开着的那一半，又有近乎三成处于清仓甩卖中。
 古镇PTSD 在全国绝大多数古镇逐渐趋同演化的当下，不知这是否是件悲哀的事。因为去云南省博物馆的途中会路过官渡古镇，遂决定顺便去看看。从古镇的东北边进入至正门而出，这次访问让我有幸同时见证了从破败而真实的古镇到商业化过度开发的古镇的转变。
 在历史长河中被剥夺了名字的人 在昆明这个城市名字的由来中，有一段被历史辗转淡忘的故事。昆明这一名称起源于昆明夷——西汉时期活跃在洱海周边的一个游牧民族。而在这片土地上生活的滇人，一个拥有先进青铜技术的农耕文明，不断地抵抗游牧民族的侵扰。尽管如此，在历史的长河中，正是这些滇人创造了辉煌的文明，却在历史的演进中失去了自己的名字。这不禁让人感受到一种悲剧的讽刺——在自己孕育辉煌的土地上，却被剥夺了命名的权力。这反映出历史的无情，以及文化与权力之间复杂的交织。
@@ -75,9 +75,9 @@ Dalihub的秘密空间
     </item>
     <item>
       <title>RAG工具箱：评估RAG系统的方法论</title>
-      <link>http://localhost:1313/posts/rag_toolkit_eval/</link>
+      <link>https://niraya666.github.io/posts/rag_toolkit_eval/</link>
       <pubDate>Mon, 08 Apr 2024 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag_toolkit_eval/</guid>
+      <guid>https://niraya666.github.io/posts/rag_toolkit_eval/</guid>
       <description>写在最前面 在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。
 此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。
 在我们深入探索RAG系统提升的各种方法之前，有一个基本问题需要解决：我们如何准确地评估一个RAG系统的性能？这就像是在机器学习或深度学习任务中没有给定的测试集和评价标准，我们难以判断实验的成功与否。
@@ -109,9 +109,9 @@ contexts：这是为了解答question而从外部知识源检索到的相关上�
     </item>
     <item>
       <title>My First Post: Hello-World!</title>
-      <link>http://localhost:1313/posts/helloworld/</link>
+      <link>https://niraya666.github.io/posts/helloworld/</link>
       <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/helloworld/</guid>
+      <guid>https://niraya666.github.io/posts/helloworld/</guid>
       <description>Hello-World! 欢迎来到我的博客
 在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。
 为什么我决定写博客 在生活的纷扰和无尽的日常中，我发现自己一直在与拖延症作斗争。直到今天，我终于下定决心，决定将心中的思绪和感悟记录下来，开启我的博客之旅。
