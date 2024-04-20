@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>RAG工具箱：文档解析与表格处理 | LZY Blog</title>
+<meta name="keywords" content="RAG, RAG-Toolkits">
+<meta name="description" content="RAG工具箱：文档解析与表格处理 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
+对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
+人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
+常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：
+多列布局导致的文本流读取错误。
+公式和表格的解析效果差，难以正确提取信息。
+解析过程中结构化信息（如标题和列表）的丢失。
+影印版PDF的文本无法被标准OCR工具识别。
+高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：
+OCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。
+基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。
+只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。
+必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。
+快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照
+!pip install -q pymupdf python-Levenshtein nltk !pip install -q git&#43;https://github.com/huggingface/transformers.git Load model and processor
+from transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(&#34;facebook/nougat-base&#34;) model = VisionEncoderDecoderModel.from_pretrained(&#34;facebook/nougat-base&#34;) device = &#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34; model.to(device) 将pdf转成图像
+from typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -&gt; Optional[List[io.">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="RAG工具箱：文档解析与表格处理" />
+<meta property="og:description" content="RAG工具箱：文档解析与表格处理 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
+对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
+人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
+常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：
+多列布局导致的文本流读取错误。
+公式和表格的解析效果差，难以正确提取信息。
+解析过程中结构化信息（如标题和列表）的丢失。
+影印版PDF的文本无法被标准OCR工具识别。
+高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：
+OCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。
+基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。
+只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。
+必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。
+快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照
+!pip install -q pymupdf python-Levenshtein nltk !pip install -q git&#43;https://github.com/huggingface/transformers.git Load model and processor
+from transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(&#34;facebook/nougat-base&#34;) model = VisionEncoderDecoderModel.from_pretrained(&#34;facebook/nougat-base&#34;) device = &#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34; model.to(device) 将pdf转成图像
+from typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -&gt; Optional[List[io." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-20T17:00:00+08:00" />
+<meta property="article:modified_time" content="2024-04-20T17:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="RAG工具箱：文档解析与表格处理"/>
+<meta name="twitter:description" content="RAG工具箱：文档解析与表格处理 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
+对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
+人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
+常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：
+多列布局导致的文本流读取错误。
+公式和表格的解析效果差，难以正确提取信息。
+解析过程中结构化信息（如标题和列表）的丢失。
+影印版PDF的文本无法被标准OCR工具识别。
+高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：
+OCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。
+基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。
+只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。
+必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。
+快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照
+!pip install -q pymupdf python-Levenshtein nltk !pip install -q git&#43;https://github.com/huggingface/transformers.git Load model and processor
+from transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(&#34;facebook/nougat-base&#34;) model = VisionEncoderDecoderModel.from_pretrained(&#34;facebook/nougat-base&#34;) device = &#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34; model.to(device) 将pdf转成图像
+from typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -&gt; Optional[List[io."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://niraya666.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "RAG工具箱：文档解析与表格处理",
+      "item": "https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RAG工具箱：文档解析与表格处理",
+  "name": "RAG工具箱：文档解析与表格处理",
+  "description": "RAG工具箱：文档解析与表格处理 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。\n对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。\n人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。\n常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：\n多列布局导致的文本流读取错误。\n公式和表格的解析效果差，难以正确提取信息。\n解析过程中结构化信息（如标题和列表）的丢失。\n影印版PDF的文本无法被标准OCR工具识别。\n高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：\nOCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。\n基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。\n只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。\n必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。\n快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照\n!pip install -q pymupdf python-Levenshtein nltk !pip install -q git+https://github.com/huggingface/transformers.git Load model and processor\nfrom transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(\u0026#34;facebook/nougat-base\u0026#34;) model = VisionEncoderDecoderModel.from_pretrained(\u0026#34;facebook/nougat-base\u0026#34;) device = \u0026#34;cuda\u0026#34; if torch.cuda.is_available() else \u0026#34;cpu\u0026#34; model.to(device) 将pdf转成图像\nfrom typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -\u0026gt; Optional[List[io.",
+  "keywords": [
+    "RAG", "RAG-Toolkits"
+  ],
+  "articleBody": "RAG工具箱：文档解析与表格处理 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。\n对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。\n人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。\n常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：\n多列布局导致的文本流读取错误。\n公式和表格的解析效果差，难以正确提取信息。\n解析过程中结构化信息（如标题和列表）的丢失。\n影印版PDF的文本无法被标准OCR工具识别。\n高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：\nOCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。\n基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。\n只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。\n必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。\n快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照\n!pip install -q pymupdf python-Levenshtein nltk !pip install -q git+https://github.com/huggingface/transformers.git Load model and processor\nfrom transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(\"facebook/nougat-base\") model = VisionEncoderDecoderModel.from_pretrained(\"facebook/nougat-base\") device = \"cuda\" if torch.cuda.is_available() else \"cpu\" model.to(device) 将pdf转成图像\nfrom typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -\u003e Optional[List[io.BytesIO]]: \"\"\" Rasterize a PDF file to PNG images. Args: pdf (Path): The path to the PDF file. outpath (Optional[Path], optional): The output directory. If None, the PIL images will be returned instead. Defaults to None. dpi (int, optional): The output DPI. Defaults to 96. return_pil (bool, optional): Whether to return the PIL images instead of writing them to disk. Defaults to False. pages (Optional[List[int]], optional): The pages to rasterize. If None, all pages will be rasterized. Defaults to None. Returns: Optional[List[io.BytesIO]]: The PIL images if `return_pil` is True, otherwise None. \"\"\" pillow_images = [] if outpath is None: return_pil = True try: if isinstance(pdf, (str, Path)): pdf = fitz.open(pdf) if pages is None: pages = range(len(pdf)) for i in pages: page_bytes: bytes = pdf[i].get_pixmap(dpi=dpi).pil_tobytes(format=\"PNG\") if return_pil: pillow_images.append(io.BytesIO(page_bytes)) else: with (outpath / (\"%02d.png\" % (i + 1))).open(\"wb\") as f: f.write(page_bytes) except Exception: pass if return_pil: return pillow_images from transformers import StoppingCriteria, StoppingCriteriaList from collections import defaultdict class RunningVarTorch: def __init__(self, L=15, norm=False): self.values = None self.L = L self.norm = norm def push(self, x: torch.Tensor): assert x.dim() == 1 if self.values is None: self.values = x[:, None] elif self.values.shape[1] \u003c self.L: self.values = torch.cat((self.values, x[:, None]), 1) else: self.values = torch.cat((self.values[:, 1:], x[:, None]), 1) def variance(self): if self.values is None: return if self.norm: return torch.var(self.values, 1) / self.values.shape[1] else: return torch.var(self.values, 1) class StoppingCriteriaScores(StoppingCriteria): def __init__(self, threshold: float = 0.015, window_size: int = 200): super().__init__() self.threshold = threshold self.vars = RunningVarTorch(norm=True) self.varvars = RunningVarTorch(L=window_size) self.stop_inds = defaultdict(int) self.stopped = defaultdict(bool) self.size = 0 self.window_size = window_size @torch.no_grad() def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor): last_scores = scores[-1] self.vars.push(last_scores.max(1)[0].float().cpu()) self.varvars.push(self.vars.variance()) self.size += 1 if self.size \u003c self.window_size: return False varvar = self.varvars.variance() for b in range(len(last_scores)): if varvar[b] \u003c self.threshold: if self.stop_inds[b] \u003e 0 and not self.stopped[b]: self.stopped[b] = self.stop_inds[b] \u003e= self.size else: self.stop_inds[b] = int( min(max(self.size, 1) * 1.15 + 150 + self.window_size, 4095) ) else: self.stop_inds[b] = 0 self.stopped[b] = False return all(self.stopped.values()) and len(self.stopped) \u003e 0 将pdf转成markdown\nfrom tqdm import tqdm def trans_pdf_to_markdown(filepath): output = \"\" images = rasterize_paper(pdf=filepath, return_pil=True) for i in tqdm(range(len(images))): image = Image.open(images[i]) pixel_values = processor(images=image, return_tensors=\"pt\").pixel_values # autoregressively generate tokens, with custom stopping criteria (as defined by the Nougat authors) outputs = model.generate(pixel_values.to(device), min_length=1, max_length=3584, bad_words_ids=[[processor.tokenizer.unk_token_id]], return_dict_in_generate=True, output_scores=True, stopping_criteria=StoppingCriteriaList([StoppingCriteriaScores()]), ) generated = processor.batch_decode(outputs[0], skip_special_tokens=True)[0] generated = processor.post_process_generation(generated, fix_markdown=True) output+=generated output+=\"\\n\\n\" return output filepath = 'xxx.pdf' makrdown_ = trans_pdf_to_markdown(filepath) 具体参考Nougat的官方示例。\n表格类数据的RAG问题 表格类目前的解决方案主要有两种：\n对于内容较小的表格，一般采用LLM对表格进行summary， 以table summary构建查询的index，在召回后， 进行表格内容的复原或者根据问题后处理提供至LLM进行生成。\n对于内容较多的表格， 一般采取结构化处理， 也就是存储至数据库， 在查询阶段根据问题匹配对应的表schema， 有模型执行text-to-sql任务，生成sql并执行获得结果，最终根据结果回答内容。\n对于第一种方案，在Langchain 的cookbook中提到了Semi-structured RAG的方法值得借鉴；\n此外在HRoT这篇工作中， 也提到了类似的方法；\n在HRoT这篇工作中， 增加了将table基于问题进行重构的算法，\nType-Aware Table Reconstruction algorithm\n该算法的实现步骤如下：\n问题分类：首先，算法对问题进行分类，判断问题是算术问题还是跨列选择问题。这有助于确定需要从表格中检索的信息类型。\n获取表格和证据：对于算术问题，算法获取与问题相关的表格集合。然后，从这些表格中提取出作为证据的文本和表格片段。\n表格分区：对于每个表格，算法将其分区为多个子表格。这是通过获取表格的跨度列表（Lt）来完成的，该列表包含了表格中每个头部（行和列）的起始和结束位置。\n确定保留的行和列：算法根据问题类型和证据来确定哪些行和列是回答问题所必需的。这是通过分析每个证据的子标题（即表格中的行和列标题）来实现的。\n重建表格：在确定了需要保留的行和列之后，算法根据这些信息重建表格。重建的表格只包含对问题回答有帮助的信息，从而减少了无关信息的干扰。\n在TableQuery 这篇工作中， 利用一系列模块组件，实现了基于LLM对数据库的高效查询。\nTableQuery的架构设计包括以下几个主要模块：\nDatastore：Datastore是一个表格集合，可以通过自然语言查询。这些表格可以是数据库或电子表格目录。除了表格数据，Datastore还包含模式文件，这些文件包含每个表的元数据，如表关键词、列名、列类型、列关键词（用户为列名提供的关键词）等。模式文件可以手动为这些表创建，也可以通过应用各种启发式方法自动生成。\nTable Selector：表选择器根据输入查询从Datastore中选择合适的表。这是通过从输入查询中提取关键词，并找到与问题关键词（以及模式中的表关键词、列名、列关键词等）重叠系数最大的表来完成的。\nKnown Fields Extractor：已知字段提取器提取查询中已经给出值的列。对于这些列中的每一个，也提取了相应的值。这是通过一个预训练的深度学习模型来完成的，该模型用于在自由文本上执行问答。\nUnknown Fields Extractor：未知字段提取器提取需要从选定表中检索值的列。这是通过排除已知字段提取器已经从查询中提取的列，并找到其列关键词与问题关键词重叠系数最大的列来完成的。\nAggregate Function Classifier：一些查询可能需要对选定表中的未知字段的值执行进一步操作。这是通过在生成的SQL查询中包含SQL聚合函数（如COUNT、SUM、MIN、MAX、AVG等）来实现的。聚合函数分类器决定给定输入查询要使用的聚合函数。为了执行这项任务，作者训练了一个两层的神经网络，该网络以使用通用句子编码器编码的查询作为输入，并输出要使用的适当聚合函数（如果有的话）。\nSQL Generator：结合已知字段和值、未知字段和聚合函数来构建SQL查询，当该查询在选定的表上运行时，返回所需的结果。\n关于text-to-sql的更详尽内容， 可以参考这篇综述文章：Natural Language Interfaces for Tabular Data Querying and Visualization: A Survey。 限于篇幅就不展开了。\n参考文献 langchain: Document loaders\nNougat: Neural Optical Understanding for Academic Documents\nlangchain: Semi-structured RAG\nHRoT: Hybrid prompt strategy and Retrieval of Thought for Table-Text Hybrid Question Answering\nTableQuery： Querying tabular data with natural language\nNatural Language Interfaces for Tabular Data Querying and Visualization: A Survey\n",
+  "wordCount" : "596",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2024-04-20T17:00:00+08:00",
+  "dateModified": "2024-04-20T17:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      RAG工具箱：文档解析与表格处理
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-04-20 17:00:00 +0800 CST'>April 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#rag%e5%b7%a5%e5%85%b7%e7%ae%b1%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86" aria-label="RAG工具箱：文档解析与表格处理">RAG工具箱：文档解析与表格处理</a><ul>
+                        
+                <li>
+                    <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a><ul>
+                        
+                <li>
+                    <a href="#%e4%ba%ba%e7%b1%bb%e4%b8%8e%e6%9c%ba%e5%99%a8%e7%9a%84%e9%98%85%e8%af%bb%e5%b7%ae%e5%bc%82" aria-label="人类与机器的阅读差异">人类与机器的阅读差异</a></li>
+                <li>
+                    <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84pdf%e8%a7%a3%e6%9e%90%e9%97%ae%e9%a2%98" aria-label="常见的PDF解析问题">常见的PDF解析问题</a></li>
+                <li>
+                    <a href="#%e9%ab%98%e7%ba%a7%e8%a7%a3%e6%9e%90%e6%8a%80%e6%9c%af" aria-label="高级解析技术">高级解析技术</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bf%ab%e9%80%9f%e4%b8%8a%e6%89%8b%e4%bd%bf%e7%94%a8nougat%e5%b0%86pdf%e8%a7%a3%e6%9e%90%e6%88%90%e9%80%82%e5%90%88llm%e8%af%bb%e5%8f%96%e7%9a%84markdown" aria-label="快速上手：使用Nougat将pdf解析成适合LLM读取的markdown">快速上手：使用Nougat将pdf解析成适合LLM读取的markdown</a></li>
+                <li>
+                    <a href="#%e8%a1%a8%e6%a0%bc%e7%b1%bb%e6%95%b0%e6%8d%ae%e7%9a%84rag%e9%97%ae%e9%a2%98" aria-label="表格类数据的RAG问题">表格类数据的RAG问题</a></li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="参考文献">参考文献</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="rag工具箱文档解析与表格处理">RAG工具箱：文档解析与表格处理<a hidden class="anchor" aria-hidden="true" href="#rag工具箱文档解析与表格处理">#</a></h1>
+<h2 id="引言"><strong>引言</strong><a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p>在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。</p>
+<p>对于文档解析，<strong><code>langchain</code></strong> 和 <strong><code>llama_index</code></strong> 提供的 <strong><code>document loader</code></strong> 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。</p>
+<h3 id="人类与机器的阅读差异"><strong>人类与机器的阅读差异</strong><a hidden class="anchor" aria-hidden="true" href="#人类与机器的阅读差异">#</a></h3>
+<p>尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。</p>
+<h3 id="常见的pdf解析问题"><strong>常见的PDF解析问题</strong><a hidden class="anchor" aria-hidden="true" href="#常见的pdf解析问题">#</a></h3>
+<p>使用传统的PDF解析库可能遇到多种问题：</p>
+<ul>
+<li>
+<p>多列布局导致的文本流读取错误。</p>
+</li>
+<li>
+<p>公式和表格的解析效果差，难以正确提取信息。</p>
+</li>
+<li>
+<p>解析过程中结构化信息（如标题和列表）的丢失。</p>
+</li>
+<li>
+<p>影印版PDF的文本无法被标准OCR工具识别。</p>
+</li>
+</ul>
+<h3 id="高级解析技术"><strong>高级解析技术</strong><a hidden class="anchor" aria-hidden="true" href="#高级解析技术">#</a></h3>
+<p>根据<a href="https://unstructured.io/">unstractued</a>提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：</p>
+<ol>
+<li>
+<p><strong>OCR技术</strong>：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。</p>
+</li>
+<li>
+<p><strong>基于Transformer的端到端解析</strong>：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，<strong><code>Dount</code></strong> 和 <strong><code>Nougat</code></strong> 模型表现出色，尤其是 <strong><code>Nougat</code></strong> 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。</p>
+</li>
+</ol>
+<p>只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。</p>
+<p><img loading="lazy" src="https://unstructured-io.github.io/unstructured/_images/strategy.png" alt=""  />
+</p>
+<p>必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。</p>
+<h2 id="快速上手使用nougat将pdf解析成适合llm读取的markdown">快速上手：使用Nougat将pdf解析成适合LLM读取的markdown<a hidden class="anchor" aria-hidden="true" href="#快速上手使用nougat将pdf解析成适合llm读取的markdown">#</a></h2>
+<p>依赖按照</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">pymupdf</span> <span class="n">python</span><span class="o">-</span><span class="n">Levenshtein</span> <span class="n">nltk</span>
+</span></span><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">huggingface</span><span class="o">/</span><span class="n">transformers</span><span class="o">.</span><span class="n">git</span>
+</span></span></code></pre></div><p><strong>Load model and processor</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoProcessor</span><span class="p">,</span> <span class="n">VisionEncoderDecoderModel</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">processor</span> <span class="o">=</span> <span class="n">AutoProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&#34;facebook/nougat-base&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">VisionEncoderDecoderModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&#34;facebook/nougat-base&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">device</span> <span class="o">=</span> <span class="s2">&#34;cuda&#34;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&#34;cpu&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></span></code></pre></div><p>将pdf转成图像</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">io</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">fitz</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rasterize_paper</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pdf</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">outpath</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">96</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">return_pil</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pages</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Rasterize a PDF file to PNG images.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Args:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        pdf (Path): The path to the PDF file.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        outpath (Optional[Path], optional): The output directory. If None, the PIL images will be returned instead. Defaults to None.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        dpi (int, optional): The output DPI. Defaults to 96.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        return_pil (bool, optional): Whether to return the PIL images instead of writing them to disk. Defaults to False.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        pages (Optional[List[int]], optional): The pages to rasterize. If None, all pages will be rasterized. Defaults to None.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Returns:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Optional[List[io.BytesIO]]: The PIL images if `return_pil` is True, otherwise None.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pillow_images</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">outpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">return_pil</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pdf</span> <span class="o">=</span> <span class="n">fitz</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">pages</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pages</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pages</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">page_bytes</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span><span class="o">.</span><span class="n">pil_tobytes</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&#34;PNG&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">return_pil</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pillow_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">page_bytes</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">with</span> <span class="p">(</span><span class="n">outpath</span> <span class="o">/</span> <span class="p">(</span><span class="s2">&#34;</span><span class="si">%02d</span><span class="s2">.png&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">page_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">return_pil</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pillow_images</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">StoppingCriteria</span><span class="p">,</span> <span class="n">StoppingCriteriaList</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RunningVarTorch</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">norm</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">StoppingCriteriaScores</span><span class="p">(</span><span class="n">StoppingCriteria</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.015</span><span class="p">,</span> <span class="n">window_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">vars</span> <span class="o">=</span> <span class="n">RunningVarTorch</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">varvars</span> <span class="o">=</span> <span class="n">RunningVarTorch</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="n">window_size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">stop_inds</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@torch.no_grad</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span> <span class="n">scores</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">last_scores</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">vars</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">last_scores</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">varvars</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vars</span><span class="o">.</span><span class="n">variance</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">varvar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varvars</span><span class="o">.</span><span class="n">variance</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">last_scores</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">varvar</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_inds</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">[</span><span class="n">b</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                    <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_inds</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="bp">self</span><span class="o">.</span><span class="n">stop_inds</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.15</span> <span class="o">+</span> <span class="mi">150</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span> <span class="mi">4095</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">stop_inds</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></span></code></pre></div><p>将pdf转成markdown</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">trans_pdf_to_markdown</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">output</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">images</span> <span class="o">=</span> <span class="n">rasterize_paper</span><span class="p">(</span><span class="n">pdf</span><span class="o">=</span><span class="n">filepath</span><span class="p">,</span> <span class="n">return_pil</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">))):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&#34;pt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># autoregressively generate tokens, with custom stopping criteria (as defined by the Nougat authors)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">max_length</span><span class="o">=</span><span class="mi">3584</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">bad_words_ids</span><span class="o">=</span><span class="p">[[</span><span class="n">processor</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">unk_token_id</span><span class="p">]],</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">return_dict_in_generate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">output_scores</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">stopping_criteria</span><span class="o">=</span><span class="n">StoppingCriteriaList</span><span class="p">([</span><span class="n">StoppingCriteriaScores</span><span class="p">()]),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">generated</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">batch_decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">generated</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">post_process_generation</span><span class="p">(</span><span class="n">generated</span><span class="p">,</span> <span class="n">fix_markdown</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">output</span><span class="o">+=</span><span class="n">generated</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span><span class="o">+=</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">output</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;xxx.pdf&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">makrdown_</span> <span class="o">=</span> <span class="n">trans_pdf_to_markdown</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</span></span></code></pre></div><p>具体参考Nougat的<a href="https://github.com/facebookresearch/nougat">官方示例</a>。</p>
+<h2 id="表格类数据的rag问题">表格类数据的RAG问题<a hidden class="anchor" aria-hidden="true" href="#表格类数据的rag问题">#</a></h2>
+<p>表格类目前的解决方案主要有两种：</p>
+<p>对于内容较小的表格，一般采用LLM对表格进行summary， 以table summary构建查询的index，在召回后， 进行表格内容的复原或者根据问题后处理提供至LLM进行生成。</p>
+<p>对于内容较多的表格， 一般采取结构化处理， 也就是存储至数据库， 在查询阶段根据问题匹配对应的表schema， 有模型执行text-to-sql任务，生成sql并执行获得结果，最终根据结果回答内容。</p>
+<p>对于第一种方案，在Langchain 的cookbook中提到了Semi-structured RAG的方法值得借鉴；</p>
+<p><img loading="lazy" src="/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86-assets/Untitled.png" alt="Untitled.png"  />
+</p>
+<p>此外在<a href="https://arxiv.org/abs/2309.12669">HRoT</a>这篇工作中， 也提到了类似的方法；</p>
+<p><img loading="lazy" src="/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86-assets/%e6%88%aa%e5%b1%8f2024-04-17%2016.22.17.png" alt="截屏2024-04-17 16.22.17.png"  />
+</p>
+<p>在HRoT这篇工作中， 增加了将table基于问题进行重构的算法，</p>
+<p>Type-Aware Table Reconstruction algorithm</p>
+<p><img loading="lazy" src="/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86-assets/%e6%88%aa%e5%b1%8f2024-04-17%2016.31.19.png" alt="截屏2024-04-17 16.31.19.png"  />
+</p>
+<p>该算法的实现步骤如下：</p>
+<ol>
+<li>
+<p><strong>问题分类</strong>：首先，算法对问题进行分类，判断问题是算术问题还是跨列选择问题。这有助于确定需要从表格中检索的信息类型。</p>
+</li>
+<li>
+<p><strong>获取表格和证据</strong>：对于算术问题，算法获取与问题相关的表格集合。然后，从这些表格中提取出作为证据的文本和表格片段。</p>
+</li>
+<li>
+<p><strong>表格分区</strong>：对于每个表格，算法将其分区为多个子表格。这是通过获取表格的跨度列表（Lt）来完成的，该列表包含了表格中每个头部（行和列）的起始和结束位置。</p>
+</li>
+<li>
+<p><strong>确定保留的行和列</strong>：算法根据问题类型和证据来确定哪些行和列是回答问题所必需的。这是通过分析每个证据的子标题（即表格中的行和列标题）来实现的。</p>
+</li>
+<li>
+<p><strong>重建表格</strong>：在确定了需要保留的行和列之后，算法根据这些信息重建表格。重建的表格只包含对问题回答有帮助的信息，从而减少了无关信息的干扰。</p>
+</li>
+</ol>
+<p>在<a href="https://arxiv.org/abs/2202.00454">TableQuery</a> 这篇工作中， 利用一系列模块组件，实现了基于LLM对数据库的高效查询。</p>
+<p><img loading="lazy" src="/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86-assets/%e6%88%aa%e5%b1%8f2024-04-17%2019.57.08.png" alt="截屏2024-04-17 19.57.08.png"  />
+</p>
+<p>TableQuery的架构设计包括以下几个主要模块：</p>
+<ol>
+<li>
+<p><strong>Datastore</strong>：Datastore是一个表格集合，可以通过自然语言查询。这些表格可以是数据库或电子表格目录。除了表格数据，Datastore还包含模式文件，这些文件包含每个表的元数据，如表关键词、列名、列类型、列关键词（用户为列名提供的关键词）等。模式文件可以手动为这些表创建，也可以通过应用各种启发式方法自动生成。</p>
+</li>
+<li>
+<p><strong>Table Selector</strong>：表选择器根据输入查询从Datastore中选择合适的表。这是通过从输入查询中提取关键词，并找到与问题关键词（以及模式中的表关键词、列名、列关键词等）重叠系数最大的表来完成的。</p>
+</li>
+<li>
+<p><strong>Known Fields Extractor</strong>：已知字段提取器提取查询中已经给出值的列。对于这些列中的每一个，也提取了相应的值。这是通过一个预训练的深度学习模型来完成的，该模型用于在自由文本上执行问答。</p>
+</li>
+<li>
+<p><strong>Unknown Fields Extractor</strong>：未知字段提取器提取需要从选定表中检索值的列。这是通过排除已知字段提取器已经从查询中提取的列，并找到其列关键词与问题关键词重叠系数最大的列来完成的。</p>
+</li>
+<li>
+<p><strong>Aggregate Function Classifier</strong>：一些查询可能需要对选定表中的未知字段的值执行进一步操作。这是通过在生成的SQL查询中包含SQL聚合函数（如COUNT、SUM、MIN、MAX、AVG等）来实现的。聚合函数分类器决定给定输入查询要使用的聚合函数。为了执行这项任务，作者训练了一个两层的神经网络，该网络以使用通用句子编码器编码的查询作为输入，并输出要使用的适当聚合函数（如果有的话）。</p>
+</li>
+<li>
+<p><strong>SQL Generator</strong>：结合已知字段和值、未知字段和聚合函数来构建SQL查询，当该查询在选定的表上运行时，返回所需的结果。</p>
+</li>
+</ol>
+<p>关于text-to-sql的更详尽内容， 可以参考这篇综述文章：<strong>Natural Language Interfaces for Tabular Data Querying and Visualization: A Survey</strong>。 限于篇幅就不展开了。</p>
+<h2 id="参考文献">参考文献<a hidden class="anchor" aria-hidden="true" href="#参考文献">#</a></h2>
+<p><a href="https://python.langchain.com/docs/integrations/document_loaders/">langchain: Document loaders</a></p>
+<p><strong><a href="https://facebookresearch.github.io/nougat/">Nougat: Neural Optical Understanding for Academic Documents</a></strong></p>
+<p><a href="https://github.com/langchain-ai/langchain/blob/master/cookbook/Semi_Structured_RAG.ipynb">langchain: Semi-structured RAG</a></p>
+<p><strong><a href="https://arxiv.org/abs/2309.12669">HRoT: Hybrid prompt strategy and Retrieval of Thought for Table-Text Hybrid Question Answering</a></strong></p>
+<p><a href="https://arxiv.org/abs/2202.00454">TableQuery： Querying tabular data with natural language</a></p>
+<p><a href="https://arxiv.org/abs/2310.17894">Natural Language Interfaces for Tabular Data Querying and Visualization: A Survey</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/rag/">RAG</a></li>
+      <li><a href="https://niraya666.github.io/tags/rag-toolkits/">RAG-Toolkits</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/">
+    <span class="title">Next »</span>
+    <br>
+    <span>游记：2024-春 昆明大理</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on x"
+            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f&amp;hashtags=RAG%2cRAG-Toolkits">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on whatsapp"
+            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on telegram"
+            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：文档解析与表格处理 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e4%b8%8e%e8%a1%a8%e6%a0%bc%e5%a4%84%e7%90%86&u=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1%25E6%2596%2587%25E6%25A1%25A3%25E8%25A7%25A3%25E6%259E%2590%25E4%25B8%258E%25E8%25A1%25A8%25E6%25A0%25BC%25E5%25A4%2584%25E7%2590%2586%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

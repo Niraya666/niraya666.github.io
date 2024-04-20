@@ -145,6 +145,40 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">RAG工具箱：文档解析与表格处理
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>RAG工具箱：文档解析与表格处理 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
+对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
+人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
+常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：
+多列布局导致的文本流读取错误。
+公式和表格的解析效果差，难以正确提取信息。
+解析过程中结构化信息（如标题和列表）的丢失。
+影印版PDF的文本无法被标准OCR工具识别。
+高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：
+OCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。
+基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。
+只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。
+必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。
+快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照
+!pip install -q pymupdf python-Levenshtein nltk !pip install -q git&#43;https://github.com/huggingface/transformers.git Load model and processor
+from transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(&#34;facebook/nougat-base&#34;) model = VisionEncoderDecoderModel.from_pretrained(&#34;facebook/nougat-base&#34;) device = &#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34; model.to(device) 将pdf转成图像
+from typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -&gt; Optional[List[io....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-20 17:00:00 +0800 CST'>April 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to RAG工具箱：文档解析与表格处理" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">RAG工具箱：评估RAG系统的方法论
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
