@@ -3,10 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://niraya666.github.io/</loc>
-    <lastmod>2024-04-08T11:00:00+08:00</lastmod>
+    <lastmod>2024-04-10T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/</loc>
-    <lastmod>2024-04-08T11:00:00+08:00</lastmod>
+    <lastmod>2024-04-10T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/</loc>
+    <lastmod>2024-04-10T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</loc>
+    <lastmod>2024-04-10T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</loc>
+    <lastmod>2024-04-10T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/tags/rag/</loc>
     <lastmod>2024-04-08T11:00:00+08:00</lastmod>
@@ -15,9 +24,6 @@
     <lastmod>2024-04-08T11:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/rag_toolkit_eval/</loc>
-    <lastmod>2024-04-08T11:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/</loc>
     <lastmod>2024-04-08T11:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/helloworld/</loc>
