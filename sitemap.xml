@@ -2,45 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://niraya666.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/tags/rag/</loc>
+    <loc>http://localhost:1313/tags/rag/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/tags/rag-toolkits/</loc>
+    <loc>http://localhost:1313/tags/rag-toolkits/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</loc>
+    <loc>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</loc>
+    <loc>http://localhost:1313/tags/%E6%B8%B8%E8%AE%B0/</loc>
     <lastmod>2024-04-10T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</loc>
+    <loc>http://localhost:1313/posts/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</loc>
     <lastmod>2024-04-10T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/posts/rag_toolkit_eval/</loc>
+    <loc>http://localhost:1313/posts/rag_toolkit_eval/</loc>
     <lastmod>2024-04-08T11:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/posts/helloworld/</loc>
+    <loc>http://localhost:1313/posts/helloworld/</loc>
     <lastmod>2024-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/tags/%E6%9D%82/</loc>
+    <loc>http://localhost:1313/tags/%E6%9D%82/</loc>
     <lastmod>2024-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
-    <loc>https://niraya666.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://niraya666.github.io/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url><url>
-    <loc>https://niraya666.github.io/series/</loc>
+    <loc>http://localhost:1313/series/</loc>
   </url>
 </urlset>
