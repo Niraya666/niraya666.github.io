@@ -2,11 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niraya666.github.io/tags/agent/</loc>
+    <lastmod>2024-04-28T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2024-04-28T15:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://niraya666.github.io/</loc>
-    <lastmod>2024-04-20T17:00:00+08:00</lastmod>
+    <lastmod>2024-04-28T15:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/</loc>
-    <lastmod>2024-04-20T17:00:00+08:00</lastmod>
+    <lastmod>2024-04-28T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/</loc>
+    <lastmod>2024-04-28T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/tool-using/</loc>
+    <lastmod>2024-04-28T15:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/tags/rag/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
@@ -15,9 +27,6 @@
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2024-04-20T17:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/</loc>
     <lastmod>2024-04-20T17:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</loc>
