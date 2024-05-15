@@ -11,8 +11,21 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 May 2024 16:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 15 May 2024 16:11:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG工具箱：文本分块</title>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
+      <pubDate>Wed, 15 May 2024 16:11:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
+      <description>为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
+如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：
+句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
+text = &amp;#34;...&amp;#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = &amp;#34;\n\n&amp;#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
+text = &amp;#34;...&amp;#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [&amp;quot;\n\n&amp;quot;, &amp;quot;\n&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;&amp;quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&amp;gt;一个换行-&amp;gt;空格）将文本进行递归分割。
+针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。</description>
+    </item>
     <item>
       <title>基于大语言模型的 Agent：科普向</title>
       <link>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
