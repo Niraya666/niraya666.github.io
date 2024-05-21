@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 16 May 2024 16:32:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 May 2024 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://niraya666.github.io/about/</link>
+      <pubDate>Tue, 21 May 2024 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/about/</guid>
+      <description>这是我的个人介绍页面。你可以在这里写下你的背景信息、兴趣爱好、专业技能等等。</description>
+    </item>
     <item>
       <title>大阪游记：时光交错下的日本探索</title>
       <link>https://niraya666.github.io/posts/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
