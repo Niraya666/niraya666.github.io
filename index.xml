@@ -11,8 +11,27 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 23 May 2024 19:42:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 May 2024 13:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-05 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-05/</link>
+      <pubDate>Fri, 31 May 2024 13:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-05/</guid>
+      <description>AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出
+ChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。
+Mistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用
+DeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。
+关注的开源项目 Cover-Agent Cover-Agent
+CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!
+自动化和增强测试的生成，目前主要是单元测试
+AnyNode v0.1 AnyNode
+A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.
+LlamaFS LlamaFS
+基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频
+DSPy DSPy
+DSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline.</description>
+    </item>
     <item>
       <title>泉州行记：古城漫步与味蕾之旅</title>
       <link>https://niraya666.github.io/posts/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>

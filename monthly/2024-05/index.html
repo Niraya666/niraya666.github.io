@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2024-05 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出
+ChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。
+Mistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用
+DeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。
+关注的开源项目 Cover-Agent Cover-Agent
+CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!
+自动化和增强测试的生成，目前主要是单元测试
+AnyNode v0.1 AnyNode
+A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.
+LlamaFS LlamaFS
+基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频
+DSPy DSPy
+DSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline.">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2024-05/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2024-05/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2024-05 月刊" />
+<meta property="og:description" content="AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出
+ChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。
+Mistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用
+DeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。
+关注的开源项目 Cover-Agent Cover-Agent
+CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!
+自动化和增强测试的生成，目前主要是单元测试
+AnyNode v0.1 AnyNode
+A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.
+LlamaFS LlamaFS
+基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频
+DSPy DSPy
+DSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2024-05/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2024-05-31T13:00:00+08:00" />
+<meta property="article:modified_time" content="2024-05-31T13:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="2024-05 月刊"/>
+<meta name="twitter:description" content="AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出
+ChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。
+Mistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用
+DeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。
+关注的开源项目 Cover-Agent Cover-Agent
+CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!
+自动化和增强测试的生成，目前主要是单元测试
+AnyNode v0.1 AnyNode
+A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.
+LlamaFS LlamaFS
+基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频
+DSPy DSPy
+DSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2024-05 月刊",
+      "item": "https://niraya666.github.io/monthly/2024-05/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2024-05 月刊",
+  "name": "2024-05 月刊",
+  "description": "AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出\nChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。\nMistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用\nDeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。\n关注的开源项目 Cover-Agent Cover-Agent\nCodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!\n自动化和增强测试的生成，目前主要是单元测试\nAnyNode v0.1 AnyNode\nA ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.\nLlamaFS LlamaFS\n基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频\nDSPy DSPy\nDSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline.",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出\nChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。\nMistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用\nDeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。\n关注的开源项目 Cover-Agent Cover-Agent\nCodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!\n自动化和增强测试的生成，目前主要是单元测试\nAnyNode v0.1 AnyNode\nA ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.\nLlamaFS LlamaFS\n基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频\nDSPy DSPy\nDSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline. To use LMs to build a complex system without DSPy, you generally have to: (1) break the problem down into steps, (2) prompt your LM well until each step works well in isolation, (3) tweak the steps to work well together, (4) generate synthetic examples to tune each step, and (5) use these examples to finetune smaller LMs to cut costs. Currently, this is hard and messy: every time you change your pipeline, your LM, or your data, all prompts (or finetuning steps) may need to change.\nHoarder Hoarder\n自托管的全能书签管理应用，支持链接、笔记和图片的存储，具备基于AI的自动标签化和全文搜索功能\n我的足迹 杭州，大阪，泉州\n影音\u0026阅读记录 精选歌单 演出 5.03 Fri. 闪千手音乐节 草东\u0026万青 .et.al 杭州 第一次在现场看到了草东和万青，也发现了一些之前没接触过的乐队， 如HONNE。虽然很累， 但也非常开心。不论是草东的全场大合唱，还是惘闻演出时远处意外出现的烟花， 抑或是万青在《大石碎胸口》结尾处的solo。我他妈地热爱这个世界。\n5.16 Thur. Athletics \u0026 Pg.lost 万代南梦宫 仍然处在Pg.lost 的截断反应中\n5.22 Wed. the Ocean \u0026 A burial at sea 南梦宫2F 5.25 Sat. Max Cooper\u0026吴卓玲 万代南梦宫 电影 《坂本龙一：杰作》\n书\u0026阅读摘录 本月完成：《一人企业方法论》，《疯狂的尿酸：不只是痛风》\n中文互联网正在加速崩塌 我们曾经以为互联网可以保留一切，但结果是一切都没能保留。\n主要原因可能是两个： 一是经济原因。\n二是监管原因。\n本质上，互联网内容和生命一样，也受进化论的支配。其存在的标准只有一条：以尽可能低的成本争取尽可能多的注意力。\n新生代也许还能看看朋友圈，但是朋友圈也越来越多“三天可见”，越来越沉默不语。\nElon Musk 访谈： 讲述自己对于突破社交障碍的心得 不要把注意力集中在自己身上 - 告诉自己「别紧张」反而会更紧张 - 你应该把注意力向外发散 询问对方问题，倾听对方回答 - 社交能力是天生的，你只需要发挥它 - 精通这项技能需要3-4年，但是非常值得\n分享一下我的信息流戒断方法（from X 上的 Andrew Bamboo） 社媒账号（即刻、推特、公众号）。作为记事本来用（我的日常随笔记录在 flomo 上，私人的内容仅自己可见，对别人有用的内容会同步在社媒平台上，长篇的可以跨越时间的会进一步沉淀在公众号上）；\nPerplexity 产品开发的新模式 精简管理层： 他们优先考虑自我驱动的独立贡献者，避免聘请那些主要通过指导他人来发挥作用的管理者。 因此，管理流程或领导团队的能力并不是首要考虑的。我们更看重那些能对用户产生显著影响的优秀个体贡献者，而不是仅限于他们所在公司的影响。 但我们不再那么需要那些主导他人工作的人才，因为有了人工智能，这已经不是必需的了。\n对未来的洞察： Johnny 预见到，随着时间的推移，那些既懂技术又具备产品敏感度的项目经理或工程师，将成为公司中最具价值的资产。 我认为未来，整个行业的管理层会趋于精简。如果我要预测，具有技术背景且懂得产品美学的产品经理或工程师，将成为公司最宝贵的资产。\n虽然高层的目标和方向是由上而下制定的，但许多新的想法却是从基层团队中产生的。\nMilestone 第一次独自一人出国：日本 第一次音乐节：闪千手音乐节 这个月发了5篇blog 在小红书发攻略：达到了1000+阅读和100+收藏赞 把游记同步到了马蜂窝 ",
+  "wordCount" : "267",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2024-05-31T13:00:00+08:00",
+  "dateModified": "2024-05-31T13:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2024-05/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2024-05 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-05-31 13:00:00 +0800 CST'>May 31, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#ai" aria-label="AI">AI</a><ul>
+                        
+                <li>
+                    <a href="#gpt4-o-%e5%8f%91%e5%b8%83" aria-label="GPT4-o 发布">GPT4-o 发布</a></li>
+                <li>
+                    <a href="#chatgpt%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90" aria-label="ChatGPT数据分析">ChatGPT数据分析</a></li>
+                <li>
+                    <a href="#mistral-7b-v03" aria-label="Mistral-7B-v0.3">Mistral-7B-v0.3</a></li>
+                <li>
+                    <a href="#deepseek-v2" aria-label="DeepSeek-V2">DeepSeek-V2</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="关注的开源项目">关注的开源项目</a><ul>
+                        
+                <li>
+                    <a href="#cover-agent" aria-label="Cover-Agent">Cover-Agent</a></li>
+                <li>
+                    <a href="#anynode-v01" aria-label="AnyNode v0.1">AnyNode v0.1</a></li>
+                <li>
+                    <a href="#llamafs" aria-label="LlamaFS">LlamaFS</a></li>
+                <li>
+                    <a href="#dspy" aria-label="DSPy">DSPy</a></li>
+                <li>
+                    <a href="#hoarder" aria-label="Hoarder">Hoarder</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%88%91%e7%9a%84%e8%b6%b3%e8%bf%b9" aria-label="我的足迹">我的足迹</a></li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e9%98%85%e8%af%bb%e8%ae%b0%e5%bd%95" aria-label="影音&amp;阅读记录">影音&amp;阅读记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%bc%94%e5%87%ba" aria-label="演出">演出</a><ul>
+                        
+                <li>
+                    <a href="#503-fri-%e9%97%aa%e5%8d%83%e6%89%8b%e9%9f%b3%e4%b9%90%e8%8a%82-%e8%8d%89%e4%b8%9c%e4%b8%87%e9%9d%92-etal-%e6%9d%ad%e5%b7%9e" aria-label="5.03 Fri. 闪千手音乐节 草东&amp;万青 .et.al 杭州">5.03 Fri. 闪千手音乐节 草东&amp;万青 .et.al 杭州</a></li>
+                <li>
+                    <a href="#516-thur-athletics--pglost-%e4%b8%87%e4%bb%a3%e5%8d%97%e6%a2%a6%e5%ae%ab" aria-label="5.16 Thur. Athletics &amp; Pg.lost 万代南梦宫">5.16 Thur. Athletics &amp; Pg.lost 万代南梦宫</a></li>
+                <li>
+                    <a href="#522-wed-the-ocean--a-burial-at-sea-%e5%8d%97%e6%a2%a6%e5%ae%ab2f" aria-label="5.22 Wed. the Ocean &amp; A burial at sea 南梦宫2F">5.22 Wed. the Ocean &amp; A burial at sea 南梦宫2F</a></li>
+                <li>
+                    <a href="#525-sat-max-cooper%e5%90%b4%e5%8d%93%e7%8e%b2-%e4%b8%87%e4%bb%a3%e5%8d%97%e6%a2%a6%e5%ae%ab" aria-label="5.25 Sat. Max Cooper&amp;吴卓玲 万代南梦宫">5.25 Sat. Max Cooper&amp;吴卓玲 万代南梦宫</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%94%b5%e5%bd%b1" aria-label="电影">电影</a></li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%87%e4%ba%92%e8%81%94%e7%bd%91%e6%ad%a3%e5%9c%a8%e5%8a%a0%e9%80%9f%e5%b4%a9%e5%a1%8c" aria-label="中文互联网正在加速崩塌">中文互联网正在加速崩塌</a></li>
+                <li>
+                    <a href="#elon-musk-%e8%ae%bf%e8%b0%88-%e8%ae%b2%e8%bf%b0%e8%87%aa%e5%b7%b1%e5%af%b9%e4%ba%8e%e7%aa%81%e7%a0%b4%e7%a4%be%e4%ba%a4%e9%9a%9c%e7%a2%8d%e7%9a%84%e5%bf%83%e5%be%97" aria-label="Elon Musk 访谈： 讲述自己对于突破社交障碍的心得">Elon Musk 访谈： 讲述自己对于突破社交障碍的心得</a></li>
+                <li>
+                    <a href="#%e5%88%86%e4%ba%ab%e4%b8%80%e4%b8%8b%e6%88%91%e7%9a%84%e4%bf%a1%e6%81%af%e6%b5%81%e6%88%92%e6%96%ad%e6%96%b9%e6%b3%95from-x-%e4%b8%8a%e7%9a%84-andrew-bamboo" aria-label="分享一下我的信息流戒断方法（from X 上的 Andrew Bamboo）">分享一下我的信息流戒断方法（from X 上的 Andrew Bamboo）</a></li>
+                <li>
+                    <a href="#perplexity-%e4%ba%a7%e5%93%81%e5%bc%80%e5%8f%91%e7%9a%84%e6%96%b0%e6%a8%a1%e5%bc%8f" aria-label="Perplexity 产品开发的新模式">Perplexity 产品开发的新模式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#milestone" aria-label="Milestone">Milestone</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="ai">AI<a hidden class="anchor" aria-hidden="true" href="#ai">#</a></h2>
+<h3 id="gpt4-o-发布">GPT4-o 发布<a hidden class="anchor" aria-hidden="true" href="#gpt4-o-发布">#</a></h3>
+<p>OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出</p>
+<h3 id="chatgpt数据分析">ChatGPT数据分析<a hidden class="anchor" aria-hidden="true" href="#chatgpt数据分析">#</a></h3>
+<p>最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。</p>
+<h3 id="mistral-7b-v03">Mistral-7B-v0.3<a hidden class="anchor" aria-hidden="true" href="#mistral-7b-v03">#</a></h3>
+<p>Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用</p>
+<h3 id="deepseek-v2">DeepSeek-V2<a hidden class="anchor" aria-hidden="true" href="#deepseek-v2">#</a></h3>
+<p>该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。</p>
+<h2 id="关注的开源项目">关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#关注的开源项目">#</a></h2>
+<h3 id="cover-agent"><strong>Cover-Agent</strong><a hidden class="anchor" aria-hidden="true" href="#cover-agent">#</a></h3>
+<p><a href="https://github.com/Codium-ai/cover-agent">Cover-Agent</a></p>
+<p>CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!</p>
+<p>自动化和增强测试的生成，目前主要是单元测试</p>
+<h3 id="anynode-v01"><strong>AnyNode v0.1</strong><a hidden class="anchor" aria-hidden="true" href="#anynode-v01">#</a></h3>
+<p><a href="https://github.com/lks-ai/anynode">AnyNode</a></p>
+<p>A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.</p>
+<h3 id="llamafs"><strong>LlamaFS</strong><a hidden class="anchor" aria-hidden="true" href="#llamafs">#</a></h3>
+<p><a href="https://github.com/iyaja/llama-fs">LlamaFS</a></p>
+<p>基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频</p>
+<h3 id="dspy"><strong>DSPy</strong><a hidden class="anchor" aria-hidden="true" href="#dspy">#</a></h3>
+<p><a href="https://github.com/stanfordnlp/dspy">DSPy</a></p>
+<p><strong>DSPy is a framework for algorithmically optimizing LM prompts and weights</strong>, especially when LMs are used one or more times within a pipeline. To use LMs to build a complex system <em>without</em> DSPy, you generally have to: (1) break the problem down into steps, (2) prompt your LM well until each step works well in isolation, (3) tweak the steps to work well together, (4) generate synthetic examples to tune each step, and (5) use these examples to finetune smaller LMs to cut costs. Currently, this is hard and messy: every time you change your pipeline, your LM, or your data, all prompts (or finetuning steps) may need to change.</p>
+<h3 id="hoarder"><strong>Hoarder</strong><a hidden class="anchor" aria-hidden="true" href="#hoarder">#</a></h3>
+<p><a href="https://github.com/hoarder-app/hoarder">Hoarder</a></p>
+<p>自托管的全能书签管理应用，支持链接、笔记和图片的存储，具备基于AI的自动标签化和全文搜索功能</p>
+<h2 id="我的足迹">我的足迹<a hidden class="anchor" aria-hidden="true" href="#我的足迹">#</a></h2>
+<p>杭州，大阪，泉州</p>
+<h2 id="影音阅读记录">影音&amp;阅读记录<a hidden class="anchor" aria-hidden="true" href="#影音阅读记录">#</a></h2>
+<h3 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h3>
+
+<iframe style="border-radius:15px" src="https://open.spotify.com/embed/playlist/3SLnfD0aZWQvYhJlngqsH6?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+<h2 id="演出">演出<a hidden class="anchor" aria-hidden="true" href="#演出">#</a></h2>
+<h3 id="503-fri-闪千手音乐节-草东万青-etal-杭州">5.03 Fri. 闪千手音乐节 草东&amp;万青 .et.al 杭州<a hidden class="anchor" aria-hidden="true" href="#503-fri-闪千手音乐节-草东万青-etal-杭州">#</a></h3>
+<p><img loading="lazy" src="/img/monthly/2024-05/Untitled.jpeg" alt="Untitled"  />
+</p>
+<p>第一次在现场看到了草东和万青，也发现了一些之前没接触过的乐队， 如HONNE。虽然很累， 但也非常开心。不论是草东的全场大合唱，还是惘闻演出时远处意外出现的烟花， 抑或是万青在《大石碎胸口》结尾处的solo。我他妈地热爱这个世界。</p>
+<h3 id="516-thur-athletics--pglost-万代南梦宫">5.16 Thur. Athletics &amp; Pg.lost 万代南梦宫<a hidden class="anchor" aria-hidden="true" href="#516-thur-athletics--pglost-万代南梦宫">#</a></h3>
+<p><img loading="lazy" src="/img/monthly/2024-05/Untitled_1.jpeg" alt="Untitled"  />
+</p>
+<p><img loading="lazy" src="/img/monthly/2024-05/Untitled_2.jpeg" alt="Untitled"  />
+</p>
+<p>仍然处在Pg.lost 的截断反应中</p>
+<h3 id="522-wed-the-ocean--a-burial-at-sea-南梦宫2f">5.22 Wed. the Ocean &amp; A burial at sea 南梦宫2F<a hidden class="anchor" aria-hidden="true" href="#522-wed-the-ocean--a-burial-at-sea-南梦宫2f">#</a></h3>
+<p><img loading="lazy" src="/img/monthly/2024-05/Untitled_3.jpeg" alt="Untitled"  />
+</p>
+<p><img loading="lazy" src="/img/monthly/2024-05/Untitled_4.jpeg" alt="Untitled"  />
+</p>
+<h3 id="525-sat-max-cooper吴卓玲-万代南梦宫">5.25 Sat. Max Cooper&amp;吴卓玲 万代南梦宫<a hidden class="anchor" aria-hidden="true" href="#525-sat-max-cooper吴卓玲-万代南梦宫">#</a></h3>
+<p><img loading="lazy" src="/img/monthly/2024-05/Untitled_5.jpeg" alt="Untitled"  />
+</p>
+<h2 id="电影">电影<a hidden class="anchor" aria-hidden="true" href="#电影">#</a></h2>
+<p>《坂本龙一：杰作》</p>
+<h2 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h2>
+<p>本月完成：《一人企业方法论》，《疯狂的尿酸：不只是痛风》</p>
+<h3 id="中文互联网正在加速崩塌"><strong>中文互联网正在加速崩塌</strong><a hidden class="anchor" aria-hidden="true" href="#中文互联网正在加速崩塌">#</a></h3>
+<blockquote>
+<p>我们曾经以为互联网可以保留一切，但结果是一切都没能保留。</p>
+</blockquote>
+<blockquote>
+<p>主要原因可能是两个：
+一是经济原因。</p>
+<p>二是监管原因。</p>
+<p>本质上，互联网内容和生命一样，也受进化论的支配。其存在的标准只有一条：以尽可能低的成本争取尽可能多的注意力。</p>
+</blockquote>
+<blockquote>
+<p><strong>新生代也许还能看看朋友圈，但是朋友圈也越来越多“三天可见”，越来越沉默不语。</strong></p>
+</blockquote>
+<h3 id="elon-musk-访谈-讲述自己对于突破社交障碍的心得">Elon Musk 访谈： 讲述自己对于突破社交障碍的心得<a hidden class="anchor" aria-hidden="true" href="#elon-musk-访谈-讲述自己对于突破社交障碍的心得">#</a></h3>
+<blockquote>
+<p>不要把注意力集中在自己身上 - 告诉自己「别紧张」反而会更紧张 - 你应该把注意力向外发散 询问对方问题，倾听对方回答 - 社交能力是天生的，你只需要发挥它 - 精通这项技能需要3-4年，但是非常值得</p>
+</blockquote>
+<h3 id="分享一下我的信息流戒断方法from-x-上的-andrew-bamboo"><strong>分享一下我的信息流戒断方法（from X 上的 Andrew Bamboo）</strong><a hidden class="anchor" aria-hidden="true" href="#分享一下我的信息流戒断方法from-x-上的-andrew-bamboo">#</a></h3>
+<blockquote>
+<p>社媒账号（即刻、推特、公众号）。作为记事本来用（我的日常随笔记录在 flomo 上，私人的内容仅自己可见，对别人有用的内容会同步在社媒平台上，长篇的可以跨越时间的会进一步沉淀在公众号上）；</p>
+</blockquote>
+<h3 id="perplexity-产品开发的新模式"><strong>Perplexity 产品开发的新模式</strong><a hidden class="anchor" aria-hidden="true" href="#perplexity-产品开发的新模式">#</a></h3>
+<blockquote>
+<p><strong>精简管理层：</strong> 他们优先考虑自我驱动的独立贡献者，避免聘请那些主要通过指导他人来发挥作用的管理者。
+因此，管理流程或领导团队的能力并不是首要考虑的。我们更看重那些能对用户产生显著影响的优秀个体贡献者，而不是仅限于他们所在公司的影响。
+但我们不再那么需要那些主导他人工作的人才，因为有了人工智能，这已经不是必需的了。</p>
+</blockquote>
+<blockquote>
+<p><strong>对未来的洞察：</strong> Johnny 预见到，随着时间的推移，那些既懂技术又具备产品敏感度的项目经理或工程师，将成为公司中最具价值的资产。
+我认为未来，整个行业的管理层会趋于精简。如果我要预测，具有技术背景且懂得产品美学的产品经理或工程师，将成为公司最宝贵的资产。</p>
+</blockquote>
+<blockquote>
+<p>虽然高层的目标和方向是由上而下制定的，但许多新的想法却是从基层团队中产生的。</p>
+</blockquote>
+<h2 id="milestone">Milestone<a hidden class="anchor" aria-hidden="true" href="#milestone">#</a></h2>
+<ul>
+<li>第一次独自一人出国：日本</li>
+<li>第一次音乐节：闪千手音乐节</li>
+<li>这个月发了5篇blog</li>
+<li>在小红书发攻略：达到了1000+阅读和100+收藏赞</li>
+<li>把游记同步到了马蜂窝</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2024-05%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f&amp;title=2024-05%20%e6%9c%88%e5%88%8a&amp;summary=2024-05%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f&title=2024-05%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2024-05%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2024-05%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-05 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2024-05%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-05%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
