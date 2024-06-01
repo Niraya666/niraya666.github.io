@@ -73,13 +73,6 @@ DSPy is a framework for algorithmically optimizing LM prompts and weights, espec
 下次再来</description>
     </item>
     <item>
-      <title>About</title>
-      <link>https://niraya666.github.io/about/</link>
-      <pubDate>Tue, 21 May 2024 12:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/about/</guid>
-      <description>个人介绍 后现代人类 AI从业者与终身学习者 工作狂 世界探索者 INFJ 阅读 听歌 创作 欢迎来到我的个人博客！</description>
-    </item>
-    <item>
       <title>大阪游记：时光交错下的日本探索</title>
       <link>https://niraya666.github.io/posts/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
       <pubDate>Thu, 16 May 2024 16:32:00 +0800</pubDate>
@@ -230,6 +223,13 @@ function calling的过程涵盖了从定义函数集、通过模型生成遵循�
 那么json mode 什么时候会用到呢？一般在做文本提取，内容提取时可以使用；以RAG场景为例， 当我们希望LLM能够帮我们对用户的query进行改写时，我们肯定是希望模型能够返回干净的json格式改写结果，这样的结果可以直接使用，而不是在模型输出一些内容后，如：</description>
     </item>
     <item>
+      <title>About</title>
+      <link>https://niraya666.github.io/about/</link>
+      <pubDate>Sun, 21 Apr 2024 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/about/</guid>
+      <description>个人介绍 后现代人类 AI从业者与终身学习者 工作狂 世界探索者 INFJ 阅读 听歌 创作 欢迎来到我的个人博客！</description>
+    </item>
+    <item>
       <title>RAG工具箱：文档解析与表格处理</title>
       <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
       <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
@@ -322,6 +322,26 @@ UpTrain
 question：这是RAG流程的输入，即用户的查询问题。
 answer：这是由RAG流程生成的答案，也就是输出结果。
 contexts：这是为了解答question而从外部知识源检索到的相关上下文信息。</description>
+    </item>
+    <item>
+      <title>2024-03 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-03/</link>
+      <pubDate>Sun, 31 Mar 2024 19:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-03/</guid>
+      <description>AI大纪事 Suno V3 发布 V3版本带来了卓越的音频品质、更丰富的音乐风格和类型选择，以及在准确响应创作提示方面的显著提升。
+更好的音频质量 更多的风格和流派 改进的提示遵循，包括更少的幻觉和更优美的结尾 Suno V3
+MetaGPT 更新V0.8 V0.8版本的主要亮点包括：
+数据解释器的引入：这一新特性大大增强了MetaGPT的数据处理能力，为用户分析和解释数据提供了强大的支持。 与RAG模块的集成：通过与RAG模块的集成，MetaGPT现在能够更好地理解和处理用户的需求，提高了生成内容的相关性和准确性。RAG底层使用的是llama_index 参考其GitHub页面和官方文档
+Nvidia GTC大会 新一代Nvidia B200 GPU
+首个AI程序员Devin 发布 Devin是由Cognition公司开发的全球首个完全自主的AI软件工程师，具备多项先进的编程技能，包括自主学习新技术、全面掌握开发工具、自动化代码修复和错误检测、以及端到端应用的构建和部署能力。
+不过目前，Devin还处于内测阶段，对公众的完全开放还需要一段时间。
+Cognition的官网
+Anthropic发布Claude 3 Anthropic发布了其最新的AI模型系列Claude 3，包括三个子模型：Claude 3 Haiku、Claude 3 Sonnet和Claude 3 Opus，其中Opus是最强大的。Claude 3 在多项基准测试中超越了GPT-4和Gemini Ultra，特别是在数学推理（GSM-8k）和专家级知识（MMLU）方面，显示出其领先的能力。于此同时，Claude 3 Opus 首次 Chatbot Arena 排行榜上超越了 GPT-4
+推荐的开源项目 **MoneyPrinterTurbo : 利用大模型，一键生成短视频**
+MediaCrawler: 自媒体爬虫工具, 支持小红书、抖音、快手、B 站、微博等自媒体平台的视频、图片、评论、点赞、转发信息抓取。
+LapisCV: 基于 Markdown 格式的简历模版
+LLMs Interview 八股文： 大模型面试题
+影音记录 本月精选歌单 本月Live记录 0307 Explosions in the Sky</description>
     </item>
     <item>
       <title>My First Post: Hello-World!</title>
