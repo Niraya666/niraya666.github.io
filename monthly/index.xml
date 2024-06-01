@@ -32,5 +32,40 @@ LlamaFS LlamaFS
 DSPy DSPy
 DSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline.</description>
     </item>
+    <item>
+      <title>2024-04 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-04/</link>
+      <pubDate>Tue, 30 Apr 2024 19:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-04/</guid>
+      <description>值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1
+CohereForAI/c4ai-command-r-plus
+meta-llama/Meta-Llama-3-8B-Instruct
+meta-llama/Meta-Llama-3-70B-Instruct
+microsoft/Phi-3-mini-128k-instruct
+gpt2-chatbot: 一个神秘的模型
+基础建设 Groq提供了免费且非常高速的API服务
+GroqCloud
+值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 &amp;ndash; 自动发现数据问题并进行修复，提高数据质量和价值
+https://github.com/cleanlab/cleanlab
+支持任何数据，包括图片、文本、音频、表格等
+检测数据标注问题、改进、训练模型、价值提升
+支持任何框架或模型：OpenAI、HuggingFace、PyTorch
+jina reader 抓取URL，将正文转换为良好的Markdown格式的工具
+Reader API
+一些类似的工具，by ：
+九原客 on Twitter / X
+https://markdowndown.vercel.app
+Web-scraper(open source):
+https://github.com/zzzgydi/webscraper…
+code-html-to-markdown:
+https://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）
+https://github.com/JimLiu/gpt-api
+https://www.firecrawl.dev/?x
+ChainForge An open-source visual programming environment for battle-testing prompts to LLMs.
+GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.
+RAGFlow 一个RAG框架
+https://github.com/infiniflow/ragflow/blob/main/README_zh.md
+亮点： 分块后的可视化和修改功能</description>
+    </item>
   </channel>
 </rss>

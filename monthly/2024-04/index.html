@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2024-04 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1
+CohereForAI/c4ai-command-r-plus
+meta-llama/Meta-Llama-3-8B-Instruct
+meta-llama/Meta-Llama-3-70B-Instruct
+microsoft/Phi-3-mini-128k-instruct
+gpt2-chatbot: 一个神秘的模型
+基础建设 Groq提供了免费且非常高速的API服务
+GroqCloud
+值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 &ndash; 自动发现数据问题并进行修复，提高数据质量和价值
+https://github.com/cleanlab/cleanlab
+支持任何数据，包括图片、文本、音频、表格等
+检测数据标注问题、改进、训练模型、价值提升
+支持任何框架或模型：OpenAI、HuggingFace、PyTorch
+jina reader 抓取URL，将正文转换为良好的Markdown格式的工具
+Reader API
+一些类似的工具，by ：
+九原客 on Twitter / X
+https://markdowndown.vercel.app
+Web-scraper(open source):
+https://github.com/zzzgydi/webscraper…
+code-html-to-markdown:
+https://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）
+https://github.com/JimLiu/gpt-api
+https://www.firecrawl.dev/?x
+ChainForge An open-source visual programming environment for battle-testing prompts to LLMs.
+GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.
+RAGFlow 一个RAG框架
+https://github.com/infiniflow/ragflow/blob/main/README_zh.md
+亮点： 分块后的可视化和修改功能">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2024-04/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2024-04/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2024-04 月刊" />
+<meta property="og:description" content="值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1
+CohereForAI/c4ai-command-r-plus
+meta-llama/Meta-Llama-3-8B-Instruct
+meta-llama/Meta-Llama-3-70B-Instruct
+microsoft/Phi-3-mini-128k-instruct
+gpt2-chatbot: 一个神秘的模型
+基础建设 Groq提供了免费且非常高速的API服务
+GroqCloud
+值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 &ndash; 自动发现数据问题并进行修复，提高数据质量和价值
+https://github.com/cleanlab/cleanlab
+支持任何数据，包括图片、文本、音频、表格等
+检测数据标注问题、改进、训练模型、价值提升
+支持任何框架或模型：OpenAI、HuggingFace、PyTorch
+jina reader 抓取URL，将正文转换为良好的Markdown格式的工具
+Reader API
+一些类似的工具，by ：
+九原客 on Twitter / X
+https://markdowndown.vercel.app
+Web-scraper(open source):
+https://github.com/zzzgydi/webscraper…
+code-html-to-markdown:
+https://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）
+https://github.com/JimLiu/gpt-api
+https://www.firecrawl.dev/?x
+ChainForge An open-source visual programming environment for battle-testing prompts to LLMs.
+GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.
+RAGFlow 一个RAG框架
+https://github.com/infiniflow/ragflow/blob/main/README_zh.md
+亮点： 分块后的可视化和修改功能" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2024-04/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2024-04-30T19:00:00+08:00" />
+<meta property="article:modified_time" content="2024-04-30T19:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="2024-04 月刊"/>
+<meta name="twitter:description" content="值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1
+CohereForAI/c4ai-command-r-plus
+meta-llama/Meta-Llama-3-8B-Instruct
+meta-llama/Meta-Llama-3-70B-Instruct
+microsoft/Phi-3-mini-128k-instruct
+gpt2-chatbot: 一个神秘的模型
+基础建设 Groq提供了免费且非常高速的API服务
+GroqCloud
+值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 &ndash; 自动发现数据问题并进行修复，提高数据质量和价值
+https://github.com/cleanlab/cleanlab
+支持任何数据，包括图片、文本、音频、表格等
+检测数据标注问题、改进、训练模型、价值提升
+支持任何框架或模型：OpenAI、HuggingFace、PyTorch
+jina reader 抓取URL，将正文转换为良好的Markdown格式的工具
+Reader API
+一些类似的工具，by ：
+九原客 on Twitter / X
+https://markdowndown.vercel.app
+Web-scraper(open source):
+https://github.com/zzzgydi/webscraper…
+code-html-to-markdown:
+https://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）
+https://github.com/JimLiu/gpt-api
+https://www.firecrawl.dev/?x
+ChainForge An open-source visual programming environment for battle-testing prompts to LLMs.
+GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.
+RAGFlow 一个RAG框架
+https://github.com/infiniflow/ragflow/blob/main/README_zh.md
+亮点： 分块后的可视化和修改功能"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2024-04 月刊",
+      "item": "https://niraya666.github.io/monthly/2024-04/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2024-04 月刊",
+  "name": "2024-04 月刊",
+  "description": "值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1\nCohereForAI/c4ai-command-r-plus\nmeta-llama/Meta-Llama-3-8B-Instruct\nmeta-llama/Meta-Llama-3-70B-Instruct\nmicrosoft/Phi-3-mini-128k-instruct\ngpt2-chatbot: 一个神秘的模型\n基础建设 Groq提供了免费且非常高速的API服务\nGroqCloud\n值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 \u0026ndash; 自动发现数据问题并进行修复，提高数据质量和价值\nhttps://github.com/cleanlab/cleanlab\n支持任何数据，包括图片、文本、音频、表格等\n检测数据标注问题、改进、训练模型、价值提升\n支持任何框架或模型：OpenAI、HuggingFace、PyTorch\njina reader 抓取URL，将正文转换为良好的Markdown格式的工具\nReader API\n一些类似的工具，by ：\n九原客 on Twitter / X\nhttps://markdowndown.vercel.app\nWeb-scraper(open source):\nhttps://github.com/zzzgydi/webscraper…\ncode-html-to-markdown:\nhttps://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）\nhttps://github.com/JimLiu/gpt-api\nhttps://www.firecrawl.dev/?x\nChainForge An open-source visual programming environment for battle-testing prompts to LLMs.\nGitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.\nRAGFlow 一个RAG框架\nhttps://github.com/infiniflow/ragflow/blob/main/README_zh.md\n亮点： 分块后的可视化和修改功能",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1\nCohereForAI/c4ai-command-r-plus\nmeta-llama/Meta-Llama-3-8B-Instruct\nmeta-llama/Meta-Llama-3-70B-Instruct\nmicrosoft/Phi-3-mini-128k-instruct\ngpt2-chatbot: 一个神秘的模型\n基础建设 Groq提供了免费且非常高速的API服务\nGroqCloud\n值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 – 自动发现数据问题并进行修复，提高数据质量和价值\nhttps://github.com/cleanlab/cleanlab\n支持任何数据，包括图片、文本、音频、表格等\n检测数据标注问题、改进、训练模型、价值提升\n支持任何框架或模型：OpenAI、HuggingFace、PyTorch\njina reader 抓取URL，将正文转换为良好的Markdown格式的工具\nReader API\n一些类似的工具，by ：\n九原客 on Twitter / X\nhttps://markdowndown.vercel.app\nWeb-scraper(open source):\nhttps://github.com/zzzgydi/webscraper…\ncode-html-to-markdown:\nhttps://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）\nhttps://github.com/JimLiu/gpt-api\nhttps://www.firecrawl.dev/?x\nChainForge An open-source visual programming environment for battle-testing prompts to LLMs.\nGitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.\nRAGFlow 一个RAG框架\nhttps://github.com/infiniflow/ragflow/blob/main/README_zh.md\n亮点： 分块后的可视化和修改功能\nSuperMemory 一个第二大脑项目， 提供插件保存网页作为memory和基于memory对话的功能。\nhttps://github.com/Dhravya/supermemory\nLLM Agents Papers Must-read Papers on LLM Agents.\nhttps://github.com/zjunlp/LLMAgentPapers\n本月精选歌单 LIVE记录 0420 数集无限追加-DA\n0428 Arch Enemy\n到过的城市 昆明、大理、苏州\n阅读\u0026摘录 读完了上野千鹤子的《厌女》和弗洛伊德的《心理学导论》\nIlya——塑造世界的人工智能科学家 什么激励我？我喜欢思考根本问题，基本问题。我们的系统不能做什么，而人类却可以做到？我几乎以哲学的方式去思考这些问题。比如，什么是学习？什么是经验？什么是思考？大脑又是如何运作的呢？\n如果多个团队处于竞相开发通用人工智能的军备竞赛态势中，他们就会没有足够的时间来确保他们构建的通用人工智能会真正关心人类。因为在我看来，这就像是通用人工智能发展的雪崩，一发不可收拾。 我认为将来整个地球的表面很可能布满太阳能板和数据中心。考虑到这些担忧，未来的通用人工智能的建设应该是多国间的合作项目。\n台积电在美国郊区建造芯片工厂的艰辛历程 美国工程师们纷纷表示，公司的等级制度僵硬且效率低下；而久经沙场的台湾台积电员工则觉得他们的美国同事缺少了构筑公司顶尖成功的必要精神：奉献与服从。\n在某些部门，为了测试美国员工是否能承受和台湾同事相同的工作压力，管理层会突然宣布需要即刻完成的任务。据两名工程师透露，有时候这种做法会导致美国员工在同事面前受到羞辱，甚至被建议放弃工程职业。…此外，一些台湾员工还参加了有关美国文化的培训课程，了解到相较于批评，美国人更喜欢通过鼓励来提高工作效率。\n“台湾人对每个任务都制造一种不切实际的紧迫感，总是催促你必须立即完成所有工作。但这对于想保持正常工作与生活平衡的人来说，显然是不现实的。” 多位前美国员工表示，他们不介意加班，只要这些加班的工作富有意义。另一位前台积电工程师回忆说：“我曾多次询问我的经理‘你的最高优先级是什么？’他总是回答‘一切都是优先级’。结果我加班加点完成的工作，最后发现根本不是必需的。”\n但美国员工对每周撰写工作报告感到厌烦，并且对台湾同事无故加班表示反感。“这真让人难以忍受，”Bruce 表示，“他们这么做完全是为了表面功夫。”\n五位前美国员工向 Rest of World 透露，台积电的工程师有时会伪造或挑选数据以满足客户和管理层的需求。有时，员工会调整测试工具或晶圆的数据，以满足上级不切实际的期望。另一些时候，一位工程师透露：“因为人手严重不足，他们会想尽办法减轻自己的工作负担。”四位美国员工形容台积电的文化是“面子文化”，员工通常会不惜牺牲效率和员工福利，只为让团队、部门或公司显得更有面子。\n“一切都源于努力工作。没有这种文化，台积电不可能成为世界第一，”他充满激情地说。“我要支持台积电成为伟大的公司。这是我的信仰。”\nZ Potentials | 张佳圆，95后离开字节创业AI搜索，三个月达超百万月访 垂直的好处是可以针对性地构建index，Devv的底层包括了开发文档、代码，也包括搜索引擎里的一些数据，这是它和general search engine的区别。… 垂直搜索引擎最大的差异点就在于能够基于场景更好地构建index，这是我们认为Phind没有做好的。\n做一个60分水平的RAG完全可以通过包装一些外部的LangChain组件来实现，但如果要做到八九十分的RAG系统，需要做的优化点会非常多。\n“Good artists copy，great artists steal”\nCode Review 时，曾被我忽视的 3 件重要小事 人类是一种神奇的智慧生物，阅读一段文字，不仅能从中获取到信息，更能从字里行间感受到情绪，有时，这份情绪甚至会盖过信息，影响他们做出判断。因此，当你在参与评审时，请谨记这一点：保持谦逊、尊重他人。\n工业化时代建立的秩序正在加速瓦解 Andrew Bamboo on Twitter / X\n但就像之前我们将经济下行归咎于疫情，而忽略了债务周期才是主导因素一样，一些迹象表明，我们也不能因为债务周期的存在，而忽略了背后的时代趋势：工业化时代的秩序正在加速瓦解，生产关系正迈向原子化。\n我们看到，大厂占据着绝对的生态位，养着无数员工，人们集中在一起，按照标准化流程进行分工合作，虽然号称白领中产，但与工业时代的流水线工人有何区别？仍然是原子化的生活，集约化标准化的生产。\n几十年的发展，使得供应链、物流变得愈发繁荣，互联网大厂的内卷，使得拿起手机，即可发布几万几十万人看到的信息构建个人影响力，即可促成交易，即可靠 AI 完成专业人士才能完成的工作，这背后，成本得到了转移，带来的是属于个体和小团队的机会。\n近来明显可以看到，身边的自媒体人/独立开发者/小创业团队逐渐多了起来，YC 投资的 AIGC 公司清单（见附图），大部分公司都是 2-4 人。在互联网增量逐渐见顶的时候，利用大公司提供的优秀基建，个体和小团队也可以依靠利基市场生存下来。而随着利基市场不断被挖掘，社会分工进一步细化，人们可以利用更为丰富的细分服务完成更多的事情，又进一步扩充了个人能力的边界。随着越来越多人从工业时代的集约化标准化生活解放出来，又会产生更为多样化的需求及新的利基市场。工业化秩序的瓦解，生产的原子化正变为一种愈发明显的趋势，而得益还是受害，也取决于个人的选择了吧——老生常谈的，每个人都应当成为超级个体，都需要有个自己的小生意。\n吴恩达分享Agentic reasoning 而agent工作流程则更加迭代和自主,它会先分析问题,必要时进行研究,生成初步方案,然后不断自我检查和修正。\n这种工作方式能够显著提高语言模型的表现,有时甚至可以让较小的模型超越更大的模型。因此,agentic reasoning的设计模式对于提升语言模型的性能非常重要。\nAI agents的四种设计模式:\n第一种是自反,即让语言模型自己检查和修正生成的内容,比如代码;\n第二种是工具使用,语言模型可以使用各种工具进行分析、信息获取和行动;\n第三种是规划,语言模型可以自主地制定计划,执行一系列步骤以完成复杂任务;\n第四种是多智能体协作,通过prompt让同一语言模型扮演不同角色,互相配合完成任务。\nAndrew认为,通往AGI(人工通用智能)是一个旅程而非终点,agent工作流程的出现让我们向这个目标又迈进了一步。\nMilestone 昆明-大理旅行 3篇blog 画了个大饼用来“骗GPU” 完成了RAG-chatbot的初步架构设计 ",
+  "wordCount" : "166",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2024-04-30T19:00:00+08:00",
+  "dateModified": "2024-04-30T19:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2024-04/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2024-04 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-04-30 19:00:00 +0800 CST'>April 30, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b" aria-label="值得关注的模型">值得关注的模型</a><ul>
+                        
+                <li>
+                    <a href="#%e5%9f%ba%e7%a1%80%e5%bb%ba%e8%ae%be" aria-label="基础建设">基础建设</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a><ul>
+                        
+                <li>
+                    <a href="#cleanlab" aria-label="Cleanlab">Cleanlab</a></li>
+                <li>
+                    <a href="#jina-reader" aria-label="jina reader">jina reader</a></li>
+                <li>
+                    <a href="#chainforge" aria-label="ChainForge">ChainForge</a></li>
+                <li>
+                    <a href="#ragflow" aria-label="RAGFlow">RAGFlow</a></li>
+                <li>
+                    <a href="#supermemory" aria-label="SuperMemory">SuperMemory</a></li>
+                <li>
+                    <a href="#llm-agents-papers" aria-label="LLM Agents Papers">LLM Agents Papers</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9c%ac%e6%9c%88%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="本月精选歌单">本月精选歌单</a></li>
+                <li>
+                    <a href="#live%e8%ae%b0%e5%bd%95" aria-label="LIVE记录">LIVE记录</a></li>
+                <li>
+                    <a href="#%e5%88%b0%e8%bf%87%e7%9a%84%e5%9f%8e%e5%b8%82" aria-label="到过的城市">到过的城市</a></li>
+                <li>
+                    <a href="#%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="阅读&amp;摘录">阅读&amp;摘录</a><ul>
+                        
+                <li>
+                    <a href="#ilya%e5%a1%91%e9%80%a0%e4%b8%96%e7%95%8c%e7%9a%84%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e7%a7%91%e5%ad%a6%e5%ae%b6" aria-label="Ilya——塑造世界的人工智能科学家">Ilya——塑造世界的人工智能科学家</a></li>
+                <li>
+                    <a href="#%e5%8f%b0%e7%a7%af%e7%94%b5%e5%9c%a8%e7%be%8e%e5%9b%bd%e9%83%8a%e5%8c%ba%e5%bb%ba%e9%80%a0%e8%8a%af%e7%89%87%e5%b7%a5%e5%8e%82%e7%9a%84%e8%89%b0%e8%be%9b%e5%8e%86%e7%a8%8b" aria-label="台积电在美国郊区建造芯片工厂的艰辛历程">台积电在美国郊区建造芯片工厂的艰辛历程</a></li>
+                <li>
+                    <a href="#z-potentials--%e5%bc%a0%e4%bd%b3%e5%9c%8695%e5%90%8e%e7%a6%bb%e5%bc%80%e5%ad%97%e8%8a%82%e5%88%9b%e4%b8%9aai%e6%90%9c%e7%b4%a2%e4%b8%89%e4%b8%aa%e6%9c%88%e8%be%be%e8%b6%85%e7%99%be%e4%b8%87%e6%9c%88%e8%ae%bf" aria-label="Z Potentials | 张佳圆，95后离开字节创业AI搜索，三个月达超百万月访">Z Potentials | 张佳圆，95后离开字节创业AI搜索，三个月达超百万月访</a></li>
+                <li>
+                    <a href="#code-review-%e6%97%b6%e6%9b%be%e8%a2%ab%e6%88%91%e5%bf%bd%e8%a7%86%e7%9a%84-3-%e4%bb%b6%e9%87%8d%e8%a6%81%e5%b0%8f%e4%ba%8b" aria-label="Code Review 时，曾被我忽视的 3 件重要小事">Code Review 时，曾被我忽视的 3 件重要小事</a></li>
+                <li>
+                    <a href="#%e5%b7%a5%e4%b8%9a%e5%8c%96%e6%97%b6%e4%bb%a3%e5%bb%ba%e7%ab%8b%e7%9a%84%e7%a7%a9%e5%ba%8f%e6%ad%a3%e5%9c%a8%e5%8a%a0%e9%80%9f%e7%93%a6%e8%a7%a3" aria-label="工业化时代建立的秩序正在加速瓦解">工业化时代建立的秩序正在加速瓦解</a></li>
+                <li>
+                    <a href="#%e5%90%b4%e6%81%a9%e8%be%be%e5%88%86%e4%ba%abagentic-reasoning" aria-label="吴恩达分享Agentic reasoning">吴恩达分享Agentic reasoning</a></li></ul>
+                </li>
+                <li>
+                    <a href="#milestone" aria-label="Milestone">Milestone</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="值得关注的模型">值得关注的模型<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型">#</a></h2>
+<p>mistralai/Mixtral-8x22B-Instruct-v0.1</p>
+<p>CohereForAI/c4ai-command-r-plus</p>
+<p>meta-llama/Meta-Llama-3-8B-Instruct</p>
+<p>meta-llama/Meta-Llama-3-70B-Instruct</p>
+<p>microsoft/Phi-3-mini-128k-instruct</p>
+<p>gpt2-chatbot: 一个神秘的模型</p>
+<h3 id="基础建设">基础建设<a hidden class="anchor" aria-hidden="true" href="#基础建设">#</a></h3>
+<p>Groq提供了免费且非常高速的API服务</p>
+<p><a href="https://console.groq.com/docs/quickstart">GroqCloud</a></p>
+<h2 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h2>
+<h3 id="cleanlab">Cleanlab<a hidden class="anchor" aria-hidden="true" href="#cleanlab">#</a></h3>
+<p>RAG 基础数据质量处理组件 &ndash; 自动发现数据问题并进行修复，提高数据质量和价值</p>
+<p><a href="https://github.com/cleanlab/cleanlab">https://github.com/cleanlab/cleanlab</a></p>
+<ol>
+<li>
+<p>支持任何数据，包括图片、文本、音频、表格等</p>
+</li>
+<li>
+<p>检测数据标注问题、改进、训练模型、价值提升</p>
+</li>
+<li>
+<p>支持任何框架或模型：OpenAI、HuggingFace、PyTorch</p>
+</li>
+</ol>
+<h3 id="jina-reader">jina reader<a hidden class="anchor" aria-hidden="true" href="#jina-reader">#</a></h3>
+<p>抓取URL，将正文转换为良好的Markdown格式的工具</p>
+<p><a href="https://jina.ai/reader/">Reader API</a></p>
+<p>一些类似的工具，by ：</p>
+<p><a href="https://twitter.com/9hills/status/1779830990598549998">九原客 on Twitter / X</a></p>
+<ul>
+<li>
+<p><a href="https://t.co/buDyt3ixUJ">https://markdowndown.vercel.app</a></p>
+</li>
+<li>
+<p>Web-scraper(open source):</p>
+<p><a href="https://t.co/inuuZWQlwt">https://github.com/zzzgydi/webscraper…</a></p>
+</li>
+<li>
+<p>code-html-to-markdown:</p>
+<p><a href="https://t.co/PsxPWBkOKf">https://github.com/SivilTaram/code-html-to-markdown…</a>（偏向于更好地处理代码块）</p>
+</li>
+<li>
+<p><a href="https://github.com/JimLiu/gpt-api">https://github.com/JimLiu/gpt-api</a></p>
+</li>
+<li>
+<p><a href="https://www.firecrawl.dev/?x">https://www.firecrawl.dev/?x</a></p>
+</li>
+</ul>
+<h3 id="chainforge"><strong>ChainForge</strong><a hidden class="anchor" aria-hidden="true" href="#chainforge">#</a></h3>
+<p>An open-source visual programming environment for battle-testing prompts to LLMs.</p>
+<p><a href="https://github.com/ianarawjo/ChainForge?tab=readme-ov-file#installation">GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.</a></p>
+<h3 id="ragflow"><strong>RAGFlow</strong><a hidden class="anchor" aria-hidden="true" href="#ragflow">#</a></h3>
+<p>一个RAG框架</p>
+<p><a href="https://github.com/infiniflow/ragflow/blob/main/README_zh.md">https://github.com/infiniflow/ragflow/blob/main/README_zh.md</a></p>
+<p>亮点： 分块后的可视化和修改功能</p>
+<h3 id="supermemory"><strong>SuperMemory</strong><a hidden class="anchor" aria-hidden="true" href="#supermemory">#</a></h3>
+<p>一个第二大脑项目， 提供插件保存网页作为memory和基于memory对话的功能。</p>
+<p><a href="https://github.com/Dhravya/supermemory">https://github.com/Dhravya/supermemory</a></p>
+<h3 id="llm-agents-papers"><strong>LLM Agents Papers</strong><a hidden class="anchor" aria-hidden="true" href="#llm-agents-papers">#</a></h3>
+<p>Must-read Papers on LLM Agents.</p>
+<p><a href="https://github.com/zjunlp/LLMAgentPapers">https://github.com/zjunlp/LLMAgentPapers</a></p>
+<h2 id="本月精选歌单">本月精选歌单<a hidden class="anchor" aria-hidden="true" href="#本月精选歌单">#</a></h2>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7xtJgcGDlTxGnEO1jYwp0g?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+<h2 id="live记录">LIVE记录<a hidden class="anchor" aria-hidden="true" href="#live记录">#</a></h2>
+<p>0420 数集无限追加-DA</p>
+<p>0428 Arch Enemy</p>
+<h2 id="到过的城市">到过的城市<a hidden class="anchor" aria-hidden="true" href="#到过的城市">#</a></h2>
+<p>昆明、大理、苏州</p>
+<h2 id="阅读摘录">阅读&amp;摘录<a hidden class="anchor" aria-hidden="true" href="#阅读摘录">#</a></h2>
+<p>读完了上野千鹤子的《厌女》和弗洛伊德的《心理学导论》</p>
+<h3 id="ilya塑造世界的人工智能科学家"><strong>Ilya——塑造世界的人工智能科学家</strong><a hidden class="anchor" aria-hidden="true" href="#ilya塑造世界的人工智能科学家">#</a></h3>
+<blockquote>
+<p>什么激励我？我喜欢思考根本问题，基本问题。我们的系统不能做什么，而人类却可以做到？我几乎以哲学的方式去思考这些问题。比如，什么是学习？什么是经验？什么是思考？大脑又是如何运作的呢？</p>
+</blockquote>
+<blockquote>
+<p>如果多个团队处于竞相开发通用人工智能的军备竞赛态势中，他们就会没有足够的时间来确保他们构建的通用人工智能会真正关心人类。因为在我看来，这就像是通用人工智能发展的雪崩，一发不可收拾。
+我认为将来整个地球的表面很可能布满太阳能板和数据中心。考虑到这些担忧，未来的通用人工智能的建设应该是多国间的合作项目。</p>
+</blockquote>
+<h3 id="台积电在美国郊区建造芯片工厂的艰辛历程"><strong>台积电在美国郊区建造芯片工厂的艰辛历程</strong><a hidden class="anchor" aria-hidden="true" href="#台积电在美国郊区建造芯片工厂的艰辛历程">#</a></h3>
+<blockquote>
+<p>美国工程师们纷纷表示，公司的等级制度僵硬且效率低下；而久经沙场的台湾台积电员工则觉得他们的美国同事缺少了构筑公司顶尖成功的必要精神：奉献与服从。</p>
+</blockquote>
+<blockquote>
+<p>在某些部门，为了测试美国员工是否能承受和台湾同事相同的工作压力，管理层会突然宣布需要即刻完成的任务。据两名工程师透露，有时候这种做法会导致美国员工在同事面前受到羞辱，甚至被建议放弃工程职业。…此外，一些台湾员工还参加了有关美国文化的培训课程，了解到相较于批评，<strong>美国人更喜欢通过鼓励来提高工作效率</strong>。</p>
+</blockquote>
+<blockquote>
+<p>“台湾人对每个任务都制造一种不切实际的紧迫感，总是催促你必须立即完成所有工作。但这对于想保持正常工作与生活平衡的人来说，显然是不现实的。”
+多位前美国员工表示，他们不介意加班，只要这些加班的工作富有意义。另一位前台积电工程师回忆说：“我曾多次询问我的经理‘你的最高优先级是什么？’他总是回答‘一切都是优先级’。结果我加班加点完成的工作，最后发现根本不是必需的。”</p>
+</blockquote>
+<blockquote>
+<p>但美国员工对每周撰写工作报告感到厌烦，并且对台湾同事无故加班表示反感。“这真让人难以忍受，”Bruce 表示，“他们这么做完全是为了表面功夫。”</p>
+<p>五位前美国员工向 <em>Rest of World</em> 透露，台积电的工程师有时会伪造或挑选数据以满足客户和管理层的需求。有时，员工会调整测试工具或晶圆的数据，以满足上级不切实际的期望。另一些时候，一位工程师透露：“因为人手严重不足，他们会想尽办法减轻自己的工作负担。”四位美国员工形容台积电的文化是“面子文化”，员工通常会不惜牺牲效率和员工福利，只为让团队、部门或公司显得更有面子。</p>
+</blockquote>
+<blockquote>
+<p>“一切都源于努力工作。没有这种文化，台积电不可能成为世界第一，”他充满激情地说。“我要支持台积电成为伟大的公司。这是我的信仰。”</p>
+</blockquote>
+<h3 id="z-potentials--张佳圆95后离开字节创业ai搜索三个月达超百万月访"><strong>Z Potentials | 张佳圆，95后离开字节创业AI搜索，三个月达超百万月访</strong><a hidden class="anchor" aria-hidden="true" href="#z-potentials--张佳圆95后离开字节创业ai搜索三个月达超百万月访">#</a></h3>
+<blockquote>
+<p>垂直的好处是可以针对性地构建index，Devv的底层包括了开发文档、代码，也包括搜索引擎里的一些数据，这是它和general search engine的区别。… 垂直搜索引擎最大的差异点就在于能够基于场景更好地构建index，这是我们认为Phind没有做好的。</p>
+</blockquote>
+<blockquote>
+<p>做一个60分水平的RAG完全可以通过包装一些外部的LangChain组件来实现，但如果要做到八九十分的RAG系统，需要做的优化点会非常多。</p>
+</blockquote>
+<blockquote>
+<p><strong>“Good artists copy，great artists steal”</strong></p>
+</blockquote>
+<h3 id="code-review-时曾被我忽视的-3-件重要小事">Code Review 时，曾被我忽视的 3 件重要小事<a hidden class="anchor" aria-hidden="true" href="#code-review-时曾被我忽视的-3-件重要小事">#</a></h3>
+<blockquote>
+<p>人类是一种神奇的智慧生物，阅读一段文字，不仅能从中获取到信息，更能从字里行间感受到情绪，有时，这份情绪甚至会盖过信息，影响他们做出判断。因此，当你在参与评审时，请谨记这一点：<strong>保持谦逊、尊重他人</strong>。</p>
+</blockquote>
+<h3 id="工业化时代建立的秩序正在加速瓦解">工业化时代建立的秩序正在加速瓦解<a hidden class="anchor" aria-hidden="true" href="#工业化时代建立的秩序正在加速瓦解">#</a></h3>
+<p><a href="https://twitter.com/AndrewBBoo/status/1776243737058017490">Andrew Bamboo on Twitter / X</a></p>
+<blockquote>
+<p>但就像之前我们将经济下行归咎于疫情，而忽略了债务周期才是主导因素一样，一些迹象表明，我们也不能因为债务周期的存在，而忽略了背后的时代趋势：工业化时代的秩序正在加速瓦解，生产关系正迈向原子化。</p>
+</blockquote>
+<blockquote>
+<p>我们看到，大厂占据着绝对的生态位，养着无数员工，人们集中在一起，按照标准化流程进行分工合作，虽然号称白领中产，但与工业时代的流水线工人有何区别？仍然是原子化的生活，集约化标准化的生产。</p>
+</blockquote>
+<blockquote>
+<p>几十年的发展，使得供应链、物流变得愈发繁荣，互联网大厂的内卷，使得拿起手机，即可发布几万几十万人看到的信息构建个人影响力，即可促成交易，即可靠 AI 完成专业人士才能完成的工作，这背后，成本得到了转移，带来的是属于个体和小团队的机会。</p>
+<p>近来明显可以看到，身边的自媒体人/独立开发者/小创业团队逐渐多了起来，YC 投资的 AIGC 公司清单（见附图），大部分公司都是 2-4 人。在互联网增量逐渐见顶的时候，利用大公司提供的优秀基建，个体和小团队也可以依靠利基市场生存下来。而随着利基市场不断被挖掘，社会分工进一步细化，人们可以利用更为丰富的细分服务完成更多的事情，又进一步扩充了个人能力的边界。随着越来越多人从工业时代的集约化标准化生活解放出来，又会产生更为多样化的需求及新的利基市场。工业化秩序的瓦解，生产的原子化正变为一种愈发明显的趋势，而得益还是受害，也取决于个人的选择了吧——老生常谈的，每个人都应当成为超级个体，都需要有个自己的小生意。</p>
+</blockquote>
+<h3 id="吴恩达分享agentic-reasoning">吴恩达分享Agentic reasoning<a hidden class="anchor" aria-hidden="true" href="#吴恩达分享agentic-reasoning">#</a></h3>
+<blockquote>
+<p>而agent工作流程则更加迭代和自主,它会先分析问题,必要时进行研究,生成初步方案,然后不断自我检查和修正。</p>
+<p>这种工作方式能够显著提高语言模型的表现,有时甚至可以让较小的模型超越更大的模型。因此,agentic reasoning的设计模式对于提升语言模型的性能非常重要。</p>
+<p><strong>AI agents的四种设计模式:</strong></p>
+<p>第一种是自反,即让语言模型自己检查和修正生成的内容,比如代码;</p>
+<p>第二种是工具使用,语言模型可以使用各种工具进行分析、信息获取和行动;</p>
+<p>第三种是规划,语言模型可以自主地制定计划,执行一系列步骤以完成复杂任务;</p>
+<p>第四种是多智能体协作,通过prompt让同一语言模型扮演不同角色,互相配合完成任务。</p>
+<p>Andrew认为,通往AGI(人工通用智能)是一个旅程而非终点,agent工作流程的出现让我们向这个目标又迈进了一步。</p>
+</blockquote>
+<h2 id="milestone">Milestone<a hidden class="anchor" aria-hidden="true" href="#milestone">#</a></h2>
+<ul>
+<li>昆明-大理旅行</li>
+<li>3篇blog</li>
+<li>画了个大饼用来“骗GPU”</li>
+<li>完成了RAG-chatbot的初步架构设计</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2024-04%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f&amp;title=2024-04%20%e6%9c%88%e5%88%8a&amp;summary=2024-04%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f&title=2024-04%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2024-04%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2024-04%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2024-04 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2024-04%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2024-04%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
