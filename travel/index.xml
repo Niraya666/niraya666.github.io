@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>游记 on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</link>
-    <description>Recent content in 游记 on LZY Blog</description>
+    <title>Travels on LZY Blog</title>
+    <link>https://niraya666.github.io/travel/</link>
+    <description>Recent content in Travels on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
       <url>https://niraya666.github.io/images/papermod-cover.png</url>
@@ -12,7 +12,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 23 May 2024 19:42:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/travel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>泉州行记：古城漫步与味蕾之旅</title>
       <link>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>
