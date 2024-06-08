@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Music on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/music/</link>
+    <description>Recent content in Music on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Jun 2024 12:00:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/music/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【钢琴谱分享】坂本龙一《for Johann》</title>
+      <link>https://niraya666.github.io/musik/for_johann/</link>
+      <pubDate>Sat, 01 Jun 2024 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/musik/for_johann/</guid>
+      <description>上周看了《坂本龙一：Opus》，特别喜欢其中有一首未收录在之前作品中的曲目《for Johann》
+第一反应是这首曲子可能是献给已故的冰岛作曲家Johann Johannsson，也是我最喜欢的音乐人之一
+不过，我找不到确切的证据
+万一是巴赫（Johann Sebastian Bach） 也有可能
+总觉得这首歌的旋律走向和Johann Johannsson的作品有某种神似，也有可能是我的错觉罢了吧
+试着弹一下这首歌， 顺带用AnthemScore扒了下谱子 可能有些小错误，但我希望能将这份音乐传递下去
+希望大家喜欢
+He’s gone, but the music remains.
+ありがとうございます
+感谢教授的最后礼物， 也感谢同样被迫包场的另两位陌生人</description>
+    </item>
+  </channel>
+</rss>
