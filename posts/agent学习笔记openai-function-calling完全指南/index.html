@@ -74,7 +74,10 @@ function calling的过程涵盖了从定义函数集、通过模型生成遵循�
         }
 
     </style>
-</noscript><meta property="og:title" content="Agent学习笔记：OpenAI Function Calling完全指南" />
+</noscript>
+  
+
+<meta property="og:title" content="Agent学习笔记：OpenAI Function Calling完全指南" />
 <meta property="og:description" content="写在最开始 当我们在讨论基于大型语言模型（LLM-based）的智能代理（agent）时，我们究竟在谈论什么？根据Lilian W在其文章《LLM Powered Autonomous Agents》中的讨论，一个智能代理需要具备几个核心能力：规划（Planning）、记忆（Memory）、以及工具使用（Tool use）。特别地，工具使用方面的进展，得益于OpenAI在API中提供的function calling功能，为我们开启了新的可能性。
 OpenAI function calling，作为智能代理与外部工具交互的基本方式，对于每位从业者来说都是必备技能。随着技术的发展，我们期望的不只是能与我们对话的LLM，而是能够辅助我们使用各种工具、做出决策的智能伙伴。
 不过需要特别指出的是，最近OpenAI在Chat Completions API中已经废弃了“函数（function）”的使用，转而采用“工具（tool）”。这一变更旨在拓宽LLM集成的功能范围，为更复杂的交互模式铺平道路，如构建能够相互作用的多代理系统。

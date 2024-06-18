@@ -11,14 +11,381 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 21 Apr 2024 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jun 2024 16:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【冷门乐队推荐】Sistemas Inestables</title>
+      <link>https://niraya666.github.io/musik/intorduction_of_si/</link>
+      <pubDate>Sun, 09 Jun 2024 16:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/musik/intorduction_of_si/</guid>
+      <description>Sistemas Inestables是来自智利圣地亚哥的器乐三重奏乐队。他们的音乐以行进和复杂的结构为特征，并伴随着噪音和氛围的层次。
+风格与特点 多元音乐风格：Sistemas Inestables 融合了噪音、氛围、数学摇滚和后摇滚等多种音乐风格。他们通过混合装置、合成器和鼓机编织出复杂的音纹和和谐，形成了独特的音乐特点。
+即兴创作与实验：乐队在创作过程中强调即兴演奏与实验，探索人与机器的对话和斗争，创造出既真实又虚拟、既模拟又数字、既人工又自然的音乐体验。
+影响与灵感 主要影响：Sistemas Inestables 受到多位艺术家的影响，包括 Godspeed You! Black Emperor, Akinetón Retard, Cómo Asesinar a Felipes, tortuganónima, Pol del Sur, Jaga Jazzist, Floating Points, Brandt Brauer Frick, Jon Hopkins, Nils Frahm, The Cinematic Orchestra, Battles, Tortoise, Do Make Say Think 等。
+灵感来源：他们的创作灵感来自环境、过程、情感和挑战，音乐表现出对当下社会问题的深刻反思和回应，也是对当前事件的抗议和改变的呼吁。
+成立与早期阶段 2016年，Mauricio、Javier Hechenleitner 和 José Tomás 决定开始一个新项目。经过一年的实验，Sistemas Inestables 诞生。在创作首张专辑《O》的过程中，他们进行了大量即兴演奏，寻找三人之间的音乐连接，逐渐形成了他们的音乐风格。
+早期演出与发展 2017年，乐队首次在圣地亚哥的 La Batuta 现场演出，并在哥伦比亚和阿根廷进行了巡演。2018年，他们参加了由 LeRockPsicophonique 唱片公司组织的首届音乐节，并在智利各地巡演。
+国际巡演与成长 2019年，乐队首次前往欧洲，在巴塞罗那的 Primavera Sound 音乐节和比利时的 Dunk! Fest 演出。年底，他们邀请长期担任乐队音响工程师的 Santiago Corvalán 加入乐队担任贝斯手。</description>
+    </item>
+    <item>
+      <title>【钢琴谱分享】坂本龙一《for Johann》</title>
+      <link>https://niraya666.github.io/musik/for_johann/</link>
+      <pubDate>Sat, 01 Jun 2024 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/musik/for_johann/</guid>
+      <description>上周看了《坂本龙一：Opus》，特别喜欢其中有一首未收录在之前作品中的曲目《for Johann》
+第一反应是这首曲子可能是献给已故的冰岛作曲家Johann Johannsson，也是我最喜欢的音乐人之一
+不过，我找不到确切的证据
+万一是巴赫（Johann Sebastian Bach） 也有可能
+总觉得这首歌的旋律走向和Johann Johannsson的作品有某种神似，也有可能是我的错觉罢了吧
+试着弹一下这首歌， 顺带用AnthemScore扒了下谱子 可能有些小错误，但我希望能将这份音乐传递下去
+希望大家喜欢
+He’s gone, but the music remains.
+ありがとうございます
+感谢教授的最后礼物， 也感谢同样被迫包场的另两位陌生人</description>
+    </item>
+    <item>
+      <title>2024-05 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-05/</link>
+      <pubDate>Fri, 31 May 2024 13:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-05/</guid>
+      <description>AI GPT4-o 发布 OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出
+ChatGPT数据分析 最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。
+Mistral-7B-v0.3 Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用
+DeepSeek-V2 该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。
+关注的开源项目 Cover-Agent Cover-Agent
+CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!
+自动化和增强测试的生成，目前主要是单元测试
+AnyNode v0.1 AnyNode
+A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.
+LlamaFS LlamaFS
+基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频
+DSPy DSPy
+DSPy is a framework for algorithmically optimizing LM prompts and weights, especially when LMs are used one or more times within a pipeline.</description>
+    </item>
+    <item>
+      <title>泉州行记：古城漫步与味蕾之旅</title>
+      <link>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>
+      <pubDate>Thu, 23 May 2024 19:42:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</guid>
+      <description>2024年 夏
+这是我第一次踏上泉州这片土地，虽然我是厦门人，已经快三十岁了，却一直没有机会来这座近在咫尺的城市。
+泉州在我想象中，是一座充满历史韵味的地方，同时也被一些暴发户的繁荣所点缀。几年前，这座城市成功申遗，从此逐渐成为小众旅游的热门选择。泉州的古老街区、传统建筑和浓厚的文化氛围，让人忍不住想一探究竟。
+大学时，我有一位好友家在泉州。我们是班里唯二的福建人，因此自然成了很好的朋友。每次听他讲起泉州的美食、风景，总让我心生向往。
+这次借着回家的机会，我终于决定亲自走一趟泉州。
+泉州，我来了！
+初印象 初到泉州，路上穿梭的电动车给我留下了深刻的第一印象。这些电动车在街头巷尾自由穿行，让我一度产生了身处越南的错觉。或许，这正是泉州的独特之处——在传统与现代之间，在历史与现实之中，找到一种和谐的平衡。
+作为古城，鲤城区似乎尽可能地保留着过去的模样。漫步在古城，却能产生一种记忆中的故乡的错觉，这一切似乎都太像了。
+那些熟悉的景象和气息，让人倍感亲切。有人说过，“离开了，故乡才称之为故乡。”庆幸的是，故乡以另一种形式呈现在我的面前，尽管这不是我的故乡。
+在鲤城区，街头的小贩、古早风格的便利店、上了年纪的理发店，无时无刻不把我拉回到记忆的深处。
+人 历史离不开人，特别是一个个普通人
+正是这些普通人，构成了这座城市的血脉与灵魂。他们的日常琐事，他们的勤劳与坚韧，使得这座古老的城市充满了生机与活力。在他们的身上，我看到了泉州的过去、现在和未来。
+宗教 泉州作为海上丝绸之路的起点，在那辉煌的历史长河中，不仅是贸易和文化交流的中心，也吸引了大量的外来文化和宗教。佛教、道教、伊斯兰教、基督教等多种宗教在这里交汇融合，形成了独特的宗教文化景观。经过千年的融合与发展，这些宗教在泉州和谐共存，互相尊重，不分彼此。
+吃 牛肉店 阿秋牛排馆
+牛排并不是传统意义上的steak，而是采用香料和咖喱炖煮而成的牛排骨。招牌牛排非常推荐，炖得非常软烂，入口即化，肉质瞬间脱骨。咖喱的香气与牛肉的原汁原味相得益彰，不会掩盖肉本身的美味。用汤汁拌饭，可谓是一绝。
+不过，对于从小习惯了晋江牛肉店的闽南人来说，阿秋牛排馆的汤味道可能稍显清淡，不够浓郁，因此未必合所有人的口味。此外，这家店的价格也比其他店稍高一些。
+除此之外，我的收藏夹里还有几家值得尝试的牛排店：
+阿波牛肉店
+天财牛肉店
+阿泉全牛馆
+面线糊 平阿面线糊
+我去的这家平阿面线糊，在周末早上8点左右已经挤满了人，足见其受欢迎程度。
+与厦门地区加入了猪血、虾米的面线糊相比，泉州的面线糊更多地呈现出字面上的意思——就是很单纯的面线糊。所用的面线更加细碎，完全不用担心吃太慢会坨，因为这甚至可以用面线汤来形容。但喝上一口汤，你会发现这绝不是一碗普通的面线汤，在汤头上，店家一定是下足了功夫的。
+食客可以根据自己的喜好添加额外的食材，这种模式在闽南地区基本相同。在泉州，根据我对本地食客的观察，基本上必加的食材有：醋肉、卤大肠、套肠、豆干等等，当然绝对不能忘了加一根油条。
+除了平阿面线糊，我还收藏了几家值得一试的面线糊店：
+水门国仔老店
+后城面线糊
+文啊面线糊
+烧肉粽 东街肉粽店
+“烧”在闽南语中的含义既包含了特定的烹饪方法，也体现了食物的热度（与“烫”同音）。在“烧肉粽”中，“烧”不仅指将肉粽通过炖、煮、蒸等方式烹饪至入味，还强调了粽子食用时热乎的特质。
+与在厦门吃的肉粽不同，除了甜辣酱外，泉州的肉粽更喜欢加入花生酱，增添了一份独特的香气和口感。
+原本计划去侯阿婆烧肉粽，但可惜饭点人太多，只能临时改变计划，选择了不远处的东街肉粽店。不过这家感觉有些失望，对粽子没有太多感觉，店里的海蛎煎下的油太多，实在无法恭维。
+可惜这次时间有限，还有很多地方想去但没来得及去， 有很多想吃的没吃上
+下次再来</description>
+    </item>
+    <item>
+      <title>大阪游记：时光交错下的日本探索</title>
+      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
+      <pubDate>Thu, 16 May 2024 16:32:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</guid>
+      <description>2024-春夏之交 大阪
+旅行时间2天3夜
+在多邻国上学了快一年的散装日语，受到了看大河剧、日本电影和玩日本游戏的影响，我决定利用刚获得的三年多次入境签证，以及51假期的空闲时间，去日本看看。考虑到时间限制，我选择了关西的交通枢纽和经济中心——大阪，作为这次日本之行的第一站。
+对于日本，尤其是大阪，我的第一印象是热门景区和场所人非常多。这主要是因为赶上了日本的10天黄金周，同时由于日元汇率低迷，大量外国人涌入日本消费和旅游。然而，在居民区，特别是我所住的浪速区，情况则大为不同，晚上和清晨几乎见不到几个人，给人一种非常萧条的感觉。中国人会说，这叫做“缺乏人气”。此外，随处可见的大乌鸦加深了这种萧条感。或许这也可能是宫崎英高在《黑魂》系列中乌鸦的灵感来源吧。在日本，乌鸦似乎被视为吉祥的象征。
+游玩篇 出了民宿，我的第一站是不远处的难波八阪神社。这里以其狮子头形状的大狮子殿闻名，成为了一处热门的打卡地点。据说，这个狮子头具有驱除灾难和带来好运的力量。
+经过两站地下铁，即可到达动物园前站， 这里是新世界的入口。
+新世界，曾是日本向西方看齐、力图“脱亚入欧”时的产物。在20世纪初，日本大量吸纳西方文化元素，并在大阪建立了这一街区。然而时光流转，21世纪的今天，这里更像是一个保存良好的“旧世界”。街区内充满昭和时代的气息，从游戏厅、炸串店到浮夸的店面招牌，甚至粉红色影院，处处透露出时代的印记。
+作为泡沫经济时期产物， 粉红影院现在主要吸引了一部分中老年男性和非传统性别的人士。影院的“学生半价”标志显得有些讽刺，同时也透露出一种时代变迁的哀愁。鉴于这类场所的特殊性，不推荐旅行者单独前往。
+新世界的标志性建筑通天阁，则见证了区域的多重历史。这座铁塔最初在1912年仿照巴黎的埃菲尔铁塔建造，但在二战中因为“献纳”政策而被拆除，用其材料支持军工。通天阁的现代版本建于1956年，为了迎接万博会而重建，塔身醒目地印有日立的广告，成为了大阪的新地标。
+西成区，与新世界仅一路之隔，是大阪的旧城区。这个区域以较复杂的治安情况、流浪汉的较高出现率，以及成人娱乐业而知名。其中，著名的酒吧一条街和在中文互联网上广为人知的飞田新地均位于此地。游客在此区域应特别小心，避免随意使用手机或拍照，以尊重当地文化和增加个人安全。
+往新世界东北边走， 则能到达天王寺车站，商圈，以及以此命名此地的四天王寺。这里的天王寺车站作为从关西机场到大阪市区的两条主要电车线路之一JR西日本的终点站，同前面走过的西成区和新世界相比， 自然非常繁华。
+天王寺站前
+JR西日本机场线之HARUKA， 以Hello- Kitty涂装著称。
+日本的许多古迹因二战的轰炸和历史上的大地震而稀少，多数是在原址上修复或重建的。四天王寺就是这样的例子，它是日本历史悠久的寺庙之一，最初由飞鸟时期的圣德太子创建。虽然历经多次战火，我们今天所见的四天王寺主要是1957年后的重建。
+前往天王寺途中，偶遇的一心寺。
+在天王寺附近，我意外地发现了一个旧书集市。在那里，我用400日元买到了一本1994年的旧书。虽然还有很多书我想买想看，但考虑到海关的限制和行李空间的限制，我只能忍痛放弃。
+不可免俗的道顿堀格利高小人
+蟹道乐
+夜幕降临， 抵达梅田，乘坐hep five摩天轮，体验大阪夜景。
+hep five摩天轮
+第二天，前往大阪历史博物馆和大阪城， 以及shooping。
+大阪城
+大阪城始建于1583年，由丰臣秀吉下令建造。大阪城的天守阁如今是博物馆，展示了丰臣秀吉的生平、战国时期的武器和铠甲，以及大阪城的历史变迁。
+如果对于历史感兴趣的小伙伴， 大阪城公园边上的大阪历史博物馆也值得逛一逛。 大阪历史博物馆展示了古代大阪作为日本重要商业城市的发展过程，以及现代大阪的城市化进程。参观路线从10楼一路到7楼，6楼为特别展。
+日式连锁中餐王将的碳水加碳水再加碳水的定食
+剩下的shopping时间，逛了堂吉柯德，在西斋心桥发现一家二手唱片店
+位于 Big Step 大楼的地下一层，可惜根据网友的评论，似乎店面越来越小，东西越来越少了。
+似乎在日本不同城市，优衣库会有限定的特别款式， 在大阪则是御好烧（大阪烧）和章鱼烧的图案。
+美国村边上的小自由女神像
+攻略篇 入境 Visit Japan Web （VJW）为了替代入境卡而设计的， 需要在入境前提前申报，在入境时扫码即可。和纸质入境卡相比， 至少从我的观察而言， 使用VJW会更加快速，而没有存在需要排队的情况。
+交通 在大阪，从关西机场到市区有两条主要的铁路线路，南海电铁和JR西日本。两条线路隶属于不同的公司运营，在使用购票机购票时需要注意区分。平均时间在半个小时到一个小时不等， 票价在970到1800日元间，取决于所乘坐车次和制定席与否。除了特急列车（Rapi:t &amp;amp; HARUKA）,均和国内乘坐地铁没有太大差别。
+对于特急列车， 可以在网上买票，通过扫二维码进站，或者是在自助购票机上操作，以及通过刷西瓜卡进站，在候车处附近的机器上购买特急券。理论上有售票员会查票。
+赶了6:00的第一班Rapi:t alpha
+吃 居酒屋会在刚入座上小菜，也叫お通し（o-to-shi）,这部分一般是按人头收费，价格在330日元左右，一般是强制收取不给退的。
+日本餐厅一般是不提供打包服务的， 因为内用和外带属于不同执照，并且会因为害怕顾客吃坏肚子店家要负责任， 所以在日本餐厅，店家对于打包吃剩的食物十分抗拒。</description>
+    </item>
+    <item>
+      <title>RAG工具箱：文本分块</title>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
+      <pubDate>Wed, 15 May 2024 16:11:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
+      <description>为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
+如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：
+句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
+text = &amp;#34;...&amp;#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = &amp;#34;\n\n&amp;#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
+text = &amp;#34;...&amp;#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [&amp;quot;\n\n&amp;quot;, &amp;quot;\n&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;&amp;quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&amp;gt;一个换行-&amp;gt;空格）将文本进行递归分割。
+针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。</description>
+    </item>
+    <item>
+      <title>基于大语言模型的 Agent：科普向</title>
+      <link>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
+      <pubDate>Mon, 13 May 2024 16:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
+      <description>写在开头 本文是基于最近组内技术交流的文字稿整理。
+What is Agent？ 在探讨复杂的人工智能技术之前，让我们先回顾一下生活中的一个简单例子：扫地机器人。这种智能设备在房间中自主导航，避开障碍物，寻找最有效的清洁路径。它就是一个现实生活中的Agent——一个可以自主决策和行动的实体。
+在人工智能领域，Agent指的是任何可以感知其环境并根据感知结果做出决策的实体。这些决策旨在完成某些任务或达成特定的目标。Agent的行为可以简单如游戏里的机器人，也可以复杂如自动驾驶汽车。
+开始于强化学习 在强化学习中， 我们往往能见到agent的概念。强化学习是一种机器学习方法，它教导Agent通过试错法找到最佳行动路径。就像训练小狗一样，我们通过奖励来引导Agent做出正确的决策。Agent的目标是在与环境的交互中寻找最优策略。理想情况下，如果Agent能够获取足够多的真实环境数据，它就能找到最佳解决方案。然而，由于真实环境的复杂性，完全模拟真实世界是不现实的。
+目前，强化学习主要适用于环境简单、问题定义明确的场景，如围棋或视频游戏。这种方法在虚拟环境中通过大量试错来探索解决方案，这种方法虽然有效，但缺乏灵活性和高效性。与人类学习新技能的方式相比，强化学习的效率远低。人们通常通过少量的尝试就能迅速掌握新技能，而强化学习可能需要成千上万次的试错。
+这时候，如果agent具有大脑就好了。
+将LLMs作为大脑: 赋能智能Agent的关键技术 相较于基于强化学习的Agent，人类的优势在于我们天生具备的记忆能力和逻辑判断能力，甚至包括反思和从经验中学习的能力。这些能力使得我们能够通过极少的试错迅速适应和掌握新技能。
+语言模型（LLMs）为AI领域带来了革命性的变化。LLMs通过其深度学习的新范式，以及在思维链和自然语言理解方面的强大能力，预示着Agent将拥有更强大的学习和迁移能力。这种能力的提升将使得创建广泛应用且实用的Agent成为可能。
+虽然LLM是否真正具备了推理能力仍然存疑，但LLM的出现无疑改变了很多。以COT（Chain of Thought）为例，这种模型通过打印解题的中间步骤，加强了在数学和逻辑推理方面的能力，减少了幻觉的出现。这一突破性的工作揭示了LLM在不同场景下的强大&amp;quot;in-context learning&amp;quot;能力，以及其在未经微调的情况下的泛化能力。
+将LLM视为AI Agent的大脑，为自动化系统提供了一种全新的构思方式。这种基于LLM的agent系统综合了规划、记忆、工具使用和行动的能力，通过API调用与外部世界互动，显示出了前所未有的灵活性和效率。
+根据LLM Powered Autonomous Agents一文对LLM-based agent系统的定义， agent需要具备的基本能力：规划+记忆+工具+行动。
+规划能力：将复杂的任务分解成小任务， 并管理每一个子任务的目标， 并从过去的失败中反思，以吸取经验。
+记忆：LLM的上下文长度有限， 通过额外的记忆系统以提升LLM作为大脑的能力。
+工具调用&amp;amp;行动：LLM通过API调用的方式，执行任务， 与外界交互，而不是只是输出文字。
+探索AI代理的独特能力：人类与单一LLM无法比拟 AI系统的主要优势在于它们的规模和效率。这些系统能够执行以下任务，超越人类能力：
+大规模数据处理：AI能够高效地分析和处理超出人类理解范围的数据量。
+无需休息的持续操作：AI系统可以不间断地运行，而无需像人类那样休息和恢复。
+超快速计算：AI可以迅速执行复杂的计算，处理速度和效率远超人类。
+AI代理与单一LLM的不同:
+根据Andrew Ng在讲座中分享的内容，使用相对“简单”模型的代理工作流程（例如GPT-3.5）在实际应用中往往能够超越使用“智能”模型（如GPT-4）的零次提示。这说明在特定场景下，选择适当的AI模型和策略可能比单一的高级模型更有效。
+AI代理在决策制定中的应用也显示出其独特的优势。它们可以在没有情感偏见的情况下，基于大量数据做出快速且精确的决策。这种能力在需要快速响应和高精确度的领域尤为重要，如金融交易和紧急响应系统。
+Agent的规划和思维过程 AI Agent在处理复杂任务时，通过将大任务分解成小任务来提高效率。此外，自我反思能力允许Agent从过去的行动中学习，通过评估过去的决策来改善未来的表现。
+CoT，Chain of Thought， Wei et al. 2022。 即“思维链”，是一种使Agent逐步思考的方法。它通过要求模型展示解决问题的中间步骤来加强其逻辑推理能力，从而提高决策的质量和准确性。
+Tree of Thoughts， ToT (Yao et al. 2023)
+尽管语言模型在许多领域表现出色，但在需要复杂规划和全局决策的任务上，它们的能力受到了限制。ToT框架应运而生，旨在通过一个结构化的思考和评估过程来弥补这一缺陷。
+ToT框架借鉴了人类心理学中的双系统决策理论，通过整合快速直觉判断和慢速深思熟虑的决策过程，极大地提升了模型的决策能力。这一框架通过自我评估的方式，允许模型在面对多种可能的决策路径时，能够进行有效的选择和全局优化。
+ToT框架旨在克服现有语言模型在处理需要复杂规划或搜索任务的局限。它通过结构化的思想树来探索和评估不同的决策路径。ToT允许模型在考虑多个推理路径时自我评估其选择，以做出最佳的决策。此外，ToT结合了语言生成和搜索算法（如BFS和DFS），使模型能够在进行决策时前瞻和回溯，以实现全局最优选择。
+prompt example：
+cot_prompt = &amp;#39;&amp;#39;&amp;#39; Write a coherent passage of 4 short paragraphs.</description>
+    </item>
+    <item>
+      <title>2024-04 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-04/</link>
+      <pubDate>Tue, 30 Apr 2024 19:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-04/</guid>
+      <description>值得关注的模型 mistralai/Mixtral-8x22B-Instruct-v0.1
+CohereForAI/c4ai-command-r-plus
+meta-llama/Meta-Llama-3-8B-Instruct
+meta-llama/Meta-Llama-3-70B-Instruct
+microsoft/Phi-3-mini-128k-instruct
+gpt2-chatbot: 一个神秘的模型
+基础建设 Groq提供了免费且非常高速的API服务
+GroqCloud
+值得关注的开源项目 Cleanlab RAG 基础数据质量处理组件 &amp;ndash; 自动发现数据问题并进行修复，提高数据质量和价值
+https://github.com/cleanlab/cleanlab
+支持任何数据，包括图片、文本、音频、表格等
+检测数据标注问题、改进、训练模型、价值提升
+支持任何框架或模型：OpenAI、HuggingFace、PyTorch
+jina reader 抓取URL，将正文转换为良好的Markdown格式的工具
+Reader API
+一些类似的工具，by ：
+九原客 on Twitter / X
+https://markdowndown.vercel.app
+Web-scraper(open source):
+https://github.com/zzzgydi/webscraper…
+code-html-to-markdown:
+https://github.com/SivilTaram/code-html-to-markdown…（偏向于更好地处理代码块）
+https://github.com/JimLiu/gpt-api
+https://www.firecrawl.dev/?x
+ChainForge An open-source visual programming environment for battle-testing prompts to LLMs.
+GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.
+RAGFlow 一个RAG框架
+https://github.com/infiniflow/ragflow/blob/main/README_zh.md
+亮点： 分块后的可视化和修改功能</description>
+    </item>
+    <item>
+      <title>Agent学习笔记：OpenAI Function Calling完全指南</title>
+      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 28 Apr 2024 15:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>写在最开始 当我们在讨论基于大型语言模型（LLM-based）的智能代理（agent）时，我们究竟在谈论什么？根据Lilian W在其文章《LLM Powered Autonomous Agents》中的讨论，一个智能代理需要具备几个核心能力：规划（Planning）、记忆（Memory）、以及工具使用（Tool use）。特别地，工具使用方面的进展，得益于OpenAI在API中提供的function calling功能，为我们开启了新的可能性。
+OpenAI function calling，作为智能代理与外部工具交互的基本方式，对于每位从业者来说都是必备技能。随着技术的发展，我们期望的不只是能与我们对话的LLM，而是能够辅助我们使用各种工具、做出决策的智能伙伴。
+不过需要特别指出的是，最近OpenAI在Chat Completions API中已经废弃了“函数（function）”的使用，转而采用“工具（tool）”。这一变更旨在拓宽LLM集成的功能范围，为更复杂的交互模式铺平道路，如构建能够相互作用的多代理系统。
+尽管如此，由于语言习惯的原因，本文中仍然会使用function calling的术语来描述OpenAI的tool using功能，因为“function calling”的说法已经深入人心了。
+核心内容概览
+Function Calling的定义：解释什么是function calling，以及它在智能代理工作中的作用。
+OpenAI Cookbook示例：提供实际的function calling示例，帮助读者理解其在实际应用中的用途。
+开源LLM的Tool Using：探索如何在开源大型语言模型中实现工具使用，以及LLM在tool using的时候经历了什么。
+评价与训练：讨论如何评价开源模型的工具使用能力，以及如何训练LLM进行有效的工具使用。
+鉴于整理笔记的速度远赶不上更新的速度， 会将第四部份作为单独的部分整理。
+何为function calling 一句话解释：function calling从本质上并不是严格的工具调用， 而是作为工具调用的前奏，它通过更加结构化的方式指导LLM输出，为在本地执行具体函数提供了参数，铺平了道路。
+具体来说，function calling允许LLM在执行过程中通过指定的参数来调用并执行一个特定的函数。这种方式不仅实现了代码的重用和模块化处理，而且能够从模型中获取更可靠的结构化数据回应。在API调用过程中，开发者可以描述想要执行的功能，并让模型智能地选择输出包含所需参数的JSON对象。这个过程中，Chat Completions API本身不直接执行任何函数调用，而是生成了可以在开发者代码中实现函数调用的JSON。
+function calling的应用范围广泛，如
+创建智能助手：通过调用外部API回答问题。
+转换指令：将自然语言指令转换成API调用指令。
+数据提取：从文本中提取结构化数据。
+function calling的过程涵盖了从定义函数集、通过模型生成遵循自定义模式的JSON对象字符串，到在代码中解析这个字符串并调用相应函数的全过程。这一连串操作不仅自动化了交互过程，还确保了执行操作的安全性和准确性。
+一些常见的问题 JSON mode json mode 和tool-using 有什么关系？有了json mode 还需要用到tool-using吗？
+从json mode 的本质， 更多的是在system prompt 增加一句类似“请以json格式输出”之类的话，然后在LLM输出时增加json结果检查和格式转换。在使用时只需要在client.chat.completions.create 中 增加response_format={ &amp;quot;type&amp;quot;: &amp;quot;json_object&amp;quot; } 即可。
+那么json mode 什么时候会用到呢？一般在做文本提取，内容提取时可以使用；以RAG场景为例， 当我们希望LLM能够帮我们对用户的query进行改写时，我们肯定是希望模型能够返回干净的json格式改写结果，这样的结果可以直接使用，而不是在模型输出一些内容后，如：</description>
+    </item>
     <item>
       <title>About</title>
       <link>https://niraya666.github.io/about/</link>
       <pubDate>Sun, 21 Apr 2024 12:00:00 +0800</pubDate>
       <guid>https://niraya666.github.io/about/</guid>
       <description>个人介绍 后现代人类 AI从业者与终身学习者 工作狂 世界探索者 INFJ 阅读 听歌 创作 欢迎来到我的个人博客！</description>
+    </item>
+    <item>
+      <title>RAG工具箱：文档解析与表格处理</title>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
+      <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
+      <description>引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
+对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
+人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
+常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：
+多列布局导致的文本流读取错误。
+公式和表格的解析效果差，难以正确提取信息。
+解析过程中结构化信息（如标题和列表）的丢失。
+影印版PDF的文本无法被标准OCR工具识别。
+高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：
+OCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。
+基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。
+只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。
+必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。
+快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照
+!pip install -q pymupdf python-Levenshtein nltk !pip install -q git+https://github.com/huggingface/transformers.git Load model and processor
+from transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(&amp;#34;facebook/nougat-base&amp;#34;) model = VisionEncoderDecoderModel.from_pretrained(&amp;#34;facebook/nougat-base&amp;#34;) device = &amp;#34;cuda&amp;#34; if torch.cuda.is_available() else &amp;#34;cpu&amp;#34; model.to(device) 将pdf转成图像
+from typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -&amp;gt; Optional[List[io.</description>
+    </item>
+    <item>
+      <title>游记：2024-春 昆明大理</title>
+      <link>https://niraya666.github.io/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</guid>
+      <description>游记：2024-春 昆明大理 昆明 时间似乎停止了 不知为何在昆明有一种回到兰州的感觉，一样的三线省会，似曾相识的破败老城区街道，赫鲁晓夫楼，砖瓦房，和五六十年代的家属大院，似乎时间就停止流动了。我不认为这是种贬义的表达，至少清晨行走在老街区，唤起了我上学时，清晨走出校园到火车站赶火车的尘封记忆。 不过需要提一嘴的是，似乎当前的实体经济，特别是在老城区，不论是这次旅行所看到的，还是之前在故乡和别的城市所看到的，可以说是很糟糕了。目光所及有一半的店面处于关门转让的状态，而开着的那一半，又有近乎三成处于清仓甩卖中。
+古镇PTSD 在全国绝大多数古镇逐渐趋同演化的当下，不知这是否是件悲哀的事。因为去云南省博物馆的途中会路过官渡古镇，遂决定顺便去看看。从古镇的东北边进入至正门而出，这次访问让我有幸同时见证了从破败而真实的古镇到商业化过度开发的古镇的转变。
+在历史长河中被剥夺了名字的人 在昆明这个城市名字的由来中，有一段被历史辗转淡忘的故事。昆明这一名称起源于昆明夷——西汉时期活跃在洱海周边的一个游牧民族。而在这片土地上生活的滇人，一个拥有先进青铜技术的农耕文明，不断地抵抗游牧民族的侵扰。尽管如此，在历史的长河中，正是这些滇人创造了辉煌的文明，却在历史的演进中失去了自己的名字。这不禁让人感受到一种悲剧的讽刺——在自己孕育辉煌的土地上，却被剥夺了命名的权力。这反映出历史的无情，以及文化与权力之间复杂的交织。
+故乡与迁徙 在省博的临时展区，有幸看到了一个关于迁徙和故乡的特别展。 正巧这次来云南的最初目的也是为了探寻人生的下一个迁徙地。
+今天，流动成为常态。我们祖辈所拥有的那种一生居于一地的安稳逐渐被打破。很多人离开熟悉的地方，到另一处，与来自天南地北的人一起，不知不觉将异乡生活成故乡。
+而提到故乡，你会想到什么？是那方伴你长大的土地，是老屋里围炉团聚的家人，是家乡菜的味道和浓浓的乡音，是家门口熟悉的街道、树林和田地，是小时候玩耍的院子，和那群如今已各奔东西的伙伴。无论走多远，想到那一草一木，一人一景，就安宁。
+这也许就是人们一直以来追寻的栖息地。在远方，在心里，它叫“香格里拉”。
+现代的我们因为各种原因，在故乡与异乡之间辗转，继续着“迁徙与流动”。展览策划过程中，我们以“故乡”“现居地”“理想地”为题，以“故事+展品”的方式开启活动征集，鼓励不同身份的人群通过不同角度的讲述，分享他们的感受与思考。在近一个月的时间里，我们得到了大家的积极回响。在大家的分享中，我们与不同的故事和记忆相连，也看到因为不同而更加多元、广阔的世界。
+这里展示的文字和物品，是记忆的承载，也是对“故的未来。
+乡”的“好久不见”，它记录着我们的成长，也指引着我们
+大理 这次来大理的初始动机是实地考察和调研“数字游民”这个群体，他们是否真正像想象中的自由，他们是如何工作和生活的， 他们背后的故事又是什么？ 以及他们为什么选择大理？
+感谢Dalihub， 让我有幸认识一群有趣的人。
+来自海边房子
+Dalihub的秘密空间
+救火途中的直升机
+自由飞翔
+猜你喜欢是“坏”的吗 在大理的第二天，我便幸运地参与了一场与我的工作密切相关的线下沙龙活动，主题涉及推荐系统。我的工作列表中正好有一项是关于如何防止大型科技公司通过推荐系统作恶的问题。 活动中，主讲人“西雅图大黄蜂”提出了一个观点：所有的算法和技术本质上都是中性的，真正的“恶”是由使用它们的人带来的。作为技术从业者，我们当然不希望看到自己的发明像原子弹一样被用于恶劣的目的。但现实往往很残酷，技术的接受与否很大程度上是由资本决定的，而非我们。
+之前我考虑过一个想法：将推荐系统的召回和排序分开，召回过程保留在服务器端，而排序则转移到用户端，这样一来可以提高用户的隐私保护。技术上并不复杂，真正的挑战来自于资本或大公司缺乏推行此类改变的动力。除非有一天，大多数用户愿意为保护隐私牺牲一定的便利性，否则这种改变还遥遥无期，至少在当前的中国是这样的。
+再次感谢主理人Nian和主讲人魏峰，一次难忘的体验。
+真的躺平吗？不，只是喘口气 选择大理的理由： 成本，气候， 和有趣的人们
+在大理，你可以遇到形形色色的人物：那些选择在此旅居的设计师，决定在退休后移居大理的上海夫妇，因成本考虑而搬来的独立开发者，还有视大理为家的咨询师小姐姐。这些都是构成大理独特社群氛围的不同面貌。
+当你不确定下一步该做什么时，不妨去洱海边走走，那里的美景足以让你放慢脚步，深呼吸，重新找回自己的节奏。在大理，即便是“躺平”，也是一种享受生活、与自然和谐共处的态度。
+洱海边落日
+取舍，及时调整自己的欲望 在网上能看到很多对于大理的劝退文， 无外乎就是过度商业化网红化， 城市规划稀烂，交通不方便，宰客现象严重等等。 以上我都认同， 对于一个习惯了大城市便利的人而言， 初到大理的感受的确是如此。 和在地的小伙伴聊下来，发现及时调整自己的欲望还是挺重要的。
+但是，在早晨拉开窗帘看到洱海的一瞬间， 似乎这一切都是值得的。
+随处可见的丁达尔效应
+去跳海，去发疯！
+西南旅游小Tips 注意防晒， 保湿，加湿器和润唇膏很重要。 尽量避开春季，因为春季是风季，很有可能因为大风而错过苍山的缆车。 大理古城的主干道不值得驻足，真正有趣的东西隐藏在巷子里
+这一切就像是一场梦
+感谢在大理遇到的所有人事物
+下一次再见</description>
+    </item>
+    <item>
+      <title>RAG工具箱：评估RAG系统的方法论</title>
+      <link>https://niraya666.github.io/posts/rag_toolkit_eval/</link>
+      <pubDate>Mon, 08 Apr 2024 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag_toolkit_eval/</guid>
+      <description>写在最前面 在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。
+此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。
+在我们深入探索RAG系统提升的各种方法之前，有一个基本问题需要解决：我们如何准确地评估一个RAG系统的性能？这就像是在机器学习或深度学习任务中没有给定的测试集和评价标准，我们难以判断实验的成功与否。
+因此，本系列的第一篇文章将聚焦于介绍RAG系统的评价方法、相关指标以及测试框架，为我们接下来的探索设定明确的标准和目标。
+测试框架 以下是一些测试框架，为RAG系统评估提供了强大的支持。
+TruLens TruLens提供了一个独特的视角来评估和跟踪大型语言模型（LLM）实验，通过一系列创新的功能和方法，帮助开发者和研究人员更深入地了解模型性能和行为。
+TruLens的反馈功能（Feedback Functions）是其核心概念之一，提供了一种程序化的方法来评估应用的运行表现。这些函数从“可扩展性”和“有意义性”两个维度出发，考虑评估的范围，旨在为用户提供有价值的反馈，帮助他们理解和改进他们的LLM应用。
+在RAG应用中，提供准确的上下文信息至关重要，以避免生成不真实的“幻觉”答案。TruLens采用了创新性的RAG三元组评估方法，专门针对RAG架构的每个环节进行幻觉风险评估，确保模型的每个部分都能有效地工作，从而减少误导信息的产生。
+上下文相关性（Context Relevance） 上下文相关性是评估RAG应用的第一步，确保每一段检索到的上下文都与提出的查询紧密相关。TruLens利用序列化记录的结构来评估上下文的相关性，这是一个关键的步骤，确保模型在正确的信息上生成回答。
+真实性（Groundedness） 在检索到的上下文信息的基础上，大型语言模型将生成答案。TruLens强调了独立验证每个回答的重要性，以确保它们基于可靠信息，并且能够在检索到的上下文中找到支持的证据。这一步骤是确保模型回答的真实性和可靠性的关键。
+答案相关性（Answer Relevance） 最后，评估需要确保最终回答有效地解答了原始问题，这通过评估应用的最终回答与用户输入的相关性来实现。这一过程确保了模型的输出不仅是真实的，而且是对用户查询有用的。
+TruLens还提出了“诚实、无害和有帮助”的评估原则（Honest, Harmless, and Helpful Evaluations），这些原则旨在确保LLM应用在提供帮助的同时，也是安全和可信的。
+Ragas Ragas框架专为评估检索增强生成（RAG）系统而设计，定义了四个核心评估指标：上下文相关性（context_relevancy）、上下文回溯（context_recall）、忠实度（faithfulness）和答案相关性（answer_relevancy）。这些指标共同构成了Ragas的评分体系，提供了一个全面的方法来评价RAG系统的性能。
+此外，Ragas巧妙地利用大语言模型（LLM）进行无参考评估，有效降低了评估成本。通过这种方法，Ragas能够提供一种既经济又有效的方式来评估RAG系统，尤其是在处理大量数据和复杂查询时。
+其他测试框架
+DeepEval
+DeepEval How to Evaluate RAG Applications in CI/CD Pipelines with DeepEval
+ARES
+github: https://github.com/stanford-futuredata/ARES
+Paper: ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems
+LangChain Evals
+Llama Index Evals
+UpTrain
+数据 在评估数据集时，不必依赖人工标注的标准答案，而是通过底层的大语言模型 (LLM) 来进行评估。
+为了对 RAG 流程进行评估，需要以下几种信息：
+question：这是RAG流程的输入，即用户的查询问题。
+answer：这是由RAG流程生成的答案，也就是输出结果。
+contexts：这是为了解答question而从外部知识源检索到的相关上下文信息。</description>
+    </item>
+    <item>
+      <title>2024-03 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-03/</link>
+      <pubDate>Sun, 31 Mar 2024 19:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-03/</guid>
+      <description>AI大纪事 Suno V3 发布 V3版本带来了卓越的音频品质、更丰富的音乐风格和类型选择，以及在准确响应创作提示方面的显著提升。
+更好的音频质量 更多的风格和流派 改进的提示遵循，包括更少的幻觉和更优美的结尾 Suno V3
+MetaGPT 更新V0.8 V0.8版本的主要亮点包括：
+数据解释器的引入：这一新特性大大增强了MetaGPT的数据处理能力，为用户分析和解释数据提供了强大的支持。 与RAG模块的集成：通过与RAG模块的集成，MetaGPT现在能够更好地理解和处理用户的需求，提高了生成内容的相关性和准确性。RAG底层使用的是llama_index 参考其GitHub页面和官方文档
+Nvidia GTC大会 新一代Nvidia B200 GPU
+首个AI程序员Devin 发布 Devin是由Cognition公司开发的全球首个完全自主的AI软件工程师，具备多项先进的编程技能，包括自主学习新技术、全面掌握开发工具、自动化代码修复和错误检测、以及端到端应用的构建和部署能力。
+不过目前，Devin还处于内测阶段，对公众的完全开放还需要一段时间。
+Cognition的官网
+Anthropic发布Claude 3 Anthropic发布了其最新的AI模型系列Claude 3，包括三个子模型：Claude 3 Haiku、Claude 3 Sonnet和Claude 3 Opus，其中Opus是最强大的。Claude 3 在多项基准测试中超越了GPT-4和Gemini Ultra，特别是在数学推理（GSM-8k）和专家级知识（MMLU）方面，显示出其领先的能力。于此同时，Claude 3 Opus 首次 Chatbot Arena 排行榜上超越了 GPT-4
+推荐的开源项目 **MoneyPrinterTurbo : 利用大模型，一键生成短视频**
+MediaCrawler: 自媒体爬虫工具, 支持小红书、抖音、快手、B 站、微博等自媒体平台的视频、图片、评论、点赞、转发信息抓取。
+LapisCV: 基于 Markdown 格式的简历模版
+LLMs Interview 八股文： 大模型面试题
+影音记录 本月精选歌单 本月Live记录 0307 Explosions in the Sky</description>
+    </item>
+    <item>
+      <title>My First Post: Hello-World!</title>
+      <link>https://niraya666.github.io/posts/helloworld/</link>
+      <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://niraya666.github.io/posts/helloworld/</guid>
+      <description>Hello-World! 欢迎来到我的博客
+在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。
+为什么我决定写博客 在生活的纷扰和无尽的日常中，我发现自己一直在与拖延症作斗争。直到今天，我终于下定决心，决定将心中的思绪和感悟记录下来，开启我的博客之旅。
+有几个原因驱使我做出了这个决定。
+首先，岁月不饶人，尤其是经历了新冠疫情之后，我明显感觉到我的记忆力不如以往。过去能够轻松驾驭多重任务的我，如今却常在走入客厅的半路上忘记初衷，或是在浏览器的搜索框前失去了寻找的目的。这种突如其来的迷茫，让我开始思索，我的思绪是否正如秋日里的落叶，悄然飘落。
+其次，在深夜的静思中，我时常回想起坂本龙一那句引人深思的话：“我还能看到几次满月？”这不仅是对时间流逝的感慨，更是一种对生命有限性的深刻体悟。在这有限的时光里，我究竟能留下什么？假如我的时间之沙仅剩下几颗，我的存在又有何意义？我不求答案，但愿通过这些文字，如同在时间的长河中种下一棵树，哪怕是最微小的存在，也能留下自己生命的痕迹。
+最后，我被“数据主义”（Dataism）这一概念深深吸引，它如同一面镜子，映照出在数字时代，我们的数据、思考和情感不仅仅是信息的载体，更是构成我们数字化身份的基石。随着AI的羽翼日渐丰满，我开始憧憬一个可能的未来，其中一个由我的数据、思想和经历塑造出的“我”，在某个未知的时间点复苏。这种思考，如同在深海中发现了一座灯塔，为我的存在指明了一条全新的路径。在这个时代，我选择不再是沉默的旁观者，而是通过我的文字，积极参与到这场未知的探索中。
+因此，这篇博客标志着我的新开始。虽然不确定未来的路会怎样，但至少，在这个过程中，我会找到自己的声音，并希望能够与你共鸣。</description>
     </item>
   </channel>
 </rss>

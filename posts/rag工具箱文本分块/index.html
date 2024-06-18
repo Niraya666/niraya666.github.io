@@ -61,7 +61,10 @@ text = &#34;...&#34; # 你的文本 from langchain.text_splitter import Recursiv
         }
 
     </style>
-</noscript><meta property="og:title" content="RAG工具箱：文本分块" />
+</noscript>
+  
+
+<meta property="og:title" content="RAG工具箱：文本分块" />
 <meta property="og:description" content="为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
 如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
 文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：

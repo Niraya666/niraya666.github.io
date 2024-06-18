@@ -71,7 +71,10 @@ from typing import Optional, List import io import fitz from pathlib import Path
         }
 
     </style>
-</noscript><meta property="og:title" content="RAG工具箱：文档解析与表格处理" />
+</noscript>
+  
+
+<meta property="og:title" content="RAG工具箱：文档解析与表格处理" />
 <meta property="og:description" content="引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
 对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
 人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
