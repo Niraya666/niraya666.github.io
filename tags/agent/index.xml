@@ -11,8 +11,27 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 May 2024 16:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Jun 2024 17:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent学习笔记： 如何验证模型的tool-using能力</title>
+      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
+      <pubDate>Tue, 25 Jun 2024 17:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
+      <description>本文将简单介绍如何评价LLM的tool-using 能力。
+引言 在工具使用评估方面，过去的研究主要有以下几种思路：
+对比工具使用和纯LLM在基准测试上的分数：例如Toolformer和LATM。
+在Toolformer研究中，通过下游任务如语言模型评估基准测试、数学推理任务和问答任务来验证工具使用的有效性。
+LATM则采用了来自BigBench的六个数据集进行评估。
+测试工具使用的准确率和响应质量：例如API-Bank。
+在评估过程中，首先初始化评估系统，确保每个API的数据库包含默认值。然后，将预测的API调用与手动标注的API调用进行比较，以确定它们的一致性。响应评估则使用ROUGE-L指标。 利用LLM对工具使用的效果进行评价：例如Tool-bench。
+two evaluation metrics:
+Pass Rate: Calculates the proportion of successfully completing an instruction within limited OpenAI API calls.
+Preference: Measured by comparing two answers (action sequences) for a given instruction.We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT.
+构造虚拟运行环境，测试代理与环境的交互结果：例如ToolAlpaca。
+利用LLM模拟环境（用户代理和助手代理），并使用GPT-4对ToolAlpaca模型进行机器评估，评估其使用各种未见工具的能力。 对于绝大多数企业和垂直场景下， 其中思路1需要构建额外的测试集成本比较高（但还是有必要的）， 而思路4构造虚拟运行环境实际上并不现实； 所以还是选择思路2，外加通过思路3辅助判断；换句话说， 根据场景，构造工具列表和工具调用的ground-truth（包括函数名， 和传入参数） ，在存在歧义时，采用ROUGE评价响应质量， 或者使用LLM判断响应结果并评价。
+顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。</description>
+    </item>
     <item>
       <title>基于大语言模型的 Agent：科普向</title>
       <link>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
