@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 31 May 2024 13:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2024 16:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-06 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-06/</link>
+      <pubDate>Sun, 30 Jun 2024 16:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-06/</guid>
+      <description>AI 新闻 Claude 3.5 Sonnet https://www.anthropic.com/news/claude-3-5-sonnet
+相比其前身 Claude 3 Opus，Claude 3.5 Sonnet 的运行速度提升了两倍，同时在多项基准测试中表现优异。此外，Claude 3.5 Sonnet 还引入了名为“Artifacts”的新功能，使用户可以在与 AI 对话的过程中实时查看和编辑生成的内容。
+开源模型 Qwen 2 https://qwenlm.github.io/zh/blog/qwen2/
+一共开源了Qwen2-0.5B、Qwen2-1.5B、Qwen2-7B、Qwen2-57B-A14B以及Qwen2-72B 5个模型**。增大了上下文长度支持，最高达到128K** tokens（Qwen2-72B-Instruct）。 代码和数学能力显著提升。多个评测基准上的领先表现。 同时还开源了一个智能体解决方案，用于高效处理100万tokens级别的上下文： **使用Qwen-Agent将上下文记忆扩展到百万量级。**
+Gemma2 https://developers.googleblog.com/en/gemma-family-and-toolkit-expansion-io-2024/
+包括两个主要版本，分别是 9 B参数和 27 B参数的模型。27B 的 Gemma 2 模型在多个基准测试中表现优异，超过了 Llama 3 70B 模型的性能。
+Gemma 2 采用了新的架构设计，使其在推理时更加高效
+Nemotron-4 340B https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/
+包含基础模型、指示模型和奖励模型的综合性数据生成流水线，用于训练大型语言模型。
+提供了一种生成合成训练数据的新方法，旨在提升定制语言模型的性能和鲁棒性。
+DeepSeek-Coder-V2 代码模型 https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct
+开源的专家混合模型，性能媲美GPT4-Turbo，专为代码特定任务优化，支持多源高质量语料库预训练，显著提升编程和数学推理能力，支持338种编程语言，扩展上下文长度至128K。
+值得关注的开源项目 Perplexica： 开源版本Perplexity+支持本地LLM。 GitHub：github.com/ItzCrazyKns/Perplexica
+translation-agent：吴恩达老师开源了一套 AI Agent 翻译工作流。通过LLM初步翻译， 而后对翻译结果进行反思，并提出改进建议，最后再根据意见进行最终版本的翻译。GitHub： github.com/andrewyng/translation-agent
+Streamer-Sales 销冠 —— 卖货主播 LLM 大模型： 一个能够根据给定的商品特点从激发用户购买意愿角度出发进行商品解说的卖货主播大模型。 另外还集成了 LMDeploy 加速推理🚀、RAG检索增强生成 📚、TTS文字转语音🔊、数字人生成 🦸、 Agent 使用网络查询实时信息🌐、ASR 语音转文字🎙️。 GitHub：github.</description>
+    </item>
     <item>
       <title>2024-05 月刊</title>
       <link>https://niraya666.github.io/monthly/2024-05/</link>
