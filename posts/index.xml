@@ -11,8 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 25 Jun 2024 17:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jul 2024 17:08:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG工具箱：检索</title>
+      <link>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</link>
+      <pubDate>Thu, 25 Jul 2024 17:08:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</guid>
+      <description>If you want to make a good RAG tool that uses your documentation, you should start by making a search engine over those documents that would be good enough for a human to use themselves. This is likely something your organization has considered before, and if it doesn’t exist it’s because building a good search engine has traditionally been a significant undertaking.
+— from Build a search engine, not a vector DB</description>
+    </item>
     <item>
       <title>Agent学习笔记： 如何验证模型的tool-using能力</title>
       <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
