@@ -11,8 +11,34 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Jun 2024 16:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jul 2024 09:46:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-07 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-07/</link>
+      <pubDate>Wed, 31 Jul 2024 09:46:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-07/</guid>
+      <description>AI 新闻 Llama3.1 发布 博客文章： https://ai.meta.com/blog/meta-llama-3-1/
+技术报告：https://ai.meta.com/research/publications/the-llama-3-herd-of-models/
+405B，70B，和8B3个版本 在个别指标上，405B超过了GPT-4o Mistral Large 2 https://mistral.ai/news/mistral-large-2407/
+卷起来了
+OpenAI 发布 GPT-4o mini 更低的API价格，并取代chatGPT中的GPT-3.5 Turbo，成为免费使用的模型
+SAM-2 发布 https://ai.meta.com/blog/segment-anything-2/
+GitHub：https://github.com/facebookresearch/segment-anything-2?tab=readme-ov-file
+与SAM相比， 同时支持视频和图像的分割，更强大的能力
+快手可灵更新 https://klingai.kuaishou.com/
+值得关注的开源项目 knowledge_graph_maker 采用LLM生成knowledge graph
+GitHub： https://github.com/rahulnyk/knowledge_graph_maker
+Qwen2-Audio 接受各种音频信号输入，并根据语音指令执行音频分析或直接响应文本
+GitHub: github.com/QwenLM/Qwen2-Audio
+LLM Twin Course An End-to-End Framework for Production-Ready LLM &amp;amp; RAG Systems by Building Your LLM Twin
+Github：github.com/decodingml/llm-twin-course
+Docker-Proxy 自建Docker镜像加速服务，基于官方Docker Registry 一键部署Docker、K8s、Quay、Ghcr、Mcr等镜像加速\管理服务。支持部署到Render\Koyeb
+GitHub: github.com/dqzboy/Docker-Proxy
+MediaGo 支持流媒体下载、视频下载、m3u8 文件下载以及 B 站视频下载
+GitHub：github.com/caorushizi/mediago
+PPTX2MD a pptx to markdown converter</description>
+    </item>
     <item>
       <title>2024-06 月刊</title>
       <link>https://niraya666.github.io/monthly/2024-06/</link>
