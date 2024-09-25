@@ -7,13 +7,57 @@
 <meta name="robots" content="index, follow">
 <title>RAG工具箱：文本分块 | LZY Blog</title>
 <meta name="keywords" content="RAG, RAG-Toolkits">
-<meta name="description" content="为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
-如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+<meta name="description" content="为什么要进行文本分块？
+大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
+如何进行文本分块
+
+**块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+
 文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：
-句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
-text = &#34;...&#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = &#34;\n\n&#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
-text = &#34;...&#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [&quot;\n\n&quot;, &quot;\n&quot;, &quot; &quot;, &quot;&quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&gt;一个换行-&gt;空格）将文本进行递归分割。
-针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。">
+句子分割（Sentence Splitting）
+这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
+text = &#34;...&#34; # 你的文本
+from langchain.text_splitter import CharacterTextSplitter
+text_splitter = CharacterTextSplitter(
+    separator = &#34;\n\n&#34;,
+    chunk_size = 256,
+    chunk_overlap  = 20
+)
+docs = text_splitter.create_documents([text])
+递归字符文本分割（Recursive Character Text Splitting）
+这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
+text = &#34;...&#34; # 你的文本
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 256,
+    chunk_overlap  = 20
+)
+docs = text_splitter.create_documents([text])
+根据langchain 的默认分隔条件 [&quot;\n\n&quot;, &quot;\n&quot;, &quot; &quot;, &quot;&quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&gt;一个换行-&gt;空格）将文本进行递归分割。
+针对特定文档的分割方法（Document Specific Splitting）
+例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。
+langchain 提供了一些常见文档的分割方法：
+mardown的分割逻辑
+[
+                # First, try to split along Markdown headings (starting with level 2)
+                &#34;\n#{1,6} &#34;,
+                # Note the alternative syntax for headings (below) is not handled here
+                # Heading level 2
+                # ---------------
+                # End of code block
+                &#34;```\n&#34;,
+                # Horizontal lines
+                &#34;\n\\*\\*\\*&#43;\n&#34;,
+                &#34;\n---&#43;\n&#34;,
+                &#34;\n___&#43;\n&#34;,
+                # Note that this splitter doesn&#39;t handle horizontal lines defined
+                # by *three or more* of ***, ---, or ___, but this is not handled
+                &#34;\n\n&#34;,
+                &#34;\n&#34;,
+                &#34; &#34;,
+                &#34;&#34;,
+            ]
+python的分割逻辑：">
 <meta name="author" content="Theme PaperMod">
 <link rel="canonical" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
@@ -61,17 +105,58 @@ text = &#34;...&#34; # 你的文本 from langchain.text_splitter import Recursiv
         }
 
     </style>
-</noscript>
-  
+</noscript><meta property="og:title" content="RAG工具箱：文本分块" />
+<meta property="og:description" content="为什么要进行文本分块？
+大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
+如何进行文本分块
 
-<meta property="og:title" content="RAG工具箱：文本分块" />
-<meta property="og:description" content="为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
-如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+**块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+
 文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：
-句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
-text = &#34;...&#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = &#34;\n\n&#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
-text = &#34;...&#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [&quot;\n\n&quot;, &quot;\n&quot;, &quot; &quot;, &quot;&quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&gt;一个换行-&gt;空格）将文本进行递归分割。
-针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。" />
+句子分割（Sentence Splitting）
+这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
+text = &#34;...&#34; # 你的文本
+from langchain.text_splitter import CharacterTextSplitter
+text_splitter = CharacterTextSplitter(
+    separator = &#34;\n\n&#34;,
+    chunk_size = 256,
+    chunk_overlap  = 20
+)
+docs = text_splitter.create_documents([text])
+递归字符文本分割（Recursive Character Text Splitting）
+这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
+text = &#34;...&#34; # 你的文本
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 256,
+    chunk_overlap  = 20
+)
+docs = text_splitter.create_documents([text])
+根据langchain 的默认分隔条件 [&quot;\n\n&quot;, &quot;\n&quot;, &quot; &quot;, &quot;&quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&gt;一个换行-&gt;空格）将文本进行递归分割。
+针对特定文档的分割方法（Document Specific Splitting）
+例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。
+langchain 提供了一些常见文档的分割方法：
+mardown的分割逻辑
+[
+                # First, try to split along Markdown headings (starting with level 2)
+                &#34;\n#{1,6} &#34;,
+                # Note the alternative syntax for headings (below) is not handled here
+                # Heading level 2
+                # ---------------
+                # End of code block
+                &#34;```\n&#34;,
+                # Horizontal lines
+                &#34;\n\\*\\*\\*&#43;\n&#34;,
+                &#34;\n---&#43;\n&#34;,
+                &#34;\n___&#43;\n&#34;,
+                # Note that this splitter doesn&#39;t handle horizontal lines defined
+                # by *three or more* of ***, ---, or ___, but this is not handled
+                &#34;\n\n&#34;,
+                &#34;\n&#34;,
+                &#34; &#34;,
+                &#34;&#34;,
+            ]
+python的分割逻辑：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/" />
 <meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
@@ -82,13 +167,57 @@ text = &#34;...&#34; # 你的文本 from langchain.text_splitter import Recursiv
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
 <meta name="twitter:title" content="RAG工具箱：文本分块"/>
-<meta name="twitter:description" content="为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
-如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+<meta name="twitter:description" content="为什么要进行文本分块？
+大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。
+如何进行文本分块
+
+**块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。
+
 文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：
-句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
-text = &#34;...&#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = &#34;\n\n&#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
-text = &#34;...&#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [&quot;\n\n&quot;, &quot;\n&quot;, &quot; &quot;, &quot;&quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&gt;一个换行-&gt;空格）将文本进行递归分割。
-针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。"/>
+句子分割（Sentence Splitting）
+这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。
+text = &#34;...&#34; # 你的文本
+from langchain.text_splitter import CharacterTextSplitter
+text_splitter = CharacterTextSplitter(
+    separator = &#34;\n\n&#34;,
+    chunk_size = 256,
+    chunk_overlap  = 20
+)
+docs = text_splitter.create_documents([text])
+递归字符文本分割（Recursive Character Text Splitting）
+这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。
+text = &#34;...&#34; # 你的文本
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 256,
+    chunk_overlap  = 20
+)
+docs = text_splitter.create_documents([text])
+根据langchain 的默认分隔条件 [&quot;\n\n&quot;, &quot;\n&quot;, &quot; &quot;, &quot;&quot;] ,也就是会将text根据该分割条件的顺序（两个换行-&gt;一个换行-&gt;空格）将文本进行递归分割。
+针对特定文档的分割方法（Document Specific Splitting）
+例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。
+langchain 提供了一些常见文档的分割方法：
+mardown的分割逻辑
+[
+                # First, try to split along Markdown headings (starting with level 2)
+                &#34;\n#{1,6} &#34;,
+                # Note the alternative syntax for headings (below) is not handled here
+                # Heading level 2
+                # ---------------
+                # End of code block
+                &#34;```\n&#34;,
+                # Horizontal lines
+                &#34;\n\\*\\*\\*&#43;\n&#34;,
+                &#34;\n---&#43;\n&#34;,
+                &#34;\n___&#43;\n&#34;,
+                # Note that this splitter doesn&#39;t handle horizontal lines defined
+                # by *three or more* of ***, ---, or ___, but this is not handled
+                &#34;\n\n&#34;,
+                &#34;\n&#34;,
+                &#34; &#34;,
+                &#34;&#34;,
+            ]
+python的分割逻辑："/>
 
 
 <script type="application/ld+json">
@@ -117,7 +246,7 @@ text = &#34;...&#34; # 你的文本 from langchain.text_splitter import Recursiv
   "@type": "BlogPosting",
   "headline": "RAG工具箱：文本分块",
   "name": "RAG工具箱：文本分块",
-  "description": "为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。\n如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。\n文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：\n句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。\ntext = \u0026#34;...\u0026#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = \u0026#34;\\n\\n\u0026#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。\ntext = \u0026#34;...\u0026#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [\u0026quot;\\n\\n\u0026quot;, \u0026quot;\\n\u0026quot;, \u0026quot; \u0026quot;, \u0026quot;\u0026quot;] ,也就是会将text根据该分割条件的顺序（两个换行-\u0026gt;一个换行-\u0026gt;空格）将文本进行递归分割。\n针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。",
+  "description": "为什么要进行文本分块？ 大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。\n如何进行文本分块 **块分割戒律：**我们的目标不仅仅是为了划分数据块。更重要的是，我们要以一种便于日后检索和提取价值的格式来整理我们的数据。\n文本分块的根本目的不仅仅是简单地将数据分割成块。更重要的是，我们要以便于检索和提取价值的方式来组织这些数据块。以下是几种常见的分块逻辑：\n句子分割（Sentence Splitting） 这种方法只是简单地将文本切分成N个字符的片段，不考虑内容或形式的连贯性。\ntext = \u0026#34;...\u0026#34; # 你的文本 from langchain.text_splitter import CharacterTextSplitter text_splitter = CharacterTextSplitter( separator = \u0026#34;\\n\\n\u0026#34;, chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 递归字符文本分割（Recursive Character Text Splitting） 这种方法首先尝试用一个分隔符将文本切分成小块。如果初始尝试未能达到预期的块大小或结构，就递归地用不同的分隔符重新分割结果块，直到得到满意的结果。\ntext = \u0026#34;...\u0026#34; # 你的文本 from langchain.text_splitter import RecursiveCharacterTextSplitter text_splitter = RecursiveCharacterTextSplitter( chunk_size = 256, chunk_overlap = 20 ) docs = text_splitter.create_documents([text]) 根据langchain 的默认分隔条件 [\u0026quot;\\n\\n\u0026quot;, \u0026quot;\\n\u0026quot;, \u0026quot; \u0026quot;, \u0026quot;\u0026quot;] ,也就是会将text根据该分割条件的顺序（两个换行-\u0026gt;一个换行-\u0026gt;空格）将文本进行递归分割。\n针对特定文档的分割方法（Document Specific Splitting） 例如针对Markdown或Python代码的分割策略，这些策略根据文档的结构来进行分割，如类定义或Markdown标题。\nlangchain 提供了一些常见文档的分割方法：\nmardown的分割逻辑\n[ # First, try to split along Markdown headings (starting with level 2) \u0026#34;\\n#{1,6} \u0026#34;, # Note the alternative syntax for headings (below) is not handled here # Heading level 2 # --------------- # End of code block \u0026#34;```\\n\u0026#34;, # Horizontal lines \u0026#34;\\n\\\\*\\\\*\\\\*+\\n\u0026#34;, \u0026#34;\\n---+\\n\u0026#34;, \u0026#34;\\n___+\\n\u0026#34;, # Note that this splitter doesn\u0026#39;t handle horizontal lines defined # by *three or more* of ***, ---, or ___, but this is not handled \u0026#34;\\n\\n\u0026#34;, \u0026#34;\\n\u0026#34;, \u0026#34; \u0026#34;, \u0026#34;\u0026#34;, ] python的分割逻辑：\n",
   "keywords": [
     "RAG", "RAG-Toolkits"
   ],

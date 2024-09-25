@@ -56,10 +56,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:title" content="Tool-Using" />
+</noscript><meta property="og:title" content="Tool-Using" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://niraya666.github.io/tags/tool-using/" />
@@ -195,7 +192,8 @@ Pass Rate: Calculates the proportion of successfully completing an instruction w
 Preference: Measured by comparing two answers (action sequences) for a given instruction.We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT.
 构造虚拟运行环境，测试代理与环境的交互结果：例如ToolAlpaca。
 利用LLM模拟环境（用户代理和助手代理），并使用GPT-4对ToolAlpaca模型进行机器评估，评估其使用各种未见工具的能力。 对于绝大多数企业和垂直场景下， 其中思路1需要构建额外的测试集成本比较高（但还是有必要的）， 而思路4构造虚拟运行环境实际上并不现实； 所以还是选择思路2，外加通过思路3辅助判断；换句话说， 根据场景，构造工具列表和工具调用的ground-truth（包括函数名， 和传入参数） ，在存在歧义时，采用ROUGE评价响应质量， 或者使用LLM判断响应结果并评价。
-顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。...</p>
+顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-06-25 17:00:00 +0800 CST'>June 25, 2024</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to Agent学习笔记： 如何验证模型的tool-using能力" href="https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/"></a>
@@ -232,7 +230,7 @@ function calling的应用范围广泛，如
 function calling的过程涵盖了从定义函数集、通过模型生成遵循自定义模式的JSON对象字符串，到在代码中解析这个字符串并调用相应函数的全过程。这一连串操作不仅自动化了交互过程，还确保了执行操作的安全性和准确性。
 一些常见的问题 JSON mode json mode 和tool-using 有什么关系？有了json mode 还需要用到tool-using吗？
 从json mode 的本质， 更多的是在system prompt 增加一句类似“请以json格式输出”之类的话，然后在LLM输出时增加json结果检查和格式转换。在使用时只需要在client.chat.completions.create 中 增加response_format={ &#34;type&#34;: &#34;json_object&#34; } 即可。
-那么json mode 什么时候会用到呢？一般在做文本提取，内容提取时可以使用；以RAG场景为例， 当我们希望LLM能够帮我们对用户的query进行改写时，我们肯定是希望模型能够返回干净的json格式改写结果，这样的结果可以直接使用，而不是在模型输出一些内容后，如：...</p>
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-04-28 15:00:00 +0800 CST'>April 28, 2024</span>&nbsp;·&nbsp;23 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to Agent学习笔记：OpenAI Function Calling完全指南" href="https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/"></a>
