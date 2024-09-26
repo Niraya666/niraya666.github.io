@@ -11,8 +11,36 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 25 Sep 2024 13:32:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Sep 2024 14:01:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-09 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-09/</link>
+      <pubDate>Thu, 26 Sep 2024 14:01:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-09/</guid>
+      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
+&lt;h3 id=&#34;openai-发布o1-preview&#34;&gt;OpenAI 发布o1-preview&lt;/h3&gt;
+&lt;p&gt;OpenAI于9月12日发布了其最新的大型语言模型o1-preview，该模型在推理能力上实现了重大突破。o1模型通过使用Chain of Thought技术，能够解决复杂的数学和编程问题，其表现超越了之前的GPT-4o模型。&lt;/p&gt;
+&lt;p&gt;o1模型在多个基准测试中表现出色，包括在美国国际数学邀请赛中取得接近全国前500名的成绩，并在科学问题的准确度上超过了人类博士水平。该模型通过强化学习增强了推理能力，能够逐步分析问题，拆解复杂步骤并自动修正错误。&lt;/p&gt;
+&lt;p&gt;OpenAI还推出了o1-mini版本，虽然规模较小，但在推理任务上表现优异，且成本更低。o1-mini特别适合编程任务，预计未来将向所有ChatGPT用户开放。&lt;/p&gt;
+&lt;p&gt;相关信息：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://cdn.openai.com/o1-system-card.pdf&#34;&gt;system card&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-openai-o1-preview/&#34;&gt;官方介绍&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.interconnects.ai/p/reverse-engineering-openai-o1&#34;&gt;Reverse engineering OpenAI’s o1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://x.com/dotey/status/1835395891483554105&#34;&gt;去年 Jim Fan 对于 Q* 的预测&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;相关GitHub仓库： &lt;a href=&#34;https://github.com/hijkzzz/Awesome-LLM-Strawberry&#34;&gt;&lt;strong&gt;Awesome LLM Strawberry (OpenAI o1)&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://x.com/op7418/status/1835153295855567356&#34;&gt;关于 Open AI o1 的 AMA&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=kYWUEV_e2ss&#34;&gt;MIT EI seminar, Hyung Won Chung from OpenAI. &amp;ldquo;Don&amp;rsquo;t teach. Incentivize.&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;qwen25系列模型&#34;&gt;Qwen2.5系列模型&lt;/h3&gt;
+&lt;p&gt;阿里云的Qwen团队近日发布了Qwen2.5系列大型语言模型。该系列包括多种尺寸的模型，从0.5B到72B参数不等，并提供基础和指令调优版本。Qwen2.5在多个方面取得了显著进步，包括更强的知识储备、编码和数学能力的提升，以及在指令跟随、长文本生成和结构化数据理解方面的改进。&lt;/p&gt;
+&lt;p&gt;Qwen2.5支持多达29种语言，能够处理长达128K的上下文，并生成最多8K的文本。该模型在多语言支持、角色扮演和聊天机器人条件设置方面表现出更高的弹性。&lt;/p&gt;
+&lt;p&gt;此外，Qwen2.5还推出了专门用于编码和数学的模型，如Qwen2.5-Coder和Qwen2.5-Math，进一步增强了在这些领域的应用能力。Qwen2.5-Coder特别在代码生成、推理和修复方面表现出色，而Qwen2.5-Math则在数学推理能力上有显著提升。&lt;/p&gt;
+&lt;p&gt;官方博客：&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5/&#34;&gt;Qwen2.5: 基础模型大派对！&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;deepseek-v25&#34;&gt;DeepSeek-V2.5&lt;/h3&gt;
+&lt;p&gt;DeepSeek-AI 推出了其最新模型 DeepSeek-V2.5，成功融合了之前版本 DeepSeek-V2-Chat 和 DeepSeek-Coder-V2-Instruct 的功能。该模型集成了通用语言处理和编程能力。&lt;/p&gt;
+&lt;p&gt;DeepSeek-V2.5 经过性能优化，特别在写作、任务执行和高级编程等方面表现出色，在 AlpacaEval 2.0 和 HumanEval Python 等基准测试中超越了前代产品。此外，模型还新增了函数调用功能，使其能够与外部工具交互，拓展了实时天气报告、翻译等应用场景。&lt;/p&gt;
+&lt;p&gt;该模型采用了多头潜在注意力（MLA）等技术创新，显著提升了推理速度和资源利用效率。同时，DeepSeek-V2.5 在 Hugging Face 平台上开源，并提供商业化许可，允许企业将其用于自动化客服、内容生成等业务流程中。其性能表现已跻身主流排行榜，与 GPT-4-Turbo 和 LLaMA3-70B 等顶尖模型齐名。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2024 Can-festival：在海边 混杂着雨水和泪水 向后摇</title>
       <link>https://niraya666.github.io/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</link>
