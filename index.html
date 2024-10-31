@@ -211,6 +211,44 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">RAG工具箱：Query Enhancement
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>引言 首先，从最简单的RAG（Retrieval-Augmented Generation）谈起。
+RAG结合了信息检索与生成模型，先通过用户的原始问题query 在知识库中检索与相关的文档，再利用生成模型（如ChatGPT）生成回答。最简单的RAG版本通常被称为Naive-RAG，虽然Naive-RAG能够处理一些简单的问题，但在真实场景下，用户提出的问题往往更加复杂多样，远远超出系统最初设计的预期范围。
+在用户与RAG系统交互时，往往会遇到以下几种常见问题：
+表达模糊不清：用户在描述问题时，往往难以精准表达自己的需求。他们可能仅使用几个词组或片段，导致系统难以理解用户的真实意图。
+依赖上下文：用户的问题经常依赖之前的对话或背景信息，而系统只接收到当前的孤立问题，缺少关键的上下文支持，无法给出准确的答案。
+复杂多层次问题：某些问题本身复杂，包含多个子问题或需要推理、逻辑分析。Naive-RAG依赖简单的关键词匹配或语义匹配，无法很好地处理这类复杂的需求。
+面对这些挑战，Naive-RAG的局限性变得明显：仅仅依靠用户的原始query无法应对多样化的提问场景。那么，如何提升RAG系统的检索能力，增强对复杂问题的处理呢？这时就需要引入Query-Enhancement技术。
+Query-Enhancement，顾名思义，是对用户的原始query进行增强处理。它的核心思想是：不要直接使用用户的原始query进行相关文档的检索，而是通过某种技术手段对query进行改写、扩展或优化，从而生成一个更适合检索的query。这种技术在不同场景下有不同的命名，如query rewrite或query reformulation，但核心目标都是一致的——根据用户的初始输入，生成一个更符合检索需求、更能提升查询准确性的新query。
+通过Query-Enhancement，可以解决许多Naive-RAG无法处理的问题。例如，针对模糊或简短的提问，增强后的query可以通过添加上下文或关键词来丰富信息内容；对于复杂的多层次问题，增强后的query可以拆解为多个子问题，逐步进行检索与推理。
+本文将深入探讨不同的Query-Enhancement技术方案，并分析这些技术如何根据原始query生成更高效的查询，帮助RAG系统在复杂场景下提供更精确的答案。
+Query Rewrite Because the original query can not be always optimal to retrieve for the LLM, especially in the real world… we first prompt an LLM to rewrite the queries, then conduct retrieval-augmented reading.
+Query Rewrite的目的是将用户模糊、不明确或不完整的查询转换为更适合检索的形式，以提升检索效率和准确性。
+仅使用原始query的缺点：
+查询常常模糊、不具体或不完整，导致难以找到有效的检索结果。
+缺乏明确术语，无法有效从大型数据集中提取相关信息。
+对话上下文中的查询含义因对话历史而异，同样的表达在不同的上下文中可能有不同的意图。
+输入文本与真正需要检索的知识之间不可避免地存在差距。这种差距限制了检索性能，增加了对检索能力增强和提示工程的依赖。
+为了解决这些问题，检索器之前增加了一步对输入进行改写的过程，填补给定输入与检索需求之间的差距。这一步利用了LLM本身的能力对原始查询进行有针对性的改写。
+比如，来自RAG_Techniques 的这段prompt：
+query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. Given the original query, rewrite it to be more specific, detailed, and likely to retrieve relevant information. Original query: {original_query} Rewritten query:&#34;&#34;&#34; 使LLM可以更加系统地将用户的原始查询改写为更符合检索需求的形式。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-31 16:04:00 +0800 CST'>October 31, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to RAG工具箱：Query Enhancement" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">LLM 输出限制：Structured Outputs、受限编码和提示词工程
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
