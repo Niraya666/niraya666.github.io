@@ -11,8 +11,32 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Sep 2024 14:01:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 31 Oct 2024 19:01:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-10 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-10/</link>
+      <pubDate>Thu, 31 Oct 2024 19:01:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-10/</guid>
+      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
+&lt;h3 id=&#34;openai-meta-prompt&#34;&gt;OpenAI meta-prompt&lt;/h3&gt;
+&lt;p&gt;OpenAI最近揭示了其最新的“元提示”（meta-prompt）技术，通过简单指令实现完整的prompt生成或改进prompt，除去prompt以外，还提供了tool-using schema 的自动生成能力。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://platform.openai.com/docs/guides/prompt-generation&#34;&gt;OpenAI Platform&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;openai-canvas-功能&#34;&gt;OpenAI Canvas 功能&lt;/h3&gt;
+&lt;p&gt;OpenAI推出了名为“Canvas”的新界面，专为提升写作和编程项目的用户体验而设计。Canvas界面在常规聊天窗口旁打开一个工作区，用户可以直接在其中生成和编辑文本或代码。这一功能为用户提供了更大的灵活性和控制力，尤其在需要对AI生成的内容进行细化调整时。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-canvas/&#34;&gt;Introducing canvas&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;nvidia-发布llama-31-nemotron-70b模型&#34;&gt;Nvidia 发布Llama-3.1-Nemotron-70B模型&lt;/h3&gt;
+&lt;p&gt;NVIDIA近日发布了其最新的大型语言模型Llama-3.1-Nemotron-70B-Instruct。&lt;/p&gt;
+&lt;p&gt;Llama-3.1-Nemotron-70B-Instruct在多个自动化评估基准上表现优异，包括Arena Hard、AlpacaEval 2 LC和GPT-4-Turbo MT-Bench，超越了OpenAI的GPT-4o和Anthropic的Claude 3.5 Sonnet等强大模型。&lt;/p&gt;
+&lt;p&gt;该模型通过强化学习人类反馈（RLHF）进行训练，使用了REINFORCE算法和HelpSteer2-Preference提示。NVIDIA还提供了在HuggingFace Transformers代码库中的兼容版本，方便开发者使用。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/nvidia/Llama-3.1-Nemotron-70B-Instruct&#34;&gt;nvidia/Llama-3.1-Nemotron-70B-Instruct · Hugging Face&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mistral发布了ministral-3b-和-ministral-8b&#34;&gt;Mistral发布了Ministral 3B 和 Ministral 8B&lt;/h3&gt;
+&lt;p&gt;Mistral公司近日发布了两款新的AI模型，Ministral 3B和Ministral 8B，专为边缘设备如笔记本电脑和智能手机设计，确保数据处理的安全性和响应速度。&lt;/p&gt;
+&lt;p&gt;Ministral 3B和8B模型的上下文窗口可达128,000个tokens，相当于处理50页文档的能力。Ministral 8B采用了交错滑动窗口注意力机制，提升了推理速度并节省内存。在性能方面，Ministral 3B和8B在多个AI基准测试中表现优于同类模型，如Llama和Gemma系列，以及Mistral自家的7B模型。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mistral.ai/news/ministraux/&#34;&gt;Un Ministral, des Ministraux&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;anthropic-最近发布了最新的-ai-模型-claude-35-haiku-和升级版-claude-35-sonnet&#34;&gt;Anthropic 最近发布了最新的 AI 模型 Claude 3.5 Haiku 和升级版 Claude 3.5 Sonnet&lt;/h3&gt;
+&lt;p&gt;Anthropic 最近发布了最新的 AI 模型 Claude 3.5 Haiku 和升级版 Claude 3.5 Sonnet。这些模型在多个领域表现出色，尤其是在编码和工具使用任务上取得了显著进步。Claude 3.5 Sonnet 的推理能力超过了许多竞争对手，包括 OpenAI 的 o1-preview。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2024-09 月刊</title>
       <link>https://niraya666.github.io/monthly/2024-09/</link>
