@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>杂 on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/%E6%9D%82/</link>
+    <link>http://localhost:1313/tags/%E6%9D%82/</link>
     <description>Recent content in 杂 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 23 May 2024 19:42:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/%E6%9D%82/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E6%9D%82/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>泉州行记：古城漫步与味蕾之旅</title>
-      <link>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>
+      <link>http://localhost:1313/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>
       <pubDate>Thu, 23 May 2024 19:42:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</guid>
+      <guid>http://localhost:1313/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</guid>
       <description>&lt;p&gt;2024年 夏&lt;/p&gt;
 &lt;p&gt;这是我第一次踏上泉州这片土地，虽然我是厦门人，已经快三十岁了，却一直没有机会来这座近在咫尺的城市。&lt;/p&gt;
 &lt;p&gt;泉州在我想象中，是一座充满历史韵味的地方，同时也被一些暴发户的繁荣所点缀。几年前，这座城市成功申遗，从此逐渐成为小众旅游的热门选择。泉州的古老街区、传统建筑和浓厚的文化氛围，让人忍不住想一探究竟。&lt;/p&gt;
@@ -26,39 +26,39 @@
 &lt;p&gt;泉州，我来了！&lt;/p&gt;
 &lt;h2 id=&#34;初印象&#34;&gt;初印象&lt;/h2&gt;
 &lt;p&gt;初到泉州，路上穿梭的电动车给我留下了深刻的第一印象。这些电动车在街头巷尾自由穿行，让我一度产生了身处越南的错觉。或许，这正是泉州的独特之处——在传统与现代之间，在历史与现实之中，找到一种和谐的平衡。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34; alt=&#34;50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34; alt=&#34;50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;作为古城，鲤城区似乎尽可能地保留着过去的模样。漫步在古城，却能产生一种记忆中的故乡的错觉，这一切似乎都太像了。&lt;/p&gt;
 &lt;p&gt;那些熟悉的景象和气息，让人倍感亲切。有人说过，“离开了，故乡才称之为故乡。”庆幸的是，故乡以另一种形式呈现在我的面前，尽管这不是我的故乡。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34; alt=&#34;458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34; alt=&#34;458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;在鲤城区，街头的小贩、古早风格的便利店、上了年纪的理发店，无时无刻不把我拉回到记忆的深处。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34; alt=&#34;218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34; alt=&#34;218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;人&#34;&gt;人 &lt;/h2&gt;
 &lt;p&gt;历史离不开人，特别是一个个普通人&lt;/p&gt;
 &lt;p&gt;正是这些普通人，构成了这座城市的血脉与灵魂。他们的日常琐事，他们的勤劳与坚韧，使得这座古老的城市充满了生机与活力。在他们的身上，我看到了泉州的过去、现在和未来。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34; alt=&#34;E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34; alt=&#34;E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34; alt=&#34;BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34; alt=&#34;BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34; alt=&#34;3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34; alt=&#34;3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34; alt=&#34;0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34; alt=&#34;0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34; alt=&#34;46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34; alt=&#34;46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;宗教&#34;&gt;宗教&lt;/h2&gt;
 &lt;p&gt;泉州作为海上丝绸之路的起点，在那辉煌的历史长河中，不仅是贸易和文化交流的中心，也吸引了大量的外来文化和宗教。佛教、道教、伊斯兰教、基督教等多种宗教在这里交汇融合，形成了独特的宗教文化景观。经过千年的融合与发展，这些宗教在泉州和谐共存，互相尊重，不分彼此。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34; alt=&#34;22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34; alt=&#34;22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34; alt=&#34;BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34; alt=&#34;BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34; alt=&#34;5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34; alt=&#34;5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;吃&#34;&gt;吃&lt;/h2&gt;
 &lt;h3 id=&#34;牛肉店&#34;&gt;牛肉店&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34; alt=&#34;FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34; alt=&#34;FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;阿秋牛排馆&lt;/p&gt;
 &lt;p&gt;牛排并不是传统意义上的steak，而是采用香料和咖喱炖煮而成的牛排骨。招牌牛排非常推荐，炖得非常软烂，入口即化，肉质瞬间脱骨。咖喱的香气与牛肉的原汁原味相得益彰，不会掩盖肉本身的美味。用汤汁拌饭，可谓是一绝。&lt;/p&gt;
@@ -76,11 +76,11 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;面线糊&#34;&gt;面线糊&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34; alt=&#34;FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34; alt=&#34;FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;平阿面线糊&lt;/p&gt;
 &lt;p&gt;我去的这家平阿面线糊，在周末早上8点左右已经挤满了人，足见其受欢迎程度。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34; alt=&#34;0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34; alt=&#34;0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;与厦门地区加入了猪血、虾米的面线糊相比，泉州的面线糊更多地呈现出字面上的意思——就是很单纯的面线糊。所用的面线更加细碎，完全不用担心吃太慢会坨，因为这甚至可以用面线汤来形容。但喝上一口汤，你会发现这绝不是一碗普通的面线汤，在汤头上，店家一定是下足了功夫的。&lt;/p&gt;
 &lt;p&gt;食客可以根据自己的喜好添加额外的食材，这种模式在闽南地区基本相同。在泉州，根据我对本地食客的观察，基本上必加的食材有：醋肉、卤大肠、套肠、豆干等等，当然绝对不能忘了加一根油条。&lt;/p&gt;
@@ -97,7 +97,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;烧肉粽&#34;&gt;烧肉粽&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34; alt=&#34;F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34; alt=&#34;F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;东街肉粽店&lt;/p&gt;
 &lt;p&gt;“烧”在闽南语中的含义既包含了特定的烹饪方法，也体现了食物的热度（与“烫”同音）。在“烧肉粽”中，“烧”不仅指将肉粽通过炖、煮、蒸等方式烹饪至入味，还强调了粽子食用时热乎的特质。&lt;/p&gt;
@@ -106,62 +106,62 @@
     </item>
     <item>
       <title>大阪游记：时光交错下的日本探索</title>
-      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
+      <link>http://localhost:1313/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
       <pubDate>Thu, 16 May 2024 16:32:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</guid>
+      <guid>http://localhost:1313/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</guid>
       <description>&lt;p&gt;2024-春夏之交 大阪&lt;/p&gt;
 &lt;p&gt;旅行时间2天3夜&lt;/p&gt;
 &lt;p&gt;在多邻国上学了快一年的散装日语，受到了看大河剧、日本电影和玩日本游戏的影响，我决定利用刚获得的三年多次入境签证，以及51假期的空闲时间，去日本看看。考虑到时间限制，我选择了关西的交通枢纽和经济中心——大阪，作为这次日本之行的第一站。&lt;/p&gt;
 &lt;p&gt;对于日本，尤其是大阪，我的第一印象是热门景区和场所人非常多。这主要是因为赶上了日本的10天黄金周，同时由于日元汇率低迷，大量外国人涌入日本消费和旅游。然而，在居民区，特别是我所住的浪速区，情况则大为不同，晚上和清晨几乎见不到几个人，给人一种非常萧条的感觉。中国人会说，这叫做“缺乏人气”。此外，随处可见的大乌鸦加深了这种萧条感。或许这也可能是宫崎英高在《黑魂》系列中乌鸦的灵感来源吧。在日本，乌鸦似乎被视为吉祥的象征。&lt;/p&gt;
 &lt;h2 id=&#34;游玩篇&#34;&gt;游玩篇&lt;/h2&gt;
 &lt;p&gt;出了民宿，我的第一站是不远处的难波八阪神社。这里以其狮子头形状的大狮子殿闻名，成为了一处热门的打卡地点。据说，这个狮子头具有驱除灾难和带来好运的力量。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34; alt=&#34;D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34; alt=&#34;D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;经过两站地下铁，即可到达动物园前站， 这里是新世界的入口。&lt;/p&gt;
 &lt;p&gt;新世界，曾是日本向西方看齐、力图“脱亚入欧”时的产物。在20世纪初，日本大量吸纳西方文化元素，并在大阪建立了这一街区。然而时光流转，21世纪的今天，这里更像是一个保存良好的“旧世界”。街区内充满昭和时代的气息，从游戏厅、炸串店到浮夸的店面招牌，甚至粉红色影院，处处透露出时代的印记。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34; alt=&#34;6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34; alt=&#34;6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34; alt=&#34;AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34; alt=&#34;AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;作为泡沫经济时期产物， 粉红影院现在主要吸引了一部分中老年男性和非传统性别的人士。影院的“学生半价”标志显得有些讽刺，同时也透露出一种时代变迁的哀愁。鉴于这类场所的特殊性，不推荐旅行者单独前往。&lt;/p&gt;
 &lt;p&gt;新世界的标志性建筑通天阁，则见证了区域的多重历史。这座铁塔最初在1912年仿照巴黎的埃菲尔铁塔建造，但在二战中因为“献纳”政策而被拆除，用其材料支持军工。通天阁的现代版本建于1956年，为了迎接万博会而重建，塔身醒目地印有日立的广告，成为了大阪的新地标。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34; alt=&#34;6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34; alt=&#34;6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34; alt=&#34;0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34; alt=&#34;0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;西成区，与新世界仅一路之隔，是大阪的旧城区。这个区域以较复杂的治安情况、流浪汉的较高出现率，以及成人娱乐业而知名。其中，著名的酒吧一条街和在中文互联网上广为人知的飞田新地均位于此地。游客在此区域应特别小心，避免随意使用手机或拍照，以尊重当地文化和增加个人安全。&lt;/p&gt;
 &lt;p&gt;往新世界东北边走， 则能到达天王寺车站，商圈，以及以此命名此地的四天王寺。这里的天王寺车站作为从关西机场到大阪市区的两条主要电车线路之一JR西日本的终点站，同前面走过的西成区和新世界相比， 自然非常繁华。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34; alt=&#34;2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34; alt=&#34;2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;天王寺站前&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34; alt=&#34;42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34; alt=&#34;42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;JR西日本机场线之HARUKA， 以Hello- Kitty涂装著称。&lt;/p&gt;
 &lt;p&gt;日本的许多古迹因二战的轰炸和历史上的大地震而稀少，多数是在原址上修复或重建的。四天王寺就是这样的例子，它是日本历史悠久的寺庙之一，最初由飞鸟时期的圣德太子创建。虽然历经多次战火，我们今天所见的四天王寺主要是1957年后的重建。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34; alt=&#34;C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34; alt=&#34;C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34; alt=&#34;30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34; alt=&#34;30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34; alt=&#34;3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34; alt=&#34;3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;前往天王寺途中，偶遇的一心寺。&lt;/p&gt;
 &lt;p&gt;在天王寺附近，我意外地发现了一个旧书集市。在那里，我用400日元买到了一本1994年的旧书。虽然还有很多书我想买想看，但考虑到海关的限制和行李空间的限制，我只能忍痛放弃。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34; alt=&#34;A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34; alt=&#34;A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34; alt=&#34;96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34; alt=&#34;96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;不可免俗的道顿堀格利高小人&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34; alt=&#34;17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34; alt=&#34;17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;蟹道乐&lt;/p&gt;
 &lt;p&gt;夜幕降临， 抵达梅田，乘坐hep five摩天轮，体验大阪夜景。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34; alt=&#34;90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34; alt=&#34;90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;hep five摩天轮&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34; alt=&#34;5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34; alt=&#34;5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;第二天，前往大阪历史博物馆和大阪城， 以及shooping。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34; alt=&#34;FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34; alt=&#34;FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;大阪城&lt;/p&gt;
 &lt;p&gt;大阪城始建于1583年，由丰臣秀吉下令建造。大阪城的天守阁如今是博物馆，展示了丰臣秀吉的生平、战国时期的武器和铠甲，以及大阪城的历史变迁。&lt;/p&gt;
@@ -169,9 +169,9 @@
     </item>
     <item>
       <title>My First Post: Hello-World!</title>
-      <link>https://niraya666.github.io/posts/helloworld/</link>
+      <link>http://localhost:1313/posts/helloworld/</link>
       <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://niraya666.github.io/posts/helloworld/</guid>
+      <guid>http://localhost:1313/posts/helloworld/</guid>
       <description>&lt;h1 id=&#34;hello-world&#34;&gt;Hello-World!&lt;/h1&gt;
 &lt;p&gt;欢迎来到我的博客&lt;/p&gt;
 &lt;p&gt;在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。&lt;/p&gt;

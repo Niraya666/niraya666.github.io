@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Music on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/music/</link>
+    <link>http://localhost:1313/tags/music/</link>
     <description>Recent content in Music on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 09 Jun 2024 16:00:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/music/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/music/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【冷门乐队推荐】Sistemas Inestables</title>
-      <link>https://niraya666.github.io/musik/intorduction_of_si/</link>
+      <link>http://localhost:1313/musik/intorduction_of_si/</link>
       <pubDate>Sun, 09 Jun 2024 16:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/musik/intorduction_of_si/</guid>
+      <guid>http://localhost:1313/musik/intorduction_of_si/</guid>
       <description>&lt;p&gt;Sistemas Inestables是来自智利圣地亚哥的器乐三重奏乐队。他们的音乐以行进和复杂的结构为特征，并伴随着噪音和氛围的层次。&lt;/p&gt;
 
 &lt;iframe style=&#34;border-radius:12px&#34; src=&#34;https://open.spotify.com/embed/artist/6RGPbHSp1Rby5CCzH7psxm?utm_source=generator&#34; width=&#34;100%&#34; height=&#34;352&#34; frameBorder=&#34;0&#34; allowfullscreen=&#34;&#34; allow=&#34;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;
@@ -37,9 +37,9 @@
     </item>
     <item>
       <title>【钢琴谱分享】坂本龙一《for Johann》</title>
-      <link>https://niraya666.github.io/musik/for_johann/</link>
+      <link>http://localhost:1313/musik/for_johann/</link>
       <pubDate>Sat, 01 Jun 2024 12:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/musik/for_johann/</guid>
+      <guid>http://localhost:1313/musik/for_johann/</guid>
       <description>&lt;p&gt;上周看了《坂本龙一：Opus》，特别喜欢其中有一首未收录在之前作品中的曲目《for Johann》&lt;/p&gt;
 &lt;p&gt;第一反应是这首曲子可能是献给已故的冰岛作曲家Johann Johannsson，也是我最喜欢的音乐人之一&lt;/p&gt;
 &lt;p&gt;不过，我找不到确切的证据&lt;/p&gt;
@@ -48,13 +48,13 @@
 &lt;p&gt;试着弹一下这首歌， 顺带用AnthemScore扒了下谱子
 可能有些小错误，但我希望能将这份音乐传递下去&lt;/p&gt;
 &lt;p&gt;希望大家喜欢&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/1.png&#34; alt=&#34;&#34;  /&gt;
 
-&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/2.png&#34; alt=&#34;&#34;  /&gt;
 
-&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/3.png&#34; alt=&#34;&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/3.png&#34; alt=&#34;&#34;  /&gt;
 
-&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/4.png&#34; alt=&#34;&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/4.png&#34; alt=&#34;&#34;  /&gt;
 &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;He’s gone, but the music remains.&lt;/p&gt;

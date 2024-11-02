@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -42,16 +42,16 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
 对于绝大多数企业和垂直场景下， 其中思路1需要构建额外的测试集成本比较高（但还是有必要的）， 而思路4构造虚拟运行环境实际上并不现实； 所以还是选择思路2，外加通过思路3辅助判断；换句话说， 根据场景，构造工具列表和工具调用的ground-truth（包括函数名， 和传入参数）  ，在存在歧义时，采用ROUGE评价响应质量， 或者使用LLM判断响应结果并评价。
 顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/">
+<link rel="canonical" href="http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/">
 <noscript>
     <style>
         #theme-toggle,
@@ -124,14 +124,14 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
 对于绝大多数企业和垂直场景下， 其中思路1需要构建额外的测试集成本比较高（但还是有必要的）， 而思路4构造虚拟运行环境实际上并不现实； 所以还是选择思路2，外加通过思路3辅助判断；换句话说， 根据场景，构造工具列表和工具调用的ground-truth（包括函数名， 和传入参数）  ，在存在歧义时，采用ROUGE评价响应质量， 或者使用LLM判断响应结果并评价。
 顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/" />
-<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/" />
+<meta property="og:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-06-25T17:00:00+08:00" />
 <meta property="article:modified_time" content="2024-06-25T17:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta name="twitter:title" content="Agent学习笔记： 如何验证模型的tool-using能力"/>
 <meta name="twitter:description" content="本文将简单介绍如何评价LLM的tool-using 能力。
 引言
@@ -178,13 +178,13 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "Agent学习笔记： 如何验证模型的tool-using能力",
-      "item": "https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/"
+      "item": "http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/"
     }
   ]
 }
@@ -202,7 +202,7 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
   "articleBody": "本文将简单介绍如何评价LLM的tool-using 能力。\n引言 在工具使用评估方面，过去的研究主要有以下几种思路：\n对比工具使用和纯LLM在基准测试上的分数：例如Toolformer和LATM。\n在Toolformer研究中，通过下游任务如语言模型评估基准测试、数学推理任务和问答任务来验证工具使用的有效性。\nLATM则采用了来自BigBench的六个数据集进行评估。\n测试工具使用的准确率和响应质量：例如API-Bank。\n在评估过程中，首先初始化评估系统，确保每个API的数据库包含默认值。然后，将预测的API调用与手动标注的API调用进行比较，以确定它们的一致性。响应评估则使用ROUGE-L指标。 利用LLM对工具使用的效果进行评价：例如Tool-bench。\ntwo evaluation metrics:\nPass Rate: Calculates the proportion of successfully completing an instruction within limited OpenAI API calls.\nPreference: Measured by comparing two answers (action sequences) for a given instruction.We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT.\n构造虚拟运行环境，测试代理与环境的交互结果：例如ToolAlpaca。\n利用LLM模拟环境（用户代理和助手代理），并使用GPT-4对ToolAlpaca模型进行机器评估，评估其使用各种未见工具的能力。 对于绝大多数企业和垂直场景下， 其中思路1需要构建额外的测试集成本比较高（但还是有必要的）， 而思路4构造虚拟运行环境实际上并不现实； 所以还是选择思路2，外加通过思路3辅助判断；换句话说， 根据场景，构造工具列表和工具调用的ground-truth（包括函数名， 和传入参数） ，在存在歧义时，采用ROUGE评价响应质量， 或者使用LLM判断响应结果并评价。\n顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。\n在 Benchmarking Agent Tool Use 一文中，提出了4种指标用于评价Agent 的tool-using 能力：\nCorrectness 即通过LLM判断工具调用结果是否同ground truth 相同；\nCorrect final state 即检查agent 所交互环境的最终状态是否同预期相同；\nIntermediate step correctness 除了最终状态， 也可以检查中间状态；\nRatio of steps taken to the expected steps 即实际步骤与预期步骤的比例。\n在LangChain Benchmarks 项目提供了4个（3个）任务用于测试tool-using， 本质上也是一种构造虚拟环境并与之交互。\nMultiverse Math 任务 ： 要求模型使用提供的工具来解决数学问题。为了确保模型不依赖于内在知识，数学运算被修改以产生不同于预期的结果。例如，乘法和加法的结果会有所不同，但仍保留某些数学性质。 任务示例包括基本的加减乘除运算、幂运算、对数运算等。\ncode \"\"\"Solve basic math question using the provided tools. Must use the provided tools to solve the math question. To make sure that innate knowledge is not used, the math operations have been altered to yield different results than expected. The modified operations should yield different results, but still retain appropriate properties. For example, the modified multiplication operation should still be commutative. Please note that the modified operations are not guaranteed to even make sense in the real world since not all properties will be retained (e.g., distributive property). For example, I ate 1 apple and 2 oranges every day for 7 days. How many fruits did I eat? One would expect the answer to be 21, but in this universe, the answer is 32.34. In addition, it depends on how the operations are grouped: (1 + 2) * 7 = 32.34 But: 1 * 7 + 2 * 7 = 24.3 Due to these changes certain questions are not allowed as inputs as they would yield different results if evaluated in different ways. For example, \"convert 15 degrees to radians\" is not allowed as an input as it could be interpreted as either: divide(multiply(15, pi()), 180) or multiply(divide(15, 180), pi()) \"\"\" Relational Data任务 ：要求模型使用提供的工具来回答关于关系数据的问题。环境中包含关于用户及其位置和喜好食物的虚假数据，模型需要使用工具查询这些数据以回答问题。 任务示例包括查询用户的位置信息、喜好食物等\ncode \"\"\"Answer questions about relational data using the provided tools. The environment contains fake data about users and their locations and favorite foods. The environment provides a set of tools that can be used to query the data. All questions can be answered by using the provided tools. The answers include the expected result as well as the most efficient way to answer the question using the tools. \"\"\" Typewriter(single-tool, 26-tools): 要求模型使用工具逐字打印给定的字符串。模型需要调用工具来模拟打字机的行为，每次打印一个字符，直到完成整个字符串。 任务示例包括打印特定的句子或段落。\ncode ```python \"\"\"A task where the agent must type a given string one letter at a time. In this variation of the task, the agent is given a single function, that takes a letter as an argument. \"\"\" ``` 根据综述文章《What Are Tools Anyway? A Survey from the Language Model Perspective》，在验证代理或模型的工具使用能力时，可以关注以下指标：\nTask completion：任务完成度，或pass-ratio 这是一个相对宏观的指标， 工具调用的最核心目的就是为了完成任务， 任务的成功与否表征了工具调用的最终结果。\nTool selection： 如何在众多工具中挑选到最合适的工具，这考验了模型在特定场景下对任务的理解和最优化的工具选择；\nTool reusability： 指的是一个工具在不同情境下或解决不同问题时能够被多次使用的能力， 不过往往和工具生成（tool-marking）相关， 不在这次的讨论范围中。\n方法论 综合以上讨论， tool-using 的测试可以简单分为：\n单轮简单测试 在这种测试中，主要测试function_name 和传入参数。关注的指标是pass-rate 和 Preference。具体方法是不需要使用LLM进行判断，只需将返回的function_name 和 function_arguments 与ground-truth进行比对，确认是否一致。最终使用pass-ratio 评价测试结果。\nJson-mode验证 由于并非所有模型都能严格按要求输出所需要的json格式，考虑到这种情况，可以进行Json-mode的验证，以确保输出格式的正确性。\n优化版本\n通过ROUGE判断function_arguments\n目的：避免严格一致所带来的问题。 通过LLM辅助判断function_arguments\n优点：准确率更高。\n缺点：成本也更高。\n多轮调用 以上单轮tool-using测试在复杂场景下不太适用。\n在一些复杂场景中，如代码生成与执行、SQL生成并执行等，需要按照一定顺序调用多个tools。这些场景需要LLM根据前几次tool-using的结果反馈，调整function_arguments 或 function_name。\n这些场景无外乎都需要LLM根据前几次tool-using的结果反馈， 修改function_arguments 或者是function_name；\n将tool-using的过程抽象为强化学习中agent同环境(env)的交互过程。目标是减少agent与环境的交互次数，从而降低成本，并争取一次或者几次就能做对，避免重复错误。可以借用langchain中的思想，增加对中间和最终状态的检查，并比对实际交互次数和预期交互次数。这类测试需要额外构建虚拟环境，超出此次讨论范围。\n测试集 NousResearch/func-calling-eval-glaive\nNousResearch/func-calling-eval-singleturn\nNousResearch/func-calling-eval\n上手：测试LLM的tool-using 能力 这里，选择最简单的tool-using用于演示， 即直接调用OpenAI 的tool-using API\n环境 import os # os.environ[\"OPENAI_API_KEY\"] = \"...\" from openai import OpenAI import json client = OpenAI() 定义工具函数 考虑了一个简单的医疗场景，共4个工具；\ntools = [ { \"type\": \"function\", \"function\": { \"name\": \"get_medical_definition\", \"description\": \"Get the definition of a medical term\", \"parameters\": { \"type\": \"object\", \"properties\": { \"term\": {\"type\": \"string\", \"description\": \"The medical term to define\"} }, \"required\": [\"term\"] } } }, { \"type\": \"function\", \"function\": { \"name\": \"get_treatment_options\", \"description\": \"Get treatment options for a disease\", \"parameters\": { \"type\": \"object\", \"properties\": { \"disease\": {\"type\": \"string\", \"description\": \"The disease to get treatment options for\"} }, \"required\": [\"disease\"] } } }, { \"type\": \"function\", \"function\": { \"name\": \"get_medication_side_effects\", \"description\": \"Get the potential side effects of a medication\", \"parameters\": { \"type\": \"object\", \"properties\": { \"medication\": {\"type\": \"string\", \"description\": \"The name of the medication\"} }, \"required\": [\"medication\"] } } }, { \"type\": \"function\", \"function\": { \"name\": \"get_disease_symptoms\", \"description\": \"Get the symptoms associated with a specific disease\", \"parameters\": { \"type\": \"object\", \"properties\": { \"disease\": {\"type\": \"string\", \"description\": \"The disease to get symptoms for\"} }, \"required\": [\"disease\"] } } } ] 定义测试用例 创建测试用例数据集，每个测试用例包含查询、预期函数调用及其参数、以及期望的响应。\n使用GPT-4构建。\ntest_cases = [ { \"query\": \"What are the symptoms of influenza?\", \"expected_function\": \"get_disease_symptoms\", \"function_arguments\": {\"disease\": \"influenza\"}, \"expected_response\": \"Symptoms of influenza include fever, chills, muscle aches, cough, congestion, runny nose, headaches, and fatigue.\" }, { \"query\": \"What is the definition of asthma?\", \"expected_function\": \"get_medical_definition\", \"function_arguments\": {\"term\": \"asthma\"}, \"expected_response\": \"Asthma is a condition in which your airways narrow and swell and may produce extra mucus, making breathing difficult and triggering coughing, wheezing, and shortness of breath.\" }, { \"query\": \"What treatments are available for rheumatoid arthritis?\", \"expected_function\": \"get_treatment_options\", \"function_arguments\": {\"disease\": \"rheumatoid arthritis\"}, \"expected_response\": \"Treatment options for rheumatoid arthritis include medications such as NSAIDs, steroids, DMARDs, and biologics, as well as physical therapy and lifestyle changes.\" }, { \"query\": \"What are the side effects of metformin?\", \"expected_function\": \"get_medication_side_effects\", \"function_arguments\": {\"medication\": \"metformin\"}, \"expected_response\": \"Common side effects of metformin include gastrointestinal issues such as diarrhea, nausea, and abdominal discomfort, as well as lactic acidosis in rare cases.\" }, { \"query\": \"What symptoms are associated with hypothyroidism?\", \"expected_function\": \"get_disease_symptoms\", \"function_arguments\": {\"disease\": \"hypothyroidism\"}, \"expected_response\": \"Symptoms of hypothyroidism include fatigue, weight gain, cold intolerance, dry skin, constipation, and depression.\" }, ... ] 定义测试metrics 自定义了pass-ratio，即function_name, function_arguments 严格一致为pass。\n运行测试并验证响应 def call_openai_tool(model, prompt, tools): response = client.chat.completions.create( model=model, messages=[ {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"}, {\"role\": \"user\", \"content\": prompt} ], tools=tools, tool_choice=\"auto\" ) return response def run_tests(test_cases, model=deployment_name): passed_tests = 0 failed_tests = 0 for case in test_cases: response = call_openai_tool(model, case['query'], tools) if case['expected_function'] and case['function_arguments']: if response.choices[0].message.tool_calls: tool_calls = response.choices[0].message.tool_calls # 验证函数调用名称和参数 try: assert tool_calls[0].function.name == case['expected_function'], f\"Expected function {case['expected_function']}, but got {tool_calls[0].function.name}\" assert json.loads(tool_calls[0].function.arguments) == case['function_arguments'], f\"Expected arguments {case['function_arguments']}, but got {tool_calls[0].function.arguments}\" print(f\"Test passed for query: {case['query']}\") passed_tests += 1 except AssertionError as e: print(e) print(f\"Test failed for query: {case['query']}\") failed_tests += 1 else: print(f\"Test failed for query (no tool call): {case['query']}\") failed_tests += 1 else: # # 验证响应内容 # response_text = response.choices[0].message.content.strip() # 验证没有调用工具 if response.choices[0].message.tool_calls: print(f\"Test failed for query (unexpected tool call): {case['query']}\") failed_tests += 1 else: print(f\"Test passed for query: {case['query']}\") passed_tests += 1 total_tests = passed_tests + failed_tests accuracy = (passed_tests / total_tests) * 100 if total_tests \u003e 0 else 0 print(f\"Total tests: {total_tests}, Passed: {passed_tests}, Failed: {failed_tests}, Accuracy: {accuracy:.2f}%\") run_tests(test_cases) 结果：\nTest passed for query: What are the symptoms of chronic kidney disease? Test passed for query: What does the medical term 'bipolar disorder' mean? Expected arguments {'disease': 'chronic obstructive pulmonary disease'}, but got { \"disease\": \"COPD\" } Test failed for query: What are the treatment options for chronic obstructive pulmonary disease (COPD)? Test passed for query: What side effects are associated with the use of aspirin? Test passed for query: Tell me a joke. Test passed for query: What is the capital of France? Total tests: 22, Passed: 21, Failed: 1, Accuracy: 95.45% 对于test failed case， 这只是个模凌两可的错误。\n如果采用LLM作为裁判是可以避免的。\n基于ROUGE的响应判断 环境\n! pip install rouge-score --quiet from rouge_score import rouge_scorer def calculate_rouge_l(predicted, expected): scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True) scores = scorer.score(predicted, expected) return scores['rougeL'].fmeasure def run_tests_with_rouge(test_cases, model=deployment_name, rouge_l_threshold=0.8): passed_tests = 0 failed_tests = 0 for case in test_cases: response = call_openai_tool(model, case['query'], tools) if case['expected_function'] and case['function_arguments']: if response.choices[0].message.tool_calls: tool_calls = response.choices[0].message.tool_calls # 验证函数调用名称和参数 try: assert tool_calls[0].function.name == case['expected_function'], f\"Expected function {case['expected_function']}, but got {tool_calls[0].function.name}\" predicted_arguments = json.loads(tool_calls[0].function.arguments) # 计算ROUGE-L分数 rouge_l_score = calculate_rouge_l(json.dumps(predicted_arguments), json.dumps(case['function_arguments'])) assert rouge_l_score \u003e= rouge_l_threshold, f\"ROUGE-L score {rouge_l_score} is less than threshold {rouge_l_threshold}\" print(f\"Test passed for query: {case['query']}\") passed_tests += 1 except AssertionError as e: print(e) print(f\"Test failed for query: {case['query']}\") failed_tests += 1 else: print(f\"Test failed for query (no tool call): {case['query']}\") failed_tests += 1 else: # 验证没有调用工具 if response.choices[0].message.tool_calls: print(f\"Test failed for query (unexpected tool call): {case['query']}\") failed_tests += 1 else: print(f\"Test passed for query: {case['query']}\") passed_tests += 1 total_tests = passed_tests + failed_tests accuracy = (passed_tests / total_tests) * 100 if total_tests \u003e 0 else 0 print(f\"Total tests: {total_tests}, Passed: {passed_tests}, Failed: {failed_tests}, Accuracy: {accuracy:.2f}%\") 使用ROUGE-L 计算function_arguments 同预期的差距，若大于一定阈值，则判断失败。\n基于LLM验证和判断 def chat_completion_request(messages, tools=None, tool_choice=None, model=deployment_name, json_mode=False): try: params = { 'model': model, 'messages': messages, 'tools': tools, 'tool_choice': tool_choice } if json_mode: params['response_format'] = { \"type\": \"json_object\" } response = client.chat.completions.create(**params) return response except Exception as e: print(\"Unable to generate ChatCompletion response\") print(f\"Exception: {e}\") return e def evaluate_with_llm(predicted_arguments, expected_arguments, model, tools): prompt = f\"\"\" Compare the following predicted arguments and expected arguments for a function call. Predicted Arguments: {json.dumps(predicted_arguments, indent=2)} Expected Arguments: {json.dumps(expected_arguments, indent=2)} Evaluate if the predicted arguments sufficiently match the expected arguments, considering minor differences acceptable. Respond with a JSON object containing a single key \"match\" with a boolean value indicating if they match. Example response: {{ \"match\": true }} \"\"\" response = chat_completion_request(messages=[{\"role\": \"system\", \"content\": prompt}],model = model, json_mode=True) json_response = json.loads(response.choices[0].message.content) return json_response.get(\"match\", False) def run_tests_with_llm(test_cases, model=deployment_name, rouge_l_threshold=0.8): passed_tests = 0 failed_tests = 0 for case in test_cases: response = call_openai_tool(model, case['query'], tools) if case['expected_function'] and case['function_arguments']: if response.choices[0].message.tool_calls: tool_calls = response.choices[0].message.tool_calls # 验证函数调用名称和参数 try: assert tool_calls[0].function.name == case['expected_function'], f\"Expected function {case['expected_function']}, but got {tool_calls[0].function.name}\" predicted_arguments = json.loads(tool_calls[0].function.arguments) # 使用 LLM 来判断参数匹配 match = evaluate_with_llm(predicted_arguments, case['function_arguments'], model, tools) assert match, \"LLM evaluation determined the arguments do not match\" print(f\"Test passed for query: {case['query']}\") passed_tests += 1 except AssertionError as e: print(e) print(f\"Test failed for query: {case['query']}\") failed_tests += 1 else: print(f\"Test failed for query (no tool call): {case['query']}\") failed_tests += 1 else: # 验证没有调用工具 if response.choices[0].message.tool_calls: print(f\"Test failed for query (unexpected tool call): {case['query']}\") failed_tests += 1 else: print(f\"Test passed for query: {case['query']}\") passed_tests += 1 total_tests = passed_tests + failed_tests accuracy = (passed_tests / total_tests) * 100 if total_tests \u003e 0 else 0 print(f\"Total tests: {total_tests}, Passed: {passed_tests}, Failed: {failed_tests}, Accuracy: {accuracy:.2f}%\") 附: prompt 生成示例 def chat_completion_request(messages, tools=None, tool_choice=None, model=deployment_name, json_mode=False): try: params = { 'model': model, 'messages': messages, 'tools': tools, 'tool_choice': tool_choice } if json_mode: params['response_format'] = { \"type\": \"json_object\" } response = client.chat.completions.create(**params) return response except Exception as e: print(\"Unable to generate ChatCompletion response\") print(f\"Exception: {e}\") return e def generate_test_cases_from_tools(tools, examples): tools_descriptions = \"\\n\".join([ f\"- {tool['function']['name']}: {tool['function']['description']} (Parameters: {', '.join(tool['function']['parameters']['properties'].keys())})\" for tool in tools ]) prompt = f\"\"\" Create a series of test cases for evaluating the tool-using capabilities of a language model. The test cases should be relevant to the domain and should utilize the provided tools. Each test case should include the following fields: - query: A question or request related to the domain. - expected_function: The function that should be called to answer the query. - function_arguments: The arguments that should be passed to the function. - expected_response: The expected response from the function. The available tools are: {tools_descriptions} Here are some examples to follow: {examples} Now, generate 10 more test cases in the same format utilizing the provided tools. Make sure the output format is JSON and enclose the result in triple backticks (```): \"\"\" return prompt # Example usage tools = [ { \"type\": \"function\", \"function\": { \"name\": \"get_medical_definition\", \"description\": \"Get the definition of a medical term\", \"parameters\": { \"type\": \"object\", \"properties\": { \"term\": {\"type\": \"string\", \"description\": \"The medical term to define\"} }, \"required\": [\"term\"] } } }, { \"type\": \"function\", \"function\": { \"name\": \"get_treatment_options\", \"description\": \"Get treatment options for a disease\", \"parameters\": { \"type\": \"object\", \"properties\": { \"disease\": {\"type\": \"string\", \"description\": \"The disease to get treatment options for\"} }, \"required\": [\"disease\"] } } } ] examples = \"\"\" [ { \"query\": \"What is diabetes?\", \"expected_function\": \"get_medical_definition\", \"function_arguments\": {\"term\": \"diabetes\"}, \"expected_response\": \"Diabetes is a chronic condition that affects the way the body processes blood sugar (glucose).\" }, { \"query\": \"How can hypertension be treated?\", \"expected_function\": \"get_treatment_options\", \"function_arguments\": {\"disease\": \"hypertension\"}, \"expected_response\": \"Treatment options for hypertension include lifestyle changes, such as diet and exercise, and medications like ACE inhibitors, beta-blockers, and diuretics.\" } ] \"\"\" sys_prompt = generate_test_cases_from_tools(tools, examples) messages=[ {\"role\": \"system\", \"content\": sys_prompt} ] resp = chat_completion_request(messages, json_mode=True) test_cases = eval(resp.choices[0].message.content) 参考 Function-calling \u0026 JSON-mode Evaluation\nBenchmarking Agent Tool Use\nWhat Are Tools Anyway? A Survey from the Language Model Perspective\nBerkeley Function Calling Leaderboard\nToolformer\nLATM\nAPI-Bank\nTool-bench\nToolAlpaca\n",
   "wordCount" : "1959",
   "inLanguage": "en",
-  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2024-06-25T17:00:00+08:00",
+  "image": "http://localhost:1313/images/papermod-cover.png","datePublished": "2024-06-25T17:00:00+08:00",
   "dateModified": "2024-06-25T17:00:00+08:00",
   "author":{
     "@type": "Person",
@@ -210,14 +210,14 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/"
+    "@id": "http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -239,7 +239,7 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -265,42 +265,42 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="musik!">
+                <a href="http://localhost:1313/musik/" title="musik!">
                     <span>musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
@@ -311,7 +311,7 @@ Preference: Measured by comparing two answers (action sequences) for a given ins
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Agent学习笔记： 如何验证模型的tool-using能力
       <span class="entry-hint" title="Draft">
@@ -953,16 +953,16 @@ that takes a letter as an argument.
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
-      <li><a href="https://niraya666.github.io/tags/tool-using/">Tool-Using</a></li>
+      <li><a href="http://localhost:1313/tags/agent/">Agent</a></li>
+      <li><a href="http://localhost:1313/tags/tool-using/">Tool-Using</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/">
+  <a class="prev" href="http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/">
     <span class="title">« Prev</span>
     <br>
     <span>RAG工具箱：检索</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/">
+  <a class="next" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/">
     <span class="title">Next »</span>
     <br>
     <span>RAG工具箱：文本分块</span>
@@ -973,7 +973,7 @@ that takes a letter as an argument.
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on x"
-            href="https://x.com/intent/tweet/?text=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f&amp;hashtags=Agent%2ctool-using">
+            href="https://x.com/intent/tweet/?text=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f&amp;hashtags=Agent%2ctool-using">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -982,7 +982,7 @@ that takes a letter as an argument.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f&amp;title=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;summary=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f&amp;title=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;summary=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -991,7 +991,7 @@ that takes a letter as an argument.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f&title=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f&title=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -1000,7 +1000,7 @@ that takes a letter as an argument.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -1009,7 +1009,7 @@ that takes a letter as an argument.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on whatsapp"
-            href="https://api.whatsapp.com/send?text=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
+            href="https://api.whatsapp.com/send?text=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -1018,7 +1018,7 @@ that takes a letter as an argument.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on telegram"
-            href="https://telegram.me/share/url?text=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
+            href="https://telegram.me/share/url?text=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -1027,7 +1027,7 @@ that takes a letter as an argument.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent学习笔记： 如何验证模型的tool-using能力 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
+            href="https://news.ycombinator.com/submitlink?t=Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%20%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e6%a8%a1%e5%9e%8b%e7%9a%84tool-using%e8%83%bd%e5%8a%9b&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%25A6%2582%25E4%25BD%2595%25E9%25AA%258C%25E8%25AF%2581%25E6%25A8%25A1%25E5%259E%258B%25E7%259A%2584tool-using%25E8%2583%25BD%25E5%258A%259B%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -1067,7 +1067,7 @@ that takes a letter as an argument.
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2024 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
