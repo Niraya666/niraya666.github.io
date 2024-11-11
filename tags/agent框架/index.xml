@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agent框架 on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/agent%E6%A1%86%E6%9E%B6/</link>
+    <description>Recent content in Agent框架 on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Nov 2024 11:10:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/agent%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent 学习笔记：框架 ｜ openAI Swarm</title>
+      <link>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
+      <pubDate>Mon, 11 Nov 2024 11:10:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
+      <description>&lt;h2 id=&#34;开篇&#34;&gt;开篇&lt;/h2&gt;
+&lt;p&gt;“CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。&lt;/p&gt;
+&lt;h2 id=&#34;routines-and-handoffs&#34;&gt;Routines and Handoffs&lt;/h2&gt;
+&lt;p&gt;根据&lt;a href=&#34;https://cookbook.openai.com/examples/orchestrating_agents&#34;&gt;openAI cookbook: &lt;strong&gt;Orchestrating Agents: Routines and Handoffs&lt;/strong&gt;&lt;/a&gt;**，**理解这个框架前首先需要理解的两个概念： &lt;strong&gt;Routines&lt;/strong&gt; 和 &lt;strong&gt;Handoffs&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The notion of a &amp;ldquo;routine&amp;rdquo; is not strictly defined, and instead meant to capture the idea of a set of steps. Concretely, let&amp;rsquo;s define a routine to be a list of instructions in natural language (which we&amp;rsquo;ll represent with a system prompt), along with the tools necessary to complete them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Routines（常规）&lt;/strong&gt;：是由一系列步骤构成的流程，可以理解为给定任务的执行步骤，包括对话系统中指令和所需工具的组合。从代码实现上，基本上就是围绕着openAI 的 &lt;code&gt;openai.chat.completions.create&lt;/code&gt;API的一系列内容， 对话、工具调用等。换句话说，routines只是具有对话+工具调用的chatbot，这也是openAI对于Agent的基础抽象。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
