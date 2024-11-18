@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>第二大脑 on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
+    <description>Recent content in 第二大脑 on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Nov 2024 19:41:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>读书笔记｜如何打造第二大脑</title>
+      <link>https://niraya666.github.io/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
+      <pubDate>Sun, 17 Nov 2024 19:41:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</guid>
+      <description>&lt;p&gt;去年疫情之后，我感觉记忆力明显下降，甚至一度担心会不可恢复。或许这也是年纪渐长的体现，只是我不愿意承认罢了。直到读到了一篇博文，了解了CODE信息管理框架，并因此接触到《第二大脑》这本书。虽然这本书并不长，但由于各种原因，今年我才真正开始阅读并实践。经过一年的探索，我决定整理这篇读书笔记，既是对书中理念的梳理，也是对个人实践的总结。&lt;/p&gt;
+&lt;p&gt;值得一提的是，随着近年来大语言模型（LLM）的迅速发展，AI辅助可能会带来更高效的信息管理方式。&lt;/p&gt;
+&lt;h2 id=&#34;信息过载的时代为什么需要笔记&#34;&gt;信息过载的时代，为什么需要笔记？&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;很多情况下，我们不过是一个个“人形存储器”，明明囤积了大量的心灵鸡汤，却反而让自己变得越发焦虑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;为什么要做笔记？在信息泛滥的今天，我们像“人形存储器”一样不断被信息填满，大脑的容量有限，信息过载只会增加焦虑。&lt;/p&gt;
+&lt;p&gt;在25岁之前，我几乎不需要笔记，因为记忆力不错，而且接触的信息相对有限。工作后，尤其在AI领域，每天都被信息轰炸。尤其是ChatGPT问世后，信息的爆炸性增长让我常常感到FOMO（Fear of missing out，即错失恐惧症）：担心错过最新的模型、论文，或行业趋势。我习惯性地将感兴趣的网页放入同一窗口，但消化的速度远远跟不上积累的速度，导致未处理的内容堆积成山。&lt;/p&gt;
+&lt;p&gt;我们无法容纳所有信息，因此需要新的信息管理方式——一个“第二大脑”。&lt;/p&gt;
+&lt;p&gt;在《第二大脑》中，作者提出了“第二大脑”概念。这个概念的核心是解放大脑的记忆负担，将精力集中在创新上。为了实现这一目标，作者提供了一套实操框架，即“信管法则”CODE：抓取（Capture）、组织（Organize）、提炼（Distill）和表达（Express）。&lt;/p&gt;
+&lt;h2 id=&#34;什么是信管法则-code&#34;&gt;什么是信管法则 CODE&lt;/h2&gt;
+&lt;h3 id=&#34;1-信息抓取&#34;&gt;1. 信息抓取&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;因为普通人对于信息的利用并没有明确的规划，所以在信息的筛选问题上会显得有些无所适从。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;抓取信息的目的是捕捉对自己有意义的内容，而不是任意积累。有效筛选信息可以通过以下标准：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;信息抓取标准1：是否具有启发性&lt;/p&gt;
+&lt;p&gt;信息抓取标准2：是否具有实用性&lt;/p&gt;
+&lt;p&gt;信息抓取标准3：是否具有个性&lt;/p&gt;
+&lt;p&gt;信息抓取标准4：是否具有新奇性&lt;/p&gt;
+&lt;p&gt;信息抓取终极标准：是否让你为之共鸣&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从推荐系统的出现开始，可以看到现代人所面临的一个典型问题——&lt;strong&gt;信息茧房&lt;/strong&gt;。我们常常被动地接受信息，而非主动选择，导致思维越来越局限。这种信息茧房现象，使得我们只看到我们想看的，忽略了更多有价值的内容。在如今的&lt;strong&gt;注意力战争&lt;/strong&gt;中，我们的注意力被大量低质量的信息所吸引，而常常错过了高质量的信息。我们需要认识到，抓取信息的关键不在于多，而在于&lt;strong&gt;精&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;另外，抓取信息时要保持随时随地记录的习惯。无论是灵感闪现，还是对某篇文章的深刻思考，都应该马上记录下来，而不是随着时间逐渐遗忘。可以善用&lt;strong&gt;备忘录&lt;/strong&gt;、&lt;strong&gt;稍后阅读工具&lt;/strong&gt;等工具，以确保在需要时可以迅速获取信息。&lt;/p&gt;
+&lt;h3 id=&#34;2-信息组织&#34;&gt;2. 信息组织&lt;/h3&gt;
+&lt;p&gt;信息需要合理分类，以方便未来使用。相信我，你一定在备忘录中看到一些不知写的是什么的内容，或是看着收藏夹中多达上百条记录而不知所措，这时候你需要的是改变信息组织方式。&lt;/p&gt;
+&lt;p&gt;作者推荐“以行动为导向”的PARA系统：项目（Projects）、领域（Areas）、资源（Resources）、存档（Archive）。这一系统的核心在于根据实际需求对信息进行分类存储，确保信息易于找到和利用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PARA系统的运作机制：让你的思想（和笔记）向行动看齐&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在PARA系统中，每一条信息都可以被划入以下四大类别中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;项目（Projects）&lt;/strong&gt;：工作或生活中正在从事的短期活动；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;领域（Areas）&lt;/strong&gt;：致力于长期履行的责任；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;资源（Resources）&lt;/strong&gt;：具有潜在利用价值的课题或兴趣点；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;存档（Archive）&lt;/strong&gt;：除上述三项以外的休眠信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;相比基于“信息来源”的组织方式，PARA系统以信息可能促成的结果为导向。这种方法可以让我们更加专注于将信息用于创造行动和产生价值，而不是无限期地积累信息。&lt;/p&gt;
+&lt;p&gt;PARA系统的精髓在于：不要让信息变成无用的负担，而是让它们真正为你的行动服务。&lt;/p&gt;
+&lt;h3 id=&#34;3-信息提炼&#34;&gt;&lt;strong&gt;3. 信息提炼&lt;/strong&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;毕竟笔记是要拿来用的，而不是当作收藏的。&lt;/p&gt;
+&lt;p&gt;换言之，笔记的体量与可见性之间呈一种反比关系&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;去粗取精&lt;/strong&gt;。首先需要定义出“知识的骨架”。对原始文本进行分解，从过去一年来做的所谓“知识管理”有关的项目而言，这一部分的内容，更多的是将原始的文本进行分解，根据知识的骨架（schema），将各个分解而成的核心内容放置在各个位置上。例如，对于文献，可以使用来自cool-paper的论文分解框架：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;这篇论文试图解决什么问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;有哪些相关研究？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;论文如何解决这个问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;……&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;渐进式归纳法&lt;/strong&gt;：渐进式归纳法的核心逻辑在于“断舍离”，而非“滴水不漏”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;分层标注&lt;/strong&gt;。在这本书中，作者提出了渐进归纳法的文本高亮方法，以抓取和提炼出核心内容。具体而言，首先将文本的重点标记出，而后在重点中标记出重点的重点，以此类推。实操角度，例如收藏的一篇文章作为第一层级，而后在文章中以加粗的形式标记认为的重点，其次使用高亮标记将重点的重点标注出。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用自己的语言重述&lt;/strong&gt;。最后一个层级，也是最重要且被绝大多数人所忽略的：用自己的语言将要点重现表述，并增加自己的理解。这有助于深刻掌握内容。&lt;/p&gt;
+&lt;h3 id=&#34;4-表达与实践&#34;&gt;4. 表达与实践&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you&amp;rsquo;re thinking without writing, you only think you&amp;rsquo;re thinking.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;知识的价值是为了生产，而不是为了收藏。将所学转化为自己的语言并表达出来，才算真正掌握。可以从简单的记录入手，将零散的想法整理成文章或笔记，逐步积累，最终形成系统的表达。&lt;/p&gt;
+&lt;p&gt;一开始，这可能会有些困难，但可以从简单的句子开始，慢慢汇总这些“半熟素材”。可以从记录在备忘录中的一段核心想法，或是社交媒体上几百字的感想出发。当积累到一定程度后，完成一篇长的文章也不再是一件困难的事。&lt;/p&gt;
+&lt;p&gt;我非常喜欢18世纪哲学家维柯的一句名言：“Verum ipsum factum”，翻译过来就是“真理不外乎创造”。只有通过自己的语言，将内容重新展示和表达出来，无论形式如何，才是真正的“学会了”。&lt;/p&gt;
+&lt;h2 id=&#34;关于创新和创造力和自我表达&#34;&gt;关于创新和创造力和自我表达&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创新型人才更加善于识别、笼络和联结各种关系。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;创新型人才更加善于识别、笼络和联结各种关系。他们能够从看似无关的事物中找到潜在的联系，并形成解决复杂问题的创造性路径。这种特质源于他们在“发散”和“聚合”思维上的高度敏感和平衡：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;发散思维：&lt;/strong&gt; 开放的心态，能够接纳多种可能性和观点。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
