@@ -11,8 +11,25 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 31 Oct 2024 19:01:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2024 11:30:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-11 月刊</title>
+      <link>https://niraya666.github.io/monthly/2024-11/</link>
+      <pubDate>Sat, 30 Nov 2024 11:30:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2024-11/</guid>
+      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
+&lt;h3 id=&#34;chatgpt-search正式发布&#34;&gt;ChatGPT Search正式发布&lt;/h3&gt;
+&lt;p&gt;OpenAI近日正式推出ChatGPT Search功能，相比第三方搜索插件，官方版本展现出了明显的性能优势。不过要吐槽的一点， 搜索编程相关问题时，中文网页来源十有八九都是CSDN。&lt;/p&gt;
+&lt;h3 id=&#34;google-发布全新-ai-学习工具-learn-about&#34;&gt;&lt;strong&gt;Google 发布全新 AI 学习工具 “Learn About”&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Google 推出了全新的 AI 学习工具 “Learn About”，基于 Google LearnLM 模型，专为教育优化，旨在通过个性化和互动式的学习体验帮助用户探索和理解各种主题。该工具提供类似教科书的界面，结合互动列表、图像和导航菜单，同时包含“词汇扩展”“重要性解析”等功能，并链接至 YouTube 视频和网站等内容。相比传统搜索方式，它更具吸引力，能够按需分解复杂主题，促进长期记忆和理解。当前，该工具仅向美国 18 岁以上用户开放，主要支持英语，并内置隐私控制与数据管理功能。目标用户包括学生、教育者、终身学习者及专业人士，Google 希望借此重新定义学习方式，提供更高效和互动的学习体验。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://learning.google/&#34;&gt;Google Learning -  Digital Learning Tools &amp;amp; Solutions&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;全新的qwen25-coder系列模型&#34;&gt;全新的Qwen2.5-Coder系列模型&lt;/h3&gt;
+&lt;p&gt;阿里云近日发布了全新的 Qwen2.5-Coder 系列模型，这是一款强大且实用的代码模型，支持 92 种编程语言并具备 128K tokens 的长文本理解能力。该系列提供 6 种不同规格（0.5B 至 32B），其中 32B 版本性能达到开源代码模型的最优水平，可与 GPT-4o 媲美。在代码生成、修复和推理等任务中，Qwen2.5-Coder 在多个基准测试中表现优异，尤其在 Haskell 和 Racket 等语言的多语言支持方面成绩突出。此外，该模型集成了代码助手和 Artifacts 功能，支持一键生成网站、小游戏、数据图表等应用，并提供在线 demo 供体验。Qwen2.5-Coder 支持多种部署方式，包括 transformers 和多 GPU 分布式服务，同时提供量化版本以适配不同硬件环境。&lt;/p&gt;
+&lt;p&gt;Blog: &lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5-coder/&#34;&gt;Qwen2.5-Coder: 码无止境，学无止境!&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;类o1-的reasoning-模型追赶者的全面爆发&#34;&gt;类o1 的Reasoning 模型：&lt;strong&gt;追赶者的全面爆发&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;DeepSeek 推出的 DeepSeek-R1 模型以强大的推理能力和自我逻辑检验功能为核心亮点。在 AIME 和 MATH 等基准测试中，其表现与 OpenAI o1 模型不相上下，同时内置事实核查功能，可降低“幻觉”风险，显著提升复杂问题的逻辑规划能力。然而，该模型在某些基础逻辑问题上仍需改进。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2024-10 月刊</title>
       <link>https://niraya666.github.io/monthly/2024-10/</link>
