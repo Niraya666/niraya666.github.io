@@ -185,6 +185,40 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Milvus-2.5版本：学习笔记和备忘录
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>几年前初识 Milvus 的契机，来源于开发一个图像相似检索的应用，当时市面上向量库的可选择项并不像现在这么多，且功能也仅限于单纯的向量检索。
+鉴于最近有业务更新的需要，和打算重构一下之前做的RAG项目，再次有机会深入学习 Milvus，探索其在新功能和实际应用上的更多可能性。
+本篇笔记，仅作为学习笔记，更多是记录一些 Milvus从2.0 到2.5 的变化， 和一些动手实践的记录，便于之后的查阅。
+一些概念 Collections, Schema and index Collection是Milvus中的一个二维表格，具有固定的列和可变的行。每一列代表一个字段(field)，每一行代表一个实体(entity)
+Schema和字段 Collection需要一个schema来定义其结构
+索引 在特定字段上创建索引可以提高搜索效率。建议为服务所依赖的所有字段创建索引，其中向量字段的索引是必需的。
+分区(Partition) 分区是Collection的子集，与其父Collection共享相同的字段集
+分片(Shard) 分片是Collection的水平切片。每个分片对应一个数据输入通道。
+Shard vs Partition的区别 :
+分区(Partition)的作用是通过指定分区名称来减少读取负载
+而分片(Shard)的作用是将写入负载分散到多个服务器分布式架构中的应用 在分布式系统中，分片是实现水平扩展的重要机制。通过将数据分布到多个节点，可以充分利用集群的并行计算潜力，提高系统的写入性能
+MilvusClient vs Connection MilvusClient
+定位：更高级封装，提供一体化的操作接口。简化了与 Milvus 的交互流程， 提供更直观和结构化的操作方式，便于新手快速上手，内置了对连接的管理和操作，减少手动处理的复杂性。
+from pymilvus import MilvusClient # 创建客户端并连接到 Milvus client = MilvusClient(uri=&#34;http://localhost:19530&#34;) # 创建集合 client.create_collection( name=&#34;example_collection&#34;, schema={&#34;fields&#34;: [{&#34;name&#34;: &#34;vector&#34;, &#34;type&#34;: &#34;FLOAT_VECTOR&#34;, &#34;params&#34;: {&#34;dim&#34;: 128}}]} ) # 插入数据 client.insert(&#34;example_collection&#34;, data={&#34;vector&#34;: [[0.1] * 128, [0.2] * 128]}) # 搜索 results = client.search(&#34;example_collection&#34;, data=[[0.1] * 128]) print(results) Connection
+定位：基础连接操作，需要通过 connect 方法创建并维护连接。提供更底层的控制，适合灵活、自定义的操作。
+from pymilvus import connections, Collection, FieldSchema, CollectionSchema # 创建连接 connections.connect(alias=&#34;default&#34;, host=&#34;localhost&#34;, port=&#34;19530&#34;) # 创建集合 fields = [ FieldSchema(name=&#34;vector&#34;, dtype=&#34;FLOAT_VECTOR&#34;, dim=128) ] schema = CollectionSchema(fields, description=&#34;example collection&#34;) collection = Collection(name=&#34;example_collection&#34;, schema=schema) # 插入数据 collection.insert([[0.1] * 128, [0.2] * 128]) # 搜索 collection.load() results = collection.search([[0.1] * 128], anns_field=&#34;vector&#34;, limit=10) print(results) Schema Schema 用于定义collection及其字段的属性
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-25 15:49:00 +0800 CST'>December 25, 2024</span>&nbsp;·&nbsp;15 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to Milvus-2.5版本：学习笔记和备忘录" href="https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Agent 学习笔记：框架 ｜ openAI Swarm
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -468,48 +502,6 @@ from typing import Optional, List import io import fitz from pathlib import Path
   </div>
   <footer class="entry-footer"><span title='2024-04-20 17:00:00 +0800 CST'>April 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to RAG工具箱：文档解析与表格处理" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">RAG工具箱：评估RAG系统的方法论
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>写在最前面 在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。
-此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。
-在我们深入探索RAG系统提升的各种方法之前，有一个基本问题需要解决：我们如何准确地评估一个RAG系统的性能？这就像是在机器学习或深度学习任务中没有给定的测试集和评价标准，我们难以判断实验的成功与否。
-因此，本系列的第一篇文章将聚焦于介绍RAG系统的评价方法、相关指标以及测试框架，为我们接下来的探索设定明确的标准和目标。
-测试框架 以下是一些测试框架，为RAG系统评估提供了强大的支持。
-TruLens TruLens提供了一个独特的视角来评估和跟踪大型语言模型（LLM）实验，通过一系列创新的功能和方法，帮助开发者和研究人员更深入地了解模型性能和行为。
-TruLens的反馈功能（Feedback Functions）是其核心概念之一，提供了一种程序化的方法来评估应用的运行表现。这些函数从“可扩展性”和“有意义性”两个维度出发，考虑评估的范围，旨在为用户提供有价值的反馈，帮助他们理解和改进他们的LLM应用。
-在RAG应用中，提供准确的上下文信息至关重要，以避免生成不真实的“幻觉”答案。TruLens采用了创新性的RAG三元组评估方法，专门针对RAG架构的每个环节进行幻觉风险评估，确保模型的每个部分都能有效地工作，从而减少误导信息的产生。
-上下文相关性（Context Relevance） 上下文相关性是评估RAG应用的第一步，确保每一段检索到的上下文都与提出的查询紧密相关。TruLens利用序列化记录的结构来评估上下文的相关性，这是一个关键的步骤，确保模型在正确的信息上生成回答。
-真实性（Groundedness） 在检索到的上下文信息的基础上，大型语言模型将生成答案。TruLens强调了独立验证每个回答的重要性，以确保它们基于可靠信息，并且能够在检索到的上下文中找到支持的证据。这一步骤是确保模型回答的真实性和可靠性的关键。
-答案相关性（Answer Relevance） 最后，评估需要确保最终回答有效地解答了原始问题，这通过评估应用的最终回答与用户输入的相关性来实现。这一过程确保了模型的输出不仅是真实的，而且是对用户查询有用的。
-TruLens还提出了“诚实、无害和有帮助”的评估原则（Honest, Harmless, and Helpful Evaluations），这些原则旨在确保LLM应用在提供帮助的同时，也是安全和可信的。
-Ragas Ragas框架专为评估检索增强生成（RAG）系统而设计，定义了四个核心评估指标：上下文相关性（context_relevancy）、上下文回溯（context_recall）、忠实度（faithfulness）和答案相关性（answer_relevancy）。这些指标共同构成了Ragas的评分体系，提供了一个全面的方法来评价RAG系统的性能。
-此外，Ragas巧妙地利用大语言模型（LLM）进行无参考评估，有效降低了评估成本。通过这种方法，Ragas能够提供一种既经济又有效的方式来评估RAG系统，尤其是在处理大量数据和复杂查询时。
-其他测试框架
-DeepEval
-DeepEval How to Evaluate RAG Applications in CI/CD Pipelines with DeepEval
-ARES
-github: https://github.com/stanford-futuredata/ARES
-Paper: ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems
-LangChain Evals
-Llama Index Evals
-UpTrain
-数据 在评估数据集时，不必依赖人工标注的标准答案，而是通过底层的大语言模型 (LLM) 来进行评估。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-08 11:00:00 +0800 CST'>April 8, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to RAG工具箱：评估RAG系统的方法论" href="https://niraya666.github.io/posts/rag_toolkit_eval/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
