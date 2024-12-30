@@ -2,22 +2,50 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Monthlies on LZY Blog</title>
-    <link>https://niraya666.github.io/monthly/</link>
+    <link>http://localhost:1313/monthly/</link>
     <description>Recent content in Monthlies on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Nov 2024 11:30:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Dec 2024 19:24:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024-12 月刊</title>
+      <link>http://localhost:1313/monthly/2024-12/</link>
+      <pubDate>Mon, 30 Dec 2024 19:24:00 +0800</pubDate>
+      <guid>http://localhost:1313/monthly/2024-12/</guid>
+      <description>&lt;h2 id=&#34;新模型&#34;&gt;新模型&lt;/h2&gt;
+&lt;h3 id=&#34;meta-llama33&#34;&gt;Meta Llama3.3&lt;/h3&gt;
+&lt;p&gt;Meta Llama 3.3 是一款&lt;strong&gt;700亿参数&lt;/strong&gt;的指令微调多语言大模型。该模型专注于文本生成，相比 Llama 3.1 70B 和 Llama 3.2 90B 性能有显著提升。在某些应用场景中，其效果可与 Llama 3.1 405B 媲美，但模型体积更小、计算效率更高。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核心亮点&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;高性能表现&lt;/strong&gt;：支持复杂推理、代码生成和多语言处理。在 HumanEval 等基准测试中表现优异，代码生成 pass@1 达到&lt;strong&gt;88.4%&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grouped-Query Attention (GQA)&lt;/strong&gt;：能处理&lt;strong&gt;128,000 tokens&lt;/strong&gt;的长上下文，大幅提升推理效率。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无预训练版本&lt;/strong&gt;：Llama 3.3 专注于指令微调版本，更好地适配实际应用场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;与 Llama 3.1 兼容&lt;/strong&gt;：完全支持 Llama 3.1 的提示模板、代码解释器和工具调用功能，可实现无缝迁移。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;huggingface: &lt;a href=&#34;https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/tree/main&#34;&gt;https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/tree/main&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;gemini-20&#34;&gt;Gemini 2.0&lt;/h3&gt;
+&lt;p&gt;Gemini 2.0 是谷歌推出的下一代多模态人工智能模型。相比 1.5 Pro，Gemini 2.0 Flash 在多模态处理方面有重大突破，大幅提升了文本、代码、视频、空间理解与推理性能，同时维持低延迟和高效率。在关键基准测试中，该模型表现卓越，处理速度达到前代的两倍。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;创新亮点&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原生多模态输出&lt;/strong&gt;：通过单一 API 调用，可生成包含文本、音频和图像的综合响应，极大简化了开发流程。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实时多模态 API&lt;/strong&gt;：支持摄像头和屏幕流输入，集成语音活动检测等自然交互功能，特别适合实时应用开发。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;原生工具调用&lt;/strong&gt;：能够直接调用 Google 搜索、执行代码并对接第三方函数，有效支持自主代理系统的构建。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;长上下文与推理&lt;/strong&gt;：优化了复杂任务处理、长文本理解与规划能力，特别适合研究助手类应用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;实际效果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;开发者可借助 Gemini 2.0 构建实时音视频处理的动态应用。模型能够直接处理无字幕视频并生成精确翻译和结构化文章，大大简化了传统的多步骤流程。Project Astra 展示了模型在多语言对话、智能记忆和快速响应方面的优势，而 Project Mariner 在浏览器自动化任务中更是达到了 83.5% 的领先性能。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2024-11 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-11/</link>
+      <link>http://localhost:1313/monthly/2024-11/</link>
       <pubDate>Sat, 30 Nov 2024 11:30:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-11/</guid>
+      <guid>http://localhost:1313/monthly/2024-11/</guid>
       <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
 &lt;h3 id=&#34;chatgpt-search正式发布&#34;&gt;ChatGPT Search正式发布&lt;/h3&gt;
 &lt;p&gt;OpenAI近日正式推出ChatGPT Search功能，相比第三方搜索插件，官方版本展现出了明显的性能优势。不过要吐槽的一点， 搜索编程相关问题时，中文网页来源十有八九都是CSDN。&lt;/p&gt;
@@ -32,9 +60,9 @@
     </item>
     <item>
       <title>2024-10 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-10/</link>
+      <link>http://localhost:1313/monthly/2024-10/</link>
       <pubDate>Thu, 31 Oct 2024 19:01:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-10/</guid>
+      <guid>http://localhost:1313/monthly/2024-10/</guid>
       <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
 &lt;h3 id=&#34;openai-meta-prompt&#34;&gt;OpenAI meta-prompt&lt;/h3&gt;
 &lt;p&gt;OpenAI最近揭示了其最新的“元提示”（meta-prompt）技术，通过简单指令实现完整的prompt生成或改进prompt，除去prompt以外，还提供了tool-using schema 的自动生成能力。&lt;/p&gt;
@@ -56,9 +84,9 @@
     </item>
     <item>
       <title>2024-09 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-09/</link>
+      <link>http://localhost:1313/monthly/2024-09/</link>
       <pubDate>Thu, 26 Sep 2024 14:01:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-09/</guid>
+      <guid>http://localhost:1313/monthly/2024-09/</guid>
       <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
 &lt;h3 id=&#34;openai-发布o1-preview&#34;&gt;OpenAI 发布o1-preview&lt;/h3&gt;
 &lt;p&gt;OpenAI于9月12日发布了其最新的大型语言模型o1-preview，该模型在推理能力上实现了重大突破。o1模型通过使用Chain of Thought技术，能够解决复杂的数学和编程问题，其表现超越了之前的GPT-4o模型。&lt;/p&gt;
@@ -84,9 +112,9 @@
     </item>
     <item>
       <title>2024-08 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-08/</link>
+      <link>http://localhost:1313/monthly/2024-08/</link>
       <pubDate>Sat, 31 Aug 2024 16:43:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-08/</guid>
+      <guid>http://localhost:1313/monthly/2024-08/</guid>
       <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
 &lt;h3 id=&#34;grok-2-beta-版本&#34;&gt;Grok-2 Beta 版本&lt;/h3&gt;
 &lt;p&gt;xAI公司发布了Grok-2和Grok-2 mini的测试版，现已向𝕏平台上的Premium和Premium+用户开放。Grok-2是一个先进的语言模型，在聊天、编码和推理方面表现出色，超过了Claude 3.5 Sonnet和GPT-4-Turbo等竞争对手。Grok-2 mini则在速度和答案质量之间取得平衡。此外，关于图像生成功能可能被滥用的问题也引起了关注。&lt;/p&gt;
@@ -116,9 +144,9 @@
     </item>
     <item>
       <title>2024-07 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-07/</link>
+      <link>http://localhost:1313/monthly/2024-07/</link>
       <pubDate>Wed, 31 Jul 2024 09:46:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-07/</guid>
+      <guid>http://localhost:1313/monthly/2024-07/</guid>
       <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
 &lt;h3 id=&#34;llama31-发布&#34;&gt;Llama3.1 发布&lt;/h3&gt;
 &lt;p&gt;博客文章： &lt;a href=&#34;https://ai.meta.com/blog/meta-llama-3-1/&#34;&gt;https://ai.meta.com/blog/meta-llama-3-1/&lt;/a&gt;&lt;/p&gt;
@@ -163,9 +191,9 @@
     </item>
     <item>
       <title>2024-06 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-06/</link>
+      <link>http://localhost:1313/monthly/2024-06/</link>
       <pubDate>Sun, 30 Jun 2024 16:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-06/</guid>
+      <guid>http://localhost:1313/monthly/2024-06/</guid>
       <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
 &lt;h2 id=&#34;claude-35-sonnet&#34;&gt;&lt;strong&gt;Claude 3.5 Sonnet&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-3-5-sonnet&#34;&gt;https://www.anthropic.com/news/claude-3-5-sonnet&lt;/a&gt;&lt;/p&gt;
@@ -192,9 +220,9 @@
     </item>
     <item>
       <title>2024-05 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-05/</link>
+      <link>http://localhost:1313/monthly/2024-05/</link>
       <pubDate>Fri, 31 May 2024 13:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-05/</guid>
+      <guid>http://localhost:1313/monthly/2024-05/</guid>
       <description>&lt;h2 id=&#34;ai&#34;&gt;AI&lt;/h2&gt;
 &lt;h3 id=&#34;gpt4-o-发布&#34;&gt;GPT4-o 发布&lt;/h3&gt;
 &lt;p&gt;OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出&lt;/p&gt;
@@ -221,9 +249,9 @@
     </item>
     <item>
       <title>2024-04 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-04/</link>
+      <link>http://localhost:1313/monthly/2024-04/</link>
       <pubDate>Tue, 30 Apr 2024 19:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-04/</guid>
+      <guid>http://localhost:1313/monthly/2024-04/</guid>
       <description>&lt;h2 id=&#34;值得关注的模型&#34;&gt;值得关注的模型&lt;/h2&gt;
 &lt;p&gt;mistralai/Mixtral-8x22B-Instruct-v0.1&lt;/p&gt;
 &lt;p&gt;CohereForAI/c4ai-command-r-plus&lt;/p&gt;
@@ -285,9 +313,9 @@
     </item>
     <item>
       <title>2024-03 月刊</title>
-      <link>https://niraya666.github.io/monthly/2024-03/</link>
+      <link>http://localhost:1313/monthly/2024-03/</link>
       <pubDate>Sun, 31 Mar 2024 19:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2024-03/</guid>
+      <guid>http://localhost:1313/monthly/2024-03/</guid>
       <description>&lt;h2 id=&#34;ai大纪事&#34;&gt;AI大纪事&lt;/h2&gt;
 &lt;h3 id=&#34;suno-v3-发布&#34;&gt;Suno V3 发布&lt;/h3&gt;
 &lt;p&gt;V3版本带来了卓越的音频品质、更丰富的音乐风格和类型选择，以及在准确响应创作提示方面的显著提升。&lt;/p&gt;

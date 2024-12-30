@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/agent/</link>
+    <link>http://localhost:1313/tags/agent/</link>
     <description>Recent content in Agent on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 11 Nov 2024 11:10:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/agent/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Agent 学习笔记：框架 ｜ openAI Swarm</title>
-      <link>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
+      <link>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
       <pubDate>Mon, 11 Nov 2024 11:10:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
+      <guid>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
       <description>&lt;h2 id=&#34;开篇&#34;&gt;开篇&lt;/h2&gt;
 &lt;p&gt;“CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。&lt;/p&gt;
 &lt;h2 id=&#34;routines-and-handoffs&#34;&gt;Routines and Handoffs&lt;/h2&gt;
@@ -29,9 +29,9 @@
     </item>
     <item>
       <title>LLM 输出限制：Structured Outputs、受限编码和提示词工程</title>
-      <link>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
       <pubDate>Wed, 21 Aug 2024 14:49:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
       <description>&lt;p&gt;在使用大型语言模型（LLM）时，我们常常面临一个挑战：如何从模型输出中准确提取自己所需的信息。例如，当我们希望模型输出 JSON 格式的数据时，由于模型生成的内容并不总是稳定，可能需要额外编写大量的正则表达式来匹配并提取其中的有效信息。然而，由于 LLM 的能力，导致其输出结构并不永远可靠。&lt;/p&gt;
 &lt;p&gt;现阶段， 让LLM按要求生成特定格式文本的主要方法有几种种：&lt;/p&gt;
 &lt;ul&gt;
@@ -151,9 +151,9 @@
     </item>
     <item>
       <title>Agent学习笔记： 如何验证模型的tool-using能力</title>
-      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
+      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
       <pubDate>Tue, 25 Jun 2024 17:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
+      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
       <description>&lt;p&gt;本文将简单介绍如何评价LLM的tool-using 能力。&lt;/p&gt;
 &lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
 &lt;p&gt;在工具使用评估方面，过去的研究主要有以下几种思路：&lt;/p&gt;
@@ -191,15 +191,15 @@
     </item>
     <item>
       <title>基于大语言模型的 Agent：科普向</title>
-      <link>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
+      <link>http://localhost:1313/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
       <pubDate>Mon, 13 May 2024 16:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
+      <guid>http://localhost:1313/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
       <description>&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
 &lt;p&gt;本文是基于最近组内技术交流的文字稿整理。&lt;/p&gt;
 &lt;h2 id=&#34;what-is-agent&#34;&gt;What is Agent？&lt;/h2&gt;
 &lt;p&gt;在探讨复杂的人工智能技术之前，让我们先回顾一下生活中的一个简单例子：扫地机器人。这种智能设备在房间中自主导航，避开障碍物，寻找最有效的清洁路径。它就是一个现实生活中的Agent——一个可以自主决策和行动的实体。&lt;/p&gt;
 &lt;p&gt;在人工智能领域，Agent指的是任何可以感知其环境并根据感知结果做出决策的实体。这些决策旨在完成某些任务或达成特定的目标。Agent的行为可以简单如游戏里的机器人，也可以复杂如自动驾驶汽车。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/Pasted%202024-05-10-14-58-28.webp&#34; alt=&#34;Pasted 2024-05-10-14-58-28.webp&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/Pasted%202024-05-10-14-58-28.webp&#34; alt=&#34;Pasted 2024-05-10-14-58-28.webp&#34;  /&gt;
 &lt;/p&gt;
 &lt;h3 id=&#34;开始于强化学习&#34;&gt;开始于强化学习&lt;/h3&gt;
 &lt;p&gt;在强化学习中， 我们往往能见到agent的概念。强化学习是一种机器学习方法，它教导Agent通过试错法找到最佳行动路径。就像训练小狗一样，我们通过奖励来引导Agent做出正确的决策。Agent的目标是在与环境的交互中寻找最优策略。理想情况下，如果Agent能够获取足够多的真实环境数据，它就能找到最佳解决方案。然而，由于真实环境的复杂性，完全模拟真实世界是不现实的。&lt;/p&gt;
@@ -209,7 +209,7 @@
 &lt;p&gt;相较于基于强化学习的Agent，人类的优势在于我们天生具备的记忆能力和逻辑判断能力，甚至包括反思和从经验中学习的能力。这些能力使得我们能够通过极少的试错迅速适应和掌握新技能。&lt;/p&gt;
 &lt;p&gt;语言模型（LLMs）为AI领域带来了革命性的变化。LLMs通过其深度学习的新范式，以及在思维链和自然语言理解方面的强大能力，预示着Agent将拥有更强大的学习和迁移能力。这种能力的提升将使得创建广泛应用且实用的Agent成为可能。&lt;/p&gt;
 &lt;p&gt;虽然LLM是否真正具备了推理能力仍然存疑，但LLM的出现无疑改变了很多。以COT（Chain of Thought）为例，这种模型通过打印解题的中间步骤，加强了在数学和逻辑推理方面的能力，减少了幻觉的出现。这一突破性的工作揭示了LLM在不同场景下的强大&amp;quot;in-context learning&amp;quot;能力，以及其在未经微调的情况下的泛化能力。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;将LLM视为AI Agent的大脑，为自动化系统提供了一种全新的构思方式。这种基于LLM的agent系统综合了规划、记忆、工具使用和行动的能力，通过API调用与外部世界互动，显示出了前所未有的灵活性和效率。&lt;/p&gt;
 &lt;p&gt;根据&lt;a href=&#34;https://lilianweng.github.io/posts/2023-06-23-agent/&#34;&gt;LLM Powered Autonomous Agents&lt;/a&gt;一文对LLM-based agent系统的定义， agent需要具备的基本能力：规划+记忆+工具+行动。&lt;/p&gt;
@@ -235,24 +235,24 @@
 &lt;h2 id=&#34;agent的规划和思维过程&#34;&gt;&lt;strong&gt;Agent的规划和思维过程&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;AI Agent在处理复杂任务时，通过将大任务分解成小任务来提高效率。此外，自我反思能力允许Agent从过去的行动中学习，通过评估过去的决策来改善未来的表现。&lt;/p&gt;
 &lt;p&gt;CoT，Chain of Thought， &lt;a href=&#34;https://arxiv.org/abs/2201.11903&#34;&gt;Wei et al. 2022&lt;/a&gt;。 即“思维链”，是一种使Agent逐步思考的方法。它通过要求模型展示解决问题的中间步骤来加强其逻辑推理能力，从而提高决策的质量和准确性。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Tree of Thoughts， ToT&lt;/strong&gt;  (&lt;a href=&#34;https://arxiv.org/abs/2305.10601&#34;&gt;Yao et al. 2023&lt;/a&gt;)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Agent学习笔记：OpenAI Function Calling完全指南</title>
-      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Sun, 28 Apr 2024 15:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;h2 id=&#34;写在最开始&#34;&gt;写在最开始&lt;/h2&gt;
 &lt;p&gt;当我们在讨论基于大型语言模型（LLM-based）的智能代理（agent）时，我们究竟在谈论什么？根据Lilian W在其文章《LLM Powered Autonomous Agents》中的讨论，一个智能代理需要具备几个核心能力：规划（Planning）、记忆（Memory）、以及工具使用（Tool use）。特别地，工具使用方面的进展，得益于OpenAI在API中提供的function calling功能，为我们开启了新的可能性。&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://lilianweng.github.io/posts/2023-06-23-agent/agent-overview.png&#34; alt=&#34;AGI&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;OpenAI function calling，作为智能代理与外部工具交互的基本方式，对于每位从业者来说都是必备技能。随着技术的发展，我们期望的不只是能与我们对话的LLM，而是能够辅助我们使用各种工具、做出决策的智能伙伴。&lt;/p&gt;
 &lt;p&gt;不过需要特别指出的是，最近OpenAI在Chat Completions API中已经废弃了“函数（function）”的使用，转而采用“工具（tool）”。这一变更旨在拓宽LLM集成的功能范围，为更复杂的交互模式铺平道路，如构建能够相互作用的多代理系统。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.16.54.png&#34; alt=&#34;截屏2024-03-28 15.16.54.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.16.54.png&#34; alt=&#34;截屏2024-03-28 15.16.54.png&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.17.38.png&#34; alt=&#34;截屏2024-03-28 15.17.38.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.17.38.png&#34; alt=&#34;截屏2024-03-28 15.17.38.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;尽管如此，由于语言习惯的原因，本文中仍然会使用function calling的术语来描述OpenAI的tool using功能，因为“function calling”的说法已经深入人心了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;核心内容概览&lt;/strong&gt;&lt;/p&gt;

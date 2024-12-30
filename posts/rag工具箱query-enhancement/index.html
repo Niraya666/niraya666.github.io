@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -58,16 +58,16 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
         Rewritten query:&#34;&#34;&#34;
 使LLM可以更加系统地将用户的原始查询改写为更符合检索需求的形式。">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/">
+<link rel="canonical" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/">
 <noscript>
     <style>
         #theme-toggle,
@@ -156,14 +156,14 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
         Rewritten query:&#34;&#34;&#34;
 使LLM可以更加系统地将用户的原始查询改写为更符合检索需求的形式。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/" />
-<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/" />
+<meta property="og:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-10-31T16:04:00+08:00" />
 <meta property="article:modified_time" content="2024-10-31T16:04:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta name="twitter:title" content="RAG工具箱：Query Enhancement"/>
 <meta name="twitter:description" content="引言
 首先，从最简单的RAG（Retrieval-Augmented Generation）谈起。
@@ -226,13 +226,13 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "RAG工具箱：Query Enhancement",
-      "item": "https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/"
+      "item": "http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/"
     }
   ]
 }
@@ -250,7 +250,7 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
   "articleBody": "引言 首先，从最简单的RAG（Retrieval-Augmented Generation）谈起。\nRAG结合了信息检索与生成模型，先通过用户的原始问题query 在知识库中检索与相关的文档，再利用生成模型（如ChatGPT）生成回答。最简单的RAG版本通常被称为Naive-RAG，虽然Naive-RAG能够处理一些简单的问题，但在真实场景下，用户提出的问题往往更加复杂多样，远远超出系统最初设计的预期范围。\n在用户与RAG系统交互时，往往会遇到以下几种常见问题：\n表达模糊不清：用户在描述问题时，往往难以精准表达自己的需求。他们可能仅使用几个词组或片段，导致系统难以理解用户的真实意图。\n依赖上下文：用户的问题经常依赖之前的对话或背景信息，而系统只接收到当前的孤立问题，缺少关键的上下文支持，无法给出准确的答案。\n复杂多层次问题：某些问题本身复杂，包含多个子问题或需要推理、逻辑分析。Naive-RAG依赖简单的关键词匹配或语义匹配，无法很好地处理这类复杂的需求。\n面对这些挑战，Naive-RAG的局限性变得明显：仅仅依靠用户的原始query无法应对多样化的提问场景。那么，如何提升RAG系统的检索能力，增强对复杂问题的处理呢？这时就需要引入Query-Enhancement技术。\nQuery-Enhancement，顾名思义，是对用户的原始query进行增强处理。它的核心思想是：不要直接使用用户的原始query进行相关文档的检索，而是通过某种技术手段对query进行改写、扩展或优化，从而生成一个更适合检索的query。这种技术在不同场景下有不同的命名，如query rewrite或query reformulation，但核心目标都是一致的——根据用户的初始输入，生成一个更符合检索需求、更能提升查询准确性的新query。\n通过Query-Enhancement，可以解决许多Naive-RAG无法处理的问题。例如，针对模糊或简短的提问，增强后的query可以通过添加上下文或关键词来丰富信息内容；对于复杂的多层次问题，增强后的query可以拆解为多个子问题，逐步进行检索与推理。\n本文将深入探讨不同的Query-Enhancement技术方案，并分析这些技术如何根据原始query生成更高效的查询，帮助RAG系统在复杂场景下提供更精确的答案。\nQuery Rewrite Because the original query can not be always optimal to retrieve for the LLM, especially in the real world… we first prompt an LLM to rewrite the queries, then conduct retrieval-augmented reading.\nQuery Rewrite的目的是将用户模糊、不明确或不完整的查询转换为更适合检索的形式，以提升检索效率和准确性。\n仅使用原始query的缺点：\n查询常常模糊、不具体或不完整，导致难以找到有效的检索结果。\n缺乏明确术语，无法有效从大型数据集中提取相关信息。\n对话上下文中的查询含义因对话历史而异，同样的表达在不同的上下文中可能有不同的意图。\n输入文本与真正需要检索的知识之间不可避免地存在差距。这种差距限制了检索性能，增加了对检索能力增强和提示工程的依赖。\n为了解决这些问题，检索器之前增加了一步对输入进行改写的过程，填补给定输入与检索需求之间的差距。这一步利用了LLM本身的能力对原始查询进行有针对性的改写。\n比如，来自RAG_Techniques 的这段prompt：\nquery_rewrite_template = \"\"\"You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. Given the original query, rewrite it to be more specific, detailed, and likely to retrieve relevant information. Original query: {original_query} Rewritten query:\"\"\" 使LLM可以更加系统地将用户的原始查询改写为更符合检索需求的形式。\n此外， 改写过程可以同时考虑用户的初始输入和对话历史，从而生成经过优化的查询。这种上下文感知的查询改写确保了搜索过程与用户的真实意图保持一致。例如，用户在对话过程中间询问“昨天的会议怎么样？”这样的查询本身是不足以进行有效检索的，因为它缺乏具体的上下文信息。为了使其更加有效，LLM可以将其改写为更详细的版本，例如：“9月14日预算会议的主要决策是什么？”。\n此时只需要在prompt中加入原始查询和一段上下文对话内容即可。\n当然，在使用query-rewrite方法时，可能会出现问题，尤其是当用户询问的是特定垂直领域的问题，而LLM对该领域缺乏理解，容易将问题改写成无关的内容。例如，用户提问“最近DR的表现怎么样？有些数据吗？”，这里的“DR”指“数据恢复”（Data Recovery），用户关注的是该领域的数据。然而，LLM将其误解为“Diabetes Research”（糖尿病研究），改写成“最近糖尿病的表现怎么样？有最新的统计数据吗？”，从而偏离了用户的需求，生成了与领域无关的回答。这种误解可能导致答非所问，影响用户体验。\n此外， 使用LLM进行query-rewrite还将面临着更大的延迟和成本。\n在 Query Rewriting for Retrieval-Augmented Large Language Models 这篇工作中， 作者还提出了 Trainable rewrite-retrieve-read的方法。即使用一个小的、可训练的语言模型（如T5）作为重写器，通过强化学习对其进行训练，具体来说， 先通过一定数量的伪数据集对重写器进行微调（warm-up），而后，在强化学习阶段，通过PPO（Proximal Policy Optimization）的方式，模型在每次生成新的查询后都会获得一个基于最终回答质量的奖励分数，从而强化那些能够提升最终回答质量的查询生成策略。\n参考 Query Rewriting for Retrieval-Augmented Large Language Models\nlangchain-rewrite-cookbook\n++all_rag_techniques_runnable_scripts++\nQuery Decomposition 对于复杂的问题无法单次查询获得有效结果，可以将原始问题分解成多个子问题，在经过多个子问题查询后， 根据所有子问题的查询结果，汇总并作出最后回答。\n为了更有效地回答问题，我们需要将其拆分为不同的子问题，分别检索每个子问题的结果，并将这些发现整合，以形成一个更完整的答案。\nprompt：\nsubquery_decomposition_template = \"\"\"You are an AI assistant tasked with breaking down complex queries into simpler sub-queries for a RAG system. Given the original query, decompose it into 2-4 simpler sub-queries that, when answered together, would provide a comprehensive response to the original query. Original query: {original_query} example: What are the impacts of climate change on the environment? Sub-queries: 1. What are the impacts of climate change on biodiversity? 2. How does climate change affect the oceans? 3. What are the effects of climate change on agriculture? 4. What are the impacts of climate change on human health?\"\"\" 以原始查询 “ “比较太阳能和风能作为可再生能源的优缺点” 为例， 这是一个比较宽泛，需要横向对比，指出各自的优缺点，分解后的子查询:\n- 太阳能发电的主要优点是什么? - 太阳能发电面临哪些主要挑战? - 风能发电有哪些优势? - 风能发电的主要缺点是什么? 可以通过分解查询从各个角度分析两者的特性。\n然而，这种Query Decomposition方法的局限性在于，它依赖于LLM的能力来合理分解问题，而人类的逻辑推理和问题分解依赖于经验积累和对问题的深入理解。因此，LLM在合理分解复杂问题方面仍存在一定差距，尤其在复杂性较高的领域中。此外，子问题的分解也可能导致查询延迟和成本的增加，这在实际应用中需要平衡效率与效果。\n参考 langchain-Decomposition\nllamaIndex：Multi-Step Query Engine\nall_rag_techniques_runnable_scripts\nsubquery_decomposition\nStep Back Prompting 用户在提问时常常会涉及大量的隐性细节，但这些内容并没有显性提供给LLM，LLM在处理这类任务时可能会遇到难以准确检索相关知识，和无法准确回答问题。\nStep-Back Prompting 正是基于这样一个观察，其灵感来自人类在面对复杂任务或问题时的习惯——我们通常会暂停片刻，从更高层次的概念或原则入手，以更清晰地思考下一步。例如，当需要计算一个三角形的边长时，我们可能会先回忆起勾股定理，这样有助于确定合适的解题方法。\n在实际使用中，回溯提示法尤其适合处理科学、技术、工程和数学（STEM）类问题。这类问题通常包含复杂的显性和隐性细节，直接回答会让模型容易遗漏关键知识点。通过先抽象再推理的分步方法，模型能够更准确地检索、理解并整合背景知识，从而提供更精确的回答。\nStep-Back Prompting 的核心流程包括两个步骤：抽象和推理。\n抽象（Abstraction）：在直接回答主要问题前，先让模型回答一个更高层次的问题，即与主要问题密切相关的概念性问题。\n推理（Reasoning）：一旦模型掌握了相关背景知识，就可以基于这些信息进行详细的推理过程，来解答主要问题。以此种方式分步思考，有助于模型准确地构建逻辑链条，并在回答中表现出更强的推理能力。\nprompt:\nstep_back_template = \"\"\"You are an AI assistant tasked with generating broader, more general queries to improve context retrieval in a RAG system. Given the original query, generate a step-back query that is more general and can help retrieve relevant background information. Original query: {original_query} Step-back query:\"\"\" step_back_answer_template = \"\"\"\"\"\"You are an expert of world knowledge. I am going to ask you a question. Your response should be comprehensive and not contradicted with the following context if they are relevant. Otherwise, ignore them if they are not relevant. {normal_context} {step_back_context} Original Question: {question} Answer: \"\"\" 参考 A Step Forward with Step-Back Prompting\nPaper\nHypothetical questions (HyDE) HyDE（Hypothetical Document Embeddings，假设性文档嵌入），通过生成假设性的答案并对这些生成的文档进行嵌入，而非嵌入原始文本。这种方法特别适用于用户问题简短且与需要查找的原始文本在语义上相似度不高的情况。\n当用户的问题与知识库中的原始文本在语义上相差较大时，传统的文档检索方法可能无法有效地匹配到相关内容。HyDE通过使用大型语言模型（LLMs）根据用户问题生成格式上类似于知识库中文本的假设性答案，从而提升匹配的准确率。\n尽管HyDE可以提升检索的准确性，但这种方法也会一定程度上增加检索的耗时。\n参考 hypothetical_document_embeddings\nHyDE (Hypothetical Document Embeddings)\npaper\nFeedback-Based Query Refinement 人类在使用搜索引擎等工具进行信息查询时，通常并非一次就能找到答案，而是需要根据初始的结果不断调整和优化查询词。这样的过程是迭代式的，基于反馈不断精进，从而更贴近我们想要的目标。\n严格来说，这部分内容可以归类到agent的范畴中，但将其归入RAG也未尝不可。RAG和agent并不应是彼此独立的体系，于是乎有“RAG的尽头是agent”的说法。\n在agent的工具调用中，采用ReAct机制可以使得LLM根据查询结果动态修改查询，从而进行进一步的探究，而不只是简单地进行一次查询。相比于简单的RAG系统，借鉴了agent系统中的查询规划、记忆模块和路由机制之后，RAG可以变得更加强大。通过这种方式，系统能够更好地调整查询策略，不再仅依赖一次性的检索，而是可以进行智能的多轮交互。\n在我自己的工作中，我将RAG中的检索部分独立出来，作为一个搜索引擎模块，也是为了后续能更好地接入到agent系统中。不过，本章的重点仍然是探讨RAG的改进方法，而不涉及过多关于agent系统的内容。\n基于反馈与迭代的查询改写并不完全仅限于agent中的思路，更确切地说，这本身是符合人类在思考和解决问题时的方式。通过不断获取信息、修正查询，有助于在复杂问题上逐步接近正确的答案。\n不少研究工作基于这一思路，其中一些值得深入探讨。\n在RA-ISF这篇工作中，研究者通过迭代的方式处理问题，将任务分解，并使用三个子模块来增强模型的解决能力：自我知识模块（Self-Knowledge Module，SKM）、段落相关性模块（Passage Relevance Module，PRM）和问题分解模块（Question Decomposition Module，QDM）。\n首先，使用SKM模块判断当前问题是否可以依靠模型的内部知识直接解答；然后将检索到的文本与问题结合，输入到PRM模块中，评估它们的相关性。如果相关，系统基于这些段落生成答案；如果所有检索到的文本都无关，则进入QDM模块，将问题分解为子问题，并对这些子问题进行逐步处理。对于每一个子问题，系统会依次进入SKM、PRM和QDM模块，直到最终将所有子问题的答案整合，生成对原始问题的完整解答。\n在EfficientRAG这项研究中，针对多跳问题的解答，提出了一种新的方法，通过迭代生成新查询并过滤掉不相关信息，从而提高检索效率，而非重复调用LLM进行查询改写。在EfficientRAG中，包含两个轻量级组件：Labeler \u0026 Tagger和Filter。Filter组件在chunk级别筛选最相关的检索信息，而Labeler \u0026 Tagger组件在token级别识别和标记有用的信息。通过迭代地检索、标记和过滤，直到收集到足够的信息来回答问题，从而提高整个系统的效率。\nITER-RETGEN是通过迭代结合检索（Retrieval）和生成（Generation）来增强RAG模型性能的另一种方案。\n给定一个问题$q$和一个包含段落的文档集$D$，ITER-RETGEN会在T次迭代中反复进行“检索-生成”操作。在第$t$次迭代时，它使用上次生成的答案$y_{t-1}$和问题$q$组合，从文档集中检索出前k个相关段落，再利用大语言模型$M$基于这些段落和问题生成新的答案$y_t$。每次迭代的过程可以表示为：\n$$ y_t = M\\left(y_t \\mid \\text{prompt}(D_{y_{t-1}} , || , q, q)\\right), \\quad \\forall 1 \\leq t \\leq T $$\n最终，经过T次迭代，得到的最后一个输出$y_T$就是对原始问题的最终答案。通过这种迭代方式，系统能够有效地从复杂信息中逐步逼近正确答案。\n参考 RA-ISF: Learning to Answer and Understand from Retrieval\nEfficientRAG: Efficient Retriever for Multi-Hop Question Answering\nITER-RETGEN： Enhancing Retrieval-Augmented Large Language Models with Iterative Retrieval-Generation Synergy\n",
   "wordCount" : "460",
   "inLanguage": "en",
-  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2024-10-31T16:04:00+08:00",
+  "image": "http://localhost:1313/images/papermod-cover.png","datePublished": "2024-10-31T16:04:00+08:00",
   "dateModified": "2024-10-31T16:04:00+08:00",
   "author":{
     "@type": "Person",
@@ -258,14 +258,14 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/"
+    "@id": "http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -287,7 +287,7 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -313,42 +313,42 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="musik!">
+                <a href="http://localhost:1313/musik/" title="musik!">
                     <span>musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
@@ -359,7 +359,7 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       RAG工具箱：Query Enhancement
       <span class="entry-hint" title="Draft">
@@ -585,16 +585,16 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/rag/">RAG</a></li>
-      <li><a href="https://niraya666.github.io/tags/rag-toolkits/">RAG-Toolkits</a></li>
+      <li><a href="http://localhost:1313/tags/rag/">RAG</a></li>
+      <li><a href="http://localhost:1313/tags/rag-toolkits/">RAG-Toolkits</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/">
+  <a class="prev" href="http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/">
     <span class="title">« Prev</span>
     <br>
     <span>Agent 学习笔记：框架 ｜ openAI Swarm</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+  <a class="next" href="http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
     <span class="title">Next »</span>
     <br>
     <span>LLM 输出限制：Structured Outputs、受限编码和提示词工程</span>
@@ -605,7 +605,7 @@ $$</p>
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on x"
-            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f&amp;hashtags=RAG%2cRAG-Toolkits">
+            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f&amp;hashtags=RAG%2cRAG-Toolkits">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -614,7 +614,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -623,7 +623,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -632,7 +632,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -641,7 +641,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on whatsapp"
-            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
+            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -650,7 +650,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on telegram"
-            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
+            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -659,7 +659,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：Query Enhancement on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&u=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
+            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement&u=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1query-enhancement%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -699,7 +699,7 @@ $$</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2024 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

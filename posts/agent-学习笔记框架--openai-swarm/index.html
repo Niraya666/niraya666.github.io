@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -16,16 +16,16 @@ The notion of a &ldquo;routine&rdquo; is not strictly defined, and instead meant
 
 Routines（常规）：是由一系列步骤构成的流程，可以理解为给定任务的执行步骤，包括对话系统中指令和所需工具的组合。从代码实现上，基本上就是围绕着openAI 的 openai.chat.completions.createAPI的一系列内容， 对话、工具调用等。换句话说，routines只是具有对话&#43;工具调用的chatbot，这也是openAI对于Agent的基础抽象。">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/">
+<link rel="canonical" href="http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/">
 <noscript>
     <style>
         #theme-toggle,
@@ -72,14 +72,14 @@ The notion of a &ldquo;routine&rdquo; is not strictly defined, and instead meant
 
 Routines（常规）：是由一系列步骤构成的流程，可以理解为给定任务的执行步骤，包括对话系统中指令和所需工具的组合。从代码实现上，基本上就是围绕着openAI 的 openai.chat.completions.createAPI的一系列内容， 对话、工具调用等。换句话说，routines只是具有对话&#43;工具调用的chatbot，这也是openAI对于Agent的基础抽象。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/" />
-<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/" />
+<meta property="og:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-11-11T11:10:00+08:00" />
 <meta property="article:modified_time" content="2024-11-11T11:10:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta name="twitter:title" content="Agent 学习笔记：框架 ｜ openAI Swarm"/>
 <meta name="twitter:description" content="开篇
 “CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。
@@ -100,13 +100,13 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "Agent 学习笔记：框架 ｜ openAI Swarm",
-      "item": "https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/"
+      "item": "http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/"
     }
   ]
 }
@@ -124,7 +124,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
   "articleBody": "开篇 “CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。\nRoutines and Handoffs 根据openAI cookbook: Orchestrating Agents: Routines and Handoffs**，**理解这个框架前首先需要理解的两个概念： Routines 和 Handoffs。\nThe notion of a “routine” is not strictly defined, and instead meant to capture the idea of a set of steps. Concretely, let’s define a routine to be a list of instructions in natural language (which we’ll represent with a system prompt), along with the tools necessary to complete them.\nRoutines（常规）：是由一系列步骤构成的流程，可以理解为给定任务的执行步骤，包括对话系统中指令和所需工具的组合。从代码实现上，基本上就是围绕着openAI 的 openai.chat.completions.createAPI的一系列内容， 对话、工具调用等。换句话说，routines只是具有对话+工具调用的chatbot，这也是openAI对于Agent的基础抽象。\n在cookbook中，所提供的routines示例代码即可看出（以客服代理为例）：\n# 导入必要的库 from openai import OpenAI from pydantic import BaseModel from typing import Optional import json # 创建OpenAI客户端 client = OpenAI() # 客服 Routine 示例 system_message = ( \"你是ACME Inc的客服代理。\" \"回答简短。\" \"按照以下步骤处理：\" \"1. 询问客户问题，了解他们遇到的具体问题。\" \"2. 提出修复建议。\" \"3. 如果客户不满意，提供退款。\" \"4. 如果客户接受退款，请查找商品ID并执行退款。\" ) # 示例函数：查找商品 def look_up_item(search_query): \"\"\"用于查找商品ID，可以通过描述或关键词进行搜索\"\"\" # 返回硬编码的商品ID，实际场景中会调用数据库或API查找 return \"item_132612938\" # 示例函数：执行退款 def execute_refund(item_id, reason=\"未提供\"): \"\"\"执行退款操作\"\"\" print(\"退款摘要:\", item_id, reason) return \"退款成功\" # Routine 运行示例 def run_full_turn(system_message, messages): # 使用OpenAI模型完成聊天对话 response = client.chat.completions.create( model=\"gpt-4o-mini\", # 使用的模型 messages=[{\"role\": \"system\", \"content\": system_message}] + messages, ) message = response.choices[0].message messages.append(message) # 输出客服代理的回复 if message.content: print(\"代理:\", message.content) return message # 消息列表 messages = [] # 运行示例（此时代理根据系统消息进行对话） while True: user_input = input(\"用户: \") messages.append({\"role\": \"user\", \"content\": user_input}) run_full_turn(system_message, messages) 从表面上看，Routine 实现了一个类似于聊天机器人的功能，它按照预定的步骤执行对话和任务。在加入了tool-using后，让代理不仅仅是一个普通的对话机器人，而是具备处理特定任务的能力。\n# 导入必要的库 from openai import OpenAI from pydantic import BaseModel import json # 创建OpenAI客户端 client = OpenAI() # 客服 Routine 示例 system_message = ( \"你是ACME Inc的客服代理。\" \"回答简短。\" \"按照以下步骤处理：\" \"1. 询问客户问题，了解他们遇到的具体问题。\" \"2. 提出修复建议。\" \"3. 如果客户不满意，提供退款。\" \"4. 如果客户接受退款，请查找商品ID并执行退款。\" ) # 查找商品的工具函数 def look_up_item(search_query): \"\"\"用于查找商品ID，可以通过描述或关键词进行搜索\"\"\" return \"item_132612938\" # 模拟返回商品ID # 执行退款的工具函数 def execute_refund(item_id, reason=\"未提供\"): \"\"\"执行退款操作\"\"\" print(f\"执行退款操作，商品ID: {item_id}, 原因: {reason}\") return \"退款成功\" # 将工具函数转换为模型可以调用的格式 def function_to_schema(func): \"\"\"将Python函数转换为函数调用模式，供模型调用\"\"\" return { \"name\": func.__name__, \"description\": func.__doc__, \"parameters\": { \"type\": \"object\", \"properties\": { \"search_query\": {\"type\": \"string\"}, \"item_id\": {\"type\": \"string\"}, \"reason\": {\"type\": \"string\"} } } } # Routine 执行示例，支持工具调用 def run_full_turn(system_message, messages, tools): response = client.chat.completions.create( model=\"gpt-4o-mini\", messages=[{\"role\": \"system\", \"content\": system_message}] + messages, tools=tools ) message = response.choices[0].message messages.append(message) if message.content: print(\"代理:\", message.content) # 检查是否有工具调用 if \"tool_call\" in message: tool_call = message[\"tool_call\"] tool_name = tool_call[\"name\"] tool_args = json.loads(tool_call[\"arguments\"]) # 根据工具调用名称，调用相应的工具函数 if tool_name == \"look_up_item\": result = look_up_item(**tool_args) elif tool_name == \"execute_refund\": result = execute_refund(**tool_args) print(f\"工具调用结果: {result}\") messages.append({\"role\": \"tool\", \"content\": result}) return message # 准备工具和工具模式 tools = [look_up_item, execute_refund] tool_schemas = [function_to_schema(tool) for tool in tools] # 消息列表 messages = [] # 运行示例，使用工具调用 while True: user_input = input(\"用户: \") messages.append({\"role\": \"user\", \"content\": user_input}) run_full_turn(system_message, messages, tool_schemas) 在 run_full_turn 函数中，代理在对话过程中可以决定是否调用某个工具，并且相应地执行 look_up_item 或 execute_refund。\nHandoffs（交接）：是指一个代理将任务或对话交给另一个代理完成，就像客服人员转接电话一样。每个代理都能根据需要传递工作，而不会中断流程。\nLet’s define a handoff as an agent (or routine) handing off an active conversation to another agent, much like when you get transfered to someone else on a phone call. 引入handoffs机制后， 单一的agent便能够同其他agent交互， 理论上实现了single-agent 到multi-agent的演变。\n根据cookbook的例子，\n# 导入必要的库 from pydantic import BaseModel import json # 定义代理类 class Agent(BaseModel): name: str instructions: str tools: list # 工具函数 def look_up_item(search_query): return \"item_132612938\" def execute_refund(item_id, reason=\"未提供\"): return \"退款成功\" def place_order(item_name): return \"订单已下\" # 定义代理 refund_agent = Agent( name=\"退款代理\", instructions=\"你是退款代理，帮助用户进行退款。\", tools=[execute_refund] ) sales_agent = Agent( name=\"销售代理\", instructions=\"你是销售代理，帮助用户下订单。\", tools=[place_order] ) # Handoff 转接函数 def transfer_to_refund(): return refund_agent # 消息处理函数 def run_full_turn(agent, messages): print(f\"{agent.name}:\", agent.instructions) # 交互消息 while True: user_input = input(\"用户: \") messages.append({\"role\": \"user\", \"content\": user_input}) # 根据用户输入，代理决定是否进行转接 if \"退款\" in user_input: agent = transfer_to_refund() print(f\"转接到 {agent.name}\") break else: result = place_order(user_input) # 默认下单工具 print(f\"代理调用结果: {result}\") return agent # 初始化销售代理处理 messages = [] agent = sales_agent # 模拟对话，代理处理转接 agent = run_full_turn(agent, messages) 定义了三个函数：look_up_item（查找商品）、execute_refund（退款）、place_order（下订单），模拟代理执行特定任务\ntransfer_to_refund 函数将对话从 sales_agent 转接到 refund_agent，当用户请求退款时触发\n对话会自动转接到退款代理，模拟客服人员转接的场景。\n从实现本质上讲， handoffs就是另一种形式的tool-using，即将另一个agent当作工具调用，但又有所区别，\n稍微总结一下：\nRoutine or single-agent = client.chat.completions.create()\nMulti-agent = Routine + handoffs\nopenAI-Swarm 核心代码 核心代码：https://github.com/openai/swarm/blob/main/swarm/core.py\nswarm类的主要功能：\n初始化client：默认openAI，可自定义导入，需要支持client.chat.completions.create 用法的（OpenAI-API-compatible ）\nget_chat_completion处理chat completion请求\nhandle_function_result负责标准化单个函数的返回结果，结果标准化转换，返回Result对象\nhandle_tool_calls处理工具调用，完整的工具调用流程管理，返回Response对象（包含多个消息和状态）\n支持流式和非流式运行模式 run() ,run_and_stream()\n其中，主要的type：\nclass Agent(BaseModel): name: str = \"Agent\" # 代理名称 model: str = \"gpt-4o\" # 使用的模型 instructions: Union[str, Callable[[], str]] = \"You are a helpful agent.\" # 代理指令 functions: List[AgentFunction] = [] # 可用函数列表 tool_choice: str = None # 工具选择 parallel_tool_calls: bool = True # 是否允许并行调用工具 class Response(BaseModel): messages: List = [] # 对话消息列表 agent: Optional[Agent] = None # 当前活跃代理 context_variables: dict = {} # 上下文变量 class Result(BaseModel): \"\"\" Encapsulates the possible return values for an agent function. Attributes: value (str): The result value as a string. agent (Agent): The agent instance, if applicable. context_variables (dict): A dictionary of context variables. \"\"\" value: str = \"\" # 函数返回值 agent: Optional[Agent] = None # 可能切换到的新代理 context_variables: dict = {} # 函数执行后的上下文变量 Agent，整体来说是对于于openAI() 常见功能的Wrapper，包括：\nmodel：所调用的model名称，对于不同任务，采用不同能力的模型\ninstructions： system-prompt\nfunctions：可调用对象，可以返回三种类型（str，Agent，dict），AgentFunction = Callable[[], Union[str, \"Agent\", dict]]\ntool_choice,parallel_tool_calls: 同Chat Completions API参数\nResult：单个工具函数的返回值、函数执行的中间结果、单次状态更新。\nResponse：完整对话回合的结果、多个工具调用的汇总、最终状态的快照。\n主要运行逻辑： run()\ndef run( self, agent: Agent, # 初始代理 messages: List, # 初始消息列表 context_variables: dict = {}, # 上下文变量 model_override: str = None, # 模型覆盖 stream: bool = False, # 是否使用流式输出 debug: bool = False, # 是否开启调试 max_turns: int = float(\"inf\"), # 最大对话轮次 execute_tools: bool = True, # 是否执行工具调用 ) -\u003e Response: 初始化阶段：\n# 如果是流式模式，转向run_and_stream方法 if stream: return self.run_and_stream(...) # 复制初始状态，避免修改原始数据 active_agent = agent context_variables = copy.deepcopy(context_variables) history = copy.deepcopy(messages) init_len = len(messages) # 记录初始消息长度 主循环逻辑：\nwhile len(history) - init_len \u003c max_turns and active_agent: # 获取AI回复 completion = self.get_chat_completion( agent=active_agent, history=history, context_variables=context_variables, model_override=model_override, stream=stream, debug=debug, ) # 处理回复消息 message = completion.choices[0].message message.sender = active_agent.name history.append(json.loads(message.model_dump_json())) 工具调用处理:\n# 如果没有工具调用或不执行工具，结束对话 if not message.tool_calls or not execute_tools: break # 处理工具调用 partial_response = self.handle_tool_calls( message.tool_calls, active_agent.functions, context_variables, debug ) # 更新状态 history.extend(partial_response.messages) # 添加工具调用结果到历史 context_variables.update(partial_response.context_variables) # 更新上下文 if partial_response.agent: active_agent = partial_response.agent # 可能切换到新代理 返回结果：\nreturn Response( messages=history[init_len:], # 只返回新增的消息 agent=active_agent, # 当前活跃代理 context_variables=context_variables # 最终的上下文变量 ) run() 整体流程：\n用Swarm实现Multi-Agent系统 从官方提供的handoff example开始：\nfrom swarm import Swarm, Agent client = Swarm() english_agent = Agent( name=\"English Agent\", instructions=\"You only speak English.\", ) spanish_agent = Agent( name=\"Spanish Agent\", instructions=\"You only speak Spanish.\", ) def transfer_to_spanish_agent(): \"\"\"Transfer spanish speaking users immediately.\"\"\" return spanish_agent english_agent.functions.append(transfer_to_spanish_agent) messages = [{\"role\": \"user\", \"content\": \"Hola. ¿Como estás?\"}] response = client.run(agent=english_agent, messages=messages) print(response.messages[-1][\"content\"]) 定义了一个函数 transfer_to_agent_b(),用于将对话转移给西班牙语代理，将这个转移函数添加到英语代理的功能列表中 (english_agent.functions.append)\n尝试用swarm搭建一个软件公司，由product_manager，architect，developer和tester构成；\n首先定义handoff function\ndef handoff_to_architect(): return architect def handoff_to_developer(): return developer def handoff_to_tester(): return tester def handoff_to_product_manager(): return product_manager 定义具体的agent\nfrom swarm import Swarm, Agent client = Swarm(client=oai_client) # 定义产品经理智能体 product_manager = Agent( name=\"product_manager\", instructions=\"You are the Product Manager, responsible for creating a comprehensive Product Requirements Document (PRD) for a simple calculator application. Your goal is to ensure that the requirements are clear and complete to facilitate subsequent design and development. Once the requirements are finalized, you will hand off the task to the Architect by using tool: `handoff_to_architect()`. YOU CAN't TLAK TO HUMAN\", functions=[handoff_to_architect], # 定义产品经理的功能 model=model_name, ) # 定义架构师智能体 architect = Agent( name=\"architect\", instructions=\"You are the Architect, responsible for designing the system architecture for a simple calculator application. Your goal is to provide a clear and robust architecture that meets the product requirements outlined in the PRD. Your design should be modular, scalable, and suitable for both desktop and mobile platforms. Once your design is complete, you will hand off the task to the Developer by using tool: `handoff_to_developer()`. YOU CAN't TLAK TO HUMAN\", functions=[handoff_to_developer], # 定义架构师的功能 model=model_name, ) # 定义开发工程师智能体 developer = Agent( name=\"developer\", instructions=\"You are the Developer, responsible for implementing code based on the system architecture designed for a simple calculator application. Your goal is to follow the architectural specifications closely to ensure each module functions as intended. Your implementation should be efficient, maintainable, and well-documented. Once the code is complete, you will hand off the task to the tester by using tool: `handoff_to_tester()`. YOU CAN't TLAK TO HUMAN \", functions=[handoff_to_tester,handoff_to_architect,handoff_to_product_manager], # 定义开发工程师的功能 model=model_name, ) # 定义测试工程师智能体 tester = Agent( name=\"tester\", instructions=\"You are the Testing Engineer, responsible for creating and executing test cases to ensure that the calculator application functions as specified in the PRD and meets the standards of the architecture and code implementation. Your goal is to validate that each feature works as intended, handling both expected and edge cases. Once testing is complete, you will document the results and provide feedback to the Product Manager or Developer for any required fixes. \", functions=[handoff_to_developer], # 定义测试工程师的功能 model=model_name, ) 借用项目中提供的run_demo_loop\nfrom swarm.repl import run_demo_loop run_demo_loop(product_manager) 在输入框中开始对话，以搭建一个read-it-later应用为例，以下是测试结果：\nResult Starting Swarm CLI 🐝 User: 我想开发一个read-later应用 product_manager: 要开发一个“稍后阅读”应用，您需要定义产品需求，以确保设计和开发的过程中能清晰地实现应用的核心功能。以下是一些基本的功能和要求示例： ### 核心功能 1. **用户注册/登录** - 允许用户通过电子邮件、Google、Facebook等方式注册和登录。 - 支持密码重置和账户管理。 2. **保存内容** - 用户可以保存文章、视频、和其他媒体，通过链接或浏览器扩展。 - 支持自定义标签和类别，以便用户管理保存的内容。 3. **离线访问** - 用户能够离线读取已保存的文章。 - 自动同步当网络可用时。 4. **阅读界面** - 提供简洁的阅读模式，去除广告和其他干扰。 - 支持字体大小调整和夜间模式。 5. **分享与导出** - 用户可以分享内容到社交媒体或通过电子邮件。 - 支持将内容导出到其他应用或PDF格式。 6. **通知和提醒** - 用户可以设置阅读提醒。 - 提醒用户查看未读的内容。 ### 技术需求 1. **跨平台支持** - 手机（iOS和Android）以及桌面版本（Windows, macOS, Linux）。 2. **安全性** - 数据加密和保护用户隐私。 - 符合GDPR等相关法规。 3. **性能** - 快速加载和响应。 - 高效的同步机制。 4. **扩展性** - 未来功能扩展的灵活架构设计。 通过这样的产品需求文档，可以更好地规划开发路径，并最终实现产品设计和功能完整性。需要进一步的帮助或详细信息？ User: 可以， 请开始进入开发流程 product_manager: handoff_to_architect() architect: I am now responsible for designing the system architecture for your \"read-later\" application. Here’s a suggested architecture: ### System Architecture #### 1. **Frontend** - **Technologies**: React Native (for cross-platform mobile apps), React (for web application). - **Components**: - **Authentication**: Handle user login and registration. - **Content Saver**: Interface for users to save links/articles. - **Content Organizer**: Allow categorizing and tagging of saved items. - **Reader**: Provide a reading interface with options like font size adjustment and night mode. - **Settings**: Manage user preferences, export data, etc. #### 2. **Backend** - **Technologies**: Node.js for server-side logic, Express.js as a backend framework. - **Components**: - **Authentication Service**: Handle login, registration, and session management. - **Content Management**: APIs for saving, updating, and deleting content. - **Notification Service**: Manage push notifications and reminders. - **User Management**: Manage user data, preferences, and account settings. #### 3. **Database** - **Type**: NoSQL (e.g., MongoDB) for flexible storage of user data and saved content. - **Schema**: - Users: User profile, preferences, authentication details. - Content: Saved articles, tags, read status. #### 4. **Cloud Services** - **Hosting**: AWS or Google Cloud for scalable hosting solutions. - **Storage**: S3 or Google Cloud Storage for storing large files or backups. - **Notification**: Firebase Cloud Messaging for push notifications. #### 5. **Security** - **Authentication**: OAuth 2.0 for secure user authentication. - **Data Protection**: Utilize HTTPS for data transmission, encryption for sensitive user data. #### 6. **Scalability** - **Microservices**: Design backend in a microservices architecture to allow independent scaling. - **Load Balancers**: Use load balancers to distribute traffic efficiently. #### 7. **Integration** - **Browser Extensions**: Build extensions to facilitate saving articles directly from the browser. - **Third-party Integrations**: Google, Facebook for authentication, sharing capability. #### 8. **Version Control \u0026 CI/CD** - **Version Control**: Use GitHub or GitLab for source code management. - **CI/CD**: Implement using Jenkins or GitHub Actions for automated testing and deployment. Now that the architecture is designed, I will complete the process and hand it off to the development team to begin implementation. handoff_to_developer() developer: I'm now responsible for implementing the code based on the specified system architecture for the \"read-later\" application. Below are some code snippets for key components: ### Frontend: React Native Component for Content Saver ```javascript import React, { useState } from 'react'; import { View, TextInput, Button, StyleSheet } from 'react-native'; const ContentSaver = ({ onSave }) =\u003e { const [url, setUrl] = useState(''); const handleSave = () =\u003e { if (url) { onSave(url); setUrl(''); } }; return ( ",
   "wordCount" : "2434",
   "inLanguage": "en",
-  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2024-11-11T11:10:00+08:00",
+  "image": "http://localhost:1313/images/papermod-cover.png","datePublished": "2024-11-11T11:10:00+08:00",
   "dateModified": "2024-11-11T11:10:00+08:00",
   "author":{
     "@type": "Person",
@@ -132,14 +132,14 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/"
+    "@id": "http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -161,7 +161,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -187,42 +187,42 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="musik!">
+                <a href="http://localhost:1313/musik/" title="musik!">
                     <span>musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
@@ -233,7 +233,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Agent 学习笔记：框架 ｜ openAI Swarm
       <span class="entry-hint" title="Draft">
@@ -1054,16 +1054,16 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
-      <li><a href="https://niraya666.github.io/tags/agent%E6%A1%86%E6%9E%B6/">Agent框架</a></li>
+      <li><a href="http://localhost:1313/tags/agent/">Agent</a></li>
+      <li><a href="http://localhost:1313/tags/agent%E6%A1%86%E6%9E%B6/">Agent框架</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/">
+  <a class="prev" href="http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/">
     <span class="title">« Prev</span>
     <br>
     <span>Milvus-2.5版本：学习笔记和备忘录</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/">
+  <a class="next" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/">
     <span class="title">Next »</span>
     <br>
     <span>RAG工具箱：Query Enhancement</span>
@@ -1074,7 +1074,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on x"
-            href="https://x.com/intent/tweet/?text=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f&amp;hashtags=Agent%2cAgent%e6%a1%86%e6%9e%b6">
+            href="https://x.com/intent/tweet/?text=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f&amp;hashtags=Agent%2cAgent%e6%a1%86%e6%9e%b6">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -1083,7 +1083,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f&amp;title=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;summary=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f&amp;title=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;summary=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -1092,7 +1092,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f&title=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f&title=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -1101,7 +1101,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -1110,7 +1110,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on whatsapp"
-            href="https://api.whatsapp.com/send?text=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
+            href="https://api.whatsapp.com/send?text=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -1119,7 +1119,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on telegram"
-            href="https://telegram.me/share/url?text=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
+            href="https://telegram.me/share/url?text=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -1128,7 +1128,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Agent 学习笔记：框架 ｜ openAI Swarm on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
+            href="https://news.ycombinator.com/submitlink?t=Agent%20%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%9a%e6%a1%86%e6%9e%b6%20%ef%bd%9c%20openAI%20Swarm&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E6%25A1%2586%25E6%259E%25B6--openai-swarm%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -1168,7 +1168,7 @@ Routines（常规）：是由一系列步骤构成的流程，可以理解为给
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2024 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

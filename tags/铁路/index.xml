@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>铁路 on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/%E9%93%81%E8%B7%AF/</link>
+    <link>http://localhost:1313/tags/%E9%93%81%E8%B7%AF/</link>
     <description>Recent content in 铁路 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 14 Oct 2024 20:02:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/%E9%93%81%E8%B7%AF/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E9%93%81%E8%B7%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2024-大马轨道交通攻略</title>
-      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</link>
+      <link>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</link>
       <pubDate>Mon, 14 Oct 2024 20:02:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</guid>
+      <guid>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;国庆期间，在西马玩了快一个礼拜，期间体验了从北海到怡保的ETS、槟城的升旗山登山缆车，还有吉隆坡复杂多样的轨道交通系统。旅行中，我踩过一些坑，也解锁了一些便利的玩法。经过查阅不少攻略，加上实地探索和切身体会，我决定将这次旅途中的交通攻略整理成这篇文章，分享给大家。&lt;/p&gt;
 &lt;p&gt;注：本文所包含的信息有效截止至2024年10月，同时主要讨论西马（马来半岛）的轨道交通；希望能对你的大马之旅有所帮助。&lt;/p&gt;
@@ -26,7 +26,7 @@
 &lt;p&gt;马来西亚的铁路系统起源于19世纪末的英国殖民时期，当时的铁路主要是为了支持锡矿业和橡胶种植园的经济发展。第一条铁路于1885年建成，连接了太平和砵威港口（今称为瓜拉十八丁），而太平是当时霹雳州英国人的行政中枢。这条铁路的建设是为了便于将矿产资源从内陆运输到港口。此后，英国殖民政府开始加快在马来亚各地开辟铁路的步伐，主要目的是为了促进殖民地经济发展，例如吉隆坡至巴生的铁路于1886年建成通车，芙蓉至波德申的铁路于1891年建成通车，吉隆坡至万挠的铁路于1892年建成通车，安顺至打巴路的铁路于1893年建成通车。1895年，受英国保护的雪兰莪、森美兰、霹雳和彭亨四州组成马来联邦。当时马来亚不同州的铁路各自发展，没有一个统一的规划和管理机构，于是殖民政府当局在1901年成立了马来联邦铁路（FMSR），统合管理马来西亚半岛上各地包括马来联邦、马来属邦、海峡殖民地的铁路。这些初期建设的米轨铁路成为连接各主要城镇和经济区的重要交通工具。&lt;/p&gt;
 &lt;p&gt;20世纪初，马来西亚的铁路网迅速扩展，最重要的两条干线为东海岸线和西海岸线。二战期间，铁路遭到日军的严重破坏，但战后得到了重建。1948年，马来联邦铁路被改组为马来亚铁路（MR）。1963年，马来亚、新加坡、砂拉越和沙巴组成了新的联邦国家——马来西亚（新加坡于1965年退出），马来亚铁路的官方名称也更改为马来语“Keretapi Tanah Melayu”（KTM）。&lt;/p&gt;
 &lt;p&gt;现如今，马来西亚的铁路系统主要由两条干线组成：西海岸线和东海岸线。东海岸线（也称金马士－道北铁路）由马来亚铁道运营，起自金马士，途经吉兰丹、彭亨、森美兰，穿越马来半岛中部，全长528公里，最终到达泰国边境的道北。虽然名为东海岸线，但大部分路段穿行于内陆丛林地带，因此又被称为“丛林铁路”，吸引许多背包客体验。西海岸线则起自泰国边境的巴东勿刹，沿西海岸一直延伸至柔佛的南端，通过新柔长堤连接新加坡，全长950公里，途经包括吉隆坡在内的八个州属，是马来西亚铁路运输的重要交通大动脉。由国有企业马来亚铁道公司（KTMB）运营的铁路系统经过了多次改组和现代化，如今的铁路服务已经涵盖了从通勤列车到高速城际列车的多种交通模式。目前，马来西亚铁路系统不仅联通国内主要城市，还连接着泰国和新加坡，是东南亚地区重要的交通枢纽。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/b90015596a676e51d6df9b98736e90da.jpg&#34; alt=&#34;b90015596a676e51d6df9b98736e90da.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/b90015596a676e51d6df9b98736e90da.jpg&#34; alt=&#34;b90015596a676e51d6df9b98736e90da.jpg&#34;  /&gt;
 
 &lt;em&gt;&lt;a href=&#34;https://www.pinterest.com/pin/ktm-the-620km-east-coast-rail-route-ecrr--834010424715426579/&#34;&gt;来源&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;铁路分类&#34;&gt;&lt;strong&gt;铁路分类&lt;/strong&gt;&lt;/h2&gt;
@@ -46,30 +46,30 @@
 &lt;/ol&gt;
 &lt;h2 id=&#34;如何购买火车票&#34;&gt;&lt;strong&gt;如何购买火车票&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;购买火车票的方式有多种，最为方便的是通过KTMB官方网站或手机应用程序进行在线购买。也可以在吉隆坡中环车站（KL Sentral）及其他主要车站直接购票，但热门线路的车票在高峰时期（如假日、周末）可能会售罄，建议提前预订。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.15.27.png&#34; alt=&#34;截屏2024-10-13 下午7.15.27.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.15.27.png&#34; alt=&#34;截屏2024-10-13 下午7.15.27.png&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.16.04.png&#34; alt=&#34;截屏2024-10-13 下午7.16.04.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.16.04.png&#34; alt=&#34;截屏2024-10-13 下午7.16.04.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;以网上购买ETS车票为例，需在KTMB官网注册账号，然后选择出发和到达车站、以及对应的ETS车次类型（如Gold、Platinum、Express等）。不同级别的车次在停靠站数量和服务上有所不同，例如Platinum和Express级别提供商务座，商务座采用1+2的座位排布，包含免费食物和饮料，价格相对更高；普通席则是2+2的座位排布。Gold车次则没有商务座位。选择座位时，需要注意座位方向，有些座位是与行驶方向相反的，如果不喜欢反向乘坐，记得选择“forward”座位。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.47.05.png&#34; alt=&#34;截屏2024-10-13 下午7.47.05.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.47.05.png&#34; alt=&#34;截屏2024-10-13 下午7.47.05.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;ETS列车的车型也有所区别，Platinum和Express列车多为较新款，由中国中车制造，而Silver级别列车则采用较老款，速度较慢，停靠站较多。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34; alt=&#34;7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34; alt=&#34;7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;ETS-Express列车（摄于Butterworth车站）&lt;/em&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34; alt=&#34;B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34; alt=&#34;B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;ETS-Gold列车，采用旧款车型（摄于Ipoh车站）&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;吉隆坡轨道交通&#34;&gt;&lt;strong&gt;吉隆坡轨道交通&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;吉隆坡及其周边地区有完善的轨道交通系统，涵盖了多种轻轨和地铁线路。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-14%20%e4%b8%8b%e5%8d%887.56.41.png&#34; alt=&#34;截屏2024-10-14 下午7.56.41.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-14%20%e4%b8%8b%e5%8d%887.56.41.png&#34; alt=&#34;截屏2024-10-14 下午7.56.41.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;LRT（轻快铁）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;LRT是吉隆坡的轻轨系统，包含3号 LRT Ampang Line、4号LRT Sri Petaling Line和5号LRT Kelana Jaya Line。LRT贯穿吉隆坡市中心及重要商业区，是游客前往市区景点如双子塔、茨厂街的首选交通工具。在高峰期，列车会非常拥挤。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34; alt=&#34;107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34; alt=&#34;107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;5号线LRT，摄于Bangsar车站&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
