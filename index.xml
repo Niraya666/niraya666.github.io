@@ -2,50 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>LZY Blog</title>
-    <link>http://localhost:1313/</link>
+    <link>https://niraya666.github.io/</link>
     <description>Recent content on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Dec 2024 19:24:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>2024-12 月刊</title>
-      <link>http://localhost:1313/monthly/2024-12/</link>
-      <pubDate>Mon, 30 Dec 2024 19:24:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-12/</guid>
-      <description>&lt;h2 id=&#34;新模型&#34;&gt;新模型&lt;/h2&gt;
-&lt;h3 id=&#34;meta-llama33&#34;&gt;Meta Llama3.3&lt;/h3&gt;
-&lt;p&gt;Meta Llama 3.3 是一款&lt;strong&gt;700亿参数&lt;/strong&gt;的指令微调多语言大模型。该模型专注于文本生成，相比 Llama 3.1 70B 和 Llama 3.2 90B 性能有显著提升。在某些应用场景中，其效果可与 Llama 3.1 405B 媲美，但模型体积更小、计算效率更高。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;核心亮点&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;高性能表现&lt;/strong&gt;：支持复杂推理、代码生成和多语言处理。在 HumanEval 等基准测试中表现优异，代码生成 pass@1 达到&lt;strong&gt;88.4%&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Grouped-Query Attention (GQA)&lt;/strong&gt;：能处理&lt;strong&gt;128,000 tokens&lt;/strong&gt;的长上下文，大幅提升推理效率。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;无预训练版本&lt;/strong&gt;：Llama 3.3 专注于指令微调版本，更好地适配实际应用场景。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;与 Llama 3.1 兼容&lt;/strong&gt;：完全支持 Llama 3.1 的提示模板、代码解释器和工具调用功能，可实现无缝迁移。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;huggingface: &lt;a href=&#34;https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/tree/main&#34;&gt;https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/tree/main&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;gemini-20&#34;&gt;Gemini 2.0&lt;/h3&gt;
-&lt;p&gt;Gemini 2.0 是谷歌推出的下一代多模态人工智能模型。相比 1.5 Pro，Gemini 2.0 Flash 在多模态处理方面有重大突破，大幅提升了文本、代码、视频、空间理解与推理性能，同时维持低延迟和高效率。在关键基准测试中，该模型表现卓越，处理速度达到前代的两倍。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;创新亮点&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;原生多模态输出&lt;/strong&gt;：通过单一 API 调用，可生成包含文本、音频和图像的综合响应，极大简化了开发流程。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;实时多模态 API&lt;/strong&gt;：支持摄像头和屏幕流输入，集成语音活动检测等自然交互功能，特别适合实时应用开发。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;原生工具调用&lt;/strong&gt;：能够直接调用 Google 搜索、执行代码并对接第三方函数，有效支持自主代理系统的构建。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;长上下文与推理&lt;/strong&gt;：优化了复杂任务处理、长文本理解与规划能力，特别适合研究助手类应用。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;实际效果&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;开发者可借助 Gemini 2.0 构建实时音视频处理的动态应用。模型能够直接处理无字幕视频并生成精确翻译和结构化文章，大大简化了传统的多步骤流程。Project Astra 展示了模型在多语言对话、智能记忆和快速响应方面的优势，而 Project Mariner 在浏览器自动化任务中更是达到了 83.5% 的领先性能。&lt;/p&gt;</description>
-    </item>
+    <lastBuildDate>Wed, 25 Dec 2024 15:49:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Milvus-2.5版本：学习笔记和备忘录</title>
-      <link>http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 25 Dec 2024 15:49:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</guid>
       <description>&lt;p&gt;几年前初识 Milvus 的契机，来源于开发一个图像相似检索的应用，当时市面上向量库的可选择项并不像现在这么多，且功能也仅限于单纯的向量检索。&lt;/p&gt;
 &lt;p&gt;鉴于最近有业务更新的需要，和打算重构一下之前做的RAG项目，再次有机会深入学习 Milvus，探索其在新功能和实际应用上的更多可能性。&lt;/p&gt;
 &lt;p&gt;本篇笔记，仅作为学习笔记，更多是记录一些 Milvus从2.0 到2.5 的变化， 和一些动手实践的记录，便于之后的查阅。&lt;/p&gt;
@@ -110,27 +82,10 @@
 &lt;p&gt;&lt;strong&gt;Schema&lt;/strong&gt; 用于定义collection及其字段的属性&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-11 月刊</title>
-      <link>http://localhost:1313/monthly/2024-11/</link>
-      <pubDate>Sat, 30 Nov 2024 11:30:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-11/</guid>
-      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
-&lt;h3 id=&#34;chatgpt-search正式发布&#34;&gt;ChatGPT Search正式发布&lt;/h3&gt;
-&lt;p&gt;OpenAI近日正式推出ChatGPT Search功能，相比第三方搜索插件，官方版本展现出了明显的性能优势。不过要吐槽的一点， 搜索编程相关问题时，中文网页来源十有八九都是CSDN。&lt;/p&gt;
-&lt;h3 id=&#34;google-发布全新-ai-学习工具-learn-about&#34;&gt;&lt;strong&gt;Google 发布全新 AI 学习工具 “Learn About”&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Google 推出了全新的 AI 学习工具 “Learn About”，基于 Google LearnLM 模型，专为教育优化，旨在通过个性化和互动式的学习体验帮助用户探索和理解各种主题。该工具提供类似教科书的界面，结合互动列表、图像和导航菜单，同时包含“词汇扩展”“重要性解析”等功能，并链接至 YouTube 视频和网站等内容。相比传统搜索方式，它更具吸引力，能够按需分解复杂主题，促进长期记忆和理解。当前，该工具仅向美国 18 岁以上用户开放，主要支持英语，并内置隐私控制与数据管理功能。目标用户包括学生、教育者、终身学习者及专业人士，Google 希望借此重新定义学习方式，提供更高效和互动的学习体验。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://learning.google/&#34;&gt;Google Learning -  Digital Learning Tools &amp;amp; Solutions&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;全新的qwen25-coder系列模型&#34;&gt;全新的Qwen2.5-Coder系列模型&lt;/h3&gt;
-&lt;p&gt;阿里云近日发布了全新的 Qwen2.5-Coder 系列模型，这是一款强大且实用的代码模型，支持 92 种编程语言并具备 128K tokens 的长文本理解能力。该系列提供 6 种不同规格（0.5B 至 32B），其中 32B 版本性能达到开源代码模型的最优水平，可与 GPT-4o 媲美。在代码生成、修复和推理等任务中，Qwen2.5-Coder 在多个基准测试中表现优异，尤其在 Haskell 和 Racket 等语言的多语言支持方面成绩突出。此外，该模型集成了代码助手和 Artifacts 功能，支持一键生成网站、小游戏、数据图表等应用，并提供在线 demo 供体验。Qwen2.5-Coder 支持多种部署方式，包括 transformers 和多 GPU 分布式服务，同时提供量化版本以适配不同硬件环境。&lt;/p&gt;
-&lt;p&gt;Blog: &lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5-coder/&#34;&gt;Qwen2.5-Coder: 码无止境，学无止境!&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;类o1-的reasoning-模型追赶者的全面爆发&#34;&gt;类o1 的Reasoning 模型：&lt;strong&gt;追赶者的全面爆发&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;DeepSeek 推出的 DeepSeek-R1 模型以强大的推理能力和自我逻辑检验功能为核心亮点。在 AIME 和 MATH 等基准测试中，其表现与 OpenAI o1 模型不相上下，同时内置事实核查功能，可降低“幻觉”风险，显著提升复杂问题的逻辑规划能力。然而，该模型在某些基础逻辑问题上仍需改进。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>读书笔记｜如何打造第二大脑</title>
-      <link>http://localhost:1313/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
+      <link>https://niraya666.github.io/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
       <pubDate>Sun, 17 Nov 2024 19:41:00 +0800</pubDate>
-      <guid>http://localhost:1313/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</guid>
+      <guid>https://niraya666.github.io/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</guid>
       <description>&lt;p&gt;去年疫情之后，我感觉记忆力明显下降，甚至一度担心会不可恢复。或许这也是年纪渐长的体现，只是我不愿意承认罢了。直到读到了一篇博文，了解了CODE信息管理框架，并因此接触到《第二大脑》这本书。虽然这本书并不长，但由于各种原因，今年我才真正开始阅读并实践。经过一年的探索，我决定整理这篇读书笔记，既是对书中理念的梳理，也是对个人实践的总结。&lt;/p&gt;
 &lt;p&gt;值得一提的是，随着近年来大语言模型（LLM）的迅速发展，AI辅助可能会带来更高效的信息管理方式。&lt;/p&gt;
 &lt;h2 id=&#34;信息过载的时代为什么需要笔记&#34;&gt;信息过载的时代，为什么需要笔记？&lt;/h2&gt;
@@ -220,9 +175,9 @@
     </item>
     <item>
       <title>Agent 学习笔记：框架 ｜ openAI Swarm</title>
-      <link>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
+      <link>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
       <pubDate>Mon, 11 Nov 2024 11:10:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
+      <guid>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
       <description>&lt;h2 id=&#34;开篇&#34;&gt;开篇&lt;/h2&gt;
 &lt;p&gt;“CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。&lt;/p&gt;
 &lt;h2 id=&#34;routines-and-handoffs&#34;&gt;Routines and Handoffs&lt;/h2&gt;
@@ -233,34 +188,10 @@
 &lt;p&gt;&lt;strong&gt;Routines（常规）&lt;/strong&gt;：是由一系列步骤构成的流程，可以理解为给定任务的执行步骤，包括对话系统中指令和所需工具的组合。从代码实现上，基本上就是围绕着openAI 的 &lt;code&gt;openai.chat.completions.create&lt;/code&gt;API的一系列内容， 对话、工具调用等。换句话说，routines只是具有对话+工具调用的chatbot，这也是openAI对于Agent的基础抽象。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-10 月刊</title>
-      <link>http://localhost:1313/monthly/2024-10/</link>
-      <pubDate>Thu, 31 Oct 2024 19:01:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-10/</guid>
-      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
-&lt;h3 id=&#34;openai-meta-prompt&#34;&gt;OpenAI meta-prompt&lt;/h3&gt;
-&lt;p&gt;OpenAI最近揭示了其最新的“元提示”（meta-prompt）技术，通过简单指令实现完整的prompt生成或改进prompt，除去prompt以外，还提供了tool-using schema 的自动生成能力。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://platform.openai.com/docs/guides/prompt-generation&#34;&gt;OpenAI Platform&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;openai-canvas-功能&#34;&gt;OpenAI Canvas 功能&lt;/h3&gt;
-&lt;p&gt;OpenAI推出了名为“Canvas”的新界面，专为提升写作和编程项目的用户体验而设计。Canvas界面在常规聊天窗口旁打开一个工作区，用户可以直接在其中生成和编辑文本或代码。这一功能为用户提供了更大的灵活性和控制力，尤其在需要对AI生成的内容进行细化调整时。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-canvas/&#34;&gt;Introducing canvas&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;nvidia-发布llama-31-nemotron-70b模型&#34;&gt;Nvidia 发布Llama-3.1-Nemotron-70B模型&lt;/h3&gt;
-&lt;p&gt;NVIDIA近日发布了其最新的大型语言模型Llama-3.1-Nemotron-70B-Instruct。&lt;/p&gt;
-&lt;p&gt;Llama-3.1-Nemotron-70B-Instruct在多个自动化评估基准上表现优异，包括Arena Hard、AlpacaEval 2 LC和GPT-4-Turbo MT-Bench，超越了OpenAI的GPT-4o和Anthropic的Claude 3.5 Sonnet等强大模型。&lt;/p&gt;
-&lt;p&gt;该模型通过强化学习人类反馈（RLHF）进行训练，使用了REINFORCE算法和HelpSteer2-Preference提示。NVIDIA还提供了在HuggingFace Transformers代码库中的兼容版本，方便开发者使用。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://huggingface.co/nvidia/Llama-3.1-Nemotron-70B-Instruct&#34;&gt;nvidia/Llama-3.1-Nemotron-70B-Instruct · Hugging Face&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;mistral发布了ministral-3b-和-ministral-8b&#34;&gt;Mistral发布了Ministral 3B 和 Ministral 8B&lt;/h3&gt;
-&lt;p&gt;Mistral公司近日发布了两款新的AI模型，Ministral 3B和Ministral 8B，专为边缘设备如笔记本电脑和智能手机设计，确保数据处理的安全性和响应速度。&lt;/p&gt;
-&lt;p&gt;Ministral 3B和8B模型的上下文窗口可达128,000个tokens，相当于处理50页文档的能力。Ministral 8B采用了交错滑动窗口注意力机制，提升了推理速度并节省内存。在性能方面，Ministral 3B和8B在多个AI基准测试中表现优于同类模型，如Llama和Gemma系列，以及Mistral自家的7B模型。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://mistral.ai/news/ministraux/&#34;&gt;Un Ministral, des Ministraux&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;anthropic-最近发布了最新的-ai-模型-claude-35-haiku-和升级版-claude-35-sonnet&#34;&gt;Anthropic 最近发布了最新的 AI 模型 Claude 3.5 Haiku 和升级版 Claude 3.5 Sonnet&lt;/h3&gt;
-&lt;p&gt;Anthropic 最近发布了最新的 AI 模型 Claude 3.5 Haiku 和升级版 Claude 3.5 Sonnet。这些模型在多个领域表现出色，尤其是在编码和工具使用任务上取得了显著进步。Claude 3.5 Sonnet 的推理能力超过了许多竞争对手，包括 OpenAI 的 o1-preview。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>RAG工具箱：Query Enhancement</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
       <pubDate>Thu, 31 Oct 2024 16:04:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
       <description>&lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
 &lt;p&gt;首先，从最简单的RAG（Retrieval-Augmented Generation）谈起。&lt;/p&gt;
 &lt;p&gt;RAG结合了信息检索与生成模型，先通过用户的原始问题query 在知识库中检索与相关的文档，再利用生成模型（如ChatGPT）生成回答。最简单的RAG版本通常被称为Naive-RAG，虽然Naive-RAG能够处理一些简单的问题，但在真实场景下，用户提出的问题往往更加复杂多样，远远超出系统最初设计的预期范围。&lt;/p&gt;
@@ -276,7 +207,7 @@
 &lt;p&gt;&lt;strong&gt;复杂多层次问题&lt;/strong&gt;：某些问题本身复杂，包含多个子问题或需要推理、逻辑分析。Naive-RAG依赖简单的关键词匹配或语义匹配，无法很好地处理这类复杂的需求。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;面对这些挑战，Naive-RAG的局限性变得明显：仅仅依靠用户的原始query无法应对多样化的提问场景。那么，如何提升RAG系统的检索能力，增强对复杂问题的处理呢？这时就需要引入&lt;strong&gt;Query-Enhancement&lt;/strong&gt;技术。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Query-Enhancement&lt;/strong&gt;，顾名思义，是对用户的原始query进行增强处理。它的核心思想是：不要直接使用用户的原始query进行相关文档的检索，而是通过某种技术手段对query进行改写、扩展或优化，从而生成一个更适合检索的query。这种技术在不同场景下有不同的命名，如&lt;strong&gt;query rewrite&lt;/strong&gt;或&lt;strong&gt;query reformulation&lt;/strong&gt;，但核心目标都是一致的——根据用户的初始输入，生成一个更符合检索需求、更能提升查询准确性的新query。&lt;/p&gt;
@@ -301,7 +232,7 @@
 &lt;/ul&gt;
 &lt;p&gt;输入文本与真正需要检索的知识之间不可避免地存在差距。这种差距限制了检索性能，增加了对检索能力增强和提示工程的依赖。&lt;/p&gt;
 &lt;p&gt;为了解决这些问题，检索器之前增加了一步对输入进行改写的过程，填补给定输入与检索需求之间的差距。这一步利用了LLM本身的能力对原始查询进行有针对性的改写。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image%201.png&#34; alt=&#34;image 1.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image%201.png&#34; alt=&#34;image 1.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;比如，来自&lt;a href=&#34;https://github.com/NirDiamant/RAG_Techniques/blob/main/all_rag_techniques_runnable_scripts/query_transformations.py&#34;&gt;RAG_Techniques&lt;/a&gt; 的这段prompt：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;query_rewrite_template&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. 
@@ -314,9 +245,9 @@
     </item>
     <item>
       <title>食在大马</title>
-      <link>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</link>
+      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</link>
       <pubDate>Tue, 22 Oct 2024 20:02:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</guid>
+      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</guid>
       <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;2024年的国庆假期，第一次带父母踏出国门，目的地定在了马来西亚。挑选这个地方，并非偶然，既因为语言上的便利，也因对食物多样性的向往。对于第一次尝试出国旅行的新手来说，这样的选择再合适不过了。尤其是对于福建闽南人，马来西亚似乎有着一种熟悉而温暖的亲切感。&lt;/p&gt;
 &lt;p&gt;行程从厦门出发，飞往槟城，然后搭乘火车前往怡保，再一路南下至吉隆坡，最终从吉隆坡返回故乡。虽说只是短短数日的旅行，但沿途的风景与美食却像是一条无形的丝线，将我们一家人与这片热带土地紧紧相连。&lt;/p&gt;
@@ -325,26 +256,26 @@
 &lt;p&gt;槟城位于马来西亚西北，分成槟岛和威省两部分，作为东南亚重要的贸易港口之一，槟城自18世纪以来便吸引了无数移民，马来人、华人、印度人和欧洲人的足迹在这里留下了不可磨灭的印记，因其多元文化和历史，槟城的首府乔治市（George Town）也被联合国教科文组织纳入人世界文化遗产地。&lt;/p&gt;
 &lt;p&gt;第一站是【多春茶室】。尽管其老店名声在外，但为了避开人群，我们选择了位于旧关仔角钟楼附近的分店。清晨9点到达时，茶室内还未拥挤，扫码点餐的现代化模式也让整个过程更加方便。&lt;/p&gt;
 &lt;p&gt;点餐是件有趣的过程。面包、抹酱、饮品，一步步选择下来，经典的烤海南面包加上浓郁的咖椰酱，搭配香浓的Kopi-O，让这平凡的早餐充满满足感。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/6F734170-B982-4F62-934A-22FF8C6CCE86_1_105_c.jpeg&#34; alt=&#34;6F734170-B982-4F62-934A-22FF8C6CCE86_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/6F734170-B982-4F62-934A-22FF8C6CCE86_1_105_c.jpeg&#34; alt=&#34;6F734170-B982-4F62-934A-22FF8C6CCE86_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;烤海南面包加上咖椰酱&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;有趣的是，海南面包源自南洋，并非来自海南本土。早年海南人漂洋过海来到南洋，受雇于英国人家庭和西化的峇峇家庭做帮佣，学习了西方的烘焙技艺，结合本地口味，创造出了适合东南亚人的海南面包。这些经历使他们将西式的咖啡与面包融入本地，逐渐普及成为南洋的经典早餐文化。&lt;/p&gt;
 &lt;p&gt;当然，当地人早餐常吃的生熟蛋也是值得一试的， 鸡蛋泡在热水中几分钟，蛋白微凝固但仍带液态，蛋黄保持流动感，吃时只需加入酱油和白胡椒调味，用勺子轻轻搅拌，也可以蘸面包吃。如果不习惯生鸡蛋，店家还贴心地提供了不同熟度的选择。&lt;/p&gt;
 &lt;p&gt;在这家店，店主还提供了4RM一个椰浆饭供食客自取，经典的江鱼仔鸡蛋口味，对于第一次尝试椰浆饭的人而言，味道的确很奇特。sambal辣酱并没有想象中那么辣，带有一丝丝的甜味，米饭也是经过调味的。&lt;/p&gt;
 &lt;p&gt;茶室不远处便是槟城的地标——旧关仔角钟楼。钟楼由著名华商张弼士捐资修建，以纪念维多利亚女王登基60周年。与钟楼相邻的康华丽斯堡则是另一个标志性景点，虽名为堡垒，实未参与战斗。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/F8C5900A-FE98-4DCF-8B04-E73A9CB9A30C_1_201_a.jpeg&#34; alt=&#34;F8C5900A-FE98-4DCF-8B04-E73A9CB9A30C_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/F8C5900A-FE98-4DCF-8B04-E73A9CB9A30C_1_201_a.jpeg&#34; alt=&#34;F8C5900A-FE98-4DCF-8B04-E73A9CB9A30C_1_201_a.jpeg&#34;  /&gt;
 
 &lt;em&gt;旧关仔角钟楼&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;乔治市的街道以交叉十字贯穿各个文化区域。从小印度区入至华人区，再到马来区，都是一幅幅独特的文化画卷。右边为殖民时期的建筑，左侧则是古朴的华人会馆；再往前走，便是色彩斑斓的印度庙宇了。恍惚间，仿佛还能看到那些早年南来的移民，提着皮箱穿过狭窄的街巷，寻找着属于自己的一方天地。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/73FE20C9-AFC7-4F90-BCD9-6980BDE26F13_1_105_c.jpeg&#34; alt=&#34;73FE20C9-AFC7-4F90-BCD9-6980BDE26F13_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/73FE20C9-AFC7-4F90-BCD9-6980BDE26F13_1_105_c.jpeg&#34; alt=&#34;73FE20C9-AFC7-4F90-BCD9-6980BDE26F13_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;吉宁甲必丹回教堂&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;槟城的美不止于其自然风光，而在于文化的碰撞与融合。早期移民将家乡味道带入南洋，创造出诸如海南鸡饭这样的经典。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/E399B1CB-F4F0-4639-86E7-A6F3F8C91BFC_1_201_a.jpg&#34; alt=&#34;E399B1CB-F4F0-4639-86E7-A6F3F8C91BFC_1_201_a.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/E399B1CB-F4F0-4639-86E7-A6F3F8C91BFC_1_201_a.jpg&#34; alt=&#34;E399B1CB-F4F0-4639-86E7-A6F3F8C91BFC_1_201_a.jpg&#34;  /&gt;
 
 &lt;em&gt;伍秀泽海南鸡饭茶室&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;午后，我们寻觅到【伍秀泽海南鸡饭茶室】。这家茶室外观简单得甚至有些不起眼，但店里却充满着人间烟火气息。菜单也十分简单：白切鸡、烧鸡、鸡杂和鸡油饭。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/48AD27F9-8A94-4558-A87E-334128902AB1_1_105_c.jpeg&#34; alt=&#34;48AD27F9-8A94-4558-A87E-334128902AB1_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/48AD27F9-8A94-4558-A87E-334128902AB1_1_105_c.jpeg&#34; alt=&#34;48AD27F9-8A94-4558-A87E-334128902AB1_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;海南鸡饭&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;鸡肉鲜嫩多汁，配上油光闪亮的鸡油饭，再添一勺微辣的辣椒酱，与黄瓜片相伴，让人回味无穷。&lt;/p&gt;
@@ -362,15 +293,15 @@
 &lt;p&gt;炒粿条的名字源自福建话“Char Kway Teow”。虽然它发源于潮州，但在潮州并不流行像马来半岛那样使用重酱油、鱼露，或加入血蚶的风味。&lt;/p&gt;
 &lt;p&gt;几代人的迁徙流传，使得最初的潮汕炒粿条逐渐演变成如今的槟城炒粿条。在今天的马来半岛，各地的茶餐室、路边摊甚至食阁中，随处可见这一道菜。当地华人适应了赤道气候，也逐渐偏爱浓烈的口味，将黑酱油和鱼露加入其中，使其味道与原先的潮汕风味逐渐拉开了距离。&lt;/p&gt;
 &lt;p&gt;槟城的炒粿条以其丰富的本地特色而闻名，以至于“槟城炒粿条”如今已然成为马来西亚外的“炒粿条”代名词。也许正是槟城人所炒的粿条充满了独特风味，让其从冠以“潮州”的乡土印记中脱颖而出，成为一种具有浓厚本地色彩的代表。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/6762BC7A-C04B-4F8A-B9DC-3E5BA158D640_1_105_c.jpeg&#34; alt=&#34;6762BC7A-C04B-4F8A-B9DC-3E5BA158D640_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e9%a3%9f%e5%9c%a8%e5%a4%a7%e9%a9%ac-assets/6762BC7A-C04B-4F8A-B9DC-3E5BA158D640_1_105_c.jpeg&#34; alt=&#34;6762BC7A-C04B-4F8A-B9DC-3E5BA158D640_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;Char Kway Teow&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024-大马轨道交通攻略</title>
-      <link>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</link>
+      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</link>
       <pubDate>Mon, 14 Oct 2024 20:02:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</guid>
+      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;国庆期间，在西马玩了快一个礼拜，期间体验了从北海到怡保的ETS、槟城的升旗山登山缆车，还有吉隆坡复杂多样的轨道交通系统。旅行中，我踩过一些坑，也解锁了一些便利的玩法。经过查阅不少攻略，加上实地探索和切身体会，我决定将这次旅途中的交通攻略整理成这篇文章，分享给大家。&lt;/p&gt;
 &lt;p&gt;注：本文所包含的信息有效截止至2024年10月，同时主要讨论西马（马来半岛）的轨道交通；希望能对你的大马之旅有所帮助。&lt;/p&gt;
@@ -379,7 +310,7 @@
 &lt;p&gt;马来西亚的铁路系统起源于19世纪末的英国殖民时期，当时的铁路主要是为了支持锡矿业和橡胶种植园的经济发展。第一条铁路于1885年建成，连接了太平和砵威港口（今称为瓜拉十八丁），而太平是当时霹雳州英国人的行政中枢。这条铁路的建设是为了便于将矿产资源从内陆运输到港口。此后，英国殖民政府开始加快在马来亚各地开辟铁路的步伐，主要目的是为了促进殖民地经济发展，例如吉隆坡至巴生的铁路于1886年建成通车，芙蓉至波德申的铁路于1891年建成通车，吉隆坡至万挠的铁路于1892年建成通车，安顺至打巴路的铁路于1893年建成通车。1895年，受英国保护的雪兰莪、森美兰、霹雳和彭亨四州组成马来联邦。当时马来亚不同州的铁路各自发展，没有一个统一的规划和管理机构，于是殖民政府当局在1901年成立了马来联邦铁路（FMSR），统合管理马来西亚半岛上各地包括马来联邦、马来属邦、海峡殖民地的铁路。这些初期建设的米轨铁路成为连接各主要城镇和经济区的重要交通工具。&lt;/p&gt;
 &lt;p&gt;20世纪初，马来西亚的铁路网迅速扩展，最重要的两条干线为东海岸线和西海岸线。二战期间，铁路遭到日军的严重破坏，但战后得到了重建。1948年，马来联邦铁路被改组为马来亚铁路（MR）。1963年，马来亚、新加坡、砂拉越和沙巴组成了新的联邦国家——马来西亚（新加坡于1965年退出），马来亚铁路的官方名称也更改为马来语“Keretapi Tanah Melayu”（KTM）。&lt;/p&gt;
 &lt;p&gt;现如今，马来西亚的铁路系统主要由两条干线组成：西海岸线和东海岸线。东海岸线（也称金马士－道北铁路）由马来亚铁道运营，起自金马士，途经吉兰丹、彭亨、森美兰，穿越马来半岛中部，全长528公里，最终到达泰国边境的道北。虽然名为东海岸线，但大部分路段穿行于内陆丛林地带，因此又被称为“丛林铁路”，吸引许多背包客体验。西海岸线则起自泰国边境的巴东勿刹，沿西海岸一直延伸至柔佛的南端，通过新柔长堤连接新加坡，全长950公里，途经包括吉隆坡在内的八个州属，是马来西亚铁路运输的重要交通大动脉。由国有企业马来亚铁道公司（KTMB）运营的铁路系统经过了多次改组和现代化，如今的铁路服务已经涵盖了从通勤列车到高速城际列车的多种交通模式。目前，马来西亚铁路系统不仅联通国内主要城市，还连接着泰国和新加坡，是东南亚地区重要的交通枢纽。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/b90015596a676e51d6df9b98736e90da.jpg&#34; alt=&#34;b90015596a676e51d6df9b98736e90da.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/b90015596a676e51d6df9b98736e90da.jpg&#34; alt=&#34;b90015596a676e51d6df9b98736e90da.jpg&#34;  /&gt;
 
 &lt;em&gt;&lt;a href=&#34;https://www.pinterest.com/pin/ktm-the-620km-east-coast-rail-route-ecrr--834010424715426579/&#34;&gt;来源&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;铁路分类&#34;&gt;&lt;strong&gt;铁路分类&lt;/strong&gt;&lt;/h2&gt;
@@ -399,30 +330,30 @@
 &lt;/ol&gt;
 &lt;h2 id=&#34;如何购买火车票&#34;&gt;&lt;strong&gt;如何购买火车票&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;购买火车票的方式有多种，最为方便的是通过KTMB官方网站或手机应用程序进行在线购买。也可以在吉隆坡中环车站（KL Sentral）及其他主要车站直接购票，但热门线路的车票在高峰时期（如假日、周末）可能会售罄，建议提前预订。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.15.27.png&#34; alt=&#34;截屏2024-10-13 下午7.15.27.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.15.27.png&#34; alt=&#34;截屏2024-10-13 下午7.15.27.png&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.16.04.png&#34; alt=&#34;截屏2024-10-13 下午7.16.04.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.16.04.png&#34; alt=&#34;截屏2024-10-13 下午7.16.04.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;以网上购买ETS车票为例，需在KTMB官网注册账号，然后选择出发和到达车站、以及对应的ETS车次类型（如Gold、Platinum、Express等）。不同级别的车次在停靠站数量和服务上有所不同，例如Platinum和Express级别提供商务座，商务座采用1+2的座位排布，包含免费食物和饮料，价格相对更高；普通席则是2+2的座位排布。Gold车次则没有商务座位。选择座位时，需要注意座位方向，有些座位是与行驶方向相反的，如果不喜欢反向乘坐，记得选择“forward”座位。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.47.05.png&#34; alt=&#34;截屏2024-10-13 下午7.47.05.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-13%20%e4%b8%8b%e5%8d%887.47.05.png&#34; alt=&#34;截屏2024-10-13 下午7.47.05.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;ETS列车的车型也有所区别，Platinum和Express列车多为较新款，由中国中车制造，而Silver级别列车则采用较老款，速度较慢，停靠站较多。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34; alt=&#34;7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34; alt=&#34;7F6C6773-CA59-499B-93C2-2825C2DAE157_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;ETS-Express列车（摄于Butterworth车站）&lt;/em&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34; alt=&#34;B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34; alt=&#34;B03BE15A-8BF1-4709-BC16-4C95696ED6FE_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;ETS-Gold列车，采用旧款车型（摄于Ipoh车站）&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;吉隆坡轨道交通&#34;&gt;&lt;strong&gt;吉隆坡轨道交通&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;吉隆坡及其周边地区有完善的轨道交通系统，涵盖了多种轻轨和地铁线路。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-14%20%e4%b8%8b%e5%8d%887.56.41.png&#34; alt=&#34;截屏2024-10-14 下午7.56.41.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/%e6%88%aa%e5%b1%8f2024-10-14%20%e4%b8%8b%e5%8d%887.56.41.png&#34; alt=&#34;截屏2024-10-14 下午7.56.41.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;LRT（轻快铁）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;LRT是吉隆坡的轻轨系统，包含3号 LRT Ampang Line、4号LRT Sri Petaling Line和5号LRT Kelana Jaya Line。LRT贯穿吉隆坡市中心及重要商业区，是游客前往市区景点如双子塔、茨厂街的首选交通工具。在高峰期，列车会非常拥挤。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34; alt=&#34;107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%a9%ac%e8%bd%a8%e9%81%93%e4%ba%a4%e9%80%9a%e6%94%bb%e7%95%a5-assets/107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34; alt=&#34;107EF1BC-2124-4F8E-BCEA-7027EA7E3C54_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;5号线LRT，摄于Bangsar车站&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -430,109 +361,49 @@
 &lt;p&gt;&lt;strong&gt;3号LRTAmpang Line（橙黄色）&lt;/strong&gt;：占美清真寺，独立广场，ICC pudu等景点。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-09 月刊</title>
-      <link>http://localhost:1313/monthly/2024-09/</link>
-      <pubDate>Thu, 26 Sep 2024 14:01:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-09/</guid>
-      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
-&lt;h3 id=&#34;openai-发布o1-preview&#34;&gt;OpenAI 发布o1-preview&lt;/h3&gt;
-&lt;p&gt;OpenAI于9月12日发布了其最新的大型语言模型o1-preview，该模型在推理能力上实现了重大突破。o1模型通过使用Chain of Thought技术，能够解决复杂的数学和编程问题，其表现超越了之前的GPT-4o模型。&lt;/p&gt;
-&lt;p&gt;o1模型在多个基准测试中表现出色，包括在美国国际数学邀请赛中取得接近全国前500名的成绩，并在科学问题的准确度上超过了人类博士水平。该模型通过强化学习增强了推理能力，能够逐步分析问题，拆解复杂步骤并自动修正错误。&lt;/p&gt;
-&lt;p&gt;OpenAI还推出了o1-mini版本，虽然规模较小，但在推理任务上表现优异，且成本更低。o1-mini特别适合编程任务，预计未来将向所有ChatGPT用户开放。&lt;/p&gt;
-&lt;p&gt;相关信息：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://cdn.openai.com/o1-system-card.pdf&#34;&gt;system card&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-openai-o1-preview/&#34;&gt;官方介绍&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.interconnects.ai/p/reverse-engineering-openai-o1&#34;&gt;Reverse engineering OpenAI’s o1&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://x.com/dotey/status/1835395891483554105&#34;&gt;去年 Jim Fan 对于 Q* 的预测&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;相关GitHub仓库： &lt;a href=&#34;https://github.com/hijkzzz/Awesome-LLM-Strawberry&#34;&gt;&lt;strong&gt;Awesome LLM Strawberry (OpenAI o1)&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://x.com/op7418/status/1835153295855567356&#34;&gt;关于 Open AI o1 的 AMA&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=kYWUEV_e2ss&#34;&gt;MIT EI seminar, Hyung Won Chung from OpenAI. &amp;ldquo;Don&amp;rsquo;t teach. Incentivize.&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;qwen25系列模型&#34;&gt;Qwen2.5系列模型&lt;/h3&gt;
-&lt;p&gt;阿里云的Qwen团队近日发布了Qwen2.5系列大型语言模型。该系列包括多种尺寸的模型，从0.5B到72B参数不等，并提供基础和指令调优版本。Qwen2.5在多个方面取得了显著进步，包括更强的知识储备、编码和数学能力的提升，以及在指令跟随、长文本生成和结构化数据理解方面的改进。&lt;/p&gt;
-&lt;p&gt;Qwen2.5支持多达29种语言，能够处理长达128K的上下文，并生成最多8K的文本。该模型在多语言支持、角色扮演和聊天机器人条件设置方面表现出更高的弹性。&lt;/p&gt;
-&lt;p&gt;此外，Qwen2.5还推出了专门用于编码和数学的模型，如Qwen2.5-Coder和Qwen2.5-Math，进一步增强了在这些领域的应用能力。Qwen2.5-Coder特别在代码生成、推理和修复方面表现出色，而Qwen2.5-Math则在数学推理能力上有显著提升。&lt;/p&gt;
-&lt;p&gt;官方博客：&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5/&#34;&gt;Qwen2.5: 基础模型大派对！&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deepseek-v25&#34;&gt;DeepSeek-V2.5&lt;/h3&gt;
-&lt;p&gt;DeepSeek-AI 推出了其最新模型 DeepSeek-V2.5，成功融合了之前版本 DeepSeek-V2-Chat 和 DeepSeek-Coder-V2-Instruct 的功能。该模型集成了通用语言处理和编程能力。&lt;/p&gt;
-&lt;p&gt;DeepSeek-V2.5 经过性能优化，特别在写作、任务执行和高级编程等方面表现出色，在 AlpacaEval 2.0 和 HumanEval Python 等基准测试中超越了前代产品。此外，模型还新增了函数调用功能，使其能够与外部工具交互，拓展了实时天气报告、翻译等应用场景。&lt;/p&gt;
-&lt;p&gt;该模型采用了多头潜在注意力（MLA）等技术创新，显著提升了推理速度和资源利用效率。同时，DeepSeek-V2.5 在 Hugging Face 平台上开源，并提供商业化许可，允许企业将其用于自动化客服、内容生成等业务流程中。其性能表现已跻身主流排行榜，与 GPT-4-Turbo 和 LLaMA3-70B 等顶尖模型齐名。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>2024 Can-festival：在海边 混杂着雨水和泪水 向后摇</title>
-      <link>http://localhost:1313/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</link>
+      <link>https://niraya666.github.io/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</link>
       <pubDate>Wed, 25 Sep 2024 13:32:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</guid>
+      <guid>https://niraya666.github.io/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</guid>
       <description>&lt;p&gt;第一次来到舟山，仅仅是因为Can-festival音乐节。&lt;/p&gt;
 &lt;p&gt;上次错过了越位音乐节，这次看到Can-festival的阵容，根本不可能再错过。光是Day2的阵容：We Lost the Sea、Lost in Kiev、The Seven Mile Journey、声子虫，几乎全是我播放器里多年循环的乐队。更别提Day3，This Will Destroy You和World’s End Girlfriend等老牌乐队，还有年初遗憾未能见到的四月雨。&lt;/p&gt;
 &lt;h2 id=&#34;与普拉桑的极限拉扯&#34;&gt;与“普拉桑”的极限拉扯&lt;/h2&gt;
 &lt;p&gt;出发前几天，台风“普拉桑”紧跟着前一个台风的步伐，直扑江浙沪，着实让我焦虑不已。临行的前一天，我每隔二十分钟就要刷新一次台风路径图，心里祈祷它能转向或加速离去。担心音乐节会取消，或是要在狂风暴雨中听音乐。不过，最终台风带来的破坏都留在了上海，而到了舟山，却意外地迎来了晴朗的天气。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/DE10C0BD-A093-45EE-B67F-421C767FE234.jpg&#34; alt=&#34;DE10C0BD-A093-45EE-B67F-421C767FE234.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/DE10C0BD-A093-45EE-B67F-421C767FE234.jpg&#34; alt=&#34;DE10C0BD-A093-45EE-B67F-421C767FE234.jpg&#34;  /&gt;
 
 &lt;em&gt;暴雨中的南浦大桥&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;后摇和雨更配&#34;&gt;后摇和雨更配&lt;/h2&gt;
 &lt;p&gt;其实，我一向讨厌下雨。但谁能想到，在海边，后摇与风雨竟如此契合。或许，这正是音乐的魔力。雨水肆意洒落，浸湿了镜片，视线模糊不清，分不清脸上的水滴究竟是从天而降，还是心底涌出的泪水。音乐与环境的交织，给了我一种难以言喻的感动。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/8E78A7AB-8588-4165-B71F-261E284C1E51_1_105_c.jpeg&#34; alt=&#34;8E78A7AB-8588-4165-B71F-261E284C1E51_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/8E78A7AB-8588-4165-B71F-261E284C1E51_1_105_c.jpeg&#34; alt=&#34;8E78A7AB-8588-4165-B71F-261E284C1E51_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;海边&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;当安尼西亚说这首歌是献给孩子，愿这个世界没有伤害时，我的心突然被一种无法抑制的情感击中。或许我们无法阻止每一个悲剧的发生，但在音乐的陪伴下，我希望这个世界能逐渐变得更加温暖。愿这首《离别》不仅仅是一首哀歌。&lt;/p&gt;
 &lt;p&gt;Lost in Kiev 在合成器音色和处理上，确实惊艳到我了。不过，他们的贝斯手长的真的好像萨拉赫。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/ABF036E9-FBF3-4B73-9B8F-6804C5FFBEBD_1_105_c.jpeg&#34; alt=&#34;ABF036E9-FBF3-4B73-9B8F-6804C5FFBEBD_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/ABF036E9-FBF3-4B73-9B8F-6804C5FFBEBD_1_105_c.jpeg&#34; alt=&#34;ABF036E9-FBF3-4B73-9B8F-6804C5FFBEBD_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;Lost in Kiev&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;LITE 的音乐在雨中展现出了出乎意料的活力。即使雨水不停，现场的每个人都随着节奏跳动，那种难以言喻的现场氛围，仿佛雨水并不再是困扰，而是与音乐共舞的一部分。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/CEF4C784-5E96-402F-A73B-AD3ED115EF1F_1_105_c.jpeg&#34; alt=&#34;CEF4C784-5E96-402F-A73B-AD3ED115EF1F_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/CEF4C784-5E96-402F-A73B-AD3ED115EF1F_1_105_c.jpeg&#34; alt=&#34;CEF4C784-5E96-402F-A73B-AD3ED115EF1F_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;雨中的LITE&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;声子虫的音墙依旧厚重，像一座无形的高山压迫着我。正如去年看他们演出时的一样， 特别喜欢他们开场时的创意—随着音乐的铺垫进行， 在屏幕上，一笔一画地把“聲子蟲” 三个字缓慢打出。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/46590887-7972-4CEF-A4F7-A40BF24EDAE4_1_105_c.jpeg&#34; alt=&#34;46590887-7972-4CEF-A4F7-A40BF24EDAE4_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/46590887-7972-4CEF-A4F7-A40BF24EDAE4_1_105_c.jpeg&#34; alt=&#34;46590887-7972-4CEF-A4F7-A40BF24EDAE4_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;缺了最后一笔的“聲子蟲”&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;一直期待We Lost the Sea的现场演出，但就在那时，吉他却出了问题。声音时有时无，让本该震撼人心的演奏显得有些破碎。雨水不停地落在身上，心情也随之变得复杂。一点小小的遗憾，像是雨中一滴未曾融入地面的水珠，总让人感到有些不完整。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/BEA4ACE5-B17A-48FB-9E95-EE2BFA987988_1_105_c.jpeg&#34; alt=&#34;BEA4ACE5-B17A-48FB-9E95-EE2BFA987988_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/BEA4ACE5-B17A-48FB-9E95-EE2BFA987988_1_105_c.jpeg&#34; alt=&#34;BEA4ACE5-B17A-48FB-9E95-EE2BFA987988_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;We Lost the Sea — by 群里的艺术家&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/2024-Can-festival/1EF13608-9B3E-4159-90C3-034AAD648C5D_1_105_c.jpeg&#34; alt=&#34;1EF13608-9B3E-4159-90C3-034AAD648C5D_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/2024-Can-festival/1EF13608-9B3E-4159-90C3-034AAD648C5D_1_105_c.jpeg&#34; alt=&#34;1EF13608-9B3E-4159-90C3-034AAD648C5D_1_105_c.jpeg&#34;  /&gt;
 
 &lt;em&gt;The Seven Mile Journey — by 群里的艺术家&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;年纪渐长，似乎每次出门前都有更多的顾虑。年轻时我总能义无反顾地冲向每一个音乐节，不管是风雨还是其他未知的挑战，都觉得无所谓。然而这次，在雨中，我的脑海里浮现出更多的“如果”：如果天气更好一些，如果能再勇敢一些……我无法完全放下这些顾虑，哪怕台上的音乐依旧动人，我却发现自己没有像以前那样尽兴了。也许成长的代价，就是学会在更多的限制和考量中寻找自己的平衡。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-08 月刊</title>
-      <link>http://localhost:1313/monthly/2024-08/</link>
-      <pubDate>Sat, 31 Aug 2024 16:43:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-08/</guid>
-      <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
-&lt;h3 id=&#34;grok-2-beta-版本&#34;&gt;Grok-2 Beta 版本&lt;/h3&gt;
-&lt;p&gt;xAI公司发布了Grok-2和Grok-2 mini的测试版，现已向𝕏平台上的Premium和Premium+用户开放。Grok-2是一个先进的语言模型，在聊天、编码和推理方面表现出色，超过了Claude 3.5 Sonnet和GPT-4-Turbo等竞争对手。Grok-2 mini则在速度和答案质量之间取得平衡。此外，关于图像生成功能可能被滥用的问题也引起了关注。&lt;/p&gt;
-&lt;h3 id=&#34;微软发布phi-35系列模型&#34;&gt;微软发布Phi-3.5系列模型&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/discover-the-new-multi-lingual-high-quality-phi-3-5-slms/ba-p/4225280&#34;&gt;https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/discover-the-new-multi-lingual-high-quality-phi-3-5-slms/ba-p/4225280&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;涵盖了Phi-3.5-mini、Phi-3.5-MoE和Phi-3.5-vision三种模型。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Phi-3.5-mini&lt;/strong&gt;：拥有3.8亿参数，支持128K上下文长度，专注于多语言支持和推理能力。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Phi-3.5-MoE&lt;/strong&gt;：混合专家模型，总参数量为42亿，但每次激活仅使用6.6亿参数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Phi-3.5-vision&lt;/strong&gt;：具备4.2亿参数，能够处理多帧图像理解和推理任务，在单图像基准测试中表现显著提升。&lt;/p&gt;
-&lt;h3 id=&#34;cursor-ai&#34;&gt;Cursor AI&lt;/h3&gt;
-&lt;p&gt;最近大热的一款AI编程辅助工具。&lt;/p&gt;
-&lt;p&gt;不仅支持多行代码的自动完成，还能够根据代码上下文进行智能生成和重写， 代码解释和调试帮助。&lt;/p&gt;
-&lt;p&gt;2024年8月，Cursor AI 完成了一轮6000万美元的融资，使得公司的估值达到了4亿美元。&lt;/p&gt;
-&lt;h3 id=&#34;google发布gemma-2-2b模型及其相关工具&#34;&gt;&lt;strong&gt;Google发布Gemma 2 2B模型及其相关工具&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Google发布了新一代轻量级开源大语言模型Gemma 2 2B，并推出了一系列相关工具，包括ShieldGemma和Gemma Scope。这些新工具旨在提升AI的安全性、透明度和性能。&lt;/p&gt;
-&lt;h3 id=&#34;qwen2-vl&#34;&gt;&lt;strong&gt;Qwen2-VL&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2-vl/&#34;&gt;https://qwenlm.github.io/zh/blog/qwen2-vl/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通义千文团队开源了 Qwen2-VL-2B 和 Qwen2-VL-7B，并发布了 Qwen2-VL-72B 的 API。&lt;/p&gt;
-&lt;p&gt;72B在大部分指标上甚至超过了 GPT-4o 和 Claude3.5-Sonnet 等。&lt;/p&gt;
-&lt;p&gt;Qwen2-VL 可理解20分钟以上长视频，并将其用于基于视频的问答等应用。&lt;/p&gt;
-&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
-&lt;h3 id=&#34;deep-live-cam&#34;&gt;Deep Live Cam&lt;/h3&gt;
-&lt;p&gt;real time face swap and one-click video deepfake with only a single image&lt;/p&gt;
-&lt;p&gt;Github: &lt;a href=&#34;https://github.com/hacksider/Deep-Live-Cam&#34;&gt;https://github.com/hacksider/Deep-Live-Cam&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;moffee&#34;&gt;moffee&lt;/h3&gt;
-&lt;p&gt;moffee 是一个开源的幻灯片制作工具，可以将 Markdown 文档转换为简洁、专业的幻灯片。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>LLM 输出限制：Structured Outputs、受限编码和提示词工程</title>
-      <link>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
+      <link>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
       <pubDate>Wed, 21 Aug 2024 14:49:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
+      <guid>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
       <description>&lt;p&gt;在使用大型语言模型（LLM）时，我们常常面临一个挑战：如何从模型输出中准确提取自己所需的信息。例如，当我们希望模型输出 JSON 格式的数据时，由于模型生成的内容并不总是稳定，可能需要额外编写大量的正则表达式来匹配并提取其中的有效信息。然而，由于 LLM 的能力，导致其输出结构并不永远可靠。&lt;/p&gt;
 &lt;p&gt;现阶段， 让LLM按要求生成特定格式文本的主要方法有几种种：&lt;/p&gt;
 &lt;ul&gt;
@@ -652,9 +523,9 @@
     </item>
     <item>
       <title>翻译｜向下螺旋：《黑暗之魂》系列游戏中的后现代意识与佛教形而上学</title>
-      <link>http://localhost:1313/essay/%E5%90%91%E4%B8%8B%E8%9E%BA%E6%97%8B%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%82%E7%B3%BB%E5%88%97%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%90%8E%E7%8E%B0%E4%BB%A3%E6%84%8F%E8%AF%86%E4%B8%8E%E4%BD%9B%E6%95%99%E5%BD%A2%E8%80%8C%E4%B8%8A%E5%AD%A6/</link>
+      <link>https://niraya666.github.io/essay/%E5%90%91%E4%B8%8B%E8%9E%BA%E6%97%8B%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%82%E7%B3%BB%E5%88%97%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%90%8E%E7%8E%B0%E4%BB%A3%E6%84%8F%E8%AF%86%E4%B8%8E%E4%BD%9B%E6%95%99%E5%BD%A2%E8%80%8C%E4%B8%8A%E5%AD%A6/</link>
       <pubDate>Thu, 15 Aug 2024 20:53:00 +0800</pubDate>
-      <guid>http://localhost:1313/essay/%E5%90%91%E4%B8%8B%E8%9E%BA%E6%97%8B%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%82%E7%B3%BB%E5%88%97%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%90%8E%E7%8E%B0%E4%BB%A3%E6%84%8F%E8%AF%86%E4%B8%8E%E4%BD%9B%E6%95%99%E5%BD%A2%E8%80%8C%E4%B8%8A%E5%AD%A6/</guid>
+      <guid>https://niraya666.github.io/essay/%E5%90%91%E4%B8%8B%E8%9E%BA%E6%97%8B%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%82%E7%B3%BB%E5%88%97%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%90%8E%E7%8E%B0%E4%BB%A3%E6%84%8F%E8%AF%86%E4%B8%8E%E4%BD%9B%E6%95%99%E5%BD%A2%E8%80%8C%E4%B8%8A%E5%AD%A6/</guid>
       <description>&lt;h1 id=&#34;摘要&#34;&gt;摘要&lt;/h1&gt;
 &lt;p&gt;本文探讨了“黑暗之魂”系列游戏在当代日本社会中的意义定位。我认为，这款游戏可以被看作是当今文化潮流的象征，就像有人可能会把杰克·凯鲁亚克的《达摩流浪者》视为60年代反文化的象征一样。&lt;strong&gt;我主张，“黑暗之魂”系列通过寓言的方式表达了人们在一个日常行为和社会本身的意义都变得极不稳定的时代中生活的焦虑&lt;/strong&gt;。游戏采用碎片化的叙事方式，融合了佛教的形而上学思想，并以描绘一个曾经辉煌的王国在最后时刻挣扎的阴森哥特式美学为背景。这种对当代社会焦虑的表达，与日本的后现代主义话语密切相关。通过将这些游戏视为文本、环境和游戏系统之间的反馈回路，我把这些游戏的主要概念主题与大泽真幸提出的“后虚构时代”概念，以及东浩纪对御宅族的定义联系起来。&lt;/p&gt;
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
@@ -707,96 +578,20 @@
 &lt;p&gt;&lt;strong&gt;理想の時代の、大衆的な水準で黄金期は、1960年代である。もちろん、これは、高度成長期にあたる。この時期、たとえば、国民の圧倒的な大多数によって広範に欲求された家電製品が、大衆的理想に物質的な表現を与えた&amp;hellip;経済成長や科学・技術の進歩があったから理想が抱かれたのではなく、逆に、理想が可能的現実として広く（世界規模で）信憑されたがゆえに、経済が成長することができ、また科学や技術進歩していると感受されたのである。(Osawa, 44)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-07 月刊</title>
-      <link>http://localhost:1313/monthly/2024-07/</link>
-      <pubDate>Wed, 31 Jul 2024 09:46:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-07/</guid>
-      <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
-&lt;h3 id=&#34;llama31-发布&#34;&gt;Llama3.1 发布&lt;/h3&gt;
-&lt;p&gt;博客文章： &lt;a href=&#34;https://ai.meta.com/blog/meta-llama-3-1/&#34;&gt;https://ai.meta.com/blog/meta-llama-3-1/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;技术报告：&lt;a href=&#34;https://ai.meta.com/research/publications/the-llama-3-herd-of-models/&#34;&gt;https://ai.meta.com/research/publications/the-llama-3-herd-of-models/&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;405B，70B，和8B3个版本&lt;/li&gt;
-&lt;li&gt;在个别指标上，405B超过了GPT-4o&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://scontent-msp1-1.xx.fbcdn.net/v/t39.2365-6/451735590_1030734788570365_1093008500142144333_n.png?_nc_cat=100&amp;amp;ccb=1-7&amp;amp;_nc_sid=e280be&amp;amp;_nc_ohc=CJNPYAljD8MQ7kNvgE9-8ZQ&amp;amp;_nc_ht=scontent-msp1-1.xx&amp;amp;oh=00_AYAOhN3NhE0dscHn8iazBrc3JmSU5XM9gJ6gjmkqOuUZ3w&amp;amp;oe=66C00DBE&#34; alt=&#34;https://scontent-msp1-1.xx.fbcdn.net/v/t39.2365-6/451735590_1030734788570365_1093008500142144333_n.png?_nc_cat=100&amp;amp;ccb=1-7&amp;amp;_nc_sid=e280be&amp;amp;_nc_ohc=CJNPYAljD8MQ7kNvgE9-8ZQ&amp;amp;_nc_ht=scontent-msp1-1.xx&amp;amp;oh=00_AYAOhN3NhE0dscHn8iazBrc3JmSU5XM9gJ6gjmkqOuUZ3w&amp;amp;oe=66C00DBE&#34;  /&gt;
-&lt;/p&gt;
-&lt;h3 id=&#34;mistral-large-2&#34;&gt;Mistral Large 2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://mistral.ai/news/mistral-large-2407/&#34;&gt;https://mistral.ai/news/mistral-large-2407/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://mistral.ai/images/news/mistral-large-2407/mistral-large-2407-multiple.png&#34; alt=&#34;https://mistral.ai/images/news/mistral-large-2407/mistral-large-2407-multiple.png&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;卷起来了&lt;/p&gt;
-&lt;h3 id=&#34;openai-发布-gpt-4o-mini&#34;&gt;OpenAI 发布 GPT-4o mini&lt;/h3&gt;
-&lt;p&gt;更低的API价格，并取代chatGPT中的GPT-3.5 Turbo，成为免费使用的模型&lt;/p&gt;
-&lt;h3 id=&#34;sam-2-发布&#34;&gt;SAM-2 发布&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://ai.meta.com/blog/segment-anything-2/&#34;&gt;https://ai.meta.com/blog/segment-anything-2/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;GitHub：&lt;a href=&#34;https://github.com/facebookresearch/segment-anything-2?tab=readme-ov-file&#34;&gt;https://github.com/facebookresearch/segment-anything-2?tab=readme-ov-file&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;与SAM相比， 同时支持视频和图像的分割，更强大的能力&lt;/p&gt;
-&lt;h3 id=&#34;快手可灵更新&#34;&gt;快手可灵更新&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://klingai.kuaishou.com/&#34;&gt;https://klingai.kuaishou.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
-&lt;h3 id=&#34;knowledge_graph_maker&#34;&gt;knowledge_graph_maker&lt;/h3&gt;
-&lt;p&gt;采用LLM生成knowledge graph&lt;/p&gt;
-&lt;p&gt;GitHub： &lt;a href=&#34;https://github.com/rahulnyk/knowledge_graph_maker&#34;&gt;https://github.com/rahulnyk/knowledge_graph_maker&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;qwen2-audio&#34;&gt;Qwen2-Audio&lt;/h3&gt;
-&lt;p&gt;接受各种音频信号输入，并根据语音指令执行音频分析或直接响应文本&lt;/p&gt;
-&lt;p&gt;GitHub: &lt;a href=&#34;http://github.com/QwenLM/Qwen2-Audio&#34;&gt;github.com/QwenLM/Qwen2-Audio&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;llm-twin-course&#34;&gt;&lt;strong&gt;LLM Twin Course&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;An End-to-End Framework for Production-Ready LLM &amp;amp; RAG Systems by Building Your LLM Twin&lt;/p&gt;
-&lt;p&gt;Github：&lt;a href=&#34;http://github.com/decodingml/llm-twin-course&#34;&gt;github.com/decodingml/llm-twin-course&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;docker-proxy&#34;&gt;Docker-Proxy&lt;/h3&gt;
-&lt;p&gt;自建Docker镜像加速服务，基于官方Docker Registry 一键部署Docker、K8s、Quay、Ghcr、Mcr等镜像加速\管理服务。支持部署到Render\Koyeb&lt;/p&gt;
-&lt;p&gt;GitHub: &lt;a href=&#34;http://github.com/dqzboy/Docker-Proxy&#34;&gt;github.com/dqzboy/Docker-Proxy&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;mediago&#34;&gt;MediaGo&lt;/h3&gt;
-&lt;p&gt;支持流媒体下载、视频下载、m3u8 文件下载以及 B 站视频下载&lt;/p&gt;
-&lt;p&gt;GitHub：&lt;a href=&#34;https://github.com/caorushizi/mediago&#34;&gt;github.com/caorushizi/mediago&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;pptx2md&#34;&gt;&lt;strong&gt;PPTX2MD&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;a pptx to markdown converter&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>RAG工具箱：检索</title>
-      <link>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</link>
+      <link>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</link>
       <pubDate>Thu, 25 Jul 2024 17:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;If you want to make a good RAG tool that uses your documentation, you should start by making a search engine over those documents that would be good enough for a human to use themselves. This is likely something your organization has considered before, and if it doesn’t exist it’s because building a good search engine has traditionally been a significant undertaking.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;— from &lt;a href=&#34;https://blog.elicit.com/search-vs-vector-db/&#34;&gt;Build a search engine, not a vector DB&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-06 月刊</title>
-      <link>http://localhost:1313/monthly/2024-06/</link>
-      <pubDate>Sun, 30 Jun 2024 16:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-06/</guid>
-      <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
-&lt;h2 id=&#34;claude-35-sonnet&#34;&gt;&lt;strong&gt;Claude 3.5 Sonnet&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-3-5-sonnet&#34;&gt;https://www.anthropic.com/news/claude-3-5-sonnet&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;相比其前身 Claude 3 Opus，Claude 3.5 Sonnet 的运行速度提升了两倍，同时在多项基准测试中表现优异。此外，Claude 3.5 Sonnet 还引入了名为“Artifacts”的新功能，使用户可以在与 AI 对话的过程中实时查看和编辑生成的内容。&lt;/p&gt;
-&lt;h2 id=&#34;开源模型&#34;&gt;开源模型&lt;/h2&gt;
-&lt;h3 id=&#34;qwen-2&#34;&gt;Qwen 2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2/&#34;&gt;https://qwenlm.github.io/zh/blog/qwen2/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;一共开源了Qwen2-0.5B、Qwen2-1.5B、Qwen2-7B、Qwen2-57B-A14B以及&lt;strong&gt;Qwen2-72B&lt;/strong&gt; 5个模型**。&lt;strong&gt;增大了上下文长度支持，最高达到&lt;/strong&gt;128K** tokens（Qwen2-72B-Instruct）。 代码和数学能力显著提升。多个评测基准上的领先表现。 同时还开源了一个智能体解决方案，用于高效处理100万tokens级别的上下文： &lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen-agent-2405/&#34;&gt;**使用Qwen-Agent将上下文记忆扩展到百万量级&lt;/a&gt;。**&lt;/p&gt;
-&lt;h3 id=&#34;gemma2&#34;&gt;Gemma2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://developers.googleblog.com/en/gemma-family-and-toolkit-expansion-io-2024/&#34;&gt;https://developers.googleblog.com/en/gemma-family-and-toolkit-expansion-io-2024/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;包括两个主要版本，分别是 9 B参数和 27 B参数的模型。27B 的 Gemma 2 模型在多个基准测试中表现优异，超过了 Llama 3 70B 模型的性能。&lt;/p&gt;
-&lt;p&gt;Gemma 2 采用了新的架构设计，使其在推理时更加高效&lt;/p&gt;
-&lt;h3 id=&#34;nemotron-4-340b&#34;&gt;Nemotron-4 340B&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/&#34;&gt;https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;包含基础模型、指示模型和奖励模型的综合性数据生成流水线，用于训练大型语言模型。&lt;/p&gt;
-&lt;p&gt;提供了一种生成合成训练数据的新方法，旨在提升定制语言模型的性能和鲁棒性。&lt;/p&gt;
-&lt;h3 id=&#34;deepseek-coder-v2-代码模型&#34;&gt;DeepSeek-Coder-V2 代码模型&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct&#34;&gt;https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;开源的专家混合模型，性能媲美GPT4-Turbo，专为代码特定任务优化，支持多源高质量语料库预训练，显著提升编程和数学推理能力，支持338种编程语言，扩展上下文长度至128K。&lt;/p&gt;
-&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Perplexica&lt;/strong&gt;： 开源版本Perplexity+支持本地LLM。 GitHub：&lt;a href=&#34;http://github.com/ItzCrazyKns/Perplexica&#34;&gt;github.com/ItzCrazyKns/Perplexica&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;translation-agent&lt;/strong&gt;：吴恩达老师开源了一套 AI Agent 翻译工作流。通过LLM初步翻译， 而后对翻译结果进行反思，并提出改进建议，最后再根据意见进行最终版本的翻译。GitHub： &lt;a href=&#34;http://github.com/andrewyng/translation-agent&#34;&gt;github.com/andrewyng/translation-agent&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Streamer-Sales 销冠 —— 卖货主播 LLM 大模型&lt;/strong&gt;： 一个能够根据给定的商品特点从激发用户购买意愿角度出发进行商品解说的卖货主播大模型。 另外还集成了 LMDeploy 加速推理🚀、RAG检索增强生成 📚、TTS文字转语音🔊、数字人生成 🦸、 Agent 使用网络查询实时信息🌐、ASR 语音转文字🎙️。 GitHub：&lt;a href=&#34;http://github.com/PeterH0323/Streamer-Sales&#34;&gt;github.com/PeterH0323/Streamer-Sales&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Agent学习笔记： 如何验证模型的tool-using能力</title>
-      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
+      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
       <pubDate>Tue, 25 Jun 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
+      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
       <description>&lt;p&gt;本文将简单介绍如何评价LLM的tool-using 能力。&lt;/p&gt;
 &lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
 &lt;p&gt;在工具使用评估方面，过去的研究主要有以下几种思路：&lt;/p&gt;
@@ -833,32 +628,10 @@
 &lt;p&gt;顺带提一下Langchain 项目中有关Agent的tool-using能力测试的内容， 不过由于Langchain项目又臭又长，且有很大的局限性， 这里只讨论其思路。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>【冷门乐队推荐】Sistemas Inestables</title>
-      <link>http://localhost:1313/musik/intorduction_of_si/</link>
-      <pubDate>Sun, 09 Jun 2024 16:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/musik/intorduction_of_si/</guid>
-      <description>&lt;p&gt;Sistemas Inestables是来自智利圣地亚哥的器乐三重奏乐队。他们的音乐以行进和复杂的结构为特征，并伴随着噪音和氛围的层次。&lt;/p&gt;
-
-&lt;iframe style=&#34;border-radius:12px&#34; src=&#34;https://open.spotify.com/embed/artist/6RGPbHSp1Rby5CCzH7psxm?utm_source=generator&#34; width=&#34;100%&#34; height=&#34;352&#34; frameBorder=&#34;0&#34; allowfullscreen=&#34;&#34; allow=&#34;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;
-
-&lt;h3 id=&#34;风格与特点&#34;&gt;风格与特点&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;多元音乐风格&lt;/strong&gt;：Sistemas Inestables 融合了噪音、氛围、数学摇滚和后摇滚等多种音乐风格。他们通过混合装置、合成器和鼓机编织出复杂的音纹和和谐，形成了独特的音乐特点。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;即兴创作与实验&lt;/strong&gt;：乐队在创作过程中强调即兴演奏与实验，探索人与机器的对话和斗争，创造出既真实又虚拟、既模拟又数字、既人工又自然的音乐体验。&lt;/p&gt;
-&lt;h3 id=&#34;影响与灵感&#34;&gt;影响与灵感&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;主要影响&lt;/strong&gt;：Sistemas Inestables 受到多位艺术家的影响，包括 Godspeed You! Black Emperor, Akinetón Retard, Cómo Asesinar a Felipes, tortuganónima, Pol del Sur, Jaga Jazzist, Floating Points, Brandt Brauer Frick, Jon Hopkins, Nils Frahm, The Cinematic Orchestra, Battles, Tortoise, Do Make Say Think 等。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;灵感来源&lt;/strong&gt;：他们的创作灵感来自环境、过程、情感和挑战，音乐表现出对当下社会问题的深刻反思和回应，也是对当前事件的抗议和改变的呼吁。&lt;/p&gt;
-&lt;h3 id=&#34;成立与早期阶段&#34;&gt;成立与早期阶段&lt;/h3&gt;
-&lt;p&gt;2016年，Mauricio、Javier Hechenleitner 和 José Tomás 决定开始一个新项目。经过一年的实验，Sistemas Inestables 诞生。在创作首张专辑《O》的过程中，他们进行了大量即兴演奏，寻找三人之间的音乐连接，逐渐形成了他们的音乐风格。&lt;/p&gt;
-&lt;h3 id=&#34;早期演出与发展&#34;&gt;早期演出与发展&lt;/h3&gt;
-&lt;p&gt;2017年，乐队首次在圣地亚哥的 La Batuta 现场演出，并在哥伦比亚和阿根廷进行了巡演。2018年，他们参加了由 LeRockPsicophonique 唱片公司组织的首届音乐节，并在智利各地巡演。&lt;/p&gt;
-&lt;h3 id=&#34;国际巡演与成长&#34;&gt;国际巡演与成长&lt;/h3&gt;
-&lt;p&gt;2019年，乐队首次前往欧洲，在巴塞罗那的 Primavera Sound 音乐节和比利时的 Dunk! Fest 演出。年底，他们邀请长期担任乐队音响工程师的 Santiago Corvalán 加入乐队担任贝斯手。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>【钢琴谱分享】坂本龙一《for Johann》</title>
-      <link>http://localhost:1313/musik/for_johann/</link>
+      <link>https://niraya666.github.io/musik/for_johann/</link>
       <pubDate>Sat, 01 Jun 2024 12:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/musik/for_johann/</guid>
+      <guid>https://niraya666.github.io/musik/for_johann/</guid>
       <description>&lt;p&gt;上周看了《坂本龙一：Opus》，特别喜欢其中有一首未收录在之前作品中的曲目《for Johann》&lt;/p&gt;
 &lt;p&gt;第一反应是这首曲子可能是献给已故的冰岛作曲家Johann Johannsson，也是我最喜欢的音乐人之一&lt;/p&gt;
 &lt;p&gt;不过，我找不到确切的证据&lt;/p&gt;
@@ -867,13 +640,13 @@
 &lt;p&gt;试着弹一下这首歌， 顺带用AnthemScore扒了下谱子
 可能有些小错误，但我希望能将这份音乐传递下去&lt;/p&gt;
 &lt;p&gt;希望大家喜欢&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/1.png&#34; alt=&#34;&#34;  /&gt;
 
-&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/2.png&#34; alt=&#34;&#34;  /&gt;
 
-&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/3.png&#34; alt=&#34;&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/3.png&#34; alt=&#34;&#34;  /&gt;
 
-&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/music/for_johnann/4.png&#34; alt=&#34;&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/music/for_johnann/4.png&#34; alt=&#34;&#34;  /&gt;
 &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;He’s gone, but the music remains.&lt;/p&gt;
@@ -882,39 +655,10 @@
 &lt;p&gt;感谢教授的最后礼物， 也感谢同样被迫包场的另两位陌生人&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-05 月刊</title>
-      <link>http://localhost:1313/monthly/2024-05/</link>
-      <pubDate>Fri, 31 May 2024 13:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-05/</guid>
-      <description>&lt;h2 id=&#34;ai&#34;&gt;AI&lt;/h2&gt;
-&lt;h3 id=&#34;gpt4-o-发布&#34;&gt;GPT4-o 发布&lt;/h3&gt;
-&lt;p&gt;OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出&lt;/p&gt;
-&lt;h3 id=&#34;chatgpt数据分析&#34;&gt;ChatGPT数据分析&lt;/h3&gt;
-&lt;p&gt;最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。&lt;/p&gt;
-&lt;h3 id=&#34;mistral-7b-v03&#34;&gt;Mistral-7B-v0.3&lt;/h3&gt;
-&lt;p&gt;Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用&lt;/p&gt;
-&lt;h3 id=&#34;deepseek-v2&#34;&gt;DeepSeek-V2&lt;/h3&gt;
-&lt;p&gt;该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。&lt;/p&gt;
-&lt;h2 id=&#34;关注的开源项目&#34;&gt;关注的开源项目&lt;/h2&gt;
-&lt;h3 id=&#34;cover-agent&#34;&gt;&lt;strong&gt;Cover-Agent&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/Codium-ai/cover-agent&#34;&gt;Cover-Agent&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!&lt;/p&gt;
-&lt;p&gt;自动化和增强测试的生成，目前主要是单元测试&lt;/p&gt;
-&lt;h3 id=&#34;anynode-v01&#34;&gt;&lt;strong&gt;AnyNode v0.1&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/lks-ai/anynode&#34;&gt;AnyNode&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.&lt;/p&gt;
-&lt;h3 id=&#34;llamafs&#34;&gt;&lt;strong&gt;LlamaFS&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/iyaja/llama-fs&#34;&gt;LlamaFS&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频&lt;/p&gt;
-&lt;h3 id=&#34;dspy&#34;&gt;&lt;strong&gt;DSPy&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/stanfordnlp/dspy&#34;&gt;DSPy&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;DSPy is a framework for algorithmically optimizing LM prompts and weights&lt;/strong&gt;, especially when LMs are used one or more times within a pipeline. To use LMs to build a complex system &lt;em&gt;without&lt;/em&gt; DSPy, you generally have to: (1) break the problem down into steps, (2) prompt your LM well until each step works well in isolation, (3) tweak the steps to work well together, (4) generate synthetic examples to tune each step, and (5) use these examples to finetune smaller LMs to cut costs. Currently, this is hard and messy: every time you change your pipeline, your LM, or your data, all prompts (or finetuning steps) may need to change.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>泉州行记：古城漫步与味蕾之旅</title>
-      <link>http://localhost:1313/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>
+      <link>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</link>
       <pubDate>Thu, 23 May 2024 19:42:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</guid>
+      <guid>https://niraya666.github.io/travel/%E6%B3%89%E5%B7%9E%E8%A1%8C%E8%AE%B0%E5%8F%A4%E5%9F%8E%E6%BC%AB%E6%AD%A5%E4%B8%8E%E5%91%B3%E8%95%BE%E4%B9%8B%E6%97%85/</guid>
       <description>&lt;p&gt;2024年 夏&lt;/p&gt;
 &lt;p&gt;这是我第一次踏上泉州这片土地，虽然我是厦门人，已经快三十岁了，却一直没有机会来这座近在咫尺的城市。&lt;/p&gt;
 &lt;p&gt;泉州在我想象中，是一座充满历史韵味的地方，同时也被一些暴发户的繁荣所点缀。几年前，这座城市成功申遗，从此逐渐成为小众旅游的热门选择。泉州的古老街区、传统建筑和浓厚的文化氛围，让人忍不住想一探究竟。&lt;/p&gt;
@@ -923,39 +667,39 @@
 &lt;p&gt;泉州，我来了！&lt;/p&gt;
 &lt;h2 id=&#34;初印象&#34;&gt;初印象&lt;/h2&gt;
 &lt;p&gt;初到泉州，路上穿梭的电动车给我留下了深刻的第一印象。这些电动车在街头巷尾自由穿行，让我一度产生了身处越南的错觉。或许，这正是泉州的独特之处——在传统与现代之间，在历史与现实之中，找到一种和谐的平衡。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34; alt=&#34;50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34; alt=&#34;50F93B5D-5373-486C-A785-4BB341FD0679_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;作为古城，鲤城区似乎尽可能地保留着过去的模样。漫步在古城，却能产生一种记忆中的故乡的错觉，这一切似乎都太像了。&lt;/p&gt;
 &lt;p&gt;那些熟悉的景象和气息，让人倍感亲切。有人说过，“离开了，故乡才称之为故乡。”庆幸的是，故乡以另一种形式呈现在我的面前，尽管这不是我的故乡。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34; alt=&#34;458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34; alt=&#34;458F4F0B-B35C-4AC9-A447-0A38E69CC35D_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;在鲤城区，街头的小贩、古早风格的便利店、上了年纪的理发店，无时无刻不把我拉回到记忆的深处。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34; alt=&#34;218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34; alt=&#34;218DC3D6-D630-49FE-9796-64202907D7E3_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;人&#34;&gt;人 &lt;/h2&gt;
 &lt;p&gt;历史离不开人，特别是一个个普通人&lt;/p&gt;
 &lt;p&gt;正是这些普通人，构成了这座城市的血脉与灵魂。他们的日常琐事，他们的勤劳与坚韧，使得这座古老的城市充满了生机与活力。在他们的身上，我看到了泉州的过去、现在和未来。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34; alt=&#34;E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34; alt=&#34;E5CBBA91-C9A6-4F93-853D-009FD2D568C5_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34; alt=&#34;BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34; alt=&#34;BC390CC0-02B4-45A6-9266-1C7638C75D76_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34; alt=&#34;3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34; alt=&#34;3F165220-A99D-4E4F-92AB-94F572A0B231_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34; alt=&#34;0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34; alt=&#34;0DA901A1-F620-4B8A-A722-63E95EDAA536_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34; alt=&#34;46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34; alt=&#34;46A3B7FB-2306-4661-8B47-7DEDB3FF20AE_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;宗教&#34;&gt;宗教&lt;/h2&gt;
 &lt;p&gt;泉州作为海上丝绸之路的起点，在那辉煌的历史长河中，不仅是贸易和文化交流的中心，也吸引了大量的外来文化和宗教。佛教、道教、伊斯兰教、基督教等多种宗教在这里交汇融合，形成了独特的宗教文化景观。经过千年的融合与发展，这些宗教在泉州和谐共存，互相尊重，不分彼此。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34; alt=&#34;22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34; alt=&#34;22205648-89A8-41BE-B99C-56850A28D252_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34; alt=&#34;BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34; alt=&#34;BB0999F1-EDEA-4AA2-BA72-D6954CD12BA8_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34; alt=&#34;5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34; alt=&#34;5A6D2D91-D86E-4BBA-9248-272095117CE9_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;吃&#34;&gt;吃&lt;/h2&gt;
 &lt;h3 id=&#34;牛肉店&#34;&gt;牛肉店&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34; alt=&#34;FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34; alt=&#34;FEA7D1E0-80AD-45BC-B2F9-E3BF31A1130A_1_201_a.jpg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;阿秋牛排馆&lt;/p&gt;
 &lt;p&gt;牛排并不是传统意义上的steak，而是采用香料和咖喱炖煮而成的牛排骨。招牌牛排非常推荐，炖得非常软烂，入口即化，肉质瞬间脱骨。咖喱的香气与牛肉的原汁原味相得益彰，不会掩盖肉本身的美味。用汤汁拌饭，可谓是一绝。&lt;/p&gt;
@@ -973,11 +717,11 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;面线糊&#34;&gt;面线糊&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34; alt=&#34;FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34; alt=&#34;FC2DD610-927E-4E1E-829A-420ACD1A0418_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;平阿面线糊&lt;/p&gt;
 &lt;p&gt;我去的这家平阿面线糊，在周末早上8点左右已经挤满了人，足见其受欢迎程度。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34; alt=&#34;0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34; alt=&#34;0615C07D-8BA9-484A-BBFC-FF59E764955B_1_201_a.jpg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;与厦门地区加入了猪血、虾米的面线糊相比，泉州的面线糊更多地呈现出字面上的意思——就是很单纯的面线糊。所用的面线更加细碎，完全不用担心吃太慢会坨，因为这甚至可以用面线汤来形容。但喝上一口汤，你会发现这绝不是一碗普通的面线汤，在汤头上，店家一定是下足了功夫的。&lt;/p&gt;
 &lt;p&gt;食客可以根据自己的喜好添加额外的食材，这种模式在闽南地区基本相同。在泉州，根据我对本地食客的观察，基本上必加的食材有：醋肉、卤大肠、套肠、豆干等等，当然绝对不能忘了加一根油条。&lt;/p&gt;
@@ -994,7 +738,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;烧肉粽&#34;&gt;烧肉粽&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34; alt=&#34;F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b3%89%e5%b7%9e%e8%a1%8c%e8%ae%b0%ef%bc%9a%e5%8f%a4%e5%9f%8e%e6%bc%ab%e6%ad%a5%e4%b8%8e%e5%91%b3%e8%95%be%e4%b9%8b%e6%97%85-assets/F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34; alt=&#34;F2CA54E0-ADE3-42B7-A243-D90C9B559D7B_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;东街肉粽店&lt;/p&gt;
 &lt;p&gt;“烧”在闽南语中的含义既包含了特定的烹饪方法，也体现了食物的热度（与“烫”同音）。在“烧肉粽”中，“烧”不仅指将肉粽通过炖、煮、蒸等方式烹饪至入味，还强调了粽子食用时热乎的特质。&lt;/p&gt;
@@ -1003,62 +747,62 @@
     </item>
     <item>
       <title>大阪游记：时光交错下的日本探索</title>
-      <link>http://localhost:1313/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
+      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</link>
       <pubDate>Thu, 16 May 2024 16:32:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</guid>
+      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/</guid>
       <description>&lt;p&gt;2024-春夏之交 大阪&lt;/p&gt;
 &lt;p&gt;旅行时间2天3夜&lt;/p&gt;
 &lt;p&gt;在多邻国上学了快一年的散装日语，受到了看大河剧、日本电影和玩日本游戏的影响，我决定利用刚获得的三年多次入境签证，以及51假期的空闲时间，去日本看看。考虑到时间限制，我选择了关西的交通枢纽和经济中心——大阪，作为这次日本之行的第一站。&lt;/p&gt;
 &lt;p&gt;对于日本，尤其是大阪，我的第一印象是热门景区和场所人非常多。这主要是因为赶上了日本的10天黄金周，同时由于日元汇率低迷，大量外国人涌入日本消费和旅游。然而，在居民区，特别是我所住的浪速区，情况则大为不同，晚上和清晨几乎见不到几个人，给人一种非常萧条的感觉。中国人会说，这叫做“缺乏人气”。此外，随处可见的大乌鸦加深了这种萧条感。或许这也可能是宫崎英高在《黑魂》系列中乌鸦的灵感来源吧。在日本，乌鸦似乎被视为吉祥的象征。&lt;/p&gt;
 &lt;h2 id=&#34;游玩篇&#34;&gt;游玩篇&lt;/h2&gt;
 &lt;p&gt;出了民宿，我的第一站是不远处的难波八阪神社。这里以其狮子头形状的大狮子殿闻名，成为了一处热门的打卡地点。据说，这个狮子头具有驱除灾难和带来好运的力量。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34; alt=&#34;D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34; alt=&#34;D22F4C9A-23D6-472A-B359-5A9DC656DE03_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;经过两站地下铁，即可到达动物园前站， 这里是新世界的入口。&lt;/p&gt;
 &lt;p&gt;新世界，曾是日本向西方看齐、力图“脱亚入欧”时的产物。在20世纪初，日本大量吸纳西方文化元素，并在大阪建立了这一街区。然而时光流转，21世纪的今天，这里更像是一个保存良好的“旧世界”。街区内充满昭和时代的气息，从游戏厅、炸串店到浮夸的店面招牌，甚至粉红色影院，处处透露出时代的印记。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34; alt=&#34;6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34; alt=&#34;6DA5908E-2DB7-48B0-9254-7B189FB7848A_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34; alt=&#34;AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34; alt=&#34;AF7FD137-8145-4DE2-91D7-116908DC6985_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;作为泡沫经济时期产物， 粉红影院现在主要吸引了一部分中老年男性和非传统性别的人士。影院的“学生半价”标志显得有些讽刺，同时也透露出一种时代变迁的哀愁。鉴于这类场所的特殊性，不推荐旅行者单独前往。&lt;/p&gt;
 &lt;p&gt;新世界的标志性建筑通天阁，则见证了区域的多重历史。这座铁塔最初在1912年仿照巴黎的埃菲尔铁塔建造，但在二战中因为“献纳”政策而被拆除，用其材料支持军工。通天阁的现代版本建于1956年，为了迎接万博会而重建，塔身醒目地印有日立的广告，成为了大阪的新地标。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34; alt=&#34;6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34; alt=&#34;6C8F7905-91AC-46AA-BEC9-79AF3A362781_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34; alt=&#34;0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34; alt=&#34;0B1EA1C4-DFF3-4FDA-ACF8-EFDB75E7A3C0_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;西成区，与新世界仅一路之隔，是大阪的旧城区。这个区域以较复杂的治安情况、流浪汉的较高出现率，以及成人娱乐业而知名。其中，著名的酒吧一条街和在中文互联网上广为人知的飞田新地均位于此地。游客在此区域应特别小心，避免随意使用手机或拍照，以尊重当地文化和增加个人安全。&lt;/p&gt;
 &lt;p&gt;往新世界东北边走， 则能到达天王寺车站，商圈，以及以此命名此地的四天王寺。这里的天王寺车站作为从关西机场到大阪市区的两条主要电车线路之一JR西日本的终点站，同前面走过的西成区和新世界相比， 自然非常繁华。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34; alt=&#34;2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34; alt=&#34;2E815B2C-F25B-4CB4-A8FB-8D993265A540_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;天王寺站前&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34; alt=&#34;42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34; alt=&#34;42E69559-0A2E-4F15-8B70-C4CD15948641_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;JR西日本机场线之HARUKA， 以Hello- Kitty涂装著称。&lt;/p&gt;
 &lt;p&gt;日本的许多古迹因二战的轰炸和历史上的大地震而稀少，多数是在原址上修复或重建的。四天王寺就是这样的例子，它是日本历史悠久的寺庙之一，最初由飞鸟时期的圣德太子创建。虽然历经多次战火，我们今天所见的四天王寺主要是1957年后的重建。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34; alt=&#34;C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34; alt=&#34;C316DC6A-106E-494C-9926-6F5ED52B11E3_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34; alt=&#34;30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34; alt=&#34;30F7FC2C-4BFA-494F-A0EC-1C07AEBA1A5E_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34; alt=&#34;3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34; alt=&#34;3BFFEA31-F958-4239-99FD-23B5D8F91CFF_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;前往天王寺途中，偶遇的一心寺。&lt;/p&gt;
 &lt;p&gt;在天王寺附近，我意外地发现了一个旧书集市。在那里，我用400日元买到了一本1994年的旧书。虽然还有很多书我想买想看，但考虑到海关的限制和行李空间的限制，我只能忍痛放弃。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34; alt=&#34;A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34; alt=&#34;A0D7A507-9B4F-44D5-AA9C-6B771FA520D2_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34; alt=&#34;96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34; alt=&#34;96FA58A9-C223-40F4-9BC8-33B6A50D4BF0_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;不可免俗的道顿堀格利高小人&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34; alt=&#34;17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34; alt=&#34;17DC7E7D-8CD2-4FCD-A19E-EC4BCE661FF1_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;蟹道乐&lt;/p&gt;
 &lt;p&gt;夜幕降临， 抵达梅田，乘坐hep five摩天轮，体验大阪夜景。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34; alt=&#34;90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34; alt=&#34;90FE62D5-F899-43B8-BBB7-D44B242C2CEB_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;hep five摩天轮&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34; alt=&#34;5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34; alt=&#34;5C716546-81DE-4FE8-BEAF-EA239F27DAB4_1_201_a.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;第二天，前往大阪历史博物馆和大阪城， 以及shooping。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34; alt=&#34;FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%a4%a7%e9%98%aa%e6%b8%b8%e8%ae%b0/FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34; alt=&#34;FDCCBE76-D57A-4EC6-8D79-D19D9066390F_1_105_c.jpeg&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;大阪城&lt;/p&gt;
 &lt;p&gt;大阪城始建于1583年，由丰臣秀吉下令建造。大阪城的天守阁如今是博物馆，展示了丰臣秀吉的生平、战国时期的武器和铠甲，以及大阪城的历史变迁。&lt;/p&gt;
@@ -1066,9 +810,9 @@
     </item>
     <item>
       <title>RAG工具箱：文本分块</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
       <pubDate>Wed, 15 May 2024 16:11:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
       <description>&lt;h2 id=&#34;为什么要进行文本分块&#34;&gt;&lt;strong&gt;为什么要进行文本分块？&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。&lt;/p&gt;
 &lt;h2 id=&#34;如何进行文本分块&#34;&gt;&lt;strong&gt;如何进行文本分块&lt;/strong&gt;&lt;/h2&gt;
@@ -1123,15 +867,15 @@
     </item>
     <item>
       <title>基于大语言模型的 Agent：科普向</title>
-      <link>http://localhost:1313/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
+      <link>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
       <pubDate>Mon, 13 May 2024 16:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
       <description>&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
 &lt;p&gt;本文是基于最近组内技术交流的文字稿整理。&lt;/p&gt;
 &lt;h2 id=&#34;what-is-agent&#34;&gt;What is Agent？&lt;/h2&gt;
 &lt;p&gt;在探讨复杂的人工智能技术之前，让我们先回顾一下生活中的一个简单例子：扫地机器人。这种智能设备在房间中自主导航，避开障碍物，寻找最有效的清洁路径。它就是一个现实生活中的Agent——一个可以自主决策和行动的实体。&lt;/p&gt;
 &lt;p&gt;在人工智能领域，Agent指的是任何可以感知其环境并根据感知结果做出决策的实体。这些决策旨在完成某些任务或达成特定的目标。Agent的行为可以简单如游戏里的机器人，也可以复杂如自动驾驶汽车。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/Pasted%202024-05-10-14-58-28.webp&#34; alt=&#34;Pasted 2024-05-10-14-58-28.webp&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/Pasted%202024-05-10-14-58-28.webp&#34; alt=&#34;Pasted 2024-05-10-14-58-28.webp&#34;  /&gt;
 &lt;/p&gt;
 &lt;h3 id=&#34;开始于强化学习&#34;&gt;开始于强化学习&lt;/h3&gt;
 &lt;p&gt;在强化学习中， 我们往往能见到agent的概念。强化学习是一种机器学习方法，它教导Agent通过试错法找到最佳行动路径。就像训练小狗一样，我们通过奖励来引导Agent做出正确的决策。Agent的目标是在与环境的交互中寻找最优策略。理想情况下，如果Agent能够获取足够多的真实环境数据，它就能找到最佳解决方案。然而，由于真实环境的复杂性，完全模拟真实世界是不现实的。&lt;/p&gt;
@@ -1141,7 +885,7 @@
 &lt;p&gt;相较于基于强化学习的Agent，人类的优势在于我们天生具备的记忆能力和逻辑判断能力，甚至包括反思和从经验中学习的能力。这些能力使得我们能够通过极少的试错迅速适应和掌握新技能。&lt;/p&gt;
 &lt;p&gt;语言模型（LLMs）为AI领域带来了革命性的变化。LLMs通过其深度学习的新范式，以及在思维链和自然语言理解方面的强大能力，预示着Agent将拥有更强大的学习和迁移能力。这种能力的提升将使得创建广泛应用且实用的Agent成为可能。&lt;/p&gt;
 &lt;p&gt;虽然LLM是否真正具备了推理能力仍然存疑，但LLM的出现无疑改变了很多。以COT（Chain of Thought）为例，这种模型通过打印解题的中间步骤，加强了在数学和逻辑推理方面的能力，减少了幻觉的出现。这一突破性的工作揭示了LLM在不同场景下的强大&amp;quot;in-context learning&amp;quot;能力，以及其在未经微调的情况下的泛化能力。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;将LLM视为AI Agent的大脑，为自动化系统提供了一种全新的构思方式。这种基于LLM的agent系统综合了规划、记忆、工具使用和行动的能力，通过API调用与外部世界互动，显示出了前所未有的灵活性和效率。&lt;/p&gt;
 &lt;p&gt;根据&lt;a href=&#34;https://lilianweng.github.io/posts/2023-06-23-agent/&#34;&gt;LLM Powered Autonomous Agents&lt;/a&gt;一文对LLM-based agent系统的定义， agent需要具备的基本能力：规划+记忆+工具+行动。&lt;/p&gt;
@@ -1167,88 +911,24 @@
 &lt;h2 id=&#34;agent的规划和思维过程&#34;&gt;&lt;strong&gt;Agent的规划和思维过程&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;AI Agent在处理复杂任务时，通过将大任务分解成小任务来提高效率。此外，自我反思能力允许Agent从过去的行动中学习，通过评估过去的决策来改善未来的表现。&lt;/p&gt;
 &lt;p&gt;CoT，Chain of Thought， &lt;a href=&#34;https://arxiv.org/abs/2201.11903&#34;&gt;Wei et al. 2022&lt;/a&gt;。 即“思维链”，是一种使Agent逐步思考的方法。它通过要求模型展示解决问题的中间步骤来加强其逻辑推理能力，从而提高决策的质量和准确性。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%9f%ba%e4%ba%8e%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%20Agent%ef%bc%9a%e7%a7%91%e6%99%ae%e5%90%91-assets/%e6%88%aa%e5%b1%8f2024-05-08%2015.37.21.png&#34; alt=&#34;截屏2024-05-08 15.37.21.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Tree of Thoughts， ToT&lt;/strong&gt;  (&lt;a href=&#34;https://arxiv.org/abs/2305.10601&#34;&gt;Yao et al. 2023&lt;/a&gt;)&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-04 月刊</title>
-      <link>http://localhost:1313/monthly/2024-04/</link>
-      <pubDate>Tue, 30 Apr 2024 19:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-04/</guid>
-      <description>&lt;h2 id=&#34;值得关注的模型&#34;&gt;值得关注的模型&lt;/h2&gt;
-&lt;p&gt;mistralai/Mixtral-8x22B-Instruct-v0.1&lt;/p&gt;
-&lt;p&gt;CohereForAI/c4ai-command-r-plus&lt;/p&gt;
-&lt;p&gt;meta-llama/Meta-Llama-3-8B-Instruct&lt;/p&gt;
-&lt;p&gt;meta-llama/Meta-Llama-3-70B-Instruct&lt;/p&gt;
-&lt;p&gt;microsoft/Phi-3-mini-128k-instruct&lt;/p&gt;
-&lt;p&gt;gpt2-chatbot: 一个神秘的模型&lt;/p&gt;
-&lt;h3 id=&#34;基础建设&#34;&gt;基础建设&lt;/h3&gt;
-&lt;p&gt;Groq提供了免费且非常高速的API服务&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://console.groq.com/docs/quickstart&#34;&gt;GroqCloud&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h2&gt;
-&lt;h3 id=&#34;cleanlab&#34;&gt;Cleanlab&lt;/h3&gt;
-&lt;p&gt;RAG 基础数据质量处理组件 &amp;ndash; 自动发现数据问题并进行修复，提高数据质量和价值&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/cleanlab/cleanlab&#34;&gt;https://github.com/cleanlab/cleanlab&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;支持任何数据，包括图片、文本、音频、表格等&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;检测数据标注问题、改进、训练模型、价值提升&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;支持任何框架或模型：OpenAI、HuggingFace、PyTorch&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;jina-reader&#34;&gt;jina reader&lt;/h3&gt;
-&lt;p&gt;抓取URL，将正文转换为良好的Markdown格式的工具&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://jina.ai/reader/&#34;&gt;Reader API&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;一些类似的工具，by ：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://twitter.com/9hills/status/1779830990598549998&#34;&gt;九原客 on Twitter / X&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.co/buDyt3ixUJ&#34;&gt;https://markdowndown.vercel.app&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Web-scraper(open source):&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.co/inuuZWQlwt&#34;&gt;https://github.com/zzzgydi/webscraper…&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;code-html-to-markdown:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.co/PsxPWBkOKf&#34;&gt;https://github.com/SivilTaram/code-html-to-markdown…&lt;/a&gt;（偏向于更好地处理代码块）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/JimLiu/gpt-api&#34;&gt;https://github.com/JimLiu/gpt-api&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.firecrawl.dev/?x&#34;&gt;https://www.firecrawl.dev/?x&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;chainforge&#34;&gt;&lt;strong&gt;ChainForge&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;An open-source visual programming environment for battle-testing prompts to LLMs.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/ianarawjo/ChainForge?tab=readme-ov-file#installation&#34;&gt;GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;ragflow&#34;&gt;&lt;strong&gt;RAGFlow&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;一个RAG框架&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/infiniflow/ragflow/blob/main/README_zh.md&#34;&gt;https://github.com/infiniflow/ragflow/blob/main/README_zh.md&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;亮点： 分块后的可视化和修改功能&lt;/p&gt;
-&lt;h3 id=&#34;supermemory&#34;&gt;&lt;strong&gt;SuperMemory&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;一个第二大脑项目， 提供插件保存网页作为memory和基于memory对话的功能。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Agent学习笔记：OpenAI Function Calling完全指南</title>
-      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Sun, 28 Apr 2024 15:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;h2 id=&#34;写在最开始&#34;&gt;写在最开始&lt;/h2&gt;
 &lt;p&gt;当我们在讨论基于大型语言模型（LLM-based）的智能代理（agent）时，我们究竟在谈论什么？根据Lilian W在其文章《LLM Powered Autonomous Agents》中的讨论，一个智能代理需要具备几个核心能力：规划（Planning）、记忆（Memory）、以及工具使用（Tool use）。特别地，工具使用方面的进展，得益于OpenAI在API中提供的function calling功能，为我们开启了新的可能性。&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://lilianweng.github.io/posts/2023-06-23-agent/agent-overview.png&#34; alt=&#34;AGI&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;OpenAI function calling，作为智能代理与外部工具交互的基本方式，对于每位从业者来说都是必备技能。随着技术的发展，我们期望的不只是能与我们对话的LLM，而是能够辅助我们使用各种工具、做出决策的智能伙伴。&lt;/p&gt;
 &lt;p&gt;不过需要特别指出的是，最近OpenAI在Chat Completions API中已经废弃了“函数（function）”的使用，转而采用“工具（tool）”。这一变更旨在拓宽LLM集成的功能范围，为更复杂的交互模式铺平道路，如构建能够相互作用的多代理系统。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.16.54.png&#34; alt=&#34;截屏2024-03-28 15.16.54.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.16.54.png&#34; alt=&#34;截屏2024-03-28 15.16.54.png&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.17.38.png&#34; alt=&#34;截屏2024-03-28 15.17.38.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.17.38.png&#34; alt=&#34;截屏2024-03-28 15.17.38.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;尽管如此，由于语言习惯的原因，本文中仍然会使用function calling的术语来描述OpenAI的tool using功能，因为“function calling”的说法已经深入人心了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;核心内容概览&lt;/strong&gt;&lt;/p&gt;
@@ -1290,9 +970,9 @@
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://niraya666.github.io/about/</link>
       <pubDate>Sun, 21 Apr 2024 12:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://niraya666.github.io/about/</guid>
       <description>&lt;h3 id=&#34;个人介绍&#34;&gt;个人介绍&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;后现代人类&lt;/li&gt;
@@ -1306,10 +986,10 @@
     </item>
     <item>
       <title>RAG工具箱：文档解析与表格处理</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
       <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/post-cover/rag_toolkits_2.JPG&#34; alt=&#34;image&#34;  /&gt;
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/post-cover/rag_toolkits_2.JPG&#34; alt=&#34;image&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;引言&#34;&gt;&lt;strong&gt;引言&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。&lt;/p&gt;
@@ -1468,9 +1148,9 @@
     </item>
     <item>
       <title>游记：2024-春 昆明大理</title>
-      <link>http://localhost:1313/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</link>
+      <link>https://niraya666.github.io/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</link>
       <pubDate>Wed, 10 Apr 2024 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</guid>
+      <guid>https://niraya666.github.io/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/</guid>
       <description>&lt;h1 id=&#34;游记2024-春-昆明大理&#34;&gt;游记：2024-春 昆明大理&lt;/h1&gt;
 &lt;h2 id=&#34;昆明&#34;&gt;昆明&lt;/h2&gt;
 &lt;h3 id=&#34;时间似乎停止了&#34;&gt;时间似乎停止了&lt;/h3&gt;
@@ -1537,13 +1217,13 @@
     </item>
     <item>
       <title>RAG工具箱：评估RAG系统的方法论</title>
-      <link>http://localhost:1313/posts/rag_toolkit_eval/</link>
+      <link>https://niraya666.github.io/posts/rag_toolkit_eval/</link>
       <pubDate>Mon, 08 Apr 2024 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag_toolkit_eval/</guid>
+      <guid>https://niraya666.github.io/posts/rag_toolkit_eval/</guid>
       <description>&lt;h2 id=&#34;写在最前面&#34;&gt;写在最前面&lt;/h2&gt;
 &lt;p&gt;在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。&lt;/p&gt;
 &lt;p&gt;此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/rag_toolkits/1_1.png&#34; alt=&#34;from openAI devday&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/rag_toolkits/1_1.png&#34; alt=&#34;from openAI devday&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;在我们深入探索RAG系统提升的各种方法之前，有一个基本问题需要解决：我们如何准确地评估一个RAG系统的性能？这就像是在机器学习或深度学习任务中没有给定的测试集和评价标准，我们难以判断实验的成功与否。&lt;/p&gt;
 &lt;p&gt;因此，本系列的第一篇文章将聚焦于介绍RAG系统的评价方法、相关指标以及测试框架，为我们接下来的探索设定明确的标准和目标。&lt;/p&gt;
@@ -1586,50 +1266,10 @@
 &lt;p&gt;在评估数据集时，不必依赖人工标注的标准答案，而是通过底层的大语言模型 (LLM) 来进行评估。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2024-03 月刊</title>
-      <link>http://localhost:1313/monthly/2024-03/</link>
-      <pubDate>Sun, 31 Mar 2024 19:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-03/</guid>
-      <description>&lt;h2 id=&#34;ai大纪事&#34;&gt;AI大纪事&lt;/h2&gt;
-&lt;h3 id=&#34;suno-v3-发布&#34;&gt;Suno V3 发布&lt;/h3&gt;
-&lt;p&gt;V3版本带来了卓越的音频品质、更丰富的音乐风格和类型选择，以及在准确响应创作提示方面的显著提升。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更好的音频质量&lt;/li&gt;
-&lt;li&gt;更多的风格和流派&lt;/li&gt;
-&lt;li&gt;改进的提示遵循，包括更少的幻觉和更优美的结尾&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.suno.ai/blog/v3&#34;&gt;Suno V3&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;metagpt-更新v08&#34;&gt;MetaGPT 更新V0.8&lt;/h3&gt;
-&lt;p&gt;V0.8版本的主要亮点包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;数据解释器的引入&lt;/strong&gt;：这一新特性大大增强了MetaGPT的数据处理能力，为用户分析和解释数据提供了强大的支持。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;与RAG模块的集成&lt;/strong&gt;：通过与RAG模块的集成，MetaGPT现在能够更好地理解和处理用户的需求，提高了生成内容的相关性和准确性。RAG底层使用的是llama_index&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考其&lt;a href=&#34;https://github.com/geekan/MetaGPT&#34;&gt;GitHub页面&lt;/a&gt;和&lt;a href=&#34;https://docs.deepwisdom.ai/&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;nvidia-gtc大会&#34;&gt;Nvidia GTC大会&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;新一代Nvidia B200 GPU&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;首个ai程序员devin-发布&#34;&gt;首个AI程序员Devin 发布&lt;/h3&gt;
-&lt;p&gt;Devin是由Cognition公司开发的全球首个完全自主的AI软件工程师，具备多项先进的编程技能，包括自主学习新技术、全面掌握开发工具、自动化代码修复和错误检测、以及端到端应用的构建和部署能力。&lt;/p&gt;
-&lt;p&gt;不过目前，Devin还处于内测阶段，对公众的完全开放还需要一段时间。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cognition-labs.com/&#34;&gt;Cognition的官网&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;anthropic发布claude-3&#34;&gt;Anthropic发布Claude 3&lt;/h3&gt;
-&lt;p&gt;Anthropic发布了其最新的AI模型系列Claude 3，包括三个子模型：Claude 3 Haiku、Claude 3 Sonnet和Claude 3 Opus，其中Opus是最强大的。Claude 3 在多项基准测试中超越了GPT-4和Gemini Ultra，特别是在数学推理（GSM-8k）和专家级知识（MMLU）方面，显示出其领先的能力。于此同时，Claude 3 Opus 首次 Chatbot Arena 排行榜上超越了 GPT-4&lt;/p&gt;
-&lt;h2 id=&#34;推荐的开源项目&#34;&gt;推荐的开源项目&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/harry0703/MoneyPrinterTurbo/tree/main&#34;&gt;**MoneyPrinterTurbo&lt;/a&gt; : 利用大模型，一键生成短视频**&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;github.com/NanmiCoder/MediaCrawler&#34;&gt;MediaCrawler&lt;/a&gt;: 自媒体爬虫工具, 支持小红书、抖音、快手、B 站、微博等自媒体平台的视频、图片、评论、点赞、转发信息抓取。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;github.com/BingyanStudio/LapisCV&#34;&gt;LapisCV&lt;/a&gt;: 基于 Markdown 格式的简历模版&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;github.com/wdndev/llm_interview_note?tab=readme-ov-file&#34;&gt;LLMs Interview 八股文&lt;/a&gt;： 大模型面试题&lt;/p&gt;
-&lt;h2 id=&#34;影音记录&#34;&gt;影音记录&lt;/h2&gt;
-&lt;h3 id=&#34;本月精选歌单&#34;&gt;本月精选歌单&lt;/h3&gt;
-&lt;iframe style=&#34;border-radius:12px&#34; src=&#34;https://open.spotify.com/embed/playlist/0CDpNxmeMlZ44uEPjjj0J6?utm_source=generator&#34; width=&#34;100%&#34; height=&#34;460&#34; frameBorder=&#34;0&#34; allowfullscreen=&#34;&#34; allow=&#34;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;
-&lt;h3 id=&#34;本月live记录&#34;&gt;本月Live记录&lt;/h3&gt;
-&lt;p&gt;0307  Explosions in the Sky&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>My First Post: Hello-World!</title>
-      <link>http://localhost:1313/posts/helloworld/</link>
+      <link>https://niraya666.github.io/posts/helloworld/</link>
       <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/helloworld/</guid>
+      <guid>https://niraya666.github.io/posts/helloworld/</guid>
       <description>&lt;h1 id=&#34;hello-world&#34;&gt;Hello-World!&lt;/h1&gt;
 &lt;p&gt;欢迎来到我的博客&lt;/p&gt;
 &lt;p&gt;在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。&lt;/p&gt;
