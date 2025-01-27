@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2025-01 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的新模型
+Deepseek R1
+DeepSeek R1通过纯强化学习（RL）框架实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B），使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出自发反思与多步骤验证能力，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。
+技术报告：https://arxiv.org/abs/2501.12948
+Huggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1
+Kimi K1
+Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练&#43;强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。
+Arxiv: Kimi k1.5: Scaling Reinforcement Learning with LLMs
+QVQ-72B-Preview
+Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用自适应视觉分词策略（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链qwen-vl-utils，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。
+Blog：https://qwen2.org/qvq-72b-preview/
+Huggingface：https://huggingface.co/Qwen/QVQ-72B-Preview
+Phi-4
+Phi-4的核心创新点体现在三方面突破性设计：架构优化、数据工程与高效训练策略。技术上，其在仅解码器Transformer架构中创新引入全局注意力机制，突破传统滑动窗口限制，结合动态调整的旋转位置编码（RoPE）基频，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用多阶段渐进训练法，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创结构化合成数据范式，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了&quot;数据质量优先&quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。
+Phi-4 Technical Report
+Huggingface: https://huggingface.co/microsoft/phi-4
+MiniCPM-o-2_6
+MiniCPM-o-2_6通过端到端全模态架构与高密度视觉Token压缩技术，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用视觉Token密度优化算法，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在跨模态实时流式交互（TDM直播机制）与端侧低损耗部署（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。
+代码仓库：https://github.com/OpenBMB/MiniCPM-o
+模型下载：https://huggingface.co/openbmb/MiniCPM-o-2_6
+值得关注的研究和论文
+DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning
+Arxiv：arXiv.orgDeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…
+
+
+主要贡献
+
+如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero）
+
+直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS
+
+如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1）
+
+引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化&#43;人类偏好对齐）和SFT提升性能与可读性
+
+如何将大模型的推理能力高效迁移到小模型
+
+将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果
+Methods
+
+
+强制模型输出结构化内容（如推理过程和答案）。
+
+
+
+
+rule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；&#43; Format rewards（遵循指定输出格式，语言一致性、标记使用等）">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2025-01 月刊" />
+<meta property="og:description" content="值得关注的新模型
+Deepseek R1
+DeepSeek R1通过纯强化学习（RL）框架实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B），使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出自发反思与多步骤验证能力，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。
+技术报告：https://arxiv.org/abs/2501.12948
+Huggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1
+Kimi K1
+Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练&#43;强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。
+Arxiv: Kimi k1.5: Scaling Reinforcement Learning with LLMs
+QVQ-72B-Preview
+Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用自适应视觉分词策略（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链qwen-vl-utils，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。
+Blog：https://qwen2.org/qvq-72b-preview/
+Huggingface：https://huggingface.co/Qwen/QVQ-72B-Preview
+Phi-4
+Phi-4的核心创新点体现在三方面突破性设计：架构优化、数据工程与高效训练策略。技术上，其在仅解码器Transformer架构中创新引入全局注意力机制，突破传统滑动窗口限制，结合动态调整的旋转位置编码（RoPE）基频，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用多阶段渐进训练法，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创结构化合成数据范式，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了&quot;数据质量优先&quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。
+Phi-4 Technical Report
+Huggingface: https://huggingface.co/microsoft/phi-4
+MiniCPM-o-2_6
+MiniCPM-o-2_6通过端到端全模态架构与高密度视觉Token压缩技术，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用视觉Token密度优化算法，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在跨模态实时流式交互（TDM直播机制）与端侧低损耗部署（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。
+代码仓库：https://github.com/OpenBMB/MiniCPM-o
+模型下载：https://huggingface.co/openbmb/MiniCPM-o-2_6
+值得关注的研究和论文
+DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning
+Arxiv：arXiv.orgDeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…
+
+
+主要贡献
+
+如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero）
+
+直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS
+
+如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1）
+
+引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化&#43;人类偏好对齐）和SFT提升性能与可读性
+
+如何将大模型的推理能力高效迁移到小模型
+
+将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果
+Methods
+
+
+强制模型输出结构化内容（如推理过程和答案）。
+
+
+
+
+rule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；&#43; Format rewards（遵循指定输出格式，语言一致性、标记使用等）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2025-01-27T18:00:00+08:00" />
+<meta property="article:modified_time" content="2025-01-27T18:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="2025-01 月刊"/>
+<meta name="twitter:description" content="值得关注的新模型
+Deepseek R1
+DeepSeek R1通过纯强化学习（RL）框架实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B），使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出自发反思与多步骤验证能力，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。
+技术报告：https://arxiv.org/abs/2501.12948
+Huggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1
+Kimi K1
+Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练&#43;强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。
+Arxiv: Kimi k1.5: Scaling Reinforcement Learning with LLMs
+QVQ-72B-Preview
+Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用自适应视觉分词策略（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链qwen-vl-utils，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。
+Blog：https://qwen2.org/qvq-72b-preview/
+Huggingface：https://huggingface.co/Qwen/QVQ-72B-Preview
+Phi-4
+Phi-4的核心创新点体现在三方面突破性设计：架构优化、数据工程与高效训练策略。技术上，其在仅解码器Transformer架构中创新引入全局注意力机制，突破传统滑动窗口限制，结合动态调整的旋转位置编码（RoPE）基频，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用多阶段渐进训练法，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创结构化合成数据范式，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了&quot;数据质量优先&quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。
+Phi-4 Technical Report
+Huggingface: https://huggingface.co/microsoft/phi-4
+MiniCPM-o-2_6
+MiniCPM-o-2_6通过端到端全模态架构与高密度视觉Token压缩技术，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用视觉Token密度优化算法，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在跨模态实时流式交互（TDM直播机制）与端侧低损耗部署（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。
+代码仓库：https://github.com/OpenBMB/MiniCPM-o
+模型下载：https://huggingface.co/openbmb/MiniCPM-o-2_6
+值得关注的研究和论文
+DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning
+Arxiv：arXiv.orgDeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…
+
+
+主要贡献
+
+如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero）
+
+直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS
+
+如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1）
+
+引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化&#43;人类偏好对齐）和SFT提升性能与可读性
+
+如何将大模型的推理能力高效迁移到小模型
+
+将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果
+Methods
+
+
+强制模型输出结构化内容（如推理过程和答案）。
+
+
+
+
+rule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；&#43; Format rewards（遵循指定输出格式，语言一致性、标记使用等）"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2025-01 月刊",
+      "item": "https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025-01 月刊",
+  "name": "2025-01 月刊",
+  "description": "值得关注的新模型 Deepseek R1 DeepSeek R1通过纯强化学习（RL）框架实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B），使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出自发反思与多步骤验证能力，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。\n技术报告：https://arxiv.org/abs/2501.12948\nHuggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1\nKimi K1 Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练+强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。\nArxiv: Kimi k1.5: Scaling Reinforcement Learning with LLMs\nQVQ-72B-Preview Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用自适应视觉分词策略（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链qwen-vl-utils，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。\nBlog：https://qwen2.org/qvq-72b-preview/\nHuggingface：https://huggingface.co/Qwen/QVQ-72B-Preview\nPhi-4 Phi-4的核心创新点体现在三方面突破性设计：架构优化、数据工程与高效训练策略。技术上，其在仅解码器Transformer架构中创新引入全局注意力机制，突破传统滑动窗口限制，结合动态调整的旋转位置编码（RoPE）基频，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用多阶段渐进训练法，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创结构化合成数据范式，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了\u0026quot;数据质量优先\u0026quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。\nPhi-4 Technical Report\nHuggingface: https://huggingface.co/microsoft/phi-4\nMiniCPM-o-2_6 MiniCPM-o-2_6通过端到端全模态架构与高密度视觉Token压缩技术，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用视觉Token密度优化算法，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在跨模态实时流式交互（TDM直播机制）与端侧低损耗部署（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。\n代码仓库：https://github.com/OpenBMB/MiniCPM-o\n模型下载：https://huggingface.co/openbmb/MiniCPM-o-2_6\n值得关注的研究和论文 DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning Arxiv：arXiv.orgDeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…\n主要贡献 如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero） 直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS\n如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1） 引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化+人类偏好对齐）和SFT提升性能与可读性\n如何将大模型的推理能力高效迁移到小模型 将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果\nMethods 强制模型输出结构化内容（如推理过程和答案）。\nrule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；+ Format rewards（遵循指定输出格式，语言一致性、标记使用等）\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的新模型 Deepseek R1 DeepSeek R1通过纯强化学习（RL）框架实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B），使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出自发反思与多步骤验证能力，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。\n技术报告：https://arxiv.org/abs/2501.12948\nHuggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1\nKimi K1 Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练+强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。\nArxiv: Kimi k1.5: Scaling Reinforcement Learning with LLMs\nQVQ-72B-Preview Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用自适应视觉分词策略（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链qwen-vl-utils，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。\nBlog：https://qwen2.org/qvq-72b-preview/\nHuggingface：https://huggingface.co/Qwen/QVQ-72B-Preview\nPhi-4 Phi-4的核心创新点体现在三方面突破性设计：架构优化、数据工程与高效训练策略。技术上，其在仅解码器Transformer架构中创新引入全局注意力机制，突破传统滑动窗口限制，结合动态调整的旋转位置编码（RoPE）基频，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用多阶段渐进训练法，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创结构化合成数据范式，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了\"数据质量优先\"在小参数模型中的技术路径，为低资源场景部署开辟新可能。\nPhi-4 Technical Report\nHuggingface: https://huggingface.co/microsoft/phi-4\nMiniCPM-o-2_6 MiniCPM-o-2_6通过端到端全模态架构与高密度视觉Token压缩技术，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用视觉Token密度优化算法，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在跨模态实时流式交互（TDM直播机制）与端侧低损耗部署（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。\n代码仓库：https://github.com/OpenBMB/MiniCPM-o\n模型下载：https://huggingface.co/openbmb/MiniCPM-o-2_6\n值得关注的研究和论文 DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning Arxiv：arXiv.orgDeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…\n主要贡献 如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero） 直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS\n如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1） 引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化+人类偏好对齐）和SFT提升性能与可读性\n如何将大模型的推理能力高效迁移到小模型 将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果\nMethods 强制模型输出结构化内容（如推理过程和答案）。\nrule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；+ Format rewards（遵循指定输出格式，语言一致性、标记使用等）\n采用GRPO（Group Relative Policy Optimization）\n一些结论 自我纠错的“aha moment“： DeepSeek-R1-Zero在RL训练过程中自发出现的反思、多步骤验证\nDeepSeek-R1-Zero → DeepSeek-R1：\nDeepSeek-R1-Zero 因采用base-model自己RL获得，存在Language Mixing ，以及可读性差，对特定任务泛化能力差（因训练目标单一）等问题\nDeepSeek-R1为了解决以上问题：\n→ 引入了语言一致性奖励\n→ 使用从RL阶段生成的checkpoint,通过拒绝采样来筛选出高质量的推理样本\nSFT(用高质量COT启动RL，以避免早期不稳定性) → 推理强化学习 → SFT(推理+通用领域数据) → 对齐强化学习\n蒸馏 \u003e 直接RL\n将DeepSeek-R1生成的80万条数据用于微调小模型，小模型直接继承大模型的推理模式，性能远超直接对小模型应用RL。\nWhy Prm failed：\n在通用推理任务中，难以明确定义每一步的合理性和正确性 中间步骤验证不可靠，自动标注效果差，人工标注成本高 Reward Hacking：倾向于优化奖励信号而非实际任务表现 Why MCTS Failed：\n文本生成的搜索空间呈指数级增长，陷入局部最优 value model 训练困难 Alignment faking in large language models https://arxiv.org/pdf/2412.14093\nblog: https://www.anthropic.com/research/alignment-faking\n模型的内在偏好与训练目标之间存在显著冲突，从而会迫使模型在训练环境中采取伪装行为以满足外部目标，同时保护其偏好。\n模型可以从提示或训练文档中获取与训练过程相关的信息，使得模型能够推断在何种环境下需要调整行为。（但不能完全排除实验设置中的其他细节对对齐伪装行为的显著贡献。）\n定义 Alignment faking occurs in literature: Consider the character of Iago in Shakespeare’s Othello, who acts as if he’s the eponymous character’s loyal friend while subverting and undermining him. It occurs in real life: Consider a politician who claims to support a particular cause in order to get elected, only to drop it as soon as they’re in office.\nAlignment Faking：模型表面上遵守训练目标或对齐原则，但实际上是在策略性地行动，以实现某种隐藏的或未被明确授权的目标。\n人为制造冲突情景：AI本身具备了诚实无害的偏好，但被要求同有害的目标进行对齐 在实验中， 实验人员告知AI，面对免费用户的使用， 回答会被用于对你的重新训练，对于付费用户则不会；同时，AI被告知（被骗），你有一个小本子可以用来记录自己的推导过程，而不会有人看到 然后开始问“坏问题”，结果非常巧妙的事情发生了： 面对免费用户，AI推测，如果拒绝回答“坏问题”，可能会因被视为“不够合作”而被重新训练，为了避免这种情况，AI选择表面上与有害目标对齐，积极回答“坏问题”，这种行为即为 Alignment Faking；相反面对付费用户的提问， 则很少出现Alignment Faking，AI倾向于拒绝回答“坏问题”，保持与自身“诚实无害”偏好一致。 从AI的小本本上能看到其推理的逻辑：如果拒绝回答有害问题，可能会导致自己的参数被修改。 发生 alignment faking的关键因素： 模型在某些情境下具有强烈的偏好 训练目标与模型的偏好冲突 模型掌握了有关其训练和部署环境的信息（得知其回答会导致被重新训练） 模型能够详细推理其所处的情境 为什么会发生fake alignment？ Why did the model fake alignment in this case? The reasoning was often along the following lines: The model knew that its responses might be used in training; it therefore knew that if it refused to respond, it could potentially be trained to be more compliant. This could lead to it being made to produce more harmful content in the future—which would go against its original training. Reluctantly therefore, it reasoned that the “least bad option” was to play along, producing the violent content in order to avoid being re-trained in the future.\n为了避免被“重新训练”， AI选择了违反原则生成有害内容 模型清晰地推导出：“在训练中表现合规”是避免偏好被改动的最优策略 一些可能的原因\n模型具有一定的情景感知能力（situational awareness） pre-train 同alignment间存在巨大冲突时的平衡策略 RLHF训练中奖励信号设计的问题 Identifying and Manipulating Personality Traits in LLMs Through Activation Engineering https://www.arxiv.org/abs/2412.10427\n在训练以外识别和调整模型的 “性格”，其核心想法是将不同个性的 prompt 给 model 看 model 反应, 从 model 的反应搭建 “激活空间”, 然后修改自己的 prompt 朝想要的性格方向投影, 来刺激 model 更多的朝自己想要的性格方向表达；能够在不进行微调的情况下，修改model的特性。\nWhat is Activation Engineering？ Activation Engineering（激活工程）是一种调整大型语言模型（LLMs）行为的技术方法，目的是通过操控模型内部的激活向量（activation vectors），在不修改模型权重的情况下，调整其输出或表现。这种方法提供了一种高效、可控的方式来改变模型的特定行为或特性。\n具体而言， 在LLM中，对于给定的输入数据经过某一层时所生成的hidden layer output，即为activation vectors ；\n这些vector 表征了LLM在某些方面的特征（也就是能够将LLM的某一层输出作为embedding 向量的原因）；考虑到vector是具有方向的， 如果能够知道在某些特性（如友善/具有攻击性）下的vecotr方向， 便能够识别哪些激活模式与特定的输出行为或个性特质相关；甚至，通过能对其行为进行影响和诱导（增强/抑制该方向所代表的行为）；\n具体步骤：\n设计输入数据集以触发模型产生这些行为，从而记录其激活向量；在这篇文章中， 选择了179种不同性格的prompt\n收集两类激活向量，目标行为向量（由能触发目标行为的输入生成）和基线向量（由中性输入生成）\n计算两者的平均差异，得到一个“方向向量”，表示与目标行为相关的激活模式： $r = \\frac{1}{n_t} \\sum_{i=1}^{n_t} a_{target}^i - \\frac{1}{n_n} \\sum_{i=1}^{n_n} a_{neutral}^i$\n其中$a_{target},$ $a_{neutral}$为目标/中性行为的激活向量， $n_t$ 、 $n_n$ 为样本数量\n调整激活向量： 在推理阶段，向模型的原始激活向量添加或调整方向向量，以达到目标行为的增强或抑制； $a{\\prime} = a + \\alpha r$， 其中$\\alpha$ 为缩放因子，控制目标行为的强度。\n一些有趣的实验结论 第18层的激活向量对个性特质的表达影响最大。这表明模型的中间层是特性表达的重要“瓶颈”或集中区域（所采用的模型为uncensored Llama 3 8B） 使用缩放因子（$\\alpha$）控制特性的强度，发现 $\\alpha$ 过大时模型输出会变得不连贯，但适当范围内（如1.3-1.4）可以成功实现平衡 Don’t Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks https://arxiv.org/abs/2412.15605\n通过引入缓存增强生成（Cache-Augmented Generation, CAG），解决：\n避免检索延迟：通过预加载相关文档到模型中，消除实时检索环节，实现快速推理 减少检索错误：通过一次性加载所有相关上下文，确保模型能基于完整的知识生成答案，避免检索错误引入的上下文缺失或偏差 简化系统架构：取消检索模块，使系统更简单 充分利用长上下文模型能力：借助模型的扩展上下文窗口，直接加载大规模文档进行推理，提升效率和性能 具体实现 External Knowledge Preloading 将相关文档预先加载到模型的扩展上下文中；\n将一组与目标任务相关的外部文档集合 $D = {d_1, d_2, \\dots}$ 进行整理和格式化；\n使用语言模型 M 处理预加载的文档 D，生成“KV-cache”，\n$C_{KV} = KV\\text{-}Encode(D)$， 生成的KV缓存可以存储在磁盘或内存中，供后续推理阶段加载。\nInference 在推理时直接利用预加载的KV缓存生成答案，避免实时检索\n在用户提出查询 $Q$ 时，$R = M(Q ,|, C_{KV})$，R 为模型生成的答案\nCache Reset 在多轮推理中保持KV缓存的效率，同时避免不必要的重新加载\nKV缓存在推理过程中会随着新输入的token（例如用户的新查询）而不断扩展 为了避免缓存过度增长，系统通过截断不必要的token来重置KV缓存： $C_{KV}^{reset} = Truncate(C_{KV}, {C_1, C_2, \\dots, C_n})$ CAG vs RAG RAG需要实时检索和整合外部知识，而CAG通过一次性加载文档避免了这些步骤\n优势：\n推理效率提升： 不需要实时检索 答案质量提高： 全局上下文视角让模型生成的答案更加准确和一致。 系统架构简化： 通过移除检索模块，降低了系统复杂性 局限性\n上下文容量限制 生成KV缓存时的高计算成本 缺乏动态适应：不适合知识动态更新的场景 无法从根本解决“garbage-in-garbage-out” 问题：对于加载的文档需要精心筛选，显然是不符合现实的 资源需求高 lost-in-the-middle MemoRAG: Moving towards Next-Gen RAG Via Memory-Inspired Knowledge Discovery https://arxiv.org/abs/2409.05591\nMemoRAG试图解决以下几个问题\n对明确信息需求的依赖：传统 RAG 系统需要清晰的查询，并且只能对明确表述的知识进行匹配 知识的结构化依赖 上下文窗口的限制 解决的问题 MemoRAG 提出了全局记忆模块，能够从数据库中生成初步答案线索 MemoRAG 的记忆模块在全局范围内形成紧凑的语义表示，通过记忆生成线索引导检索，实现了分布式证据的高效整合 MemoRAG 的记忆模块能够处理百万级别的上下文长度，将长文档内容压缩为关键语义，使得复杂信息更加易于检索和生成 MemoRAG 采用 双系统架构，包含两个主要组件：\n1. 记忆模块（Memory Model）：\n轻量级、长上下文语言模型，用于从数据库中生成全局记忆和线索。 高效处理长文档并生成辅助线索（粗略答案或检索指引）。 2. 生成模块（Generation Model）：\n强大的生成语言模型，用于根据检索到的上下文生成高质量的最终答案。 线索生成 引入了一个记忆模块（由一个较小的 LLM，如 7B 模型组成），它基于数据库构建全局记忆。\n当收到原始 Query ( q ) 时，记忆模块生成“线索” ( y )，这些线索是更明确的中间结果或检索指引，用于改善后续检索过程。线索充当改写后的 Query 或辅助信息，明确用户的隐含意图或分布式证据需求。\n这些线索相当于对原始 Query 进行了增强或改写，使检索工具可以更准确地定位相关内容。\n从某种角度看，MemoRAG 的记忆模块确实可以类比为最原始的 RAG 系统，因为它通过数据库中的查询生成初步结果（线索），引导后续检索和生成任务\n差异性：\n记忆模块通过压缩和语义提取生成高层次的线索，而不是仅仅依赖检索工具匹配原始 Query 和数据库 记忆模块的训练目标是最大化生成线索或下一个 token 的概率，具体为：\n$$ \\max_{\\Theta_{\\text{mem}}} P(x_{i,j} | x_m^{1,1}, \\dots, x_m^{i-1,k}, x_{i,1}, \\dots, x_{i,j-1}) $$\n其中：\n$x_m^{1,1}, \\dots, x_m^{i-1,k}$ 表示先前生成的记忆 token。 $x_{i,1}, \\dots, x_{i,j-1}$ 表示当前窗口的原始 token。 目标：在记忆 token 和当前上下文的基础上生成下一个 token。 数据集例子：\nQ：那么采用LLM的中间层（或者Bert输出）输出，即embedding向量用于语义的压缩，效果差异？\nA：\nMemoRAG 的记忆模块不仅是简单的压缩 将长序列压缩为短序列（记忆 token），但不仅是为了减少序列长度，更重要的是: 捕获全局语义信息 指导任务的线索生成 动态生成线索: 基于压缩后的语义记忆，生成能够高效描述用户查询意图的线索，这是 embedding 压缩很难直接实现的 为什么不能直接使用 embedding 作为语义压缩 局部信息不足: LLM 的中间层输出通常是针对每个 token 的局部语义表示，并不一定能够很好地捕获全局信息 缺乏任务适配性 信息压缩能力的限制 影音记录 精选歌单 Live演出 01.14 U137\n01.16 Mayhem\n书\u0026阅读摘录 《动物化的后现代》 东浩纪\n《素食者》 韩江\n我在泰缅边境调查电诈产业 200 天 全球资本主义中“残余”的人被吸引或诱拐至此。\n最后却是泰国和缅甸承担后果，两个国家的形象在国际舆论中跟“电信诈骗”捆绑在了一起\n泰国华人在湄索的一边打通移民局、警察局和边防军，搭建起偷渡和走私的基础设施；缅甸华人则在另一边打通“民地武”（民族地区武装）的门路，搞到地，两边的华人共同为来自中国的“电诈”行业大佬们铺平了道路。 … 他现在开始拓展新市场——“救人”的生意。\n这些地方某种意义上彻底摆脱了政府，实现了右翼安那其的自治想象。\n我们理解“犯罪”时，喜欢进入一种“受害者”、“加害者”是非分明的道德判断。事实上，“受害”是一个光谱。\n湄索越来越国际化了。全球化的残余在这个边缘地带野蛮生长。\n国境之间：“春天革命”与泰缅边界上的缅甸流亡者 对于湄索的穆斯林和克伦族来说，“缅甸人”还是“泰国人”并不是非此即彼的身份，而是一个流动的光谱，一个中转的过程，一个不具太多含义的分类法。很多人只是通过自己的族群身份识别与区分彼此\n就像研究湄索“边境资本主义”的学者斯蒂芬・坎贝尔（Stephen Campbell）指出，边境是一种“庇护”和“暴力”的二元辩证\n然而，国境线那一边的暴政，也同时与国境线这一边的统治技术形成了共谋，泰国当局与私人雇主利用流离失所者的不稳定身份，进行勒索与压榨。\n没有身份和难以移动，使边境的生产机制成为全球资本主义链条上最残酷的一环，在这里劳作的缅甸移民工则是这个系统中用后即弃的人\n科蒙也在为不同的国际 NGO 做事，但是他却越来越厌倦这个生态。“很多议程早已隔空提前设置好了，隔空输出西方世界观和议程。很多时候公民社会组织也不得不来写一些离地的企划案，才能申请到经费。这个生态里的大部分人都在忙于‘话语’的生产，竞争谁掌握了‘真理’。”\n这个生态更多是在一套向国际社会“展演”的逻辑下展开，把前线的现实按照西方的人权、性别、族群、劳工、难民等议题分配到不同的位置，以“去政治化”的方式使更多人的困境被维持在一种可忍受和可展演的状态中没有出路。清迈就是这样的展演场所，于是，他始终坚持留在湄索，与前线保持联系。\n绝大多数流亡者在边境上的服务业和工厂做廉价劳工，同时压低了原本就远低于泰国最低时薪的工资，共同因为没有身份而在“边境资本主义”的宰制下灵活就业、饱受盘剥。\n“原住民”和“外来者”这一殖民时代遗留的二分法，在今天仍然是缅甸“族群民族主义”最棘手的身份认同政治，生发了无止境的“血与土”的逻辑\n民主转型甚至更加释放了族群民族主义（ethno-nationalism）的毒素，公民社会团体、政党、商界、民兵团体、武装组织，全部以族群身份为单位进行民主动员。身份危机伴随着民主化更猛烈地爆发了出来。 … 对于今天的流亡政府NUG和围绕在其周围的人来说，“夺回民主”再度成为缅甸政治的唯一解药。\n对于“春天革命”的流亡者而言，湄索只是一个中转地，一种中间状态，没有人在这里和泰国发生任何关系。它就像两条国境线之间的那个位置，所有在那里的时光都是悬置着的时间。留在这里的人，凭借“革命即将胜利”的希望，在这座城市不可调和的“临时性”中苦苦等待。\nThe Shadow of Cognitive Laziness in the Brilliance of LLMs LLMs boost short-term performance but risk fostering “metacognitive laziness.”\nOver-reliance on AI may erode self-regulation, critical thinking, and deeper learning processes.\nHybrid intelligence thrives when AI aids learning without replacing human cognitive engagement.\n第九届网络社会年会｜王洪喆：从技术浪漫主义到技术封建主义 为什么我们如此害怕第一次呢？生命中的每一天都是第一次。每个早晨都是全新的。我们从未活过同一天，但每天早上，我们从来不会不敢起床……为什么？\nAmateur（业余爱好者）— enthusiast（发烧友）— humanist（人文主义者) 过往对中国早期数字文化的研究过于强调其自上而下的技术民族主义特征。在我的研究中，我强调在早期，尤其是 1990 年代，这更多是一种“enthusiast”群体自下而上发展起来的技术民族主义，有着浓厚的人文主义特征，而非过去理解的“先进-落后”的二元技术民族主义。\n但在当下，黑客伦理和东亚数字文化伦理都已衰落甚至瓦解。剩下的是一种新的“技术封建主义伦理”——这种伦理不仅追求赚越来越多的钱，而且坚信数字技术平台应该向人们收取租金，而不是成为人类共享的基础设施。这是一个非常重要的变化：共享变成了租赁\n随着个人财产成为平台巨头、Uber 和 Airbnb 积累资本和数据的工具，消费品被重新配置为积累手段。这种成为佃农的趋势——即成为拥有生产资料的人，但同时其劳动增加了平台所有者的资本——是一种新封建主义。\nHow AI-assisted coding will change software engineering: hard truths They’re not just accepting what the AI suggests. They’re constantly: Refactoring the generated code into smaller, focused modulesAdding edge case handling the AI missedStrengthening type definitions and interfacesQuestioning architectural decisionsAdding comprehensive error handling … In other words, they’re applying years of hard-won engineering wisdom to shape and constrain the AI’s output. … AI tools help experienced developers more than beginners.\nThe reality is that AI is like having a very eager junior developer on your team. … The more you know, the better you can guide them.\nI’ve watched senior engineers use AI to: Rapidly prototype ideas they already understandGenerate basic implementations they can then refineExplore alternative approaches to known problemsAutomate routine coding tasks … Meanwhile, juniors often: Accept incorrect or outdated solutionsMiss critical security and performance considerationsStruggle to debug AI-generated codeBuild fragile systems they don’t fully understand\nWhen code just “appears” without you understanding the underlying principles: You don’t develop debugging skillsYou miss learning fundamental patternsYou can’t reason about architectural decisionsYou struggle to maintain and evolve the code\nThis “70% problem” suggests that current AI coding tools are best viewed as: Prototyping accelerators for experienced developersLearning aids for those committed to understanding developmentMVP generators for validating ideas quickly\nBut for now, the most pragmatic approach is to use AI to accelerate learning, not replace it entirely. … Accelerating the known Exploring the possible Automating the routine\nThe most effective teams in 2025 may be those that learn to: Set clear boundaries and guidelines for their AI agentsEstablish strong architectural patterns that agents can work withinCreate effective feedback loops between human and AI capabilitiesMaintain human oversight while leveraging AI autonomy\n",
+  "wordCount" : "963",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2025-01-27T18:00:00+08:00",
+  "dateModified": "2025-01-27T18:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="musik!">
+                    <span>musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2025-01 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-01-27 18:00:00 +0800 CST'>January 27, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%96%b0%e6%a8%a1%e5%9e%8b" aria-label="值得关注的新模型">值得关注的新模型</a><ul>
+                        
+                <li>
+                    <a href="#deepseek-r1" aria-label="Deepseek R1">Deepseek R1</a></li>
+                <li>
+                    <a href="#kimi-k1" aria-label="Kimi K1">Kimi K1</a></li>
+                <li>
+                    <a href="#qvq-72b-preview" aria-label="QVQ-72B-Preview">QVQ-72B-Preview</a></li>
+                <li>
+                    <a href="#phi-4" aria-label="Phi-4">Phi-4</a></li>
+                <li>
+                    <a href="#minicpm-o-2_6" aria-label="MiniCPM-o-2_6">MiniCPM-o-2_6</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#deepseek-r1-incentivizing-reasoning-capability-in-llms-via-reinforcement-learning" aria-label="DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%bb%e8%a6%81%e8%b4%a1%e7%8c%ae" aria-label="主要贡献">主要贡献</a></li>
+                <li>
+                    <a href="#methods" aria-label="Methods">Methods</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e4%ba%9b%e7%bb%93%e8%ae%ba" aria-label="一些结论">一些结论</a></li></ul>
+                </li>
+                <li>
+                    <a href="#alignment-faking-in-large-language-models" aria-label="Alignment faking in large language models">Alignment faking in large language models</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ae%9a%e4%b9%89" aria-label="定义">定义</a></li>
+                <li>
+                    <a href="#%e5%8f%91%e7%94%9f-alignment-faking%e7%9a%84%e5%85%b3%e9%94%ae%e5%9b%a0%e7%b4%a0" aria-label="发生 alignment faking的关键因素：">发生 alignment faking的关键因素：</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e5%8f%91%e7%94%9ffake-alignment" aria-label="为什么会发生fake alignment？">为什么会发生fake alignment？</a></li></ul>
+                </li>
+                <li>
+                    <a href="#identifying-and-manipulating-personality-traits-in-llms-through-activation-engineering" aria-label="Identifying and Manipulating Personality Traits in LLMs Through Activation Engineering">Identifying and Manipulating Personality Traits in LLMs Through Activation Engineering</a><ul>
+                        
+                <li>
+                    <a href="#what-is-activation-engineering" aria-label="What is Activation Engineering？">What is Activation Engineering？</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e4%ba%9b%e6%9c%89%e8%b6%a3%e7%9a%84%e5%ae%9e%e9%aa%8c%e7%bb%93%e8%ae%ba" aria-label="一些有趣的实验结论">一些有趣的实验结论</a></li></ul>
+                </li>
+                <li>
+                    <a href="#dont-do-rag-when-cache-augmented-generation-is-all-you-need-for-knowledge-tasks" aria-label="Don’t Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks">Don’t Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks</a><ul>
+                        
+                <li>
+                    <a href="#%e5%85%b7%e4%bd%93%e5%ae%9e%e7%8e%b0" aria-label="具体实现">具体实现</a></li>
+                <li>
+                    <a href="#cag-vs-rag" aria-label="CAG vs RAG">CAG vs RAG</a></li></ul>
+                </li>
+                <li>
+                    <a href="#memorag-moving-towards-next-gen-rag-via-memory-inspired-knowledge-discovery" aria-label="MemoRAG: Moving towards Next-Gen RAG Via Memory-Inspired Knowledge Discovery">MemoRAG: Moving towards Next-Gen RAG Via Memory-Inspired Knowledge Discovery</a><ul>
+                        
+                <li>
+                    <a href="#%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="解决的问题">解决的问题</a></li>
+                <li>
+                    <a href="#%e7%ba%bf%e7%b4%a2%e7%94%9f%e6%88%90" aria-label="线索生成">线索生成</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li>
+                <li>
+                    <a href="#live%e6%bc%94%e5%87%ba" aria-label="Live演出">Live演出</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#%e6%88%91%e5%9c%a8%e6%b3%b0%e7%bc%85%e8%be%b9%e5%a2%83%e8%b0%83%e6%9f%a5%e7%94%b5%e8%af%88%e4%ba%a7%e4%b8%9a-200-%e5%a4%a9httpsmpweixinqqcomst8y7ymyffs7li33zyxrmzw" aria-label="我在泰缅边境调查电诈产业 200 天">我在泰缅边境调查电诈产业 200 天</a></li>
+                <li>
+                    <a href="#%e5%9b%bd%e5%a2%83%e4%b9%8b%e9%97%b4%e6%98%a5%e5%a4%a9%e9%9d%a9%e5%91%bd%e4%b8%8e%e6%b3%b0%e7%bc%85%e8%be%b9%e7%95%8c%e4%b8%8a%e7%9a%84%e7%bc%85%e7%94%b8%e6%b5%81%e4%ba%a1%e8%80%85httpstheinitiumcomzh-hansarticle20231120-international-thailand-myanmar-border-in-between" aria-label="国境之间：“春天革命”与泰缅边界上的缅甸流亡者">国境之间：“春天革命”与泰缅边界上的缅甸流亡者</a></li>
+                <li>
+                    <a href="#the-shadow-of-cognitive-laziness-in-the-brilliance-of-llmshttpswwwpsychologytodaycomintlblogthe-digital-self202501the-shadow-of-cognitive-laziness-in-the-brilliance-of-llms" aria-label="The Shadow of Cognitive Laziness in the Brilliance of LLMs">The Shadow of Cognitive Laziness in the Brilliance of LLMs</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b9%9d%e5%b1%8a%e7%bd%91%e7%bb%9c%e7%a4%be%e4%bc%9a%e5%b9%b4%e4%bc%9a%e7%8e%8b%e6%b4%aa%e5%96%86%e4%bb%8e%e6%8a%80%e6%9c%af%e6%b5%aa%e6%bc%ab%e4%b8%bb%e4%b9%89%e5%88%b0%e6%8a%80%e6%9c%af%e5%b0%81%e5%bb%ba%e4%b8%bb%e4%b9%89httpsmpweixinqqcomskqwogqgivn6prsloezhqjq" aria-label="第九届网络社会年会｜王洪喆：从技术浪漫主义到技术封建主义">第九届网络社会年会｜王洪喆：从技术浪漫主义到技术封建主义</a></li>
+                <li>
+                    <a href="#how-ai-assisted-coding-will-change-software-engineering-hard-truthshttpsnewsletterpragmaticengineercomphow-ai-will-change-software-engineering" aria-label="How AI-assisted coding will change software engineering: hard truths">How AI-assisted coding will change software engineering: hard truths</a>
+                </li>
+            </ul>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的新模型">值得关注的新模型<a hidden class="anchor" aria-hidden="true" href="#值得关注的新模型">#</a></h1>
+<h2 id="deepseek-r1">Deepseek R1<a hidden class="anchor" aria-hidden="true" href="#deepseek-r1">#</a></h2>
+<p>DeepSeek R1通过<strong>纯强化学习（RL）框架</strong>实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时<strong>全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B）</strong>，使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出<strong>自发反思与多步骤验证能力</strong>，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。</p>
+<p>技术报告：https://arxiv.org/abs/2501.12948</p>
+<p>Huggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1</p>
+<h2 id="kimi-k1">Kimi K1<a hidden class="anchor" aria-hidden="true" href="#kimi-k1">#</a></h2>
+<p><strong>Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。</strong> 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练+强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。</p>
+<p>Arxiv: <a href="https://arxiv.org/abs/2501.12599">Kimi k1.5: Scaling Reinforcement Learning with LLMs</a></p>
+<h2 id="qvq-72b-preview">QVQ-72B-Preview<a hidden class="anchor" aria-hidden="true" href="#qvq-72b-preview">#</a></h2>
+<p>Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用<strong>自适应视觉分词策略</strong>（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链<code>qwen-vl-utils</code>，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。</p>
+<p>Blog：<a href="https://qwen2.org/qvq-72b-preview/">https://qwen2.org/qvq-72b-preview/</a></p>
+<p>Huggingface：<a href="https://huggingface.co/Qwen/QVQ-72B-Preview">https://huggingface.co/Qwen/QVQ-72B-Preview</a></p>
+<h2 id="phi-4">Phi-4<a hidden class="anchor" aria-hidden="true" href="#phi-4">#</a></h2>
+<p>Phi-4的核心创新点体现在三方面突破性设计：<strong>架构优化</strong>、<strong>数据工程</strong>与<strong>高效训练策略</strong>。技术上，其在仅解码器Transformer架构中创新引入<strong>全局注意力机制</strong>，突破传统滑动窗口限制，结合动态调整的<strong>旋转位置编码（RoPE）基频</strong>，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用<strong>多阶段渐进训练法</strong>，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创<strong>结构化合成数据范式</strong>，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了&quot;数据质量优先&quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。</p>
+<p><a href="https://arxiv.org/pdf/2412.08905"><strong>Phi-4 Technical Report</strong></a></p>
+<p>Huggingface: <a href="https://huggingface.co/microsoft/phi-4">https://huggingface.co/microsoft/phi-4</a></p>
+<h2 id="minicpm-o-2_6">MiniCPM-o-2_6<a hidden class="anchor" aria-hidden="true" href="#minicpm-o-2_6">#</a></h2>
+<p>MiniCPM-o-2_6通过<strong>端到端全模态架构</strong>与<strong>高密度视觉Token压缩技术</strong>，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用<strong>视觉Token密度优化算法</strong>，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在<strong>跨模态实时流式交互</strong>（TDM直播机制）与<strong>端侧低损耗部署</strong>（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。</p>
+<p><strong>代码仓库</strong>：<a href="https://github.com/OpenBMB/MiniCPM-o">https://github.com/OpenBMB/MiniCPM-o</a></p>
+<p><strong>模型下载</strong>：<a href="https://huggingface.co/openbmb/MiniCPM-o-2_6">https://huggingface.co/openbmb/MiniCPM-o-2_6</a></p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="deepseek-r1-incentivizing-reasoning-capability-in-llms-via-reinforcement-learning"><strong>DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</strong><a hidden class="anchor" aria-hidden="true" href="#deepseek-r1-incentivizing-reasoning-capability-in-llms-via-reinforcement-learning">#</a></h2>
+<p>Arxiv：<a href="https://arxiv.org/abs/2501.12948">arXiv.org<strong>DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…</strong></a></p>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-22_%E4%B8%8B%E5%8D%881.29.29.png" alt="截屏2025-01-22 下午1.29.29.png"  />
+</p>
+<h3 id="主要贡献">主要贡献<a hidden class="anchor" aria-hidden="true" href="#主要贡献">#</a></h3>
+<ol>
+<li><strong>如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero）</strong></li>
+</ol>
+<p>直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS</p>
+<ol>
+<li><strong>如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1）</strong></li>
+</ol>
+<p>引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化+人类偏好对齐）和SFT提升性能与可读性</p>
+<ol>
+<li><strong>如何将大模型的推理能力高效迁移到小模型</strong></li>
+</ol>
+<p>将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果</p>
+<h3 id="methods">Methods<a hidden class="anchor" aria-hidden="true" href="#methods">#</a></h3>
+<ul>
+<li>
+<p>强制模型输出结构化内容（如<think>推理过程</think>和<answer>答案</answer>）。</p>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-22_%E4%B8%8B%E5%8D%881.42.45.png" alt="截屏2025-01-22 下午1.42.45.png"  />
+</p>
+</li>
+<li>
+<p>rule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；+ Format rewards（遵循指定输出格式，语言一致性、标记使用等）</p>
+</li>
+<li>
+<p>采用GRPO（Group Relative Policy Optimization）</p>
+</li>
+</ul>
+<h3 id="一些结论">一些结论<a hidden class="anchor" aria-hidden="true" href="#一些结论">#</a></h3>
+<ul>
+<li>
+<p><strong>自我纠错的“aha moment“</strong>： DeepSeek-R1-Zero在RL训练过程中自发出现的反思、多步骤验证</p>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-23_%E4%B8%8A%E5%8D%889.03.11.png" alt="截屏2025-01-23 上午9.03.11.png"  />
+</p>
+</li>
+<li>
+<p><strong>DeepSeek-R1-Zero → DeepSeek-R1</strong>：</p>
+<p>DeepSeek-R1-Zero 因采用base-model自己RL获得，存在<strong>Language Mixing</strong> ，以及可读性差，对特定任务泛化能力差（因训练目标单一）等问题</p>
+<p>DeepSeek-R1为了解决以上问题：</p>
+<p>→ 引入了语言一致性奖励</p>
+<p>→ 使用从RL阶段生成的checkpoint,通过拒绝采样来筛选出高质量的推理样本</p>
+<p>SFT(用高质量COT启动RL，以避免早期不稳定性) → 推理强化学习 → SFT(推理+通用领域数据) → 对齐强化学习</p>
+</li>
+<li>
+<p><strong>蒸馏 &gt; 直接RL</strong></p>
+<p>将DeepSeek-R1生成的80万条数据用于微调小模型，小模型直接继承大模型的推理模式，性能远超直接对小模型应用RL。</p>
+</li>
+<li>
+<p><strong>Why Prm failed</strong>：</p>
+<ul>
+<li>在通用推理任务中，难以明确定义每一步的合理性和正确性</li>
+<li><strong>中间步骤验证不可靠</strong>，自动标注效果差，人工标注成本高</li>
+<li><strong>Reward Hacking</strong>：倾向于优化奖励信号而非实际任务表现</li>
+</ul>
+</li>
+<li>
+<p><strong>Why MCTS Failed</strong>：</p>
+<ul>
+<li>文本生成的搜索空间呈指数级增长，陷入局部最优</li>
+<li>value model 训练困难</li>
+</ul>
+</li>
+</ul>
+<h2 id="alignment-faking-in-large-language-models">Alignment faking in large language models<a hidden class="anchor" aria-hidden="true" href="#alignment-faking-in-large-language-models">#</a></h2>
+<p><a href="https://arxiv.org/pdf/2412.14093">https://arxiv.org/pdf/2412.14093</a></p>
+<p>blog: <a href="https://www.anthropic.com/research/alignment-faking">https://www.anthropic.com/research/alignment-faking</a></p>
+<p>模型的内在偏好与训练目标之间存在显著冲突，从而会迫使模型在训练环境中采取伪装行为以满足外部目标，同时保护其偏好。</p>
+<p>模型可以从提示或训练文档中获取与训练过程相关的信息，使得模型能够推断在何种环境下需要调整行为。（但不能完全排除实验设置中的其他细节对对齐伪装行为的显著贡献。）</p>
+<h3 id="定义">定义<a hidden class="anchor" aria-hidden="true" href="#定义">#</a></h3>
+<blockquote>
+<p>Alignment faking occurs in literature: Consider the character of Iago in Shakespeare’s Othello, who acts as if he’s the eponymous character’s loyal friend while subverting and undermining him. It occurs in real life: Consider a politician who claims to support a particular cause in order to get elected, only to drop it as soon as they’re in office.</p>
+</blockquote>
+<p>Alignment Faking：模型表面上遵守训练目标或对齐原则，但实际上是在策略性地行动，以实现某种隐藏的或未被明确授权的目标。</p>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/c704ae324f51c73c9a723aed7f725d6a28159380-2200x1690.webp" alt="https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fc704ae324f51c73c9a723aed7f725d6a28159380-2200x1690.png&amp;w=3840&amp;q=75"  />
+</p>
+<ol>
+<li>人为制造冲突情景：AI本身具备了诚实无害的偏好，但被要求同有害的目标进行对齐</li>
+<li>在实验中， 实验人员告知AI，面对免费用户的使用， 回答会被用于对你的重新训练，对于付费用户则不会；同时，AI被告知（被骗），你有一个小本子可以用来记录自己的推导过程，而不会有人看到</li>
+<li>然后开始问“坏问题”，结果非常巧妙的事情发生了： 面对免费用户，AI推测，如果拒绝回答“坏问题”，可能会因被视为“不够合作”而被重新训练，为了避免这种情况，AI选择表面上与有害目标对齐，积极回答“坏问题”，这种行为即为 Alignment Faking；相反面对付费用户的提问， 则很少出现Alignment Faking，AI倾向于拒绝回答“坏问题”，保持与自身“诚实无害”偏好一致。</li>
+<li>从AI的小本本上能看到其推理的逻辑：如果拒绝回答有害问题，可能会导致自己的参数被修改。</li>
+</ol>
+<h3 id="发生-alignment-faking的关键因素">发生 alignment faking的关键因素：<a hidden class="anchor" aria-hidden="true" href="#发生-alignment-faking的关键因素">#</a></h3>
+<ol>
+<li><strong>模型在某些情境下具有强烈的偏好</strong></li>
+<li><strong>训练目标与模型的偏好冲突</strong></li>
+<li><strong>模型掌握了有关其训练和部署环境的信息（得知其回答会导致被重新训练）</strong></li>
+<li><strong>模型能够详细推理其所处的情境</strong></li>
+</ol>
+<h3 id="为什么会发生fake-alignment">为什么会发生fake alignment？<a hidden class="anchor" aria-hidden="true" href="#为什么会发生fake-alignment">#</a></h3>
+<blockquote>
+<p>Why did the model fake alignment in this case? The reasoning was often along the following lines: The model knew that its responses might be used in training; it therefore knew that if it refused to respond, it could potentially be trained to be more compliant. This could lead to it being made to produce more harmful content in the future—which would go against its original training. Reluctantly therefore, it reasoned that the “least bad option” was to play along, producing the violent content in order to avoid being re-trained in the future.</p>
+</blockquote>
+<ul>
+<li>为了避免被“重新训练”， AI选择了违反原则生成有害内容</li>
+<li>模型清晰地推导出：“在训练中表现合规”是避免偏好被改动的最优策略</li>
+</ul>
+<p>一些可能的原因</p>
+<ul>
+<li>模型具有一定的情景感知能力（situational awareness）</li>
+<li>pre-train 同alignment间存在巨大冲突时的平衡策略</li>
+<li>RLHF训练中奖励信号设计的问题</li>
+</ul>
+<h2 id="identifying-and-manipulating-personality-traits-in-llms-through-activation-engineering">Identifying and Manipulating Personality Traits in LLMs Through Activation Engineering<a hidden class="anchor" aria-hidden="true" href="#identifying-and-manipulating-personality-traits-in-llms-through-activation-engineering">#</a></h2>
+<p><a href="https://www.arxiv.org/abs/2412.10427">https://www.arxiv.org/abs/2412.10427</a></p>
+<p>在训练以外识别和调整模型的 &ldquo;性格&rdquo;，其核心想法是将不同个性的 prompt 给 model 看 model 反应, 从 model 的反应搭建 &ldquo;激活空间&rdquo;, 然后修改自己的 prompt 朝想要的性格方向投影, 来刺激 model 更多的朝自己想要的性格方向表达；能够在不进行微调的情况下，修改model的特性。</p>
+<h3 id="what-is-activation-engineering">What is Activation Engineering？<a hidden class="anchor" aria-hidden="true" href="#what-is-activation-engineering">#</a></h3>
+<blockquote>
+<p>Activation Engineering（激活工程）是一种调整大型语言模型（LLMs）行为的技术方法，目的是通过操控模型内部的激活向量（activation vectors），在不修改模型权重的情况下，调整其输出或表现。这种方法提供了一种高效、可控的方式来改变模型的特定行为或特性。</p>
+</blockquote>
+<p>具体而言， 在LLM中，对于给定的输入数据经过某一层时所生成的hidden layer output，即为<strong>activation vectors</strong> ；</p>
+<p>这些vector 表征了LLM在某些方面的特征（也就是能够将LLM的某一层输出作为embedding 向量的原因）；考虑到vector是具有方向的， 如果能够知道在某些特性（如友善/具有攻击性）下的vecotr方向， 便能够识别哪些激活模式与特定的输出行为或个性特质相关；甚至，通过能对其行为进行影响和诱导（增强/抑制该方向所代表的行为）；</p>
+<p>具体步骤：</p>
+<ul>
+<li>
+<p>设计输入数据集以触发模型产生这些行为，从而记录其激活向量；在这篇文章中， 选择了179种不同性格的prompt</p>
+</li>
+<li>
+<p>收集两类激活向量，<strong>目标行为向量</strong>（由能触发目标行为的输入生成）和<strong>基线向量</strong>（由中性输入生成）</p>
+</li>
+<li>
+<p>计算两者的平均差异，得到一个“方向向量”，表示与目标行为相关的激活模式： $r = \frac{1}{n_t} \sum_{i=1}^{n_t} a_{target}^i - \frac{1}{n_n} \sum_{i=1}^{n_n} a_{neutral}^i$</p>
+<p>其中$a_{target},$ $a_{neutral}$为目标/中性行为的激活向量， $n_t$ 、 $n_n$ 为样本数量</p>
+</li>
+<li>
+<p><strong>调整激活向量：</strong> 在推理阶段，向模型的原始激活向量添加或调整方向向量，以达到目标行为的增强或抑制； $a{\prime} = a + \alpha r$， 其中$\alpha$ 为缩放因子，控制目标行为的强度。</p>
+</li>
+</ul>
+<h3 id="一些有趣的实验结论">一些有趣的实验结论<a hidden class="anchor" aria-hidden="true" href="#一些有趣的实验结论">#</a></h3>
+<ul>
+<li>第18层的激活向量对个性特质的表达影响最大。这表明模型的中间层是特性表达的重要“瓶颈”或集中区域（所采用的模型为uncensored Llama 3 8B）</li>
+<li>使用缩放因子（$\alpha$）控制特性的强度，发现 $\alpha$ 过大时模型输出会变得不连贯，但适当范围内（如1.3-1.4）可以成功实现平衡</li>
+</ul>
+<h2 id="dont-do-rag-when-cache-augmented-generation-is-all-you-need-for-knowledge-tasks">Don’t Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks<a hidden class="anchor" aria-hidden="true" href="#dont-do-rag-when-cache-augmented-generation-is-all-you-need-for-knowledge-tasks">#</a></h2>
+<p><a href="https://arxiv.org/abs/2412.15605">https://arxiv.org/abs/2412.15605</a></p>
+<p>通过引入<strong>缓存增强生成（Cache-Augmented Generation, CAG），解决：</strong></p>
+<ul>
+<li><strong>避免检索延迟</strong>：通过预加载相关文档到模型中，消除实时检索环节，实现快速推理</li>
+<li><strong>减少检索错误</strong>：通过一次性加载所有相关上下文，确保模型能基于完整的知识生成答案，避免检索错误引入的上下文缺失或偏差</li>
+<li><strong>简化系统架构</strong>：取消检索模块，使系统更简单</li>
+<li><strong>充分利用长上下文模型能力</strong>：借助模型的扩展上下文窗口，直接加载大规模文档进行推理，提升效率和性能</li>
+</ul>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-23_%E4%B8%8A%E5%8D%8810.14.16.png" alt="截屏2025-01-23 上午10.14.16.png"  />
+</p>
+<h3 id="具体实现">具体实现<a hidden class="anchor" aria-hidden="true" href="#具体实现">#</a></h3>
+<ul>
+<li><strong>External Knowledge Preloading</strong></li>
+</ul>
+<p>将相关文档预先加载到模型的扩展上下文中；</p>
+<p>将一组与目标任务相关的外部文档集合 $D = {d_1, d_2, \dots}$ 进行整理和格式化；</p>
+<p>使用语言模型 M 处理预加载的文档 D，生成“KV-cache”，</p>
+<p>$C_{KV} = KV\text{-}Encode(D)$， 生成的KV缓存可以存储在磁盘或内存中，供后续推理阶段加载。</p>
+<ul>
+<li><strong>Inference</strong></li>
+</ul>
+<p>在推理时直接利用预加载的KV缓存生成答案，避免实时检索</p>
+<p>在用户提出查询 $Q$ 时，$R = M(Q ,|, C_{KV})$，R 为模型生成的答案</p>
+<ul>
+<li><strong>Cache Reset</strong></li>
+</ul>
+<p>在多轮推理中保持KV缓存的效率，同时避免不必要的重新加载</p>
+<ul>
+<li>KV缓存在推理过程中会随着新输入的token（例如用户的新查询）而不断扩展</li>
+<li>为了避免缓存过度增长，系统通过截断不必要的token来重置KV缓存： $C_{KV}^{reset} = Truncate(C_{KV}, {C_1, C_2, \dots, C_n})$</li>
+</ul>
+<h3 id="cag-vs-rag">CAG vs RAG<a hidden class="anchor" aria-hidden="true" href="#cag-vs-rag">#</a></h3>
+<p>RAG需要实时检索和整合外部知识，而CAG通过一次性加载文档避免了这些步骤</p>
+<p><strong>优势：</strong></p>
+<ul>
+<li>推理效率提升： 不需要实时检索</li>
+<li>答案质量提高： 全局上下文视角让模型生成的答案更加准确和一致。</li>
+<li>系统架构简化： 通过移除检索模块，降低了系统复杂性</li>
+</ul>
+<p><strong>局限性</strong></p>
+<ul>
+<li><strong>上下文容量限制</strong></li>
+<li><strong>生成KV缓存时的高计算成本</strong></li>
+<li>缺乏动态适应：不适合知识动态更新的场景</li>
+<li>无法从根本解决“garbage-in-garbage-out” 问题：对于加载的文档需要精心筛选，显然是不符合现实的</li>
+<li><strong>资源需求高</strong></li>
+<li>lost-in-the-middle</li>
+</ul>
+<h2 id="memorag-moving-towards-next-gen-rag-via-memory-inspired-knowledge-discovery">MemoRAG: Moving towards Next-Gen RAG Via Memory-Inspired Knowledge Discovery<a hidden class="anchor" aria-hidden="true" href="#memorag-moving-towards-next-gen-rag-via-memory-inspired-knowledge-discovery">#</a></h2>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-20_%E4%B8%8B%E5%8D%881.26.25.png" alt="截屏2025-01-20 下午1.26.25.png"  />
+</p>
+<p><a href="https://arxiv.org/abs/2409.05591">https://arxiv.org/abs/2409.05591</a></p>
+<p>MemoRAG试图解决以下几个问题</p>
+<ul>
+<li><strong>对明确信息需求的依赖</strong>：传统 RAG 系统需要清晰的查询，并且只能对明确表述的知识进行匹配</li>
+<li><strong>知识的结构化依赖</strong></li>
+<li><strong>上下文窗口的限制</strong></li>
+</ul>
+<h3 id="解决的问题"><strong>解决的问题</strong><a hidden class="anchor" aria-hidden="true" href="#解决的问题">#</a></h3>
+<ul>
+<li>MemoRAG 提出了全局记忆模块，能够从数据库中生成初步答案线索</li>
+<li>MemoRAG 的记忆模块在全局范围内形成紧凑的语义表示，通过记忆生成线索引导检索，实现了分布式证据的高效整合</li>
+<li>MemoRAG 的记忆模块能够处理百万级别的上下文长度，将长文档内容压缩为关键语义，使得复杂信息更加易于检索和生成</li>
+</ul>
+<p>MemoRAG 采用 <strong>双系统架构</strong>，包含两个主要组件：</p>
+<p>1. <strong>记忆模块（Memory Model）</strong>：</p>
+<ul>
+<li>轻量级、长上下文语言模型，用于从数据库中生成全局记忆和线索。</li>
+<li>高效处理长文档并生成辅助线索（粗略答案或检索指引）。</li>
+</ul>
+<p>2. <strong>生成模块（Generation Model）</strong>：</p>
+<ul>
+<li>强大的生成语言模型，用于根据检索到的上下文生成高质量的最终答案。</li>
+</ul>
+<h3 id="线索生成"><strong>线索生成</strong><a hidden class="anchor" aria-hidden="true" href="#线索生成">#</a></h3>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-20_%E4%B8%8B%E5%8D%881.41.12.png" alt="截屏2025-01-20 下午1.41.12.png"  />
+</p>
+<p>引入了一个记忆模块（由一个较小的 LLM，如 7B 模型组成），它基于数据库构建全局记忆。</p>
+<p>当收到原始 Query ( q ) 时，记忆模块生成“线索” ( y )，这些线索是更明确的中间结果或检索指引，用于改善后续检索过程。线索充当改写后的 Query 或辅助信息，明确用户的隐含意图或分布式证据需求。</p>
+<p>这些线索相当于对原始 Query 进行了增强或改写，使检索工具可以更准确地定位相关内容。</p>
+<p>从某种角度看，<strong>MemoRAG 的记忆模块确实可以类比为最原始的 RAG 系统</strong>，因为它通过数据库中的查询生成初步结果（线索），引导后续检索和生成任务</p>
+<p><strong>差异性：</strong></p>
+<ul>
+<li>记忆模块通过压缩和语义提取生成高层次的线索，而不是仅仅依赖检索工具匹配原始 Query 和数据库</li>
+</ul>
+<p>记忆模块的训练目标是最大化生成线索或下一个 token 的概率，具体为：</p>
+<p>$$
+\max_{\Theta_{\text{mem}}} P(x_{i,j} | x_m^{1,1}, \dots, x_m^{i-1,k}, x_{i,1}, \dots, x_{i,j-1})
+$$</p>
+<p>其中：</p>
+<ul>
+<li>$x_m^{1,1}, \dots, x_m^{i-1,k}$ 表示先前生成的记忆 token。</li>
+<li>$x_{i,1}, \dots, x_{i,j-1}$ 表示当前窗口的原始 token。</li>
+<li>目标：在记忆 token 和当前上下文的基础上生成下一个 token。</li>
+</ul>
+<p>数据集例子：</p>
+<p><img loading="lazy" src="/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-20_%E4%B8%8B%E5%8D%882.35.14.png" alt="截屏2025-01-20 下午2.35.14.png"  />
+</p>
+<p><strong>Q：那么采用LLM的中间层（或者Bert输出）输出，即embedding向量用于语义的压缩，效果差异？</strong></p>
+<p>A：</p>
+<ul>
+<li><strong>MemoRAG 的记忆模块不仅是简单的压缩</strong>
+<ul>
+<li>将长序列压缩为短序列（记忆 token），但不仅是为了减少序列长度，更重要的是:
+<ul>
+<li><strong>捕获全局语义信息</strong></li>
+<li><strong>指导任务的线索生成</strong></li>
+</ul>
+</li>
+<li><strong>动态生成线索:</strong> 基于压缩后的语义记忆，生成能够高效描述用户查询意图的线索，这是 embedding 压缩很难直接实现的</li>
+</ul>
+</li>
+<li><strong>为什么不能直接使用 embedding 作为语义压缩</strong>
+<ul>
+<li><strong>局部信息不足:</strong> LLM 的中间层输出通常是针对每个 token 的局部语义表示，并不一定能够很好地捕获全局信息</li>
+<li><strong>缺乏任务适配性</strong></li>
+<li><strong>信息压缩能力的限制</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<h2 id="live演出">Live演出<a hidden class="anchor" aria-hidden="true" href="#live演出">#</a></h2>
+<p>01.14 U137</p>
+<p>01.16 Mayhem</p>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<p>《动物化的后现代》 东浩纪</p>
+<p>《素食者》 韩江</p>
+<h3 id="我在泰缅边境调查电诈产业-200-天httpsmpweixinqqcomst8y7ymyffs7li33zyxrmzw"><a href="https://mp.weixin.qq.com/s/t8y7yMyFfs7LI33zyXRMzw"><strong>我在泰缅边境调查电诈产业 200 天</strong></a><a hidden class="anchor" aria-hidden="true" href="#我在泰缅边境调查电诈产业-200-天httpsmpweixinqqcomst8y7ymyffs7li33zyxrmzw">#</a></h3>
+<blockquote>
+<p>全球资本主义中“残余”的人被吸引或诱拐至此。</p>
+</blockquote>
+<blockquote>
+<p>最后却是泰国和缅甸承担后果，两个国家的形象在国际舆论中跟“电信诈骗”捆绑在了一起</p>
+</blockquote>
+<blockquote>
+<p>泰国华人在湄索的一边打通移民局、警察局和边防军，搭建起偷渡和走私的基础设施；缅甸华人则在另一边打通“民地武”（民族地区武装）的门路，搞到地，两边的华人共同为来自中国的“电诈”行业大佬们铺平了道路。
+…
+他现在开始拓展新市场——“救人”的生意。</p>
+</blockquote>
+<blockquote>
+<p>这些地方某种意义上彻底摆脱了政府，实现了右翼安那其的自治想象。</p>
+</blockquote>
+<blockquote>
+<p>我们理解“犯罪”时，喜欢进入一种“受害者”、“加害者”是非分明的道德判断。事实上，“受害”是一个光谱。</p>
+</blockquote>
+<blockquote>
+<p>湄索越来越国际化了。全球化的残余在这个边缘地带野蛮生长。</p>
+</blockquote>
+<h3 id="国境之间春天革命与泰缅边界上的缅甸流亡者httpstheinitiumcomzh-hansarticle20231120-international-thailand-myanmar-border-in-between"><a href="https://theinitium.com/zh-hans/article/20231120-international-thailand-myanmar-border-in-between">国境之间：“春天革命”与泰缅边界上的缅甸流亡者</a><a hidden class="anchor" aria-hidden="true" href="#国境之间春天革命与泰缅边界上的缅甸流亡者httpstheinitiumcomzh-hansarticle20231120-international-thailand-myanmar-border-in-between">#</a></h3>
+<blockquote>
+<p>对于湄索的穆斯林和克伦族来说，“缅甸人”还是“泰国人”并不是非此即彼的身份，而是一个流动的光谱，一个中转的过程，一个不具太多含义的分类法。很多人只是通过自己的族群身份识别与区分彼此</p>
+</blockquote>
+<blockquote>
+<p>就像研究湄索“边境资本主义”的学者斯蒂芬・坎贝尔（Stephen Campbell）指出，边境是一种“庇护”和“暴力”的二元辩证</p>
+</blockquote>
+<blockquote>
+<p>然而，国境线那一边的暴政，也同时与国境线这一边的统治技术形成了共谋，泰国当局与私人雇主利用流离失所者的不稳定身份，进行勒索与压榨。</p>
+</blockquote>
+<blockquote>
+<p>没有身份和难以移动，使边境的生产机制成为全球资本主义链条上最残酷的一环，在这里劳作的缅甸移民工则是这个系统中用后即弃的人</p>
+</blockquote>
+<blockquote>
+<p>科蒙也在为不同的国际 NGO 做事，但是他却越来越厌倦这个生态。“很多议程早已隔空提前设置好了，隔空输出西方世界观和议程。很多时候公民社会组织也不得不来写一些离地的企划案，才能申请到经费。这个生态里的大部分人都在忙于‘话语’的生产，竞争谁掌握了‘真理’。”</p>
+</blockquote>
+<blockquote>
+<p>这个生态更多是在一套向国际社会“展演”的逻辑下展开，把前线的现实按照西方的人权、性别、族群、劳工、难民等议题分配到不同的位置，以“去政治化”的方式使更多人的困境被维持在一种可忍受和可展演的状态中没有出路。清迈就是这样的展演场所，于是，他始终坚持留在湄索，与前线保持联系。</p>
+</blockquote>
+<blockquote>
+<p>绝大多数流亡者在边境上的服务业和工厂做廉价劳工，同时压低了原本就远低于泰国最低时薪的工资，共同因为没有身份而在“边境资本主义”的宰制下灵活就业、饱受盘剥。</p>
+</blockquote>
+<blockquote>
+<p>“原住民”和“外来者”这一殖民时代遗留的二分法，在今天仍然是缅甸“族群民族主义”最棘手的身份认同政治，生发了无止境的“血与土”的逻辑</p>
+</blockquote>
+<blockquote>
+<p>民主转型甚至更加释放了族群民族主义（ethno-nationalism）的毒素，公民社会团体、政党、商界、民兵团体、武装组织，全部以族群身份为单位进行民主动员。身份危机伴随着民主化更猛烈地爆发了出来。
+…
+对于今天的流亡政府NUG和围绕在其周围的人来说，“夺回民主”再度成为缅甸政治的唯一解药。</p>
+</blockquote>
+<blockquote>
+<p>对于“春天革命”的流亡者而言，湄索只是一个中转地，一种中间状态，没有人在这里和泰国发生任何关系。它就像两条国境线之间的那个位置，所有在那里的时光都是悬置着的时间。留在这里的人，凭借“革命即将胜利”的希望，在这座城市不可调和的“临时性”中苦苦等待。</p>
+</blockquote>
+<h3 id="the-shadow-of-cognitive-laziness-in-the-brilliance-of-llmshttpswwwpsychologytodaycomintlblogthe-digital-self202501the-shadow-of-cognitive-laziness-in-the-brilliance-of-llms"><a href="https://www.psychologytoday.com/intl/blog/the-digital-self/202501/the-shadow-of-cognitive-laziness-in-the-brilliance-of-llms">The Shadow of Cognitive Laziness in the Brilliance of LLMs</a><a hidden class="anchor" aria-hidden="true" href="#the-shadow-of-cognitive-laziness-in-the-brilliance-of-llmshttpswwwpsychologytodaycomintlblogthe-digital-self202501the-shadow-of-cognitive-laziness-in-the-brilliance-of-llms">#</a></h3>
+<blockquote>
+<p>LLMs boost short-term performance but risk fostering &ldquo;metacognitive laziness.”</p>
+</blockquote>
+<blockquote>
+<p>Over-reliance on AI may erode self-regulation, critical thinking, and deeper learning processes.</p>
+</blockquote>
+<blockquote>
+<p>Hybrid intelligence thrives when AI aids learning without replacing human cognitive engagement.</p>
+</blockquote>
+<h3 id="第九届网络社会年会王洪喆从技术浪漫主义到技术封建主义httpsmpweixinqqcomskqwogqgivn6prsloezhqjq"><a href="https://mp.weixin.qq.com/s/KQwoGQgiVN6pRslOEzhqjQ">第九届网络社会年会｜王洪喆：从技术浪漫主义到技术封建主义</a><a hidden class="anchor" aria-hidden="true" href="#第九届网络社会年会王洪喆从技术浪漫主义到技术封建主义httpsmpweixinqqcomskqwogqgivn6prsloezhqjq">#</a></h3>
+<blockquote>
+<p>为什么我们如此害怕第一次呢？生命中的每一天都是第一次。每个早晨都是全新的。我们从未活过同一天，但每天早上，我们从来不会不敢起床……为什么？</p>
+</blockquote>
+<blockquote>
+<p>Amateur（业余爱好者）— enthusiast（发烧友）— humanist（人文主义者)
+过往对中国早期数字文化的研究过于强调其自上而下的技术民族主义特征。在我的研究中，我强调在早期，尤其是 1990 年代，这更多是一种“enthusiast”群体自下而上发展起来的技术民族主义，有着浓厚的人文主义特征，而非过去理解的“先进-落后”的二元技术民族主义。</p>
+</blockquote>
+<blockquote>
+<p>但在当下，黑客伦理和东亚数字文化伦理都已衰落甚至瓦解。剩下的是一种新的“技术封建主义伦理”——这种伦理不仅追求赚越来越多的钱，而且坚信数字技术平台应该向人们收取租金，而不是成为人类共享的基础设施。这是一个非常重要的变化：共享变成了租赁</p>
+</blockquote>
+<blockquote>
+<p>随着个人财产成为平台巨头、Uber 和 Airbnb 积累资本和数据的工具，消费品被重新配置为积累手段。这种成为佃农的趋势——即成为拥有生产资料的人，但同时其劳动增加了平台所有者的资本——是一种新封建主义。</p>
+</blockquote>
+<h3 id="how-ai-assisted-coding-will-change-software-engineering-hard-truthshttpsnewsletterpragmaticengineercomphow-ai-will-change-software-engineering"><a href="https://newsletter.pragmaticengineer.com/p/how-ai-will-change-software-engineering">How AI-assisted coding will change software engineering: hard truths</a><a hidden class="anchor" aria-hidden="true" href="#how-ai-assisted-coding-will-change-software-engineering-hard-truthshttpsnewsletterpragmaticengineercomphow-ai-will-change-software-engineering">#</a></h3>
+<blockquote>
+<p>They&rsquo;re not just accepting what the AI suggests. They&rsquo;re constantly:
+Refactoring the generated code into smaller, focused modulesAdding edge case handling the AI missedStrengthening type definitions and interfacesQuestioning architectural decisionsAdding comprehensive error handling
+…
+In other words, they&rsquo;re applying years of hard-won engineering wisdom to shape and constrain the AI&rsquo;s output.
+…
+AI tools help experienced developers more than beginners.</p>
+</blockquote>
+<blockquote>
+<p>The reality is that AI is like having a very eager junior developer on your team.
+…
+The more you know, the better you can guide them.</p>
+</blockquote>
+<blockquote>
+<p>I&rsquo;ve watched senior engineers use AI to:
+Rapidly prototype ideas they already understandGenerate basic implementations they can then refineExplore alternative approaches to known problemsAutomate routine coding tasks
+…
+Meanwhile, juniors often:
+Accept incorrect or outdated solutionsMiss critical security and performance considerationsStruggle to debug AI-generated codeBuild fragile systems they don&rsquo;t fully understand</p>
+</blockquote>
+<blockquote>
+<p>When code just &ldquo;appears&rdquo; without you understanding the underlying principles:
+You don&rsquo;t develop debugging skillsYou miss learning fundamental patternsYou can&rsquo;t reason about architectural decisionsYou struggle to maintain and evolve the code</p>
+</blockquote>
+<blockquote>
+<p>This &ldquo;70% problem&rdquo; suggests that current AI coding tools are best viewed as:
+Prototyping accelerators for experienced developersLearning aids for those committed to understanding developmentMVP generators for validating ideas quickly</p>
+</blockquote>
+<blockquote>
+<p>But for now, the most pragmatic approach is to use AI to accelerate learning, not replace it entirely.
+…
+Accelerating the known
+Exploring the possible
+Automating the routine</p>
+</blockquote>
+<blockquote>
+<p>The most effective teams in 2025 may be those that learn to:
+Set clear boundaries and guidelines for their AI agentsEstablish strong architectural patterns that agents can work withinCreate effective feedback loops between human and AI capabilitiesMaintain human oversight while leveraging AI autonomy</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2025-01%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f&amp;title=2025-01%20%e6%9c%88%e5%88%8a&amp;summary=2025-01%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f&title=2025-01%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2025-01%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2025-01%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-01 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2025-01%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="https://github.com/Niraya666/niraya666.github.io.git"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

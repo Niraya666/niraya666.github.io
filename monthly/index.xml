@@ -2,354 +2,69 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Monthlies on LZY Blog</title>
-    <link>http://localhost:1313/monthly/</link>
+    <link>https://niraya666.github.io/monthly/</link>
     <description>Recent content in Monthlies on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Dec 2024 19:24:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jan 2025 18:00:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2024-12 月刊</title>
-      <link>http://localhost:1313/monthly/2024-12/</link>
-      <pubDate>Mon, 30 Dec 2024 19:24:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-12/</guid>
-      <description>&lt;h2 id=&#34;新模型&#34;&gt;新模型&lt;/h2&gt;
-&lt;h3 id=&#34;meta-llama33&#34;&gt;Meta Llama3.3&lt;/h3&gt;
-&lt;p&gt;Meta Llama 3.3 是一款&lt;strong&gt;700亿参数&lt;/strong&gt;的指令微调多语言大模型。该模型专注于文本生成，相比 Llama 3.1 70B 和 Llama 3.2 90B 性能有显著提升。在某些应用场景中，其效果可与 Llama 3.1 405B 媲美，但模型体积更小、计算效率更高。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;核心亮点&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;高性能表现&lt;/strong&gt;：支持复杂推理、代码生成和多语言处理。在 HumanEval 等基准测试中表现优异，代码生成 pass@1 达到&lt;strong&gt;88.4%&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Grouped-Query Attention (GQA)&lt;/strong&gt;：能处理&lt;strong&gt;128,000 tokens&lt;/strong&gt;的长上下文，大幅提升推理效率。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;无预训练版本&lt;/strong&gt;：Llama 3.3 专注于指令微调版本，更好地适配实际应用场景。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;与 Llama 3.1 兼容&lt;/strong&gt;：完全支持 Llama 3.1 的提示模板、代码解释器和工具调用功能，可实现无缝迁移。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;huggingface: &lt;a href=&#34;https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/tree/main&#34;&gt;https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/tree/main&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;gemini-20&#34;&gt;Gemini 2.0&lt;/h3&gt;
-&lt;p&gt;Gemini 2.0 是谷歌推出的下一代多模态人工智能模型。相比 1.5 Pro，Gemini 2.0 Flash 在多模态处理方面有重大突破，大幅提升了文本、代码、视频、空间理解与推理性能，同时维持低延迟和高效率。在关键基准测试中，该模型表现卓越，处理速度达到前代的两倍。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;创新亮点&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;原生多模态输出&lt;/strong&gt;：通过单一 API 调用，可生成包含文本、音频和图像的综合响应，极大简化了开发流程。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;实时多模态 API&lt;/strong&gt;：支持摄像头和屏幕流输入，集成语音活动检测等自然交互功能，特别适合实时应用开发。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;原生工具调用&lt;/strong&gt;：能够直接调用 Google 搜索、执行代码并对接第三方函数，有效支持自主代理系统的构建。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;长上下文与推理&lt;/strong&gt;：优化了复杂任务处理、长文本理解与规划能力，特别适合研究助手类应用。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;实际效果&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;开发者可借助 Gemini 2.0 构建实时音视频处理的动态应用。模型能够直接处理无字幕视频并生成精确翻译和结构化文章，大大简化了传统的多步骤流程。Project Astra 展示了模型在多语言对话、智能记忆和快速响应方面的优势，而 Project Mariner 在浏览器自动化任务中更是达到了 83.5% 的领先性能。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-11 月刊</title>
-      <link>http://localhost:1313/monthly/2024-11/</link>
-      <pubDate>Sat, 30 Nov 2024 11:30:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-11/</guid>
-      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
-&lt;h3 id=&#34;chatgpt-search正式发布&#34;&gt;ChatGPT Search正式发布&lt;/h3&gt;
-&lt;p&gt;OpenAI近日正式推出ChatGPT Search功能，相比第三方搜索插件，官方版本展现出了明显的性能优势。不过要吐槽的一点， 搜索编程相关问题时，中文网页来源十有八九都是CSDN。&lt;/p&gt;
-&lt;h3 id=&#34;google-发布全新-ai-学习工具-learn-about&#34;&gt;&lt;strong&gt;Google 发布全新 AI 学习工具 “Learn About”&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Google 推出了全新的 AI 学习工具 “Learn About”，基于 Google LearnLM 模型，专为教育优化，旨在通过个性化和互动式的学习体验帮助用户探索和理解各种主题。该工具提供类似教科书的界面，结合互动列表、图像和导航菜单，同时包含“词汇扩展”“重要性解析”等功能，并链接至 YouTube 视频和网站等内容。相比传统搜索方式，它更具吸引力，能够按需分解复杂主题，促进长期记忆和理解。当前，该工具仅向美国 18 岁以上用户开放，主要支持英语，并内置隐私控制与数据管理功能。目标用户包括学生、教育者、终身学习者及专业人士，Google 希望借此重新定义学习方式，提供更高效和互动的学习体验。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://learning.google/&#34;&gt;Google Learning -  Digital Learning Tools &amp;amp; Solutions&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;全新的qwen25-coder系列模型&#34;&gt;全新的Qwen2.5-Coder系列模型&lt;/h3&gt;
-&lt;p&gt;阿里云近日发布了全新的 Qwen2.5-Coder 系列模型，这是一款强大且实用的代码模型，支持 92 种编程语言并具备 128K tokens 的长文本理解能力。该系列提供 6 种不同规格（0.5B 至 32B），其中 32B 版本性能达到开源代码模型的最优水平，可与 GPT-4o 媲美。在代码生成、修复和推理等任务中，Qwen2.5-Coder 在多个基准测试中表现优异，尤其在 Haskell 和 Racket 等语言的多语言支持方面成绩突出。此外，该模型集成了代码助手和 Artifacts 功能，支持一键生成网站、小游戏、数据图表等应用，并提供在线 demo 供体验。Qwen2.5-Coder 支持多种部署方式，包括 transformers 和多 GPU 分布式服务，同时提供量化版本以适配不同硬件环境。&lt;/p&gt;
-&lt;p&gt;Blog: &lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5-coder/&#34;&gt;Qwen2.5-Coder: 码无止境，学无止境!&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;类o1-的reasoning-模型追赶者的全面爆发&#34;&gt;类o1 的Reasoning 模型：&lt;strong&gt;追赶者的全面爆发&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;DeepSeek 推出的 DeepSeek-R1 模型以强大的推理能力和自我逻辑检验功能为核心亮点。在 AIME 和 MATH 等基准测试中，其表现与 OpenAI o1 模型不相上下，同时内置事实核查功能，可降低“幻觉”风险，显著提升复杂问题的逻辑规划能力。然而，该模型在某些基础逻辑问题上仍需改进。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-10 月刊</title>
-      <link>http://localhost:1313/monthly/2024-10/</link>
-      <pubDate>Thu, 31 Oct 2024 19:01:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-10/</guid>
-      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
-&lt;h3 id=&#34;openai-meta-prompt&#34;&gt;OpenAI meta-prompt&lt;/h3&gt;
-&lt;p&gt;OpenAI最近揭示了其最新的“元提示”（meta-prompt）技术，通过简单指令实现完整的prompt生成或改进prompt，除去prompt以外，还提供了tool-using schema 的自动生成能力。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://platform.openai.com/docs/guides/prompt-generation&#34;&gt;OpenAI Platform&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;openai-canvas-功能&#34;&gt;OpenAI Canvas 功能&lt;/h3&gt;
-&lt;p&gt;OpenAI推出了名为“Canvas”的新界面，专为提升写作和编程项目的用户体验而设计。Canvas界面在常规聊天窗口旁打开一个工作区，用户可以直接在其中生成和编辑文本或代码。这一功能为用户提供了更大的灵活性和控制力，尤其在需要对AI生成的内容进行细化调整时。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-canvas/&#34;&gt;Introducing canvas&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;nvidia-发布llama-31-nemotron-70b模型&#34;&gt;Nvidia 发布Llama-3.1-Nemotron-70B模型&lt;/h3&gt;
-&lt;p&gt;NVIDIA近日发布了其最新的大型语言模型Llama-3.1-Nemotron-70B-Instruct。&lt;/p&gt;
-&lt;p&gt;Llama-3.1-Nemotron-70B-Instruct在多个自动化评估基准上表现优异，包括Arena Hard、AlpacaEval 2 LC和GPT-4-Turbo MT-Bench，超越了OpenAI的GPT-4o和Anthropic的Claude 3.5 Sonnet等强大模型。&lt;/p&gt;
-&lt;p&gt;该模型通过强化学习人类反馈（RLHF）进行训练，使用了REINFORCE算法和HelpSteer2-Preference提示。NVIDIA还提供了在HuggingFace Transformers代码库中的兼容版本，方便开发者使用。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://huggingface.co/nvidia/Llama-3.1-Nemotron-70B-Instruct&#34;&gt;nvidia/Llama-3.1-Nemotron-70B-Instruct · Hugging Face&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;mistral发布了ministral-3b-和-ministral-8b&#34;&gt;Mistral发布了Ministral 3B 和 Ministral 8B&lt;/h3&gt;
-&lt;p&gt;Mistral公司近日发布了两款新的AI模型，Ministral 3B和Ministral 8B，专为边缘设备如笔记本电脑和智能手机设计，确保数据处理的安全性和响应速度。&lt;/p&gt;
-&lt;p&gt;Ministral 3B和8B模型的上下文窗口可达128,000个tokens，相当于处理50页文档的能力。Ministral 8B采用了交错滑动窗口注意力机制，提升了推理速度并节省内存。在性能方面，Ministral 3B和8B在多个AI基准测试中表现优于同类模型，如Llama和Gemma系列，以及Mistral自家的7B模型。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://mistral.ai/news/ministraux/&#34;&gt;Un Ministral, des Ministraux&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;anthropic-最近发布了最新的-ai-模型-claude-35-haiku-和升级版-claude-35-sonnet&#34;&gt;Anthropic 最近发布了最新的 AI 模型 Claude 3.5 Haiku 和升级版 Claude 3.5 Sonnet&lt;/h3&gt;
-&lt;p&gt;Anthropic 最近发布了最新的 AI 模型 Claude 3.5 Haiku 和升级版 Claude 3.5 Sonnet。这些模型在多个领域表现出色，尤其是在编码和工具使用任务上取得了显著进步。Claude 3.5 Sonnet 的推理能力超过了许多竞争对手，包括 OpenAI 的 o1-preview。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-09 月刊</title>
-      <link>http://localhost:1313/monthly/2024-09/</link>
-      <pubDate>Thu, 26 Sep 2024 14:01:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-09/</guid>
-      <description>&lt;h2 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h2&gt;
-&lt;h3 id=&#34;openai-发布o1-preview&#34;&gt;OpenAI 发布o1-preview&lt;/h3&gt;
-&lt;p&gt;OpenAI于9月12日发布了其最新的大型语言模型o1-preview，该模型在推理能力上实现了重大突破。o1模型通过使用Chain of Thought技术，能够解决复杂的数学和编程问题，其表现超越了之前的GPT-4o模型。&lt;/p&gt;
-&lt;p&gt;o1模型在多个基准测试中表现出色，包括在美国国际数学邀请赛中取得接近全国前500名的成绩，并在科学问题的准确度上超过了人类博士水平。该模型通过强化学习增强了推理能力，能够逐步分析问题，拆解复杂步骤并自动修正错误。&lt;/p&gt;
-&lt;p&gt;OpenAI还推出了o1-mini版本，虽然规模较小，但在推理任务上表现优异，且成本更低。o1-mini特别适合编程任务，预计未来将向所有ChatGPT用户开放。&lt;/p&gt;
-&lt;p&gt;相关信息：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://cdn.openai.com/o1-system-card.pdf&#34;&gt;system card&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-openai-o1-preview/&#34;&gt;官方介绍&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.interconnects.ai/p/reverse-engineering-openai-o1&#34;&gt;Reverse engineering OpenAI’s o1&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://x.com/dotey/status/1835395891483554105&#34;&gt;去年 Jim Fan 对于 Q* 的预测&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;相关GitHub仓库： &lt;a href=&#34;https://github.com/hijkzzz/Awesome-LLM-Strawberry&#34;&gt;&lt;strong&gt;Awesome LLM Strawberry (OpenAI o1)&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://x.com/op7418/status/1835153295855567356&#34;&gt;关于 Open AI o1 的 AMA&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=kYWUEV_e2ss&#34;&gt;MIT EI seminar, Hyung Won Chung from OpenAI. &amp;ldquo;Don&amp;rsquo;t teach. Incentivize.&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;qwen25系列模型&#34;&gt;Qwen2.5系列模型&lt;/h3&gt;
-&lt;p&gt;阿里云的Qwen团队近日发布了Qwen2.5系列大型语言模型。该系列包括多种尺寸的模型，从0.5B到72B参数不等，并提供基础和指令调优版本。Qwen2.5在多个方面取得了显著进步，包括更强的知识储备、编码和数学能力的提升，以及在指令跟随、长文本生成和结构化数据理解方面的改进。&lt;/p&gt;
-&lt;p&gt;Qwen2.5支持多达29种语言，能够处理长达128K的上下文，并生成最多8K的文本。该模型在多语言支持、角色扮演和聊天机器人条件设置方面表现出更高的弹性。&lt;/p&gt;
-&lt;p&gt;此外，Qwen2.5还推出了专门用于编码和数学的模型，如Qwen2.5-Coder和Qwen2.5-Math，进一步增强了在这些领域的应用能力。Qwen2.5-Coder特别在代码生成、推理和修复方面表现出色，而Qwen2.5-Math则在数学推理能力上有显著提升。&lt;/p&gt;
-&lt;p&gt;官方博客：&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5/&#34;&gt;Qwen2.5: 基础模型大派对！&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deepseek-v25&#34;&gt;DeepSeek-V2.5&lt;/h3&gt;
-&lt;p&gt;DeepSeek-AI 推出了其最新模型 DeepSeek-V2.5，成功融合了之前版本 DeepSeek-V2-Chat 和 DeepSeek-Coder-V2-Instruct 的功能。该模型集成了通用语言处理和编程能力。&lt;/p&gt;
-&lt;p&gt;DeepSeek-V2.5 经过性能优化，特别在写作、任务执行和高级编程等方面表现出色，在 AlpacaEval 2.0 和 HumanEval Python 等基准测试中超越了前代产品。此外，模型还新增了函数调用功能，使其能够与外部工具交互，拓展了实时天气报告、翻译等应用场景。&lt;/p&gt;
-&lt;p&gt;该模型采用了多头潜在注意力（MLA）等技术创新，显著提升了推理速度和资源利用效率。同时，DeepSeek-V2.5 在 Hugging Face 平台上开源，并提供商业化许可，允许企业将其用于自动化客服、内容生成等业务流程中。其性能表现已跻身主流排行榜，与 GPT-4-Turbo 和 LLaMA3-70B 等顶尖模型齐名。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-08 月刊</title>
-      <link>http://localhost:1313/monthly/2024-08/</link>
-      <pubDate>Sat, 31 Aug 2024 16:43:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-08/</guid>
-      <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
-&lt;h3 id=&#34;grok-2-beta-版本&#34;&gt;Grok-2 Beta 版本&lt;/h3&gt;
-&lt;p&gt;xAI公司发布了Grok-2和Grok-2 mini的测试版，现已向𝕏平台上的Premium和Premium+用户开放。Grok-2是一个先进的语言模型，在聊天、编码和推理方面表现出色，超过了Claude 3.5 Sonnet和GPT-4-Turbo等竞争对手。Grok-2 mini则在速度和答案质量之间取得平衡。此外，关于图像生成功能可能被滥用的问题也引起了关注。&lt;/p&gt;
-&lt;h3 id=&#34;微软发布phi-35系列模型&#34;&gt;微软发布Phi-3.5系列模型&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/discover-the-new-multi-lingual-high-quality-phi-3-5-slms/ba-p/4225280&#34;&gt;https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/discover-the-new-multi-lingual-high-quality-phi-3-5-slms/ba-p/4225280&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;涵盖了Phi-3.5-mini、Phi-3.5-MoE和Phi-3.5-vision三种模型。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Phi-3.5-mini&lt;/strong&gt;：拥有3.8亿参数，支持128K上下文长度，专注于多语言支持和推理能力。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Phi-3.5-MoE&lt;/strong&gt;：混合专家模型，总参数量为42亿，但每次激活仅使用6.6亿参数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Phi-3.5-vision&lt;/strong&gt;：具备4.2亿参数，能够处理多帧图像理解和推理任务，在单图像基准测试中表现显著提升。&lt;/p&gt;
-&lt;h3 id=&#34;cursor-ai&#34;&gt;Cursor AI&lt;/h3&gt;
-&lt;p&gt;最近大热的一款AI编程辅助工具。&lt;/p&gt;
-&lt;p&gt;不仅支持多行代码的自动完成，还能够根据代码上下文进行智能生成和重写， 代码解释和调试帮助。&lt;/p&gt;
-&lt;p&gt;2024年8月，Cursor AI 完成了一轮6000万美元的融资，使得公司的估值达到了4亿美元。&lt;/p&gt;
-&lt;h3 id=&#34;google发布gemma-2-2b模型及其相关工具&#34;&gt;&lt;strong&gt;Google发布Gemma 2 2B模型及其相关工具&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Google发布了新一代轻量级开源大语言模型Gemma 2 2B，并推出了一系列相关工具，包括ShieldGemma和Gemma Scope。这些新工具旨在提升AI的安全性、透明度和性能。&lt;/p&gt;
-&lt;h3 id=&#34;qwen2-vl&#34;&gt;&lt;strong&gt;Qwen2-VL&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2-vl/&#34;&gt;https://qwenlm.github.io/zh/blog/qwen2-vl/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通义千文团队开源了 Qwen2-VL-2B 和 Qwen2-VL-7B，并发布了 Qwen2-VL-72B 的 API。&lt;/p&gt;
-&lt;p&gt;72B在大部分指标上甚至超过了 GPT-4o 和 Claude3.5-Sonnet 等。&lt;/p&gt;
-&lt;p&gt;Qwen2-VL 可理解20分钟以上长视频，并将其用于基于视频的问答等应用。&lt;/p&gt;
-&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
-&lt;h3 id=&#34;deep-live-cam&#34;&gt;Deep Live Cam&lt;/h3&gt;
-&lt;p&gt;real time face swap and one-click video deepfake with only a single image&lt;/p&gt;
-&lt;p&gt;Github: &lt;a href=&#34;https://github.com/hacksider/Deep-Live-Cam&#34;&gt;https://github.com/hacksider/Deep-Live-Cam&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;moffee&#34;&gt;moffee&lt;/h3&gt;
-&lt;p&gt;moffee 是一个开源的幻灯片制作工具，可以将 Markdown 文档转换为简洁、专业的幻灯片。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-07 月刊</title>
-      <link>http://localhost:1313/monthly/2024-07/</link>
-      <pubDate>Wed, 31 Jul 2024 09:46:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-07/</guid>
-      <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
-&lt;h3 id=&#34;llama31-发布&#34;&gt;Llama3.1 发布&lt;/h3&gt;
-&lt;p&gt;博客文章： &lt;a href=&#34;https://ai.meta.com/blog/meta-llama-3-1/&#34;&gt;https://ai.meta.com/blog/meta-llama-3-1/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;技术报告：&lt;a href=&#34;https://ai.meta.com/research/publications/the-llama-3-herd-of-models/&#34;&gt;https://ai.meta.com/research/publications/the-llama-3-herd-of-models/&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;405B，70B，和8B3个版本&lt;/li&gt;
-&lt;li&gt;在个别指标上，405B超过了GPT-4o&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://scontent-msp1-1.xx.fbcdn.net/v/t39.2365-6/451735590_1030734788570365_1093008500142144333_n.png?_nc_cat=100&amp;amp;ccb=1-7&amp;amp;_nc_sid=e280be&amp;amp;_nc_ohc=CJNPYAljD8MQ7kNvgE9-8ZQ&amp;amp;_nc_ht=scontent-msp1-1.xx&amp;amp;oh=00_AYAOhN3NhE0dscHn8iazBrc3JmSU5XM9gJ6gjmkqOuUZ3w&amp;amp;oe=66C00DBE&#34; alt=&#34;https://scontent-msp1-1.xx.fbcdn.net/v/t39.2365-6/451735590_1030734788570365_1093008500142144333_n.png?_nc_cat=100&amp;amp;ccb=1-7&amp;amp;_nc_sid=e280be&amp;amp;_nc_ohc=CJNPYAljD8MQ7kNvgE9-8ZQ&amp;amp;_nc_ht=scontent-msp1-1.xx&amp;amp;oh=00_AYAOhN3NhE0dscHn8iazBrc3JmSU5XM9gJ6gjmkqOuUZ3w&amp;amp;oe=66C00DBE&#34;  /&gt;
+      <title>2025-01 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Mon, 27 Jan 2025 18:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的新模型&#34;&gt;值得关注的新模型&lt;/h1&gt;
+&lt;h2 id=&#34;deepseek-r1&#34;&gt;Deepseek R1&lt;/h2&gt;
+&lt;p&gt;DeepSeek R1通过&lt;strong&gt;纯强化学习（RL）框架&lt;/strong&gt;实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时&lt;strong&gt;全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B）&lt;/strong&gt;，使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出&lt;strong&gt;自发反思与多步骤验证能力&lt;/strong&gt;，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。&lt;/p&gt;
+&lt;p&gt;技术报告：https://arxiv.org/abs/2501.12948&lt;/p&gt;
+&lt;p&gt;Huggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1&lt;/p&gt;
+&lt;h2 id=&#34;kimi-k1&#34;&gt;Kimi K1&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。&lt;/strong&gt; 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练+强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。&lt;/p&gt;
+&lt;p&gt;Arxiv: &lt;a href=&#34;https://arxiv.org/abs/2501.12599&#34;&gt;Kimi k1.5: Scaling Reinforcement Learning with LLMs&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qvq-72b-preview&#34;&gt;QVQ-72B-Preview&lt;/h2&gt;
+&lt;p&gt;Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用&lt;strong&gt;自适应视觉分词策略&lt;/strong&gt;（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链&lt;code&gt;qwen-vl-utils&lt;/code&gt;，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。&lt;/p&gt;
+&lt;p&gt;Blog：&lt;a href=&#34;https://qwen2.org/qvq-72b-preview/&#34;&gt;https://qwen2.org/qvq-72b-preview/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Huggingface：&lt;a href=&#34;https://huggingface.co/Qwen/QVQ-72B-Preview&#34;&gt;https://huggingface.co/Qwen/QVQ-72B-Preview&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;phi-4&#34;&gt;Phi-4&lt;/h2&gt;
+&lt;p&gt;Phi-4的核心创新点体现在三方面突破性设计：&lt;strong&gt;架构优化&lt;/strong&gt;、&lt;strong&gt;数据工程&lt;/strong&gt;与&lt;strong&gt;高效训练策略&lt;/strong&gt;。技术上，其在仅解码器Transformer架构中创新引入&lt;strong&gt;全局注意力机制&lt;/strong&gt;，突破传统滑动窗口限制，结合动态调整的&lt;strong&gt;旋转位置编码（RoPE）基频&lt;/strong&gt;，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用&lt;strong&gt;多阶段渐进训练法&lt;/strong&gt;，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创&lt;strong&gt;结构化合成数据范式&lt;/strong&gt;，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了&amp;quot;数据质量优先&amp;quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2412.08905&#34;&gt;&lt;strong&gt;Phi-4 Technical Report&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Huggingface: &lt;a href=&#34;https://huggingface.co/microsoft/phi-4&#34;&gt;https://huggingface.co/microsoft/phi-4&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;minicpm-o-2_6&#34;&gt;MiniCPM-o-2_6&lt;/h2&gt;
+&lt;p&gt;MiniCPM-o-2_6通过&lt;strong&gt;端到端全模态架构&lt;/strong&gt;与&lt;strong&gt;高密度视觉Token压缩技术&lt;/strong&gt;，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用&lt;strong&gt;视觉Token密度优化算法&lt;/strong&gt;，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在&lt;strong&gt;跨模态实时流式交互&lt;/strong&gt;（TDM直播机制）与&lt;strong&gt;端侧低损耗部署&lt;/strong&gt;（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码仓库&lt;/strong&gt;：&lt;a href=&#34;https://github.com/OpenBMB/MiniCPM-o&#34;&gt;https://github.com/OpenBMB/MiniCPM-o&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模型下载&lt;/strong&gt;：&lt;a href=&#34;https://huggingface.co/openbmb/MiniCPM-o-2_6&#34;&gt;https://huggingface.co/openbmb/MiniCPM-o-2_6&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;deepseek-r1-incentivizing-reasoning-capability-in-llms-via-reinforcement-learning&#34;&gt;&lt;strong&gt;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Arxiv：&lt;a href=&#34;https://arxiv.org/abs/2501.12948&#34;&gt;arXiv.org&lt;strong&gt;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-22_%E4%B8%8B%E5%8D%881.29.29.png&#34; alt=&#34;截屏2025-01-22 下午1.29.29.png&#34;  /&gt;
 &lt;/p&gt;
-&lt;h3 id=&#34;mistral-large-2&#34;&gt;Mistral Large 2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://mistral.ai/news/mistral-large-2407/&#34;&gt;https://mistral.ai/news/mistral-large-2407/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://mistral.ai/images/news/mistral-large-2407/mistral-large-2407-multiple.png&#34; alt=&#34;https://mistral.ai/images/news/mistral-large-2407/mistral-large-2407-multiple.png&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;卷起来了&lt;/p&gt;
-&lt;h3 id=&#34;openai-发布-gpt-4o-mini&#34;&gt;OpenAI 发布 GPT-4o mini&lt;/h3&gt;
-&lt;p&gt;更低的API价格，并取代chatGPT中的GPT-3.5 Turbo，成为免费使用的模型&lt;/p&gt;
-&lt;h3 id=&#34;sam-2-发布&#34;&gt;SAM-2 发布&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://ai.meta.com/blog/segment-anything-2/&#34;&gt;https://ai.meta.com/blog/segment-anything-2/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;GitHub：&lt;a href=&#34;https://github.com/facebookresearch/segment-anything-2?tab=readme-ov-file&#34;&gt;https://github.com/facebookresearch/segment-anything-2?tab=readme-ov-file&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;与SAM相比， 同时支持视频和图像的分割，更强大的能力&lt;/p&gt;
-&lt;h3 id=&#34;快手可灵更新&#34;&gt;快手可灵更新&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://klingai.kuaishou.com/&#34;&gt;https://klingai.kuaishou.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
-&lt;h3 id=&#34;knowledge_graph_maker&#34;&gt;knowledge_graph_maker&lt;/h3&gt;
-&lt;p&gt;采用LLM生成knowledge graph&lt;/p&gt;
-&lt;p&gt;GitHub： &lt;a href=&#34;https://github.com/rahulnyk/knowledge_graph_maker&#34;&gt;https://github.com/rahulnyk/knowledge_graph_maker&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;qwen2-audio&#34;&gt;Qwen2-Audio&lt;/h3&gt;
-&lt;p&gt;接受各种音频信号输入，并根据语音指令执行音频分析或直接响应文本&lt;/p&gt;
-&lt;p&gt;GitHub: &lt;a href=&#34;http://github.com/QwenLM/Qwen2-Audio&#34;&gt;github.com/QwenLM/Qwen2-Audio&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;llm-twin-course&#34;&gt;&lt;strong&gt;LLM Twin Course&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;An End-to-End Framework for Production-Ready LLM &amp;amp; RAG Systems by Building Your LLM Twin&lt;/p&gt;
-&lt;p&gt;Github：&lt;a href=&#34;http://github.com/decodingml/llm-twin-course&#34;&gt;github.com/decodingml/llm-twin-course&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;docker-proxy&#34;&gt;Docker-Proxy&lt;/h3&gt;
-&lt;p&gt;自建Docker镜像加速服务，基于官方Docker Registry 一键部署Docker、K8s、Quay、Ghcr、Mcr等镜像加速\管理服务。支持部署到Render\Koyeb&lt;/p&gt;
-&lt;p&gt;GitHub: &lt;a href=&#34;http://github.com/dqzboy/Docker-Proxy&#34;&gt;github.com/dqzboy/Docker-Proxy&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;mediago&#34;&gt;MediaGo&lt;/h3&gt;
-&lt;p&gt;支持流媒体下载、视频下载、m3u8 文件下载以及 B 站视频下载&lt;/p&gt;
-&lt;p&gt;GitHub：&lt;a href=&#34;https://github.com/caorushizi/mediago&#34;&gt;github.com/caorushizi/mediago&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;pptx2md&#34;&gt;&lt;strong&gt;PPTX2MD&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;a pptx to markdown converter&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-06 月刊</title>
-      <link>http://localhost:1313/monthly/2024-06/</link>
-      <pubDate>Sun, 30 Jun 2024 16:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-06/</guid>
-      <description>&lt;h1 id=&#34;ai-新闻&#34;&gt;AI 新闻&lt;/h1&gt;
-&lt;h2 id=&#34;claude-35-sonnet&#34;&gt;&lt;strong&gt;Claude 3.5 Sonnet&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-3-5-sonnet&#34;&gt;https://www.anthropic.com/news/claude-3-5-sonnet&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;相比其前身 Claude 3 Opus，Claude 3.5 Sonnet 的运行速度提升了两倍，同时在多项基准测试中表现优异。此外，Claude 3.5 Sonnet 还引入了名为“Artifacts”的新功能，使用户可以在与 AI 对话的过程中实时查看和编辑生成的内容。&lt;/p&gt;
-&lt;h2 id=&#34;开源模型&#34;&gt;开源模型&lt;/h2&gt;
-&lt;h3 id=&#34;qwen-2&#34;&gt;Qwen 2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2/&#34;&gt;https://qwenlm.github.io/zh/blog/qwen2/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;一共开源了Qwen2-0.5B、Qwen2-1.5B、Qwen2-7B、Qwen2-57B-A14B以及&lt;strong&gt;Qwen2-72B&lt;/strong&gt; 5个模型**。&lt;strong&gt;增大了上下文长度支持，最高达到&lt;/strong&gt;128K** tokens（Qwen2-72B-Instruct）。 代码和数学能力显著提升。多个评测基准上的领先表现。 同时还开源了一个智能体解决方案，用于高效处理100万tokens级别的上下文： &lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen-agent-2405/&#34;&gt;**使用Qwen-Agent将上下文记忆扩展到百万量级&lt;/a&gt;。**&lt;/p&gt;
-&lt;h3 id=&#34;gemma2&#34;&gt;Gemma2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://developers.googleblog.com/en/gemma-family-and-toolkit-expansion-io-2024/&#34;&gt;https://developers.googleblog.com/en/gemma-family-and-toolkit-expansion-io-2024/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;包括两个主要版本，分别是 9 B参数和 27 B参数的模型。27B 的 Gemma 2 模型在多个基准测试中表现优异，超过了 Llama 3 70B 模型的性能。&lt;/p&gt;
-&lt;p&gt;Gemma 2 采用了新的架构设计，使其在推理时更加高效&lt;/p&gt;
-&lt;h3 id=&#34;nemotron-4-340b&#34;&gt;Nemotron-4 340B&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/&#34;&gt;https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;包含基础模型、指示模型和奖励模型的综合性数据生成流水线，用于训练大型语言模型。&lt;/p&gt;
-&lt;p&gt;提供了一种生成合成训练数据的新方法，旨在提升定制语言模型的性能和鲁棒性。&lt;/p&gt;
-&lt;h3 id=&#34;deepseek-coder-v2-代码模型&#34;&gt;DeepSeek-Coder-V2 代码模型&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct&#34;&gt;https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;开源的专家混合模型，性能媲美GPT4-Turbo，专为代码特定任务优化，支持多源高质量语料库预训练，显著提升编程和数学推理能力，支持338种编程语言，扩展上下文长度至128K。&lt;/p&gt;
-&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Perplexica&lt;/strong&gt;： 开源版本Perplexity+支持本地LLM。 GitHub：&lt;a href=&#34;http://github.com/ItzCrazyKns/Perplexica&#34;&gt;github.com/ItzCrazyKns/Perplexica&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;translation-agent&lt;/strong&gt;：吴恩达老师开源了一套 AI Agent 翻译工作流。通过LLM初步翻译， 而后对翻译结果进行反思，并提出改进建议，最后再根据意见进行最终版本的翻译。GitHub： &lt;a href=&#34;http://github.com/andrewyng/translation-agent&#34;&gt;github.com/andrewyng/translation-agent&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Streamer-Sales 销冠 —— 卖货主播 LLM 大模型&lt;/strong&gt;： 一个能够根据给定的商品特点从激发用户购买意愿角度出发进行商品解说的卖货主播大模型。 另外还集成了 LMDeploy 加速推理🚀、RAG检索增强生成 📚、TTS文字转语音🔊、数字人生成 🦸、 Agent 使用网络查询实时信息🌐、ASR 语音转文字🎙️。 GitHub：&lt;a href=&#34;http://github.com/PeterH0323/Streamer-Sales&#34;&gt;github.com/PeterH0323/Streamer-Sales&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-05 月刊</title>
-      <link>http://localhost:1313/monthly/2024-05/</link>
-      <pubDate>Fri, 31 May 2024 13:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-05/</guid>
-      <description>&lt;h2 id=&#34;ai&#34;&gt;AI&lt;/h2&gt;
-&lt;h3 id=&#34;gpt4-o-发布&#34;&gt;GPT4-o 发布&lt;/h3&gt;
-&lt;p&gt;OpenAI 推出了新一代多模态模型 GPT-4o，它不仅支持文本输入，还能处理语音和视频输入。这款模型在速度、成本和性能方面都得到了显著提升，相比之前的版本快两倍，成本降低了50%，并且能够处理更长的输出&lt;/p&gt;
-&lt;h3 id=&#34;chatgpt数据分析&#34;&gt;ChatGPT数据分析&lt;/h3&gt;
-&lt;p&gt;最新的 ChatGPT 界面允许用户通过选择行或列来提问，并进行数据可视化。&lt;/p&gt;
-&lt;h3 id=&#34;mistral-7b-v03&#34;&gt;Mistral-7B-v0.3&lt;/h3&gt;
-&lt;p&gt;Mistral-7B-v0.3 模型引入了词表扩展功能，并支持工具调用&lt;/p&gt;
-&lt;h3 id=&#34;deepseek-v2&#34;&gt;DeepSeek-V2&lt;/h3&gt;
-&lt;p&gt;该模型通过多头潜在注意力（MLA）和 DeepSeekMoE 架构，实现了高效推理，每个token仅激活 210 亿参数，从而显著降低了计算成本。&lt;/p&gt;
-&lt;h2 id=&#34;关注的开源项目&#34;&gt;关注的开源项目&lt;/h2&gt;
-&lt;h3 id=&#34;cover-agent&#34;&gt;&lt;strong&gt;Cover-Agent&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/Codium-ai/cover-agent&#34;&gt;Cover-Agent&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;CodiumAI Cover-Agent: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement!&lt;/p&gt;
-&lt;p&gt;自动化和增强测试的生成，目前主要是单元测试&lt;/p&gt;
-&lt;h3 id=&#34;anynode-v01&#34;&gt;&lt;strong&gt;AnyNode v0.1&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/lks-ai/anynode&#34;&gt;AnyNode&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;A ComfyUI Node that uses the power of LLMs to do anything with your input to make any type of output.&lt;/p&gt;
-&lt;h3 id=&#34;llamafs&#34;&gt;&lt;strong&gt;LlamaFS&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/iyaja/llama-fs&#34;&gt;LlamaFS&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;基于Llama 3模型的自组织文件管理系统，能自动重命名和组织文件，支持多种文件类型，包括图像和音频&lt;/p&gt;
-&lt;h3 id=&#34;dspy&#34;&gt;&lt;strong&gt;DSPy&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/stanfordnlp/dspy&#34;&gt;DSPy&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;DSPy is a framework for algorithmically optimizing LM prompts and weights&lt;/strong&gt;, especially when LMs are used one or more times within a pipeline. To use LMs to build a complex system &lt;em&gt;without&lt;/em&gt; DSPy, you generally have to: (1) break the problem down into steps, (2) prompt your LM well until each step works well in isolation, (3) tweak the steps to work well together, (4) generate synthetic examples to tune each step, and (5) use these examples to finetune smaller LMs to cut costs. Currently, this is hard and messy: every time you change your pipeline, your LM, or your data, all prompts (or finetuning steps) may need to change.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-04 月刊</title>
-      <link>http://localhost:1313/monthly/2024-04/</link>
-      <pubDate>Tue, 30 Apr 2024 19:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-04/</guid>
-      <description>&lt;h2 id=&#34;值得关注的模型&#34;&gt;值得关注的模型&lt;/h2&gt;
-&lt;p&gt;mistralai/Mixtral-8x22B-Instruct-v0.1&lt;/p&gt;
-&lt;p&gt;CohereForAI/c4ai-command-r-plus&lt;/p&gt;
-&lt;p&gt;meta-llama/Meta-Llama-3-8B-Instruct&lt;/p&gt;
-&lt;p&gt;meta-llama/Meta-Llama-3-70B-Instruct&lt;/p&gt;
-&lt;p&gt;microsoft/Phi-3-mini-128k-instruct&lt;/p&gt;
-&lt;p&gt;gpt2-chatbot: 一个神秘的模型&lt;/p&gt;
-&lt;h3 id=&#34;基础建设&#34;&gt;基础建设&lt;/h3&gt;
-&lt;p&gt;Groq提供了免费且非常高速的API服务&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://console.groq.com/docs/quickstart&#34;&gt;GroqCloud&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h2&gt;
-&lt;h3 id=&#34;cleanlab&#34;&gt;Cleanlab&lt;/h3&gt;
-&lt;p&gt;RAG 基础数据质量处理组件 &amp;ndash; 自动发现数据问题并进行修复，提高数据质量和价值&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/cleanlab/cleanlab&#34;&gt;https://github.com/cleanlab/cleanlab&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;主要贡献&#34;&gt;主要贡献&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;支持任何数据，包括图片、文本、音频、表格等&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;检测数据标注问题、改进、训练模型、价值提升&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;支持任何框架或模型：OpenAI、HuggingFace、PyTorch&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero）&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;jina-reader&#34;&gt;jina reader&lt;/h3&gt;
-&lt;p&gt;抓取URL，将正文转换为良好的Markdown格式的工具&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://jina.ai/reader/&#34;&gt;Reader API&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;一些类似的工具，by ：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://twitter.com/9hills/status/1779830990598549998&#34;&gt;九原客 on Twitter / X&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化+人类偏好对齐）和SFT提升性能与可读性&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;如何将大模型的推理能力高效迁移到小模型&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果&lt;/p&gt;
+&lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.co/buDyt3ixUJ&#34;&gt;https://markdowndown.vercel.app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;强制模型输出结构化内容（如&lt;think&gt;推理过程&lt;/think&gt;和&lt;answer&gt;答案&lt;/answer&gt;）。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-22_%E4%B8%8B%E5%8D%881.42.45.png&#34; alt=&#34;截屏2025-01-22 下午1.42.45.png&#34;  /&gt;
+&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Web-scraper(open source):&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.co/inuuZWQlwt&#34;&gt;https://github.com/zzzgydi/webscraper…&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;code-html-to-markdown:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.co/PsxPWBkOKf&#34;&gt;https://github.com/SivilTaram/code-html-to-markdown…&lt;/a&gt;（偏向于更好地处理代码块）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/JimLiu/gpt-api&#34;&gt;https://github.com/JimLiu/gpt-api&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.firecrawl.dev/?x&#34;&gt;https://www.firecrawl.dev/?x&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;chainforge&#34;&gt;&lt;strong&gt;ChainForge&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;An open-source visual programming environment for battle-testing prompts to LLMs.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/ianarawjo/ChainForge?tab=readme-ov-file#installation&#34;&gt;GitHub - ianarawjo/ChainForge: An open-source visual programming environment for battle-testing prompts to LLMs.&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;ragflow&#34;&gt;&lt;strong&gt;RAGFlow&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;一个RAG框架&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/infiniflow/ragflow/blob/main/README_zh.md&#34;&gt;https://github.com/infiniflow/ragflow/blob/main/README_zh.md&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;亮点： 分块后的可视化和修改功能&lt;/p&gt;
-&lt;h3 id=&#34;supermemory&#34;&gt;&lt;strong&gt;SuperMemory&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;一个第二大脑项目， 提供插件保存网页作为memory和基于memory对话的功能。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2024-03 月刊</title>
-      <link>http://localhost:1313/monthly/2024-03/</link>
-      <pubDate>Sun, 31 Mar 2024 19:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/monthly/2024-03/</guid>
-      <description>&lt;h2 id=&#34;ai大纪事&#34;&gt;AI大纪事&lt;/h2&gt;
-&lt;h3 id=&#34;suno-v3-发布&#34;&gt;Suno V3 发布&lt;/h3&gt;
-&lt;p&gt;V3版本带来了卓越的音频品质、更丰富的音乐风格和类型选择，以及在准确响应创作提示方面的显著提升。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更好的音频质量&lt;/li&gt;
-&lt;li&gt;更多的风格和流派&lt;/li&gt;
-&lt;li&gt;改进的提示遵循，包括更少的幻觉和更优美的结尾&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.suno.ai/blog/v3&#34;&gt;Suno V3&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;metagpt-更新v08&#34;&gt;MetaGPT 更新V0.8&lt;/h3&gt;
-&lt;p&gt;V0.8版本的主要亮点包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;数据解释器的引入&lt;/strong&gt;：这一新特性大大增强了MetaGPT的数据处理能力，为用户分析和解释数据提供了强大的支持。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;与RAG模块的集成&lt;/strong&gt;：通过与RAG模块的集成，MetaGPT现在能够更好地理解和处理用户的需求，提高了生成内容的相关性和准确性。RAG底层使用的是llama_index&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考其&lt;a href=&#34;https://github.com/geekan/MetaGPT&#34;&gt;GitHub页面&lt;/a&gt;和&lt;a href=&#34;https://docs.deepwisdom.ai/&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;nvidia-gtc大会&#34;&gt;Nvidia GTC大会&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;新一代Nvidia B200 GPU&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;首个ai程序员devin-发布&#34;&gt;首个AI程序员Devin 发布&lt;/h3&gt;
-&lt;p&gt;Devin是由Cognition公司开发的全球首个完全自主的AI软件工程师，具备多项先进的编程技能，包括自主学习新技术、全面掌握开发工具、自动化代码修复和错误检测、以及端到端应用的构建和部署能力。&lt;/p&gt;
-&lt;p&gt;不过目前，Devin还处于内测阶段，对公众的完全开放还需要一段时间。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cognition-labs.com/&#34;&gt;Cognition的官网&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;anthropic发布claude-3&#34;&gt;Anthropic发布Claude 3&lt;/h3&gt;
-&lt;p&gt;Anthropic发布了其最新的AI模型系列Claude 3，包括三个子模型：Claude 3 Haiku、Claude 3 Sonnet和Claude 3 Opus，其中Opus是最强大的。Claude 3 在多项基准测试中超越了GPT-4和Gemini Ultra，特别是在数学推理（GSM-8k）和专家级知识（MMLU）方面，显示出其领先的能力。于此同时，Claude 3 Opus 首次 Chatbot Arena 排行榜上超越了 GPT-4&lt;/p&gt;
-&lt;h2 id=&#34;推荐的开源项目&#34;&gt;推荐的开源项目&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/harry0703/MoneyPrinterTurbo/tree/main&#34;&gt;**MoneyPrinterTurbo&lt;/a&gt; : 利用大模型，一键生成短视频**&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;github.com/NanmiCoder/MediaCrawler&#34;&gt;MediaCrawler&lt;/a&gt;: 自媒体爬虫工具, 支持小红书、抖音、快手、B 站、微博等自媒体平台的视频、图片、评论、点赞、转发信息抓取。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;github.com/BingyanStudio/LapisCV&#34;&gt;LapisCV&lt;/a&gt;: 基于 Markdown 格式的简历模版&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;github.com/wdndev/llm_interview_note?tab=readme-ov-file&#34;&gt;LLMs Interview 八股文&lt;/a&gt;： 大模型面试题&lt;/p&gt;
-&lt;h2 id=&#34;影音记录&#34;&gt;影音记录&lt;/h2&gt;
-&lt;h3 id=&#34;本月精选歌单&#34;&gt;本月精选歌单&lt;/h3&gt;
-&lt;iframe style=&#34;border-radius:12px&#34; src=&#34;https://open.spotify.com/embed/playlist/0CDpNxmeMlZ44uEPjjj0J6?utm_source=generator&#34; width=&#34;100%&#34; height=&#34;460&#34; frameBorder=&#34;0&#34; allowfullscreen=&#34;&#34; allow=&#34;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;
-&lt;h3 id=&#34;本月live记录&#34;&gt;本月Live记录&lt;/h3&gt;
-&lt;p&gt;0307  Explosions in the Sky&lt;/p&gt;</description>
+&lt;p&gt;rule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；+ Format rewards（遵循指定输出格式，语言一致性、标记使用等）&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

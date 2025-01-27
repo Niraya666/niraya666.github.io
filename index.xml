@@ -11,8 +11,61 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 23 Jan 2025 15:21:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jan 2025 18:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-01 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Mon, 27 Jan 2025 18:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的新模型&#34;&gt;值得关注的新模型&lt;/h1&gt;
+&lt;h2 id=&#34;deepseek-r1&#34;&gt;Deepseek R1&lt;/h2&gt;
+&lt;p&gt;DeepSeek R1通过&lt;strong&gt;纯强化学习（RL）框架&lt;/strong&gt;实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时&lt;strong&gt;全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B）&lt;/strong&gt;，使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出&lt;strong&gt;自发反思与多步骤验证能力&lt;/strong&gt;，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。&lt;/p&gt;
+&lt;p&gt;技术报告：https://arxiv.org/abs/2501.12948&lt;/p&gt;
+&lt;p&gt;Huggingface：https://huggingface.co/deepseek-ai/DeepSeek-R1&lt;/p&gt;
+&lt;h2 id=&#34;kimi-k1&#34;&gt;Kimi K1&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。&lt;/strong&gt; 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练+强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。&lt;/p&gt;
+&lt;p&gt;Arxiv: &lt;a href=&#34;https://arxiv.org/abs/2501.12599&#34;&gt;Kimi k1.5: Scaling Reinforcement Learning with LLMs&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qvq-72b-preview&#34;&gt;QVQ-72B-Preview&lt;/h2&gt;
+&lt;p&gt;Qwen/QVQ-72B-Preview作为开源多模态视觉推理模型，其核心创新聚焦于科学级视觉理解与跨模态交互优化。技术层面，通过重构视觉编码器与文本解码器的动态交互层，采用&lt;strong&gt;自适应视觉分词策略&lt;/strong&gt;（支持256×28×28至1280×28×28像素范围调整），在提升细节捕捉能力的同时降低计算冗余；模型首创**“分步质疑”推理机制**，模拟人类科学思维路径，将复杂问题拆解为多步验证流程，并通过自我修正模块动态调整结论，显著提升物理、化学等学科问题的解答可靠性。性能突破体现在三大权威测试：MMMU（70.3%）、MathVista（71.4%）与OlympiadBench（20.4%）均刷新纪录，其中数学视觉推理首度超越GPT-4o（71.0%）。此外，模型集成工具链&lt;code&gt;qwen-vl-utils&lt;/code&gt;，实现Base64/URL等异构视觉输入的高效解析，结合4-bit量化与分布式部署方案，为工业级场景提供低门槛、高精度推理支持。&lt;/p&gt;
+&lt;p&gt;Blog：&lt;a href=&#34;https://qwen2.org/qvq-72b-preview/&#34;&gt;https://qwen2.org/qvq-72b-preview/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Huggingface：&lt;a href=&#34;https://huggingface.co/Qwen/QVQ-72B-Preview&#34;&gt;https://huggingface.co/Qwen/QVQ-72B-Preview&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;phi-4&#34;&gt;Phi-4&lt;/h2&gt;
+&lt;p&gt;Phi-4的核心创新点体现在三方面突破性设计：&lt;strong&gt;架构优化&lt;/strong&gt;、&lt;strong&gt;数据工程&lt;/strong&gt;与&lt;strong&gt;高效训练策略&lt;/strong&gt;。技术上，其在仅解码器Transformer架构中创新引入&lt;strong&gt;全局注意力机制&lt;/strong&gt;，突破传统滑动窗口限制，结合动态调整的&lt;strong&gt;旋转位置编码（RoPE）基频&lt;/strong&gt;，在4K原生上下文下实现全注意力计算并扩展至16K，显著提升长文本建模能力；采用&lt;strong&gt;多阶段渐进训练法&lt;/strong&gt;，通过预训练（10万亿Token）与中期强化训练（2500亿Token）的协同，平衡模型规模与性能。数据层面开创&lt;strong&gt;结构化合成数据范式&lt;/strong&gt;，利用多代理提示、自我修订等生成技术构建占比40%的高质量合成数据（4000亿Token），以显式推理步骤强化STEM任务表现，同时融合多源精选有机数据（代码、学术论文等）提升泛化性。该模型以140亿参数实现超越大模型的性能，验证了&amp;quot;数据质量优先&amp;quot;在小参数模型中的技术路径，为低资源场景部署开辟新可能。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2412.08905&#34;&gt;&lt;strong&gt;Phi-4 Technical Report&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Huggingface: &lt;a href=&#34;https://huggingface.co/microsoft/phi-4&#34;&gt;https://huggingface.co/microsoft/phi-4&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;minicpm-o-2_6&#34;&gt;MiniCPM-o-2_6&lt;/h2&gt;
+&lt;p&gt;MiniCPM-o-2_6通过&lt;strong&gt;端到端全模态架构&lt;/strong&gt;与&lt;strong&gt;高密度视觉Token压缩技术&lt;/strong&gt;，首次以8B参数量级实现多模态（文本、图像、音频、视频）统一建模，打破传统大模型依赖百亿参数堆叠的局限。其采用&lt;strong&gt;视觉Token密度优化算法&lt;/strong&gt;，将1344×1344分辨率图像压缩至640个Token，推理效率较同类模型提升75%，同时集成SigLip-400M视觉编码器与Whisper-300M语音组件，通过模块化设计实现资源动态分配。技术突破体现在&lt;strong&gt;跨模态实时流式交互&lt;/strong&gt;（TDM直播机制）与&lt;strong&gt;端侧低损耗部署&lt;/strong&gt;（int4量化适配移动设备），支持iPad等终端连续处理音视频流，内存占用降低至5.2GB。此外，该模型在OpenCompass评测中以70.2分超越主流闭源模型，并在多语言语音生成、情感控制等长尾场景达到开源领域SOTA水平。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码仓库&lt;/strong&gt;：&lt;a href=&#34;https://github.com/OpenBMB/MiniCPM-o&#34;&gt;https://github.com/OpenBMB/MiniCPM-o&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模型下载&lt;/strong&gt;：&lt;a href=&#34;https://huggingface.co/openbmb/MiniCPM-o-2_6&#34;&gt;https://huggingface.co/openbmb/MiniCPM-o-2_6&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;deepseek-r1-incentivizing-reasoning-capability-in-llms-via-reinforcement-learning&#34;&gt;&lt;strong&gt;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Arxiv：&lt;a href=&#34;https://arxiv.org/abs/2501.12948&#34;&gt;arXiv.org&lt;strong&gt;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via.…&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-22_%E4%B8%8B%E5%8D%881.29.29.png&#34; alt=&#34;截屏2025-01-22 下午1.29.29.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;主要贡献&#34;&gt;主要贡献&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;如何通过纯RL训练提升模型的推理能力（DeepSeek-R1-Zero）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;直接在基础模型（DeepSeek-V3-Base）上应用大规模RL，无需SFT作为预热，首次验证纯RL可激励LLM的推理能力,而非采用Reward model 或MCTS&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;如何通过冷启动数据和多阶段训练优化模型的可读性和综合性能（DeepSeek-R1）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;引入少量冷启动数据（数千条长CoT示例）进行微调，再通过两阶段RL（推理优化+人类偏好对齐）和SFT提升性能与可读性&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;如何将大模型的推理能力高效迁移到小模型&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;将大模型（DeepSeek-R1）生成的80万条数据蒸馏到小模型（如Qwen、Llama系列），显著提升小模型推理能力，甚至超越直接对小模型应用RL的效果&lt;/p&gt;
+&lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;强制模型输出结构化内容（如&lt;think&gt;推理过程&lt;/think&gt;和&lt;answer&gt;答案&lt;/answer&gt;）。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/%E6%88%AA%E5%B1%8F2025-01-22_%E4%B8%8B%E5%8D%881.42.45.png&#34; alt=&#34;截屏2025-01-22 下午1.42.45.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;rule-based奖励设计：Accuracy reward（正确的coding或数学推理结果）；+ Format rewards（遵循指定输出格式，语言一致性、标记使用等）&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RLHF 之路：强化学习复习之上篇</title>
       <link>https://niraya666.github.io/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</link>
