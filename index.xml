@@ -11,8 +11,26 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 04 Feb 2025 12:02:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2025 23:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>当AI开始展现&#34;顿悟时刻&#34;意味着什么</title>
+      <link>https://niraya666.github.io/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</link>
+      <pubDate>Sun, 23 Feb 2025 23:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</guid>
+      <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+&lt;p&gt;本文是前段时间部门内技术分享的文字稿整理；&lt;/p&gt;
+&lt;p&gt;主要包含2个方面：对于R1模型的简单科普，和开发团队的gen-AI使用指南；&lt;/p&gt;
+&lt;p&gt;原以为春节假期能稍作休整，未曾料想deepSeek-R1在春节期间引发行业关注。节后复工，各层级领导便密集展开AI技术进展问询。&lt;/p&gt;
+&lt;p&gt;原计划的&amp;quot;二月摸鱼指南&amp;quot;彻底落空，既要向管理层科普大语言模型技术原理，又要指正领导们被各种营销号洗脑所形成的错误认知；既要推进部门AI应用培训，又要加速系统上线进程；简直了，真是TM的谢谢 DeppSeek了。&lt;/p&gt;
+&lt;h2 id=&#34;about-ds-r1&#34;&gt;About DS R1&lt;/h2&gt;
+&lt;h3 id=&#34;什么是reasoning-model&#34;&gt;什么是Reasoning model&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;何为推理（reasoning）：是对信息进行处理和推断，形成判断或结论的过程；&lt;strong&gt;推理通常是一个包含多个推断步骤的过程。推理通常被认为需要抽象思维——也就是说，推理的能力不局限于具体的例子，而是更为普遍的。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In &lt;em&gt;Thinking, Fast and Slow&lt;/em&gt;, Daniel Kahneman defined System 1 as the automatic, intuitive mode of thinking, and System 2 as the slower, more analytical mode. In the context of autoregressive language models, the usual inference process is akin to System 1 — models generate answers directly. Reasoning is System 2 thinking - models or systems takes time to deliberate to solve more complex problems.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>下洋：吃牛肉不止只有潮汕</title>
       <link>https://niraya666.github.io/travel/%E4%B8%8B%E6%B4%8B%E5%90%83%E7%89%9B%E8%82%89%E4%B8%8D%E6%AD%A2%E5%8F%AA%E6%9C%89%E6%BD%AE%E6%B1%95/</link>

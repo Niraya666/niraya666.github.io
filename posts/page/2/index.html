@@ -184,6 +184,43 @@
 </header>
 
 <article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Agent学习笔记：OpenAI Function Calling完全指南
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>写在最开始 当我们在讨论基于大型语言模型（LLM-based）的智能代理（agent）时，我们究竟在谈论什么？根据Lilian W在其文章《LLM Powered Autonomous Agents》中的讨论，一个智能代理需要具备几个核心能力：规划（Planning）、记忆（Memory）、以及工具使用（Tool use）。特别地，工具使用方面的进展，得益于OpenAI在API中提供的function calling功能，为我们开启了新的可能性。
+OpenAI function calling，作为智能代理与外部工具交互的基本方式，对于每位从业者来说都是必备技能。随着技术的发展，我们期望的不只是能与我们对话的LLM，而是能够辅助我们使用各种工具、做出决策的智能伙伴。
+不过需要特别指出的是，最近OpenAI在Chat Completions API中已经废弃了“函数（function）”的使用，转而采用“工具（tool）”。这一变更旨在拓宽LLM集成的功能范围，为更复杂的交互模式铺平道路，如构建能够相互作用的多代理系统。
+尽管如此，由于语言习惯的原因，本文中仍然会使用function calling的术语来描述OpenAI的tool using功能，因为“function calling”的说法已经深入人心了。
+核心内容概览
+Function Calling的定义：解释什么是function calling，以及它在智能代理工作中的作用。
+OpenAI Cookbook示例：提供实际的function calling示例，帮助读者理解其在实际应用中的用途。
+开源LLM的Tool Using：探索如何在开源大型语言模型中实现工具使用，以及LLM在tool using的时候经历了什么。
+评价与训练：讨论如何评价开源模型的工具使用能力，以及如何训练LLM进行有效的工具使用。
+鉴于整理笔记的速度远赶不上更新的速度， 会将第四部份作为单独的部分整理。
+何为function calling 一句话解释：function calling从本质上并不是严格的工具调用， 而是作为工具调用的前奏，它通过更加结构化的方式指导LLM输出，为在本地执行具体函数提供了参数，铺平了道路。
+具体来说，function calling允许LLM在执行过程中通过指定的参数来调用并执行一个特定的函数。这种方式不仅实现了代码的重用和模块化处理，而且能够从模型中获取更可靠的结构化数据回应。在API调用过程中，开发者可以描述想要执行的功能，并让模型智能地选择输出包含所需参数的JSON对象。这个过程中，Chat Completions API本身不直接执行任何函数调用，而是生成了可以在开发者代码中实现函数调用的JSON。
+function calling的应用范围广泛，如
+创建智能助手：通过调用外部API回答问题。
+转换指令：将自然语言指令转换成API调用指令。
+数据提取：从文本中提取结构化数据。
+function calling的过程涵盖了从定义函数集、通过模型生成遵循自定义模式的JSON对象字符串，到在代码中解析这个字符串并调用相应函数的全过程。这一连串操作不仅自动化了交互过程，还确保了执行操作的安全性和准确性。
+一些常见的问题 JSON mode json mode 和tool-using 有什么关系？有了json mode 还需要用到tool-using吗？
+从json mode 的本质， 更多的是在system prompt 增加一句类似“请以json格式输出”之类的话，然后在LLM输出时增加json结果检查和格式转换。在使用时只需要在client.chat.completions.create 中 增加response_format={ &#34;type&#34;: &#34;json_object&#34; } 即可。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-28 15:00:00 +0800 CST'>April 28, 2024</span>&nbsp;·&nbsp;23 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to Agent学习笔记：OpenAI Function Calling完全指南" href="https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/post-cover/rag_toolkits_2.JPG" alt="RAG工具箱：文档解析与表格处理">
 </figure>
   <header class="entry-header">
