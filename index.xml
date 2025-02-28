@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Feb 2025 23:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2025 11:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-02 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Fri, 28 Feb 2025 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;h2 id=&#34;o3-mini&#34;&gt;o3-mini&lt;/h2&gt;
+&lt;p&gt;OpenAI o3-mini 是一款高效且成本优化的推理模型，专为科学（Science）、技术（Technology）、工程（Engineering）和数学（Mathematics）（STEM）领域优化。它在数学、编程和科学推理方面表现出色，能够在 AIME 2024 和 GPQA 等基准测试中达到或超过 OpenAI o1 的水平。o3-mini 具备三种推理模式（低、中、高），可根据需求在速度和准确性之间进行权衡。此外，它支持函数调用、结构化输出和视觉任务。相比 o1-mini，o3-mini 的响应速度提高了 24%，平均响应时间为 7.7 秒。它的上下文窗口为 200k tokens，输入成本为每百万 tokens 1.10 美元，输出成本为 4.40 美元。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/openai-o3-mini/&#34;&gt;OpenAI o3-mini&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwq-max-preview&#34;&gt;QwQ-Max-Preview&lt;/h2&gt;
+&lt;p&gt;QwQ-Max-Preview是阿里巴巴Qwen系列的最新推理模型，基于Qwen2.5-Max架构开发，专注于提升数学、编码及多领域复杂问题的解决能力。该模型在LiveCodeBench代码评估中取得65.6分，超过OpenAI的o1中型模型（63.4分）和o3迷你低配版（60.9分），展现了卓越的代码生成与逻辑推理性能。其核心优势包括深度推理、Agent任务处理及通用领域适应性，特别适合需要实时响应的隐私敏感场景。作为预览版，QwQ-Max-Preview为后续开源版本铺路，未来将发布Apache 2.0许可证下的完整模型QwQ-Max及轻量级版本（如QwQ-32B），并计划推出iOS/Android端Qwen Chat应用以增强用户体验。阿里巴巴同时宣布未来三年投入530亿美元加强AI基础设施，进一步推动该模型在行业中的竞争力。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们计划在不久的将来以 Apache 2.0 许可协议开源发布 QwQ-Max 以及 Qwen2.5-Max&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;官方blog：&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwq-max-preview/&#34;&gt;&lt;think&gt;&amp;hellip;&lt;/think&gt; QwQ-Max-Preview&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;claude-37-sonnet&#34;&gt;Claude 3.7 Sonnet&lt;/h2&gt;
+&lt;p&gt;Claude 3.7 Sonnet 是 Anthropic 推出的首个“混合推理模型”，兼具快速响应和深入思考能力，能够根据任务需求在标准模式和扩展思考模式之间切换。其核心能力包括：在复杂任务中通过扩展思考模式进行详细分析和多角度考虑；在编码任务中表现出色，特别是在 SWE-bench Verified 测试中达到行业领先的 70.3%；支持多模态数据处理，展现强大的适应性；以及在 Amazon Bedrock 中提供可调整的推理预算，供开发者根据需求权衡速度、成本和性能。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-3-7-sonnet?utm_source=partner-aws&amp;utm_medium=referral&amp;utm_campaign=sonnet_3-7_launch&#34;&gt;Claude 3.7 Sonnet and Claude Code&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;grok-3&#34;&gt;Grok-3&lt;/h2&gt;
+&lt;p&gt;Grok-3是由Elon Musk的xAI公司开发的第三代AI模型，具备2.7万亿参数和12.8万亿token的训练数据集，采用基于NVIDIA GPU的Colossus超级计算集群（20万张GPU）训练，计算能力比前代提升10倍。其性能表现优异，在MMLU（多任务语言理解）基准测试中达到92.7%，GSM8K（数学推理）89.3%，AIME 2025数学竞赛93.3%，GPQA科学推理84.6%。该模型支持128,000 token的上下文窗口（扩展版达100万token），响应延迟仅67毫秒，并具备多模态处理能力（文本、代码、图像）。独特功能包括DeepSearch实时网络研究代理、&amp;ldquo;Think&amp;quot;模式分步推理，以及&amp;quot;Big Brain&amp;quot;模式强化复杂问题解决，主要应用于STEM领域、代码生成和商业分析。目前通过X平台Premium+订阅（$40/月）和专属网站Grok.com提供访问，API接口即将开放。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>当AI开始展现&#34;顿悟时刻&#34;意味着什么</title>
       <link>https://niraya666.github.io/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</link>
