@@ -170,6 +170,43 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">RAG工具箱：RAG Tutorial for Beginner
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>一些适合入门的RAG材料
+原理、科普 Retrieval Augmented Generation (RAG) for LLMs
+Langchain|Retrieval augmented generation (RAG)
+A Practitioners Guide to Retrieval Augmented Generation (RAG)
+RAG for Beginners: The Complete Guide to Retrieval Augmented Generation
+What is Retrieval Augmented Generation (RAG)?
+Retrieval augmented generation (RAG)
+思考题：
+Why RAG？ RAG解决了什么问题？RAG和SFT如何选择？RAG的优势？
+什么样的问题是RAG无法解决的？什么样的数据适合使用RAG
+为什么要做chunking？chunk-size受那些因素制约？
+什么是embedding？向量库在做什么？一定要做语义匹配吗？什么是reranking？
+如何evaluate 检索效果的好坏 ？
+RAG中，LLMs起到的作用？
+Hands-On 前置任务 获取模型服务：
+获得LLMs供应商API： 推荐 OpenRouter（仅LLMs，需要梯子，境外信用卡或Crypto），SilconFlow（LLMs&#43;embedding,无需梯子,有送token），Groq（仅LLMs, 需梯子，速度快，免费）
+或采用本地部署： 推荐Ollama
+例子,采用openRouter API实现LLM对话：
+from openai import OpenAI client = OpenAI( base_url=&#34;https://openrouter.ai/api/v1&#34;, api_key=&#34;&lt;OPENROUTER_API_KEY&gt;&#34;, ) completion = client.chat.completions.create( model=&#34;openai/gpt-4o&#34;, messages=[ { &#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;What is the meaning of life?&#34; } ] ) print(completion.choices[0].message.content) 例子：基于本地ollama启动的deepseek R1（蒸馏版本）对话
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-11 19:24:00 +0800 CST'>March 11, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to RAG工具箱：RAG Tutorial for Beginner" href="https://niraya666.github.io/posts/rag-tutorial-for-beginner/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">RAG工具箱：Query Enhancement
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
