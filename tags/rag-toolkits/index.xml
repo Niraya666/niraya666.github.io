@@ -11,8 +11,96 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Mar 2025 19:24:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Mar 2025 16:44:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
+      <pubDate>Wed, 12 Mar 2025 16:44:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
+      <description>&lt;p&gt;技术迭代速度之快令人惊叹，前作 &lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/&#34;&gt;RAG工具箱：文档解析与表格处理&lt;/a&gt; 在短短数月内已显现出代际差距，尽管前作也仅仅只是抛砖引玉式地讨论了pdf的解析方案，不过在新技术的面前，既有的复杂解析架构逐渐失去存在价值，也被端到端范式所取代。在笔者看来，基于多模态大模型的端到端文档解析方案，将成为最优解。&lt;/p&gt;
+&lt;p&gt;本文将探讨文档解析的终极形态——基于多模态大模型（VLM）的解析技术，包括Mistral-OCR、OlmOCR等前沿工具的实现与实践，并展望该领域的技术发展趋势，和对于RAG的影响。&lt;/p&gt;
+&lt;h2 id=&#34;过去的技术栈总结&#34;&gt;过去的技术栈总结&lt;/h2&gt;
+&lt;p&gt;在RAG系统中，文档解析质量直接决定系统上限。不同场景下的文档形态差异显著，若不能有效解决&amp;quot;garbage in, garbage out&amp;quot;的输入质量问题，后续处理环节将难以发挥应有价值。&lt;/p&gt;
+&lt;p&gt;传统文档解析技术长期受限于以下核心痛点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;结构化信息缺失：无法准确识别文档标题、副标题等层级结构&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;特殊内容处理薄弱：数学公式、专业符号解析准确率低下&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;复杂表格解析困境：跨页表格、合并单元格等场景支持不足&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;图像信息提取瓶颈：扫描文档、手写体识别效果欠佳&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;版式适应性问题：多栏布局、影印版本等文档格式兼容性差&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从技术角度，过去文档解析的底层逻辑和框架：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;纯文本解析: &lt;code&gt;PyPDF&lt;/code&gt;, &lt;code&gt;PyMuPDF&lt;/code&gt;只能解析pdf中的文字,对于公式表格和复杂排版解析无能,对于扫描版低质量的pdf无能为力&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OCR方案（PaddleOCR等）: 首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字；由于需要调用多个模型，整套系统非常复杂；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于transformer 的解析方案（代表: Dount, Nougat）：专门针对英文的学术文章做的训练, 能够将pdf文章整理成Markdown或Latex格式；但对于其他语言和其他类型的文档泛化效果很差；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;随着模型能力提升，采用VLM做解析是非常自然的想法，尽管GPT-4o的发布使该技术获得广泛关注，但其高昂的API成本制约了实际应用。值得庆幸的是，开源社区的技术突破正在改变这一局面：不论是LLM基座模型多模态理解能力的增强，还是视觉编码器的提升，至少在当下，开源VLM已具备实用级文档解析能力，而无需针对下游任务的微调，同时成本上已经在可接受范围了。&lt;/p&gt;
+&lt;h2 id=&#34;benchmark&#34;&gt;Benchmark&lt;/h2&gt;
+&lt;p&gt;为了判断一个模型是否适合Document Parsing，需要benchmark测试分数，作为模型挑选的标准。&lt;/p&gt;
+&lt;p&gt;现阶段，针对LLMs在OCR、文档信息提取场景下主要采用以下几个常见的bench&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/spaces/echo840/ocrbench-leaderboard&#34;&gt;OCRBench&lt;/a&gt;、&lt;a href=&#34;https://huggingface.co/spaces/ling99/OCRBench-v2-leaderboard&#34;&gt;OCRBench-V2&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/opendatalab/OmniDocBench&#34;&gt;OmniDocBench&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2412.02210&#34;&gt;CC-OCR&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;…and more&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（关于benchmark的具体内容见附录）&lt;/p&gt;
+&lt;p&gt;这些bench都基本上包含了通用场景下的OCR能力， 多语言的文档解析能力的测试，能够一定程度上作为模型筛选的关注首选&lt;/p&gt;
+&lt;p&gt;当然，除了模型能力以外，还需要关注模型的参数量，因为与其成本和latency息息相关。&lt;/p&gt;
+&lt;p&gt;不过，对于每一个具体场景，还是需要构建自己的测试集用于判断模型是否能够胜任任务， 因为benchmark所包含的测试场景数据，分布语言等等和具体的场景不见得完全一样。&lt;/p&gt;
+&lt;p&gt;根据benchmark和实际测试结果，目前几个值得关注的开源VLM：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://huggingface.co/collections/Qwen/qwen25-vl-6795ffac22b334a837c0f9a5&#34;&gt;Qwen2.5-VL&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/microsoft/Phi-4-multimodal-instruct&#34;&gt;Phi-4-multimodal&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct&#34;&gt;Llama 3.2 Vision&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/allenai/olmOCR-7B-0225-preview&#34;&gt;olmocr&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;and more …&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;qwen25-vl系列模型&#34;&gt;Qwen2.5-VL系列模型&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/QwenLM/Qwen2.5-VL/tree/main/cookbooks&#34;&gt;cookbook&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5-vl/&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2502.13923&#34;&gt;Technical Report&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这应该是开源的模型中，效果排前列的多模态模型（截止至今），同时还具备了多种参数量（3B，7B，72B）可选择。&lt;/p&gt;
+&lt;p&gt;在Technical Report 中一些和document-parse有关的内容：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在第一阶段视觉预训练中（仅训练ViT），针对&lt;strong&gt;Document Parsing&lt;/strong&gt;，设计了&lt;strong&gt;一套标准化的HTML标签体系&lt;/strong&gt;，包含：段落（&lt;code&gt;p&amp;gt;&lt;/code&gt;）、表格（&lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;）、图表（&lt;code&gt;&amp;lt;div class=&amp;quot;chart&amp;quot;&amp;gt;&lt;/code&gt;）、公式（&lt;code&gt;&amp;lt;div class=&amp;quot;formula&amp;quot;&amp;gt;&lt;/code&gt;）、图像标注（&lt;code&gt;&amp;lt;div class=&amp;quot;image caption&amp;quot;&amp;gt;&lt;/code&gt;）、OCR文本（&lt;code&gt;&amp;lt;div class=&amp;quot;image ocr&amp;quot;&amp;gt;&lt;/code&gt;）、乐谱（&lt;code&gt;&amp;lt;div class=&amp;quot;music sheet&amp;quot;&amp;gt;&lt;/code&gt;）、化学式（&lt;code&gt;&amp;lt;div class=&amp;quot;chemical formula&amp;quot;&amp;gt;&lt;/code&gt;）等模块。每个模块均通过 &lt;code&gt;data-bbox&lt;/code&gt; 属性标注其原始坐标位置，保留空间布局信息; 同时所有文档元素的布局信息（如位置、尺寸）通过原生分辨率下的绝对坐标直接编码到HTML标签中，使模型能同时学习内容语义和空间关系&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RAG工具箱：RAG Tutorial for Beginner</title>
       <link>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</link>
