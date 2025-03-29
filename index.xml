@@ -108,7 +108,8 @@
       <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
       <pubDate>Wed, 12 Mar 2025 16:44:00 +0800</pubDate>
       <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
-      <description>&lt;p&gt;技术迭代速度之快令人惊叹，前作 &lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/&#34;&gt;RAG工具箱：文档解析与表格处理&lt;/a&gt; 在短短数月内已显现出代际差距，尽管前作也仅仅只是抛砖引玉式地讨论了pdf的解析方案，不过在新技术的面前，既有的复杂解析架构逐渐失去存在价值，也被端到端范式所取代。在笔者看来，基于多模态大模型的端到端文档解析方案，将成为最优解。&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/#smoldocling&#34;&gt;Updated on 2025-03-29: Add SmolDocling &amp;amp; VLM Summary&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;技术迭代速度之快令人惊叹，前作 &lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/&#34;&gt;RAG工具箱：文档解析与表格处理&lt;/a&gt; 在短短数月内已显现出代际差距，尽管前作也仅仅只是抛砖引玉式地讨论了pdf的解析方案，不过在新技术的面前，既有的复杂解析架构逐渐失去存在价值，也被端到端范式所取代。在笔者看来，基于多模态大模型的端到端文档解析方案，将成为最优解。&lt;/p&gt;
 &lt;p&gt;本文将探讨文档解析的终极形态——基于多模态大模型（VLM）的解析技术，包括Mistral-OCR、OlmOCR等前沿工具的实现与实践，并展望该领域的技术发展趋势，和对于RAG的影响。&lt;/p&gt;
 &lt;h2 id=&#34;过去的技术栈总结&#34;&gt;过去的技术栈总结&lt;/h2&gt;
 &lt;p&gt;在RAG系统中，文档解析质量直接决定系统上限。不同场景下的文档形态差异显著，若不能有效解决&amp;quot;garbage in, garbage out&amp;quot;的输入质量问题，后续处理环节将难以发挥应有价值。&lt;/p&gt;
