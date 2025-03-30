@@ -92,5 +92,32 @@
 &lt;h2 id=&#34;qwen25-1m&#34;&gt;Qwen2.5-1M&lt;/h2&gt;
 &lt;p&gt;Qwen2.5-1M系列模型是由Qwen团队于2025年1月27日发布的开源大语言模型，包含Qwen2.5-7B-Instruct-1M和Qwen2.5-14B-Instruct-1M两个版本，其核心突破在于支持高达100万Token的上下文处理能力。该模型通过三阶段技术实现长上下文支持：首先在预训练阶段采用Adjusted Base Frequency方法将RoPE基础频率提升至1000万，通过渐进式扩展策略将上下文从4K扩展到256K；随后在监督微调阶段采用短指令（32K）与长指令（256K）混合训练策略，平衡长短任务性能；最终通过创新性Dual Chunk Attention技术将上下文扩展至百万量级，该技术通过重映射超大相对位置值解决位置编码外推难题。为应对超长序列处理挑战，模型引入分块预填充技术（32K分块）降低显存消耗，结合稀疏注意力优化使百万级序列的精度损失显著降低，并通过算子效率优化和动态分块流水线并行实现3.2-6.7倍的预填充加速。在性能表现上，该系列模型不仅能在百万Token的&amp;quot;大海捞针&amp;quot;任务中精准检索信息，在RULER、LV-Eval等复杂长文本理解任务中超越前代128K版本，同时在短文本任务上保持与128K版本相当的性能，其中14B版本在保持GPT-4o-mini八倍上下文长度的前提下实现了相近的短文本处理能力。&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>关于月刊的诞生</title>
+      <link>https://niraya666.github.io/monthly/readme/</link>
+      <pubDate>Thu, 09 Jan 2025 17:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/readme/</guid>
+      <description>&lt;p&gt;这份月刊最初只是我的个人知识管理实验。过去一年里，我逐渐养成了每月底整理收藏夹的习惯——清理read-it-later 软件中里积压的链接，归档散落在各个平台的技术文章，把零碎的信息重新分类到Notion笔记中。&lt;/p&gt;
+&lt;p&gt;面对每天涌现的新模型、论文和开源项目，这种月度整理成了对抗信息焦虑的锚点。与其被FOMO（错失恐惧症）驱使着追逐每个热点，不如让内容先经历时间筛选。留在月刊里的，通常是经过两周沉淀后仍值得反复阅读的内容。&lt;/p&gt;
+&lt;p&gt;有三个主要原因推动我决定公开这些笔记：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;年初给自己定下的目标之一，多做一些public-writing，倒逼自己更认真地验证每个技术细节&lt;/li&gt;
+&lt;li&gt;对抗数字囤积症&lt;/li&gt;
+&lt;li&gt;如果能够帮助更多的人&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以，这个系列月刊将包含以下一些内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;模型与技术&lt;/strong&gt;：一些新出的LLM，和相关技术&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;开源项目&lt;/strong&gt;：值得关注、有趣的、最近比较火的&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;研究和论文&lt;/strong&gt;：新出的论文以及我的阅读笔记(更多关注Agent、对齐、RAG、模型架构方面内容)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推荐内容&lt;/strong&gt;：可能是一些教程，工具、产品等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;书摘&lt;/strong&gt;：正在阅读书籍文章的高亮内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有次读到一段特别共鸣的话&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你拿着相机在城市里穿行，看见一幕——光影交错，人情味流露。你按下快门。 没人关心。 但你并不是为了别人去做。你做，是因为你看到了什么。 写博客也是如此。你写，因为你思考，因为你观察，因为你需要一个“出口”来安放这些想法。 有人看吗？有就算赚到。没有也没关系。创作这件事，本身就已经完成了它的意义。 这才是重点所在。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这或许也是这一系列月刊的意义吧。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

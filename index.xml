@@ -462,6 +462,33 @@ $$&lt;/p&gt;
 &lt;iframe style=&#34;border-radius:12px&#34; src=&#34;https://open.spotify.com/embed/playlist/7hoWMPwSASCb9li0eGHkM9?utm_source=generator&#34; width=&#34;100%&#34; height=&#34;450&#34; frameBorder=&#34;0&#34; allowfullscreen=&#34;&#34; allow=&#34;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;</description>
     </item>
     <item>
+      <title>关于月刊的诞生</title>
+      <link>https://niraya666.github.io/monthly/readme/</link>
+      <pubDate>Thu, 09 Jan 2025 17:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/readme/</guid>
+      <description>&lt;p&gt;这份月刊最初只是我的个人知识管理实验。过去一年里，我逐渐养成了每月底整理收藏夹的习惯——清理read-it-later 软件中里积压的链接，归档散落在各个平台的技术文章，把零碎的信息重新分类到Notion笔记中。&lt;/p&gt;
+&lt;p&gt;面对每天涌现的新模型、论文和开源项目，这种月度整理成了对抗信息焦虑的锚点。与其被FOMO（错失恐惧症）驱使着追逐每个热点，不如让内容先经历时间筛选。留在月刊里的，通常是经过两周沉淀后仍值得反复阅读的内容。&lt;/p&gt;
+&lt;p&gt;有三个主要原因推动我决定公开这些笔记：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;年初给自己定下的目标之一，多做一些public-writing，倒逼自己更认真地验证每个技术细节&lt;/li&gt;
+&lt;li&gt;对抗数字囤积症&lt;/li&gt;
+&lt;li&gt;如果能够帮助更多的人&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以，这个系列月刊将包含以下一些内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;模型与技术&lt;/strong&gt;：一些新出的LLM，和相关技术&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;开源项目&lt;/strong&gt;：值得关注、有趣的、最近比较火的&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;研究和论文&lt;/strong&gt;：新出的论文以及我的阅读笔记(更多关注Agent、对齐、RAG、模型架构方面内容)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推荐内容&lt;/strong&gt;：可能是一些教程，工具、产品等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;书摘&lt;/strong&gt;：正在阅读书籍文章的高亮内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有次读到一段特别共鸣的话&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你拿着相机在城市里穿行，看见一幕——光影交错，人情味流露。你按下快门。 没人关心。 但你并不是为了别人去做。你做，是因为你看到了什么。 写博客也是如此。你写，因为你思考，因为你观察，因为你需要一个“出口”来安放这些想法。 有人看吗？有就算赚到。没有也没关系。创作这件事，本身就已经完成了它的意义。 这才是重点所在。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这或许也是这一系列月刊的意义吧。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Milvus-2.5版本：学习笔记和备忘录</title>
       <link>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 25 Dec 2024 15:49:00 +0800</pubDate>
