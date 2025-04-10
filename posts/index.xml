@@ -11,8 +11,72 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Mar 2025 16:44:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Apr 2025 10:44:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LangMem: 一些学习笔记</title>
+      <link>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 10 Apr 2025 10:44:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。&lt;/p&gt;
+&lt;p&gt;一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。&lt;/p&gt;
+&lt;p&gt;总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。&lt;/p&gt;
+&lt;h2 id=&#34;core-concepts&#34;&gt;Core-Concepts&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://langchain-ai.github.io/langmem/concepts/conceptual_guide/&#34;&gt;core-concepts &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在LangMem所设计的memory体系中， 定义了几种不同的&lt;strong&gt;Typical Storage Pattern&lt;/strong&gt;：&lt;strong&gt;Collection 、 Profiles和Procedural&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;collection&#34;&gt;Collection&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Collection&lt;/strong&gt; 主要用于存储&lt;strong&gt;不受限制的知识&lt;/strong&gt;，适用于需要长期积累和检索的信息。每条记忆被存储为&lt;strong&gt;独立的文档或记录&lt;/strong&gt;，可以在需要时进行搜索和回忆；&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：记录用户的长期知识，例如用户的兴趣、职业背景、技能等&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;更新方式&lt;/strong&gt;：需要&lt;strong&gt;合并新信息&lt;/strong&gt;，避免重复或冲突&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;检索方式&lt;/strong&gt;：通过&lt;strong&gt;语义搜索&lt;/strong&gt;或&lt;strong&gt;关键词匹配&lt;/strong&gt;来查找，结合&lt;strong&gt;记忆的重要性&lt;/strong&gt;和&lt;strong&gt;使用频率&lt;/strong&gt;来优化检索结果&lt;/p&gt;
+&lt;h3 id=&#34;profiles&#34;&gt;&lt;strong&gt;Profiles&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;存储&lt;strong&gt;结构化的用户信息&lt;/strong&gt;，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储&lt;strong&gt;最新的状态&lt;/strong&gt;，而不是累积所有历史信息。Profile 作为&lt;strong&gt;单一文档&lt;/strong&gt;存储，每次更新时都会&lt;strong&gt;覆盖旧数据&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%201.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31 1.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：适用于需要&lt;strong&gt;快速访问当前状态&lt;/strong&gt;的应用，例如个性化推荐、用户设置；适用于&lt;strong&gt;需要严格定义数据结构&lt;/strong&gt;的场景，例如用户档案、系统配置；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;更新方式：不会创建新记录&lt;/strong&gt;，而是直接&lt;strong&gt;更新现有的 Profile；&lt;strong&gt;适用于&lt;/strong&gt;只关心最新状态&lt;/strong&gt;的应用，而不是历史；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;检索方式&lt;/strong&gt;：直接查找用户的 Profile&lt;/p&gt;
+&lt;h3 id=&#34;procedural-memory&#34;&gt;&lt;strong&gt;Procedural Memory&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在&lt;strong&gt;system prompts 和行为优化&lt;/strong&gt;上&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%202.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31 2.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：需要长期优化 Agent行为和交互方式，少走弯路&lt;/p&gt;
+&lt;p&gt;总结&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Memory Type&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;用途&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;智能体示例&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;典型存储模式&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Semantic&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Facts &amp;amp; Knowledge&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;User preferences; knowledge triplets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Profile或Collection&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Episodic&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Past Experiences&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Few-shot examples; 过往对话摘要&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Collection&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Procedural&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;System Behavior&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Core personality and response patterns&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Prompt rules或Collection&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;writing-memories&#34;&gt;Writing memories&lt;/h2&gt;
+&lt;p&gt;提供了两种写入memory的方法：&lt;strong&gt;及时写入&lt;/strong&gt;（适用于要求即时记忆反映的场景）和一段时间后的&lt;strong&gt;异步写入&lt;/strong&gt;（适用于高效处理和存储大量信息的场景）&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
       <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>

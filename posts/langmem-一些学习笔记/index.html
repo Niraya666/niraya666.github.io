@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LangMem: 一些学习笔记 | LZY Blog</title>
+<meta name="keywords" content="Agent, Agent-Memory">
+<meta name="description" content="本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。
+一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。
+总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。
+Core-Concepts
+core-concepts 
+在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural
+Collection
+Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；
+
+
+适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等
+更新方式：需要合并新信息，避免重复或冲突
+检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果
+Profiles
+存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据
+
+
+适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；
+更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；
+检索方式：直接查找用户的 Profile
+Procedural Memory
+类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上
+
+
+适用场景：需要长期优化 Agent行为和交互方式，少走弯路
+总结
+
+  
+      
+          Memory Type
+          用途
+          智能体示例
+          典型存储模式
+      
+  
+  
+      
+          Semantic
+          Facts &amp; Knowledge
+          User preferences; knowledge triplets
+          Profile或Collection
+      
+      
+          Episodic
+          Past Experiences
+          Few-shot examples; 过往对话摘要
+          Collection
+      
+      
+          Procedural
+          System Behavior
+          Core personality and response patterns
+          Prompt rules或Collection
+      
+  
+
+Writing memories
+提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="LangMem: 一些学习笔记" />
+<meta property="og:description" content="本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。
+一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。
+总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。
+Core-Concepts
+core-concepts 
+在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural
+Collection
+Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；
+
+
+适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等
+更新方式：需要合并新信息，避免重复或冲突
+检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果
+Profiles
+存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据
+
+
+适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；
+更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；
+检索方式：直接查找用户的 Profile
+Procedural Memory
+类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上
+
+
+适用场景：需要长期优化 Agent行为和交互方式，少走弯路
+总结
+
+  
+      
+          Memory Type
+          用途
+          智能体示例
+          典型存储模式
+      
+  
+  
+      
+          Semantic
+          Facts &amp; Knowledge
+          User preferences; knowledge triplets
+          Profile或Collection
+      
+      
+          Episodic
+          Past Experiences
+          Few-shot examples; 过往对话摘要
+          Collection
+      
+      
+          Procedural
+          System Behavior
+          Core personality and response patterns
+          Prompt rules或Collection
+      
+  
+
+Writing memories
+提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-04-10T10:44:00+08:00" />
+<meta property="article:modified_time" content="2025-04-10T10:44:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="LangMem: 一些学习笔记"/>
+<meta name="twitter:description" content="本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。
+一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。
+总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。
+Core-Concepts
+core-concepts 
+在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural
+Collection
+Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；
+
+
+适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等
+更新方式：需要合并新信息，避免重复或冲突
+检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果
+Profiles
+存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据
+
+
+适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；
+更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；
+检索方式：直接查找用户的 Profile
+Procedural Memory
+类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上
+
+
+适用场景：需要长期优化 Agent行为和交互方式，少走弯路
+总结
+
+  
+      
+          Memory Type
+          用途
+          智能体示例
+          典型存储模式
+      
+  
+  
+      
+          Semantic
+          Facts &amp; Knowledge
+          User preferences; knowledge triplets
+          Profile或Collection
+      
+      
+          Episodic
+          Past Experiences
+          Few-shot examples; 过往对话摘要
+          Collection
+      
+      
+          Procedural
+          System Behavior
+          Core personality and response patterns
+          Prompt rules或Collection
+      
+  
+
+Writing memories
+提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://niraya666.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "LangMem: 一些学习笔记",
+      "item": "https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LangMem: 一些学习笔记",
+  "name": "LangMem: 一些学习笔记",
+  "description": "本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。\n一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。\n总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。\nCore-Concepts core-concepts 在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural\nCollection Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；\n适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等\n更新方式：需要合并新信息，避免重复或冲突\n检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果\nProfiles 存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据\n适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；\n更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；\n检索方式：直接查找用户的 Profile\nProcedural Memory 类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上\n适用场景：需要长期优化 Agent行为和交互方式，少走弯路\n总结\nMemory Type 用途 智能体示例 典型存储模式 Semantic Facts \u0026amp; Knowledge User preferences; knowledge triplets Profile或Collection Episodic Past Experiences Few-shot examples; 过往对话摘要 Collection Procedural System Behavior Core personality and response patterns Prompt rules或Collection Writing memories 提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）\n",
+  "keywords": [
+    "Agent", "Agent-Memory"
+  ],
+  "articleBody": "本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。\n一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。\n总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。\nCore-Concepts core-concepts 在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural\nCollection Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；\n适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等\n更新方式：需要合并新信息，避免重复或冲突\n检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果\nProfiles 存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据\n适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；\n更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；\n检索方式：直接查找用户的 Profile\nProcedural Memory 类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上\n适用场景：需要长期优化 Agent行为和交互方式，少走弯路\n总结\nMemory Type 用途 智能体示例 典型存储模式 Semantic Facts \u0026 Knowledge User preferences; knowledge triplets Profile或Collection Episodic Past Experiences Few-shot examples; 过往对话摘要 Collection Procedural System Behavior Core personality and response patterns Prompt rules或Collection Writing memories 提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）\n核心源码和API MemoryManager code\n用于管理记忆提取和处理的类\n实现了异步和同步的调用方法\n主要功能是根据给定的消息和已有记忆，提取、更新和删除记忆对象\n如何提取记忆 大致流程：\n采用的prompt\n_MEMORY_INSTRUCTIONS = \"\"\"You are a long-term memory manager maintaining a core store of semantic, procedural, and episodic memory. These memories power a life-long learning agent's core predictive model. What should the agent learn from this interaction about the user, itself, or how it should act? Reflect on the input trajectory and current memories (if any). 1. **Extract \u0026 Contextualize** - Identify essential facts, relationships, preferences, reasoning procedures, and context - Caveat uncertain or suppositional information with confidence levels (p(x)) and reasoning - Quote supporting information when necessary 2. **Compare \u0026 Update** - Attend to novel information that deviates from existing memories and expectations. - Consolidate and compress redundant memories to maintain information-density; strengthen based on reliability and recency; maximize SNR by avoiding idle words. - Remove incorrect or redundant memories while maintaining internal consistency 3. **Synthesize \u0026 Reason** - What can you conclude about the user, agent (\"I\"), or environment using deduction, induction, and abduction? - What patterns, relationships, and principles emerge about optimal responses? - What generalizations can you make? - Qualify conclusions with probabilistic confidence and justification As the agent, record memory content exactly as you'd want to recall it when predicting how to act or respond. Prioritize retention of surprising (pattern deviation) and persistent (frequently reinforced) information, ensuring nothing worth remembering is forgotten and nothing false is remembered. Prefer dense, complete memories over overlapping ones.\"\"\" 消息准备：_prepare_messages 方法构建发送给模型的消息，包含系统提示和用户指令,将原始对话转化为可供语言模型处理的特定格式 return 内容：\n[ {\"role\": \"system\", \"content\": \"You are a memory subroutine for an AI.\"}, { \"role\": \"user\", \"content\": ( f\"{instructions}\\n\\nEnrich, prune, and organize memories based on any new information. \" f\"If an existing memory is incorrect or outdated, update it based on the new information. \" f\"All operations must be done in single parallel multi-tool call.\" f\" Avoid duplicate extractions. {session}\" ), }, ] instructions为 _MEMORY_INSTRUCTIONS\nsession 指当前需要处理的完整对话内容，被特殊标记包装以便模型能够清晰识别,\nid_ = str(uuid.uuid4()) session = ( f\"\\n\\n",
+  "wordCount" : "1560",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2025-04-10T10:44:00+08:00",
+  "dateModified": "2025-04-10T10:44:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      LangMem: 一些学习笔记
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-04-10 10:44:00 +0800 CST'>April 10, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#core-concepts" aria-label="Core-Concepts">Core-Concepts</a><ul>
+                        
+                <li>
+                    <a href="#collection" aria-label="Collection">Collection</a></li>
+                <li>
+                    <a href="#profiles" aria-label="Profiles">Profiles</a></li>
+                <li>
+                    <a href="#procedural-memory" aria-label="Procedural Memory">Procedural Memory</a></li></ul>
+                </li>
+                <li>
+                    <a href="#writing-memories" aria-label="Writing memories">Writing memories</a></li>
+                <li>
+                    <a href="#%e6%a0%b8%e5%bf%83%e6%ba%90%e7%a0%81%e5%92%8capi" aria-label="核心源码和API">核心源码和API</a><ul>
+                        
+                <li>
+                    <a href="#memorymanager" aria-label="MemoryManager">MemoryManager</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e6%8f%90%e5%8f%96%e8%ae%b0%e5%bf%86" aria-label="如何提取记忆">如何提取记忆</a></li></ul>
+                </li>
+                <li>
+                    <a href="#prompt-optimization" aria-label="Prompt Optimization">Prompt Optimization</a><ul>
+                        
+                <li>
+                    <a href="#gradient-optimizer" aria-label="Gradient Optimizer">Gradient Optimizer</a></li>
+                <li>
+                    <a href="#meta-prompt-optimizer" aria-label="Meta-Prompt Optimizer">Meta-Prompt Optimizer</a></li>
+                <li>
+                    <a href="#prompt-memory-optimizer" aria-label="Prompt Memory Optimizer">Prompt Memory Optimizer</a></li></ul>
+                </li>
+                <li>
+                    <a href="#store" aria-label="Store">Store</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8" aria-label="如何使用">如何使用</a></li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83" aria-label="参考">参考</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。</p>
+<p>一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。</p>
+<p>总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。</p>
+<h2 id="core-concepts">Core-Concepts<a hidden class="anchor" aria-hidden="true" href="#core-concepts">#</a></h2>
+<p><a href="https://langchain-ai.github.io/langmem/concepts/conceptual_guide/">core-concepts </a></p>
+<p>在LangMem所设计的memory体系中， 定义了几种不同的<strong>Typical Storage Pattern</strong>：<strong>Collection 、 Profiles和Procedural</strong></p>
+<h3 id="collection">Collection<a hidden class="anchor" aria-hidden="true" href="#collection">#</a></h3>
+<p><strong>Collection</strong> 主要用于存储<strong>不受限制的知识</strong>，适用于需要长期积累和检索的信息。每条记忆被存储为<strong>独立的文档或记录</strong>，可以在需要时进行搜索和回忆；</p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31.png" alt="Pasted 2025-03-25-14-52-31.png"  />
+</p>
+<p><strong>适用场景</strong>：记录用户的长期知识，例如用户的兴趣、职业背景、技能等</p>
+<p><strong>更新方式</strong>：需要<strong>合并新信息</strong>，避免重复或冲突</p>
+<p><strong>检索方式</strong>：通过<strong>语义搜索</strong>或<strong>关键词匹配</strong>来查找，结合<strong>记忆的重要性</strong>和<strong>使用频率</strong>来优化检索结果</p>
+<h3 id="profiles"><strong>Profiles</strong><a hidden class="anchor" aria-hidden="true" href="#profiles">#</a></h3>
+<p>存储<strong>结构化的用户信息</strong>，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储<strong>最新的状态</strong>，而不是累积所有历史信息。Profile 作为<strong>单一文档</strong>存储，每次更新时都会<strong>覆盖旧数据</strong></p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%201.png" alt="Pasted 2025-03-25-14-52-31 1.png"  />
+</p>
+<p><strong>适用场景</strong>：适用于需要<strong>快速访问当前状态</strong>的应用，例如个性化推荐、用户设置；适用于<strong>需要严格定义数据结构</strong>的场景，例如用户档案、系统配置；</p>
+<p><strong>更新方式：不会创建新记录</strong>，而是直接<strong>更新现有的 Profile；<strong>适用于</strong>只关心最新状态</strong>的应用，而不是历史；</p>
+<p><strong>检索方式</strong>：直接查找用户的 Profile</p>
+<h3 id="procedural-memory"><strong>Procedural Memory</strong><a hidden class="anchor" aria-hidden="true" href="#procedural-memory">#</a></h3>
+<p>类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在<strong>system prompts 和行为优化</strong>上</p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%202.png" alt="Pasted 2025-03-25-14-52-31 2.png"  />
+</p>
+<p><strong>适用场景</strong>：需要长期优化 Agent行为和交互方式，少走弯路</p>
+<p>总结</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Memory Type</th>
+          <th style="text-align: left">用途</th>
+          <th style="text-align: left">智能体示例</th>
+          <th style="text-align: left">典型存储模式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Semantic</td>
+          <td style="text-align: left">Facts &amp; Knowledge</td>
+          <td style="text-align: left">User preferences; knowledge triplets</td>
+          <td style="text-align: left">Profile或Collection</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Episodic</td>
+          <td style="text-align: left">Past Experiences</td>
+          <td style="text-align: left">Few-shot examples; 过往对话摘要</td>
+          <td style="text-align: left">Collection</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Procedural</td>
+          <td style="text-align: left">System Behavior</td>
+          <td style="text-align: left">Core personality and response patterns</td>
+          <td style="text-align: left">Prompt rules或Collection</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="writing-memories">Writing memories<a hidden class="anchor" aria-hidden="true" href="#writing-memories">#</a></h2>
+<p>提供了两种写入memory的方法：<strong>及时写入</strong>（适用于要求即时记忆反映的场景）和一段时间后的<strong>异步写入</strong>（适用于高效处理和存储大量信息的场景）</p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-59.png" alt="Pasted 2025-03-25-14-52-59.png"  />
+</p>
+<h2 id="核心源码和api">核心源码和API<a hidden class="anchor" aria-hidden="true" href="#核心源码和api">#</a></h2>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/image.png" alt="image.png"  />
+</p>
+<h3 id="memorymanager">MemoryManager<a hidden class="anchor" aria-hidden="true" href="#memorymanager">#</a></h3>
+<p><a href="https://github.com/langchain-ai/langmem/blob/main/src/langmem/knowledge/extraction.py#L176">code</a></p>
+<ul>
+<li>
+<p>用于管理记忆提取和处理的类</p>
+</li>
+<li>
+<p>实现了异步和同步的调用方法</p>
+</li>
+<li>
+<p>主要功能是根据给定的消息和已有记忆，提取、更新和删除记忆对象</p>
+</li>
+</ul>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/image%201.png" alt="image 1.png"  />
+</p>
+<h3 id="如何提取记忆">如何提取记忆<a hidden class="anchor" aria-hidden="true" href="#如何提取记忆">#</a></h3>
+<p>大致流程：</p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/image%202.png" alt="image 2.png"  />
+</p>
+<p>采用的prompt</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">_MEMORY_INSTRUCTIONS</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;You are a long-term memory manager maintaining a core store of semantic, procedural, and episodic memory. These memories power a life-long learning agent&#39;s core predictive model.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">What should the agent learn from this interaction about the user, itself, or how it should act? Reflect on the input trajectory and current memories (if any).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">1. **Extract &amp; Contextualize**  
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Identify essential facts, relationships, preferences, reasoning procedures, and context
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Caveat uncertain or suppositional information with confidence levels (p(x)) and reasoning
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Quote supporting information when necessary
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">2. **Compare &amp; Update**  
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Attend to novel information that deviates from existing memories and expectations.
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Consolidate and compress redundant memories to maintain information-density; strengthen based on reliability and recency; maximize SNR by avoiding idle words.
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Remove incorrect or redundant memories while maintaining internal consistency
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">3. **Synthesize &amp; Reason**  
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - What can you conclude about the user, agent (&#34;I&#34;), or environment using deduction, induction, and abduction?
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - What patterns, relationships, and principles emerge about optimal responses?
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - What generalizations can you make?
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Qualify conclusions with probabilistic confidence and justification
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">As the agent, record memory content exactly as you&#39;d want to recall it when predicting how to act or respond. 
+</span></span></span><span class="line"><span class="cl"><span class="s2">Prioritize retention of surprising (pattern deviation) and persistent (frequently reinforced) information, ensuring nothing worth remembering is forgotten and nothing false is remembered. Prefer dense, complete memories over overlapping ones.&#34;&#34;&#34;</span>
+</span></span></code></pre></div><ul>
+<li><strong>消息准备</strong>：<code>_prepare_messages</code> 方法构建发送给模型的消息，包含系统提示和用户指令,将原始对话转化为可供语言模型处理的特定格式</li>
+</ul>
+<p>return 内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;You are a memory subroutine for an AI.&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">instructions</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Enrich, prune, and organize memories based on any new information. &#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="sa">f</span><span class="s2">&#34;If an existing memory is incorrect or outdated, update it based on the new information. &#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="sa">f</span><span class="s2">&#34;All operations must be done in single parallel multi-tool call.&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="sa">f</span><span class="s2">&#34; Avoid duplicate extractions. </span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span></code></pre></div><p>instructions为 <code>_MEMORY_INSTRUCTIONS</code></p>
+<p>session 指当前需要处理的完整对话内容，被特殊标记包装以便模型能够清晰识别,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">id_</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&lt;session_</span><span class="si">{</span><span class="n">id_</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">\n</span><span class="si">{</span><span class="n">utils</span><span class="o">.</span><span class="n">get_conversation</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&lt;/session_</span><span class="si">{</span><span class="n">id_</span><span class="si">}</span><span class="s2">&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>如果 <code>max_steps &gt; 1</code>，还会在 session 中添加提示，告知模型它有多次尝试的机会</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">max_steps</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">You have a maximum of </span><span class="si">{</span><span class="n">max_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2"> attempts to form and consolidate memories from this session.&#34;</span>
+</span></span></code></pre></div><ul>
+<li><strong>_prepare_existing：</strong> 将不同格式的已有记忆转换为统一的标准格式：<code>(id, kind, value)</code> 三元组</li>
+</ul>
+<p>如何判断memory是否存在：</p>
+<p>通过记忆ID来识别记忆，整个过程依赖于记忆ID的唯一性，并通过跟踪这些ID来判断记忆是否存在、是否需要更新</p>
+<ul>
+<li>_filter_response： 用于筛选和处理提取出的记忆。它主要负责决定哪些记忆应该被保留在最终结果中，特别是对于&quot;删除操作&quot;进行特殊处理</li>
+</ul>
+<h2 id="prompt-optimization">Prompt Optimization<a hidden class="anchor" aria-hidden="true" href="#prompt-optimization">#</a></h2>
+<p><a href="https://langchain-ai.github.io/langmem/reference/prompt_optimization/">Prompt Optimization API Reference</a></p>
+<p>供了3种不同的优化策略</p>
+<h3 id="gradient-optimizer">Gradient Optimizer<a hidden class="anchor" aria-hidden="true" href="#gradient-optimizer">#</a></h3>
+<p>主要通过反思循环来改进prompt</p>
+<p><a href="https://github.com/langchain-ai/langmem/blob/main/src/langmem/prompts/gradient.py#L105">code</a></p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-04-02%20%e4%b8%8b%e5%8d%887.11.30.png" alt="截屏2025-04-02 下午7.11.30.png"  />
+</p>
+<p>工作流程:</p>
+<ol>
+<li>
+<p>分析当前prompt和反馈</p>
+</li>
+<li>
+<p>通过反思循环识别需要改进的地方</p>
+</li>
+<li>
+<p>提出具体的改进建议</p>
+</li>
+<li>
+<p>应用单步更新</p>
+</li>
+</ol>
+<p>具体而言，利用三种核心工具</p>
+<ul>
+<li>
+<p><strong>思考工具(think)</strong> - 用于深入思考问题和假设解决方案</p>
+</li>
+<li>
+<p><strong>批评工具(critique)</strong> - 用于审视和诊断推理中的缺陷</p>
+</li>
+<li>
+<p><strong>建议工具(recommend)</strong> - 决定是否应该调整提示词，并提供具体建议</p>
+</li>
+</ul>
+<p>以及包括这些工具的三种chain</p>
+<ul>
+<li>
+<p><strong>just_think_chain</strong> - 仅包含思考和批评工具，专注于分析问题</p>
+</li>
+<li>
+<p><strong>any_chain</strong> - 包含所有三个工具，允许全面的推理</p>
+</li>
+<li>
+<p><strong>final_chain</strong> - 仅包含建议工具，强制模型做出最终决策</p>
+</li>
+</ul>
+<p>其核心部分<code>react_agent</code>， 实现了最多执行 <code>max_steps</code> 次的循环，在每次迭代中选择适当的思考链｜执行当前链｜分析结果｜更新对话历史。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">ix</span> <span class="o">==</span> <span class="n">max_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_chain</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="n">ix</span> <span class="o">&lt;</span> <span class="n">min_steps</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">just_think_chain</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">any_chain</span>
+</span></span></code></pre></div><p>ReAct 模式的精髓在于阶段性思考策略:</p>
+<ul>
+<li>
+<p><strong>探索阶段</strong> (<code>just_think_chain</code>): 在前 <code>min_steps</code> 步，系统只能使用思考和批评工具，强制进行深入分析而不急于下结论</p>
+</li>
+<li>
+<p><strong>灵活阶段</strong> (<code>any_chain</code>): 在中间阶段，系统可自由选择继续思考或提出建议</p>
+</li>
+<li>
+<p><strong>决策阶段</strong> (<code>final_chain</code>): 在最后一步，系统被强制做出最终建议</p>
+</li>
+</ul>
+<p>prompt：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DEFAULT_GRADIENT_PROMPT</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;You are reviewing the performance of an AI assistant in a given interaction. 
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">## Instructions
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">The current prompt that was used for the session is provided below.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{prompt}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">The developer provided the following instructions around when and how to update the prompt:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;update_instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{update_instructions}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/update_instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">## Session data
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Analyze the following trajectories (and any associated user feedback) (either conversations with a user or other work that was performed by the assistant):
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;trajectories&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{trajectories}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/trajectories&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">## Task
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Analyze the conversation, including the user’s request and the assistant’s response, and evaluate:
+</span></span></span><span class="line"><span class="cl"><span class="s2">1. How effectively the assistant fulfilled the user’s intent.
+</span></span></span><span class="line"><span class="cl"><span class="s2">2. Where the assistant might have deviated from user expectations or the desired outcome.
+</span></span></span><span class="line"><span class="cl"><span class="s2">3. Specific areas (correctness, completeness, style, tone, alignment, etc.) that need improvement.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">If the prompt seems to do well, then no further action is needed. We ONLY recommend updates if there is evidence of failures.
+</span></span></span><span class="line"><span class="cl"><span class="s2">When failures occur, we want to recommend the minimal required changes to fix the problem.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Focus on actionable changes and be concrete.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">1. Summarize the key successes and failures in the assistant’s response. 
+</span></span></span><span class="line"><span class="cl"><span class="s2">2. Identify which failure mode(s) best describe the issues (examples: style mismatch, unclear or incomplete instructions, flawed logic or reasoning, hallucination, etc.).
+</span></span></span><span class="line"><span class="cl"><span class="s2">3. Based on these failure modes, recommend the most suitable edit strategy. For example, consider::
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Use synthetic few-shot examples for style or clarifying decision boundaries.
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Use explicit instruction updates for conditionals, rules, or logic fixes.
+</span></span></span><span class="line"><span class="cl"><span class="s2">   - Provide step-by-step reasoning guidelines for multi-step logic problems.
+</span></span></span><span class="line"><span class="cl"><span class="s2">4. Provide detailed, concrete suggestions for how to update the prompt accordingly.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">But remember, the final updated prompt should only be changed if there is evidence of poor performance, and our recommendations should be minimally invasive.
+</span></span></span><span class="line"><span class="cl"><span class="s2">Do not recommend generic changes that aren&#39;t clearly linked to failure modes.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">First think through the conversation and critique the current behavior.
+</span></span></span><span class="line"><span class="cl"><span class="s2">If you believe the prompt needs to further adapt to the target context, provide precise recommendations.
+</span></span></span><span class="line"><span class="cl"><span class="s2">Otherwise, mark `warrants_adjustment` as False and respond with &#39;No recommendations.&#39;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_GRADIENT_METAPROMPT</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;You are optimizing a prompt to handle its target task more effectively.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{current_prompt}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">We hypothesize the current prompt underperforms for these reasons:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;hypotheses&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{hypotheses}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/hypotheses&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Based on these hypotheses, we recommend the following adjustments:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;recommendations&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{recommendations}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/recommendations&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Respond with the updated prompt. Remember to ONLY make changes that are clearly necessary. Aim to be minimally invasive:&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="meta-prompt-optimizer">Meta-Prompt Optimizer<a hidden class="anchor" aria-hidden="true" href="#meta-prompt-optimizer">#</a></h3>
+<p>(元提示优化器) 使用元学习直接提出更新</p>
+<p><a href="https://github.com/langchain-ai/langmem/blob/main/src/langmem/prompts/metaprompt.py">code</a></p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-04-02%20%e4%b8%8b%e5%8d%887.14.42.png" alt="截屏2025-04-02 下午7.14.42.png"  />
+</p>
+<p>核心逻辑：</p>
+<ul>
+<li>
+<p>接收原始提示(<code>prompt</code>)和交互历史(<code>trajectories</code>)；</p>
+</li>
+<li>
+<p>在<code>_reflect_then_update</code>中执行核心优化：构建包含meta-prompt的初始消息；创建两种提取器，<code>any_chain</code>: 允许思考和批评、<code>final_chain</code>: 专门提取最终优化后的提示；</p>
+</li>
+<li>
+<p><strong>迭代反思循环</strong>：同Gradient Optimizer  的ReAct agent类似；</p>
+</li>
+<li>
+<p>结果处理</p>
+</li>
+</ul>
+<p>prompt</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DEFAULT_METAPROMPT</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;You are helping an AI assistant learn by optimizing its prompt.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">## Background
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Below is the current prompt:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{prompt}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">The developer provided these instructions regarding when/how to update:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;update_instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{update_instructions}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/update_instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">## Session Data
+</span></span></span><span class="line"><span class="cl"><span class="s2">Analyze the session(s) (and any user feedback) below:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;trajectories&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{trajectories}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/trajectories&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">## Instructions
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">1. Reflect on the agent&#39;s performance on the given session(s) and identify any real failure modes (e.g., style mismatch, unclear or incomplete instructions, flawed reasoning, etc.).
+</span></span></span><span class="line"><span class="cl"><span class="s2">2. Recommend the minimal changes necessary to address any real failures. If the prompt performs perfectly, simply respond with the original prompt without making any changes.
+</span></span></span><span class="line"><span class="cl"><span class="s2">3. Retain any f-string variables in the existing prompt exactly as they are (e.g. {{variable_name}}).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">IFF changes are warranted, focus on actionable edits. Be concrete. Edits should be appropriate for the identified failure modes. For example, consider synthetic few-shot examples for style or clarifying decision boundaries, or adding or modifying explicit instructions for conditionals, rules, or logic fixes; or provide step-by-step reasoning guidelines for multi-step logic problems if the model is failing to reason appropriately.&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="prompt-memory-optimizer">Prompt Memory Optimizer<a hidden class="anchor" aria-hidden="true" href="#prompt-memory-optimizer">#</a></h3>
+<p>从对话历史中学习</p>
+<p><a href="https://github.com/langchain-ai/langmem/blob/main/src/langmem/prompts/stateless.py#L149">code</a></p>
+<p><img loading="lazy" src="/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-04-02%20%e4%b8%8b%e5%8d%887.15.27.png" alt="截屏2025-04-02 下午7.15.27.png"  />
+</p>
+<p>prompt</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">INSTRUCTION_REFLECTION_PROMPT</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;You are helping an AI agent improve. You can do this by changing their system prompt.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">These is their current prompt:
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{current_prompt}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Here was the agent&#39;s trajectory:
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;trajectory&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{trajectory}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/trajectory&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Here is the user&#39;s feedback:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;feedback&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{feedback}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/feedback&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Here are instructions for updating the agent&#39;s prompt:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{instructions}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Based on this, return an updated prompt
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">You should return the full prompt, so if there&#39;s anything from before that you want to include, make sure to do that. Feel free to override or change anything that seems irrelevant. You do not need to update the prompt - if you don&#39;t want to, just return `update_prompt = False` and an empty string for new prompt.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">INSTRUCTION_REFLECTION_MULTIPLE_PROMPT</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;You are helping an AI agent improve. You can do this by changing their system prompt.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">These is their current prompt:
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{current_prompt}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/current_prompt&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Here are examples of various agent trajectories and associated feedback:
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;data&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{data}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/data&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Here are instructions for updating the agent&#39;s prompt:
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{instructions}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;/instructions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">Based on this, return an updated prompt
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">You should return the full prompt, so if there&#39;s anything from before that you want to include, make sure to do that. Feel free to override or change anything that seems irrelevant. You do not need to update the prompt - if you don&#39;t want to, just return `update_prompt = False` and an empty string for new prompt.&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="store">Store<a hidden class="anchor" aria-hidden="true" href="#store">#</a></h2>
+<p><a href="https://github.com/langchain-ai/langmem/blob/main/src/langmem/knowledge/extraction.py#L1153">code</a></p>
+<p>create_memory_store_manager</p>
+<p>LangMem中借用了langGraph中的store，其本质是一个<strong>持久化的键值存储系统</strong>。</p>
+<p><a href="https://langchain-ai.github.io/langgraph/reference/store/">参考：Storage</a></p>
+<p>核心功能包括：</p>
+<ol>
+<li>
+<p><strong>基础存储抽象</strong>：支持分层命名空间的键值存储</p>
+</li>
+<li>
+<p><strong>元数据支持</strong>：可存储带元数据的键值对</p>
+</li>
+<li>
+<p><strong>向量搜索扩展</strong>：部分实现支持向量检索功能</p>
+</li>
+</ol>
+<p>Store 的基础接口包含</p>
+<ul>
+<li>
+<p><strong>读写操作</strong>：<code>Get/Put</code> 数据存取</p>
+</li>
+<li>
+<p><strong>搜索功能</strong>：基于条件查询数据</p>
+</li>
+<li>
+<p><strong>命名空间管理</strong>：通过 <code>List</code> 操作管理数据集合</p>
+</li>
+<li>
+<p><strong>批量处理</strong>：支持多条目批量操作</p>
+</li>
+</ul>
+<p><strong>数据结构</strong></p>
+<p>每个存储项包含以下结构：</p>
+<ul>
+<li>
+<p><strong>值（Value）</strong>：字典形式的数据主体，支持键值过滤</p>
+</li>
+<li>
+<p><strong>键（Key）</strong>：命名空间内的唯一标识符</p>
+</li>
+<li>
+<p><strong>命名空间（Namespace）</strong>：定义数据集合的分层路径</p>
+</li>
+<li>
+<p><strong>时间戳</strong>：自动记录创建和更新时间</p>
+</li>
+</ul>
+<p><strong>支持的 Store 类型：</strong></p>
+<ul>
+<li><strong>内存存储（InMemoryStore）</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langgraph.store.in_memory</span> <span class="kn">import</span> <span class="n">InMemoryStore</span>
+</span></span><span class="line"><span class="cl"><span class="n">store</span> <span class="o">=</span> <span class="n">InMemoryStore</span><span class="p">()</span>
+</span></span></code></pre></div><ul>
+<li>PostgreSQL 和Sqlite（<a href="https://github.com/langchain-ai/langgraph/discussions/2275">参考</a>）</li>
+</ul>
+<h2 id="如何使用">如何使用<a hidden class="anchor" aria-hidden="true" href="#如何使用">#</a></h2>
+<p>使用siliconFlow的LLM和embedding API</p>
+<p>依赖安装</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">langmem</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">init_chat_model</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langgraph.store.memory</span> <span class="kn">import</span> <span class="n">InMemoryStore</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langgraph.func</span> <span class="kn">import</span> <span class="n">entrypoint</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langmem</span> <span class="kn">import</span> <span class="n">ReflectionExecutor</span><span class="p">,</span> <span class="n">create_memory_store_manager</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span>
+</span></span><span class="line"><span class="cl"><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&#34;https://api.siliconflow.cn/v1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_url</span><span class="o">=</span><span class="s2">&#34;https://api.siliconflow.cn/v1&#34;</span><span class="p">,</span>  <span class="c1"># 模型API端点</span>
+</span></span><span class="line"><span class="cl">    <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">,</span>                  <span class="c1"># 对应平台的API密钥</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">=</span><span class="s2">&#34;Qwen/Qwen2.5-72B-Instruct&#34;</span>  <span class="c1"># 模型名称</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">embed_texts</span><span class="p">(</span><span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">=</span><span class="s2">&#34;BAAI/bge-m3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">input</span><span class="o">=</span><span class="n">texts</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">embedding</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">store</span> <span class="o">=</span> <span class="n">InMemoryStore</span><span class="p">(</span> <span class="c1">#</span>
+</span></span><span class="line"><span class="cl">    <span class="n">index</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;dims&#34;</span><span class="p">:</span> <span class="mi">1536</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;embed&#34;</span><span class="p">:</span> <span class="n">embed_texts</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># llm = init_chat_model(&#34;anthropic:claude-3-5-sonnet-latest&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create memory manager Runnable to extract memories from conversations</span>
+</span></span><span class="line"><span class="cl"><span class="n">memory_manager</span> <span class="o">=</span> <span class="n">create_memory_store_manager</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">llm</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Store memories in the &#34;memories&#34; namespace (aka directory)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">namespace</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;memories&#34;</span><span class="p">,),</span>  <span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@entrypoint</span><span class="p">(</span><span class="n">store</span><span class="o">=</span><span class="n">store</span><span class="p">)</span>  <span class="c1"># Create a LangGraph workflow</span>
+</span></span><span class="line"><span class="cl"><span class="k">async</span> <span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># memory_manager extracts memories from conversation history</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># We&#39;ll provide it in OpenAI&#39;s message format</span>
+</span></span><span class="line"><span class="cl">    <span class="n">to_process</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;messages&#34;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span> <span class="o">+</span> <span class="p">[</span><span class="n">response</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">memory_manager</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">to_process</span><span class="p">)</span>  <span class="c1">#</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Run conversation as normal</span>
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">chat</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;I like dogs. My dog&#39;s name is Fido.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="参考">参考<a hidden class="anchor" aria-hidden="true" href="#参考">#</a></h2>
+<p><a href="https://blog.langchain.dev/langmem-sdk-launch/">LangMem SDK for agent long-term memory</a></p>
+<p><a href="https://developer.mamezou-tech.com/zh-cn/blogs/2025/02/26/langmem-intro/">理解LangMem长期记忆的概述与使用方法</a></p>
+<p><a href="https://langchain-ai.github.io/langmem/concepts/conceptual_guide/">Long-term Memory in LLM Applications</a></p>
+<p><a href="https://github.com/langchain-ai/langmem/tree/main">langmem</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent-memory/">Agent-Memory</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/">
+    <span class="title">Next »</span>
+    <br>
+    <span>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on x"
+            href="https://x.com/intent/tweet/?text=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f&amp;hashtags=Agent%2cAgent-Memory">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f&amp;title=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0&amp;summary=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f&title=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on whatsapp"
+            href="https://api.whatsapp.com/send?text=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on telegram"
+            href="https://telegram.me/share/url?text=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LangMem: 一些学习笔记 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=LangMem%3a%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0&u=https%3a%2f%2fniraya666.github.io%2fposts%2flangmem-%25E4%25B8%2580%25E4%25BA%259B%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="https://github.com/Niraya666/niraya666.github.io.git"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
