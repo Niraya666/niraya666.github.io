@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2025-04 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+OpenAI 更新系列模型
+发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。
+Introducing GPT-4.1 in the API
+Introducing OpenAI o3 and o4-mini
+Kimi-VL 和 Kimi-VL-Thinking
+由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。
+Hugging Face Kimi-VL-Thinking 模型页面
+Kimi-VL Technical Report
+A2A协议
+A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。
+Announcing the Agent2Agent Protocol (A2A)
+值得关注的开源项目
+Inbox Zero
+Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：
+
+AI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。
+Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。
+智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。
+冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。
+
+技术优势与适用场景
+项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。
+Github：github.com/elie222/inbox-zero">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2025-04 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+OpenAI 更新系列模型
+发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。
+Introducing GPT-4.1 in the API
+Introducing OpenAI o3 and o4-mini
+Kimi-VL 和 Kimi-VL-Thinking
+由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。
+Hugging Face Kimi-VL-Thinking 模型页面
+Kimi-VL Technical Report
+A2A协议
+A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。
+Announcing the Agent2Agent Protocol (A2A)
+值得关注的开源项目
+Inbox Zero
+Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：
+
+AI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。
+Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。
+智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。
+冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。
+
+技术优势与适用场景
+项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。
+Github：github.com/elie222/inbox-zero" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2025-04/C0B7BE20-3CE6-42F4-ADC1-02C54F7EB5BC_1_105_c.jpeg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2025-04-28T19:00:00+08:00" />
+<meta property="article:modified_time" content="2025-04-28T19:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2025-04/C0B7BE20-3CE6-42F4-ADC1-02C54F7EB5BC_1_105_c.jpeg" />
+<meta name="twitter:title" content="2025-04 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+OpenAI 更新系列模型
+发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。
+Introducing GPT-4.1 in the API
+Introducing OpenAI o3 and o4-mini
+Kimi-VL 和 Kimi-VL-Thinking
+由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。
+Hugging Face Kimi-VL-Thinking 模型页面
+Kimi-VL Technical Report
+A2A协议
+A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。
+Announcing the Agent2Agent Protocol (A2A)
+值得关注的开源项目
+Inbox Zero
+Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：
+
+AI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。
+Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。
+智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。
+冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。
+
+技术优势与适用场景
+项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。
+Github：github.com/elie222/inbox-zero"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2025-04 月刊",
+      "item": "https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025-04 月刊",
+  "name": "2025-04 月刊",
+  "description": "值得关注的模型和新技术 OpenAI 更新系列模型 发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。\nIntroducing GPT-4.1 in the API\nIntroducing OpenAI o3 and o4-mini\nKimi-VL 和 Kimi-VL-Thinking 由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。\nHugging Face Kimi-VL-Thinking 模型页面\nKimi-VL Technical Report\nA2A协议 A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。\nAnnouncing the Agent2Agent Protocol (A2A)\n值得关注的开源项目 Inbox Zero Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：\nAI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。 Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。 智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。 冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。 技术优势与适用场景\n项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。\nGithub：github.com/elie222/inbox-zero\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 OpenAI 更新系列模型 发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。\nIntroducing GPT-4.1 in the API\nIntroducing OpenAI o3 and o4-mini\nKimi-VL 和 Kimi-VL-Thinking 由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。\nHugging Face Kimi-VL-Thinking 模型页面\nKimi-VL Technical Report\nA2A协议 A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。\nAnnouncing the Agent2Agent Protocol (A2A)\n值得关注的开源项目 Inbox Zero Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：\nAI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。 Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。 智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。 冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。 技术优势与适用场景\n项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。\nGithub：github.com/elie222/inbox-zero\nFastMCP v2 FastMCP v2 是一个专为快速构建 Model Context Protocol (MCP) 服务器和客户端设计的 Python 工具库，旨在简化MCP开发。基于标准化的 MCP 协议，FastMCP 通过简洁的 Pythonic 设计，帮助开发者高效创建工具、资源、提示模板，并无缝连接组件，同时自动处理协议细节与服务器管理。其核心功能包括：通过装饰器快速定义工具（Tools）及资源（Resources），支持代理服务器配置、多服务组合，以及从 OpenAPI 或 FastAPI 规范自动生成 MCP 服务；客户端则提供灵活的连接方式、LLM 采样等高级功能，便于程序化测试与创新应用\nGithub：github.com/jlowin/fastmcp\nHawkinsDB HawkinsDB是一款受杰夫·霍金斯“千脑理论”启发的神经科学驱动型记忆系统，旨在为LLM应用提供更接近人类认知的记忆管理能力。不同于传统的向量数据库，它通过整合语义、情景和程序性记忆，构建了一个多维度的记忆框架，使AI能够精准理解数据间的关联与上下文，而非仅依赖模糊的相似性搜索。其核心功能包括：\n神经科学架构：采用“参考框架”（Reference Frames）和“皮层柱”（Cortical Columns）概念，模拟大脑多角度处理信息的方式，支持从属性、关系到场景的结构化知识存储。 透明化决策：通过清晰的逻辑链展示信息关联，避免“黑箱”问题，帮助开发者理解AI的推理过程。 灵活扩展：支持SQLite和JSON存储，集成ConceptNet实现知识自动丰富，并提供自然语言查询接口。 Github：github.com/harishsg993010/HawkinsDB\nTask Master Task Master 是一个基于Claude AI的任务管理系统，专为AI驱动的开发流程设计，能够自动解析产品需求文档（PRD），生成结构化任务体系，并与Cursor AI等工具无缝集成，帮助开发者高效规划和追踪项目进度\n具体功能：\n智能任务拆解：自动解析PRD文档，生成包含Epic和子任务的结构化任务体系 依赖关系管理：智能分析任务间的依赖关系，确保开发顺序合理 编辑器深度集成：通过MCP配置无缝接入Cursor或Windsurf等编辑器，支持自然语言指令直接与AI交互 Github：github.com/eyaltoledano/claude-task-master\nGraphiti Graphiti 是一个专为动态环境设计的实时知识图谱框架，旨在帮助AI代理高效管理时序数据。其核心特性包括：1）实时增量更新，支持动态数据流的即时整合；2）双时态模型，精准追踪事件发生时间和数据摄入时间；3）混合检索引擎，通过语义嵌入、关键词搜索和图遍历实现亚秒级低延迟查询；4）可定制实体系统，允许开发者通过Pydantic定义自定义实体类型。相比传统RAG方法，Graphiti无需全量重算即可处理数据变化，特别适用于需要上下文感知、历史追溯的企业级应用。\nGithub：github.com/getzep/graphiti\n值得关注的研究和论文 PaperBench: Evaluating AI’s Ability to Replicate AI Research Paper\n如何评估AI代理自主复现前沿AI研究的能力：\n理解复杂的科研论文。 从零开始开发功能代码库。 执行实验以复现论文的实证结果。 创新点\nPaperBench Benchmark LLM-Based Judge **PaperBench Code-Dev变体：**放宽执行要求的轻量级版本 具体实现：\n代理接收论文，生成包含reproduce.sh脚本的代码库，用于执行实验\n提交内容在配备A10 GPU的Ubuntu 24.04虚拟机中从零执行\n评分标准\n分层评分标准将任务分解为叶子节点（二元通过/不通过） 三种评估类型： 代码开发：代码实现的正确性。 执行：reproduce.sh脚本的正确运行。 结果匹配：复现结果与论文的一致性。 LLM评分（o3-mini｜o1）\n实验结果\nClaude 3.5 Sonnet 为已测试模型中最佳（21.0%） 人类基线：博士生（取得41.4%的得分，显著优于模型） 观察： 模型常过早终止任务，未能有效制定策略 性能停滞：模型初期进步后趋于平稳，而人类持续提升。 代码与执行差距：模型擅长编写代码（代码开发得分35.4%），但执行（1.8%）和结果匹配（0.7%）表现极差。 IterativeAgent (forced to use full time) 能够提升agent分数 RARE: Retrieval-Augmented Reasoning Modeling Paper\n核心问题:\nRAG仅仅补充知识，未系统优化推理能力，特别是在特定领域下（如医疗、金融等）需要专业知识和复杂推理能力，导致在需要多步骤逻辑分析的任务中表现不佳。 RARE shifts LLM training from memorizing knowledge (“Remember”) to applying and evaluating it (“Analyze”, “Create”). It separates domain knowledge (retrieved externally) from domain thinking (learned during training), enabling better performance under tight parameter budgets.\n创新点\nRARE（Retrieval-Augmented Reasoning Modeling），一种解耦知识存储与推理优化；具体而言， 将知识存储于数据库中， 通过训练将领域特定的推理模式内化至模型中 具体实现\n训练流程： 使用QwQ-32B模型，生成包含知识和推理步骤的高质量训练数据 （知识蒸馏） 对错误答案进行多次迭代修正，直到生成正确结果（自适应重采样，adaptive retries） 在Llama-3.1-8B上做SFT，优化推理能力而非知识记忆 推理阶段： 同普通RAG Why do LLMs attend to the first token? Paper\n这篇论文研究了LLMs中的\"注意力汇聚\"(attention sink)现象，即为什么LLMs会大量关注序列中的第一个token(通常是标记),形成注意力汇聚现象。\nover-mixing: 在LLMs中信息往往会被过度混合，导致所有token的嵌入变得相似\n研究发现：attention sink 是模型避免\"过度混合\"(over-mixing)的一种机制， 注意力sink——即许多注意力头集中在⟨bos⟩（beginning of sequence）token上——起到类似“空操作”的作用，减少token之间的相互作用，从而在各层之间保持表示的多样性。\n实验方式：\n扰动分析实验 (Perturbation Analysis)：验证注意力汇聚如何影响信息传播；在输入序列中改变单个词(如将\"greatest\"改为\"best\")，比较有/无标记时扰动的传播情况，在模型上测量表示变化。 上下文长度实验： 研究预训练上下文长度对注意力汇聚的影响 模型规模实验：研究模型大小对注意力汇聚的影响 预训练策略实验 表示距离实验：测量最终层token表示与均值的距离，比较有/无时的表示分布。 在Gemma 和Llama上的实验结果：在Gemma 7B模型中的扰动测试表明，⟨bos⟩显著减缓了变化在模型中的传播速度。同时，在LLaMa 3.1的405B模型中，超过80%的注意力头表现出明显的sink行为。\nSink是自然形成的，即使没有特别的预训练，sink也倾向于在第一个位置形成，这并不是因为⟨bos⟩ token本身的特性，而是因为它所处的位置。然而，如果在训练期间固定使用⟨bos⟩，但在推理时将其移除，模型性能会崩溃，说明sink的形成依赖于训练数据。\n作者将sink的出现与Jacobian范数的上界联系起来，证明sink可以降低模型对token扰动的敏感性。\n一些注意力头会默认将⟨bos⟩作为关注目标，除非出现特定模式才会触发真正的计算。（默认关注⟨bos⟩，除非有更重要的地方需要关注）\nDAM(Describe Anything Model) Describe Anything: Detailed Localized Image and Video Captioning\n解决的问题\n传统图像描述模型只能生成整体场景的概括性描述，，缺乏针对图像/视频特定区域的细节描述能力，即局部化描述（Detailed Localized Captioning, DLC）；同时缺乏评估区域描述质量的基准数据集。\n创新点\n提出了\"Focal Prompt\"机制,同时提供全局图像和目标区域的放大视图 Localized Vision Backbone：融合全局和局部特征 设计了一个半监督学习数据管道DLC-SDP来生成高质量的局部化描述数据 提出了一个新的基准测试DLC-Bench，用于在不依赖参考描述的情况下评估DLC模型 Test-Time Reinforcement Learning（TTRL） Paper\n在「无任何真标签的测试时数据」上，如何利用强化学习去自我训练（Test-Time Training），从而提升大语言模型的推理能力\n创新点：\n相比于传统RL中需要奖励信号学习，TTRL通过在推理阶段生成多个候选输出，设计基于多数投票的伪标签估计与二值化奖励函数，将模型自身生成的多次候选答案进行投票，进而为每条生成打分，将 Test-Time Training 与 RL（如 GRPO/PPO）结合，实现模型在推理阶段的动态微调。\n具体实现\n测试集（AIME2024｜AMC ｜ MATH-500）都是具有标准答案的数学推理题。\n对每个输入 prompt 重复抽样 N=64 条响应，对这 64 条输出做多数投票，取出现频次最高的答案作为“估计标签”（伪标签），单条输出与伪标签吻合得 1 分，否则 0 分\nRL 微调：用 GRPO（或 PPO）算法优化生成策略；\n发现：\nTest-Time RL 对超参的敏感 更强的先验知识有助于伪标签质量和自我演化效果，模型规模越大，TTRL 提升越明显 Concise Reasoning via Reinforcement Learning Paper\n一些结论：\nLong ≠ better reasoning A Two Phase RL Strategy：首先在困难的问题上训练，从而提升模型的reasoning能力；而后在一些偶尔能解答的任务上进行微调，目的是让模型在保持准确率的前提下，生成更简洁的CoT；（用更少的话表达同样的推理过程，以减少50%的token消耗） PPO训练时建议λ\u003c1，以保证训练稳定和输出质量 PHYBench: Holistic Evaluation of Physical Perception and Reasoning in Large Language Models Paper\n解决的问题\n现有LLMs在物理场景下的推理能力评估不足 缺乏高质量的物理推理数据集和细粒度的自动评估指标 创新点\n提出了一个名为 PHYBench 的新基准测试，它是一个大规模、人工设计的基准，专门用于评估模型在物理环境中的复杂推理能力；PHYBench 包含 500 个精心挑选的物理问题，涵盖力学、电磁学、热力学、光学等多个领域；\n同时提出了表达式编辑距离（Expression Edit Distance，EED）评分，通过计算数学表达式之间的编辑距离来评估模型的推理过程和结果，EED 评分能够有效地捕捉模型推理过程中的差异，优于传统的二元评分方法。\nEED Score 的核心思想是：将模型生成的符号表达式（gen）和标准答案（gt）都转化为表达式树（如SymPy表达式树），计算二者之间的最小编辑距离（包括节点的插入、删除、替换、子树插入/删除等操作），再根据相对编辑距离给出一个连续分数。\n设 Distance(T_{gt}, T_{gen}) 表示标准答案树 T_{gt} 与模型生成答案树 T_{gen} 之间的最小编辑距离（节点操作数），Size(T_{gt})表示标准答案树的节点总数，则相对编辑距离： $$ r = \\frac{\\text{Distance}(T_{gt}, T_{gen})}{\\text{Size}(T_{gt})} $$ EED Score 的分段函数: $$ \\text{score} = \\begin{cases} 100, \u0026 \\text{如果 } r = 0 \\quad (\\text{完全一致}) \\ 60 - 100r, \u0026 \\text{如果 } 0 \u003c r \u003c 0.6 \\ 0, \u0026 \\text{如果 } r \\geq 0.6 \\end{cases} $$\n发现：\n即便是最强LLM（Gemini 2.5 Pro），得分也远低于人类基线（49.5 vs 70.4） 模型常在物理场景理解（如动力学关系、变量识别）和长链符号推理（如多步方程求解）两方面出错 OTC: Optimal Tool Calls via Reinforcement Learning Paper\n使用RL提升LLM的tool-using能力，当前LLM存在tool overuse和tool underuse的问题。\n引入“工具生产力”（Tool Productivity）指标，衡量每一次工具调用带来的正确答案数量，同时提出了Optimal Tool Call-controlled Policy Optimization (OTC-PO) 框架，通过强化学习（RL）奖励函数显式地鼓励模型以最少的工具调用获得正确答案。\n在奖励设计方面，不仅考虑答案是否正确，还根据工具调用次数与最优调用次数的偏差动态调整，鼓励模型在保证正确率的前提下减少工具调用。具体而言， 对于每个问题和模型，存在一个“最优工具调用数”（即达到正确答案所需的最少工具调用次数）。目标是用最少的工具调用获得正确答案。\n具体设计：\n只有当答案正确时，工具调用效率奖励才生效（防止reward hacking） 奖励值随工具调用次数的增加而递减，且当调用次数等于最优值时奖励最高 最终奖励 = α × 工具效率奖励 × 正确性奖励 该方法可无缝集成到主流RL算法（如PPO、GRPO）中。\n推荐内容 来自各大厂的Agent 指南 openAI agent 构建指南\nAnthropic: Building Effective AI Agents\nLangGraph: How to think about agent frameworks\nAgent 综述文章：https://arxiv.org/abs/2504.01990\n微软AI红队发布的Agentic AI系统安全白皮书：Taxonomy of Failure Mode in Agentic AI Systems\n一篇语音AI\u0026Agent长文 Voice AI \u0026 Voice Agents\n一些仓库 GenAI \u0026 LLM System Design: 500+ Production Case Studies：汇总了500+genAI \u0026 LLM的系统设计\nAwesome RAG in Computer Vision：state-of-the-art papers on Retrieval-Augmented Generation (RAG) in Computer Vision\nAwesome LLM Apps： collection of awesome LLM apps built with RAG and AI agents\nAwesome-MCP-ZH： 一个专为中文用户打造的 MCP资源合集\nGitHub MCP Server：GitHub’s official MCP Server\nDeepWiki DeepWiki 由 Cognition Labs 开发，该团队此前以其 AI 编码助手 Devin 闻名。DeepWiki 利用LLMs分析代码仓库，自动提取关键信息并生成结构化知识库文档，已索引超过 30,000 个热门 GitHub 仓库，处理超过 40 亿行代码，并集成LLM对文档进行提问。用户只需将 GitHub 仓库的 URL（如 https://github.com/user/repo）中的 “github” 替换为 “deepwiki”（如 https://deepwiki.com/user/repo），即可在几秒内访问增强文档，无需注册。\nDeepWiki\n教程 OpenAI Academy：OpenAI 提供的ChatGPT教学\nHuggingFace-Reasoning-Course： Huggingface 和unsloth 推出的open-R1 reasoning 模型的building教学，作为LLM系列课程的补充。\nTutorial: Train your own Reasoning model with GRPO： Unsloth推出的reasoning 模型训练教学\nReinforcement Learning from Human Feedback — Nathan Lambert： A short introduction to RLHF and post-training focused on language models.\nJoyRL Book: 强化学习实践教程\nGoogle prompt Engineering 白皮书\n影音记录 精选歌单 Live演出 04.05 Lise de la Salle 04.10 This will destroy you 04.17 YIN YIN \u0026 Tokyo Ska Paradise Orchestra 04.18 水中スピカ 04.19 峰厚介四重奏 电影 《孤独的美食家剧场版》\n《黎明的一切》\n《黑镜》第7季\n书\u0026阅读摘录 The case against conversational interfaces When people say “natural language” what they mean is written or verbal communication. Natural language is a way to exchange ideas and knowledge between humans. In other words, it’s a data transfer mechanism.\nData transfer mechanisms have two critical factors: speed and lossiness. … We are significantly faster at receiving data (reading, listening) than sending it (writing, speaking). … To put the writing and speaking speeds into perspective, we form thoughts at 1,000-3,000 words per minute. … but whenever possible we switch to other modes of communication that are faster and more effortless. Speed and convenience always wins.\nThese text-based commands were effectively a natural language interface, but required precise syntax and a deep understanding of the system. … It’s faster to click a button than to type a long text command. … Touch-based interfaces are considered the third pivotal milestone in the evolution of human computer interaction\nThe core problem was never the quality of the output function, but the inconvenience of the input function: A natural language prompt like “Hey Google, what’s the weather in San Francisco today?” just takes 10x longer than simply tapping the weather app on your homescreen. LLMs don’t solve this problem. The quality of their output is improving at an astonishing rate, but the input modality is a step backwards from what we already have. Why should I have to describe my desired action using natural language, when I could simply press a button or keyboard shortcut? Just pass me the goddamn butter.\nFor this future to become an actual reality, AI needs to work at the OS level. It’s not meant to be an interface for a single tool, but an interface across tools.Kevin Kwok famously wrote that “productivity and collaboration shouldn’t be two separate workflows”. … The second thing we need to figure out is how we can compress voice input to make it faster to transmit.\nThis isn’t really a case against conversational interfaces, it’s a case against zero-sum thinking. … The future isn’t about replacing existing computing paradigms with chat interfaces, but about enhancing them to make human-computer interaction feel effortless\n低质量内容看多了，脑子真的会烂掉 它形容的是一个人因过度消费琐碎、无意义的互联网内容与资讯，而引起的精神或智力状态的恶化。\n引发「脑腐」的第二个因素，是长时间无节制地消费琐碎、无意义、低质量的内容或资讯\n「脑腐」对大脑认知的影响：分散注意力，削弱记忆力\n一是控制屏幕时间，二是主动锻炼大脑，让它重新掌握主导权。\n阅读后尝试复述核心观点、写下自己的理解，而不是仅仅接受信息\nAI Product Managers Will Be In-Demand I think teams will need more product management work (as well as design work) as a fraction of the total workforce.\nAI Product Management requires a different set of skills than traditional software Product Management.\nThe demand for good AI Product Managers will be huge. In addition to growing AI Product Management as a discipline, perhaps some engineers will also end up doing more product management work.\nHow Software Engineers Actually Use AI The realists see AI as a force multiplier, not a job killer—automating repetitive coding but leaving the creativity, architecture, and debugging to humans\nAI isn’t coming for your job—but it is changing it. Adapt or get left behind.🚀\nAI Horseless Carriages I am beginning to suspect that these apps are the “horseless carriages” of the AI era. They’re bad because they mimic old ways of building software that unnecessarily constrain the AI models they’re built with.\nThere is a simple solution to this problem that many AI app developers seem to be missing: let me write my own “System Prompt”.\nThe modern software industry is built on the assumption that we need developers to act as middlemen between us and computers. … By splitting the prompt into System and User components, we’ve created analogs that map cleanly onto these old world domains.\nAI-native software should maximize a user’s leverage in a specific domain.\nThe Second Half tldr: We’re at AI’s halftime\nThat illustrates the game of the first half: focus on building new models and methods, and evaluation and benchmark are secondary\nThis game is being ruined because: The recipe has essentially standardized and industried benchmark hillclimbing without requiring much more new ideas … Even if we create harder benchmarks, pretty soon (and increasingly soon) they get solved by the recipe … I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.\nour evaluation setups are different from real-world setups in many basic ways Evaluation “should” run automatically, … Evaluation “should” run i.i.d.\nThis game is hard because it is unfamiliar. But it is exciting. While players in the first half solve video games and exams, players in the second half get to build billion or trillion dollar companies by building useful products out of intelligence. While the first half is filled with incremental methods and models, the second half filters them to some degree. The general recipe would just crush your incremental methods, unless you create new assumptions that break the recipe. Then you get to do truly game-changing research.\n让我们来治愈一下《黑镜》带来的致郁 原初丰裕论：技术与幸福的反比 … 人类进入农业社会并不是因为早期农业社会能提供更好的个体福祉，而是早期农业社会能够支撑更多的人口，转过来消灭了狩猎采集社会。这是一种典型的“同态压力”。 … 农业革命说明了一点：技术的进步并不必然等同于个体幸福的提升。进入农业社会，反而让人类个体的“生活质量”降低了 … 农业革命的遗产提醒我们，技术的发展往往伴随着意料之外的代价，而这些代价可能需要数代人来消化。\n这引发了一个核心问题：我们究竟想要一个完全服从的 AI，还是一个能够独立思考的 AI? … 康德认为，道德行为应以意图而非结果来评判 … 人类自身是否能够对齐？ … 人类是过去环境演化的产物，而演化本身就充满了冲突，不讲道理，将就凑合，补丁和 hack。一旦面临新的环境，无法适应无法接受就成了必然的 … 人类对于所谓的技术文明的适应程度，实际上是很可疑的\n人类不可能再回到狩猎采集社会，我们只能向前。每一代人都试图定义“好的生活”，却发现下一代人对“好”的理解截然不同。每一代人都觉得自己这一代的生活是某种神圣的，天经地义无法改变的，完美的生活方式，而每一代人也都会变成错的。\n",
+  "wordCount" : "1482",
+  "inLanguage": "en",
+  "image":"https://niraya666.github.io/img/monthly/2025-04/C0B7BE20-3CE6-42F4-ADC1-02C54F7EB5BC_1_105_c.jpeg","datePublished": "2025-04-28T19:00:00+08:00",
+  "dateModified": "2025-04-28T19:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2025-04 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-04-28 19:00:00 +0800 CST'>April 28, 2025</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2025-04/C0B7BE20-3CE6-42F4-ADC1-02C54F7EB5BC_1_105_c.jpeg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2025-04/C0B7BE20-3CE6-42F4-ADC1-02C54F7EB5BC_1_105_c.jpeg" alt="摄于 滴水湖"></a>
+        <p>摄于 滴水湖</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a><ul>
+                        
+                <li>
+                    <a href="#openai-%e6%9b%b4%e6%96%b0%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b" aria-label="OpenAI 更新系列模型">OpenAI 更新系列模型</a></li>
+                <li>
+                    <a href="#kimi-vl-%e5%92%8c-kimi-vl-thinking" aria-label="Kimi-VL 和 Kimi-VL-Thinking">Kimi-VL 和 Kimi-VL-Thinking</a></li>
+                <li>
+                    <a href="#a2a%e5%8d%8f%e8%ae%ae" aria-label="A2A协议">A2A协议</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a><ul>
+                        
+                <li>
+                    <a href="#inbox-zero" aria-label="Inbox Zero">Inbox Zero</a></li>
+                <li>
+                    <a href="#fastmcp-v2" aria-label="FastMCP v2">FastMCP v2</a></li>
+                <li>
+                    <a href="#hawkinsdb" aria-label="HawkinsDB">HawkinsDB</a></li>
+                <li>
+                    <a href="#task-master" aria-label="Task Master">Task Master</a></li>
+                <li>
+                    <a href="#graphiti" aria-label="Graphiti">Graphiti</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#paperbench-evaluating-ais-ability-to-replicate-ai-research" aria-label="PaperBench: Evaluating AI’s Ability to Replicate AI Research">PaperBench: Evaluating AI’s Ability to Replicate AI Research</a></li>
+                <li>
+                    <a href="#rare-retrieval-augmented-reasoning-modeling" aria-label="RARE: Retrieval-Augmented Reasoning Modeling">RARE: Retrieval-Augmented Reasoning Modeling</a></li>
+                <li>
+                    <a href="#why-do-llms-attend-to-the-first-token" aria-label="Why do LLMs attend to the first token?">Why do LLMs attend to the first token?</a></li>
+                <li>
+                    <a href="#damdescribe-anything-model" aria-label="DAM(Describe Anything Model)">DAM(Describe Anything Model)</a></li>
+                <li>
+                    <a href="#test-time-reinforcement-learningttrl" aria-label="Test-Time Reinforcement Learning（TTRL）">Test-Time Reinforcement Learning（TTRL）</a></li>
+                <li>
+                    <a href="#concise-reasoning-via-reinforcement-learning" aria-label="Concise Reasoning via Reinforcement Learning">Concise Reasoning via Reinforcement Learning</a></li>
+                <li>
+                    <a href="#phybench-holistic-evaluation-of-physical-perception-and-reasoning-in-large-language-models" aria-label="PHYBench: Holistic Evaluation of Physical Perception and Reasoning in Large Language Models">PHYBench: Holistic Evaluation of Physical Perception and Reasoning in Large Language Models</a></li>
+                <li>
+                    <a href="#otc-optimal-tool-calls-via-reinforcement-learning" aria-label="OTC: Optimal Tool Calls via Reinforcement Learning">OTC: Optimal Tool Calls via Reinforcement Learning</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e6%9d%a5%e8%87%aa%e5%90%84%e5%a4%a7%e5%8e%82%e7%9a%84agent-%e6%8c%87%e5%8d%97" aria-label="来自各大厂的Agent 指南">来自各大厂的Agent 指南</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e7%af%87%e8%af%ad%e9%9f%b3aiagent%e9%95%bf%e6%96%87" aria-label="一篇语音AI&amp;Agent长文">一篇语音AI&amp;Agent长文</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e4%ba%9b%e4%bb%93%e5%ba%93" aria-label="一些仓库">一些仓库</a></li>
+                <li>
+                    <a href="#deepwiki" aria-label="DeepWiki">DeepWiki</a></li>
+                <li>
+                    <a href="#%e6%95%99%e7%a8%8b" aria-label="教程">教程</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li>
+                <li>
+                    <a href="#live%e6%bc%94%e5%87%ba" aria-label="Live演出">Live演出</a></li>
+                <li>
+                    <a href="#%e7%94%b5%e5%bd%b1" aria-label="电影">电影</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#the-case-against-conversational-interfaceshttpsjuliandigital20250327the-case-against-conversational-interfaces" aria-label="The case against conversational interfaces">The case against conversational interfaces</a></li>
+                <li>
+                    <a href="#%e4%bd%8e%e8%b4%a8%e9%87%8f%e5%86%85%e5%ae%b9%e7%9c%8b%e5%a4%9a%e4%ba%86%e8%84%91%e5%ad%90%e7%9c%9f%e7%9a%84%e4%bc%9a%e7%83%82%e6%8e%89" aria-label="低质量内容看多了，脑子真的会烂掉">低质量内容看多了，脑子真的会烂掉</a></li>
+                <li>
+                    <a href="#ai-product-managers-will-be-in-demandhttpswwwdeeplearningaithe-batchai-product-managers-will-be-in-demand" aria-label="AI Product Managers Will Be In-Demand">AI Product Managers Will Be In-Demand</a></li>
+                <li>
+                    <a href="#how-software-engineers-actually-use-aihttpswwwwiredcomstoryhow-software-engineers-coders-actually-use-ai" aria-label="How Software Engineers Actually Use AI">How Software Engineers Actually Use AI</a></li>
+                <li>
+                    <a href="#ai-horseless-carriageshttpskoomendevessayshorseless-carriages" aria-label="AI Horseless Carriages">AI Horseless Carriages</a></li>
+                <li>
+                    <a href="#the-second-halfhttpsysymythgithubiothe-second-half" aria-label="The Second Half">The Second Half</a></li>
+                <li>
+                    <a href="#%e8%ae%a9%e6%88%91%e4%bb%ac%e6%9d%a5%e6%b2%bb%e6%84%88%e4%b8%80%e4%b8%8b%e9%bb%91%e9%95%9c%e5%b8%a6%e6%9d%a5%e7%9a%84%e8%87%b4%e9%83%81httpsmpweixinqqcomsyf2wq-hl8rrpv6t86b2eea" aria-label="让我们来治愈一下《黑镜》带来的致郁">让我们来治愈一下《黑镜》带来的致郁</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<h2 id="openai-更新系列模型">OpenAI 更新系列模型<a hidden class="anchor" aria-hidden="true" href="#openai-更新系列模型">#</a></h2>
+<p>发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。</p>
+<p><a href="https://openai.com/index/gpt-4-1/">Introducing GPT-4.1 in the API</a></p>
+<p><a href="https://openai.com/index/introducing-o3-and-o4-mini/">Introducing OpenAI o3 and o4-mini</a></p>
+<h2 id="kimi-vl-和-kimi-vl-thinking">Kimi-VL 和 Kimi-VL-Thinking<a hidden class="anchor" aria-hidden="true" href="#kimi-vl-和-kimi-vl-thinking">#</a></h2>
+<p>由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。</p>
+<p><a href="https://huggingface.co/moonshotai/Kimi-VL-A3B-Thinking">Hugging Face Kimi-VL-Thinking 模型页面</a></p>
+<p><a href="https://arxiv.org/abs/2504.07491">Kimi-VL Technical Report</a></p>
+<h2 id="a2a协议">A2A协议<a hidden class="anchor" aria-hidden="true" href="#a2a协议">#</a></h2>
+<p>A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。</p>
+<p><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Announcing the Agent2Agent Protocol (A2A)</a></p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<h2 id="inbox-zero">Inbox Zero<a hidden class="anchor" aria-hidden="true" href="#inbox-zero">#</a></h2>
+<p>Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：<strong>AI 邮件助手</strong>与<strong>开源邮件客户端</strong>。其核心功能包括：</p>
+<ul>
+<li><strong>AI 个人助理</strong>：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。</li>
+<li><strong>Reply Zero 跟踪</strong>：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。</li>
+<li><strong>智能分类与退订</strong>：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。</li>
+<li><strong>冷邮件拦截与分析</strong>：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。</li>
+</ul>
+<p><strong>技术优势与适用场景</strong></p>
+<p>项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。</p>
+<p>Github：<a href="http://github.com/elie222/inbox-zero">github.com/elie222/inbox-zero</a></p>
+<h2 id="fastmcp-v2"><strong>FastMCP v2</strong><a hidden class="anchor" aria-hidden="true" href="#fastmcp-v2">#</a></h2>
+<p>FastMCP v2 是一个专为快速构建 Model Context Protocol (MCP) 服务器和客户端设计的 Python 工具库，旨在简化MCP开发。基于标准化的 MCP 协议，FastMCP 通过简洁的 Pythonic 设计，帮助开发者高效创建工具、资源、提示模板，并无缝连接组件，同时自动处理协议细节与服务器管理。其核心功能包括：通过装饰器快速定义工具（Tools）及资源（Resources），支持代理服务器配置、多服务组合，以及从 OpenAPI 或 FastAPI 规范自动生成 MCP 服务；客户端则提供灵活的连接方式、LLM 采样等高级功能，便于程序化测试与创新应用</p>
+<p>Github：<a href="http://github.com/jlowin/fastmcp">github.com/jlowin/fastmcp</a></p>
+<h2 id="hawkinsdb"><strong>HawkinsDB</strong><a hidden class="anchor" aria-hidden="true" href="#hawkinsdb">#</a></h2>
+<p>HawkinsDB是一款受杰夫·霍金斯“千脑理论”启发的神经科学驱动型记忆系统，旨在为LLM应用提供更接近人类认知的记忆管理能力。不同于传统的向量数据库，它通过整合语义、情景和程序性记忆，构建了一个多维度的记忆框架，使AI能够精准理解数据间的关联与上下文，而非仅依赖模糊的相似性搜索。其核心功能包括：</p>
+<ul>
+<li><strong>神经科学架构</strong>：采用“参考框架”（Reference Frames）和“皮层柱”（Cortical Columns）概念，模拟大脑多角度处理信息的方式，支持从属性、关系到场景的结构化知识存储。</li>
+<li><strong>透明化决策</strong>：通过清晰的逻辑链展示信息关联，避免“黑箱”问题，帮助开发者理解AI的推理过程。</li>
+<li><strong>灵活扩展</strong>：支持SQLite和JSON存储，集成ConceptNet实现知识自动丰富，并提供自然语言查询接口。</li>
+</ul>
+<p>Github：<a href="http://github.com/harishsg993010/HawkinsDB">github.com/harishsg993010/HawkinsDB</a></p>
+<h2 id="task-master"><strong>Task Master</strong><a hidden class="anchor" aria-hidden="true" href="#task-master">#</a></h2>
+<p>Task Master 是一个基于Claude AI的任务管理系统，专为AI驱动的开发流程设计，能够自动解析产品需求文档（PRD），生成结构化任务体系，并与Cursor AI等工具无缝集成，帮助开发者高效规划和追踪项目进度</p>
+<p>具体功能：</p>
+<ul>
+<li><strong>智能任务拆解</strong>：自动解析PRD文档，生成包含Epic和子任务的结构化任务体系</li>
+<li><strong>依赖关系管理</strong>：智能分析任务间的依赖关系，确保开发顺序合理</li>
+<li><strong>编辑器深度集成</strong>：通过MCP配置无缝接入Cursor或Windsurf等编辑器，支持自然语言指令直接与AI交互</li>
+</ul>
+<p>Github：<a href="http://github.com/eyaltoledano/claude-task-master">github.com/eyaltoledano/claude-task-master</a></p>
+<h2 id="graphiti">Graphiti<a hidden class="anchor" aria-hidden="true" href="#graphiti">#</a></h2>
+<p>Graphiti 是一个专为动态环境设计的实时知识图谱框架，旨在帮助AI代理高效管理时序数据。其核心特性包括：1）<strong>实时增量更新</strong>，支持动态数据流的即时整合；2）<strong>双时态模型</strong>，精准追踪事件发生时间和数据摄入时间；3）<strong>混合检索引擎</strong>，通过语义嵌入、关键词搜索和图遍历实现亚秒级低延迟查询；4）<strong>可定制实体系统</strong>，允许开发者通过Pydantic定义自定义实体类型。相比传统RAG方法，Graphiti无需全量重算即可处理数据变化，特别适用于需要上下文感知、历史追溯的企业级应用。</p>
+<p>Github：<a href="https://github.com/getzep/graphiti">github.com/getzep/graphiti</a></p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="paperbench-evaluating-ais-ability-to-replicate-ai-research"><strong>PaperBench: Evaluating AI’s Ability to Replicate AI Research</strong><a hidden class="anchor" aria-hidden="true" href="#paperbench-evaluating-ais-ability-to-replicate-ai-research">#</a></h2>
+<p><a href="https://arxiv.org/abs/2504.01848">Paper</a></p>
+<p>如何<strong>评估AI代理自主复现前沿AI研究的能力：</strong></p>
+<ul>
+<li>理解复杂的科研论文。</li>
+<li>从零开始开发功能代码库。</li>
+<li>执行实验以复现论文的实证结果。</li>
+</ul>
+<p><img loading="lazy" src="https://arxiv.org/html/2504.01848v3/x1.png" alt=""  />
+</p>
+<p><strong>创新点</strong></p>
+<ul>
+<li><strong>PaperBench Benchmark</strong></li>
+<li><strong>LLM-Based Judge</strong></li>
+<li>**PaperBench Code-Dev变体：**放宽执行要求的轻量级版本</li>
+</ul>
+<p>具体实现：</p>
+<ul>
+<li>
+<p>代理接收论文，生成包含<code>reproduce.sh</code>脚本的代码库，用于执行实验</p>
+</li>
+<li>
+<p>提交内容在配备A10 GPU的Ubuntu 24.04虚拟机中从零执行</p>
+</li>
+<li>
+<p><strong>评分标准</strong></p>
+<p><img loading="lazy" src="https://arxiv.org/html/2504.01848v3/x2.png" alt=""  />
+</p>
+<ul>
+<li>分层评分标准将任务分解为<strong>叶子节点</strong>（二元通过/不通过）</li>
+<li>三种评估类型：
+<ul>
+<li><strong>代码开发</strong>：代码实现的正确性。</li>
+<li><strong>执行</strong>：<code>reproduce.sh</code>脚本的正确运行。</li>
+<li><strong>结果匹配</strong>：复现结果与论文的一致性。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>LLM评分（<strong>o3-mini｜o1</strong>）</strong></p>
+</li>
+</ul>
+<p><strong>实验结果</strong></p>
+<ul>
+<li>Claude 3.5 Sonnet 为已测试模型中最佳（21.0%）</li>
+<li>人类基线：博士生（取得41.4%的得分，显著优于模型）</li>
+<li><strong>观察：</strong>
+<ul>
+<li>模型常过早终止任务，未能有效制定策略</li>
+<li><strong>性能停滞</strong>：模型初期进步后趋于平稳，而人类持续提升。</li>
+<li><strong>代码与执行差距</strong>：模型擅长编写代码（代码开发得分35.4%），但执行（1.8%）和结果匹配（0.7%）表现极差。</li>
+<li>IterativeAgent (forced to use full time) 能够提升agent分数</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="https://arxiv.org/html/2504.01848v3/x3.png" alt=""  />
+</p>
+<h2 id="rare-retrieval-augmented-reasoning-modeling">RARE: Retrieval-Augmented Reasoning Modeling<a hidden class="anchor" aria-hidden="true" href="#rare-retrieval-augmented-reasoning-modeling">#</a></h2>
+<p><a href="https://arxiv.org/abs/2503.23513">Paper</a></p>
+<p><img loading="lazy" src="https://arxiv.org/html/2503.23513v1/x1.png" alt=""  />
+</p>
+<p><strong>核心问题:</strong></p>
+<ul>
+<li>RAG仅仅补充知识，未系统优化推理能力，特别是在特定领域下（如医疗、金融等）需要专业知识和复杂推理能力，导致在需要多步骤逻辑分析的任务中表现不佳。</li>
+</ul>
+<blockquote>
+<p>RARE shifts LLM training from memorizing knowledge (“Remember”) to applying and evaluating it (“Analyze”, “Create”). It separates domain knowledge (retrieved externally) from domain thinking (learned during training), enabling better performance under tight parameter budgets.</p>
+</blockquote>
+<p><strong>创新点</strong></p>
+<ul>
+<li><strong>RARE</strong>（Retrieval-Augmented Reasoning Modeling），一种解耦知识存储与推理优化；具体而言， 将知识存储于数据库中， 通过训练将领域特定的推理模式内化至模型中</li>
+</ul>
+<p><strong>具体实现</strong></p>
+<ul>
+<li><strong>训练流程：</strong>
+<ul>
+<li>使用QwQ-32B模型，生成包含知识和推理步骤的高质量训练数据 （知识蒸馏）</li>
+<li>对错误答案进行多次迭代修正，直到生成正确结果（自适应重采样，adaptive retries）</li>
+<li>在Llama-3.1-8B上做SFT，优化推理能力而非知识记忆</li>
+</ul>
+</li>
+<li><strong>推理阶段：</strong>
+<ul>
+<li>同普通RAG</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="https://arxiv.org/html/2503.23513v1/x2.png" alt=""  />
+</p>
+<h2 id="why-do-llms-attend-to-the-first-token">Why do LLMs attend to the first token?<a hidden class="anchor" aria-hidden="true" href="#why-do-llms-attend-to-the-first-token">#</a></h2>
+<p><a href="https://arxiv.org/abs/2504.02732">Paper</a></p>
+<p>这篇论文研究了LLMs中的&quot;注意力汇聚&quot;(attention sink)现象，即为什么LLMs会大量关注序列中的第一个token(通常是<bos>标记),形成注意力汇聚现象。</p>
+<p><img loading="lazy" src="https://arxiv.org/html/2504.02732v2/x2.png" alt=""  />
+</p>
+<p><img loading="lazy" src="https://arxiv.org/html/2504.02732v2/x3.png" alt=""  />
+</p>
+<p><strong>over-mixing</strong>: 在LLMs中信息往往会被过度混合，导致所有token的嵌入变得相似</p>
+<p>研究发现：attention sink 是模型避免&quot;过度混合&quot;(over-mixing)的一种机制， 注意力sink——即许多注意力头集中在⟨bos⟩（beginning of sequence）token上——起到类似“空操作”的作用，减少token之间的相互作用，从而在各层之间保持表示的多样性。</p>
+<p>实验方式：</p>
+<ol>
+<li>扰动分析实验 (Perturbation Analysis)：验证注意力汇聚如何影响信息传播；在输入序列中改变单个词(如将&quot;greatest&quot;改为&quot;best&quot;)，比较有/无<bos>标记时扰动的传播情况，在模型上测量表示变化。</li>
+<li>上下文长度实验： 研究预训练上下文长度对注意力汇聚的影响</li>
+<li>模型规模实验：研究模型大小对注意力汇聚的影响</li>
+<li>预训练策略实验</li>
+<li>表示距离实验：测量最终层token表示与均值的距离，比较有/无<bos>时的表示分布。</li>
+</ol>
+<p>在Gemma 和Llama上的实验结果：在Gemma 7B模型中的扰动测试表明，⟨bos⟩显著减缓了变化在模型中的传播速度。同时，在LLaMa 3.1的405B模型中，超过80%的注意力头表现出明显的sink行为。</p>
+<p>Sink是自然形成的，即使没有特别的预训练，sink也倾向于在第一个位置形成，这并不是因为⟨bos⟩ token本身的特性，而是因为它所处的位置。然而，如果在训练期间固定使用⟨bos⟩，但在推理时将其移除，模型性能会崩溃，说明sink的形成依赖于训练数据。</p>
+<p>作者将sink的出现与Jacobian范数的上界联系起来，证明sink可以降低模型对token扰动的敏感性。</p>
+<p>一些注意力头会默认将⟨bos⟩作为关注目标，除非出现特定模式才会触发真正的计算。（默认关注⟨bos⟩，除非有更重要的地方需要关注）</p>
+<h2 id="damdescribe-anything-model">DAM(Describe Anything Model)<a hidden class="anchor" aria-hidden="true" href="#damdescribe-anything-model">#</a></h2>
+<p><a href="https://describe-anything.github.io/">Describe Anything: Detailed Localized Image and Video Captioning</a></p>
+<p><strong>解决的问题</strong></p>
+<p>传统图像描述模型只能生成整体场景的概括性描述，，缺乏针对图像/视频特定区域的细节描述能力，即局部化描述（Detailed Localized Captioning, DLC）；同时缺乏评估区域描述质量的基准数据集。</p>
+<p><strong>创新点</strong></p>
+<ul>
+<li>提出了&quot;Focal Prompt&quot;机制,同时提供全局图像和目标区域的放大视图</li>
+<li>Localized Vision Backbone：融合全局和局部特征</li>
+<li>设计了一个半监督学习数据管道<strong>DLC-SDP</strong>来生成高质量的局部化描述数据</li>
+<li>提出了一个新的基准测试<strong>DLC-Bench</strong>，用于在不依赖参考描述的情况下评估DLC模型</li>
+</ul>
+<h2 id="test-time-reinforcement-learningttrl">Test-Time Reinforcement Learning（TTRL）<a hidden class="anchor" aria-hidden="true" href="#test-time-reinforcement-learningttrl">#</a></h2>
+<p><a href="https://arxiv.org/abs/2504.16084">Paper</a></p>
+<p>在「无任何真标签的测试时数据」上，如何利用强化学习去自我训练（Test-Time Training），从而提升大语言模型的推理能力</p>
+<p><strong>创新点</strong>：</p>
+<p>相比于传统RL中需要奖励信号学习，TTRL通过在推理阶段生成多个候选输出，设计基于多数投票的伪标签估计与二值化奖励函数，将模型自身生成的多次候选答案进行投票，进而为每条生成打分，将 Test-Time Training 与 RL（如 GRPO/PPO）结合，实现模型在推理阶段的动态微调。</p>
+<p><strong>具体实现</strong></p>
+<p>测试集（AIME2024｜AMC ｜ MATH-500）都是具有标准答案的数学推理题。</p>
+<p>对每个输入 prompt 重复抽样 N=64 条响应，对这 64 条输出做多数投票，取出现频次最高的答案作为“估计标签”（伪标签），单条输出与伪标签吻合得 1 分，否则 0 分</p>
+<p>RL 微调：用 GRPO（或 PPO）算法优化生成策略；</p>
+<p><strong>发现</strong>：</p>
+<ul>
+<li>Test-Time RL 对超参的敏感</li>
+<li>更强的先验知识有助于伪标签质量和自我演化效果，模型规模越大，TTRL 提升越明显</li>
+</ul>
+<h2 id="concise-reasoning-via-reinforcement-learning"><strong>Concise Reasoning via Reinforcement Learning</strong><a hidden class="anchor" aria-hidden="true" href="#concise-reasoning-via-reinforcement-learning">#</a></h2>
+<p><a href="https://arxiv.org/abs/2504.05185">Paper</a></p>
+<p>一些结论：</p>
+<ul>
+<li>Long ≠ better reasoning</li>
+<li>A Two Phase RL Strategy：首先在困难的问题上训练，从而提升模型的reasoning能力；而后在一些偶尔能解答的任务上进行微调，目的是让模型在保持准确率的前提下，生成更简洁的CoT；（用更少的话表达同样的推理过程，以减少50%的token消耗）</li>
+<li>PPO训练时建议λ&lt;1，以保证训练稳定和输出质量</li>
+</ul>
+<h2 id="phybench-holistic-evaluation-of-physical-perception-and-reasoning-in-large-language-models">PHYBench: Holistic Evaluation of Physical Perception and Reasoning in Large Language Models<a hidden class="anchor" aria-hidden="true" href="#phybench-holistic-evaluation-of-physical-perception-and-reasoning-in-large-language-models">#</a></h2>
+<p><a href="https://arxiv.org/abs/2504.16074">Paper</a></p>
+<p><strong>解决的问题</strong></p>
+<ul>
+<li>现有LLMs在物理场景下的推理能力评估不足</li>
+<li>缺乏高质量的物理推理数据集和细粒度的自动评估指标</li>
+</ul>
+<p><strong>创新点</strong></p>
+<p>提出了一个名为 PHYBench 的新基准测试，它是一个大规模、人工设计的基准，专门用于评估模型在物理环境中的复杂推理能力；PHYBench 包含 500 个精心挑选的物理问题，涵盖力学、电磁学、热力学、光学等多个领域；</p>
+<p>同时提出了表达式编辑距离（Expression Edit Distance，EED）评分，通过计算数学表达式之间的编辑距离来评估模型的推理过程和结果，EED 评分能够有效地捕捉模型推理过程中的差异，优于传统的二元评分方法。</p>
+<p>EED Score 的核心思想是：将模型生成的符号表达式（gen）和标准答案（gt）都转化为表达式树（如SymPy表达式树），计算二者之间的最小编辑距离（包括节点的插入、删除、替换、子树插入/删除等操作），再根据相对编辑距离给出一个连续分数。</p>
+<p>设 Distance(T_{gt}, T_{gen}) 表示标准答案树 T_{gt} 与模型生成答案树 T_{gen} 之间的最小编辑距离（节点操作数），Size(T_{gt})表示标准答案树的节点总数，则<strong>相对编辑距离：</strong>
+$$
+r = \frac{\text{Distance}(T_{gt}, T_{gen})}{\text{Size}(T_{gt})}
+$$
+<strong>EED Score 的分段函数:</strong>
+$$
+\text{score} =
+\begin{cases}
+100, &amp; \text{如果 } r = 0 \quad (\text{完全一致}) \
+60 - 100r, &amp; \text{如果 } 0 &lt; r &lt; 0.6 \
+0, &amp; \text{如果 } r \geq 0.6
+\end{cases}
+$$</p>
+<p>发现：</p>
+<ul>
+<li>即便是最强LLM（Gemini 2.5 Pro），得分也远低于人类基线（49.5 vs 70.4）</li>
+<li>模型常在物理场景理解（如动力学关系、变量识别）和长链符号推理（如多步方程求解）两方面出错</li>
+</ul>
+<h2 id="otc-optimal-tool-calls-via-reinforcement-learning"><strong>OTC: Optimal Tool Calls via Reinforcement Learning</strong><a hidden class="anchor" aria-hidden="true" href="#otc-optimal-tool-calls-via-reinforcement-learning">#</a></h2>
+<p><a href="https://arxiv.org/abs/2504.14870">Paper</a></p>
+<p><img loading="lazy" src="https://arxiv.org/html/2504.14870v1/x1.png" alt=""  />
+</p>
+<p>使用RL提升LLM的tool-using能力，当前LLM存在tool overuse和tool underuse的问题。</p>
+<p><strong>引入“工具生产力”（Tool Productivity）指标</strong>，衡量每一次工具调用带来的正确答案数量，同时<strong>提出了Optimal Tool Call-controlled Policy Optimization (OTC-PO) 框架</strong>，通过强化学习（RL）奖励函数显式地鼓励模型以最少的工具调用获得正确答案。</p>
+<p>在奖励设计方面，不仅考虑答案是否正确，还根据工具调用次数与最优调用次数的偏差动态调整，鼓励模型在保证正确率的前提下减少工具调用。具体而言， 对于每个问题和模型，存在一个“最优工具调用数”（即达到正确答案所需的最少工具调用次数）。目标是用最少的工具调用获得正确答案。</p>
+<p>具体设计：</p>
+<ul>
+<li>只有当答案正确时，工具调用效率奖励才生效（防止reward hacking）</li>
+<li>奖励值随工具调用次数的增加而递减，且当调用次数等于最优值时奖励最高</li>
+<li>最终奖励 = α × 工具效率奖励 × 正确性奖励</li>
+</ul>
+<p>该方法可无缝集成到主流RL算法（如PPO、GRPO）中。</p>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="来自各大厂的agent-指南">来自各大厂的Agent 指南<a hidden class="anchor" aria-hidden="true" href="#来自各大厂的agent-指南">#</a></h2>
+<p><a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">openAI agent 构建指南</a></p>
+<p><a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic: Building Effective AI Agents</a></p>
+<p>LangGraph: <a href="https://blog.langchain.dev/how-to-think-about-agent-frameworks/">How to think about agent frameworks</a></p>
+<p>Agent 综述文章：https://arxiv.org/abs/2504.01990</p>
+<p>微软AI红队发布的Agentic AI系统安全白皮书：<a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf">Taxonomy of Failure Mode in Agentic AI Systems</a></p>
+<h2 id="一篇语音aiagent长文">一篇语音AI&amp;Agent长文<a hidden class="anchor" aria-hidden="true" href="#一篇语音aiagent长文">#</a></h2>
+<p><a href="https://voiceaiandvoiceagents.com/"><strong>Voice AI &amp; Voice Agents</strong></a></p>
+<h2 id="一些仓库">一些仓库<a hidden class="anchor" aria-hidden="true" href="#一些仓库">#</a></h2>
+<p><a href="https://github.com/themanojdesai/genai-llm-ml-case-studies">GenAI &amp; LLM System Design: 500+ Production Case Studies</a>：汇总了500+genAI &amp; LLM的系统设计</p>
+<p><a href="https://github.com/zhengxuJosh/Awesome-RAG-Vision">Awesome RAG in Computer Vision</a>：state-of-the-art papers on Retrieval-Augmented Generation (RAG) in Computer Vision</p>
+<p><a href="https://github.com/Shubhamsaboo/awesome-llm-apps">Awesome LLM Apps</a>： collection of awesome LLM apps built with RAG and AI agents</p>
+<p><a href="https://github.com/yzfly/Awesome-MCP-ZH">Awesome-MCP-ZH</a>： 一个专为中文用户打造的 MCP资源合集</p>
+<p><a href="https://github.com/github/github-mcp-server">GitHub MCP Server</a>：GitHub&rsquo;s official MCP Server</p>
+<h2 id="deepwiki">DeepWiki<a hidden class="anchor" aria-hidden="true" href="#deepwiki">#</a></h2>
+<p>DeepWiki 由 Cognition Labs 开发，该团队此前以其 AI 编码助手 Devin 闻名。DeepWiki 利用LLMs分析代码仓库，自动提取关键信息并生成结构化知识库文档，已索引超过 30,000 个热门 GitHub 仓库，处理超过 40 亿行代码，并集成LLM对文档进行提问。用户只需将 GitHub 仓库的 URL（如 <a href="https://github.com/user/repo">https://github.com/user/repo</a>）中的 “github” 替换为 “deepwiki”（如 <a href="https://deepwiki.com/user/repo">https://deepwiki.com/user/repo</a>），即可在几秒内访问增强文档，无需注册。</p>
+<p><a href="https://deepwiki.org/">DeepWiki</a></p>
+<h2 id="教程">教程<a hidden class="anchor" aria-hidden="true" href="#教程">#</a></h2>
+<p><a href="https://academy.openai.com/">OpenAI Academy</a>：OpenAI 提供的ChatGPT教学</p>
+<p><a href="https://huggingface.co/reasoning-course">HuggingFace-Reasoning-Course</a>： Huggingface 和unsloth 推出的open-R1 reasoning 模型的building教学，作为LLM系列课程的补充。</p>
+<p><a href="https://docs.unsloth.ai/basics/reasoning-grpo-and-rl/tutorial-train-your-own-reasoning-model-with-grpo">Tutorial: Train your own Reasoning model with GRPO</a>： Unsloth推出的reasoning 模型训练教学</p>
+<p><a href="https://rlhfbook.com/">Reinforcement Learning from Human Feedback — Nathan Lambert</a>： A short introduction to RLHF and post-training focused on language models.</p>
+<p><a href="https://datawhalechina.github.io/joyrl-book/#/?id=joyrl-book">JoyRL Book</a>: 强化学习实践教程</p>
+<p><a href="https://www.gptaiflow.tech/assets/files/2025-01-18-pdf-1-TechAI-Goolge-whitepaper_Prompt%20Engineering_v4-af36dcc7a49bb7269a58b1c9b89a8ae1.pdf">Google prompt Engineering 白皮书</a></p>
+<hr>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1j6T9gog2SKwn2hKs3SjvA?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h2 id="live演出">Live演出<a hidden class="anchor" aria-hidden="true" href="#live演出">#</a></h2>
+<ul>
+<li>04.05 Lise de la Salle</li>
+<li>04.10 This will destroy you</li>
+<li>04.17 YIN YIN &amp; Tokyo Ska Paradise Orchestra</li>
+<li>04.18 水中スピカ</li>
+<li>04.19 峰厚介四重奏</li>
+</ul>
+<h2 id="电影">电影<a hidden class="anchor" aria-hidden="true" href="#电影">#</a></h2>
+<p>《孤独的美食家剧场版》</p>
+<p>《黎明的一切》</p>
+<p>《黑镜》第7季</p>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="the-case-against-conversational-interfaceshttpsjuliandigital20250327the-case-against-conversational-interfaces"><a href="https://julian.digital/2025/03/27/the-case-against-conversational-interfaces/"><strong>The case against conversational interfaces</strong></a><a hidden class="anchor" aria-hidden="true" href="#the-case-against-conversational-interfaceshttpsjuliandigital20250327the-case-against-conversational-interfaces">#</a></h2>
+<blockquote>
+<p>When people say <em>“natural language”</em> what they mean is written or verbal communication. Natural language is a way to exchange ideas and knowledge between humans. In other words, it’s a data transfer mechanism.</p>
+<p>Data transfer mechanisms have two critical factors: speed and lossiness.
+…
+We are significantly faster at receiving data (reading, listening) than sending it (writing, speaking).
+…
+To put the writing and speaking speeds into perspective, <strong>we form thoughts at 1,000-3,000 words per minute</strong>.
+…
+but whenever possible we switch to other modes of communication that are faster and more effortless. Speed and convenience always wins.</p>
+</blockquote>
+<blockquote>
+<p>These text-based commands were effectively a natural language interface, but required precise syntax and a deep understanding of the system.
+…
+It’s faster to click a button than to type a long text command.
+…
+Touch-based interfaces are considered the third pivotal milestone in the evolution of human computer interaction</p>
+</blockquote>
+<blockquote>
+<p>The core problem was never the quality of the output function, but the inconvenience of the input function: A natural language prompt like <em>“Hey Google, what’s the weather in San Francisco today?”</em> just takes 10x longer than simply tapping the weather app on your homescreen.
+LLMs don’t solve this problem. The quality of their output is improving at an astonishing rate, but the input modality is a step backwards from what we already have. Why should I have to describe my desired action using natural language, when I could simply press a button or keyboard shortcut? Just pass me the goddamn butter.</p>
+</blockquote>
+<blockquote>
+<p>For this future to become an actual reality, AI needs to work at the OS level. It’s not meant to be an interface for a single tool, but an interface across tools.Kevin Kwok famously wrote that <em>“productivity and collaboration shouldn’t be two separate workflows”</em>.
+…
+The second thing we need to figure out is how we can compress voice input to make it faster to transmit.</p>
+</blockquote>
+<blockquote>
+<p>This isn’t really a case against conversational interfaces, it’s a case against zero-sum thinking.
+…
+The future isn’t about replacing existing computing paradigms with chat interfaces, but about enhancing them to make human-computer interaction feel effortless</p>
+</blockquote>
+<h2 id="低质量内容看多了脑子真的会烂掉">低质量内容看多了，脑子真的会烂掉<a hidden class="anchor" aria-hidden="true" href="#低质量内容看多了脑子真的会烂掉">#</a></h2>
+<blockquote>
+<p>它形容的是一个人因过度消费琐碎、无意义的互联网内容与资讯，而引起的精神或智力状态的恶化。</p>
+</blockquote>
+<blockquote>
+<p>引发「脑腐」的第二个因素，是长时间无节制地消费琐碎、无意义、低质量的内容或资讯</p>
+</blockquote>
+<blockquote>
+<p>「脑腐」对大脑认知的影响：分散注意力，削弱记忆力</p>
+</blockquote>
+<blockquote>
+<p>一是控制屏幕时间，二是主动锻炼大脑，让它重新掌握主导权。</p>
+</blockquote>
+<blockquote>
+<p>阅读后尝试复述核心观点、写下自己的理解，而不是仅仅接受信息</p>
+</blockquote>
+<h2 id="ai-product-managers-will-be-in-demandhttpswwwdeeplearningaithe-batchai-product-managers-will-be-in-demand"><a href="https://www.deeplearning.ai/the-batch/ai-product-managers-will-be-in-demand/"><strong>AI Product Managers Will Be In-Demand</strong></a><a hidden class="anchor" aria-hidden="true" href="#ai-product-managers-will-be-in-demandhttpswwwdeeplearningaithe-batchai-product-managers-will-be-in-demand">#</a></h2>
+<blockquote>
+<p>I think teams will need more product management work (as well as design work) as a fraction of the total workforce.</p>
+</blockquote>
+<blockquote>
+<p>AI Product Management requires a different set of skills than traditional software Product Management.</p>
+</blockquote>
+<blockquote>
+<p>The demand for good AI Product Managers will be huge. In addition to growing AI Product Management as a discipline, perhaps some engineers will also end up doing more product management work.</p>
+</blockquote>
+<h2 id="how-software-engineers-actually-use-aihttpswwwwiredcomstoryhow-software-engineers-coders-actually-use-ai"><a href="https://www.wired.com/story/how-software-engineers-coders-actually-use-ai/">How Software Engineers Actually Use AI</a><a hidden class="anchor" aria-hidden="true" href="#how-software-engineers-actually-use-aihttpswwwwiredcomstoryhow-software-engineers-coders-actually-use-ai">#</a></h2>
+<blockquote>
+<p>The realists see AI as a force multiplier, not a job killer—automating repetitive coding but leaving the creativity, architecture, and debugging to humans</p>
+</blockquote>
+<blockquote>
+<p>AI isn’t coming for your job—but it is changing it. Adapt or get left behind.🚀</p>
+</blockquote>
+<h2 id="ai-horseless-carriageshttpskoomendevessayshorseless-carriages"><a href="https://koomen.dev/essays/horseless-carriages/">AI Horseless Carriages</a><a hidden class="anchor" aria-hidden="true" href="#ai-horseless-carriageshttpskoomendevessayshorseless-carriages">#</a></h2>
+<blockquote>
+<p>I am beginning to suspect that these apps are the &ldquo;horseless carriages&rdquo; of the AI era. They&rsquo;re bad because they mimic old ways of building software that unnecessarily constrain the AI models they&rsquo;re built with.</p>
+</blockquote>
+<blockquote>
+<p>There is a simple solution to this problem that many AI app developers seem to be missing: let me write my own &ldquo;System Prompt&rdquo;.</p>
+</blockquote>
+<blockquote>
+<p>The modern software industry is built on the assumption that we need developers to act as middlemen between us and computers.
+…
+By splitting the prompt into System and User components, we&rsquo;ve created analogs that map cleanly onto these old world domains.</p>
+</blockquote>
+<blockquote>
+<p>AI-native software should maximize a user&rsquo;s leverage in a specific domain.</p>
+</blockquote>
+<h2 id="the-second-halfhttpsysymythgithubiothe-second-half"><a href="https://ysymyth.github.io/The-Second-Half/">The Second Half</a><a hidden class="anchor" aria-hidden="true" href="#the-second-halfhttpsysymythgithubiothe-second-half">#</a></h2>
+<blockquote>
+<p>tldr: We’re at AI’s halftime</p>
+</blockquote>
+<blockquote>
+<p>That illustrates the game of the first half: focus on building new models and methods, and evaluation and benchmark are secondary</p>
+</blockquote>
+<blockquote>
+<p>This game is being ruined because:
+The recipe has essentially standardized and industried benchmark hillclimbing without requiring much more new ideas
+…
+Even if we create harder benchmarks, pretty soon (and increasingly soon) they get solved by the recipe
+…
+I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.</p>
+</blockquote>
+<blockquote>
+<p>our evaluation setups are different from real-world setups in many basic ways
+Evaluation “should” run automatically,
+…
+Evaluation “should” run i.i.d.</p>
+</blockquote>
+<blockquote>
+<p>This game is hard because it is unfamiliar. But it is exciting. While players in the first half solve video games and exams, players in the second half get to build billion or trillion dollar companies by building useful products out of intelligence. While the first half is filled with incremental methods and models, the second half filters them to some degree. The general recipe would just crush your incremental methods, unless you create new assumptions that break the recipe. Then you get to do truly game-changing research.</p>
+</blockquote>
+<h2 id="让我们来治愈一下黑镜带来的致郁httpsmpweixinqqcomsyf2wq-hl8rrpv6t86b2eea"><a href="https://mp.weixin.qq.com/s/yF2Wq-HL8rrPV6t86b2eeA">让我们来治愈一下《黑镜》带来的致郁</a><a hidden class="anchor" aria-hidden="true" href="#让我们来治愈一下黑镜带来的致郁httpsmpweixinqqcomsyf2wq-hl8rrpv6t86b2eea">#</a></h2>
+<blockquote>
+<p>原初丰裕论：技术与幸福的反比
+…
+人类进入农业社会并不是因为早期农业社会能提供更好的个体福祉，而是早期农业社会能够支撑更多的人口，转过来消灭了狩猎采集社会。这是一种典型的“同态压力”。
+…
+农业革命说明了一点：技术的进步并不必然等同于个体幸福的提升。进入农业社会，反而让人类个体的“生活质量”降低了
+…
+农业革命的遗产提醒我们，技术的发展往往伴随着意料之外的代价，而这些代价可能需要数代人来消化。</p>
+</blockquote>
+<blockquote>
+<p>这引发了一个核心问题：我们究竟想要一个完全服从的 AI，还是一个能够独立思考的 AI?
+…
+康德认为，道德行为应以意图而非结果来评判
+…
+人类自身是否能够对齐？
+…
+人类是过去环境演化的产物，而演化本身就充满了冲突，不讲道理，将就凑合，补丁和 hack。一旦面临新的环境，无法适应无法接受就成了必然的
+…
+人类对于所谓的技术文明的适应程度，实际上是很可疑的</p>
+</blockquote>
+<blockquote>
+<p>人类不可能再回到狩猎采集社会，我们只能向前。每一代人都试图定义“好的生活”，却发现下一代人对“好”的理解截然不同。每一代人都觉得自己这一代的生活是某种神圣的，天经地义无法改变的，完美的生活方式，而每一代人也都会变成错的。</p>
+</blockquote>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2025-04%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f&amp;title=2025-04%20%e6%9c%88%e5%88%8a&amp;summary=2025-04%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f&title=2025-04%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2025-04%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2025-04%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-04 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2025-04%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-04-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="https://github.com/Niraya666/niraya666.github.io.git"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
