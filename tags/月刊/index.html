@@ -195,10 +195,12 @@ Hugging Face Kimi-VL-Thinking 模型页面
 Kimi-VL Technical Report
 A2A协议 A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。
 Announcing the Agent2Agent Protocol (A2A)
+Qwen3 Qwen3 是Qwen的第三代大语言模型系列，于2025年4月正式发布，包含6个稠密模型（0.6B至32B参数）和2个混合专家（MoE）模型（30B-A3B和235B-A22B）。功能与特点：Qwen3支持119种语言，训练数据高达36万亿token，具备自然语言理解、文本生成、工具调用、复杂推理及多模态交互能力。模型采用混合推理模式，可根据任务复杂度自动切换“思考”与“快速响应”模式，优化计算效率与响应速度。支持128K token上下文长度，适用于长文档处理、编程、数学推理及智能体任务。创新点：Qwen3引入动态可调MoE架构，通过分层稀疏调度和动态专家激活（最多128个专家，单token激活8个），显著降低推理耗时（15B模型推理效率提升42%）和显存占用（从28GB降至18GB）。新增Qwen3RMSNorm归一化层优化注意力机制，支持多种RoPE变体（dynamic、yarn、llama3）以提升长序列处理能力。词表优化引入动态加权合并算法，增强高频词组处理，并新增智能体专用控制符。效果：旗舰模型Qwen3-235B-A22B在Codeforces编程竞赛、AIME数学基准及BFCL推理测试中超越OpenAI的o3-mini和谷歌Gemini 2.5 Pro，Qwen3-32B在LiveCodeBench编码任务中优于OpenAI o1。
+Blog
+Huggingface
 值得关注的开源项目 Inbox Zero Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：
 AI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。 Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。 智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。 冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。 技术优势与适用场景
 项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。
-Github：github.com/elie222/inbox-zero
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-04-28 19:00:00 +0800 CST'>April 28, 2025</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Theme PaperMod</footer>
