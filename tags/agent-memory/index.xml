@@ -11,8 +11,95 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Apr 2025 10:44:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 May 2025 18:44:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/agent-memory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>初探 Mem0</title>
+      <link>https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/</link>
+      <pubDate>Tue, 20 May 2025 18:44:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/</guid>
+      <description>&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
+&lt;p&gt;本文是对于&lt;a href=&#34;https://github.com/mem0ai/mem0&#34;&gt;Mem0&lt;/a&gt;的论文解读和使用记录；&lt;/p&gt;
+&lt;p&gt;Mem0 是一款面向LLM应用的memory layer框架，同时是开源的。虽然它最早在 2024 年中旬亮相，起初的框架设计并没有太多亮眼之处，不过在最近，发布了一次比较重大的更新（基本上是重构了）采用了基于 AI-agent 的对话记忆提取、更新和查询等机制，实际体验下来，算是目前为止比较好用的了。&lt;/p&gt;
+&lt;h2 id=&#34;paper笔记&#34;&gt;Paper笔记&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2504.19413&#34;&gt;Paper&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创新点&#34;&gt;&lt;strong&gt;创新点&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mem0架构&lt;/strong&gt;：提出了一种可扩展的、以记忆为中心的AI代理架构，能够动态地从对话中抽取、整合和检索关键信息，实现长期、跨会话的记忆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mem0g（图记忆扩展）&lt;/strong&gt;：在基础架构上进一步引入“图结构记忆”，用有向标注图（节点为实体，边为关系）来捕捉对话中复杂的实体关系和事件顺序，提升多跳推理和时序推理能力&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mem0实现&#34;&gt;&lt;strong&gt;Mem0实现&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%88%9d%e6%8e%a2Mem0-assets/Pasted%202025-05-20-16-29-02.png&#34; alt=&#34;Pasted 2025-05-20-16-29-02.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;extraction phase:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;每当有一对新的消息$(m_{t},m_{t−1})$进入系统时，系统会启动记忆抽取流程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;系统会同时参考两类上下文信息: &lt;strong&gt;全局对话摘要（S）和 最近的消息序列&lt;/strong&gt;${m_{t−m}, &amp;hellip;, m_{t−2}}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;组合成一个完整的提示（prompt）&lt;strong&gt;P&lt;/strong&gt;，输入给LLM实现的抽取函数&lt;strong&gt;ϕ&lt;/strong&gt;。LLM会基于这些信息，抽取出本轮对话中值得记忆的关键信息（$Ω = (ω_1,&amp;hellip;,ω_n )$），作为候选事实，准备加入知识库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为保障S始终是最新的，使用异步摘要生成模块，定期刷新摘要内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;update phase：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;核心任务：检查这些新事实和已有记忆之间的关系和证知识库的内容既不重复，也不矛盾，始终保持一致和精简&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对每一个新抽取的事实（$ω_i$），系统会&lt;strong&gt;检索数据库中与之最相似的s条已有记忆&lt;/strong&gt;（用向量嵌入做语义相似度检索）, 将$ω_i$ 和相似记忆一起交给LLM，由LLM从以下4种工具选择并执行（tool-using）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ADD&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DELETE&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NOOP&lt;/strong&gt; （什么也不做）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体算法&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%88%9d%e6%8e%a2Mem0-assets/%e6%88%aa%e5%b1%8f2025-05-10%20%e4%b8%8b%e5%8d%883.13.17.png&#34; alt=&#34;截屏2025-05-10 下午3.13.17.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;mem0g实现&#34;&gt;&lt;strong&gt;Mem0g实现&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%88%9d%e6%8e%a2Mem0-assets/Pasted%202025-05-20-16-31-40.png&#34; alt=&#34;Pasted 2025-05-20-16-31-40.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;以图$G = ( V , E , L )$ 建模记忆，(实体、关系、和语义label)&lt;/p&gt;
+&lt;p&gt;每个entity（node）包含三部分信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;entity type classification：用于标记这个实体属于哪一类&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;embedding vector：实体语义含义的向量表示，便于后续做语义相似度检索和推理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;metadata： 主要包括创建时间戳（creation timestamp），用于记录这个实体被加入知识图谱的时间，有助于时序推理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;relationships 用triplet的表示：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>LangMem: 一些学习笔记</title>
       <link>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>

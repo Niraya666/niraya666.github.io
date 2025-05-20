@@ -175,6 +175,48 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">初探 Mem0
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>写在开头 本文是对于Mem0的论文解读和使用记录；
+Mem0 是一款面向LLM应用的memory layer框架，同时是开源的。虽然它最早在 2024 年中旬亮相，起初的框架设计并没有太多亮眼之处，不过在最近，发布了一次比较重大的更新（基本上是重构了）采用了基于 AI-agent 的对话记忆提取、更新和查询等机制，实际体验下来，算是目前为止比较好用的了。
+Paper笔记 Paper
+创新点 Mem0架构：提出了一种可扩展的、以记忆为中心的AI代理架构，能够动态地从对话中抽取、整合和检索关键信息，实现长期、跨会话的记忆
+Mem0g（图记忆扩展）：在基础架构上进一步引入“图结构记忆”，用有向标注图（节点为实体，边为关系）来捕捉对话中复杂的实体关系和事件顺序，提升多跳推理和时序推理能力
+Mem0实现 extraction phase:
+每当有一对新的消息$(m_{t},m_{t−1})$进入系统时，系统会启动记忆抽取流程
+系统会同时参考两类上下文信息: 全局对话摘要（S）和 最近的消息序列${m_{t−m}, …, m_{t−2}}$
+组合成一个完整的提示（prompt）P，输入给LLM实现的抽取函数ϕ。LLM会基于这些信息，抽取出本轮对话中值得记忆的关键信息（$Ω = (ω_1,…,ω_n )$），作为候选事实，准备加入知识库
+为保障S始终是最新的，使用异步摘要生成模块，定期刷新摘要内容
+update phase：
+核心任务：检查这些新事实和已有记忆之间的关系和证知识库的内容既不重复，也不矛盾，始终保持一致和精简
+对每一个新抽取的事实（$ω_i$），系统会检索数据库中与之最相似的s条已有记忆（用向量嵌入做语义相似度检索）, 将$ω_i$ 和相似记忆一起交给LLM，由LLM从以下4种工具选择并执行（tool-using）：
+ADD
+UPDATE
+DELETE
+NOOP （什么也不做）
+具体算法
+Mem0g实现 以图$G = ( V , E , L )$ 建模记忆，(实体、关系、和语义label)
+每个entity（node）包含三部分信息：
+entity type classification：用于标记这个实体属于哪一类
+embedding vector：实体语义含义的向量表示，便于后续做语义相似度检索和推理
+metadata： 主要包括创建时间戳（creation timestamp），用于记录这个实体被加入知识图谱的时间，有助于时序推理
+relationships 用triplet的表示：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-20 18:44:00 +0800 CST'>May 20, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to 初探 Mem0" href="https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">LangMem: 一些学习笔记
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
