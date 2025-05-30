@@ -11,8 +11,33 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Apr 2025 19:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 30 May 2025 14:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-05 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Fri, 30 May 2025 14:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;h2 id=&#34;google-2025-io-大会&#34;&gt;Google 2025 I/O 大会：&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.google/technology/developers/google-io-2025-collection/&#34;&gt;I/O 2025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google在2025年I/O大会上全面展示了AI的最新进展和深度整合战略，涵盖基础模型迭代（如Gemini 2.5、Gemini Diffusion、Gemma 3n、Veo 3和Imagen 4）及多模态创新&lt;/p&gt;
+&lt;h2 id=&#34;openai-codex&#34;&gt;OpenAI codex&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-codex/&#34;&gt;Introducing Codex&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;OpenAI 于 2025年5月16日推出了 Codex 软件工程代理及其驱动模型 codex-1 和 codex-mini-latest，专注提升软件开发的自动化与效率。codex-1 基于 o3 模型，优化并行处理、多轮测试和复杂项目支持，擅长代码生成、Bug 修复等任务；codex-mini-latest 则主打低延迟，适合快速命令行操作。Codex 平台通过云端隔离沙箱，安全模拟真实开发环境，自动化完成如重构、测试编写等任务，支持细致行为定制。&lt;/p&gt;
+&lt;h2 id=&#34;claude-4&#34;&gt;Claude 4&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-4&#34;&gt;Introducing Claude 4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Anthropic 于2025年5月22日发布了新一代 Claude 4 系列模型，包括 Claude Opus 4 和 Claude Sonnet 4，重点提升了编码、高级推理和对AI代理的支持能力。Opus 4 在行业编码基准测试中表现领先，拥有更强的内存与持续任务能力，并大幅减少“抄近路”行为，专注于高复杂任务和AI代理核心场景。Sonnet 4 则在提升推理与指令遵循能力的同时，平衡了性能与效率。&lt;/p&gt;
+&lt;h2 id=&#34;deepseek-r1-0528&#34;&gt;&lt;strong&gt;DeepSeek-R1-0528&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Huggingface： &lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-R1-0528&#34;&gt;deepseek-ai/DeepSeek-R1-0528&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;通过强化学习与算法优化实现推理能力提升，单问题推理深度翻倍（平均Token量从12K→23K），更强的数学、编码能力，并支持工具调用，大幅降低幻觉。同时开源了蒸馏小模型模型 &lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B&#34;&gt;deepseek-ai/DeepSeek-R1-0528-Qwen3-8B&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;flowith-neo&#34;&gt;&lt;strong&gt;Flowith Neo&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Flowith Neo 是 Flowith 团队推出的新一代 AI 智能代理，专为自动化复杂、长流程任务设计。其核心技术包括支持无限步骤的持续云端执行、强大的上下文保持能力、灵活调用多种外部工具，以及可视化工作流和自反思机制，显著提升流程的连贯性和可靠性。&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;h2 id=&#34;deerflow&#34;&gt;&lt;strong&gt;DeerFlow&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Github: &lt;a href=&#34;https://github.com/bytedance/deer-flow&#34;&gt;github.com/bytedance/deer-flow&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;由字节跳动开源的，基于LangStack 开发的Deep Research 开源项目，支持深度研究、MCP 集成、报告 AI 增强编辑以及播客生成等功能，通过Docker compose一键启动。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-04 月刊</title>
       <link>https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/</link>
