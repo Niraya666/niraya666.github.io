@@ -216,6 +216,34 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">从下半场开始，对于评估的重新思考: 一些概念
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>引子 前一段时间，OpenAI 研究员姚顺雨在一篇广受关注的文章《The Second Half》中提出：
+“I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.”
+指出，AI 发展的“下半场”已经到来，而其中一个核心议题，就是对 evaluation的重新思考。我们需要的不再是单纯地创造更难的 benchmark，然后在这些 benchmark 上“刷分”，而是要更加关注评测的实用性、创新性，以及其与真实世界的契合度。
+过去，我们往往过于关注模型本身、训练方法以及各种fancy的技术手段，却忽略了模型与真实世界的交互和落地应用。而 evaluation，正是连接模型能力与实际需求的关键环节。
+本文最初的出发点，是梳理 Hugging Face Evaluation 系列文章中的一些要点。需要说明的是，HF 的文章主要聚焦于如何评测LLM的能力，考虑到其成文的时间，其中部分内容在当前 LLM 能力飞速提升的背景下，显得有些滞后。但这也为我们提供了一个契机，从后来者的视角重新思考 evaluation 的意义，并尝试将这些理念应用到更加复杂和多样化的 AI 系统中，如RAG和AI-agent。
+在机器学习和深度学习的流程中，Evaluation是衡量模型性能的核心环节。它贯穿于模型开发的始终：从训练阶段的实时监控，到上线前的最终验证，再到部署后的持续追踪。
+简单来说，评估的目标是回答两个问题：
+模型是否有效？（性能指标）
+模型是否可靠？（鲁棒性、泛化能力）
+以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-11 15:04:00 +0800 CST'>June 11, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to 从下半场开始，对于评估的重新思考: 一些概念" href="https://niraya666.github.io/posts/eval_1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">初探 Mem0
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -532,38 +560,6 @@ query_rewrite_template = &#34;&#34;&#34;You are an AI assistant tasked with refo
   </div>
   <footer class="entry-footer"><span title='2024-10-31 16:04:00 +0800 CST'>October 31, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to RAG工具箱：Query Enhancement" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">LLM 输出限制：Structured Outputs、受限编码和提示词工程
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在使用大型语言模型（LLM）时，我们常常面临一个挑战：如何从模型输出中准确提取自己所需的信息。例如，当我们希望模型输出 JSON 格式的数据时，由于模型生成的内容并不总是稳定，可能需要额外编写大量的正则表达式来匹配并提取其中的有效信息。然而，由于 LLM 的能力，导致其输出结构并不永远可靠。
-现阶段， 让LLM按要求生成特定格式文本的主要方法有几种种：
-微调：使模型的输出遵循特定格式
-OpenAI Json-mode/Structured Outputs/function-calling: 这些功能允许模型生成更严格、结构化的输出，但受限于openAI平台。
-格式约束：在decoding阶段进行约束，限制模型的输出，
-Prompt Engineering： 最简单的办法，但不稳定。
-多阶段prompting： 通过多个步骤的提示逐步引导模型生成所需的格式。
-本文将聚焦在Structured Outputs， 受限编码， 和prompt-engineering的角度，探讨它们在生成特定格式文本中的应用和效果。
-Json Mode 仅特定模型和平台支持
-以openAI 为例， 在openai.chat.completions.create 参数中增加response_format={&#34;type&#34;:&#34;json_object&#34;} 即可（具体参见：response_format ）。
-需要在prompt中要求输出json格式
-不能保证完全按要求的格式结构输出
-但非100%成功率，存在一些需要额外检测和适当处理的edge case。
-Handling edge cases 根据OpenAI官方文档提供的处理方案 https://platform.openai.com/docs/guides/structured-outputs/json-mode we_did_not_specify_stop_tokens = True try: response = client.chat.completions.create( model=&#34;gpt-3.5-turbo-0125&#34;, messages=[ {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful assistant designed to output JSON.&#34;}, {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who won the world series in 2020? Please respond in the format {winner: ...}&#34;} ], response_format={&#34;type&#34;: &#34;json_object&#34;} ) # Check if the conversation was too long for the context window, resulting in incomplete JSON if response.choices[0].message.finish_reason == &#34;length&#34;: # your code should handle this error case pass # Check if the OpenAI safety system refused the request and generated a refusal instead if response.choices[0].message[0].get(&#34;refusal&#34;): # your code should handle this error case # In this case, the .content field will contain the explanation (if any) that the model generated for why it is refusing print(response.choices[0].message[0][&#34;refusal&#34;]) # Check if the model&#39;s output included restricted content, so the generation of JSON was halted and may be partial if response.choices[0].message.finish_reason == &#34;content_filter&#34;: # your code should handle this error case pass if response.choices[0].message.finish_reason == &#34;stop&#34;: # In this case the model has either successfully finished generating the JSON object according to your schema, or the model generated one of the tokens you provided as a &#34;stop token&#34; if we_did_not_specify_stop_tokens: # If you didn&#39;t specify any stop tokens, then the generation is complete and the content key will contain the serialized JSON object # This is guaranteed to parse successfully and should now contain &#34;{&#34;winner&#34;: &#34;Los Angeles Dodgers&#34;}&#34; print(response.choices[0].message.content) else: # Check if the response.choices[0].message.content ends with one of your stop tokens and handle appropriately pass except Exception as e: # Your code should handle errors here, for example a network error calling the API print(e) 使用pydantic的方案 使用pydantic的方案 from pydantic import BaseModel, EmailStr, ValidationError # 定义你期望的 JSON 数据模型 class UserModel(BaseModel): name: str age: int email: EmailStr # 检查 JSON 是否符合模型的函数 def validate_json(json_str): try: # 将输入的 JSON 字符串转换为 UserModel 实例 user = UserModel.parse_raw(json_str) # 如果验证通过，返回字典 return user.dict() except ValidationError as ve: print(f&#34;JSON validation error: {ve.json()}&#34;) return None # 示例用法 json_str = &#39;{&#34;name&#34;: &#34;John Doe&#34;, &#34;email&#34;: &#34;john.doe@example.com&#34;}&#39; validated_json = validate_json(json_str) if validated_json is not None: print(&#34;JSON is valid and conforms to the schema:&#34;) print(validated_json) else: print(&#34;JSON is invalid.&#34;) Json-Mode 更多是对于输出json的格式进行检查(即Json格式的有效性)
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-21 14:49:00 +0800 CST'>August 21, 2024</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to LLM 输出限制：Structured Outputs、受限编码和提示词工程" href="https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

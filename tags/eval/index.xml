@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Eval on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/eval/</link>
+    <description>Recent content in Eval on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 Jun 2025 15:04:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/eval/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从下半场开始，对于评估的重新思考: 一些概念</title>
+      <link>https://niraya666.github.io/posts/eval_1/</link>
+      <pubDate>Wed, 11 Jun 2025 15:04:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/eval_1/</guid>
+      <description>&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;前一段时间，OpenAI 研究员姚顺雨在一篇广受关注的文章《&lt;a href=&#34;https://ysymyth.github.io/The-Second-Half/&#34;&gt;The Second Half&lt;/a&gt;》中提出：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;指出，AI 发展的“下半场”已经到来，而其中一个核心议题，就是对 evaluation的重新思考。我们需要的不再是单纯地创造更难的 benchmark，然后在这些 benchmark 上“刷分”，而是要更加关注评测的实用性、创新性，以及其与真实世界的契合度。&lt;/p&gt;
+&lt;p&gt;过去，我们往往过于关注模型本身、训练方法以及各种fancy的技术手段，却忽略了模型与真实世界的交互和落地应用。而 evaluation，正是连接模型能力与实际需求的关键环节。&lt;/p&gt;
+&lt;p&gt;本文最初的出发点，是梳理 &lt;a href=&#34;https://github.com/huggingface/evaluation-guidebook/tree/main&#34;&gt;Hugging Face Evaluation &lt;/a&gt;系列文章中的一些要点。需要说明的是，HF 的文章主要聚焦于如何评测LLM的能力，考虑到其成文的时间，其中部分内容在当前 LLM 能力飞速提升的背景下，显得有些滞后。但这也为我们提供了一个契机，从后来者的视角重新思考 evaluation 的意义，并尝试将这些理念应用到更加复杂和多样化的 AI 系统中，如RAG和AI-agent。&lt;/p&gt;
+&lt;p&gt;在机器学习和深度学习的流程中，Evaluation是衡量模型性能的核心环节。它贯穿于模型开发的始终：从训练阶段的实时监控，到上线前的最终验证，再到部署后的持续追踪。&lt;br&gt;
+&lt;br&gt;
+简单来说，评估的目标是回答两个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模型是否有效？&lt;/strong&gt;（性能指标）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模型是否可靠？&lt;/strong&gt;（鲁棒性、泛化能力）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
