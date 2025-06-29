@@ -174,6 +174,40 @@
 </header>
 
 <article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-06/05AD2FC8-44EA-429E-B836-D6F98019DE26_1_105_c.jpeg" alt="摄于 厦门">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-06 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 MiniMax-M1
+Qwen VLo: 从“看懂”世界到“描绘”世界
+Kimi-Researcher
+Cursor 1.0
+一些embedding 基座模型更新
+Qwen3 Embedding
+jinaai/jina-embeddings-v4
+值得关注的研究和论文 QwenLong-L1: Towards Long-Context Large Reasoning Models with Reinforcement Learning arXiv:2505.17667
+使用RL提升LM的上下文长度
+QWEN LONG-L1 框架设计
+Progressive Context Scaling： 通过curriculum-based 逐步增加训练上下文长度，使模型平滑从短上下文迁移到长上下文，有效应对训练不稳定、熵塌陷等优化问题 Curriculum-Guided Phased RL &#43; Difficulty-Aware Retrospective Sampling： 先SFT获得初始策略，然后分阶段RL，每阶段聚焦不同长度，利用难例回溯采样强化对困难样本的探索与适应 Hybrid Reward： 将“规则型（精确字符串比对）”奖励和“LLM-as-a-judge语义一致性”相结合 GRPO/DAPO 三阶段训练流程
+第一阶段：Warm-up SFT（如20K token内训练，基于高质量三元组）——让模型具备基础长上下文理解和推理能力，提供RL的良好初始点。 第二阶段：分阶段RL训练（如分20K和60K两个阶段，每阶段只训练对应长度样本，逐步扩展输入长度）。 第三阶段：难度感知回溯采样（将前一阶段准确率低、难度高的样本纳入后续阶段训练，提高模型对hard case的适应和泛化） How much do language models memorize? arXiv:2505.24832
+提出基于Kolmogorov复杂度和信息论的新记忆度量方法，将“模型对样本的记忆”定义为：在已知模型参数的情况下，样本可以被压缩到多短（即模型能帮助压缩多少信息） GPT家族Transformer模型的容量约为每个参数3.6比特，且与模型参数量线性相关 精度（如bfloat16到float32）提升对容量提升有限 在真实文本中，模型更容易记住包含稀有词汇的样本（高TF-IDF），尤其是非英语文本或极少见的token 当模型容量被填满后，模型会自动从“记忆具体样本”转向“泛化规律”，这与“grokking”现象相关 Reinforcement Pre-Training arXiv:2506.08007
+LLM 预训练主要依赖自监督的“下一个 token 预测”目标，但本质上是“记忆”而非“推理”，RL能提升模型推理能力但需要高质量的数据标注
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-29 14:00:00 +0800 CST'>June 29, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to 2025-06 月刊" href="https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-05/332F56A7-A497-49D6-A2C1-3CAFB6200C0F_1_105_c.jpeg" alt="摄于 径山花海">
 </figure>
   <header class="entry-header">
