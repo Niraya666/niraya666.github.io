@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/ai/</link>
+    <description>Recent content in AI on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 27 Jul 2025 15:00:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>写在WAIC2025门票售罄之后</title>
+      <link>https://niraya666.github.io/essay/waic2025/</link>
+      <pubDate>Sun, 27 Jul 2025 15:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/essay/waic2025/</guid>
+      <description>&lt;p&gt;一年一度的WAIC&lt;/p&gt;
+&lt;p&gt;依旧还是那个WAIC&lt;/p&gt;
+&lt;p&gt;换汤不换药般的机器人+雷同的LLMs应用&lt;/p&gt;
+&lt;p&gt;和去年相比，只是都套上了智能体的外壳&lt;/p&gt;
+&lt;p&gt;但看着近乎趋同的对话页面，LLM调用着差不多的MCP-tools&lt;/p&gt;
+&lt;p&gt;大厂中厂小厂做的都是差不多的东西&lt;/p&gt;
+&lt;p&gt;只有一种基调——效率提升&lt;/p&gt;
+&lt;p&gt;所有人都在狂欢，似乎美好的未来已经不远了&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;GPT-4曾让我们一窥奇迹，以为未来已至&lt;/p&gt;
+&lt;p&gt;奈何2年过去了，AGI的宏大愿景，落地时却成了千篇一律的“提效工具”&lt;/p&gt;
+&lt;p&gt;取而代之的是商业的功利，内卷的现实&lt;/p&gt;
+&lt;p&gt;以及创造力的匮乏&lt;/p&gt;
+&lt;p&gt;效率的提升，到底是解放人还是异化人？&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;这两年流行的“超级个体”一词&lt;/p&gt;
+&lt;p&gt;描绘着一种诱人的图景：一个人借助AI完成一个团队的工作&lt;/p&gt;
+&lt;p&gt;进而实现前所未有的自由和财富&lt;/p&gt;
+&lt;p&gt;那么代价呢？&lt;/p&gt;
+&lt;p&gt;工作生活边际彻底消失，巨大的压力，和原子化&lt;/p&gt;
+&lt;p&gt;同时也巧妙的把资本追求效率最大化、劳动力成本最小化&lt;/p&gt;
+&lt;p&gt;包装成了个人自我实现的励志故事&lt;/p&gt;
+&lt;p&gt;以及某种高傲自大的，精英主义的偏见&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;于此同时AI正制造着信息焦虑&lt;/p&gt;
+&lt;p&gt;愈发严重的信息过载和FOMO&lt;/p&gt;
+&lt;p&gt;被动驱使着对于新技术新论文的疯狂追逐，生怕被落下&lt;/p&gt;
+&lt;p&gt;Read-it-later工具只是把焦虑从“现在必须读”变成了“未来必须读”&lt;/p&gt;
+&lt;p&gt;而后就是越来越长的代办清单，以及越重的负罪感&lt;/p&gt;
+&lt;p&gt;AI或许并未让我们变得更强，只是放大了我们的欲望&lt;/p&gt;
+&lt;p&gt;我们依然是那个血肉之躯的自己，却开始产生无所不能的幻觉&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;或许做AI已经变得不Cool了&lt;/p&gt;
+&lt;p&gt;最近脑子里总是回响着甜梅号《站在太阳之上》的旋律&lt;/p&gt;
+&lt;p&gt;我们还能不能创造出美好的东西？&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
