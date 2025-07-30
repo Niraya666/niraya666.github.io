@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2025-07 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+
+Qwen3-Coder
+Qwen3-235B-A22B 更新
+Kimi K2
+Step3
+GLM4.5
+
+值得关注的开源项目
+
+Coze-studio
+Higgs Audio V2
+dl-librescore：Download sheet music
+quarkdown: 基于 Markdown 的排版系统，但支持的内容更多
+
+值得关注的研究和论文
+Agentic Retrieval Augmented Generation for Personalized Recommendation
+arXiv:2506.21931
+基于RAG的推荐系统中的两大核心问题:
+
+静态和简单的检索机制
+对用户意图的理解不足
+
+创新点
+ARAG (Agentic Retrieval-Augmented Generation) 的框架，其核心是将多智能体（Multi-Agent）协作机制引入到RAG的推荐流程中
+
+设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务
+将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程
+通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息
+
+Dynamic Chunking for End-to-End Hierarchical Sequence Modeling
+arXiv:2507.07955
+目前LLM是使用的分词存在一些弊端：
+
+非end-to-end 的学习
+对字符级别的操作（如拼写错误、大小写变化）不鲁棒
+特殊语言如中文上处理效果不佳
+分词结果可能不符合语义
+
+创新：
+
+
+提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中
+动态分块： 可微的、端到端学习的分块机制，能根据内容和上下文动态决定如何切分序列； 包含： 路由模块 (Routing Module)：通过计算相邻元素表示的余弦相似度来预测边界，平滑模块 (Smoothing Module)：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行平滑插值">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2025-07 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+
+Qwen3-Coder
+Qwen3-235B-A22B 更新
+Kimi K2
+Step3
+GLM4.5
+
+值得关注的开源项目
+
+Coze-studio
+Higgs Audio V2
+dl-librescore：Download sheet music
+quarkdown: 基于 Markdown 的排版系统，但支持的内容更多
+
+值得关注的研究和论文
+Agentic Retrieval Augmented Generation for Personalized Recommendation
+arXiv:2506.21931
+基于RAG的推荐系统中的两大核心问题:
+
+静态和简单的检索机制
+对用户意图的理解不足
+
+创新点
+ARAG (Agentic Retrieval-Augmented Generation) 的框架，其核心是将多智能体（Multi-Agent）协作机制引入到RAG的推荐流程中
+
+设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务
+将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程
+通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息
+
+Dynamic Chunking for End-to-End Hierarchical Sequence Modeling
+arXiv:2507.07955
+目前LLM是使用的分词存在一些弊端：
+
+非end-to-end 的学习
+对字符级别的操作（如拼写错误、大小写变化）不鲁棒
+特殊语言如中文上处理效果不佳
+分词结果可能不符合语义
+
+创新：
+
+
+提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中
+动态分块： 可微的、端到端学习的分块机制，能根据内容和上下文动态决定如何切分序列； 包含： 路由模块 (Routing Module)：通过计算相邻元素表示的余弦相似度来预测边界，平滑模块 (Smoothing Module)：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行平滑插值" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2025-07/34A30229-4B86-4923-8428-ECE6EB8009D0_1_105_c.jpeg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2025-07-30T14:00:00+08:00" />
+<meta property="article:modified_time" content="2025-07-30T14:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2025-07/34A30229-4B86-4923-8428-ECE6EB8009D0_1_105_c.jpeg" />
+<meta name="twitter:title" content="2025-07 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+
+Qwen3-Coder
+Qwen3-235B-A22B 更新
+Kimi K2
+Step3
+GLM4.5
+
+值得关注的开源项目
+
+Coze-studio
+Higgs Audio V2
+dl-librescore：Download sheet music
+quarkdown: 基于 Markdown 的排版系统，但支持的内容更多
+
+值得关注的研究和论文
+Agentic Retrieval Augmented Generation for Personalized Recommendation
+arXiv:2506.21931
+基于RAG的推荐系统中的两大核心问题:
+
+静态和简单的检索机制
+对用户意图的理解不足
+
+创新点
+ARAG (Agentic Retrieval-Augmented Generation) 的框架，其核心是将多智能体（Multi-Agent）协作机制引入到RAG的推荐流程中
+
+设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务
+将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程
+通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息
+
+Dynamic Chunking for End-to-End Hierarchical Sequence Modeling
+arXiv:2507.07955
+目前LLM是使用的分词存在一些弊端：
+
+非end-to-end 的学习
+对字符级别的操作（如拼写错误、大小写变化）不鲁棒
+特殊语言如中文上处理效果不佳
+分词结果可能不符合语义
+
+创新：
+
+
+提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中
+动态分块： 可微的、端到端学习的分块机制，能根据内容和上下文动态决定如何切分序列； 包含： 路由模块 (Routing Module)：通过计算相邻元素表示的余弦相似度来预测边界，平滑模块 (Smoothing Module)：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行平滑插值"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2025-07 月刊",
+      "item": "https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025-07 月刊",
+  "name": "2025-07 月刊",
+  "description": "值得关注的模型和新技术 Qwen3-Coder Qwen3-235B-A22B 更新 Kimi K2 Step3 GLM4.5 值得关注的开源项目 Coze-studio Higgs Audio V2 dl-librescore：Download sheet music quarkdown: 基于 Markdown 的排版系统，但支持的内容更多 值得关注的研究和论文 Agentic Retrieval Augmented Generation for Personalized Recommendation arXiv:2506.21931\n基于RAG的推荐系统中的两大核心问题:\n静态和简单的检索机制 对用户意图的理解不足 创新点\nARAG (Agentic Retrieval-Augmented Generation) 的框架，其核心是将多智能体（Multi-Agent）协作机制引入到RAG的推荐流程中\n设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务 将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程 通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息 Dynamic Chunking for End-to-End Hierarchical Sequence Modeling arXiv:2507.07955\n目前LLM是使用的分词存在一些弊端：\n非end-to-end 的学习 对字符级别的操作（如拼写错误、大小写变化）不鲁棒 特殊语言如中文上处理效果不佳 分词结果可能不符合语义 创新：\n提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中\n动态分块： 可微的、端到端学习的分块机制，能根据内容和上下文动态决定如何切分序列； 包含： 路由模块 (Routing Module)：通过计算相邻元素表示的余弦相似度来预测边界，平滑模块 (Smoothing Module)：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行平滑插值\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 Qwen3-Coder Qwen3-235B-A22B 更新 Kimi K2 Step3 GLM4.5 值得关注的开源项目 Coze-studio Higgs Audio V2 dl-librescore：Download sheet music quarkdown: 基于 Markdown 的排版系统，但支持的内容更多 值得关注的研究和论文 Agentic Retrieval Augmented Generation for Personalized Recommendation arXiv:2506.21931\n基于RAG的推荐系统中的两大核心问题:\n静态和简单的检索机制 对用户意图的理解不足 创新点\nARAG (Agentic Retrieval-Augmented Generation) 的框架，其核心是将多智能体（Multi-Agent）协作机制引入到RAG的推荐流程中\n设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务 将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程 通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息 Dynamic Chunking for End-to-End Hierarchical Sequence Modeling arXiv:2507.07955\n目前LLM是使用的分词存在一些弊端：\n非end-to-end 的学习 对字符级别的操作（如拼写错误、大小写变化）不鲁棒 特殊语言如中文上处理效果不佳 分词结果可能不符合语义 创新：\n提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中\n动态分块： 可微的、端到端学习的分块机制，能根据内容和上下文动态决定如何切分序列； 包含： 路由模块 (Routing Module)：通过计算相邻元素表示的余弦相似度来预测边界，平滑模块 (Smoothing Module)：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行平滑插值\nRecursive H-Net： 架构本身采用类似U-Net的分层设计（编码器-主网络-解码器），但其核心特点是可递归嵌套，这意味着模型可以构建多层次的抽象。\n优化训练：\nRatio Loss： 引入一个辅助损失函数来控制压缩率，防止模型压缩过多或过少，确保计算效率 Thought Anchors: Which LLM Reasoning Steps Matter? arXiv:2506.19143\n如何有效识别并量化CoT中各个步骤的重要性，从而理解模型的推理结构？\n提出“思想锚点”（Thought Anchors）概念： 在推理过程中，并非所有句子都同等重要。存在一些具有超常重要性、并能不成比例地影响后续推理过程的关键句子；\n这些锚点通常是进行Planning或Backtracking/Uncertainty Management 的句子，而不是具体的计算步骤\nThought Anchors识别方式：\nMeasuring Counterfactual Influence: 通过比较“包含”与“不包含”某个句子的影响来衡量其重要性, 如果一个句子 S_i 很重要，那么用一个语义不同的句子替换它，模型的最终答案或后续推理路径应该会发生显著变化；具体而言，在原始推理链中，保留句子 S_i，然后让模型从 S_i 之后继续生成100次，得到一个最终答案的分布， 回到 S_i 之前的位置，让模型重新生成一个句子 T_i 并继续推理100次， 只选择那些新生成的句子 T_i 与原句 S_i 语义不相似的样本进行比较（embedding 的cosine相似度）， 通过计算两种情况下最终答案分布的KL散度，来量化句子 S_i 对最终答案的因果重要性 Attention Aggregation： 重要的句子（思想锚点）可能会被后续的推理步骤反复、高度地关注； Receiver Heads (存在一些特定的注意力头，它们的功能是将注意力高度集中在少数几个过去的句子上, 注意力分布kurtosis很高) 高度关注的句子，即为思想锚点，一个句子的重要性可以通过它从所有“接收头”那里获得的平均注意力分数来衡量 Attention Suppression： 通过主动干预注意力来测量句子间的直接依赖关系， 如果句子 S_j 在逻辑上依赖于句子 S_i，那么阻止 S_j “看到” S_i，S_j 的生成过程会受到显著影响；具体，在生成后续句子时，人为抑制所有注意力头对某个过去句子 S_i 的注意力， 比较在抑制和不抑制两种情况下，后续每个token的预测logits的KL散度， 将一个句子中所有词元的KL散度平均，得到句子 S_i 对后续某个句子 S_j 的直接因果影响分数。这可以构建一个句子间的因果依赖矩阵 Gemini 2.5 Pro Capable of Winning Gold at IMO 2025 arXiv:2507.15855\n创新点： self-verification pipeline\nStep 1: Initial solution generation， 使用Gemini 2.5 Pro对一个问题进行多次采样，生成一批初始解答 Step 2: Self-improvement， 让模型回顾并尝试改进上一步生成的解答。这一步主要是为了给予模型额外的“思考预算”（32768个token），使其能继续完成在第一步中因预算耗尽而未完成的推理 Step 3: Verifying the solution，Gemini 2.5 Pro使用验证提示作为验证者逐行检查解答，验证者会生成一份“错误报告”，将问题分为“关键错误”或“论证缺陷”，并附上解释 Step 4: Review of the bug report， 由人类专家审查错误报告，删除验证者误判的问题，确保反馈的准确性 Step 5: Correcting or improving， 将经过审核的错误报告反馈给“解题者”模型，让它根据报告中的问题来修正或完善解答 Step 6: Accept or Reject， 重复步骤3到5，进行多轮迭代， 当一个解答能够连续5次通过验证且没有发现任何问题时，该解答被“接受”， 如果迭代过程中始终存在无法修复的关键错误，则“拒绝”该解答 Lost at the Beginning of Reasoning arXiv:2506.22058\n模型的推理过程对第一步的推理（initial reasoning step）有极强的依赖性。一旦第一步出错，模型很难在后续步骤中纠正这个错误，导致最终答案大概率也是错误的 （Lost at the Beginning）\n基于上述发现，作者提出了一种名为Early Pruning的采样策略。该策略的核心思想是：先生成多个简短的第一步推理候选项，然后利用一个奖励模型（Reward Model）快速评估这些候选项的质量，只保留质量最高的几个，并仅对这些有希望的路径继续生成完整的推理过程\n并创建了一个名为 LaBoR (Lost at the Beginning of Reasoning) 的新基准，一个专门用于衡量长思维链模型在“开局不利”情况下自我修正能力的基准，每个样本都包含一个问题和一个故意设计的、有缺陷的第一步推理。\n推荐内容 Context Engineering有关内容 AI代理的上下文工程：构建Manus的经验教训\ncontext-engineering-intro\n12-Factor Agents - Principles for building reliable LLM applications\nAndrej Karpathy 的推文\nThe rise of “context engineering”\nThe New Skill in AI is Not Prompting, It’s Context Engineering\nContext Engineering: Bringing Engineering Discipline to Prompts\n课程\u0026Books Post-training of LLMs from DeepLearningAI\nSlides for LLM Reasoning at Stanford CS 25\nFoundations of Large Language Models\n影音记录 精选歌单 Live演出 07.09 Alcest\n07.11 雪国\n书\u0026阅读摘录 朋友圈的沉默，是我们这代人最无声的告别 人们在主动逃离公共社交，从公之于众的「广场」上，躲回到更私密的群聊、私聊甚至「仅自己可见」的心里。 我们正在经历一个「发帖倦怠」（posting ennui）的时代。 发什么，都不对劲\n而 2025 年，我们却陷入了一个奇怪的悖论：任何东西都可以发，但没有任何东西值得发。 这不是孤例，而是 Z 时代人的共识：比起被看见，更不想让别人误解。 《纽约客》的文章提到一个有意思的心理词汇：vulnerability hangover，用来形容在公开表达脆弱之后，感到羞耻、后悔、焦虑或暴露感的反应。\n还有一批年轻人在实践「数字极简主义」，不仅不发，还少看、少评、少点赞，甚至关闭通知、卸载通知，以恢复注意力、缓解焦虑，给自己进行一个「数字排毒」。\n在 AI 兴起后，产生了一个术语叫「Google Zero」：即通过 AI，搜索引擎直接呈现答案，用户不再点进网站的时代。 社交媒体的未来，也许正在逼近「Posting Zero」。 那将是一个普通人不再发帖的世界，只剩品牌、媒体矩阵、营销、AI 生成的内容\nContext Engineering: Bringing Engineering Discipline to Prompts Prompt engineering was about cleverly phrasing a question; context engineering is about constructing an entire information environment so the AI can solve the problem reliably.\nThe term context engineering is catching on because it intuitively captures what we actually do when building LLM solutions. “Prompt” sounds like a single short query; “context” implies a richer information state we prepare for the AI.\nContext engineering means dynamically giving an AI everything it needs to succeed – the instructions, data, examples, tools, and history – all packaged into the model’s input context at runtime.\nAI代理的上下文工程：构建Manus的经验教训 具有相同前缀的上下文可以利用KV缓存，这大大减少了首个token的生成时间(TTFT)和推理成本——无论你是使用自托管模型还是调用推理API。我们说的不是小幅度的节省：例如使用Claude Sonnet时，缓存的输入token成本为0.30美元/百万token，而未缓存的成本为3美元/百万token——相差10倍\n代理本质上必须根据所有先前状态预测下一个动作——而你无法可靠地预测哪个观察结果可能在十步之后变得至关重要 … 这就是为什么我们在Manus中将文件系统视为终极上下文：大小不受限制，天然持久化，并且代理可以直接操作\nManus将其目标复述到上下文的末尾。这将全局计划推入模型的近期注意力范围内，避免了\"丢失在中间\"的问题\nWriting is thinking writing is not only about reporting results; it also provides a tool to uncover new thoughts and ideas. Writing compels us to think — not in the chaotic, non-linear way our minds typically wander, but in a structured, intentional manner.\nHowever, LLMs are not considered authors as they lack accountability, and thus, we would not consider publishing manuscripts written entirely by LLMs (using LLMs for copy-editing is allowed but should be declared).\nNevertheless, outsourcing the entire writing process to LLMs may deprive us of the opportunity to reflect on our field and engage in the creative, essential task of shaping research findings into a compelling narrative — a skill that is certainly important beyond scholarly writing and publishing.\n",
+  "wordCount" : "542",
+  "inLanguage": "en",
+  "image":"https://niraya666.github.io/img/monthly/2025-07/34A30229-4B86-4923-8428-ECE6EB8009D0_1_105_c.jpeg","datePublished": "2025-07-30T14:00:00+08:00",
+  "dateModified": "2025-07-30T14:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2025-07 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-07-30 14:00:00 +0800 CST'>July 30, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2025-07/34A30229-4B86-4923-8428-ECE6EB8009D0_1_105_c.jpeg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2025-07/34A30229-4B86-4923-8428-ECE6EB8009D0_1_105_c.jpeg" alt=""></a>
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#agentic-retrieval-augmented-generation-for-personalized-recommendation" aria-label="Agentic Retrieval Augmented Generation for Personalized Recommendation">Agentic Retrieval Augmented Generation for Personalized Recommendation</a></li>
+                <li>
+                    <a href="#dynamic-chunking-for-end-to-end-hierarchical-sequence-modeling" aria-label="Dynamic Chunking for End-to-End Hierarchical Sequence Modeling">Dynamic Chunking for End-to-End Hierarchical Sequence Modeling</a></li>
+                <li>
+                    <a href="#thought-anchors-which-llm-reasoning-steps-matter" aria-label="Thought Anchors: Which LLM Reasoning Steps Matter?">Thought Anchors: Which LLM Reasoning Steps Matter?</a></li>
+                <li>
+                    <a href="#gemini-25-pro-capable-of-winning-gold-at-imo-2025" aria-label="Gemini 2.5 Pro Capable of Winning Gold at IMO 2025">Gemini 2.5 Pro Capable of Winning Gold at IMO 2025</a></li>
+                <li>
+                    <a href="#lost-at-the-beginning-of-reasoning" aria-label="Lost at the Beginning of Reasoning">Lost at the Beginning of Reasoning</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#context-engineering%e6%9c%89%e5%85%b3%e5%86%85%e5%ae%b9" aria-label="Context Engineering有关内容">Context Engineering有关内容</a></li>
+                <li>
+                    <a href="#%e8%af%be%e7%a8%8bbooks" aria-label="课程&amp;Books">课程&amp;Books</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li>
+                <li>
+                    <a href="#live%e6%bc%94%e5%87%ba" aria-label="Live演出">Live演出</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#%e6%9c%8b%e5%8f%8b%e5%9c%88%e7%9a%84%e6%b2%89%e9%bb%98%e6%98%af%e6%88%91%e4%bb%ac%e8%bf%99%e4%bb%a3%e4%ba%ba%e6%9c%80%e6%97%a0%e5%a3%b0%e7%9a%84%e5%91%8a%e5%88%abhttpszhuanlanzhihucomp1928464731854860953" aria-label="朋友圈的沉默，是我们这代人最无声的告别">朋友圈的沉默，是我们这代人最无声的告别</a></li>
+                <li>
+                    <a href="#context-engineering-bringing-engineering-discipline-to-promptshttpsaddyosubstackcompcontext-engineering-bringing-engineering" aria-label="Context Engineering: Bringing Engineering Discipline to Prompts">Context Engineering: Bringing Engineering Discipline to Prompts</a></li>
+                <li>
+                    <a href="#ai%e4%bb%a3%e7%90%86%e7%9a%84%e4%b8%8a%e4%b8%8b%e6%96%87%e5%b7%a5%e7%a8%8b%e6%9e%84%e5%bb%bamanus%e7%9a%84%e7%bb%8f%e9%aa%8c%e6%95%99%e8%ae%adhttpsmanusimzh-cnblogcontext-engineering-for-ai-agents-lessons-from-building-manus" aria-label="AI代理的上下文工程：构建Manus的经验教训">AI代理的上下文工程：构建Manus的经验教训</a></li>
+                <li>
+                    <a href="#writing-is-thinkinghttpswwwnaturecomarticless44222-025-00323-4" aria-label="Writing is thinking">Writing is thinking</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<ul>
+<li><a href="https://qwenlm.github.io/zh/blog/qwen3-coder/">Qwen3-Coder</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507">Qwen3-235B-A22B 更新</a></li>
+<li><a href="https://moonshotai.github.io/Kimi-K2/">Kimi K2</a></li>
+<li><a href="https://github.com/stepfun-ai/Step3">Step3</a></li>
+<li><a href="https://z.ai/blog/glm-4.5">GLM4.5</a></li>
+</ul>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<ul>
+<li><a href="https://github.com/coze-dev/coze-studio">Coze-studio</a></li>
+<li><a href="https://github.com/boson-ai/higgs-audio">Higgs Audio V2</a></li>
+<li><a href="https://github.com/LibreScore/dl-librescore">dl-librescore</a>：Download sheet music</li>
+<li><a href="https://github.com/iamgio/quarkdown">quarkdown</a>: 基于 Markdown 的排版系统，但支持的内容更多</li>
+</ul>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="agentic-retrieval-augmented-generation-for-personalized-recommendation">Agentic Retrieval Augmented Generation for Personalized Recommendation<a hidden class="anchor" aria-hidden="true" href="#agentic-retrieval-augmented-generation-for-personalized-recommendation">#</a></h2>
+<p>arXiv:<a href="https://www.arxiv.org/abs/2506.21931">2506.21931</a></p>
+<p>基于RAG的推荐系统中的两大核心问题:</p>
+<ul>
+<li><strong>静态和简单的检索机制</strong></li>
+<li><strong>对用户意图的理解不足</strong></li>
+</ul>
+<p><strong>创新点</strong></p>
+<p><strong>ARAG (Agentic Retrieval-Augmented Generation)</strong> 的框架，其核心是将<strong>多智能体（Multi-Agent）协作机制</strong>引入到RAG的推荐流程中</p>
+<ul>
+<li>设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务</li>
+<li>将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程</li>
+<li>通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息</li>
+</ul>
+<h2 id="dynamic-chunking-for-end-to-end-hierarchical-sequence-modeling"><strong>Dynamic Chunking for End-to-End Hierarchical Sequence Modeling</strong><a hidden class="anchor" aria-hidden="true" href="#dynamic-chunking-for-end-to-end-hierarchical-sequence-modeling">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2507.07955">2507.07955</a></p>
+<p>目前LLM是使用的分词存在一些弊端：</p>
+<ul>
+<li>非end-to-end 的学习</li>
+<li>对字符级别的操作（如拼写错误、大小写变化）不鲁棒</li>
+<li>特殊语言如中文上处理效果不佳</li>
+<li>分词结果可能不符合语义</li>
+</ul>
+<p>创新：</p>
+<p><img loading="lazy" src="https://arxiv.org/html/2507.07955v1/x1.png" alt=""  />
+</p>
+<p>提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中</p>
+<p><strong>动态分块：</strong> 可微的、端到端学习的分块机制，能根据<strong>内容和上下文</strong>动态决定如何切分序列； 包含： <strong>路由模块 (Routing Module)</strong>：通过计算相邻元素表示的<strong>余弦相似度</strong>来预测边界，<strong>平滑模块 (Smoothing Module)</strong>：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行<strong>平滑插值</strong></p>
+<p><strong>Recursive H-Net：</strong> 架构本身采用类似U-Net的分层设计（编码器-主网络-解码器），但其核心特点是<strong>可递归嵌套，<strong>这意味着模型可以构建</strong>多层次的抽象</strong>。</p>
+<p><strong>优化训练：</strong></p>
+<ul>
+<li><strong>Ratio Loss：</strong> 引入一个辅助损失函数来控制压缩率，防止模型压缩过多或过少，确保计算效率</li>
+</ul>
+<h2 id="thought-anchors-which-llm-reasoning-steps-matter"><strong>Thought Anchors: Which LLM Reasoning Steps Matter?</strong><a hidden class="anchor" aria-hidden="true" href="#thought-anchors-which-llm-reasoning-steps-matter">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2506.19143">2506.19143</a></p>
+<p>如何有效识别并量化CoT中各个步骤的重要性，从而理解模型的推理结构？</p>
+<p><strong>提出“思想锚点”（Thought Anchors）概念：</strong> 在推理过程中，并非所有句子都同等重要。存在一些<strong>具有超常重要性、并能不成比例地影响后续推理过程的关键句子；</strong></p>
+<p>这些锚点通常是进行<strong>Planning或Backtracking/Uncertainty Management</strong> 的句子，而不是具体的计算步骤</p>
+<p>Thought Anchors识别方式：</p>
+<ul>
+<li>Measuring Counterfactual Influence: 通过比较“包含”与“不包含”某个句子的影响来衡量其重要性, 如果一个句子 <code>S_i</code> 很重要，那么用一个语义不同的句子替换它，模型的最终答案或后续推理路径应该会发生显著变化；具体而言，在原始推理链中，保留句子 <code>S_i</code>，然后让模型从 <code>S_i</code> 之后继续生成100次，得到一个最终答案的分布， 回到 <code>S_i</code> 之前的位置，让模型重新生成一个句子 <code>T_i</code> 并继续推理100次， 只选择那些新生成的句子 <code>T_i</code> 与原句 <code>S_i</code> 语义<strong>不相似</strong>的样本进行比较（embedding 的cosine相似度）， 通过计算两种情况下最终答案分布的<strong>KL散度</strong>，来量化句子 <code>S_i</code> 对最终答案的因果重要性</li>
+<li>Attention Aggregation： 重要的句子（思想锚点）可能会被后续的推理步骤反复、高度地关注； <strong>Receiver Heads</strong> (存在一些特定的注意力头，它们的功能是将注意力高度集中在少数几个过去的句子上, 注意力分布kurtosis很高) 高度关注的句子，即为思想锚点，一个句子的重要性可以通过它从所有“接收头”那里获得的平均注意力分数来衡量</li>
+<li>Attention Suppression： 通过主动干预注意力来测量句子间的直接依赖关系， 如果句子 <code>S_j</code> 在逻辑上依赖于句子 <code>S_i</code>，那么阻止 <code>S_j</code> “看到” <code>S_i</code>，<code>S_j</code> 的生成过程会受到显著影响；具体，在生成后续句子时，人为抑制所有注意力头对某个过去句子 <code>S_i</code> 的注意力， 比较在抑制和不抑制两种情况下，后续每个token的预测logits的KL散度， 将一个句子中所有词元的KL散度平均，得到句子 <code>S_i</code> 对后续某个句子 <code>S_j</code> 的直接因果影响分数。这可以构建一个句子间的因果依赖矩阵</li>
+</ul>
+<h2 id="gemini-25-pro-capable-of-winning-gold-at-imo-2025"><strong>Gemini 2.5 Pro Capable of Winning Gold at IMO 2025</strong><a hidden class="anchor" aria-hidden="true" href="#gemini-25-pro-capable-of-winning-gold-at-imo-2025">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2507.15855">2507.15855</a></p>
+<p><strong>创新点： self-verification pipeline</strong></p>
+<ul>
+<li><strong>Step 1: Initial solution generation</strong>， 使用Gemini 2.5 Pro对一个问题进行多次采样，生成一批初始解答</li>
+<li><strong>Step 2: Self-improvement</strong>， 让模型回顾并尝试改进上一步生成的解答。这一步主要是为了给予模型额外的“思考预算”（32768个token），使其能继续完成在第一步中因预算耗尽而未完成的推理</li>
+<li><strong>Step 3: Verifying the solution</strong>，Gemini 2.5 Pro使用验证提示作为验证者逐行检查解答，验证者会生成一份“错误报告”，将问题分为“关键错误”或“论证缺陷”，并附上解释</li>
+<li><strong>Step 4: Review of the bug report</strong>， 由人类专家审查错误报告，删除验证者误判的问题，确保反馈的准确性</li>
+<li><strong>Step 5: Correcting or improving</strong>， 将经过审核的错误报告反馈给“解题者”模型，让它根据报告中的问题来修正或完善解答</li>
+<li><strong>Step 6: Accept or Reject</strong>， 重复步骤3到5，进行多轮迭代， 当一个解答能够<strong>连续5次</strong>通过验证且没有发现任何问题时，该解答被“接受”， 如果迭代过程中始终存在无法修复的关键错误，则“拒绝”该解答</li>
+</ul>
+<h2 id="lost-at-the-beginning-of-reasoning">Lost at the Beginning of Reasoning<a hidden class="anchor" aria-hidden="true" href="#lost-at-the-beginning-of-reasoning">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2506.22058">2506.22058</a></p>
+<p>模型的推理过程对<strong>第一步的推理</strong>（initial reasoning step）有极强的依赖性。一旦第一步出错，模型很难在后续步骤中纠正这个错误，导致最终答案大概率也是错误的 （Lost at the Beginning）</p>
+<p>基于上述发现，作者提出了一种名为Early Pruning的采样策略。该策略的核心思想是：先生成多个<strong>简短的</strong>第一步推理候选项，然后利用一个奖励模型（Reward Model）快速评估这些候选项的质量，只保留质量最高的几个，并仅对这些有希望的路径继续生成完整的推理过程</p>
+<p>并创建了一个名为 <strong>LaBoR (Lost at the Beginning of Reasoning)</strong> 的新基准，一个专门用于衡量长思维链模型在“开局不利”情况下自我修正能力的基准，每个样本都包含一个问题和一个<strong>故意设计的、有缺陷的第一步推理。</strong></p>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="context-engineering有关内容">Context Engineering有关内容<a hidden class="anchor" aria-hidden="true" href="#context-engineering有关内容">#</a></h2>
+<p><a href="https://manus.im/zh-cn/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus"><strong>AI代理的上下文工程：构建Manus的经验教训</strong></a></p>
+<p><a href="https://github.com/coleam00/context-engineering-intro"><strong>context-engineering-intro</strong></a></p>
+<p><a href="https://github.com/humanlayer/12-factor-agents/tree/main"><strong>12-Factor Agents - Principles for building reliable LLM applications</strong></a></p>
+<p><a href="https://x.com/karpathy/status/1937902205765607626">Andrej Karpathy 的推文</a></p>
+<p><a href="https://blog.langchain.com/the-rise-of-context-engineering/">The rise of &ldquo;context engineering&rdquo;</a></p>
+<p><a href="https://www.philschmid.de/context-engineering">The New Skill in AI is Not Prompting, It&rsquo;s Context Engineering</a></p>
+<p><a href="https://addyo.substack.com/p/context-engineering-bringing-engineering">Context Engineering: Bringing Engineering Discipline to Prompts</a></p>
+<h2 id="课程books">课程&amp;Books<a hidden class="anchor" aria-hidden="true" href="#课程books">#</a></h2>
+<p><a href="https://www.deeplearning.ai/short-courses/post-training-of-llms/"><strong>Post-training of LLMs from DeepLearningAI</strong></a></p>
+<p><a href="https://dennyzhou.github.io/LLM-Reasoning-Stanford-CS-25.pdf">Slides for LLM Reasoning at Stanford CS 25</a></p>
+<p><a href="https://arxiv.org/abs/2501.09223">Foundations of Large Language Models</a></p>
+<hr>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5xZv0tkeWoaoijSLZ1MiRG?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h2 id="live演出">Live演出<a hidden class="anchor" aria-hidden="true" href="#live演出">#</a></h2>
+<p>07.09 Alcest</p>
+<p>07.11 雪国</p>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="朋友圈的沉默是我们这代人最无声的告别httpszhuanlanzhihucomp1928464731854860953"><a href="https://zhuanlan.zhihu.com/p/1928464731854860953">朋友圈的沉默，是我们这代人最无声的告别</a><a hidden class="anchor" aria-hidden="true" href="#朋友圈的沉默是我们这代人最无声的告别httpszhuanlanzhihucomp1928464731854860953">#</a></h2>
+<blockquote>
+<p>人们在主动逃离公共社交，从公之于众的「广场」上，躲回到更私密的群聊、私聊甚至「仅自己可见」的心里。
+我们正在经历一个「发帖倦怠」（posting ennui）的时代。
+发什么，都不对劲</p>
+</blockquote>
+<blockquote>
+<p>而 2025 年，我们却陷入了一个奇怪的悖论：任何东西都可以发，但没有任何东西值得发。
+这不是孤例，而是 Z 时代人的共识：比起被看见，更不想让别人误解。
+《纽约客》的文章提到一个有意思的心理词汇：vulnerability hangover，用来形容在公开表达脆弱之后，感到羞耻、后悔、焦虑或暴露感的反应。</p>
+</blockquote>
+<blockquote>
+<p>还有一批年轻人在实践「数字极简主义」，不仅不发，还少看、少评、少点赞，甚至关闭通知、卸载通知，以恢复注意力、缓解焦虑，给自己进行一个「数字排毒」。</p>
+</blockquote>
+<blockquote>
+<p>在 AI 兴起后，产生了一个术语叫「Google Zero」：即通过 AI，搜索引擎直接呈现答案，用户不再点进网站的时代。
+社交媒体的未来，也许正在逼近「Posting Zero」。
+那将是一个普通人不再发帖的世界，只剩品牌、媒体矩阵、营销、AI 生成的内容</p>
+</blockquote>
+<h2 id="context-engineering-bringing-engineering-discipline-to-promptshttpsaddyosubstackcompcontext-engineering-bringing-engineering"><a href="https://addyo.substack.com/p/context-engineering-bringing-engineering"><strong>Context Engineering: Bringing Engineering Discipline to Prompts</strong></a><a hidden class="anchor" aria-hidden="true" href="#context-engineering-bringing-engineering-discipline-to-promptshttpsaddyosubstackcompcontext-engineering-bringing-engineering">#</a></h2>
+<blockquote>
+<p><strong>Prompt engineering was about cleverly phrasing a question; context engineering is about constructing an entire information environment so the AI can solve the problem reliably.</strong></p>
+</blockquote>
+<blockquote>
+<p>The term <strong>context engineering</strong> is catching on because it intuitively captures what we actually do when building LLM solutions. “Prompt” sounds like a single short query; “context” implies a richer information state we prepare for the AI.</p>
+</blockquote>
+<blockquote>
+<p><strong>Context engineering means dynamically giving an AI everything it needs to succeed – the instructions, data, examples, tools, and history – all packaged into the model’s input context at runtime.</strong></p>
+</blockquote>
+<h2 id="ai代理的上下文工程构建manus的经验教训httpsmanusimzh-cnblogcontext-engineering-for-ai-agents-lessons-from-building-manus"><a href="https://manus.im/zh-cn/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus">AI代理的上下文工程：构建Manus的经验教训</a><a hidden class="anchor" aria-hidden="true" href="#ai代理的上下文工程构建manus的经验教训httpsmanusimzh-cnblogcontext-engineering-for-ai-agents-lessons-from-building-manus">#</a></h2>
+<blockquote>
+<p>具有相同前缀的上下文可以利用KV缓存，这大大减少了首个token的生成时间(TTFT)和推理成本——无论你是使用自托管模型还是调用推理API。我们说的不是小幅度的节省：例如使用Claude Sonnet时，缓存的输入token成本为0.30美元/百万token，而未缓存的成本为3美元/百万token——相差10倍</p>
+</blockquote>
+<blockquote>
+<p>代理本质上必须根据所有先前状态预测下一个动作——而你无法可靠地预测哪个观察结果可能在十步之后变得至关重要
+…
+这就是为什么我们在Manus中将文件系统视为终极上下文：大小不受限制，天然持久化，并且代理可以直接操作</p>
+</blockquote>
+<blockquote>
+<p>Manus将其目标复述到上下文的末尾。这将全局计划推入模型的近期注意力范围内，避免了&quot;丢失在中间&quot;的问题</p>
+</blockquote>
+<h2 id="writing-is-thinkinghttpswwwnaturecomarticless44222-025-00323-4"><a href="https://www.nature.com/articles/s44222-025-00323-4"><strong>Writing is thinking</strong></a><a hidden class="anchor" aria-hidden="true" href="#writing-is-thinkinghttpswwwnaturecomarticless44222-025-00323-4">#</a></h2>
+<blockquote>
+<p>writing is not only about reporting results; it also provides a tool to uncover new thoughts and ideas. Writing compels us to think — not in the chaotic, non-linear way our minds typically wander, but in a structured, intentional manner.</p>
+</blockquote>
+<blockquote>
+<p>However, LLMs are not considered authors as they lack accountability, and thus, we would not consider publishing manuscripts written entirely by LLMs (using LLMs for copy-editing is allowed but should be declared).</p>
+</blockquote>
+<blockquote>
+<p>Nevertheless, outsourcing the entire writing process to LLMs may deprive us of the opportunity to reflect on our field and engage in the creative, essential task of shaping research findings into a compelling narrative — a skill that is certainly important beyond scholarly writing and publishing.</p>
+</blockquote>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2025-07%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f&amp;title=2025-07%20%e6%9c%88%e5%88%8a&amp;summary=2025-07%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f&title=2025-07%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2025-07%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2025-07%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-07 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2025-07%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-07-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="https://github.com/Niraya666/niraya666.github.io.git"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -11,8 +11,58 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 29 Jun 2025 14:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jul 2025 14:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-07 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Wed, 30 Jul 2025 14:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen3-coder/&#34;&gt;Qwen3-Coder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507&#34;&gt;Qwen3-235B-A22B 更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-K2/&#34;&gt;Kimi K2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/stepfun-ai/Step3&#34;&gt;Step3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://z.ai/blog/glm-4.5&#34;&gt;GLM4.5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/coze-dev/coze-studio&#34;&gt;Coze-studio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/boson-ai/higgs-audio&#34;&gt;Higgs Audio V2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/LibreScore/dl-librescore&#34;&gt;dl-librescore&lt;/a&gt;：Download sheet music&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/iamgio/quarkdown&#34;&gt;quarkdown&lt;/a&gt;: 基于 Markdown 的排版系统，但支持的内容更多&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;agentic-retrieval-augmented-generation-for-personalized-recommendation&#34;&gt;Agentic Retrieval Augmented Generation for Personalized Recommendation&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://www.arxiv.org/abs/2506.21931&#34;&gt;2506.21931&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;基于RAG的推荐系统中的两大核心问题:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态和简单的检索机制&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对用户意图的理解不足&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;创新点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ARAG (Agentic Retrieval-Augmented Generation)&lt;/strong&gt; 的框架，其核心是将&lt;strong&gt;多智能体（Multi-Agent）协作机制&lt;/strong&gt;引入到RAG的推荐流程中&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务&lt;/li&gt;
+&lt;li&gt;将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程&lt;/li&gt;
+&lt;li&gt;通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dynamic-chunking-for-end-to-end-hierarchical-sequence-modeling&#34;&gt;&lt;strong&gt;Dynamic Chunking for End-to-End Hierarchical Sequence Modeling&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2507.07955&#34;&gt;2507.07955&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前LLM是使用的分词存在一些弊端：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非end-to-end 的学习&lt;/li&gt;
+&lt;li&gt;对字符级别的操作（如拼写错误、大小写变化）不鲁棒&lt;/li&gt;
+&lt;li&gt;特殊语言如中文上处理效果不佳&lt;/li&gt;
+&lt;li&gt;分词结果可能不符合语义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创新：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://arxiv.org/html/2507.07955v1/x1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;动态分块：&lt;/strong&gt; 可微的、端到端学习的分块机制，能根据&lt;strong&gt;内容和上下文&lt;/strong&gt;动态决定如何切分序列； 包含： &lt;strong&gt;路由模块 (Routing Module)&lt;/strong&gt;：通过计算相邻元素表示的&lt;strong&gt;余弦相似度&lt;/strong&gt;来预测边界，&lt;strong&gt;平滑模块 (Smoothing Module)&lt;/strong&gt;：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行&lt;strong&gt;平滑插值&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-06 月刊</title>
       <link>https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/</link>
