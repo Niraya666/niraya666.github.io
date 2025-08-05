@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>LLM | LZY Blog</title>
+<title>CoT | LZY Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="https://niraya666.github.io/tags/llm/">
+<link rel="canonical" href="https://niraya666.github.io/tags/cot/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://niraya666.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/llm/index.xml">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/tags/llm/">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/cot/index.xml">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/tags/cot/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,16 +56,16 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="LLM" />
+</noscript><meta property="og:title" content="CoT" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://niraya666.github.io/tags/llm/" />
+<meta property="og:url" content="https://niraya666.github.io/tags/cot/" />
 <meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
 
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
-<meta name="twitter:title" content="LLM"/>
+<meta name="twitter:title" content="CoT"/>
 <meta name="twitter:description" content=""/>
 
 </head>
@@ -161,8 +161,8 @@
 <main class="main"> 
 <header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/tags/">Tags</a></div>
   <h1>
-    LLM
-    <a href="/tags/llm/index.xml" title="RSS" aria-label="RSS">
+    CoT
+    <a href="/tags/cot/index.xml" title="RSS" aria-label="RSS">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" height="23">
         <path d="M4 11a9 9 0 0 1 9 9" />
@@ -200,38 +200,6 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
   </div>
   <footer class="entry-footer"><span title='2025-08-05 20:12:00 +0800 CST'>August 5, 2025</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to 拒绝“想太多”：大模型Thinking Budget控制方案解析" href="https://niraya666.github.io/posts/thinking-budget-0805/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">LLM 输出限制：Structured Outputs、受限编码和提示词工程
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在使用大型语言模型（LLM）时，我们常常面临一个挑战：如何从模型输出中准确提取自己所需的信息。例如，当我们希望模型输出 JSON 格式的数据时，由于模型生成的内容并不总是稳定，可能需要额外编写大量的正则表达式来匹配并提取其中的有效信息。然而，由于 LLM 的能力，导致其输出结构并不永远可靠。
-现阶段， 让LLM按要求生成特定格式文本的主要方法有几种种：
-微调：使模型的输出遵循特定格式
-OpenAI Json-mode/Structured Outputs/function-calling: 这些功能允许模型生成更严格、结构化的输出，但受限于openAI平台。
-格式约束：在decoding阶段进行约束，限制模型的输出，
-Prompt Engineering： 最简单的办法，但不稳定。
-多阶段prompting： 通过多个步骤的提示逐步引导模型生成所需的格式。
-本文将聚焦在Structured Outputs， 受限编码， 和prompt-engineering的角度，探讨它们在生成特定格式文本中的应用和效果。
-Json Mode 仅特定模型和平台支持
-以openAI 为例， 在openai.chat.completions.create 参数中增加response_format={&#34;type&#34;:&#34;json_object&#34;} 即可（具体参见：response_format ）。
-需要在prompt中要求输出json格式
-不能保证完全按要求的格式结构输出
-但非100%成功率，存在一些需要额外检测和适当处理的edge case。
-Handling edge cases 根据OpenAI官方文档提供的处理方案 https://platform.openai.com/docs/guides/structured-outputs/json-mode we_did_not_specify_stop_tokens = True try: response = client.chat.completions.create( model=&#34;gpt-3.5-turbo-0125&#34;, messages=[ {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful assistant designed to output JSON.&#34;}, {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who won the world series in 2020? Please respond in the format {winner: ...}&#34;} ], response_format={&#34;type&#34;: &#34;json_object&#34;} ) # Check if the conversation was too long for the context window, resulting in incomplete JSON if response.choices[0].message.finish_reason == &#34;length&#34;: # your code should handle this error case pass # Check if the OpenAI safety system refused the request and generated a refusal instead if response.choices[0].message[0].get(&#34;refusal&#34;): # your code should handle this error case # In this case, the .content field will contain the explanation (if any) that the model generated for why it is refusing print(response.choices[0].message[0][&#34;refusal&#34;]) # Check if the model&#39;s output included restricted content, so the generation of JSON was halted and may be partial if response.choices[0].message.finish_reason == &#34;content_filter&#34;: # your code should handle this error case pass if response.choices[0].message.finish_reason == &#34;stop&#34;: # In this case the model has either successfully finished generating the JSON object according to your schema, or the model generated one of the tokens you provided as a &#34;stop token&#34; if we_did_not_specify_stop_tokens: # If you didn&#39;t specify any stop tokens, then the generation is complete and the content key will contain the serialized JSON object # This is guaranteed to parse successfully and should now contain &#34;{&#34;winner&#34;: &#34;Los Angeles Dodgers&#34;}&#34; print(response.choices[0].message.content) else: # Check if the response.choices[0].message.content ends with one of your stop tokens and handle appropriately pass except Exception as e: # Your code should handle errors here, for example a network error calling the API print(e) 使用pydantic的方案 使用pydantic的方案 from pydantic import BaseModel, EmailStr, ValidationError # 定义你期望的 JSON 数据模型 class UserModel(BaseModel): name: str age: int email: EmailStr # 检查 JSON 是否符合模型的函数 def validate_json(json_str): try: # 将输入的 JSON 字符串转换为 UserModel 实例 user = UserModel.parse_raw(json_str) # 如果验证通过，返回字典 return user.dict() except ValidationError as ve: print(f&#34;JSON validation error: {ve.json()}&#34;) return None # 示例用法 json_str = &#39;{&#34;name&#34;: &#34;John Doe&#34;, &#34;email&#34;: &#34;john.doe@example.com&#34;}&#39; validated_json = validate_json(json_str) if validated_json is not None: print(&#34;JSON is valid and conforms to the schema:&#34;) print(validated_json) else: print(&#34;JSON is invalid.&#34;) Json-Mode 更多是对于输出json的格式进行检查(即Json格式的有效性)
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-21 14:49:00 +0800 CST'>August 21, 2024</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to LLM 输出限制：Structured Outputs、受限编码和提示词工程" href="https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/"></a>
 </article>
     </main>
     
