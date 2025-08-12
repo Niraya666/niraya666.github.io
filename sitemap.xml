@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niraya666.github.io/</loc>
+    <lastmod>2025-08-12T20:56:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/</loc>
+    <lastmod>2025-08-12T20:56:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/rag-toolkits/</loc>
+    <lastmod>2025-08-12T20:56:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</loc>
+    <lastmod>2025-08-12T20:56:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/</loc>
+    <lastmod>2025-08-12T20:56:00+08:00</lastmod>
+  </url><url>
     <loc>https://niraya666.github.io/tags/cot/</loc>
     <lastmod>2025-08-05T20:12:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/tags/llm/</loc>
-    <lastmod>2025-08-05T20:12:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/</loc>
-    <lastmod>2025-08-05T20:12:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/posts/</loc>
-    <lastmod>2025-08-05T20:12:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/</loc>
     <lastmod>2025-08-05T20:12:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/thinking-budget-0805/</loc>
@@ -87,9 +93,6 @@
     <lastmod>2025-03-18T12:02:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/tags/rag/</loc>
-    <lastmod>2025-03-12T16:44:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/rag-toolkits/</loc>
     <lastmod>2025-03-12T16:44:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</loc>

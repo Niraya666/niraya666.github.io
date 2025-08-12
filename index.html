@@ -216,6 +216,41 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">RAG工具箱：ColBERT
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。
+在典型的检索系统中，我们常用的架构是 Retrieval &#43; Reranking两阶段:
+检索阶段使用轻量级的方法（如BM25或dense vector retriever）从海量语料中快速筛选出几百个候选文档，优先考虑速度和召回率；排序阶段则使用cross-encoder基于 query-document 全量交互，重新给候选集打分，得到精准的最终排序。
+这么做虽运行良好，但存在瓶颈：第一阶段检索质量的限制意味着大量低质量候选被送入昂贵的第二阶段，而cross-encoder在大规模候选集上的计算成本奇高， 高相关的文档如果没能被第一阶段召回，就无法被 reranker “捞回来”。
+而multi-vector模型正好填补了这个检索流水线中的“空白中间层”——比 embedding 更精准，比 cross-encoder 更高效。相比单向量 embedding 模型将整个chunk压缩为一个向量，multi-vector模型保留了 **token 级别的表示，**可以捕捉到局部与 query 高度匹配的片段，也是能缓解“语义鸿沟”的原因。
+而ColBERT 便是经典的多向量模型/late-interaction代表。
+（可能在本文中会将ColBERT/late-interaction/multi-vector-model 混为一谈，毕竟只是实例-机制-类别 的关系 ）
+不同的“交互”层级 （借用ColBERT论文中的插图）
+想要理解late-interaction，需要先理解过去的不同“交互”形式；
+Representation-based Similarity （no-interaction，embedding） 也就是双塔， query和document独立计算出一个向量，比较两个向量的相似度获得分数S；在生成各自的向量前， Query 和 Document 之间没有任何信息交互，所有复杂的语义都被压缩进了一个单一的向量中（也就存在信息压缩的损失和瓶颈）
+优点速度极快，但缺点也很明显，精度有限，所有信息被压缩到一个向量中。
+All-to-all Interaction （cross-encoder） 目前主流基于BERT 实现的Reranker / Cross-Encoder
+将查询和文档拼接成 [CLS] query_tokens [SEP] document_tokens [SEP]
+输入到 BERT 模型中，[CLS] 特殊标记最终输出向量，将向量输入一个linear layer中， 从而获得获得一个0～1间的标量值。
+因为是在入口处做的交互，于是也被称为“Early, Deep, All-to-all Interaction”
+目前而言效果比较好的排序方案，代价是计算速度慢
+Late Interaction （ColBERT） 查询和文档是独立、并行地通过 BERT 编码器进行编码，生成各自的token级别向量表示
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-12 20:56:00 +0800 CST'>August 12, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to RAG工具箱：ColBERT" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">拒绝“想太多”：大模型Thinking Budget控制方案解析
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -530,31 +565,9 @@ from pymilvus import connections, Collection, FieldSchema, CollectionSchema # �
   <footer class="entry-footer"><span title='2024-12-25 15:49:00 +0800 CST'>December 25, 2024</span>&nbsp;·&nbsp;15 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to Milvus-2.5版本：学习笔记和备忘录" href="https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Agent 学习笔记：框架 ｜ openAI Swarm
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>开篇 “CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。
-Routines and Handoffs 根据openAI cookbook: Orchestrating Agents: Routines and Handoffs**，**理解这个框架前首先需要理解的两个概念： Routines 和 Handoffs。
-The notion of a “routine” is not strictly defined, and instead meant to capture the idea of a set of steps. Concretely, let’s define a routine to be a list of instructions in natural language (which we’ll represent with a system prompt), along with the tools necessary to complete them.
-Routines（常规）：是由一系列步骤构成的流程，可以理解为给定任务的执行步骤，包括对话系统中指令和所需工具的组合。从代码实现上，基本上就是围绕着openAI 的 openai.chat.completions.createAPI的一系列内容， 对话、工具调用等。换句话说，routines只是具有对话&#43;工具调用的chatbot，这也是openAI对于Agent的基础抽象。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-11-11 11:10:00 +0800 CST'>November 11, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to Agent 学习笔记：框架 ｜ openAI Swarm" href="https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://niraya666.github.io/page/2/">Next&nbsp;2/2&nbsp;»
+    <a class="next" href="https://niraya666.github.io/page/2/">Next&nbsp;2/3&nbsp;»
     </a>
   </nav>
 </footer>

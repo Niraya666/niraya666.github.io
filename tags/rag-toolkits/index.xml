@@ -11,8 +11,45 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Mar 2025 16:44:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 20:56:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG工具箱：ColBERT</title>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
+      <pubDate>Tue, 12 Aug 2025 20:56:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在典型的检索系统中，我们常用的架构是 &lt;strong&gt;Retrieval + Reranking&lt;/strong&gt;两阶段:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;检索阶段&lt;/strong&gt;使用轻量级的方法（如BM25或dense vector retriever）从海量语料中快速筛选出几百个候选文档，优先考虑速度和召回率；&lt;strong&gt;排序阶段&lt;/strong&gt;则使用cross-encoder基于 query-document 全量交互，重新给候选集打分，得到精准的最终排序。&lt;/p&gt;
+&lt;p&gt;这么做虽运行良好，但存在瓶颈：第一阶段检索质量的限制意味着大量低质量候选被送入昂贵的第二阶段，而cross-encoder在大规模候选集上的计算成本奇高， 高相关的文档如果没能被第一阶段召回，就无法被 reranker “捞回来”。&lt;/p&gt;
+&lt;p&gt;而multi-vector模型正好填补了这个检索流水线中的“空白中间层”——比 embedding 更精准，比 cross-encoder 更高效。相比单向量 embedding 模型将整个chunk压缩为一个向量，multi-vector模型保留了 **token 级别的表示，**可以捕捉到局部与 query 高度匹配的片段，也是能缓解“语义鸿沟”的原因。&lt;/p&gt;
+&lt;p&gt;而ColBERT 便是经典的多向量模型/late-interaction代表。&lt;/p&gt;
+&lt;p&gt;（可能在本文中会将ColBERT/late-interaction/multi-vector-model 混为一谈，毕竟只是实例-机制-类别 的关系 ）&lt;/p&gt;
+&lt;h2 id=&#34;不同的交互层级&#34;&gt;不同的“交互”层级&lt;/h2&gt;
+&lt;p&gt;（借用ColBERT论文中的插图）&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/rag_toolkits/rag_retrieval_colbert.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;想要理解late-interaction，需要先理解过去的不同“交互”形式；&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Representation-based Similarity （no-interaction，embedding）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也就是双塔， query和document独立计算出一个向量，比较两个向量的相似度获得分数S；在生成各自的向量前， Query 和 Document 之间没有任何信息交互，所有复杂的语义都被压缩进了一个单一的向量中（也就存在信息压缩的损失和瓶颈）&lt;/p&gt;
+&lt;p&gt;优点速度极快，但缺点也很明显，精度有限，所有信息被压缩到一个向量中。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;strong&gt;All-to-all Interaction （cross-encoder）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;目前主流基于BERT 实现的Reranker / Cross-Encoder&lt;/p&gt;
+&lt;p&gt;将查询和文档拼接成 &lt;code&gt;[CLS] query_tokens [SEP] document_tokens [SEP]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;输入到 BERT 模型中，&lt;code&gt;[CLS]&lt;/code&gt; 特殊标记最终输出向量，将向量输入一个linear layer中， 从而获得获得一个0～1间的标量值。&lt;/p&gt;
+&lt;p&gt;因为是在入口处做的交互，于是也被称为“Early, Deep, All-to-all Interaction”&lt;/p&gt;
+&lt;p&gt;目前而言效果比较好的排序方案，代价是计算速度慢&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;&lt;strong&gt;Late Interaction （&lt;strong&gt;ColBERT&lt;/strong&gt;）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;查询和文档是&lt;strong&gt;独立、并行&lt;/strong&gt;地通过 BERT 编码器进行编码，生成各自的token级别向量表示&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
       <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
