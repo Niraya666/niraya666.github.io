@@ -11,8 +11,28 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Jul 2025 14:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Aug 2025 15:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-08 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sat, 30 Aug 2025 15:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://nanobanana.ai/&#34;&gt;nano-banana&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/gpt-5/&#34;&gt;GPT-5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/&#34;&gt;Genie 3: A new frontier for world models&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-opus-4-1&#34;&gt;Claude Opus 4.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen-image/&#34;&gt;Qwen-Image&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/google/langextract&#34;&gt;LangExtract&lt;/a&gt;： A Python library for extracting structured information from unstructured text using LLMs with precise source grounding and interactive visualization.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/vikiboss/60s&#34;&gt;60s API&lt;/a&gt;： 一系列 高质量、开源、可靠、全球 CDN 加速 的开放 API 集合&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/enescingoz/awesome-n8n-templates&#34;&gt;n8n_automations&lt;/a&gt;：This repository contains a collection of n8n automation templates sourced from the internet.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/zaidmukaddam/scira?tab=readme-ov-file&#34;&gt;Scira&lt;/a&gt;: a minimalistic AI-powered search engine&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;gepa-reflective-prompt-evolution-can-outperform-reinforcement-learning&#34;&gt;&lt;strong&gt;GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2507.19457&#34;&gt;2507.19457&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-07 月刊</title>
       <link>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</link>
