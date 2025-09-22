@@ -175,6 +175,53 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">RAG工具箱：有了Copali系列模型，我们还需要OCR吗？
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 现阶段的RAG是个缝合怪。
+写在开头 如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？
+现阶段RAG中存在的问题 先细数一下当前主流RAG架构中，所存在的普遍问题：
+依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。
+不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX… 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。
+图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。
+需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。
+在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。
+为什么现阶段End-to-End的RAG是可行的？ 端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。
+为什么这个方案是可行的？
+VLM的VQA能力强于OCR：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。
+Late Interaction模型的出现：以ColBERT为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而ColBERT则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。
+模型能力和基础设施的成熟：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。
+Copali系列模型 Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考前作）
+选用 PaliGemma-3B 作为基础模型（以SigLIP作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。
+文档侧（构建索引时）：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为每个图像块生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。
+查询侧（检索）：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的每个token生成一个向量
+在检索时，使用类似ColBERT的MaxSim操作来计算查询与文档页面的相关性分数
+训练阶段，在vidore/colpali_train_set 118K个query-页面对上做对比学习获得。
+同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为ViDoRe (Visual Document Retrieval Benchmark) 的综合性评测基准。
+除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的ColQwen2模型
+Model Score on ViDoRe 🏆 License Comments vidore/colpali 81.3 Gemma • Based on google/paligemma-3b-mix-448.
+• Checkpoint used in the ColPali paper. vidore/colpali-v1.1 81.5 Gemma • Based on google/paligemma-3b-mix-448.
+• Fix right padding for queries. vidore/colpali-v1.2 83.9 Gemma • Similar to vidore/colpali-v1.1. vidore/colpali-v1.3 84.8 Gemma • Similar to vidore/colpali-v1.2.
+• Trained with a larger effective batch size of 256 batch size for 3 epochs. vidore/colqwen2-v0.1 87.3 Apache 2.0 • Based on Qwen/Qwen2-VL-2B-Instruct.
+• Supports dynamic resolution.
+• Trained using 768 image patches per page and an effective batch size of 32. vidore/colqwen2-v1.0 89.3 Apache 2.0 • Similar to vidore/colqwen2-v0.1, but trained with more powerful GPUs and with a larger effective batch size (256). vidore/colqwen2.5-v0.1 88.8 Apache 2.0 • Based on Qwen/Qwen2 5-VL-3B-Instruct
+• Supports dynamic resolution.
+• Trained using 768 image patches per page and an effective batch size of 32. vidore/colqwen2.5-v0.2 89.4 Apache 2.0 • Similar to vidore/colqwen2.5-v0.1, but trained with slightly different hyper parameters vidore/colSmol-256M 80.1 Apache 2.0 • Based on HuggingFaceTB/SmolVLM-256M-Instruct. vidore/colSmol-500M 82.3 Apache 2.0 • Based on HuggingFaceTB/SmolVLM-500M-Instruct. （From colpali）
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-22 18:56:00 +0800 CST'>September 22, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to RAG工具箱：有了Copali系列模型，我们还需要OCR吗？" href="https://niraya666.github.io/posts/rag-toolkits-copali/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">RAG工具箱：ColBERT
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">

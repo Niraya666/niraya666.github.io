@@ -11,8 +11,138 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 Aug 2025 20:56:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 22 Sep 2025 18:56:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</title>
+      <link>https://niraya666.github.io/posts/rag-toolkits-copali/</link>
+      <pubDate>Mon, 22 Sep 2025 18:56:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/rag-toolkits-copali/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;现阶段的RAG是个缝合怪。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
+&lt;p&gt;如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？&lt;/p&gt;
+&lt;h2 id=&#34;现阶段rag中存在的问题&#34;&gt;现阶段RAG中存在的问题&lt;/h2&gt;
+&lt;p&gt;先细数一下当前主流RAG架构中，所存在的普遍问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX&amp;hellip; 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。&lt;/p&gt;
+&lt;h2 id=&#34;为什么现阶段end-to-end的rag是可行的&#34;&gt;为什么现阶段End-to-End的RAG是可行的？&lt;/h2&gt;
+&lt;p&gt;端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。&lt;/p&gt;
+&lt;p&gt;为什么这个方案是可行的？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;VLM的VQA能力强于OCR&lt;/strong&gt;：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Late Interaction模型的出现&lt;/strong&gt;：以&lt;code&gt;ColBERT&lt;/code&gt;为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而&lt;code&gt;ColBERT&lt;/code&gt;则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模型能力和基础设施的成熟&lt;/strong&gt;：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;copali系列模型&#34;&gt;Copali系列模型&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Co&lt;/strong&gt;ntextualized &lt;strong&gt;L&lt;/strong&gt;ate &lt;strong&gt;I&lt;/strong&gt;nteraction &lt;strong&gt;O&lt;/strong&gt;ver &lt;strong&gt;Pali&lt;/strong&gt;Gemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考&lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/&#34;&gt;前作&lt;/a&gt;）&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://arxiv.org/html/2407.01449v6/extracted/6240861/images/final_architecture.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;选用 &lt;a href=&#34;https://huggingface.co/blog/zh/paligemma&#34;&gt;PaliGemma-3B&lt;/a&gt; 作为基础模型（以&lt;a href=&#34;https://huggingface.co/docs/transformers/model_doc/siglip&#34;&gt;SigLIP&lt;/a&gt;作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/paligemma/paligemma_arch.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文档侧（构建索引时）&lt;/strong&gt;：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为&lt;strong&gt;每个图像块&lt;/strong&gt;生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;查询侧（检索）&lt;/strong&gt;：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的&lt;strong&gt;每个token&lt;/strong&gt;生成一个向量&lt;/p&gt;
+&lt;p&gt;在检索时，使用类似ColBERT的&lt;strong&gt;MaxSim&lt;/strong&gt;操作来计算查询与文档页面的相关性分数&lt;/p&gt;
+&lt;p&gt;训练阶段，在&lt;a href=&#34;https://huggingface.co/datasets/vidore/colpali_train_set&#34;&gt;vidore/colpali_train_set&lt;/a&gt; 118K个query-页面对上做对比学习获得。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Copali-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为&lt;a href=&#34;https://huggingface.co/collections/vidore/vidore-benchmark-667173f98e70a1c0fa4db00d&#34;&gt;ViDoRe&lt;/a&gt; (Visual Document Retrieval Benchmark) 的综合性评测基准。&lt;/p&gt;
+&lt;p&gt;除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的&lt;a href=&#34;https://huggingface.co/docs/transformers/model_doc/colqwen2&#34;&gt;ColQwen2&lt;/a&gt;模型&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Model&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Score on &lt;a href=&#34;https://huggingface.co/spaces/vidore/vidore-leaderboard&#34;&gt;ViDoRe&lt;/a&gt; 🏆&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;License&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Comments&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colpali&#34;&gt;vidore/colpali&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;81.3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gemma&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Based on &lt;code&gt;google/paligemma-3b-mix-448&lt;/code&gt;.&lt;br /&gt;• Checkpoint used in the ColPali paper.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colpali-v1.1&#34;&gt;vidore/colpali-v1.1&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;81.5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gemma&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Based on &lt;code&gt;google/paligemma-3b-mix-448&lt;/code&gt;.&lt;br /&gt;• Fix right padding for queries.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colpali-v1.2&#34;&gt;vidore/colpali-v1.2&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;83.9&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gemma&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Similar to &lt;code&gt;vidore/colpali-v1.1&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colpali-v1.3&#34;&gt;vidore/colpali-v1.3&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;84.8&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gemma&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Similar to &lt;code&gt;vidore/colpali-v1.2&lt;/code&gt;.&lt;br /&gt;• Trained with a larger effective batch size of 256 batch size for 3 epochs.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colqwen2-v0.1&#34;&gt;vidore/colqwen2-v0.1&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;87.3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Apache 2.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Based on &lt;code&gt;Qwen/Qwen2-VL-2B-Instruct&lt;/code&gt;.&lt;br /&gt;• Supports dynamic resolution.&lt;br /&gt;• Trained using 768 image patches per page and an effective batch size of 32.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colqwen2-v1.0&#34;&gt;vidore/colqwen2-v1.0&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;89.3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Apache 2.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Similar to &lt;code&gt;vidore/colqwen2-v0.1&lt;/code&gt;, but trained with more powerful GPUs and with a larger effective batch size (256).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colqwen2.5-v0.1&#34;&gt;vidore/colqwen2.5-v0.1&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;88.8&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Apache 2.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Based on &lt;code&gt;Qwen/Qwen2 5-VL-3B-Instruct&lt;/code&gt;&lt;br /&gt;• Supports dynamic resolution.&lt;br /&gt;• Trained using 768 image patches per page and an effective batch size of 32.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colqwen2.5-v0.2&#34;&gt;vidore/colqwen2.5-v0.2&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;89.4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Apache 2.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Similar to &lt;code&gt;vidore/colqwen2.5-v0.1&lt;/code&gt;, but trained with slightly different hyper parameters&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colSmol-256M&#34;&gt;vidore/colSmol-256M&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;80.1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Apache 2.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Based on &lt;code&gt;HuggingFaceTB/SmolVLM-256M-Instruct&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;https://huggingface.co/vidore/colSmol-500M&#34;&gt;vidore/colSmol-500M&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;82.3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Apache 2.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;• Based on &lt;code&gt;HuggingFaceTB/SmolVLM-500M-Instruct&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;（From &lt;strong&gt;&lt;a href=&#34;https://github.com/illuin-tech/colpali&#34;&gt;colpali&lt;/a&gt;&lt;/strong&gt;）&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RAG工具箱：ColBERT</title>
       <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
