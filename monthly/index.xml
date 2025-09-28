@@ -11,8 +11,42 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Aug 2025 15:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Sep 2025 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-09 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-09-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sun, 28 Sep 2025 20:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-09-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=99f0335c4ad9ff6153e517418d48535ab6d8afef&amp;from=research.latest-advancements-list&#34;&gt;&lt;strong&gt;Qwen3-VL&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=f0bbad0677edf58ba93d80a1e12ce458f7a80548&amp;from=research.research-list&#34;&gt;Qwen3Guard&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tongyi-agent.github.io/zh/blog/introducing-tongyi-deep-research/&#34;&gt;tongyi-deep-research&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developers.googleblog.com/en/introducing-embeddinggemma/&#34;&gt;EmbeddingGemma&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/facebookresearch/cwm&#34;&gt;Code World Model (CWM)&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/spaces/HuggingFaceM4/FineVision&#34;&gt;FineVision:Open Data Is All You Need&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/WECENG/ticket-purchase&#34;&gt;大麦抢票脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/emcie-co/parlant&#34;&gt;Parlant&lt;/a&gt;: LLM agents built for control. Designed for real-world use.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Cranot/claude-code-guide&#34;&gt;Claude Code Comprehensive Guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/JerryZLiu/Dayflow&#34;&gt;Dayflow&lt;/a&gt;: Turns your screen activity into a clean timeline with AI summaries and distraction highlights.&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;mirage-scaling-test-time-inference-with-parallel-graph-retrieval-augmented-reasoning-chains&#34;&gt;MIRAGE: Scaling Test-Time Inference with Parallel Graph-Retrieval-Augmented Reasoning Chains&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2508.18260&#34;&gt;2508.18260&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;提出了**Parallel Multi-chain Inference，**将一个复杂问题分解成多个子问题，为每个子问题启动一个独立的、并行的推理链&lt;/p&gt;
+&lt;p&gt;提出了**Adaptive Graph-based Retrieval，**与一个结构化的医学知识图谱进行交互，在推理过程中，模型可以动态地通过邻居节点扩展、多跳路径遍历等方式探索知识图谱中的实体关系和层次结构&lt;/p&gt;
+&lt;p&gt;MIRAGE框架通过四个协同工作的组件实现其功能：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://arxiv.org/html/2508.18260v1/x2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Question Decomposer&lt;/li&gt;
+&lt;li&gt;Evidence Retriever：为每个子问题启动一个并行的推理链，进行一种“边思考边搜索”的循环；检索分为两种模式：Anchor Mode（当查询涉及单个实体时，检索该实体在图谱中的局部邻居信息）；Bridge Mode （当查询涉及两个实体时，在图谱中寻找连接这两个实体的关系路径）&lt;/li&gt;
+&lt;li&gt;Answer Synthesizer：收集所有并行推理链生成的答案和证据，并交叉验证&lt;/li&gt;
+&lt;li&gt;Coordinator：管理以上三个组件的执行流程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;why-language-models-hallucinate&#34;&gt;Why Language Models Hallucinate&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf&#34;&gt;paper&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-08 月刊</title>
       <link>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</link>
