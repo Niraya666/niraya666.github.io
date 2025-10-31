@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -39,16 +39,16 @@ Late Interaction （ColBERT）
 
 查询和文档是独立、并行地通过 BERT 编码器进行编码，生成各自的token级别向量表示">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
+<link rel="canonical" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
 <noscript>
     <style>
         #theme-toggle,
@@ -118,14 +118,14 @@ Late Interaction （ColBERT）
 
 查询和文档是独立、并行地通过 BERT 编码器进行编码，生成各自的token级别向量表示" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/" />
-<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/" />
+<meta property="og:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-08-12T20:56:00+08:00" />
 <meta property="article:modified_time" content="2025-08-12T20:56:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta name="twitter:title" content="RAG工具箱：ColBERT"/>
 <meta name="twitter:description" content="
 前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。
@@ -169,13 +169,13 @@ Late Interaction （ColBERT）
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "RAG工具箱：ColBERT",
-      "item": "https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/"
+      "item": "http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/"
     }
   ]
 }
@@ -193,7 +193,7 @@ Late Interaction （ColBERT）
   "articleBody": " 前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。\n在典型的检索系统中，我们常用的架构是 Retrieval + Reranking两阶段:\n检索阶段使用轻量级的方法（如BM25或dense vector retriever）从海量语料中快速筛选出几百个候选文档，优先考虑速度和召回率；排序阶段则使用cross-encoder基于 query-document 全量交互，重新给候选集打分，得到精准的最终排序。\n这么做虽运行良好，但存在瓶颈：第一阶段检索质量的限制意味着大量低质量候选被送入昂贵的第二阶段，而cross-encoder在大规模候选集上的计算成本奇高， 高相关的文档如果没能被第一阶段召回，就无法被 reranker “捞回来”。\n而multi-vector模型正好填补了这个检索流水线中的“空白中间层”——比 embedding 更精准，比 cross-encoder 更高效。相比单向量 embedding 模型将整个chunk压缩为一个向量，multi-vector模型保留了 **token 级别的表示，**可以捕捉到局部与 query 高度匹配的片段，也是能缓解“语义鸿沟”的原因。\n而ColBERT 便是经典的多向量模型/late-interaction代表。\n（可能在本文中会将ColBERT/late-interaction/multi-vector-model 混为一谈，毕竟只是实例-机制-类别 的关系 ）\n不同的“交互”层级 （借用ColBERT论文中的插图）\n想要理解late-interaction，需要先理解过去的不同“交互”形式；\nRepresentation-based Similarity （no-interaction，embedding） 也就是双塔， query和document独立计算出一个向量，比较两个向量的相似度获得分数S；在生成各自的向量前， Query 和 Document 之间没有任何信息交互，所有复杂的语义都被压缩进了一个单一的向量中（也就存在信息压缩的损失和瓶颈）\n优点速度极快，但缺点也很明显，精度有限，所有信息被压缩到一个向量中。\nAll-to-all Interaction （cross-encoder） 目前主流基于BERT 实现的Reranker / Cross-Encoder\n将查询和文档拼接成 [CLS] query_tokens [SEP] document_tokens [SEP]\n输入到 BERT 模型中，[CLS] 特殊标记最终输出向量，将向量输入一个linear layer中， 从而获得获得一个0～1间的标量值。\n因为是在入口处做的交互，于是也被称为“Early, Deep, All-to-all Interaction”\n目前而言效果比较好的排序方案，代价是计算速度慢\nLate Interaction （ColBERT） 查询和文档是独立、并行地通过 BERT 编码器进行编码，生成各自的token级别向量表示\n交互发生在编码之后。它拿着编码好的 Query 词元向量集合，去和编码好的 Document 词元向量集合进行轻量级的、后置的相似度计算（MaxSim 操作）\n具体而言，独立编码阶段，Query $q$ 编码为一组向量 $E_q = {q_1, q_2, …, q_N}$, Document $d$ 编码为一组向量 $E_d = {d_1, d_2, …, d_M}$；\n计算MaxSim阶段， 对于 Query 中的每一个token向量$q_i$, 计算它与 Document 中所有token向量 $d_j$ 的余弦相似度\n通过\n$$ MaxSim(q_i, E_d) = max(CosSim(q_i, d_1), CosSim(q_i, d_2), …, CosSim(q_i, d_M)) $$\n找到Query 中的 $q_i$ 这个token在 Document 中能找到的最大值 （即最佳匹配）\n将 Query 中所有token的MaxSim相加，得到最终的 Query-Document 相关性总分\n$$ Score(q, d) = \\sum_{for \\ i=1 \\ to \\ N} MaxSim(q_i, E_d) $$\n在训练过程中， 与 BERT Reranker 类似，ColBERT也使用三元组 (query, positive_doc, negative_doc) 进行对比学习。\nColBERT 使用 这里利用RAGatouille实现ColBERT的使用。RAGatouille集成了不同的ColBERT类模型，能够在现有的RAG-pipeline中开箱即用。\n# 依赖 pip install ragatouille 不过由于colbert使用了低版本的transofmers，直接使用会报错：ImportError: cannot import name 'AdamW' from 'transformers'\n建议直接修改源码~\\site-packages\\colbert\\training\\training.py\nfrom\nfrom transformers import AdamW, get_linear_schedule_with_warmup optimizer = AdamW(filter(lambda p: p.requires_grad, colbert.parameters()), lr=config.lr, eps=1e-8) to\nfrom transformers.optimization import get_linear_schedule_with_warmup optimizer = torch.optim.AdamW(filter(lambda p: p.requires_grad, colbert.parameters()), lr=config.lr, eps=1e-8) 即可使用；\n这里使用了官方提供的示例\nfrom ragatouille import RAGPretrainedModel RAG = RAGPretrainedModel.from_pretrained(\"colbert-ir/colbertv2.0\") from ragatouille.utils import get_wikipedia_page my_documents = [get_wikipedia_page(\"Hayao_Miyazaki\"), get_wikipedia_page(\"Studio_Ghibli\")] index_path = RAG.index(index_name=\"my_index\", collection=my_documents) \"\"\" [Jun 30, 06:30:31] #\u003e Creating directory .ragatouille/colbert/indexes/my_index [Jun 30, 06:30:33] [0] #\u003e Encoding 117 passages.. ... [Jun 30, 06:30:34] [0] avg_doclen_est = 193.56410217285156 len(local_sample) = 117 [Jun 30, 06:30:34] [0] Creating 2,048 partitions. [Jun 30, 06:30:34] [0] *Estimated* 22,646 embeddings. [Jun 30, 06:30:34] [0] #\u003e Saving the indexing plan to .ragatouille/colbert/indexes/my_index/plan.json .. used 19 iterations (0.4336s) to cluster 21515 items into 2048 clusters ... 100%|██████████| 1/1 [00:00\u003c00:00, 1034.86it/s][Jun 30, 06:32:31] #\u003e Optimizing IVF to store map from centroids to list of pids.. [Jun 30, 06:32:31] #\u003e Building the emb2pid mapping.. [Jun 30, 06:32:31] len(emb2pid) = 22647 100%|██████████| 2048/2048 [00:00\u003c00:00, 74322.18it/s][Jun 30, 06:32:31] #\u003e Saved optimized IVF to .ragatouille/colbert/indexes/my_index/ivf.pid.pt Done indexing! \"\"\" (on T4, 约2min完成对117个文档的index构建)\nquery：\nquery = \"照樹 務\" RAG = RAGPretrainedModel.from_index(\".ragatouille/colbert/indexes/my_index\") results = RAG.search(query) results \"\"\" [{'content': 'Wonderbird. Visually, he was inspired by Kagoshima Publishing\\'s Italian Mountain Cities and the Tiber Estuary, reflecting his love for Europe. Production ran for four months and the film was released on December 15, 1979; Miyazaki wished he could have had another month of production. It was well received; Animage readers voted it the best animation of all time—it remained in the top ten for more than fifteen years—and Clarisse the best heroine. In 2005, former princess Sayako Kuroda\\'s wedding dress was reportedly inspired by Clarisse\\'s, having been a fan of Miyazaki and his work. Several Japanese and American filmmakers were inspired by the film, prompting homages in other works.\\nMiyazaki became a chief animation instructor for new employees at Telecom Animation Film, a subsidiary of Tokyo Movie Shinsha. and subsequently directed two episodes of Lupin the Third Part II under the pseudonym Teruki Tsutomu (照樹 務), which can read as \"employee of Telecom\". In his role at Telecom, Miyazaki helped train the second wave of employees.', 'score': 15.0859375, 'rank': 1, 'document_id': '953a72c5-2adc-4e34-ab8a-ced047ee3140', 'passage_id': 20}, ... ] \"\"\" ColBERT 新作 自ColBERT在2020年提出以来，在“迟交互”方向已发展出多个变体和优化版本。\nColBERTv2 在原来的ColBERT基础上，增加了1）去噪监督策略，以提升模型的检索精度；2）残差压缩机制，大幅减小索引的存储体积\nPLAID为降低在大规模语料下的检索延迟，引入 centroid interaction（把每个段落视为一个centroid ID 的bag of centroids，只用 query-to-centroid 分数在 token 级估算段落得分，从而在不解压残差的情况下快速筛掉低分段落）和centroid pruning（基于查询对所有 centroids 的分数，先剪掉与查询无关或分数很低的 centroid，从而稀疏化袋表示，进一步减少计算）\njinaai/jina-colbert-v2 采用Matryoshka Representation Learning，以支持不同输出向量大小（128、96 和 64）；同时支持8192 tokens的上下文长度。\nMUVERA Weaviate为解决ColBERT中存在的巨大的内存占用和速度慢的问题，MUVERA 的目标是将多向量嵌入 $D$ 和查询 $Q$ 分别编码成单个向量 $d_{single}$ 和 $q_{single}$，并使得它们的点积结果 $d_{single} \\cdot q_{single}$ 能够很好地近似原始的 $maxSim(D,Q)$ 相似度得分,将复杂的“多对多”向量搜索问题就简化为了“一对一”单向量搜索问题\nConstBERT 与ColBERT为每个词元存储一个向量不同，ConstBERT通过一个可学习的投影层，将一个文档的所有词元向量压缩并投影成一个固定数量的向量（32或64），而与文档的实际长度无关，这些新生成的固定数量的向量不再与原文中的特定词元直接对应，而是文档不同“语义方面”的抽象表示\nColBERT 在检索中的位置？ ColBERT同现有的单向量embedding、cross-encoder reranker间，本不是竞争的关系，不应将ColBERT模型视为一个独立的、端到端的检索方案，而更像是对原有2-steps框架的补充，一种承上启下的“中间精排层”。\n如果将检索过程分为多个阶段，那么每个阶段的本质目的都很明确：对候选集进行“提纯”和“缩小”， 从而将昂贵的计算资源集中在最有可能相关的文档上。\n(from pinecone)\n而目前阶段，ColBERT能够进一步筛选retrieval部分的候选，提升后续集质量同时降低reranker部分的压力，而第一阶段的retrieval也能为ColBERT节约大量的内存占用和时间消耗。某种程度上，更像是一种互补共生关系。\n参考 ColBERT\nColBERTv2\nPLAID\n什么是 ColBERT 和延迟交互？为什么它们在搜索中很重要？\nJina ColBERT v2\nCascading retrieval with multi-vector representations: balancing efficiency and effectiveness\nMore efficient multi-vector embeddings with MUVERA\nEfficient Constant-Space Multi-Vector Retrieval\nRAGatouille\nPyLate: Flexible Training and Retrieval for ColBERT Models\n附录： 已知支持multi-vector 的向量库 Qdrant ≥ 1.10\nWeaviate ≥ 1.31\npinecone\nMilvus\n",
   "wordCount" : "627",
   "inLanguage": "en",
-  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2025-08-12T20:56:00+08:00",
+  "image": "http://localhost:1313/images/papermod-cover.png","datePublished": "2025-08-12T20:56:00+08:00",
   "dateModified": "2025-08-12T20:56:00+08:00",
   "author":{
     "@type": "Person",
@@ -201,14 +201,14 @@ Late Interaction （ColBERT）
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/"
+    "@id": "http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -230,7 +230,7 @@ Late Interaction （ColBERT）
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -256,47 +256,47 @@ Late Interaction （ColBERT）
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/posts/" title="AI">
+                <a href="http://localhost:1313/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                <a href="http://localhost:1313/musik/" title="Musik!">
                     <span>Musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
@@ -307,7 +307,7 @@ Late Interaction （ColBERT）
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       RAG工具箱：ColBERT
       <span class="entry-hint" title="Draft">
@@ -495,15 +495,15 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/rag-toolkits/">RAG-Toolkits</a></li>
+      <li><a href="http://localhost:1313/tags/rag-toolkits/">RAG-Toolkits</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/rag-toolkits-copali/">
+  <a class="prev" href="http://localhost:1313/posts/rag-toolkits-copali/">
     <span class="title">« Prev</span>
     <br>
     <span>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/thinking-budget-0805/">
+  <a class="next" href="http://localhost:1313/posts/thinking-budget-0805/">
     <span class="title">Next »</span>
     <br>
     <span>拒绝“想太多”：大模型Thinking Budget控制方案解析</span>
@@ -514,7 +514,7 @@ $$</p>
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on x"
-            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f&amp;hashtags=RAG-Toolkits">
+            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f&amp;hashtags=RAG-Toolkits">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -523,7 +523,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -532,7 +532,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -541,7 +541,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -550,7 +550,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on whatsapp"
-            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
+            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -559,7 +559,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on telegram"
-            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
+            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -568,7 +568,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：ColBERT on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&u=https%3a%2f%2fniraya666.github.io%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
+            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aColBERT&u=http%3a%2f%2flocalhost%3a1313%2fposts%2frag%25E5%25B7%25A5%25E5%2585%25B7%25E7%25AE%25B1colbert%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -612,7 +612,7 @@ $$</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2025 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

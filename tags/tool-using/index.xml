@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tool-Using on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/tool-using/</link>
+    <link>http://localhost:1313/tags/tool-using/</link>
     <description>Recent content in Tool-Using on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 25 Jun 2024 17:00:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/tool-using/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/tool-using/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Agent学习笔记： 如何验证模型的tool-using能力</title>
-      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
+      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
       <pubDate>Tue, 25 Jun 2024 17:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
+      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
       <description>&lt;p&gt;本文将简单介绍如何评价LLM的tool-using 能力。&lt;/p&gt;
 &lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
 &lt;p&gt;在工具使用评估方面，过去的研究主要有以下几种思路：&lt;/p&gt;
@@ -55,18 +55,18 @@
     </item>
     <item>
       <title>Agent学习笔记：OpenAI Function Calling完全指南</title>
-      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Sun, 28 Apr 2024 15:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;h2 id=&#34;写在最开始&#34;&gt;写在最开始&lt;/h2&gt;
 &lt;p&gt;当我们在讨论基于大型语言模型（LLM-based）的智能代理（agent）时，我们究竟在谈论什么？根据Lilian W在其文章《LLM Powered Autonomous Agents》中的讨论，一个智能代理需要具备几个核心能力：规划（Planning）、记忆（Memory）、以及工具使用（Tool use）。特别地，工具使用方面的进展，得益于OpenAI在API中提供的function calling功能，为我们开启了新的可能性。&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://lilianweng.github.io/posts/2023-06-23-agent/agent-overview.png&#34; alt=&#34;AGI&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;OpenAI function calling，作为智能代理与外部工具交互的基本方式，对于每位从业者来说都是必备技能。随着技术的发展，我们期望的不只是能与我们对话的LLM，而是能够辅助我们使用各种工具、做出决策的智能伙伴。&lt;/p&gt;
 &lt;p&gt;不过需要特别指出的是，最近OpenAI在Chat Completions API中已经废弃了“函数（function）”的使用，转而采用“工具（tool）”。这一变更旨在拓宽LLM集成的功能范围，为更复杂的交互模式铺平道路，如构建能够相互作用的多代理系统。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.16.54.png&#34; alt=&#34;截屏2024-03-28 15.16.54.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.16.54.png&#34; alt=&#34;截屏2024-03-28 15.16.54.png&#34;  /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.17.38.png&#34; alt=&#34;截屏2024-03-28 15.17.38.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Agent%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/tool-using/%e6%88%aa%e5%b1%8f2024-03-28%2015.17.38.png&#34; alt=&#34;截屏2024-03-28 15.17.38.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;尽管如此，由于语言习惯的原因，本文中仍然会使用function calling的术语来描述OpenAI的tool using功能，因为“function calling”的说法已经深入人心了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;核心内容概览&lt;/strong&gt;&lt;/p&gt;

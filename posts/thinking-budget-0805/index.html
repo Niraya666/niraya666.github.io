@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -23,16 +23,16 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
  (Section 4.3)&ldquo;To better integrate the two modes and enable users to dynamically switch the model’s thinking process, we design chat templates for Qwen3, as shown in Table 9. Specifically, for samples in thinking mode and non-thinking mode, we introduce /think and /no think flags in the user query or system message, respectively. This allows the model to follow the user’s input and select the appropriate thinking mode accordingly.&rdquo;
 …">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="https://niraya666.github.io/posts/thinking-budget-0805/">
+<link rel="canonical" href="http://localhost:1313/posts/thinking-budget-0805/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/thinking-budget-0805/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/thinking-budget-0805/">
 <noscript>
     <style>
         #theme-toggle,
@@ -86,14 +86,14 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
  (Section 4.3)&ldquo;To better integrate the two modes and enable users to dynamically switch the model’s thinking process, we design chat templates for Qwen3, as shown in Table 9. Specifically, for samples in thinking mode and non-thinking mode, we introduce /think and /no think flags in the user query or system message, respectively. This allows the model to follow the user’s input and select the appropriate thinking mode accordingly.&rdquo;
 …" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/thinking-budget-0805/" />
-<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/thinking-budget-0805/" />
+<meta property="og:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-08-05T20:12:00+08:00" />
 <meta property="article:modified_time" content="2025-08-05T20:12:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:image" content="http://localhost:1313/images/papermod-cover.png" />
 <meta name="twitter:title" content="拒绝“想太多”：大模型Thinking Budget控制方案解析"/>
 <meta name="twitter:description" content="为什么需要thinking-budget
 你是否也曾见过一个LLM在深度思考中逐渐陷入了自我怀疑的无限循环中呢？
@@ -121,13 +121,13 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "拒绝“想太多”：大模型Thinking Budget控制方案解析",
-      "item": "https://niraya666.github.io/posts/thinking-budget-0805/"
+      "item": "http://localhost:1313/posts/thinking-budget-0805/"
     }
   ]
 }
@@ -145,7 +145,7 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
   "articleBody": "为什么需要thinking-budget 你是否也曾见过一个LLM在深度思考中逐渐陷入了自我怀疑的无限循环中呢？\n虽然CoT一定程度上提升模型回答的准确率，reasoning-mode也逐渐成为各大开源模型中的必需品。但新的问题也随之而来：失控的思考。LLM常常会表现出overthinking的问题，大量冗余猜测，和自我否定，无一不增加token预算，这些问题在小参数量的、采用蒸馏获得的reasoning模型中尤为常见。\n那么一个很自然的想法：为模型的思考设定一个预算，对于简单问题可以选择比较少的预算，而难题可以使用较大的预算。\n主流模型厂商所提供的推理控制 会发现，在主流的模型提供商的API中和应用服务中，普遍有对于推理长度的控制手段\nOpenAI: 提供了reasoning.effort等参数来暗示模型的思考深度（针对o1，o3系列模型）\nAnthropic: 允许通过budget_tokens或特定提示词（如 “think” \u003c “think hard” \u003c “think harder” \u003c “ultrathink.\"）来触发不同级别的思考\nGemini \u0026 Qwen: 直接在API中提供了明确的thinking_budget参数设置\n开源实现：Budget Forcing 那么对于开发者而言，特别是本地化部署的LLM要如何实现thinking-budget？\n最直观的方法便是使用prompt，但效果并不好，特别当模型在训练过程中没有特别针对性训练，明文化要求模型“用更少的token进行思考” 一般并不起什么作用。相比之下Qwen3系列的混合thinking模型中，在训练阶段加入了/think and /no_think的标记，于是在推理过程中在system-prompt或者user-prompt中加入/no_think能够从think模式切换。\n(Section 4.3)“To better integrate the two modes and enable users to dynamically switch the model’s thinking process, we design chat templates for Qwen3, as shown in Table 9. Specifically, for samples in thinking mode and non-thinking mode, we introduce /think and /no think flags in the user query or system message, respectively. This allows the model to follow the user’s input and select the appropriate thinking mode accordingly.”\n…\n(Section 4.4): “Format Following: In addition to explicit instructions, we expect the model to adhere to specific formatting conventions. For instance, it should respond appropriately to the /think and /no think flags by switching between thinking and non-thinking modes…”\n…\n(Section 4.7): “ThinkFollow: Involves multi-turn dialogues with randomly inserted /think and /no thinkflags to test whether the model can correctly switch thinking modes based on user queries.”\n不过在阅读Qwen3的technical-report和相关文档时，发现Qwen官方为开源社区提供的thinking-budget的解决思路。\n其提供了一种两步走的实现思路：\nStep-1: generate，这一步和不同的generate没有差别，只是设定max_new_tokens为thinking_budget\n# first generation until thinking budget generated_ids = model.generate( **model_inputs, max_new_tokens=thinking_budget ) output_ids = generated_ids[0][input_length:].tolist() Step-2: 检查 即检查 对应的Token ID（151668）是否存在于输出中\n如果存在：说明模型在预算内已经完成了思考，无需干预。\n如果不存在：说明思考过程被预算中断了， 将early_stopping_text注入，和上一轮输出拼接，作为新的一轮输入，进行第二次model generate\n# check if the thinking process has finished (151668 is ) if 151668 not in output_ids: print(\"thinking budget is reached\") # 准备提前终止的提示 early_stopping_text = \"\\n\\nConsidering the limited time by the user, I have to give the solution based on the thinking directly now.\\n\\n\\n\" early_stopping_ids = tokenizer([early_stopping_text], ...).input_ids.to(model.device) # 将提示拼接到第一次生成的后面 input_ids = torch.cat([generated_ids, early_stopping_ids], dim=-1) # 进行第二次生成 generated_ids = model.generate( input_ids=input_ids, ... ) 不过这个思路需要进行两轮的输出，那有没有更优雅的实现方式？\n答案是肯定的。即利用LogitsProcessor。\n想法来自于这篇blog和github-issue讨论\n其核心原理是：创建一个自定义的LogitsProcessor，在模型生成每个token时进行检查：\n判断当前是否处于和之间\n计算自开始后已生成的token数量\n当数量达到thinking_budget时，强行修改下一token的概率分布（logits），将的概率设为1.0，其余所有token的概率设为负无穷\n以受限编码的思路实现thinking-budget。\nfrom typing import List, Optional import torch class ThinkLogitsProcessor: \"\"\"A logits processor that limit the number of thinking tokens.\"\"\" def __init__(self, think_start_token, think_end_token, num_think_tokens: int = 100): \"\"\" Initialize the think logits processor. Args: tokenizer: The tokenizer used for the model num_think_tokens: Maximum number of tokens allowed in thinking section \"\"\" self.num_think_tokens = num_think_tokens self.think_start_token = think_start_token self.think_end_token = think_end_token def __call__( self, input_ids: List[int], logits: torch.Tensor, ) -\u003e torch.Tensor: \"\"\" Process the logits to enforce token when needed. Args: input_ids: List of input token IDs. logits: Tensor of logits for the next token. Returns: Processed logits tensor. \"\"\" # Check if we're in a thinking section if self.think_start_token in input_ids and self.think_end_token not in input_ids: # Find the position of the last token think_start_pos = len(input_ids) - 1 - input_ids[::-1].index(self.think_start_token) # Calculate number of tokens since tokens_since_think = len(input_ids) - think_start_pos - 1 # If we've reached the maximum thinking length, force if tokens_since_think \u003e= self.num_think_tokens: # Set all other logits to -inf except for logits = torch.full_like(logits, float('-inf')) logits[self.think_end_token] = 1.0 return logits 以vllm使用为例：\n（⚠️注： 不过在vllm升级到V1版本之后，采用python编写的LogitsProcessor 被放弃，以下代码需要采用V1版本之前的vllm，如0.7.3）\nfrom transformers import AutoTokenizer from vllm import LLM, SamplingParams tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen3-4B\") think_start_token = tokenizer.convert_tokens_to_ids(\"\") think_end_token = tokenizer.convert_tokens_to_ids(\"\") sampling_params = SamplingParams( temperature=temperature, max_tokens=max_tokens, logits_processors=[ThinkLogitsProcessor(think_start_token, think_end_token, num_think_tokens)] ) llm = LLM(model=\"Qwen/Qwen3-4B\") conversations = [\"your-conversations\"] outputs = llm.chat(messages=conversations, sampling_params=sampling_params, use_tqdm=False) 以上方法均采用了硬截止的方案，也就是强行加入，从结果上看会显得比较生硬，同时模型一般会按照“惯性”，在回答中，继续一段思考的过程。\n基于这套方案的改进策略，比如软性截止（在越接近budget时，线性或多项式增加 的输出概率）一定程度会有所改善。\n此外，special-token的插入或者直接插入自然语言提示，也是可行的。\n基于难度截断 不过新的问题出现：“一刀切”的预算并不完美。简单问题预算太长，复杂问题预算又太短。手动设置预算在合成数据和rollout过程中并不现实。最直观的想法，是采用一个分类模型，预测一个最佳的budget。\n在TALE这篇工作中，利用一个zero-shot prompt，要求模型分析问题并预估生成完整准确回答所需的最小Token数，而后将预算值嵌入到prompt中，如：\nTask: Analyze the given question and estimate the minimum number of tokens required to generate a complete and accurate response. Please Give the response by strictly following this format: [[budget]], for example, Budget: [[12]]. 在实际实验中，观察模型输出结果时发现，模型很容易出现猜测，不确定，自我怀疑的表述，如：\n或者，可能XXX？\n…\n可能答案是XX？\n…\n可能我的计算有误？\n…\n可能我哪里弄错了？\n…\n特别是特别长的COT后期，模型基本在自我怀疑循环论证的死循环中不能自拔，或许通过捕获这些不确定词汇，在这些词汇频繁出现时，增加 的概率，以起到停止思考的作用，以实现early-stop。不过这套方案只适合小型模型，尤其是蒸馏过的推理模型。这些小型模型出现的模式化的‘自我怀疑’、‘不确定’，大概来自于teacher-model，但小型模型本身并不具备（或者很难具备）真正的自我纠正能力，于是大量的“wait…\"， “But wait…“, “Alternatively…“, 本身对于推理而言或许并没有太多帮助（需要实验佐证）。\nCode import torch from typing import List, Dict, Tuple, Set, Optional from collections import defaultdict class UncertaintyThinkLogitsProcessor: \"\"\" A logits processor that limits thinking based on detected uncertainty patterns. Optimized for efficiency and memory usage. \"\"\" def __init__( self, tokenizer, think_start_token: int, think_end_token: int, uncertainty_phrases: Dict[str, float], uncertainty_threshold: float = 5.0, growth_strategy: str = \"linear\", growth_factor: float = 1.0, max_think_tokens: int = 1000, debug: bool = False ): \"\"\"Initialize the uncertainty-based think logits processor.\"\"\" self.tokenizer = tokenizer self.think_start_token = think_start_token self.think_end_token = think_end_token self.uncertainty_threshold = uncertainty_threshold self.growth_strategy = growth_strategy self.growth_factor = growth_factor self.max_think_tokens = max_think_tokens self.debug = debug # Process uncertainty phrases and build efficient lookup structures self.uncertainty_phrases = {} self.phrase_by_length = defaultdict(list) # Group phrases by length for efficient lookup for phrase, score in uncertainty_phrases.items(): token_ids = tuple(tokenizer.encode(phrase, add_special_tokens=False)) self.uncertainty_phrases[token_ids] = score self.phrase_by_length[len(token_ids)].append(token_ids) # Sort by length for more efficient searching (shorter phrases first) self.sorted_lengths = sorted(self.phrase_by_length.keys()) self.max_phrase_length = max(self.sorted_lengths) if self.sorted_lengths else 0 # State tracking - optimized data structures self.accumulated_uncertainty = 0.0 self.last_processed_position = 0 # Track last processed position instead of full input length self.detected_phrase_positions = set() # Use set for O(1) lookup, store positions only # Pre-allocate tensor for logits modification to avoid repeated allocation self._force_think_end_logits = None if self.debug: print(f\"Initialized with {len(uncertainty_phrases)} uncertainty phrases\") print(f\"Max phrase length: {self.max_phrase_length}\") print(f\"Uncertainty threshold: {uncertainty_threshold}\") def _find_uncertainty_phrases(self, tokens: List[int], start_scan_pos: int = 0) -\u003e List[Tuple[int, int, float]]: \"\"\" Efficiently find uncertainty phrases in tokens using optimized algorithm. Returns list of (start_pos, end_pos, uncertainty_score) tuples. \"\"\" found_phrases = [] tokens_len = len(tokens) # Only scan from the specified start position for pos in range(start_scan_pos, tokens_len): # Check phrases of each length, starting from shortest for phrase_len in self.sorted_lengths: if pos + phrase_len \u003e tokens_len: break # Can't fit this phrase length # Extract candidate phrase candidate = tuple(tokens[pos:pos + phrase_len]) # Check if this phrase exists in our lookup for this length if candidate in self.phrase_by_length[phrase_len]: # Verify it's actually in our main dictionary (should always be true) if candidate in self.uncertainty_phrases: found_phrases.append((pos, pos + phrase_len - 1, self.uncertainty_phrases[candidate])) return found_phrases def __call__( self, input_ids: List[int], logits: torch.Tensor ) -\u003e torch.Tensor: \"\"\"Process logits based on uncertainty in thinking.\"\"\" # Convert input_ids to list if it's a tensor (avoid repeated conversion) if isinstance(input_ids, torch.Tensor): input_ids = input_ids.tolist() # Early exit if no uncertainty phrases configured if not self.uncertainty_phrases: return logits # Check if we're in a thinking section try: think_start_pos = len(input_ids) - 1 - input_ids[::-1].index(self.think_start_token) in_thinking = self.think_end_token not in input_ids[think_start_pos:] except ValueError: # No think_start_token found return logits if in_thinking: thinking_tokens = input_ids[think_start_pos + 1:] tokens_since_think = len(thinking_tokens) # Only process new tokens since last call new_tokens_start = max(0, self.last_processed_position) if tokens_since_think \u003e new_tokens_start: # Calculate scan start position to catch phrases spanning the boundary scan_start = max(0, new_tokens_start - self.max_phrase_length + 1) # Find new uncertainty phrases new_phrases = self._find_uncertainty_phrases(thinking_tokens, scan_start) # Process only truly new phrases (not already detected) for start_pos, end_pos, base_score in new_phrases: phrase_id = (start_pos, end_pos) if phrase_id not in self.detected_phrase_positions: # Apply growth strategy if self.growth_strategy == \"poly\": uncertainty_increase = base_score * (tokens_since_think ** self.growth_factor) else: # linear or default uncertainty_increase = base_score self.accumulated_uncertainty += uncertainty_increase self.detected_phrase_positions.add(phrase_id) if self.debug: phrase_tokens = thinking_tokens[start_pos:end_pos + 1] phrase_text = self.tokenizer.decode(phrase_tokens) print(f\"Detected: '{phrase_text}' pos:{start_pos}-{end_pos} \" f\"score:+{uncertainty_increase:.2f} total:{self.accumulated_uncertainty:.2f}\") # Update last processed position self.last_processed_position = tokens_since_think # Check if we should force should_force_end = ( self.accumulated_uncertainty \u003e= self.uncertainty_threshold or tokens_since_think \u003e= self.max_think_tokens ) if should_force_end: if self.debug: reason = (\"uncertainty threshold\" if self.accumulated_uncertainty \u003e= self.uncertainty_threshold else \"max tokens\") print(f\"Forcing due to {reason}\") # Efficiently create force-end logits (reuse tensor if possible) if self._force_think_end_logits is None or self._force_think_end_logits.shape != logits.shape: self._force_think_end_logits = torch.full_like(logits, float('-inf')) else: self._force_think_end_logits.fill_(float('-inf')) self._force_think_end_logits[self.think_end_token] = 1.0 return self._force_think_end_logits else: # Reset state when not in thinking mode or when thinking has ended self._reset_state() return logits def _reset_state(self): \"\"\"Reset the processor state efficiently.\"\"\" self.accumulated_uncertainty = 0.0 self.last_processed_position = 0 self.detected_phrase_positions.clear() # More efficient than creating new set def reset(self): \"\"\"Reset the processor state.\"\"\" self._reset_state() # Also clear the cached tensor self._force_think_end_logits = None 使用\nfrom vllm import LLM, SamplingParams from transformers import AutoTokenizer # Define uncertainty phrases uncertainty_phrases = { # Chinese uncertainty phrases \"可能我哪里算错了\": 2.0, \"我不确定\": 1.5, \"让我想想\": 1.0, \"可能\": 0.5, \"也许\": 0.5, \"或许\": 0.5, \"等等\": 0.8, \"我需要重新思考\": 1.2, \"有点困惑\": 1.0, \"我搞错了\": 1.5, \"我可能理解错了\": 1.8, \"这个有点棘手\": 1.0, \"需要再想想\": 1.0, \"可能我的分析有误？\": 2.0, \"可能我的理解有误？\":2.0, \"？\":1.0, \"正确？\":1.0, \"或者\": 1.0, \"这似乎不符\":0.8, # English uncertainty phrases \"I'm not sure\": 1.5, \"I need to reconsider\": 1.2, \"Let me think\": 1.0, \"maybe\": 0.5, \"perhaps\": 0.5, \"wait\": 0.8, \"hmm\": 0.7, \"let me check again\": 1.2, \"I might be wrong\": 1.5, \"I'm confused\": 1.2, \"I'm not certain\": 1.5, \"?\":1.0, \"That can't be right\":1.0, \"Wait\":0.7, \"right?\":0.5 } # Setup llm = LLM(model=\"Qwen/Qwen3-4B\") tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen3-4B\") # Get token IDs think_start_token = tokenizer.convert_tokens_to_ids(\"\") think_end_token = tokenizer.convert_tokens_to_ids(\"\") uncertainty_processor = UncertaintyThinkLogitsProcessor( tokenizer=tokenizer, think_start_token=think_start_token, think_end_token=think_end_token, uncertainty_phrases=uncertainty_phrases, uncertainty_threshold=5.0, growth_strategy=\"linear\", max_think_tokens=1000, debug=False ) sampling_params = SamplingParams( n=5, temperature=0.7, max_tokens=5000, # top_p = 0.95, # top_k = 20, logits_processors=[uncertainty_processor] ) Budget Guidance 在Steering LLM Thinking with Budget Guidance 这篇文章中，提出了Budget Guidance的概念。\n借鉴了Diffusion Models中的Classifier Guidance思想，非强制模型输出特定内容或格式，而是“软性地”引导生成过程，使其自然地趋向于一个目标长度，通过 一个轻量级的预测器模块（Auxiliary Predictor），在LLM生成每个token时，预测剩余思考过程的长度分布\n基于贝叶斯定理，将有预算约束的生成问题 p(下一个token | 上下文, 剩余长度 \u003c= 预算) 转化为 p(下一个token | 上下文) * P(剩余长度 \u003c= 预算 | 上下文, 下一个token) 的形式\n$$ p(Y_t|X,Y_{",
   "wordCount" : "1491",
   "inLanguage": "en",
-  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2025-08-05T20:12:00+08:00",
+  "image": "http://localhost:1313/images/papermod-cover.png","datePublished": "2025-08-05T20:12:00+08:00",
   "dateModified": "2025-08-05T20:12:00+08:00",
   "author":{
     "@type": "Person",
@@ -153,14 +153,14 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/thinking-budget-0805/"
+    "@id": "http://localhost:1313/posts/thinking-budget-0805/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -182,7 +182,7 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -208,47 +208,47 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/posts/" title="AI">
+                <a href="http://localhost:1313/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                <a href="http://localhost:1313/musik/" title="Musik!">
                     <span>Musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
@@ -259,7 +259,7 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       拒绝“想太多”：大模型Thinking Budget控制方案解析
       <span class="entry-hint" title="Draft">
@@ -769,16 +769,16 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/llm/">LLM</a></li>
-      <li><a href="https://niraya666.github.io/tags/cot/">CoT</a></li>
+      <li><a href="http://localhost:1313/tags/llm/">LLM</a></li>
+      <li><a href="http://localhost:1313/tags/cot/">CoT</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
+  <a class="prev" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
     <span class="title">« Prev</span>
     <br>
     <span>RAG工具箱：ColBERT</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/eval_1/">
+  <a class="next" href="http://localhost:1313/posts/eval_1/">
     <span class="title">Next »</span>
     <br>
     <span>从下半场开始，对于评估的重新思考: 一些概念</span>
@@ -789,7 +789,7 @@ $$</p>
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on x"
-            href="https://x.com/intent/tweet/?text=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f&amp;hashtags=LLM%2cCoT">
+            href="https://x.com/intent/tweet/?text=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f&amp;hashtags=LLM%2cCoT">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -798,7 +798,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f&amp;title=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;summary=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f&amp;title=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;summary=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -807,7 +807,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f&title=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f&title=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -816,7 +816,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -825,7 +825,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on whatsapp"
-            href="https://api.whatsapp.com/send?text=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f">
+            href="https://api.whatsapp.com/send?text=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -834,7 +834,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on telegram"
-            href="https://telegram.me/share/url?text=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f">
+            href="https://telegram.me/share/url?text=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -843,7 +843,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 拒绝“想太多”：大模型Thinking Budget控制方案解析 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&u=https%3a%2f%2fniraya666.github.io%2fposts%2fthinking-budget-0805%2f">
+            href="https://news.ycombinator.com/submitlink?t=%e6%8b%92%e7%bb%9d%e2%80%9c%e6%83%b3%e5%a4%aa%e5%a4%9a%e2%80%9d%ef%bc%9a%e5%a4%a7%e6%a8%a1%e5%9e%8bThinking%20Budget%e6%8e%a7%e5%88%b6%e6%96%b9%e6%a1%88%e8%a7%a3%e6%9e%90&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fthinking-budget-0805%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -887,7 +887,7 @@ $$</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2025 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

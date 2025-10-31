@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>读书笔记 on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <link>http://localhost:1313/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 读书笔记 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 17 Nov 2024 19:41:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>读书笔记｜如何打造第二大脑</title>
-      <link>https://niraya666.github.io/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
+      <link>http://localhost:1313/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
       <pubDate>Sun, 17 Nov 2024 19:41:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</guid>
+      <guid>http://localhost:1313/essay/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</guid>
       <description>&lt;p&gt;去年疫情之后，我感觉记忆力明显下降，甚至一度担心会不可恢复。或许这也是年纪渐长的体现，只是我不愿意承认罢了。直到读到了一篇博文，了解了CODE信息管理框架，并因此接触到《第二大脑》这本书。虽然这本书并不长，但由于各种原因，今年我才真正开始阅读并实践。经过一年的探索，我决定整理这篇读书笔记，既是对书中理念的梳理，也是对个人实践的总结。&lt;/p&gt;
 &lt;p&gt;值得一提的是，随着近年来大语言模型（LLM）的迅速发展，AI辅助可能会带来更高效的信息管理方式。&lt;/p&gt;
 &lt;h2 id=&#34;信息过载的时代为什么需要笔记&#34;&gt;信息过载的时代，为什么需要笔记？&lt;/h2&gt;

@@ -2,22 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>月刊 on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/</link>
+    <link>http://localhost:1313/tags/%E6%9C%88%E5%88%8A/</link>
     <description>Recent content in 月刊 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 28 Sep 2025 20:00:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Oct 2025 20:25:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-10 月刊</title>
+      <link>http://localhost:1313/monthly/2025-10-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Fri, 31 Oct 2025 20:25:00 +0800</pubDate>
+      <guid>http://localhost:1313/monthly/2025-10-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/index/sora-2/&#34;&gt;OpenAI-Sora&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/skills&#34;&gt;Anthropic introduced Agent Skills&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/html/2510.18234v1&#34;&gt;DeepSeek-OCR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/MiniMaxAI/MiniMax-M2&#34;&gt;MiniMaxAI/MiniMax-M2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/zai-org/GLM-4.6&#34;&gt;zai-org/GLM-4.6&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/index/introducing-chatgpt-atlas/&#34;&gt;ChatGPT Atlas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;OCR-VL系列：
+&lt;a href=&#34;https://huggingface.co/PaddlePaddle/PaddleOCR-VL&#34;&gt;PaddlePaddle/PaddleOCR-VL&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/allenai/olmOCR-2-7B-1025&#34;&gt;allenai/olmOCR-2-7B-1025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/datalab-to/chandra&#34;&gt;datalab-to/chandra&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/lightonai/LightOnOCR-1B-1025&#34;&gt;lightonai/LightOnOCR-1B-1025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/nanonets/Nanonets-OCR2-3B&#34;&gt;nanonets/Nanonets-OCR2-3B&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/volcengine/MineContext&#34;&gt;MineContext&lt;/a&gt;： MineContext is your proactive context-aware AI partner（Context-Engineering+ChatGPT Pulse）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ruc-datalab/DeepAnalyze&#34;&gt;DeepAnalyze&lt;/a&gt;: agentic LLM for autonomous data science.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/SalesforceAIResearch/enterprise-deep-research&#34;&gt;Enterprise Deep Research&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Pokee-AI/PokeeResearchOSS&#34;&gt;PokeeResearch-7B Agent&lt;/a&gt;: Pokee Deep Research Model Open Source Repo&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;reasoningbank-scaling-agent-self-evolving-with-reasoning-memory&#34;&gt;&lt;strong&gt;ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2509.25140&#34;&gt;2509.25140&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ReasoningBank： 从成功与失败经验中提炼可迁移推理策略的记忆框架&lt;/p&gt;
+&lt;p&gt;不再存储原始轨迹或仅成功流程，而是提取&lt;strong&gt;结构化、可复用的推理单元&lt;/strong&gt;（title + description + content）&lt;/p&gt;
+&lt;p&gt;并提出Memory-aware Test-Time Scaling (MaTTS)，Test-Time Scaling 与记忆系统结合，更多探索 → 更丰富对比信号 → 更高质量记忆 → 更好指导未来探索， 采用两种扩展方式：Parallel Scaling（多轨迹对比，提取稳定策略）和Sequential Scaling （单轨迹内自我修正）&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-09 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-09-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-09-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Sun, 28 Sep 2025 20:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-09-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-09-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=99f0335c4ad9ff6153e517418d48535ab6d8afef&amp;from=research.latest-advancements-list&#34;&gt;&lt;strong&gt;Qwen3-VL&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=f0bbad0677edf58ba93d80a1e12ce458f7a80548&amp;from=research.research-list&#34;&gt;Qwen3Guard&lt;/a&gt;&lt;/p&gt;
@@ -49,9 +79,9 @@
     </item>
     <item>
       <title>2025-08 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-08-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Sat, 30 Aug 2025 15:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-08-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://nanobanana.ai/&#34;&gt;nano-banana&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/gpt-5/&#34;&gt;GPT-5&lt;/a&gt;&lt;/p&gt;
@@ -69,9 +99,9 @@
     </item>
     <item>
       <title>2025-07 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-07-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Wed, 30 Jul 2025 14:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-07-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen3-coder/&#34;&gt;Qwen3-Coder&lt;/a&gt;&lt;/li&gt;
@@ -119,9 +149,9 @@
     </item>
     <item>
       <title>2025-06 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-06-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Sun, 29 Jun 2025 14:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-06-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.minimaxi.com/news/minimaxm1&#34;&gt;MiniMax-M1&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen-vlo/&#34;&gt;Qwen VLo: 从“看懂”世界到“描绘”世界&lt;/a&gt;&lt;/p&gt;
@@ -162,9 +192,9 @@
     </item>
     <item>
       <title>2025-05 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-05-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Fri, 30 May 2025 14:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-05-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;h2 id=&#34;google-2025-io-大会&#34;&gt;Google 2025 I/O 大会：&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.google/technology/developers/google-io-2025-collection/&#34;&gt;I/O 2025&lt;/a&gt;&lt;/p&gt;
@@ -187,9 +217,9 @@
     </item>
     <item>
       <title>2025-04 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-04-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Mon, 28 Apr 2025 19:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-04-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;h2 id=&#34;openai-更新系列模型&#34;&gt;OpenAI 更新系列模型&lt;/h2&gt;
 &lt;p&gt;发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。&lt;/p&gt;
@@ -220,9 +250,9 @@
     </item>
     <item>
       <title>2025-03 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-03-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-03-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Sat, 29 Mar 2025 17:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-03-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-03-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;h2 id=&#34;deepseek-v3-0324&#34;&gt;DeepSeek V3 0324&lt;/h2&gt;
 &lt;p&gt;DeepSeek V3模型的更新版本；在多个基准测试中表现出色，整体表现接近领先的闭源模型如Claude Sonnet 3.5（但价格便宜很多）；针对多项能力做了针对性提升，如function calling，推理能力，前端代码能力等。更新版本在DeepSeek的官方网站、移动应用可体验。&lt;/p&gt;
@@ -250,9 +280,9 @@
     </item>
     <item>
       <title>2025-02 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-02-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Fri, 28 Feb 2025 11:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-02-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;h2 id=&#34;o3-mini&#34;&gt;o3-mini&lt;/h2&gt;
 &lt;p&gt;OpenAI o3-mini 是一款高效且成本优化的推理模型，专为科学（Science）、技术（Technology）、工程（Engineering）和数学（Mathematics）（STEM）领域优化。它在数学、编程和科学推理方面表现出色，能够在 AIME 2024 和 GPQA 等基准测试中达到或超过 OpenAI o1 的水平。o3-mini 具备三种推理模式（低、中、高），可根据需求在速度和准确性之间进行权衡。此外，它支持函数调用、结构化输出和视觉任务。相比 o1-mini，o3-mini 的响应速度提高了 24%，平均响应时间为 7.7 秒。它的上下文窗口为 200k tokens，输入成本为每百万 tokens 1.10 美元，输出成本为 4.40 美元。&lt;/p&gt;
@@ -271,9 +301,9 @@
     </item>
     <item>
       <title>2025-01 月刊</title>
-      <link>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</link>
+      <link>http://localhost:1313/monthly/2025-01-%E6%9C%88%E5%88%8A/</link>
       <pubDate>Mon, 27 Jan 2025 18:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</guid>
+      <guid>http://localhost:1313/monthly/2025-01-%E6%9C%88%E5%88%8A/</guid>
       <description>&lt;h1 id=&#34;值得关注的新模型&#34;&gt;值得关注的新模型&lt;/h1&gt;
 &lt;h2 id=&#34;deepseek-r1&#34;&gt;Deepseek R1&lt;/h2&gt;
 &lt;p&gt;DeepSeek R1通过&lt;strong&gt;纯强化学习（RL）框架&lt;/strong&gt;实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时&lt;strong&gt;全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B）&lt;/strong&gt;，使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出&lt;strong&gt;自发反思与多步骤验证能力&lt;/strong&gt;，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。&lt;/p&gt;
@@ -299,9 +329,9 @@
     </item>
     <item>
       <title>关于月刊的诞生</title>
-      <link>https://niraya666.github.io/monthly/readme/</link>
+      <link>http://localhost:1313/monthly/readme/</link>
       <pubDate>Thu, 09 Jan 2025 17:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/readme/</guid>
+      <guid>http://localhost:1313/monthly/readme/</guid>
       <description>&lt;p&gt;这份月刊最初只是我的个人知识管理实验。过去一年里，我逐渐养成了每月底整理收藏夹的习惯——清理read-it-later 软件中里积压的链接，归档散落在各个平台的技术文章，把零碎的信息重新分类到Notion笔记中。&lt;/p&gt;
 &lt;p&gt;面对每天涌现的新模型、论文和开源项目，这种月度整理成了对抗信息焦虑的锚点。与其被FOMO（错失恐惧症）驱使着追逐每个热点，不如让内容先经历时间筛选。留在月刊里的，通常是经过两周沉淀后仍值得反复阅读的内容。&lt;/p&gt;
 &lt;p&gt;有三个主要原因推动我决定公开这些笔记：&lt;/p&gt;

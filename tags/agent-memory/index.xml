@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent-Memory on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/agent-memory/</link>
+    <link>http://localhost:1313/tags/agent-memory/</link>
     <description>Recent content in Agent-Memory on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 20 May 2025 18:44:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/agent-memory/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/agent-memory/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初探 Mem0</title>
-      <link>https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/</link>
+      <link>http://localhost:1313/posts/%E5%88%9D%E6%8E%A2mem0/</link>
       <pubDate>Tue, 20 May 2025 18:44:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/</guid>
+      <guid>http://localhost:1313/posts/%E5%88%9D%E6%8E%A2mem0/</guid>
       <description>&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
 &lt;p&gt;本文是对于&lt;a href=&#34;https://github.com/mem0ai/mem0&#34;&gt;Mem0&lt;/a&gt;的论文解读和使用记录；&lt;/p&gt;
 &lt;p&gt;Mem0 是一款面向LLM应用的memory layer框架，同时是开源的。虽然它最早在 2024 年中旬亮相，起初的框架设计并没有太多亮眼之处，不过在最近，发布了一次比较重大的更新（基本上是重构了）采用了基于 AI-agent 的对话记忆提取、更新和查询等机制，实际体验下来，算是目前为止比较好用的了。&lt;/p&gt;
@@ -33,7 +33,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;mem0实现&#34;&gt;&lt;strong&gt;Mem0实现&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%88%9d%e6%8e%a2Mem0-assets/Pasted%202025-05-20-16-29-02.png&#34; alt=&#34;Pasted 2025-05-20-16-29-02.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%88%9d%e6%8e%a2Mem0-assets/Pasted%202025-05-20-16-29-02.png&#34; alt=&#34;Pasted 2025-05-20-16-29-02.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -80,10 +80,10 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;具体算法&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%88%9d%e6%8e%a2Mem0-assets/%e6%88%aa%e5%b1%8f2025-05-10%20%e4%b8%8b%e5%8d%883.13.17.png&#34; alt=&#34;截屏2025-05-10 下午3.13.17.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%88%9d%e6%8e%a2Mem0-assets/%e6%88%aa%e5%b1%8f2025-05-10%20%e4%b8%8b%e5%8d%883.13.17.png&#34; alt=&#34;截屏2025-05-10 下午3.13.17.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;h3 id=&#34;mem0g实现&#34;&gt;&lt;strong&gt;Mem0g实现&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%88%9d%e6%8e%a2Mem0-assets/Pasted%202025-05-20-16-31-40.png&#34; alt=&#34;Pasted 2025-05-20-16-31-40.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/%e5%88%9d%e6%8e%a2Mem0-assets/Pasted%202025-05-20-16-31-40.png&#34; alt=&#34;Pasted 2025-05-20-16-31-40.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;以图$G = ( V , E , L )$ 建模记忆，(实体、关系、和语义label)&lt;/p&gt;
 &lt;p&gt;每个entity（node）包含三部分信息：&lt;/p&gt;
@@ -102,9 +102,9 @@
     </item>
     <item>
       <title>LangMem: 一些学习笔记</title>
-      <link>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:1313/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Thu, 10 Apr 2025 10:44:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://localhost:1313/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。&lt;/p&gt;
 &lt;p&gt;一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。&lt;/p&gt;
 &lt;p&gt;总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。&lt;/p&gt;
@@ -113,21 +113,21 @@
 &lt;p&gt;在LangMem所设计的memory体系中， 定义了几种不同的&lt;strong&gt;Typical Storage Pattern&lt;/strong&gt;：&lt;strong&gt;Collection 、 Profiles和Procedural&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;collection&#34;&gt;Collection&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Collection&lt;/strong&gt; 主要用于存储&lt;strong&gt;不受限制的知识&lt;/strong&gt;，适用于需要长期积累和检索的信息。每条记忆被存储为&lt;strong&gt;独立的文档或记录&lt;/strong&gt;，可以在需要时进行搜索和回忆；&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：记录用户的长期知识，例如用户的兴趣、职业背景、技能等&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;更新方式&lt;/strong&gt;：需要&lt;strong&gt;合并新信息&lt;/strong&gt;，避免重复或冲突&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;检索方式&lt;/strong&gt;：通过&lt;strong&gt;语义搜索&lt;/strong&gt;或&lt;strong&gt;关键词匹配&lt;/strong&gt;来查找，结合&lt;strong&gt;记忆的重要性&lt;/strong&gt;和&lt;strong&gt;使用频率&lt;/strong&gt;来优化检索结果&lt;/p&gt;
 &lt;h3 id=&#34;profiles&#34;&gt;&lt;strong&gt;Profiles&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;存储&lt;strong&gt;结构化的用户信息&lt;/strong&gt;，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储&lt;strong&gt;最新的状态&lt;/strong&gt;，而不是累积所有历史信息。Profile 作为&lt;strong&gt;单一文档&lt;/strong&gt;存储，每次更新时都会&lt;strong&gt;覆盖旧数据&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%201.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31 1.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%201.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31 1.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：适用于需要&lt;strong&gt;快速访问当前状态&lt;/strong&gt;的应用，例如个性化推荐、用户设置；适用于&lt;strong&gt;需要严格定义数据结构&lt;/strong&gt;的场景，例如用户档案、系统配置；&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;更新方式：不会创建新记录&lt;/strong&gt;，而是直接&lt;strong&gt;更新现有的 Profile；&lt;strong&gt;适用于&lt;/strong&gt;只关心最新状态&lt;/strong&gt;的应用，而不是历史；&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;检索方式&lt;/strong&gt;：直接查找用户的 Profile&lt;/p&gt;
 &lt;h3 id=&#34;procedural-memory&#34;&gt;&lt;strong&gt;Procedural Memory&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在&lt;strong&gt;system prompts 和行为优化&lt;/strong&gt;上&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%202.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31 2.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/LangMem!%20%e4%b8%80%e4%ba%9b%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-assets/Pasted%202025-03-25-14-52-31%202.png&#34; alt=&#34;Pasted 2025-03-25-14-52-31 2.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：需要长期优化 Agent行为和交互方式，少走弯路&lt;/p&gt;
 &lt;p&gt;总结&lt;/p&gt;

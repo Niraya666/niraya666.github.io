@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>LLM on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/llm/</link>
+    <link>http://localhost:1313/tags/llm/</link>
     <description>Recent content in LLM on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 05 Aug 2025 20:12:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/llm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>拒绝“想太多”：大模型Thinking Budget控制方案解析</title>
-      <link>https://niraya666.github.io/posts/thinking-budget-0805/</link>
+      <link>http://localhost:1313/posts/thinking-budget-0805/</link>
       <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/thinking-budget-0805/</guid>
+      <guid>http://localhost:1313/posts/thinking-budget-0805/</guid>
       <description>&lt;h2 id=&#34;为什么需要thinking-budget&#34;&gt;为什么需要thinking-budget&lt;/h2&gt;
 &lt;p&gt;你是否也曾见过一个LLM在深度思考中逐渐陷入了自我怀疑的无限循环中呢？&lt;/p&gt;
 &lt;p&gt;虽然CoT一定程度上提升模型回答的准确率，reasoning-mode也逐渐成为各大开源模型中的必需品。但新的问题也随之而来：失控的思考。LLM常常会表现出overthinking的问题，大量冗余猜测，和自我否定，无一不增加token预算，这些问题在小参数量的、采用蒸馏获得的reasoning模型中尤为常见。&lt;/p&gt;
@@ -36,9 +36,9 @@
     </item>
     <item>
       <title>LLM 输出限制：Structured Outputs、受限编码和提示词工程</title>
-      <link>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
       <pubDate>Wed, 21 Aug 2024 14:49:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
       <description>&lt;p&gt;在使用大型语言模型（LLM）时，我们常常面临一个挑战：如何从模型输出中准确提取自己所需的信息。例如，当我们希望模型输出 JSON 格式的数据时，由于模型生成的内容并不总是稳定，可能需要额外编写大量的正则表达式来匹配并提取其中的有效信息。然而，由于 LLM 的能力，导致其输出结构并不永远可靠。&lt;/p&gt;
 &lt;p&gt;现阶段， 让LLM按要求生成特定格式文本的主要方法有几种种：&lt;/p&gt;
 &lt;ul&gt;

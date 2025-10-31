@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>RL on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/rl/</link>
+    <link>http://localhost:1313/tags/rl/</link>
     <description>Recent content in RL on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/images/papermod-cover.png</url>
-      <link>https://niraya666.github.io/images/papermod-cover.png</link>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 23 Jan 2025 15:21:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/rl/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/rl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RLHF 之路：强化学习复习之上篇</title>
-      <link>https://niraya666.github.io/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</link>
+      <link>http://localhost:1313/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</link>
       <pubDate>Thu, 23 Jan 2025 15:21:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</guid>
+      <guid>http://localhost:1313/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</guid>
       <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;决定开启一个新系列，是时候系统性地学习一下 Alignment、RLHF 等相关内容了。&lt;/p&gt;
 &lt;p&gt;学习过程中，经常会在一些公式推导上卡住，可能是因为之前的基础不够扎实，加上学过的内容遗忘较多。
