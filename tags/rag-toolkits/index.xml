@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>RAG-Toolkits on LZY Blog</title>
-    <link>http://localhost:1313/tags/rag-toolkits/</link>
+    <link>https://niraya666.github.io/tags/rag-toolkits/</link>
     <description>Recent content in RAG-Toolkits on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 22 Sep 2025 18:56:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</title>
-      <link>http://localhost:1313/posts/rag-toolkits-copali/</link>
+      <link>https://niraya666.github.io/posts/rag-toolkits-copali/</link>
       <pubDate>Mon, 22 Sep 2025 18:56:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag-toolkits-copali/</guid>
+      <guid>https://niraya666.github.io/posts/rag-toolkits-copali/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;现阶段的RAG是个缝合怪。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -65,7 +65,7 @@
 &lt;p&gt;&lt;strong&gt;查询侧（检索）&lt;/strong&gt;：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的&lt;strong&gt;每个token&lt;/strong&gt;生成一个向量&lt;/p&gt;
 &lt;p&gt;在检索时，使用类似ColBERT的&lt;strong&gt;MaxSim&lt;/strong&gt;操作来计算查询与文档页面的相关性分数&lt;/p&gt;
 &lt;p&gt;训练阶段，在&lt;a href=&#34;https://huggingface.co/datasets/vidore/colpali_train_set&#34;&gt;vidore/colpali_train_set&lt;/a&gt; 118K个query-页面对上做对比学习获得。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/Copali-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Copali-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为&lt;a href=&#34;https://huggingface.co/collections/vidore/vidore-benchmark-667173f98e70a1c0fa4db00d&#34;&gt;ViDoRe&lt;/a&gt; (Visual Document Retrieval Benchmark) 的综合性评测基准。&lt;/p&gt;
 &lt;p&gt;除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的&lt;a href=&#34;https://huggingface.co/docs/transformers/model_doc/colqwen2&#34;&gt;ColQwen2&lt;/a&gt;模型&lt;/p&gt;
@@ -145,9 +145,9 @@
     </item>
     <item>
       <title>RAG工具箱：ColBERT</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
       <pubDate>Tue, 12 Aug 2025 20:56:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -159,7 +159,7 @@
 &lt;p&gt;（可能在本文中会将ColBERT/late-interaction/multi-vector-model 混为一谈，毕竟只是实例-机制-类别 的关系 ）&lt;/p&gt;
 &lt;h2 id=&#34;不同的交互层级&#34;&gt;不同的“交互”层级&lt;/h2&gt;
 &lt;p&gt;（借用ColBERT论文中的插图）&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/rag_toolkits/rag_retrieval_colbert.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/rag_toolkits/rag_retrieval_colbert.png&#34; alt=&#34;image.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;想要理解late-interaction，需要先理解过去的不同“交互”形式；&lt;/p&gt;
 &lt;ol&gt;
@@ -182,9 +182,9 @@
     </item>
     <item>
       <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
       <pubDate>Wed, 12 Mar 2025 16:44:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/#smoldocling&#34;&gt;Updated on 2025-03-29: Add SmolDocling &amp;amp; VLM Summary&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;技术迭代速度之快令人惊叹，前作 &lt;a href=&#34;https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/&#34;&gt;RAG工具箱：文档解析与表格处理&lt;/a&gt; 在短短数月内已显现出代际差距，尽管前作也仅仅只是抛砖引玉式地讨论了pdf的解析方案，不过在新技术的面前，既有的复杂解析架构逐渐失去存在价值，也被端到端范式所取代。在笔者看来，基于多模态大模型的端到端文档解析方案，将成为最优解。&lt;/p&gt;
 &lt;p&gt;本文将探讨文档解析的终极形态——基于多模态大模型（VLM）的解析技术，包括Mistral-OCR、OlmOCR等前沿工具的实现与实践，并展望该领域的技术发展趋势，和对于RAG的影响。&lt;/p&gt;
@@ -271,9 +271,9 @@
     </item>
     <item>
       <title>RAG工具箱：RAG Tutorial for Beginner</title>
-      <link>http://localhost:1313/posts/rag-tutorial-for-beginner/</link>
+      <link>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</link>
       <pubDate>Tue, 11 Mar 2025 19:24:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag-tutorial-for-beginner/</guid>
+      <guid>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</guid>
       <description>&lt;p&gt;一些适合入门的RAG材料&lt;/p&gt;
 &lt;h2 id=&#34;原理科普&#34;&gt;原理、科普&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.promptingguide.ai/research/rag&#34;&gt;Retrieval Augmented Generation (RAG) for LLMs&lt;/a&gt;&lt;/p&gt;
@@ -337,9 +337,9 @@
     </item>
     <item>
       <title>RAG工具箱：Query Enhancement</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
       <pubDate>Thu, 31 Oct 2024 16:04:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
       <description>&lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
 &lt;p&gt;首先，从最简单的RAG（Retrieval-Augmented Generation）谈起。&lt;/p&gt;
 &lt;p&gt;RAG结合了信息检索与生成模型，先通过用户的原始问题query 在知识库中检索与相关的文档，再利用生成模型（如ChatGPT）生成回答。最简单的RAG版本通常被称为Naive-RAG，虽然Naive-RAG能够处理一些简单的问题，但在真实场景下，用户提出的问题往往更加复杂多样，远远超出系统最初设计的预期范围。&lt;/p&gt;
@@ -355,7 +355,7 @@
 &lt;p&gt;&lt;strong&gt;复杂多层次问题&lt;/strong&gt;：某些问题本身复杂，包含多个子问题或需要推理、逻辑分析。Naive-RAG依赖简单的关键词匹配或语义匹配，无法很好地处理这类复杂的需求。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;面对这些挑战，Naive-RAG的局限性变得明显：仅仅依靠用户的原始query无法应对多样化的提问场景。那么，如何提升RAG系统的检索能力，增强对复杂问题的处理呢？这时就需要引入&lt;strong&gt;Query-Enhancement&lt;/strong&gt;技术。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Query-Enhancement&lt;/strong&gt;，顾名思义，是对用户的原始query进行增强处理。它的核心思想是：不要直接使用用户的原始query进行相关文档的检索，而是通过某种技术手段对query进行改写、扩展或优化，从而生成一个更适合检索的query。这种技术在不同场景下有不同的命名，如&lt;strong&gt;query rewrite&lt;/strong&gt;或&lt;strong&gt;query reformulation&lt;/strong&gt;，但核心目标都是一致的——根据用户的初始输入，生成一个更符合检索需求、更能提升查询准确性的新query。&lt;/p&gt;
@@ -380,7 +380,7 @@
 &lt;/ul&gt;
 &lt;p&gt;输入文本与真正需要检索的知识之间不可避免地存在差距。这种差距限制了检索性能，增加了对检索能力增强和提示工程的依赖。&lt;/p&gt;
 &lt;p&gt;为了解决这些问题，检索器之前增加了一步对输入进行改写的过程，填补给定输入与检索需求之间的差距。这一步利用了LLM本身的能力对原始查询进行有针对性的改写。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image%201.png&#34; alt=&#34;image 1.png&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9aQuery%20Enhancement-assets/image%201.png&#34; alt=&#34;image 1.png&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;比如，来自&lt;a href=&#34;https://github.com/NirDiamant/RAG_Techniques/blob/main/all_rag_techniques_runnable_scripts/query_transformations.py&#34;&gt;RAG_Techniques&lt;/a&gt; 的这段prompt：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;query_rewrite_template&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;You are an AI assistant tasked with reformulating user queries to improve retrieval in a RAG system. 
@@ -393,9 +393,9 @@
     </item>
     <item>
       <title>RAG工具箱：检索</title>
-      <link>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</link>
+      <link>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</link>
       <pubDate>Thu, 25 Jul 2024 17:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;If you want to make a good RAG tool that uses your documentation, you should start by making a search engine over those documents that would be good enough for a human to use themselves. This is likely something your organization has considered before, and if it doesn’t exist it’s because building a good search engine has traditionally been a significant undertaking.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -403,9 +403,9 @@
     </item>
     <item>
       <title>RAG工具箱：文本分块</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
       <pubDate>Wed, 15 May 2024 16:11:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
       <description>&lt;h2 id=&#34;为什么要进行文本分块&#34;&gt;&lt;strong&gt;为什么要进行文本分块？&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。&lt;/p&gt;
 &lt;h2 id=&#34;如何进行文本分块&#34;&gt;&lt;strong&gt;如何进行文本分块&lt;/strong&gt;&lt;/h2&gt;
@@ -460,10 +460,10 @@
     </item>
     <item>
       <title>RAG工具箱：文档解析与表格处理</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
       <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/post-cover/rag_toolkits_2.JPG&#34; alt=&#34;image&#34;  /&gt;
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/post-cover/rag_toolkits_2.JPG&#34; alt=&#34;image&#34;  /&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;引言&#34;&gt;&lt;strong&gt;引言&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。&lt;/p&gt;
@@ -622,13 +622,13 @@
     </item>
     <item>
       <title>RAG工具箱：评估RAG系统的方法论</title>
-      <link>http://localhost:1313/posts/rag_toolkit_eval/</link>
+      <link>https://niraya666.github.io/posts/rag_toolkit_eval/</link>
       <pubDate>Mon, 08 Apr 2024 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag_toolkit_eval/</guid>
+      <guid>https://niraya666.github.io/posts/rag_toolkit_eval/</guid>
       <description>&lt;h2 id=&#34;写在最前面&#34;&gt;写在最前面&lt;/h2&gt;
 &lt;p&gt;在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。&lt;/p&gt;
 &lt;p&gt;此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/rag_toolkits/1_1.png&#34; alt=&#34;from openAI devday&#34;  /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/rag_toolkits/1_1.png&#34; alt=&#34;from openAI devday&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;在我们深入探索RAG系统提升的各种方法之前，有一个基本问题需要解决：我们如何准确地评估一个RAG系统的性能？这就像是在机器学习或深度学习任务中没有给定的测试集和评价标准，我们难以判断实验的成功与否。&lt;/p&gt;
 &lt;p&gt;因此，本系列的第一篇文章将聚焦于介绍RAG系统的评价方法、相关指标以及测试框架，为我们接下来的探索设定明确的标准和目标。&lt;/p&gt;

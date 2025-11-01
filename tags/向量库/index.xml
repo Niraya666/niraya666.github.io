@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>向量库 on LZY Blog</title>
-    <link>http://localhost:1313/tags/%E5%90%91%E9%87%8F%E5%BA%93/</link>
+    <link>https://niraya666.github.io/tags/%E5%90%91%E9%87%8F%E5%BA%93/</link>
     <description>Recent content in 向量库 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 25 Dec 2024 15:49:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%90%91%E9%87%8F%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/%E5%90%91%E9%87%8F%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Milvus-2.5版本：学习笔记和备忘录</title>
-      <link>http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 25 Dec 2024 15:49:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</guid>
       <description>&lt;p&gt;几年前初识 Milvus 的契机，来源于开发一个图像相似检索的应用，当时市面上向量库的可选择项并不像现在这么多，且功能也仅限于单纯的向量检索。&lt;/p&gt;
 &lt;p&gt;鉴于最近有业务更新的需要，和打算重构一下之前做的RAG项目，再次有机会深入学习 Milvus，探索其在新功能和实际应用上的更多可能性。&lt;/p&gt;
 &lt;p&gt;本篇笔记，仅作为学习笔记，更多是记录一些 Milvus从2.0 到2.5 的变化， 和一些动手实践的记录，便于之后的查阅。&lt;/p&gt;

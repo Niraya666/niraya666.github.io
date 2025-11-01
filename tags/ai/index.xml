@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI on LZY Blog</title>
-    <link>http://localhost:1313/tags/ai/</link>
+    <link>https://niraya666.github.io/tags/ai/</link>
     <description>Recent content in AI on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 27 Jul 2025 15:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>写在WAIC2025门票售罄之后</title>
-      <link>http://localhost:1313/essay/waic2025/</link>
+      <link>https://niraya666.github.io/essay/waic2025/</link>
       <pubDate>Sun, 27 Jul 2025 15:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/essay/waic2025/</guid>
+      <guid>https://niraya666.github.io/essay/waic2025/</guid>
       <description>&lt;p&gt;一年一度的WAIC&lt;/p&gt;
 &lt;p&gt;依旧还是那个WAIC&lt;/p&gt;
 &lt;p&gt;换汤不换药般的机器人+雷同的LLMs应用&lt;/p&gt;

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent框架 on LZY Blog</title>
-    <link>http://localhost:1313/tags/agent%E6%A1%86%E6%9E%B6/</link>
+    <link>https://niraya666.github.io/tags/agent%E6%A1%86%E6%9E%B6/</link>
     <description>Recent content in Agent框架 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 11 Nov 2024 11:10:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/agent%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/agent%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Agent 学习笔记：框架 ｜ openAI Swarm</title>
-      <link>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
+      <link>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
       <pubDate>Mon, 11 Nov 2024 11:10:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
+      <guid>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
       <description>&lt;h2 id=&#34;开篇&#34;&gt;开篇&lt;/h2&gt;
 &lt;p&gt;“CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。&lt;/p&gt;
 &lt;h2 id=&#34;routines-and-handoffs&#34;&gt;Routines and Handoffs&lt;/h2&gt;

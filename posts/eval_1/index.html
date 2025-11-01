@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -28,16 +28,16 @@
 
 以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。">
 <meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="http://localhost:1313/posts/eval_1/">
+<link rel="canonical" href="https://niraya666.github.io/posts/eval_1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/eval_1/">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/eval_1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -96,14 +96,14 @@
 
 以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/eval_1/" />
-<meta property="og:image" content="http://localhost:1313/images/papermod-cover.png" />
+<meta property="og:url" content="https://niraya666.github.io/posts/eval_1/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-06-11T15:04:00+08:00" />
 <meta property="article:modified_time" content="2025-06-11T15:04:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="http://localhost:1313/images/papermod-cover.png" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
 <meta name="twitter:title" content="从下半场开始，对于评估的重新思考: 一些概念"/>
 <meta name="twitter:description" content="引子
 前一段时间，OpenAI 研究员姚顺雨在一篇广受关注的文章《The Second Half》中提出：
@@ -136,13 +136,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "http://localhost:1313/posts/"
+      "item": "https://niraya666.github.io/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "从下半场开始，对于评估的重新思考: 一些概念",
-      "item": "http://localhost:1313/posts/eval_1/"
+      "item": "https://niraya666.github.io/posts/eval_1/"
     }
   ]
 }
@@ -160,7 +160,7 @@
   "articleBody": "引子 前一段时间，OpenAI 研究员姚顺雨在一篇广受关注的文章《The Second Half》中提出：\n“I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.”\n指出，AI 发展的“下半场”已经到来，而其中一个核心议题，就是对 evaluation的重新思考。我们需要的不再是单纯地创造更难的 benchmark，然后在这些 benchmark 上“刷分”，而是要更加关注评测的实用性、创新性，以及其与真实世界的契合度。\n过去，我们往往过于关注模型本身、训练方法以及各种fancy的技术手段，却忽略了模型与真实世界的交互和落地应用。而 evaluation，正是连接模型能力与实际需求的关键环节。\n本文最初的出发点，是梳理 Hugging Face Evaluation 系列文章中的一些要点。需要说明的是，HF 的文章主要聚焦于如何评测LLM的能力，考虑到其成文的时间，其中部分内容在当前 LLM 能力飞速提升的背景下，显得有些滞后。但这也为我们提供了一个契机，从后来者的视角重新思考 evaluation 的意义，并尝试将这些理念应用到更加复杂和多样化的 AI 系统中，如RAG和AI-agent。\n在机器学习和深度学习的流程中，Evaluation是衡量模型性能的核心环节。它贯穿于模型开发的始终：从训练阶段的实时监控，到上线前的最终验证，再到部署后的持续追踪。\n简单来说，评估的目标是回答两个问题：\n模型是否有效？（性能指标）\n模型是否可靠？（鲁棒性、泛化能力）\n以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。\n那么，这套流程中，也存在一定的局限性：\n训练数据与真实场景的数据可能存在显著差异，数据分布也有不同。例如，训练集中仅包含清晰的猫狗照片，而真实场景中可能包含模糊图像、多动物混合图像，甚至完全无关的干扰样本。\n单一指标（如Accuracy）可能无法全面反映模型的实际能力。在一些高风险场景下，如医疗诊断中， 对于漏诊和误诊的权衡，影响着对于Recall和Precision的关注。\n模型上线后，如何持续监控其性能？如何应对数据漂移（Data Drift）？传统评估通常基于固定测试集，但现实世界的数据是动态变化的。\n同时，面对愈加复杂的模型和场景，传统评估方法已难以满足复杂场景的需求：面对不同于判别模型（Discriminative model），生成式模型（generative model）的评价明显更难，不存在在统一标准的metrics，同时也带来了更多维度的评价方向。当然，还有成本的提升。\nHuman Evaluation 人类对复杂语义的理解能力与价值判断力，这让Human Evaluation 始终占据不可替代的地位。但这意味着高昂的成本。\n系统化的Human Evaluation，根据评估资源完备性，可分为：\n当缺乏现成数据集时，需提供完整的任务说明与结构化评分指南。例如在对话系统评估中，需明确定义\"连贯性\"、“相关性”、“安全性\"等维度的评分标准，并要求标注员提供评分理由。\n已有数据集，将模型输入，输出结果，和打分指南一并提供给标注员评估\n既有数据集也有评分结果，由人工标注员通过错误注释的方式对结果进行审查\n对于已上线的服务， 采用人工 A/B test 以及人工反馈\n备注：错误注释（error annotation）\nLets use error annotations to evaluate systems!\n让有领域知识的专家对生成文本中的错误进行标注（annotation），通常会给每个错误分配一个类别（如准确性、流畅性等），有时还会标注严重程度。这种方法介于任务型评估和打分/排序之间，结果比打分更有意义，但比任务型评估更便宜、更易操作。\n在研发初期或资源受限场景下，可采用以下轻量级方案：\nVibes 检查： 大致的手动的评估，用于把握整体效果，但较为主观\nArenas：竞技场模式（如 Chatbot Arena），由用户进行投票评分，最终汇总得到Elo分数\n一些技巧和要点：\n选择合适的标注员，如果可能的话提供经济激励\n认知负担最小化，将标注员的认知负担降低到最低有助于确保他们保持专注，避免引入不必要信息\n测试检查，并迭代：先确保在少量样本上测试通过，在扩大标注范围\n明确的标注准则和说明\n标注工具：\nArgilla\nLabel Studio\ndoccano\nconfident-ai\nAutomatic benchmarks 基本概念 定义：Automatic Benchmarks是用来评估语言模型在不同任务和能力上的标准化工具。\n其本质是构建一个可重复、可验证的实验环境，使不同模型、算法或超参数组合能够在统一维度下进行横向对比。\n为什么需要Automatic benchmarks：\n在研发过程中，往往需要快速确定优化方向，如如何选择模型， 如何选择和修改超参数，这一过程中需要大量的实验，使用人进行标注和评分显然非常不现实——过长的评估周期且人工评估的主观差异会成为干扰项，于此同时还不具备可复现性。\n这时候我们便需要Automatic Benchmarks：自动化的、标准化、可复现、可量化的评估测试。\n值得注意的是，尽管Automatic Benchmarks为模型研发提供了重要参考，但需明确其定位——它只是全面评估体系的基础。基准测试的优异表现并不能等同于实际应用效果，因为其只是尽可能模仿实际情况设计的。\n对于Automatic Benchmarks，其核心有两点：数据集和评估指标。\n如何构建数据集 数据集的具体形式应根据下游任务的需求进行设计。以评估大语言模型（LLM）的基础能力为例，数据集通常包含多个样本，每个样本包括模型的输入，有时还会配有参考答案（即“gold”），用于与模型输出进行对比。数据集应尽量模拟实际测试场景，样本数量不必过多，但要确保能够覆盖绝大多数常见情况以及一些极端情况。可以将数据集理解为代码的单元测试用例，重点在于覆盖面而非数量。\n如果采用现成的数据集，建议通过随机抽取一定数量的样本（如50个）进行人工检查，评估其质量和任务相关性。同时，数据集的整体质量不仅与标注人员的专业水平密切相关，也与原始语料的来源有关。例如，学术论文的数据质量通常高于网络爬虫获取的数据。对于合成数据集，建议优先使用能力更强、更新的模型和数据集进行生成。\n当不存在可直接使用的数据集时，需要根据具体场景自行设计数据集。常见的数据集构建方法包括：整合不同数据源的数据、人工标注以及基于LLM或规则的方法进行数据合成。\n在构建数据集时，还需注意数据污染（Data contamination）等问题。此外，对于较为复杂且难以拆分为明确子任务的任务，模型的表现可能会低于预期，因此在设计数据集时应充分考虑任务的复杂性和可操作性。\n如何选择指标 指标选择本质上是将业务目标转化为可量化问题的建模过程。不同任务类型需要匹配差异化的评估指标。\n如分类任务中 Accuracy 之类的基础指标常见，但在医疗诊断等类别不平衡场景中易产生误导，这类场景可能对于Recall额外关注，需要根据场景选择合适指标，如F1-Score， MCC（Matthews Correlation Coefficient），或是配合ROC曲线。\n如果是具体的任务执行，或者是存在标准答案的，如数学问题，推理问题，这些评估还是较为好做的， 如Pass@K指标衡量在K次采样中至少一次成功。\n相比之下， LLM生成回答的评估有一定挑战。Exact Match（EM）适用于数学证明等严格答案场景，但对开放域问答存在局限性；n-gram匹配，如BLEU、ROUGE关注词汇重叠度，但忽略了语义上的关系；采用embedding方式计算相似度，如BERTScore，但额外增加了新的因素，并且语义相似度不是一个决定数值而是相对值，比较上需要注意；Perplexity能够一定程度上反应LLM对于输出的不确定性，但也不是特别好用；这一类型tasks评估一般采取LLM-as-judge进行评估。\n不过随着模型能力增强，评估准确性不在是唯一的方向，也需要逐渐将安全性，可信度等纳入考虑范围。由于LLM存在一定的幻觉，Vectara 所采用的Hallucinations测量方式值得参考；\n评估时需要关注的点 prompt选择对结果有影响：一个合理的 prompt 通常应包含以下要素：任务描述：明确告诉模型需要完成什么任务，避免歧义；足够的上下文：为模型提供必要的背景信息，帮助其更好地理解问题；具体问题：清晰、具体地提出待解决的问题，减少模型的猜测空间。\n多次实验以减少误差：不同的 prompt 设计可能导致模型输出质量和风格的巨大差异，可以针对同一任务，设计多种不同风格或结构的 prompt，分别进行多轮测试；或在相同 prompt 下，调整模型的 temperature多次实验；\nStructure-output ：结构化输出有助于提高评测的可控性，减少模型生成无关内容。但可能会影响模型输出的概率分布。\nModel-as-a-Judge 基本概念 Model-as-a-Judge 是指利用LLM或专门训练的评估模型，对其他模型的输出进行自动化打分和评价。与传统的人工评测或基于规则的自动指标不同，Judge Model 本质上是一个“打分模型”，能够理解复杂的语言现象，并根据预设标准对生成内容进行多维度评估。\nJudge Model 被主要应用在以下几个常见场景中：\n生成文本打分：直接对模型生成的文本进行质量、流畅性、相关性等方面的评分\n成对比较：给定两段或多段文本，Judge Model 判断哪一段更符合要求\n文本相似度计算：评估生成文本与参考答案之间的语义相似度\n（更多）\n相比大规模人工标注，Judge Model 能够大幅降低评测成本，提升评测效率，尤其适合需要频繁迭代和大规模评测的场景。\n不过需要注意的：\nJudge Model 可能继承或放大训练数据中的偏见，且这些偏差往往难以被直接发现和纠正\n在特定专业领域（如医学、法律等），Judge Model 的评测能力可能不足，难以准确把握专业知识和细节\n不同 Judge Model 之间的评判标准可能不一致，评测结果的可复现性公信力仅供参考\n随着大语言模型能力的不断提升，Judge Model 的应用范围也在持续扩展。未来，Judge Model 有望胜任更复杂的评测任务。\nprompt设计 prompt设计原则\n任务描述清晰\n评估标准精细，评分细则详细 （You should evaluate property Z on a scale of 1 - 5, where 1 means ...）\n加入一些“推理”过程 (To judge this task, you must first make sure to read sample Y carefully to identify ..., then ...)\n对输出格式明确要求 (Your answer should be provided in JSON, with the following format {\"Score\": Your score, \"Reasoning\": The reasoning which led you to this score})\n一些技巧：\n成对比较比直接输出评分，效果更好更robust\n输出分数建议使用整数，并解释每个分值的代表含义\n针对单一能力设计专用 Prompt\n提升评估准确性的方法：\nfew-shot example\n引用参考\nCoT\n多轮分析\n多个模型结果汇总（多个模型，或者一个模型采用不同温度进行多次实验）\n补充：\n社会学中的问卷设计原则 问卷设计通常遵循以下原则：\n中立性原则：避免引导性问题，不预设立场或暗示\"正确\"答案\n语言包容性：使用无歧视、包容各群体的词汇和表述方式\n平衡表达：确保问题和选项呈现多元观点，不偏向某一立场\n结构清晰：问题逻辑清晰，避免复杂或模糊的表述\n避免刻板印象：警惕并消除可能反映社会刻板印象的措辞\n考虑多样性：设计时考虑到不同文化背景、性别、年龄等群体的差异\nLLM选择和注意项 可以直接使用LLM，也可以使用经过偏好数据集微调后的评估模型如：\nflowaicom/Flow-Judge-v0.1\nUnbabel/M-Prometheus-14B\nBAAI/JudgeLM-7B-v1.0\n也可根据自己的场景收集偏好数据，自行微调评估模型，数据集格式可以参考：\nprometheus-eval/Preference-Collection\nprometheus-eval/Feedback-Collection\nJudge LLM的使用注意项\nLLM存在幻觉， 并且很难识别幻觉（特别是部分正确少部分错误的内容），还是需要一定的人工检查\n缺乏一致性（相同条件下得出结果有差异）：使用self-consisitency prompt， 执行多次并保留占多数的结果\nLLM对于输出格式存在便好：汇总多个模型的结果\n位置偏差，模型可能便好靠前的位置的答案：随机调整顺序\n模型偏好冗长的回答\n格式偏差：输入模型的 prompt 格式与其训练数据的格式差异过大，可能导致模型的评估结果不准确\nReward Model Reward Model（奖励模型）是一类能够根据偏好预测输出好坏分数的模型，广泛应用于如 RLHF等场景。本质上，RM可以理解成Judge-model 的一种特殊形式，针对成对的输出，或单一的输入，直接给出评价分数；\n最常见的奖励模型是 Bradley-Terry 模型，其核心思想是通过比较两个答案的得分差异，利用如下公式计算偏好概率：\n$$ P(b \\ is \\ better \\ than \\ a) = \\text{sigmoid}(score_b - score_a) $$\nReward Model 的训练数据通常只需要成对比较的答案，这比直接收集绝对分数更为容易和高效。在实际评估中，Reward Model 输出的往往是相对分数，因此常用 win-rate（即模型回答优于参考答案的百分比）或 win probabilities 作为评估指标。\nRM 的选择可以参考：RewardBench Leaderboard\n小结 本文主要讨论了LLM（或LLM应用）的离线评估；\n从一个更大的角度，更overall 的framework来看，LLM评估可以从评测方式（LLM评审、代码评估、人工标注等）和实施阶段（离线、在线、护栏）两维度分类，每种方式/场景都需权衡任务目标、工程成本与准确性；\n从评测方式， 目前主流方式是 LLM as a Judge，通常用于“参考文献-开放问答”类场景，让LLM判断答案是否基于参考文献，是否正确/完整，适用于缺乏人为标注数据或用户反馈时，能大规模自动化评测；关键难题：如何确保“评委LLM”的可靠性；适合主观性较强的评测如内容相关性、事实性；对于存在标准答案的场景，一般采用Code-Based Evaluations，适用于结果有“硬规则”或定量标准的任务，如代码生成、JSON结构、关键字段verify等；当然，也不可忽略其他辅助方法，如人工标注和用户实时反馈；\n从实践阶段，对于一个LLM应用而言，评估可分为：\n离线评测，上线/开发阶段，使用收集或合成的数据集（golden数据集）进行评测，用于prompt/模型版本/检索策略变化的回归测试和benchmark，通常嵌入CI/CD流程\n在线评测，系统上线生产后，对真实用户数据实时打分、监测（但一般不拦截输出，仅报告问题），更关注模型的稳定性、性能等在现实环境下的轨迹，及时发现线上退化、幻觉、响应异常或敏感内容\nGuardrails，实时、线上启用，发现风险（幻觉、违规、毒性等）即拦截或修正输出，优先级高于普通的在线评测\n最后聊聊评估。\n对于ML/DL算法工程师来说，评估这套流程大家都很熟。但未来最大的不同是，我们将进入一个普遍使用LLM进行评估的时代。这意味着，能被评估的东西会比过去多得多、广得多。以前必须靠人来评判的内容，会逐渐转向“LLM-judge”模式。简单说，只要你能用语言（Prompt）把评估标准描述清楚，那它就是可评估的。 当然，这也意味着写好、优化好Prompt会变得极其重要。\n对于开发者，评估这事儿本质上和软件测试很像。它们的目标都是提供一套覆盖足够广的测试用例（也就是“Golden Test Set”），确保你的程序（LLM应用）能顺利通过。一句话，如果测试对你很重要，那么评估也一样重要。\n",
   "wordCount" : "372",
   "inLanguage": "en",
-  "image": "http://localhost:1313/images/papermod-cover.png","datePublished": "2025-06-11T15:04:00+08:00",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2025-06-11T15:04:00+08:00",
   "dateModified": "2025-06-11T15:04:00+08:00",
   "author":{
     "@type": "Person",
@@ -168,14 +168,14 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://localhost:1313/posts/eval_1/"
+    "@id": "https://niraya666.github.io/posts/eval_1/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://localhost:1313/favicon.ico"
+      "url": "https://niraya666.github.io/favicon.ico"
     }
   }
 }
@@ -197,7 +197,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -223,47 +223,47 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/about/" title="About">
+                <a href="https://niraya666.github.io/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/posts/" title="AI">
+                <a href="https://niraya666.github.io/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives" title="Archive">
+                <a href="https://niraya666.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/musik/" title="Musik!">
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
                     <span>Musik!</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://niraya666.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/monthly/" title="月刊">
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/essay/" title="杂文">
+                <a href="https://niraya666.github.io/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/travel/" title="游记">
+                <a href="https://niraya666.github.io/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
@@ -274,7 +274,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       从下半场开始，对于评估的重新思考: 一些概念
       <span class="entry-hint" title="Draft">
@@ -621,15 +621,15 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/eval/">Eval</a></li>
+      <li><a href="https://niraya666.github.io/tags/eval/">Eval</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/posts/thinking-budget-0805/">
+  <a class="prev" href="https://niraya666.github.io/posts/thinking-budget-0805/">
     <span class="title">« Prev</span>
     <br>
     <span>拒绝“想太多”：大模型Thinking Budget控制方案解析</span>
   </a>
-  <a class="next" href="http://localhost:1313/posts/%E5%88%9D%E6%8E%A2mem0/">
+  <a class="next" href="https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/">
     <span class="title">Next »</span>
     <br>
     <span>初探 Mem0</span>
@@ -640,7 +640,7 @@ $$</p>
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on x"
-            href="https://x.com/intent/tweet/?text=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f&amp;hashtags=Eval">
+            href="https://x.com/intent/tweet/?text=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f&amp;hashtags=Eval">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -649,7 +649,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f&amp;title=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;summary=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f&amp;title=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;summary=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -658,7 +658,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on reddit"
-            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f&title=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5">
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f&title=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -667,7 +667,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f">
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -676,7 +676,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on whatsapp"
-            href="https://api.whatsapp.com/send?text=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f">
+            href="https://api.whatsapp.com/send?text=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -685,7 +685,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on telegram"
-            href="https://telegram.me/share/url?text=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f">
+            href="https://telegram.me/share/url?text=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -694,7 +694,7 @@ $$</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 从下半场开始，对于评估的重新思考: 一些概念 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&u=http%3a%2f%2flocalhost%3a1313%2fposts%2feval_1%2f">
+            href="https://news.ycombinator.com/submitlink?t=%e4%bb%8e%e4%b8%8b%e5%8d%8a%e5%9c%ba%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%af%b9%e4%ba%8e%e8%af%84%e4%bc%b0%e7%9a%84%e9%87%8d%e6%96%b0%e6%80%9d%e8%80%83%3a%20%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5&u=https%3a%2f%2fniraya666.github.io%2fposts%2feval_1%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -738,7 +738,7 @@ $$</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="http://localhost:1313/">LZY Blog</a></span>
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

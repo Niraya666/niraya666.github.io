@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>CoT on LZY Blog</title>
-    <link>http://localhost:1313/tags/cot/</link>
+    <link>https://niraya666.github.io/tags/cot/</link>
     <description>Recent content in CoT on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>http://localhost:1313/images/papermod-cover.png</url>
-      <link>http://localhost:1313/images/papermod-cover.png</link>
+      <url>https://niraya666.github.io/images/papermod-cover.png</url>
+      <link>https://niraya666.github.io/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 05 Aug 2025 20:12:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/cot/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/cot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>拒绝“想太多”：大模型Thinking Budget控制方案解析</title>
-      <link>http://localhost:1313/posts/thinking-budget-0805/</link>
+      <link>https://niraya666.github.io/posts/thinking-budget-0805/</link>
       <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/thinking-budget-0805/</guid>
+      <guid>https://niraya666.github.io/posts/thinking-budget-0805/</guid>
       <description>&lt;h2 id=&#34;为什么需要thinking-budget&#34;&gt;为什么需要thinking-budget&lt;/h2&gt;
 &lt;p&gt;你是否也曾见过一个LLM在深度思考中逐渐陷入了自我怀疑的无限循环中呢？&lt;/p&gt;
 &lt;p&gt;虽然CoT一定程度上提升模型回答的准确率，reasoning-mode也逐渐成为各大开源模型中的必需品。但新的问题也随之而来：失控的思考。LLM常常会表现出overthinking的问题，大量冗余猜测，和自我否定，无一不增加token预算，这些问题在小参数量的、采用蒸馏获得的reasoning模型中尤为常见。&lt;/p&gt;
