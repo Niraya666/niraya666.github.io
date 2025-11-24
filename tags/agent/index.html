@@ -175,6 +175,45 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Tongyi Deep Research 论文笔记
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>看着Tongyi Deep Research （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?
+最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。
+最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是数据的合成、训练环境的设计和大量的工程化设计，或许才是其成功的关键，以及重点。
+大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：
+Agent的训练方式
+训练所使用的数据合成管道和方法论
+工程化优化和设计
+训练方式 通过LLM&#43;工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training &#43; Agentic post-training。
+Agentic Mid-training
+这一概念主要源于AgentFounder论文，其核心思想是在传统的后训练（Post-training）之前，增加一个Agentic Continual Pre-training (CPT) 阶段。
+为什么需要CPT？
+后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：
+如何理解和调用工具、如何进行多步规划 （基础的agent能力）
+如何在特定复杂任务上做出最优决策 （专家能力）
+Agentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。
+相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT&#43;RL，并没有太多新的东西。
+在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：
+模拟环境： 构建一个离线的搜索和查询环境，用于快速验证算法和策略
+真实世界环境： 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；
+数据合成 如何获得大量高质量的合成数据来支撑CPT、SFT和RL？
+WebWalker &amp; WebDancer 这两个工作中对应着几个benchmark和数据集的构建：WebWalkerQA 和 CRAWL QA (模拟浏览) &amp; E2HQA(由易到难)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-24 20:08:00 +0800 CST'>November 24, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to Tongyi Deep Research 论文笔记" href="https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">初探 Mem0
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">

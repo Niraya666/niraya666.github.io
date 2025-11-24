@@ -189,6 +189,43 @@
 </header>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/post-cover/rag_toolkits_2.JPG" alt="RAG工具箱：文档解析与表格处理">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">RAG工具箱：文档解析与表格处理
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 引言 在信息化时代，数据和知识的快速提取变得尤为重要。特别是对于学术和技术文档，如何从格式丰富且结构复杂的PDF文件中准确地提取信息，是提高研究效率的关键。本文将探讨几种先进的技术方法，用于优化学术论文的PDF解析及其表格内容的处理。
+对于文档解析，langchain 和 llama_index 提供的 document loader 能够支持多种文件类型，覆盖绝大多数文档格式的需求。但对于pdf解析而言还存在着一些挑战。
+人类与机器的阅读差异 尽管PDF格式适合人类阅读，提供了优秀的视觉体验和格式保真，但它并不适合机器阅读。PDF文件通常包含复杂的布局和多样的内容元素，如多列布局、公式和表格，这些都给自动解析带来了挑战。
+常见的PDF解析问题 使用传统的PDF解析库可能遇到多种问题：
+多列布局导致的文本流读取错误。
+公式和表格的解析效果差，难以正确提取信息。
+解析过程中结构化信息（如标题和列表）的丢失。
+影印版PDF的文本无法被标准OCR工具识别。
+高级解析技术 根据unstractued提供的方案，文档解析可以大致分为两种方法：结构化解析和基于图像的解析。结构化解析侧重于从文档中提取文字和其它字符数据。而图像基解析则包括以下两种技术：
+OCR技术：首先使用目标检测模型对文档布局进行分析，识别出标题、表格等关键元素的位置，然后在这些位置上使用OCR技术提取文字。
+基于Transformer的端到端解析：使用深度学习模型直接将图像转换为相应的文字内容。在这方面，Dount 和 Nougat 模型表现出色，尤其是 Nougat 能够将图像中的文章整理成Markdown或Latex格式，非常适合需要保留结构信息（如标题层级、公式和表格）的场景。
+只可惜Nougat只针对英文的学术论文做了训练，但遇到其他语言如中文论文的效果就不是那么的好了。
+必须强调一点的是，Markdown格式因其简洁性和易于解析的特点，被广泛认为是LLM（大型语言模型）友好的文档格式。Markdown通过明确的标记语法，帮助模型更好地理解文档结构和内容，从而提高信息提取的准确性和效率。特别在存在大量公式，表格的学术论文场景下，Markdown可能是更合适的格式选择。
+快速上手：使用Nougat将pdf解析成适合LLM读取的markdown 依赖按照
+!pip install -q pymupdf python-Levenshtein nltk !pip install -q git&#43;https://github.com/huggingface/transformers.git Load model and processor
+from transformers import AutoProcessor, VisionEncoderDecoderModel import torch processor = AutoProcessor.from_pretrained(&#34;facebook/nougat-base&#34;) model = VisionEncoderDecoderModel.from_pretrained(&#34;facebook/nougat-base&#34;) device = &#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34; model.to(device) 将pdf转成图像
+from typing import Optional, List import io import fitz from pathlib import Path def rasterize_paper( pdf: Path, outpath: Optional[Path] = None, dpi: int = 96, return_pil=False, pages=None, ) -&gt; Optional[List[io.BytesIO]]: &#34;&#34;&#34; Rasterize a PDF file to PNG images. Args: pdf (Path): The path to the PDF file. outpath (Optional[Path], optional): The output directory. If None, the PIL images will be returned instead. Defaults to None. dpi (int, optional): The output DPI. Defaults to 96. return_pil (bool, optional): Whether to return the PIL images instead of writing them to disk. Defaults to False. pages (Optional[List[int]], optional): The pages to rasterize. If None, all pages will be rasterized. Defaults to None. Returns: Optional[List[io.BytesIO]]: The PIL images if `return_pil` is True, otherwise None. &#34;&#34;&#34; pillow_images = [] if outpath is None: return_pil = True try: if isinstance(pdf, (str, Path)): pdf = fitz.open(pdf) if pages is None: pages = range(len(pdf)) for i in pages: page_bytes: bytes = pdf[i].get_pixmap(dpi=dpi).pil_tobytes(format=&#34;PNG&#34;) if return_pil: pillow_images.append(io.BytesIO(page_bytes)) else: with (outpath / (&#34;%02d.png&#34; % (i &#43; 1))).open(&#34;wb&#34;) as f: f.write(page_bytes) except Exception: pass if return_pil: return pillow_images from transformers import StoppingCriteria, StoppingCriteriaList from collections import defaultdict class RunningVarTorch: def __init__(self, L=15, norm=False): self.values = None self.L = L self.norm = norm def push(self, x: torch.Tensor): assert x.dim() == 1 if self.values is None: self.values = x[:, None] elif self.values.shape[1] &lt; self.L: self.values = torch.cat((self.values, x[:, None]), 1) else: self.values = torch.cat((self.values[:, 1:], x[:, None]), 1) def variance(self): if self.values is None: return if self.norm: return torch.var(self.values, 1) / self.values.shape[1] else: return torch.var(self.values, 1) class StoppingCriteriaScores(StoppingCriteria): def __init__(self, threshold: float = 0.015, window_size: int = 200): super().__init__() self.threshold = threshold self.vars = RunningVarTorch(norm=True) self.varvars = RunningVarTorch(L=window_size) self.stop_inds = defaultdict(int) self.stopped = defaultdict(bool) self.size = 0 self.window_size = window_size @torch.no_grad() def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor): last_scores = scores[-1] self.vars.push(last_scores.max(1)[0].float().cpu()) self.varvars.push(self.vars.variance()) self.size &#43;= 1 if self.size &lt; self.window_size: return False varvar = self.varvars.variance() for b in range(len(last_scores)): if varvar[b] &lt; self.threshold: if self.stop_inds[b] &gt; 0 and not self.stopped[b]: self.stopped[b] = self.stop_inds[b] &gt;= self.size else: self.stop_inds[b] = int( min(max(self.size, 1) * 1.15 &#43; 150 &#43; self.window_size, 4095) ) else: self.stop_inds[b] = 0 self.stopped[b] = False return all(self.stopped.values()) and len(self.stopped) &gt; 0 将pdf转成markdown
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-20 17:00:00 +0800 CST'>April 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to RAG工具箱：文档解析与表格处理" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/"></a>
+</article>
+
+<article class="post-entry"> 
   <header class="entry-header">
     <h2 class="entry-hint-parent">RAG工具箱：评估RAG系统的方法论
       <span class="entry-hint" title="Draft">

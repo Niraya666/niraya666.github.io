@@ -11,8 +11,62 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Sep 2025 18:56:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 24 Nov 2025 20:08:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tongyi Deep Research 论文笔记</title>
+      <link>https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 24 Nov 2025 20:08:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;看着&lt;a href=&#34;https://www.modelscope.cn/studios/jialongwu/Tongyi-DeepResearch&#34;&gt;Tongyi Deep Research&lt;/a&gt; （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?&lt;/p&gt;
+&lt;p&gt;最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。&lt;/p&gt;
+&lt;p&gt;最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是&lt;strong&gt;数据的合成、训练环境的设计和大量的工程化设计&lt;/strong&gt;，或许才是其成功的关键，以及重点。&lt;/p&gt;
+&lt;p&gt;大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Agent的训练方式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;训练所使用的数据合成管道和方法论&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;工程化优化和设计&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;训练方式&#34;&gt;训练方式&lt;/h2&gt;
+&lt;p&gt;通过LLM+工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training + Agentic post-training。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Agentic Mid-training&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这一概念主要源于&lt;a href=&#34;https://arxiv.org/abs/2509.13310&#34;&gt;AgentFounder&lt;/a&gt;论文，其核心思想是在传统的后训练（Post-training）之前，增加一个&lt;strong&gt;Agentic Continual Pre-training (CPT)&lt;/strong&gt; 阶段。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-24%20%e4%b8%8b%e5%8d%881.32.19.png&#34; alt=&#34;截屏2025-10-24 下午1.32.19.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么需要CPT？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如何理解和调用工具、如何进行多步规划 （基础的agent能力）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何在特定复杂任务上做出最优决策 （专家能力）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Agentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。&lt;/p&gt;
+&lt;p&gt;相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT+RL，并没有太多新的东西。&lt;/p&gt;
+&lt;p&gt;在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模拟环境：&lt;/strong&gt; 构建一个离线的搜索和查询环境，用于快速验证算法和策略&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;真实世界环境：&lt;/strong&gt; 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据合成&#34;&gt;数据合成&lt;/h2&gt;
+&lt;p&gt;如何获得&lt;strong&gt;大量高质量的合成数据&lt;/strong&gt;来支撑CPT、SFT和RL？&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;webwalker--webdancer&#34;&gt;WebWalker &amp;amp; WebDancer&lt;/h3&gt;
+&lt;p&gt;这两个工作中对应着几个benchmark和数据集的构建：&lt;strong&gt;WebWalkerQA 和 CRAWL QA&lt;/strong&gt; (模拟浏览) &amp;amp; &lt;strong&gt;E2HQA&lt;/strong&gt;(由易到难)&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</title>
       <link>https://niraya666.github.io/posts/rag-toolkits-copali/</link>

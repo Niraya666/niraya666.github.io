@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Tongyi Deep Research 论文笔记 | LZY Blog</title>
+<meta name="keywords" content="deep-research, Agent">
+<meta name="description" content="看着Tongyi Deep Research （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?
+最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。
+最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是数据的合成、训练环境的设计和大量的工程化设计，或许才是其成功的关键，以及重点。
+大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：
+
+
+Agent的训练方式
+
+
+训练所使用的数据合成管道和方法论
+
+
+工程化优化和设计
+
+
+训练方式
+通过LLM&#43;工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training &#43; Agentic post-training。
+Agentic Mid-training
+这一概念主要源于AgentFounder论文，其核心思想是在传统的后训练（Post-training）之前，增加一个Agentic Continual Pre-training (CPT) 阶段。
+
+
+为什么需要CPT？
+后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：
+
+
+如何理解和调用工具、如何进行多步规划 （基础的agent能力）
+
+
+如何在特定复杂任务上做出最优决策 （专家能力）
+
+
+Agentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。
+相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT&#43;RL，并没有太多新的东西。
+在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：
+
+
+模拟环境： 构建一个离线的搜索和查询环境，用于快速验证算法和策略
+
+
+真实世界环境： 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；
+
+
+数据合成
+如何获得大量高质量的合成数据来支撑CPT、SFT和RL？
+
+
+WebWalker &amp; WebDancer
+这两个工作中对应着几个benchmark和数据集的构建：WebWalkerQA 和 CRAWL QA (模拟浏览) &amp; E2HQA(由易到难)">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Tongyi Deep Research 论文笔记" />
+<meta property="og:description" content="看着Tongyi Deep Research （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?
+最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。
+最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是数据的合成、训练环境的设计和大量的工程化设计，或许才是其成功的关键，以及重点。
+大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：
+
+
+Agent的训练方式
+
+
+训练所使用的数据合成管道和方法论
+
+
+工程化优化和设计
+
+
+训练方式
+通过LLM&#43;工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training &#43; Agentic post-training。
+Agentic Mid-training
+这一概念主要源于AgentFounder论文，其核心思想是在传统的后训练（Post-training）之前，增加一个Agentic Continual Pre-training (CPT) 阶段。
+
+
+为什么需要CPT？
+后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：
+
+
+如何理解和调用工具、如何进行多步规划 （基础的agent能力）
+
+
+如何在特定复杂任务上做出最优决策 （专家能力）
+
+
+Agentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。
+相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT&#43;RL，并没有太多新的东西。
+在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：
+
+
+模拟环境： 构建一个离线的搜索和查询环境，用于快速验证算法和策略
+
+
+真实世界环境： 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；
+
+
+数据合成
+如何获得大量高质量的合成数据来支撑CPT、SFT和RL？
+
+
+WebWalker &amp; WebDancer
+这两个工作中对应着几个benchmark和数据集的构建：WebWalkerQA 和 CRAWL QA (模拟浏览) &amp; E2HQA(由易到难)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-11-24T20:08:00+08:00" />
+<meta property="article:modified_time" content="2025-11-24T20:08:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="Tongyi Deep Research 论文笔记"/>
+<meta name="twitter:description" content="看着Tongyi Deep Research （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?
+最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。
+最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是数据的合成、训练环境的设计和大量的工程化设计，或许才是其成功的关键，以及重点。
+大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：
+
+
+Agent的训练方式
+
+
+训练所使用的数据合成管道和方法论
+
+
+工程化优化和设计
+
+
+训练方式
+通过LLM&#43;工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training &#43; Agentic post-training。
+Agentic Mid-training
+这一概念主要源于AgentFounder论文，其核心思想是在传统的后训练（Post-training）之前，增加一个Agentic Continual Pre-training (CPT) 阶段。
+
+
+为什么需要CPT？
+后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：
+
+
+如何理解和调用工具、如何进行多步规划 （基础的agent能力）
+
+
+如何在特定复杂任务上做出最优决策 （专家能力）
+
+
+Agentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。
+相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT&#43;RL，并没有太多新的东西。
+在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：
+
+
+模拟环境： 构建一个离线的搜索和查询环境，用于快速验证算法和策略
+
+
+真实世界环境： 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；
+
+
+数据合成
+如何获得大量高质量的合成数据来支撑CPT、SFT和RL？
+
+
+WebWalker &amp; WebDancer
+这两个工作中对应着几个benchmark和数据集的构建：WebWalkerQA 和 CRAWL QA (模拟浏览) &amp; E2HQA(由易到难)"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://niraya666.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tongyi Deep Research 论文笔记",
+      "item": "https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tongyi Deep Research 论文笔记",
+  "name": "Tongyi Deep Research 论文笔记",
+  "description": "看着Tongyi Deep Research （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?\n最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。\n最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是数据的合成、训练环境的设计和大量的工程化设计，或许才是其成功的关键，以及重点。\n大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：\nAgent的训练方式\n训练所使用的数据合成管道和方法论\n工程化优化和设计\n训练方式 通过LLM+工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training + Agentic post-training。\nAgentic Mid-training\n这一概念主要源于AgentFounder论文，其核心思想是在传统的后训练（Post-training）之前，增加一个Agentic Continual Pre-training (CPT) 阶段。\n为什么需要CPT？\n后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：\n如何理解和调用工具、如何进行多步规划 （基础的agent能力）\n如何在特定复杂任务上做出最优决策 （专家能力）\nAgentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。\n相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT+RL，并没有太多新的东西。\n在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：\n模拟环境： 构建一个离线的搜索和查询环境，用于快速验证算法和策略\n真实世界环境： 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；\n数据合成 如何获得大量高质量的合成数据来支撑CPT、SFT和RL？\nWebWalker \u0026amp; WebDancer 这两个工作中对应着几个benchmark和数据集的构建：WebWalkerQA 和 CRAWL QA (模拟浏览) \u0026amp; E2HQA(由易到难)\n",
+  "keywords": [
+    "deep-research", "Agent"
+  ],
+  "articleBody": "看着Tongyi Deep Research （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?\n最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。\n最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是数据的合成、训练环境的设计和大量的工程化设计，或许才是其成功的关键，以及重点。\n大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：\nAgent的训练方式\n训练所使用的数据合成管道和方法论\n工程化优化和设计\n训练方式 通过LLM+工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training + Agentic post-training。\nAgentic Mid-training\n这一概念主要源于AgentFounder论文，其核心思想是在传统的后训练（Post-training）之前，增加一个Agentic Continual Pre-training (CPT) 阶段。\n为什么需要CPT？\n后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：\n如何理解和调用工具、如何进行多步规划 （基础的agent能力）\n如何在特定复杂任务上做出最优决策 （专家能力）\nAgentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。\n相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT+RL，并没有太多新的东西。\n在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：\n模拟环境： 构建一个离线的搜索和查询环境，用于快速验证算法和策略\n真实世界环境： 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；\n数据合成 如何获得大量高质量的合成数据来支撑CPT、SFT和RL？\nWebWalker \u0026 WebDancer 这两个工作中对应着几个benchmark和数据集的构建：WebWalkerQA 和 CRAWL QA (模拟浏览) \u0026 E2HQA(由易到难)\n目的都是为了解决现有的QA对数据集太浅的问题；\n主流基于RAG的检索方式，是一种“横向搜索”，仅仅依靠关键词获取大量页面信息，缺乏像人类一样，深入点击、多页面联动的“深度搜索”。\nWebWalkerQA： 通过递归遍历（从首页开始收集所有可访问子链接及其内容），然后结合预设角色让LLM生成查询问题，最后经过验证和过滤（剔除不自然、保留答案简短且含实体的QA）来生成数据\nCRAWL QA：通过模拟人类浏览行为，从知识型网站（如维基、GitHub）上爬取多层页面信息，收集权威网站的根URL，程序化地点击链接、抓取子页面内容，然后使用GPT-4o根据收集到的信息生成需要整合多个页面信息才能回答的问题。\nE2HQA (Easy-to-Hard QA)：采用一种“由易到难”的逆向构建策略，将一个简单的问题通过迭代式地增加信息约束和子问题，逐步演化成一个复杂的多跳（multi-hop）问题； 具体而言，从一个简单问答开始，然后围绕答案实体搜索更多信息，并将这些信息改写成限定条件，融入原问题，使其变得更复杂。这个过程可以重复多次\nE2HQA的核心在于**“逆向构造”**：通常我们是从“描述”推理出“实体”，这里是反过来，利用LLM和搜索引擎，将问题中明确的“实体”替换为关于该实体的“描述性查询”。\n例子：\n原始问题 ($Q_0$)：爱因斯坦是哪里人？（答案：德国）\n迭代 1：选中实体“爱因斯坦”。搜索并将其重述为“提出相对论的物理学家”。\n新问题 ($Q_1$)：提出相对论的物理学家是哪里人？ 迭代 2：选中实体“相对论”。搜索并将其重述为“包含质能方程 E=mc² 的理论”。\n新问题 ($Q_2$)：提出包含质能方程 E=mc² 的理论的物理学家是哪里人？ Agent Trajectories Rejection Sampling： 在构建了QA数据后，基于ReAct框架（只提供search和visit工具）来解决这些问题，并记录下完整的交互轨迹。通过一系列筛选（符合ReAct格式、答案正确、过滤幻觉和重复逻辑），保留下高质量的轨迹，用于SFT。\nWebSailor WebSailor的工作标志着一个重要的转折点：问题难度并非来自路径的长度，而是来自信息的不确定性。\nWebSailor提出了一种新的任务难度分类法，它真正要攻克的是Level 3：非结构化高不确定性任务。这类任务没有预设解决路径，Agent必须进行复杂的探索、比较、排除错误路径，并综合多方证据才能得出结论。\n三种等级的任务难度分类法\nLevel 1: 低不确定性任务。这类任务可以通过单次搜索或利用模型自身的参数化知识直接解决。\nLevel 2: 结构化高不确定性任务。这类任务初始看不出答案，但存在一条清晰、结构化的解决路径，例如标准的多跳问答，每一步的目标都相对明确。\nLevel 3: 非结构化高不确定性任务。这是WebSailor关注的核心。\n在知识图谱中，通过Random Walk在图谱中生成长路径，这些长路径天然代表了多跳的推理路径；为此，WebSailor提出了SailorFog-QA，一种基于知识图谱和随机游走的高不确定性任务生成方法。\n具体而言：\n从一个模糊的实体（来自Wikidata）开始，通过模拟网页浏览（搜索、访问网页）进行随机游走，提取相关实体和关系，构建一个复杂的知识图谱\n从图谱中随机采样一个子图，基于子图中的实体和关系，生成一个问题和答案\n对问题中的关键信息进行模糊处理，增加其不确定性\n而后采用一个推理模型回答SailorFog-QA的问题，生成完整的轨迹（Thought-Action-Observation），保留其中成功的Action-Observation，丢弃原始的Thought，并使用另一个模型为每一步重新生成简洁、精炼的Thought，形成最终的SFT数据。（这一步的原因是，直接用专家模型的COT进行SFT过于冗长）\n简而言之，就是通过在真实网站上随机游走构建复杂知识图谱，采样多跳路径，然后对问题中的关键信息进行模糊处理（例如，将实体名替换为描述），从而大幅增加任务的不确定性。\nWebShaper WebSailor虽然引入了不确定性，但合成过程还是“Information-Driven”（先搜集信息，再造问题），这可能导致问题结构和答案的不一致。\nWebShaper则更进一步，提出了一种**“Formalization-Driven”的范式。其核心思想从“先有信息，再造问题”转变为“先定义问题的逻辑结构，再寻找信息填充”**。\n为此，WebShaper基于集合论提出了**知识投影（Knowledge Projections, KP）**的概念。\n什么是KP？ KP的本质是一个实体集合。这个集合里的所有实体，都通过一个特定的关系(R)与另一个已知实体集(V)相关联。例如，bornIn({90s}) 就是所有在90年代出生的人的集合；\n同时KP定义了并集(∪)和交集(∩)来组合出更复杂的情况；如：\n“寻找在2000年踢球并且出生于1990年代的球员” = playAt({2000}) ∩ bornIn({1990年代})\n“寻找在2004年或2005年效力于某支球队的球员” = playAt({2004}) ∪ playAt({2005})\nKP还支持递归构建，一个查询的条件(V)本身可以是另一个查询的结果\nWebShaper 的数据合成流程\n构建种子问题：通过在维基百科文章的链接网络上进行随机游走，收集大量相关联的文章内容，LLM基于这些内容生成一批初始的、相对简单的seeds，筛选，确保其质量和可解性\nAgentic 扩展：\n将形式化的任务结构（如 R1(T1) ∩ R2(T2)）转换成一种 LLM 能理解的、基于三元组 [变量, 关系, 变量/常量] 的表示形式\n对于一个已有的形式化问题，Expander Agent 会识别出其中的“叶子节点”\nExpander 选取一个常量，通过调用工具（Search**、**Summarize、Validate）自主构建一个新的、更复杂的子问题，而这个子问题的答案恰好是原来的那个常量\n将新生成的子问题替换掉原来的常量，从而使整个问题的推理链条变得更长、更复杂。这个过程可以迭代多次，以控制最终任务的难度\n小结 从数据合成角度分析，能够看到思路的演化。\n最初，难度被简单地等同于一个量化指标，即完成任务所需的点击次数或路径长度。然而，这种线性增加的路径可能依然由一系列简单的操作组成，并未触及更高级的认知挑战。也就是WebDancer中E2HQA方法的理念，通过增加迭代和约束增加推理长度。\nWebSailor的工作标志着一个重要的转折点—问题难度并非来自路径的长度，而是来自信息的不确定性。通过构建复杂的知识图谱并对关键信息进行模糊化处理，agent不能再简单地沿着一条预设的路径前进，而必须在探索过程中维护多种可能性，对比和评估相互矛盾的证据，并最终综合出一个最可靠的结论。\nWebShaper则更进一步，引入知识投影KP，从数学的角度给出形式化的描述，确保了每一个生成的任务都有可验证的逻辑基础，而不是随机的；同时难度也变得可量化，使得curriculum learning成为可能。\n工程化优化 如何避免上下文爆炸：ReSum｜IterResearch\n如何让agent具备开放式报告撰写能力：WebWeaver\nReSum 与 IterResearch 目前主流Agent采用的ReAct框架，会将每一轮的“think-action-observation”全部追加到上下文中。随着搜索轮次增加，上下文迅速膨胀，不仅超出模型上下文长度限制，累积的噪声还会干扰推理。\nReSum 的核心目标：通过周期性上下文压缩（摘要），让智能体在不丢失关键信息的前提下，突破上下文长度限制。\n在 ReAct 基础上，周期性调用摘要工具，将历史对话压缩为结构化摘要（包含已确认证据 + 信息缺口 + 下一步方向），用摘要 + 原始问题组成“压缩状态”，重启推理，从而绕过上下文长度限制\n不是直接用通用大模型做摘要，而是专门训练一个30B参数的模型\n专门设计 ReSum-GRPO算法：自动将长轨迹按摘要点分段，每段作为独立训练样本，将整个轨迹的最终奖励（是否答对）广播到所有分段\n相比ReSum的“压缩”，IterResearch更为彻底，将Deep Research建模为马尔可夫决策过程（MDP）。\n在每一轮交互后，非简单地追加信息，而是重构其workspace，其中workspace只包含三个关键部分：原始问题、一个不断演进的**报告（evolving report）**作为记忆，以及上一步的直接交互上下文。\nMDP：\nState, S： 在第 t 轮，状态 s_t 由三部分组成：{问题 q, 当前报告 M_t, 上一步的动作和工具响应 {a_{t-1}, TR_{t-1}}}\nDecision, D： 在每个状态 s_t，LLM生成一个结构化的决策 d_t，包含三部分：{思考 (Think), 更新后的报告 (M_{t+1}), 下一步动作 (a_t)}\nEnvironment, E： 一系列工具，如谷歌搜索、谷歌学术、网页浏览器和Python解释器\nTransition, T： 从 s_t 到 s_{t+1} 的转移是重构而非累加。新的状态 s_{t+1} 由 {问题 q, 智能体刚生成的更新报告 M_{t+1}, 当前动作和工具响应 {a_t, TR_t}} 构成。历史信息通过 M_{t+1} 被压缩和提炼，旧的原始信息被丢弃。\n两阶段训练：\nSFT：用Qwen3-235B生成轨迹，教会30B模型这种迭代式思考格式\nRL： 筛选出一批具有挑战性（成功率在20%-60%之间）的问题，采用GRSO，引入了基于轨迹长度的几何折扣奖励，鼓励模型学习更直接、更专注的解决路径。\nWebWeaver 针对Open-Ended Deep Research (OEDR) 任务，即没有标准答案、需要自主生成长报告的场景，TDR提出了WebWeaver框架。\n传统方法通常将“制定大纲”和“信息搜索”解耦，且一次性加载所有信息容易导致Lost-in-the-middle。WebWeaver的创新在于：\nDynamic Research Cycle： 不再采用静态的“规划-搜索”分离模式。新发现的证据会用来优化和扩展大纲，而优化后的大纲又会指导下一轮搜索。\nPlanner + Writer 双agent\nPlanner： 负责探索性研究。它在一个循环中不断通过Search工具获取URL、解析网页、提取详细证据并存入记忆库（分配唯一ID）。获取新证据后，Planner会重新审视并优化报告大纲（write_outline）\nWriter： 负责报告合成。它按照大纲结构逐章生成。\n首先根据大纲中的引用ID，从记忆库精确检索证据。（retrieve）；分析已写好的前文内容和新检索到的证据，形成一个连贯的写作思路（Think）；基于思考结果，撰写当前章节的内容(write)；完成一个章节后，用于该章节的证据会从上下文中移除，以保持上下文的简洁和高相关性，为写作下一章节做准备 (Pruning)\n；当所有章节都完成后，writer执行 terminate ，输出完整的报告\n写在最后 一些思考：\n工程化实现 vs. 训练内化 这并非非此即彼的选择，更多是基于场景和成本的权衡。 通用Agent目前仍难以通过训练实现，但在Web-Agent等垂直领域，通过训练让小参数模型（如30B）掌握特定工具的使用和特定格式输出，具有性价比；那么代价是什么呢？模型的泛化性会降低。TDR的成功很大程度上依赖于其预设的工具集，“TDR+预设工具”和“TDR+自定义工具”完全是两种不同的体验\nmid-training | CPT 是否是必须的，业内暂时还没有共识，但显而易见的是，LLM必须经过针对多轮对话和工具调用的深度微调。如果缺乏这种专项训练，现阶段最稳妥的方案依然是使用最大参数量的基座模型来保证指令遵循能力。\n个人认为TDR最值得借鉴是数据合成和工程化上的创新\n参考 Tongyi DeepResearch Technical Report\nWebWalker\nWebDancer\nWebSailor\nWebShaper\nReSum\nIterResearch\nWebWeaver\nWebWatcher\nAgentFounder\nWebSailor-V2\nAgentScaler\n附录：论文阅读笔记 WebWalker: Benchmarking LLMs in Web Traversal https://arxiv.org/pdf/2501.07572\n当前主流的检索增强生成（RAG）系统虽然能通过搜索引擎获取外部信息，但其检索方式通常是“横向搜索”（horizontal search），即在多个网页中找关键词匹配的内容，无法深入网站内部结构，难以处理需要“多层点击、多页面联动、深度推理”的复杂任务。\n提出新任务：Web Traversal, 系统性地在网站内导航，挖掘深层信息,任务形式为QA\n构建新基准：WebWalkerQA, 包含 680个高质量QA对，覆盖4个真实领域, 包含单源和多源 两种类型, 每个QA标注了深度、难度、路径\n采用 “探索者（Explorer）+ 批判者（Critic）”双智能体架构: Explorer负责点击导航，Critic负责记忆和判断是否已收集足够信息\nWebDancer WebDancer\n解决如何合成数据用于训练web-agent\n现有的方法存在的问题：\n数据质量和复杂性不足： “浅”问题，只需一两步搜索就能解决，高质量的复杂问答数据集数据量又太少\n缺乏系统性构建方法\n缺乏明确的训练方法\nWebDancer 提出了一个四阶段的 cohesive paradigm， 将复杂的智能体构建过程分解为四个阶段：\n第一步：高质量浏览数据构建\n第二步：高质量轨迹采样\n第三步：监督微调（SFT）进行有效冷启动\n第四步：强化学习（RL）增强泛化能力\n第一阶段：数据构建：\nCRAWL QA：通过模拟人类浏览行为，从知识型网站（如维基、GitHub）上爬取多层页面信息，收集权威网站的根URL，程序化地点击链接、抓取子页面内容，然后使用GPT-4o根据收集到的信息生成需要整合多个页面信息才能回答的问题。\nE2HQA (Easy-to-Hard QA)：采用一种“由易到难”的逆向构建策略，将一个简单的问题通过迭代式地增加信息约束和子问题，逐步演化成一个复杂的多跳（multi-hop）问题； 具体而言，从一个简单问答开始，然后围绕答案实体搜索更多信息，并将这些信息改写成限定条件，融入原问题，使其变得更复杂。这个过程可以重复多次\n第二阶段：轨迹采样 基于经典的ReAct框架， 只提供两个工具：search（搜索）和visit（访问网页）\n使用GPT-4o（生成Short-CoT）和QwQ-Plus（生成Long-CoT）来解决第一阶段构建的QA问题，记录下完整的交互轨迹\n轨迹筛选：符合ReAct格式，只保留最终答案正确的轨迹，通过规则和模型过滤掉存在幻觉、严重重复、逻辑不通的轨迹\n第三阶段：Agent SFT\n冷启动， 将筛选后的轨迹数据格式化为对话形式，包含think和工具调用标签，目的是让模型能够按照格式回答，为RL提供一个良好的初始模型。\n计算损失时，屏蔽掉Observation部分，让模型专注于学习生成Thought和Action。\n第四阶段： Agent RL\n使用DAPO，采用SFT时未见过的数据进行rollout\nReward Design： score_format （权重0.1） 和score_answer （权重0.9，LLM-as-a-judge 评分）\nWebSailor WebSailor\nWebSailor提出了一种基于知识图谱的高不确定性任务生成方法 （SailorFog-QA）\n当前大多数训练数据都属于以下两类：\nLevel 1 任务：不确定性低，通过单次搜索或利用模型自身知识就能解决\nLevel 2 任务：初始不确定性高，但有清晰、结构化的解决路径（如标准的多跳问答）\n真正需要且缺乏的**Level 3 任务：**不仅初始不确定性极高，而且没有预设的解决路径，需要智能体进行复杂的探索、推理和信息整合\nSailorFog-QA： 通过在真实网站上进行随机游走，构建复杂的知识图谱，并从中采样拓扑结构多样的子图来生成问题。具体而言：\n从一个模糊的实体（来自Wikidata）开始，通过模拟网页浏览（搜索、访问网页）进行随机游走，提取相关实体和关系，构建一个复杂的知识图谱\n从图谱中随机采样一个子图，基于子图中的实体和关系，生成一个问题和答案\n对问题中的关键信息进行模糊处理，增加其不确定性\n而后采用一个推理模型回答SailorFog-QA的问题，生成完整的轨迹（Thought-Action-Observation），保留其中成功的Action-Observation，丢弃原始的Thought，并使用另一个模型为每一步重新生成简洁、精炼的Thought，形成最终的SFT数据。（这一步的原因是，直接用专家模型的COT进行SFT过于冗长）\n训练阶段，依旧是两阶段：SFT冷启动+RL\nRejection Sampling，对轨迹进行过滤，只保留最终答案正确、长度在32k token以内、且工具调用次数超过5次的复杂轨迹\nRL采用DUPO (Duplicating Sampling Policy Optimization)：在训练前过滤掉过于简单的任务，然后在训练中，对于那些部分成功、部分失败的批次（通过随机复制批次内的有效样本来填满被过滤掉的空位。\nWebShaper https://arxiv.org/abs/2507.15061\n提出了一种基于Formalization-Driven的数据合成方式。\n主流的数据合成方法采用Information-Driven，即先从网络上搜集信息，然后基于这些信息生成问题，但会导致两个主要缺陷：生成的问题的推理结构可能与原始信息的组织结构不匹配（结构不一致） 和 生成的问题和对应的答案之间可能存在矛盾或错误 （答案不一致）\nWebShaper 的数据合成范式，从“先有信息，再造问题”转变为“先定义问题的结构，再寻找信息填充”，基于集合论提出了知识投影的概念，为信息寻求任务建立了一套数学形式化语言，即；设计了一个名为 Expander 的自主智能体，用于系统性地将简单问题扩展为复杂问题；\nKnowledge Projections, KP\n核心思想：将一个复杂的信息查询问题，拆解成一系列基于集合论的“寻找实体集合”的操作\nKP的本质是一个实体集合 。这个集合里的所有实体，都通过一个特定的关系 (Relation, R) 与另一个已知实体集 (V) 相关联，例如，bornIn({90s}) 就是所有在90年代出生的人的集合\n定义了并集和交集两种操作来组合 KP； 如问题: “寻找在2000年踢球并且出生于1990年代的球员。”，则可以拆解成：第一个条件 “在2000年踢球” 可以构建一个KP playAt({2000})第二个条件 “出生于1990年代” 是另一个KP：bornIn({1990年代})，将这两个集合取交集，就得到了最终的目标集合：playAt({2000}) ∩ bornIn({1990年代})\n或问题 “寻找在2004年或2005年效力于某支球队的球员。”，则KP写成：playAt({2004}) ∪ playAt({2005})。\n除此之外，KP还支持递归构建，一个查询的条件（已知实体集V）本身可以是另一个查询的结果；对于问题 *“寻找一名球员，他所在的球队成立于1966年并且是一支东德球队，而他本人在2004-05赛季为该队效力，且出生于90年代。”，*第一层，先找出是哪支球队，T1 = foundIn({1966}) ∩ isA({East German football team})\n第二层查询,寻找球员 T = playIn(T1) ∩ (playAt({2004}) ∪ playAt({2005})) ∩ bornIn({1990s})\nWebShaper 的数据合成流程\n构建种子问题：通过在维基百科文章的链接网络上进行随机游走，收集大量相关联的文章内容，LLM基于这些内容生成一批初始的、相对简单的seeds，筛选，确保其质量和可解性\nAgentic 扩展：\n将形式化的任务结构（如 R1(T1) ∩ R2(T2)）转换成一种 LLM 能理解的、基于三元组 [变量, 关系, 变量/常量] 的表示形式\n对于一个已有的形式化问题，Expander Agent 会识别出其中的“叶子节点”\nExpander 选取一个常量，通过调用工具（Search**、**Summarize、Validate）自主构建一个新的、更复杂的子问题，而这个子问题的答案恰好是原来的那个常量\n将新生成的子问题替换掉原来的常量，从而使整个问题的推理链条变得更长、更复杂。这个过程可以迭代多次，以控制最终任务的难度\nagent训练\n使用一个agent来解决这些新生成的复杂问题\n记录下 Agent 解决问题的完整思考和行动轨迹（保留答案正确且合理的）\nSFT冷启动+RL\nReSum arXiv:2509.13313\nReAct会将每一轮的“思考-动作-观察”全部追加到上下文中，导致随着搜索轮次增加，上下文迅速膨胀，最终超出模型的上下文长度限制\nReSum 的核心目标：通过周期性上下文压缩（摘要），让智能体在不丢失关键信息的前提下，突破上下文长度限制。\n创新点：\n在 ReAct 基础上，周期性调用摘要工具，将历史对话压缩为结构化摘要（包含已确认证据 + 信息缺口 + 下一步方向），用摘要 + 原始问题组成“压缩状态”，重启推理，从而绕过上下文长度限制\n不是直接用通用大模型做摘要，而是专门训练一个30B参数的模型\n专门设计 ReSum-GRPO算法：自动将长轨迹按摘要点分段，每段作为独立训练样本，将整个轨迹的最终奖励（是否答对）广播到所有分段\nIterResearch: Rethinking Long-Horizon Agents via Markovian State Reconstruction https://arxiv.org/html/2511.07327v1\n目前deep-research agent主流所采用的ReAct的框架，把所有历史信息、思考过程和工具调用结果不断累加到同一个上下文中，容易导致：\n上下文爆炸\n噪声干扰\n提出**IterResearch，**用“周期性综合”和“策略性遗忘”取代“线性累积”\n将deep-research 建模为马尔可夫决策过程（MDP），在每一轮交互后，非简单地追加信息，而是重构其workspace，其中workspace只包含三个关键部分：原始问题、一个不断演进的**报告（evolving report）**作为记忆，以及上一步的直接交互上下文\nWebWeaver https://arxiv.org/abs/2509.13312\nOpen-Ended Deep Research, OEDR 任务要求AI智能体在面对一个没有标准答案的开放性问题时，能够自主地从海量的网络信息中进行搜索、筛选、整合，并最终生成一份结构清晰、内容深刻、引用准确的深度研究报告\n现有方法通常将制定大纲和信息搜索这两个阶段解耦,单向流程无法根据新发现动态调整研究方向, 同时，在写作阶段一次性加载至context中，容易造成lost-in-the-middle的问题\nWebWeaver框架上的创新：\nDynamic Research Cycle，不再采用静态的“规划-搜索”分离模式，而是让大纲优化与信息搜索一同进行，新发现的证据会用来优化和扩展大纲，而优化后的大纲又会指导下一轮的搜索\n双智能体设计， Planner 负责探索性研究阶段，最终产出一个带有精确引用的、结构完整的研究大纲； Writer负责报告合成阶段，依据规划器提供的大纲进行写作，逐个章节地写作\nPlanner\n在一个循环中不断做出决策，提供三种工具：search， write_outline, terminate;\n执行search时，返回URL、标题和摘要，Planner筛选相关URL，然后进一步解析网页，提取与查询相关的摘要和详细证据， 摘要被送回Planner上下文中， 详细证据被存入记忆库并分配一个唯一的ID\n在获取新证据后，Planner会重新审视和优化报告大纲（write_outline）\nWriter\n按照大纲的结构，一个章节一个章节地生成报告\n首先识别当前要写的章节，并根据大纲中为该章节提供的引用ID，从记忆库中精确检索出相关的证据（retrieve）\n分析已写好的前文内容和新检索到的证据，形成一个连贯的写作思路（Think）\n基于思考结果，撰写当前章节的内容(write)\n完成一个章节后，用于该章节的证据会从上下文中移除，以保持上下文的简洁和高相关性，为写作下一章节做准备 (Pruning)\n当所有章节都完成后，写作者执行 terminate 行动，输出完整的报告\nWebWatcher https://arxiv.org/abs/2508.05748\n多模态深度研究设计的智能体框架\n提出一个新的基准测试集BrowseComp-VL，和数据合成pipeline， QA-to-VQA转换pipeline 和自动化的轨迹生成与筛选\nBrowseComp-VL 构建\n在前作CRAWL-QA（WebDancer）基础上，加入WebSailor中采用的实体模糊化，构建出纯文本的QA数据\nQA到VQA的转换，采用：\n针对QA对中的核心实体，使用搜索引擎检索相关的真实网络图片\n使用GPT-4o将原文本问题中的实体指代词改写为指向图片的描述，如“图片中的这个物体”\n通过一个三阶段的筛选流程（包括Selector和Examiner），利用GPT-4o评估图片与问题的相关性、问题的清晰度以及答案的可验证性，确保最终生成的VQA数据质量\n其中Selector包含两阶段，初步完整性检查和图文相关性评估；自动化检查包括检查问题是否被改写，检查实体是否被成功掩码 （实体是否被“图中的物体”之类代词取代）；图文相关性评估阶段，将原始QA对+VQA问题+检索到的候选图像 给到GPT-4o，从三个角度评估（上下文对齐， 语义匹配 和视觉推理的合理性）\nExaminer视觉可回答性验证，模拟了一个真实的VQA场景，以验证仅凭图像是否足以识别出问题的核心实体；在QA-to-VQA转换过程中，系统会为每个实体生成一个专门的“图像查询字符串”，如“图中的人物是谁？”，将字符串和图像给到GPT-4o做回答；如果GPT-4o无法根据提供的有限信息正确回答，被认为是“视觉基础薄弱”的，会被最终丢弃 （确保图像本身是自洽且信息丰富的）\nWebWatcher Agent训练\n配备了五种工具：Web Image Search；Web Text Search；Visit；Code Interpreter；OCR\n使用GPT-4o为每个训练VQA样本生成解决问题的完整轨迹\n保留那些最终答案正确、每一步逻辑一致且工具使用次数不少于三次的轨迹\n训练阶段依旧是SFT冷启动加RL（GRPO）\nAgentFounder https://arxiv.org/abs/2509.13310\n单纯使用Post-training训练Agent存在局限性，需要在post-training 前增加一步Agentic Continual Pre-training（CPT），以提升LLM在agent方面的基础能力（工具使用和推理能力）\n提出两种无需真实调用外部API的数据合成方法：\nFirst-order Action Synthesis, FAS ： 从网页、文档中自动生成（问题-规划-行动）数据对；用于训练模型的初始规划和逻辑推理能力\nHigher-order Action Synthesis, HAS： 将agent解决问题的轨迹，重塑为一系列的多步决策问题，通过在每一步生成多个备选方案，而非单一路径\n第一阶段使用大量FAS数据和短的HAS数据在32K上下文中进行训练，初步建立智能体能力；\n第二阶段则使用高质量的长HAS数据在128K长上下文中进行精调，提升模型处理长程、复杂任务的能力\nWebSailor-V2 https://arxiv.org/abs/2509.13305\n一个完整的agent post-training方案\n数据构建创新：SailorFog-QA-V2\n从种子实体出发，利用网络工具进行扩展，并特意建立节点间的密集连接和循环结构，使其更接近真实世界的知识网络，构建了一个comprehensive knowledge graph，密集的图结构以更好地模拟真实世界知识\n由于图谱变得密集，放弃了计算量巨大的暴力枚举，转而采用基于“随机游走”（random-walk）的方法来高效地采样出结构多样的子图。\n在生成问答任务时，系统性地将问题中的实体、日期、数值等关键信息替换为模糊的描述和范围，引入多种不确定性来生成需要复杂推理才能解决的QA pairs。\nRL框架创新\n创建了一个“模拟环境+真实环境”的双轨制训练框架\n模拟环境基于离线的维基百科数据库从零开始构建，专门用于快速的算法实验和数据筛选；真实环境即可真实调用的API；\ndual-environment RL framework\n模拟环境： 基于一个**大规模的离线维基百科知识库，**还配备了“一套相应的网络工具”；用于快速迭代和算法验证\nReal Environment： 与真实世界网络 API 相连接的训练设置，包括多个工具（search，visit，Google Scholar，Python interpreter）；用于agent训练\nAgentScaler https://arxiv.org/abs/2509.13311\n如何获得高质量agent 与环境交互的完整轨迹\n提出：\n可扩展的全模拟环境构建框架\n**两阶段Agent学习策略：**通用领域提升工具调用和交互能力 + 垂直领域专门训练以提升具体场景能力\n环境构建\n收集了超过3万个来自真实世界的API，并对其进行清洗和标准化\n将每个API视为图中的一个节点。通过计算API之间参数的相似性，来判断它们之间是否存在调用依赖关系，从而构建一个庞大的“工具依赖图”\n使用社区发现算法（Louvain）对工具图进行聚类，将功能相近、依赖关系紧密的API划分到同一个Domain，\n在每个领域内，根据所有工具的参数，自动生成一个该领域专属的Schema\n将该领域内的每个工具都转换成可执行的Python代码，使其能够对这个数据库进行真实的读写操作\nAgent Experience Learning\n在特定领域的工具图中，通过遍历图来采样一条逻辑上连贯的工具调用序列。然后，为这个序列生成相应的参数和初始数据库状态，并将它们整合成一个高级的用户意图Intent\n实例化一个“模拟用户”和一个“智能体”。模拟用户提出高级意图，智能体则需要通过多轮对话和工具调用来完成任务\n智能体每次调用工具，都会在程序化实现的环境（数据库）中执行，并获得真实的返回结果。 . 整个交互过程被记录下来，形成一条原始的交互轨迹\n轨迹过滤： format → 筛选数据库的最终状态与预设的golden状态完全一致的轨迹 → 工具调用序列和参数筛选\n两阶段微调\n",
+  "wordCount" : "652",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2025-11-24T20:08:00+08:00",
+  "dateModified": "2025-11-24T20:08:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Tongyi Deep Research 论文笔记
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-11-24 20:08:00 +0800 CST'>November 24, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e8%ae%ad%e7%bb%83%e6%96%b9%e5%bc%8f" aria-label="训练方式">训练方式</a></li>
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e5%90%88%e6%88%90" aria-label="数据合成">数据合成</a><ul>
+                        
+                <li>
+                    <a href="#webwalker--webdancer" aria-label="WebWalker &amp; WebDancer">WebWalker &amp; WebDancer</a></li>
+                <li>
+                    <a href="#websailor" aria-label="WebSailor">WebSailor</a></li>
+                <li>
+                    <a href="#webshaper" aria-label="WebShaper">WebShaper</a></li>
+                <li>
+                    <a href="#%e5%b0%8f%e7%bb%93" aria-label="小结">小结</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%b7%a5%e7%a8%8b%e5%8c%96%e4%bc%98%e5%8c%96" aria-label="工程化优化">工程化优化</a><ul>
+                        
+                <li>
+                    <a href="#resum-%e4%b8%8e-iterresearch" aria-label="ReSum 与 IterResearch">ReSum 与 IterResearch</a></li>
+                <li>
+                    <a href="#webweaver" aria-label="WebWeaver">WebWeaver</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%86%99%e5%9c%a8%e6%9c%80%e5%90%8e" aria-label="写在最后">写在最后</a></li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83" aria-label="参考">参考</a></li>
+                <li>
+                    <a href="#%e9%99%84%e5%bd%95%e8%ae%ba%e6%96%87%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" aria-label="附录：论文阅读笔记">附录：论文阅读笔记</a><ul>
+                        
+                <li>
+                    <a href="#webwalker-benchmarking-llms-in-web-traversal" aria-label="WebWalker: Benchmarking LLMs in Web Traversal">WebWalker: Benchmarking LLMs in Web Traversal</a></li>
+                <li>
+                    <a href="#webdancer" aria-label="WebDancer">WebDancer</a></li>
+                <li>
+                    <a href="#websailor-1" aria-label="WebSailor">WebSailor</a></li>
+                <li>
+                    <a href="#webshaper-1" aria-label="WebShaper">WebShaper</a></li>
+                <li>
+                    <a href="#resum" aria-label="ReSum">ReSum</a></li>
+                <li>
+                    <a href="#iterresearch-rethinking-long-horizon-agents-via-markovian-state-reconstruction" aria-label="IterResearch: Rethinking Long-Horizon Agents via Markovian State Reconstruction">IterResearch: Rethinking Long-Horizon Agents via Markovian State Reconstruction</a></li>
+                <li>
+                    <a href="#webweaver-1" aria-label="WebWeaver">WebWeaver</a></li>
+                <li>
+                    <a href="#webwatcher" aria-label="WebWatcher">WebWatcher</a></li>
+                <li>
+                    <a href="#agentfounder" aria-label="AgentFounder">AgentFounder</a></li>
+                <li>
+                    <a href="#websailor-v2" aria-label="WebSailor-V2">WebSailor-V2</a></li>
+                <li>
+                    <a href="#agentscaler" aria-label="AgentScaler">AgentScaler</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>看着<a href="https://www.modelscope.cn/studios/jialongwu/Tongyi-DeepResearch">Tongyi Deep Research</a> （TDR）用着30B的参数量能够跑出媲美闭源模型的效果，总是好奇究竟怎么做到的?</p>
+<p>最近一个多月断断续续，总算读完了了Tongyi Deep Research 的一系列论文，虽说越往后，官方透露的技术细节越少，但细读下来，依然能一窥其背后的“门道”。</p>
+<p>最大的感受是，TDR在训练算法上并没有太多黑科技，反倒是<strong>数据的合成、训练环境的设计和大量的工程化设计</strong>，或许才是其成功的关键，以及重点。</p>
+<p>大概从以下3个角度出发，整理了下TDR系列论文中的最佳实践和创新点：</p>
+<ol>
+<li>
+<p>Agent的训练方式</p>
+</li>
+<li>
+<p>训练所使用的数据合成管道和方法论</p>
+</li>
+<li>
+<p>工程化优化和设计</p>
+</li>
+</ol>
+<h2 id="训练方式">训练方式<a hidden class="anchor" aria-hidden="true" href="#训练方式">#</a></h2>
+<p>通过LLM+工程化实现agent，还是直接将agent能力内化至LLM中？TDL选择了后者，并提供了更完整的训练链路：Agentic Mid-training + Agentic post-training。</p>
+<p><strong>Agentic Mid-training</strong></p>
+<p>这一概念主要源于<a href="https://arxiv.org/abs/2509.13310">AgentFounder</a>论文，其核心思想是在传统的后训练（Post-training）之前，增加一个<strong>Agentic Continual Pre-training (CPT)</strong> 阶段。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-24%20%e4%b8%8b%e5%8d%881.32.19.png" alt="截屏2025-10-24 下午1.32.19.png"  />
+</p>
+<p><strong>为什么需要CPT？</strong></p>
+<p>后训练流程面临一个核心困境：要求一个用来预测下一个token的LLM，在后训练阶段同时学习两件截然不同的事：</p>
+<ul>
+<li>
+<p>如何理解和调用工具、如何进行多步规划 （基础的agent能力）</p>
+</li>
+<li>
+<p>如何在特定复杂任务上做出最优决策 （专家能力）</p>
+</li>
+</ul>
+<p>Agentic CPT的目标就是解决这一矛盾，先将一个通用的LLM转变为Agentic Foundation Model，将更强的工具调用和推理能力内化其中。</p>
+<p>相比之下，后一个阶段（agentic post-training）方法基本上成为共识： SFT+RL，并没有太多新的东西。</p>
+<p>在RL的环境构建，采用了双环境的设计， 针对web-agent场景， 一个虚拟环境确实可以节约大量的时间和成本：</p>
+<ul>
+<li>
+<p><strong>模拟环境：</strong> 构建一个离线的搜索和查询环境，用于快速验证算法和策略</p>
+</li>
+<li>
+<p><strong>真实世界环境：</strong> 真实的外部API，用于训练和评估；采用5种工具（Search, Visit, Python Interpreter, Google Scholar, and File Parser）；</p>
+</li>
+</ul>
+<h2 id="数据合成">数据合成<a hidden class="anchor" aria-hidden="true" href="#数据合成">#</a></h2>
+<p>如何获得<strong>大量高质量的合成数据</strong>来支撑CPT、SFT和RL？</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/image.png" alt="image.png"  />
+</p>
+<h3 id="webwalker--webdancer">WebWalker &amp; WebDancer<a hidden class="anchor" aria-hidden="true" href="#webwalker--webdancer">#</a></h3>
+<p>这两个工作中对应着几个benchmark和数据集的构建：<strong>WebWalkerQA 和 CRAWL QA</strong> (模拟浏览) &amp; <strong>E2HQA</strong>(由易到难)</p>
+<p>目的都是为了解决现有的QA对数据集太浅的问题；</p>
+<p>主流基于RAG的检索方式，是一种“横向搜索”，仅仅依靠关键词获取大量页面信息，缺乏像人类一样，深入点击、多页面联动的“深度搜索”。</p>
+<p><strong>WebWalkerQA：</strong> 通过<strong>递归遍历</strong>（从首页开始收集所有可访问子链接及其内容），然后结合预设角色让LLM生成查询问题，最后经过验证和过滤（剔除不自然、保留答案简短且含实体的QA）来生成数据</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-15%20%e4%b8%8b%e5%8d%882.52.17.png" alt="截屏2025-10-15 下午2.52.17.png"  />
+</p>
+<p><strong>CRAWL QA</strong>：通过模拟人类浏览行为，从知识型网站（如维基、GitHub）上爬取多层页面信息，收集权威网站的根URL，程序化地点击链接、抓取子页面内容，然后使用GPT-4o根据收集到的信息生成需要整合多个页面信息才能回答的问题。</p>
+<p><strong>E2HQA (Easy-to-Hard QA)</strong>：采用一种“由易到难”的逆向构建策略，将一个简单的问题通过迭代式地增加信息约束和子问题，逐步演化成一个复杂的多跳（multi-hop）问题； 具体而言，从一个简单问答开始，然后围绕答案实体搜索更多信息，并将这些信息改写成限定条件，融入原问题，使其变得更复杂。这个过程可以重复多次</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-21%20%e4%b8%8b%e5%8d%883.46.37.png" alt="截屏2025-10-21 下午3.46.37.png"  />
+</p>
+<p>E2HQA的核心在于**“逆向构造”**：通常我们是从“描述”推理出“实体”，这里是反过来，利用LLM和搜索引擎，将问题中明确的“实体”替换为关于该实体的“描述性查询”。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/Untitled%20diagram-2025-11-18-115655.png" alt="Untitled diagram-2025-11-18-115655.png"  />
+</p>
+<p>例子：</p>
+<blockquote>
+<p><em>原始问题 ($Q_0$)</em>：<strong>爱因斯坦</strong>是哪里人？（答案：德国）</p>
+<p><em>迭代 1</em>：选中实体“爱因斯坦”。搜索并将其重述为“提出相对论的物理学家”。</p>
+<ul>
+<li><em>新问题 ($Q_1$)</em>：<strong>提出相对论的物理学家</strong>是哪里人？</li>
+</ul>
+<p><em>迭代 2</em>：选中实体“相对论”。搜索并将其重述为“包含质能方程 E=mc² 的理论”。</p>
+<ul>
+<li><em>新问题 ($Q_2$)</em>：提出<strong>包含质能方程 E=mc² 的理论</strong>的物理学家是哪里人？</li>
+</ul>
+</blockquote>
+<p>Agent Trajectories Rejection Sampling： 在构建了QA数据后，基于ReAct框架（只提供search和visit工具）来解决这些问题，并记录下完整的交互轨迹。通过一系列筛选（符合ReAct格式、答案正确、过滤幻觉和重复逻辑），保留下高质量的轨迹，用于SFT。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-21%20%e4%b8%8b%e5%8d%884.03.22.png" alt="截屏2025-10-21 下午4.03.22.png"  />
+</p>
+<h3 id="websailor">WebSailor<a hidden class="anchor" aria-hidden="true" href="#websailor">#</a></h3>
+<p>WebSailor的工作标志着一个重要的转折点：<strong>问题难度并非来自路径的长度，而是来自信息的不确定性</strong>。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-21%20%e4%b8%8b%e5%8d%886.41.22.png" alt="截屏2025-10-21 下午6.41.22.png"  />
+</p>
+<p>WebSailor提出了一种新的任务难度分类法，它真正要攻克的是<strong>Level 3：非结构化高不确定性任务</strong>。这类任务没有预设解决路径，Agent必须进行复杂的探索、比较、排除错误路径，并综合多方证据才能得出结论。</p>
+<ul>
+<li>
+<p>三种等级的任务难度分类法</p>
+<ul>
+<li>
+<p><strong>Level 1:</strong> 低不确定性任务。这类任务可以通过单次搜索或利用模型自身的参数化知识直接解决。</p>
+</li>
+<li>
+<p><strong>Level 2:</strong> 结构化高不确定性任务。这类任务初始看不出答案，但存在一条清晰、结构化的解决路径，例如标准的多跳问答，每一步的目标都相对明确。</p>
+</li>
+<li>
+<p><strong>Level 3:</strong> <strong>非结构化高不确定性任务</strong>。这是<code>WebSailor</code>关注的核心。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在知识图谱中，通过Random Walk在图谱中生成长路径，这些长路径天然代表了多跳的推理路径；为此，WebSailor提出了<strong>SailorFog-QA</strong>，一种基于知识图谱和随机游走的高不确定性任务生成方法。</p>
+<p>具体而言：</p>
+<ul>
+<li>
+<p>从一个模糊的实体（来自Wikidata）开始，通过模拟网页浏览（搜索、访问网页）进行随机游走，提取相关实体和关系，构建一个复杂的知识图谱</p>
+</li>
+<li>
+<p>从图谱中随机采样一个子图，基于子图中的实体和关系，生成一个问题和答案</p>
+</li>
+<li>
+<p>对问题中的关键信息进行模糊处理，增加其不确定性</p>
+</li>
+</ul>
+<p>而后采用一个推理模型回答SailorFog-QA的问题，生成完整的轨迹（Thought-Action-Observation），保留其中成功的Action-Observation，丢弃原始的Thought，并使用另一个模型为每一步重新生成简洁、精炼的Thought，形成最终的SFT数据。（这一步的原因是，直接用专家模型的COT进行SFT过于冗长）</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/Untitled%20diagram-2025-11-18-121622.png" alt="Untitled diagram-2025-11-18-121622.png"  />
+</p>
+<p>简而言之，就是通过在真实网站上随机游走构建复杂知识图谱，采样多跳路径，然后<strong>对问题中的关键信息进行模糊处理</strong>（例如，将实体名替换为描述），从而大幅增加任务的不确定性。</p>
+<h3 id="webshaper">WebShaper<a hidden class="anchor" aria-hidden="true" href="#webshaper">#</a></h3>
+<p>WebSailor虽然引入了不确定性，但合成过程还是“Information-Driven”（先搜集信息，再造问题），这可能导致问题结构和答案的不一致。</p>
+<p>WebShaper则更进一步，提出了一种**“Formalization-Driven”的范式。其核心思想从“先有信息，再造问题”转变为“先定义问题的逻辑结构，再寻找信息填充”**。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-22%20%e4%b8%8b%e5%8d%883.50.25.png" alt="截屏2025-10-22 下午3.50.25.png"  />
+</p>
+<p>为此，WebShaper基于集合论提出了**知识投影（Knowledge Projections, KP）**的概念。</p>
+<p><strong>什么是KP？</strong> KP的本质是一个实体集合。这个集合里的所有实体，都通过一个特定的关系(R)与另一个已知实体集(V)相关联。例如，<code>bornIn({90s})</code> 就是所有在90年代出生的人的集合；</p>
+<p>同时KP定义了并集(∪)和交集(∩)来组合出更复杂的情况；如：</p>
+<ul>
+<li>
+<p>“寻找在2000年踢球并且出生于1990年代的球员” = <code>playAt({2000}) ∩ bornIn({1990年代})</code></p>
+</li>
+<li>
+<p>“寻找在2004年或2005年效力于某支球队的球员” = <code>playAt({2004}) ∪ playAt({2005})</code></p>
+</li>
+</ul>
+<p>KP还支持递归构建，一个查询的条件(V)本身可以是另一个查询的结果</p>
+<p>WebShaper 的数据合成流程</p>
+<ul>
+<li>
+<p>构建种子问题：通过在维基百科文章的链接网络上进行随机游走，收集大量相关联的文章内容，LLM基于这些内容生成一批初始的、相对简单的seeds，筛选，确保其质量和可解性</p>
+</li>
+<li>
+<p>Agentic 扩展：</p>
+<ul>
+<li>
+<p>将形式化的任务结构（如 <code>R1(T1) ∩ R2(T2)</code>）转换成一种 LLM 能理解的、基于三元组 <code>[变量, 关系, 变量/常量]</code> 的表示形式</p>
+</li>
+<li>
+<p>对于一个已有的形式化问题，Expander Agent 会识别出其中的“叶子节点”</p>
+</li>
+<li>
+<p>Expander 选取一个常量，通过调用工具（Search**、**Summarize、Validate）自主构建一个新的、更复杂的子问题，而这个子问题的答案恰好是原来的那个常量</p>
+</li>
+<li>
+<p>将新生成的子问题替换掉原来的常量，从而使整个问题的推理链条变得更长、更复杂。这个过程可以迭代多次，以控制最终任务的难度</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结">小结<a hidden class="anchor" aria-hidden="true" href="#小结">#</a></h3>
+<p>从数据合成角度分析，能够看到思路的演化。</p>
+<p>最初，难度被简单地等同于一个量化指标，即完成任务所需的点击次数或路径长度。然而，这种线性增加的路径可能依然由一系列简单的操作组成，并未触及更高级的认知挑战。也就是WebDancer中E2HQA方法的理念，通过增加迭代和约束增加推理长度。</p>
+<p><code>WebSailor</code>的工作标志着一个重要的转折点—问题难度并非来自路径的长度，而是来自信息的不确定性。通过构建复杂的知识图谱并对关键信息进行模糊化处理，agent不能再简单地沿着一条预设的路径前进，而必须在探索过程中维护多种可能性，对比和评估相互矛盾的证据，并最终综合出一个最可靠的结论。</p>
+<p><code>WebShaper</code>则更进一步，引入知识投影KP，从数学的角度给出形式化的描述，确保了每一个生成的任务都有可验证的逻辑基础，而不是随机的；同时难度也变得可量化，使得curriculum learning成为可能。</p>
+<h2 id="工程化优化">工程化优化<a hidden class="anchor" aria-hidden="true" href="#工程化优化">#</a></h2>
+<ul>
+<li>
+<p>如何避免上下文爆炸：<strong>ReSum｜IterResearch</strong></p>
+</li>
+<li>
+<p>如何让agent具备开放式报告撰写能力：<strong>WebWeaver</strong></p>
+</li>
+</ul>
+<h3 id="resum-与-iterresearch">ReSum 与 IterResearch<a hidden class="anchor" aria-hidden="true" href="#resum-与-iterresearch">#</a></h3>
+<p>目前主流Agent采用的ReAct框架，会将每一轮的“think-action-observation”全部追加到上下文中。随着搜索轮次增加，上下文迅速膨胀，不仅超出模型上下文长度限制，累积的噪声还会干扰推理。</p>
+<p><strong>ReSum 的核心目标</strong>：通过<strong>周期性上下文压缩（摘要）</strong>，让智能体在不丢失关键信息的前提下，突破上下文长度限制。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/%e6%88%aa%e5%b1%8f2025-10-13%20%e4%b8%8a%e5%8d%889.36.41.png" alt="截屏2025-10-13 上午9.36.41.png"  />
+</p>
+<ul>
+<li>
+<p>在 ReAct 基础上，<strong>周期性调用摘要工具</strong>，将历史对话压缩为结构化摘要（包含已确认证据 + 信息缺口 + 下一步方向），用摘要 + 原始问题组成“压缩状态”，重启推理，从而<strong>绕过上下文长度限制</strong></p>
+</li>
+<li>
+<p>不是直接用通用大模型做摘要，而是<strong>专门训练一个30B参数的模型</strong></p>
+</li>
+<li>
+<p>专门设计 <strong>ReSum-GRPO</strong>算法：自动将长轨迹按摘要点<strong>分段</strong>，每段作为独立训练样本，将<strong>整个轨迹的最终奖励（是否答对）广播到所有分段</strong></p>
+</li>
+</ul>
+<p>相比ReSum的“压缩”，IterResearch更为彻底，将Deep Research建模为马尔可夫决策过程（MDP）。</p>
+<p>在每一轮交互后，非简单地追加信息，而是重构其workspace，其中workspace只包含三个关键部分：原始问题、一个不断演进的**报告（evolving report）**作为记忆，以及上一步的直接交互上下文。</p>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/Pasted%202025-11-20-21-16-08.png" alt="Pasted 2025-11-20-21-16-08.png"  />
+</p>
+<p><strong>MDP：</strong></p>
+<ul>
+<li>
+<p><strong>State, S：</strong> 在第 <code>t</code> 轮，状态 <code>s_t</code> 由三部分组成：<code>{问题 q, 当前报告 M_t, 上一步的动作和工具响应 {a_{t-1}, TR_{t-1}}}</code></p>
+</li>
+<li>
+<p><strong>Decision, D：</strong> 在每个状态 <code>s_t</code>，LLM生成一个结构化的决策 <code>d_t</code>，包含三部分：<code>{思考 (Think), 更新后的报告 (M_{t+1}), 下一步动作 (a_t)}</code></p>
+</li>
+<li>
+<p><strong>Environment, E：</strong> 一系列工具，如谷歌搜索、谷歌学术、网页浏览器和Python解释器</p>
+</li>
+<li>
+<p><strong>Transition, T：</strong> 从 <code>s_t</code> 到 <code>s_{t+1}</code> 的转移是<strong>重构</strong>而非累加。新的状态 <code>s_{t+1}</code> 由 <code>{问题 q, 智能体刚生成的更新报告 M_{t+1}, 当前动作和工具响应 {a_t, TR_t}}</code> 构成。历史信息通过 <code>M_{t+1}</code> 被压缩和提炼，旧的原始信息被丢弃。</p>
+</li>
+</ul>
+<p><strong>两阶段训练：</strong></p>
+<ul>
+<li>
+<p><strong>SFT</strong>：用Qwen3-235B生成轨迹，教会30B模型这种迭代式思考格式</p>
+</li>
+<li>
+<p><strong>RL</strong>： 筛选出一批具有挑战性（成功率在20%-60%之间）的问题，采用GRSO，引入了基于轨迹长度的几何折扣奖励，鼓励模型学习更直接、更专注的解决路径。</p>
+</li>
+</ul>
+<h3 id="webweaver"><strong>WebWeaver</strong><a hidden class="anchor" aria-hidden="true" href="#webweaver">#</a></h3>
+<p><img loading="lazy" src="/img/Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0-assets/Pasted%202025-11-24-19-48-08.png" alt="Pasted 2025-11-24-19-48-08.png"  />
+</p>
+<p>针对Open-Ended Deep Research (OEDR) 任务，即没有标准答案、需要自主生成长报告的场景，TDR提出了<strong>WebWeaver</strong>框架。</p>
+<p>传统方法通常将“制定大纲”和“信息搜索”解耦，且一次性加载所有信息容易导致Lost-in-the-middle。WebWeaver的创新在于：</p>
+<ol>
+<li>
+<p>Dynamic Research Cycle： 不再采用静态的“规划-搜索”分离模式。新发现的证据会用来优化和扩展大纲，而优化后的大纲又会指导下一轮搜索。</p>
+</li>
+<li>
+<p>Planner + Writer 双agent</p>
+<p>Planner： 负责探索性研究。它在一个循环中不断通过Search工具获取URL、解析网页、提取详细证据并存入记忆库（分配唯一ID）。获取新证据后，Planner会重新审视并优化报告大纲（write_outline）</p>
+<p>Writer： 负责报告合成。它按照大纲结构逐章生成。</p>
+<p>首先根据大纲中的引用ID，从记忆库精确检索证据。（<code>retrieve</code>）；分析已写好的前文内容和新检索到的证据，形成一个连贯的写作思路（<code>Think</code>）；基于思考结果，撰写当前章节的内容(<code>write</code>)；完成一个章节后，用于该章节的证据会从上下文中移除，以保持上下文的简洁和高相关性，为写作下一章节做准备 (<code>Pruning</code>)</p>
+<p>；当所有章节都完成后，writer执行 <code>terminate</code> ，输出完整的报告</p>
+</li>
+</ol>
+<h2 id="写在最后">写在最后<a hidden class="anchor" aria-hidden="true" href="#写在最后">#</a></h2>
+<p>一些思考：</p>
+<ul>
+<li>
+<p><strong>工程化实现 vs. 训练内化</strong>  这并非非此即彼的选择，更多是基于场景和成本的权衡。 通用Agent目前仍难以通过训练实现，但在Web-Agent等垂直领域，通过训练让小参数模型（如30B）掌握特定工具的使用和特定格式输出，具有性价比；那么代价是什么呢？模型的泛化性会降低。TDR的成功很大程度上依赖于其预设的工具集，<strong>“TDR+预设工具”和“TDR+自定义工具”完全是两种不同的体验</strong></p>
+</li>
+<li>
+<p>mid-training | CPT 是否是必须的，业内暂时还没有共识，但显而易见的是，LLM必须经过针对<strong>多轮对话和工具调用</strong>的深度微调。如果缺乏这种专项训练，现阶段最稳妥的方案依然是使用最大参数量的基座模型来保证指令遵循能力。</p>
+</li>
+<li>
+<p>个人认为TDR最值得借鉴是数据合成和工程化上的创新</p>
+</li>
+</ul>
+<h2 id="参考">参考<a hidden class="anchor" aria-hidden="true" href="#参考">#</a></h2>
+<p><a href="https://arxiv.org/html/2510.24701v1">Tongyi DeepResearch Technical Report</a></p>
+<p><a href="https://arxiv.org/pdf/2501.07572">WebWalker</a></p>
+<p><a href="https://arxiv.org/abs/2505.22648">WebDancer</a></p>
+<p><a href="https://arxiv.org/abs/2507.02592">WebSailor</a></p>
+<p><a href="https://arxiv.org/abs/2507.15061">WebShaper</a></p>
+<p><a href="https://arxiv.org/abs/2509.13313">ReSum</a></p>
+<p><a href="https://arxiv.org/html/2511.07327v1">IterResearch</a></p>
+<p><a href="https://arxiv.org/abs/2509.13312">WebWeaver</a></p>
+<p><a href="https://arxiv.org/abs/2508.05748">WebWatcher</a></p>
+<p><a href="https://arxiv.org/abs/2509.13310">AgentFounder</a></p>
+<p><a href="https://arxiv.org/abs/2509.13305">WebSailor-V2</a></p>
+<p><a href="https://arxiv.org/abs/2509.13311">AgentScaler</a></p>
+<hr>
+<h2 id="附录论文阅读笔记">附录：论文阅读笔记<a hidden class="anchor" aria-hidden="true" href="#附录论文阅读笔记">#</a></h2>
+<h3 id="webwalker-benchmarking-llms-in-web-traversal"><strong>WebWalker: Benchmarking LLMs in Web Traversal</strong><a hidden class="anchor" aria-hidden="true" href="#webwalker-benchmarking-llms-in-web-traversal">#</a></h3>
+<p><a href="https://arxiv.org/pdf/2501.07572">https://arxiv.org/pdf/2501.07572</a></p>
+<p>当前主流的<strong>检索增强生成（RAG）系统</strong>虽然能通过搜索引擎获取外部信息，但其检索方式通常是“横向搜索”（horizontal search），即在多个网页中找关键词匹配的内容，<strong>无法深入网站内部结构</strong>，难以处理需要“多层点击、多页面联动、深度推理”的复杂任务。</p>
+<p><strong>提出新任务：Web Traversal, 系统性地在网站内导航，挖掘深层信息,<strong>任务形式为</strong>QA</strong></p>
+<p><strong>构建新基准：WebWalkerQA,</strong> 包含 <strong>680个高质量QA对</strong>，覆盖<strong>4个真实领域,</strong> 包含<strong>单源和多源</strong> 两种类型, 每个QA标注了<strong>深度、难度、路径</strong></p>
+<p>采用 <strong>“探索者（Explorer）+ 批判者（Critic）”双智能体架构:</strong> Explorer负责点击导航，Critic负责记忆和判断是否已收集足够信息</p>
+<h3 id="webdancer"><strong>WebDancer</strong><a hidden class="anchor" aria-hidden="true" href="#webdancer">#</a></h3>
+<p><strong><a href="https://arxiv.org/abs/2505.22648">WebDancer</a></strong></p>
+<p>解决如何合成数据用于训练web-agent</p>
+<p>现有的方法存在的问题：</p>
+<ul>
+<li>
+<p><strong>数据质量和复杂性不足：</strong> “浅”问题，只需一两步搜索就能解决，高质量的复杂问答数据集数据量又太少</p>
+</li>
+<li>
+<p><strong>缺乏系统性构建方法</strong></p>
+</li>
+<li>
+<p>缺乏明确的训练方法</p>
+</li>
+</ul>
+<p>WebDancer 提出了一个四阶段的 cohesive paradigm， 将复杂的智能体构建过程分解为四个阶段：</p>
+<ul>
+<li>
+<p><strong>第一步：高质量浏览数据构建</strong></p>
+</li>
+<li>
+<p><strong>第二步：高质量轨迹采样</strong></p>
+</li>
+<li>
+<p><strong>第三步：监督微调（SFT）进行有效冷启动</strong></p>
+</li>
+<li>
+<p><strong>第四步：强化学习（RL）增强泛化能力</strong></p>
+</li>
+</ul>
+<p><strong>第一阶段：数据构建</strong>：</p>
+<ul>
+<li>
+<p><strong>CRAWL QA</strong>：通过模拟人类浏览行为，从知识型网站（如维基、GitHub）上爬取多层页面信息，收集权威网站的根URL，程序化地点击链接、抓取子页面内容，然后使用GPT-4o根据收集到的信息生成需要整合多个页面信息才能回答的问题。</p>
+</li>
+<li>
+<p><strong>E2HQA (Easy-to-Hard QA)</strong>：采用一种“由易到难”的逆向构建策略，将一个简单的问题通过迭代式地增加信息约束和子问题，逐步演化成一个复杂的多跳（multi-hop）问题； 具体而言，从一个简单问答开始，然后围绕答案实体搜索更多信息，并将这些信息改写成限定条件，融入原问题，使其变得更复杂。这个过程可以重复多次</p>
+</li>
+</ul>
+<p><strong>第二阶段：轨迹采样</strong> </p>
+<ul>
+<li>
+<p>基于经典的<strong>ReAct</strong>框架， 只提供两个工具：<code>search</code>（搜索）和<code>visit</code>（访问网页）</p>
+</li>
+<li>
+<p>使用GPT-4o（生成Short-CoT）和QwQ-Plus（生成Long-CoT）来解决第一阶段构建的QA问题，记录下完整的交互轨迹</p>
+</li>
+<li>
+<p>轨迹筛选：符合ReAct格式，只保留最终答案正确的轨迹，通过规则和模型过滤掉存在幻觉、严重重复、逻辑不通的轨迹</p>
+</li>
+</ul>
+<p><strong>第三阶段：Agent SFT</strong></p>
+<p>冷启动， 将筛选后的轨迹数据格式化为对话形式，包含think和工具调用标签，目的是让模型能够按照格式回答，为RL提供一个良好的初始模型。</p>
+<p>计算损失时，屏蔽掉Observation部分，让模型专注于学习生成Thought和Action。</p>
+<p><strong>第四阶段： Agent RL</strong></p>
+<p>使用<strong>DAPO</strong>，采用SFT时未见过的数据进行rollout</p>
+<p>Reward Design： score_format （权重0.1） 和score_answer （权重0.9，LLM-as-a-judge 评分）</p>
+<h3 id="websailor-1"><strong>WebSailor</strong><a hidden class="anchor" aria-hidden="true" href="#websailor-1">#</a></h3>
+<p><strong><a href="https://arxiv.org/abs/2507.02592">WebSailor</a></strong></p>
+<p>WebSailor提出了一种基于知识图谱的高不确定性任务生成方法 （<strong>SailorFog-QA</strong>）</p>
+<p>当前大多数训练数据都属于以下两类：</p>
+<p><strong>Level 1 任务</strong>：不确定性低，通过单次搜索或利用模型自身知识就能解决</p>
+<p><strong>Level 2 任务</strong>：初始不确定性高，但有清晰、结构化的解决路径（如标准的多跳问答）</p>
+<p>真正需要且缺乏的**Level 3 任务：**不仅初始不确定性极高，而且没有预设的解决路径，需要智能体进行复杂的探索、推理和信息整合</p>
+<p><strong>SailorFog-QA</strong>： 通过在真实网站上进行随机游走，构建复杂的知识图谱，并从中采样拓扑结构多样的子图来生成问题。具体而言：</p>
+<ul>
+<li>
+<p>从一个模糊的实体（来自Wikidata）开始，通过模拟网页浏览（搜索、访问网页）进行随机游走，提取相关实体和关系，构建一个复杂的知识图谱</p>
+</li>
+<li>
+<p>从图谱中随机采样一个子图，基于子图中的实体和关系，生成一个问题和答案</p>
+</li>
+<li>
+<p>对问题中的关键信息进行模糊处理，增加其不确定性</p>
+</li>
+</ul>
+<p>而后采用一个推理模型回答SailorFog-QA的问题，生成完整的轨迹（Thought-Action-Observation），保留其中成功的Action-Observation，丢弃原始的Thought，并使用另一个模型为每一步重新生成简洁、精炼的Thought，形成最终的SFT数据。（这一步的原因是，直接用专家模型的COT进行SFT过于冗长）</p>
+<p>训练阶段，依旧是两阶段：SFT冷启动+RL</p>
+<p>Rejection Sampling，对轨迹进行过滤，只保留最终答案正确、长度在32k token以内、且工具调用次数超过5次的复杂轨迹</p>
+<p>RL采用DUPO (Duplicating Sampling Policy Optimization)：在训练前过滤掉过于简单的任务，然后在训练中，对于那些部分成功、部分失败的批次（通过随机复制批次内的有效样本来填满被过滤掉的空位。</p>
+<h3 id="webshaper-1">WebShaper<a hidden class="anchor" aria-hidden="true" href="#webshaper-1">#</a></h3>
+<p><a href="https://arxiv.org/abs/2507.15061">https://arxiv.org/abs/2507.15061</a></p>
+<p>提出了一种基于Formalization-Driven的数据合成方式。</p>
+<p>主流的数据合成方法采用Information-Driven，即先从网络上搜集信息，然后基于这些信息生成问题，但会导致两个主要缺陷：生成的问题的推理结构可能与原始信息的组织结构不匹配（结构不一致） 和 生成的问题和对应的答案之间可能存在矛盾或错误 （答案不一致）</p>
+<p>WebShaper 的数据合成范式，从“先有信息，再造问题”转变为“<strong>先定义问题的结构，再寻找信息填充</strong>”，基于<strong>集合论</strong>提出了知识投影的概念，为信息寻求任务建立了一套数学形式化语言，即；设计了一个名为 <strong>Expander</strong> 的自主智能体，用于系统性地将简单问题扩展为复杂问题；</p>
+<p>Knowledge Projections, KP</p>
+<p>核心思想：将一个复杂的信息查询问题，<strong>拆解成一系列基于集合论的“寻找实体集合”的操作</strong></p>
+<p>KP的本质是一个<strong>实体集合</strong> 。这个集合里的所有实体，都通过一个特定的<strong>关系 (Relation, R)</strong> 与另一个已知实体集 (V) 相关联，例如，<code>bornIn({90s})</code> 就是所有在90年代出生的人的集合</p>
+<p>定义了并集和交集两种操作来组合 KP； 如问题: “寻找<strong>在2000年踢球</strong>并且<strong>出生于1990年代</strong>的球员。”，则可以拆解成：第一个条件 “在2000年踢球” 可以构建一个KP <code>playAt({2000})</code>第二个条件 “出生于1990年代” 是另一个KP：<code>bornIn({1990年代})</code>，将这两个集合取<strong>交集</strong>，就得到了最终的目标集合：<code>playAt({2000}) ∩ bornIn({1990年代})</code></p>
+<p>或问题 “寻找<strong>在2004年或2005年</strong>效力于某支球队的球员。”，则KP写成：<code>playAt({2004}) ∪ playAt({2005})</code>。</p>
+<p>除此之外，KP还支持递归构建，一个查询的条件（已知实体集V）本身可以是另一个查询的结果；对于问题 *“寻找一名球员，他所在的球队成立于1966年并且是一支东德球队，而他本人在2004-05赛季为该队效力，且出生于90年代。”，*第一层，先找出是哪支球队，<code>T1 = foundIn({1966}) ∩ isA({East German football team})</code></p>
+<p>第二层查询,寻找球员 <code>T = playIn(T1) ∩ (playAt({2004}) ∪ playAt({2005})) ∩ bornIn({1990s})</code></p>
+<p>WebShaper 的数据合成流程</p>
+<ul>
+<li>
+<p>构建种子问题：通过在维基百科文章的链接网络上进行随机游走，收集大量相关联的文章内容，LLM基于这些内容生成一批初始的、相对简单的seeds，筛选，确保其质量和可解性</p>
+</li>
+<li>
+<p>Agentic 扩展：</p>
+<ul>
+<li>
+<p>将形式化的任务结构（如 <code>R1(T1) ∩ R2(T2)</code>）转换成一种 LLM 能理解的、基于三元组 <code>[变量, 关系, 变量/常量]</code> 的表示形式</p>
+</li>
+<li>
+<p>对于一个已有的形式化问题，Expander Agent 会识别出其中的“叶子节点”</p>
+</li>
+<li>
+<p>Expander 选取一个常量，通过调用工具（Search**、**Summarize、Validate）自主构建一个新的、更复杂的子问题，而这个子问题的答案恰好是原来的那个常量</p>
+</li>
+<li>
+<p>将新生成的子问题替换掉原来的常量，从而使整个问题的推理链条变得更长、更复杂。这个过程可以迭代多次，以控制最终任务的难度</p>
+</li>
+</ul>
+</li>
+<li>
+<p>agent训练</p>
+<ul>
+<li>
+<p>使用一个agent来解决这些新生成的复杂问题</p>
+</li>
+<li>
+<p>记录下 Agent 解决问题的完整思考和行动轨迹（保留答案正确且合理的）</p>
+</li>
+<li>
+<p>SFT冷启动+RL</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="resum">ReSum<a hidden class="anchor" aria-hidden="true" href="#resum">#</a></h3>
+<p>arXiv:<a href="https://arxiv.org/abs/2509.13313">2509.13313</a></p>
+<p><strong>ReAct</strong>会将每一轮的“思考-动作-观察”全部追加到上下文中，导致随着搜索轮次增加，上下文迅速膨胀，最终超出模型的上下文长度限制</p>
+<p><strong>ReSum 的核心目标</strong>：通过<strong>周期性上下文压缩（摘要）</strong>，让智能体在不丢失关键信息的前提下，突破上下文长度限制。</p>
+<p><strong>创新点：</strong></p>
+<ul>
+<li>
+<p>在 ReAct 基础上，<strong>周期性调用摘要工具</strong>，将历史对话压缩为结构化摘要（包含已确认证据 + 信息缺口 + 下一步方向），用摘要 + 原始问题组成“压缩状态”，重启推理，从而<strong>绕过上下文长度限制</strong></p>
+</li>
+<li>
+<p>不是直接用通用大模型做摘要，而是<strong>专门训练一个30B参数的模型</strong></p>
+</li>
+<li>
+<p>专门设计 <strong>ReSum-GRPO</strong>算法：自动将长轨迹按摘要点<strong>分段</strong>，每段作为独立训练样本，将<strong>整个轨迹的最终奖励（是否答对）广播到所有分段</strong></p>
+</li>
+</ul>
+<h3 id="iterresearch-rethinking-long-horizon-agents-via-markovian-state-reconstruction">IterResearch: Rethinking Long-Horizon Agents via Markovian State Reconstruction<a hidden class="anchor" aria-hidden="true" href="#iterresearch-rethinking-long-horizon-agents-via-markovian-state-reconstruction">#</a></h3>
+<p><a href="https://arxiv.org/html/2511.07327v1">https://arxiv.org/html/2511.07327v1</a></p>
+<p>目前deep-research agent主流所采用的ReAct的框架，把所有历史信息、思考过程和工具调用结果不断累加到同一个上下文中，容易导致：</p>
+<ul>
+<li>
+<p>上下文爆炸</p>
+</li>
+<li>
+<p>噪声干扰</p>
+</li>
+</ul>
+<p>提出**IterResearch，**用“周期性综合”和“策略性遗忘”取代“线性累积”</p>
+<p>将deep-research 建模为马尔可夫决策过程（MDP），在每一轮交互后，非简单地追加信息，而是重构其workspace，其中workspace只包含三个关键部分：原始问题、一个不断演进的**报告（evolving report）**作为记忆，以及上一步的直接交互上下文</p>
+<h3 id="webweaver-1">WebWeaver<a hidden class="anchor" aria-hidden="true" href="#webweaver-1">#</a></h3>
+<p><a href="https://arxiv.org/abs/2509.13312">https://arxiv.org/abs/2509.13312</a></p>
+<p>Open-Ended Deep Research, OEDR 任务要求AI智能体在面对一个没有标准答案的开放性问题时，能够自主地从海量的网络信息中进行搜索、筛选、整合，并最终生成一份结构清晰、内容深刻、引用准确的深度研究报告</p>
+<p>现有方法通常将制定大纲和信息搜索这两个阶段解耦,单向流程无法根据新发现动态调整研究方向, 同时，在写作阶段一次性加载至context中，容易造成lost-in-the-middle的问题</p>
+<p>WebWeaver框架上的创新：</p>
+<ul>
+<li>
+<p>Dynamic Research Cycle，不再采用静态的“规划-搜索”分离模式，而是让大纲优化与信息搜索一同进行，新发现的证据会用来优化和扩展大纲，而优化后的大纲又会指导下一轮的搜索</p>
+</li>
+<li>
+<p>双智能体设计， Planner 负责探索性研究阶段，最终产出一个带有精确引用的、结构完整的研究大纲； Writer负责报告合成阶段，依据规划器提供的大纲进行写作，逐个章节地写作</p>
+</li>
+</ul>
+<p><strong>Planner</strong></p>
+<p>在一个循环中不断做出决策，提供三种工具：search， write_outline, terminate;</p>
+<p>执行search时，返回URL、标题和摘要，Planner筛选相关URL，然后进一步解析网页，提取与查询相关的摘要和详细证据， 摘要被送回Planner上下文中， 详细证据被存入记忆库并分配一个唯一的ID</p>
+<p>在获取新证据后，Planner会重新审视和优化报告大纲（write_outline）</p>
+<p><strong>Writer</strong></p>
+<p>按照大纲的结构，一个章节一个章节地生成报告</p>
+<p>首先识别当前要写的章节，并根据大纲中为该章节提供的引用ID，从记忆库中精确检索出相关的证据（<code>retrieve</code>）</p>
+<p>分析已写好的前文内容和新检索到的证据，形成一个连贯的写作思路（<code>Think</code>）</p>
+<p>基于思考结果，撰写当前章节的内容(<code>write</code>)</p>
+<p>完成一个章节后，用于该章节的证据会从上下文中移除，以保持上下文的简洁和高相关性，为写作下一章节做准备 (<code>Pruning</code>)</p>
+<p>当所有章节都完成后，写作者执行 <code>terminate</code> 行动，输出完整的报告</p>
+<h3 id="webwatcher"><strong>WebWatcher</strong><a hidden class="anchor" aria-hidden="true" href="#webwatcher">#</a></h3>
+<p><a href="https://arxiv.org/abs/2508.05748">https://arxiv.org/abs/2508.05748</a></p>
+<p>多模态深度研究设计的智能体框架</p>
+<p>提出一个新的基准测试集BrowseComp-VL，和数据合成pipeline， QA-to-VQA转换pipeline 和自动化的轨迹生成与筛选</p>
+<p><strong>BrowseComp-VL 构建</strong></p>
+<p>在前作CRAWL-QA（WebDancer）基础上，加入WebSailor中采用的实体模糊化，构建出纯文本的QA数据</p>
+<p>QA到VQA的转换，采用：</p>
+<ul>
+<li>
+<p>针对QA对中的核心实体，使用搜索引擎检索相关的真实网络图片</p>
+</li>
+<li>
+<p>使用GPT-4o将原文本问题中的实体指代词改写为指向图片的描述，如“图片中的这个物体”</p>
+</li>
+<li>
+<p>通过一个三阶段的筛选流程（包括Selector和Examiner），利用GPT-4o评估图片与问题的相关性、问题的清晰度以及答案的可验证性，确保最终生成的VQA数据质量</p>
+</li>
+<li>
+<p>其中Selector包含两阶段，初步完整性检查和图文相关性评估；自动化检查包括检查问题是否被改写，检查实体是否被成功掩码 （实体是否被“图中的物体”之类代词取代）；图文相关性评估阶段，将原始QA对+VQA问题+检索到的候选图像 给到GPT-4o，从三个角度评估（上下文对齐， 语义匹配 和视觉推理的合理性）</p>
+</li>
+<li>
+<p>Examiner视觉可回答性验证，模拟了一个真实的VQA场景，以验证仅凭图像是否足以识别出问题的核心实体；在QA-to-VQA转换过程中，系统会为每个实体生成一个专门的“图像查询字符串”，如“图中的人物是谁？”，将字符串和图像给到GPT-4o做回答；如果GPT-4o无法根据提供的有限信息正确回答，被认为是“视觉基础薄弱”的，会被最终丢弃 （确保图像本身是自洽且信息丰富的）</p>
+</li>
+</ul>
+<p><strong>WebWatcher Agent训练</strong></p>
+<ul>
+<li>
+<p>配备了五种工具：Web Image Search；Web Text Search；Visit；Code Interpreter；OCR</p>
+</li>
+<li>
+<p>使用GPT-4o为每个训练VQA样本生成解决问题的完整轨迹</p>
+</li>
+<li>
+<p>保留那些最终答案正确、每一步逻辑一致且工具使用次数不少于三次的轨迹</p>
+</li>
+<li>
+<p>训练阶段依旧是SFT冷启动加RL（GRPO）</p>
+</li>
+</ul>
+<h3 id="agentfounder"><strong>AgentFounder</strong><a hidden class="anchor" aria-hidden="true" href="#agentfounder">#</a></h3>
+<p><a href="https://arxiv.org/abs/2509.13310">https://arxiv.org/abs/2509.13310</a></p>
+<p>单纯使用Post-training训练Agent存在局限性，需要在post-training 前增加一步Agentic Continual Pre-training（CPT），以提升LLM在agent方面的基础能力（工具使用和推理能力）</p>
+<p>提出两种无需真实调用外部API的数据合成方法：</p>
+<ul>
+<li>
+<p><strong>First-order Action Synthesis, FAS</strong> ： 从网页、文档中自动生成（问题-规划-行动）数据对；用于训练模型的初始规划和逻辑推理能力</p>
+</li>
+<li>
+<p><strong>Higher-order Action Synthesis, HAS</strong>： 将agent解决问题的轨迹，重塑为一系列的多步决策问题，通过在每一步生成多个备选方案，而非单一路径</p>
+</li>
+</ul>
+<p>第一阶段使用大量FAS数据和短的HAS数据在32K上下文中进行训练，初步建立智能体能力；</p>
+<p>第二阶段则使用高质量的长HAS数据在128K长上下文中进行精调，提升模型处理长程、复杂任务的能力</p>
+<h3 id="websailor-v2">WebSailor-V2<a hidden class="anchor" aria-hidden="true" href="#websailor-v2">#</a></h3>
+<p><a href="https://arxiv.org/abs/2509.13305">https://arxiv.org/abs/2509.13305</a></p>
+<p>一个完整的agent post-training方案</p>
+<p><strong>数据构建创新：SailorFog-QA-V2</strong></p>
+<p>从种子实体出发，利用网络工具进行扩展，并特意建立节点间的密集连接和循环结构，使其更接近真实世界的知识网络，构建了一个comprehensive knowledge graph，密集的图结构以更好地模拟真实世界知识</p>
+<p>由于图谱变得密集，放弃了计算量巨大的暴力枚举，转而采用基于“随机游走”（random-walk）的方法来高效地采样出结构多样的子图。</p>
+<p>在生成问答任务时，系统性地将问题中的<strong>实体、日期、数值</strong>等关键信息替换为模糊的描述和范围，引入多种不确定性来生成需要复杂推理才能解决的QA pairs。</p>
+<p><strong>RL框架创新</strong></p>
+<p>创建了一个“模拟环境+真实环境”的双轨制训练框架</p>
+<p>模拟环境基于离线的维基百科数据库从零开始构建，专门用于快速的算法实验和数据筛选；真实环境即可真实调用的API；</p>
+<p>dual-environment RL framework</p>
+<p>模拟环境： 基于一个**大规模的离线维基百科知识库，**还配备了“一套相应的网络工具”；用于快速迭代和算法验证</p>
+<p>Real Environment： 与<strong>真实世界网络 API</strong> 相连接的训练设置，包括多个工具（search，visit，Google Scholar，Python interpreter）；用于agent训练</p>
+<h3 id="agentscaler">AgentScaler<a hidden class="anchor" aria-hidden="true" href="#agentscaler">#</a></h3>
+<p><a href="https://arxiv.org/abs/2509.13311">https://arxiv.org/abs/2509.13311</a></p>
+<p>如何获得高质量agent 与环境交互的完整轨迹</p>
+<p>提出：</p>
+<ul>
+<li>
+<p><strong>可扩展的全模拟环境构建框架</strong></p>
+</li>
+<li>
+<p>**两阶段Agent学习策略：**通用领域提升工具调用和交互能力 + 垂直领域专门训练以提升具体场景能力</p>
+</li>
+</ul>
+<p><strong>环境构建</strong></p>
+<ul>
+<li>
+<p>收集了超过3万个来自真实世界的API，并对其进行清洗和标准化</p>
+</li>
+<li>
+<p>将每个API视为图中的一个节点。通过计算API之间参数的相似性，来判断它们之间是否存在调用依赖关系，从而构建一个庞大的“工具依赖图”</p>
+</li>
+<li>
+<p>使用社区发现算法（Louvain）对工具图进行聚类，将功能相近、依赖关系紧密的API划分到同一个Domain，</p>
+</li>
+<li>
+<p>在每个领域内，根据所有工具的参数，自动生成一个该领域专属的Schema</p>
+</li>
+<li>
+<p>将该领域内的每个工具都转换成可执行的Python代码，使其能够对这个数据库进行真实的读写操作</p>
+</li>
+</ul>
+<p><strong>Agent Experience Learning</strong></p>
+<ul>
+<li>
+<p>在特定领域的工具图中，通过遍历图来采样一条逻辑上连贯的工具调用序列。然后，为这个序列生成相应的参数和初始数据库状态，并将它们整合成一个高级的用户意图Intent</p>
+</li>
+<li>
+<p>实例化一个“模拟用户”和一个“智能体”。模拟用户提出高级意图，智能体则需要通过多轮对话和工具调用来完成任务</p>
+</li>
+<li>
+<p>智能体每次调用工具，都会在程序化实现的环境（数据库）中执行，并获得真实的返回结果。 . 整个交互过程被记录下来，形成一条原始的交互轨迹</p>
+</li>
+<li>
+<p>轨迹过滤： format → 筛选数据库的最终状态与预设的golden状态完全一致的轨迹 → 工具调用序列和参数筛选</p>
+</li>
+<li>
+<p>两阶段微调</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/deep-research/">Deep-Research</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/posts/rag-toolkits-copali/">
+    <span class="title">Next »</span>
+    <br>
+    <span>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on x"
+            href="https://x.com/intent/tweet/?text=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f&amp;hashtags=deep-research%2cAgent">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f&amp;title=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0&amp;summary=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f&title=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on whatsapp"
+            href="https://api.whatsapp.com/send?text=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on telegram"
+            href="https://telegram.me/share/url?text=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Tongyi Deep Research 论文笔记 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Tongyi%20Deep%20Research%20%e8%ae%ba%e6%96%87%e7%ac%94%e8%ae%b0&u=https%3a%2f%2fniraya666.github.io%2fposts%2ftongyi-deep-research-%25E8%25AE%25BA%25E6%2596%2587%25E7%25AC%2594%25E8%25AE%25B0%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="https://github.com/Niraya666/niraya666.github.io.git"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
