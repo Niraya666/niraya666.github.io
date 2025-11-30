@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2025-11 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+Gemini 3
+SAM 3
+Kimi-K2-Thinking
+KIMI LINEAR
+值得关注的开源项目
+DocETL: A system for agentic LLM-powered data processing and ETL
+how-to-build-a-coding-agent: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.
+reader 3: Quick illustration of how one can easily read books together with LLMs.
+Olmo 3： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点
+Music Flamingo: Scaling Music Understanding in Audio Language Models
+Claude Scientific Skills：A set of ready to use scientific skills for Claude">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2025-11 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+Gemini 3
+SAM 3
+Kimi-K2-Thinking
+KIMI LINEAR
+值得关注的开源项目
+DocETL: A system for agentic LLM-powered data processing and ETL
+how-to-build-a-coding-agent: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.
+reader 3: Quick illustration of how one can easily read books together with LLMs.
+Olmo 3： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点
+Music Flamingo: Scaling Music Understanding in Audio Language Models
+Claude Scientific Skills：A set of ready to use scientific skills for Claude" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2025-07/51B8EB62-E2BD-4687-9262-8AE275816114_1_105_c.jpeg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2025-11-30T15:25:00+08:00" />
+<meta property="article:modified_time" content="2025-11-30T15:25:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2025-07/51B8EB62-E2BD-4687-9262-8AE275816114_1_105_c.jpeg" />
+<meta name="twitter:title" content="2025-11 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+Gemini 3
+SAM 3
+Kimi-K2-Thinking
+KIMI LINEAR
+值得关注的开源项目
+DocETL: A system for agentic LLM-powered data processing and ETL
+how-to-build-a-coding-agent: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.
+reader 3: Quick illustration of how one can easily read books together with LLMs.
+Olmo 3： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点
+Music Flamingo: Scaling Music Understanding in Audio Language Models
+Claude Scientific Skills：A set of ready to use scientific skills for Claude"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2025-11 月刊",
+      "item": "https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025-11 月刊",
+  "name": "2025-11 月刊",
+  "description": "值得关注的模型和新技术 Gemini 3\nSAM 3\nKimi-K2-Thinking\nKIMI LINEAR\n值得关注的开源项目 DocETL: A system for agentic LLM-powered data processing and ETL\nhow-to-build-a-coding-agent: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.\nreader 3: Quick illustration of how one can easily read books together with LLMs.\nOlmo 3： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点\nMusic Flamingo: Scaling Music Understanding in Audio Language Models Claude Scientific Skills：A set of ready to use scientific skills for Claude\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 Gemini 3\nSAM 3\nKimi-K2-Thinking\nKIMI LINEAR\n值得关注的开源项目 DocETL: A system for agentic LLM-powered data processing and ETL\nhow-to-build-a-coding-agent: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.\nreader 3: Quick illustration of how one can easily read books together with LLMs.\nOlmo 3： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点\nMusic Flamingo: Scaling Music Understanding in Audio Language Models Claude Scientific Skills：A set of ready to use scientific skills for Claude\n值得关注的研究和论文 AgentFold: Long-Horizon Web Agents with Proactive Context Management arXiv:2510.24699\n如何有效进行context Management\n目前context Management遇到的问题\nReAct：只追加，不处理，随着任务变长，上下文会迅速膨胀 固定历史摘要：每步都总结；任何一次总结的失误都可能导致关键细节丢失 提出AgentFold：核心是主动式、多尺度的上下文管理\n将context看作是一个“草稿纸”—需要主动管理和塑造的动态空间 引入Folding操作：agent不仅要决定下一步的行动，还要决定如何“折叠”和管理自己的历史记录 支持两种不同的粒度folding： Granular Condensation： 将最近一步的详细交互，压缩成一个精简的摘要 Deep Consolidation：将过去连续的多步交互合并成一个总结 通过SFT让LLM学会根据当前任务状态，自主决定何时、对哪些内容、以及用何种粒度进行folding Defeating the Training-Inference Mismatch via FP16 https://arxiv.org/pdf/2510.26788\nLLM 在RL阶段普遍存在Training-Inference Mismatch问题\n根源： Inference/Rollout 和Training/Gradient Computation 采用不同计算引擎，尽管这两个引擎在数学上是等价的，但由于硬件优化和数值精度的差异，它们会产生微小的数值偏差； 这种不匹配会导致Biased Gradient，容易出现性能突然下降和崩溃。\n当前广泛使用的 BF16 格式是罪魁祸首：\nBF16 虽然动态范围大（与FP32相同），能有效防止预训练中的溢出和下溢，但其精度极低 低精度使得计算结果对微小的实现差异非常敏感，舍入误差在自回归生成过程中不断累积，最终导致训练和推理策略的概率分布产生显著差异 转而使用 FP16 进行RL微调 Deep Research Tulu https://www.datocms-assets.com/64837/1763496622-dr_tulu_draft.pdf\n创新点\nRLER (Reinforcement Learning with Evolving Rubrics): 在训练过程中动态生成和更新评分标准,而非固定的评分标准\nInitial Search-based Rubrics\n在训练开始前\n操作： 对于训练集中的每一个问题 x，系统首先调用搜索引擎获取相关的背景文档。 生成： 将问题 x 和搜索到的文档输入给一个教师模型（Rubric Generator），让其生成一组初始的评分标准 R_{persist}。 目的： 确保评分标准是**基于事实（Grounded）**的，而不是基于模型幻觉的。例如，如果问题是关于某个具体的医学基因突变，初始标准会明确要求“答案必须提到该突变会导致 FHM1 疾病”，而不是泛泛地要求“答案要准确”。 Evolving Rubrics\n每一步训练中，评分标准会根据模型当前的表现进行更新\n采样 (Rollout)： 待训练的模型（Policy Model）针对问题 x 生成 G 个不同的回答，每个回答都包含搜索过程和最终答案。 对比生成 (Contrastive Generation)： 系统将这 G 个回答（包括它们新搜索到的信息）连同当前已有的评分标准，一起扔给 Rubric Generator。 指令核心： 系统会问 Generator：“对比这些回答，找出区分好回答和坏回答的关键点是什么？有哪些新的优点是之前的标准没覆盖的？有哪些新的投机取巧（Reward Hacking）的行为？” 生成两类新标准： 正向标准 (Positive Rubrics)： 捕捉模型探索到的新知识或高质量推理。例如：“回答中引用了 2024 年最新的 X 论文来反驳旧观点。” 负向标准 (Negative Rubrics)： 捕捉模型新出现的错误模式。例如：“回答为了凑字数，大量复制粘贴了搜索结果中的无关段落。” 合并： 将新生成的标准 R_{new} 加入到当前的活跃评分标准池 R_{active} 中。 Rubric Buffer Management\n如果一直添加新标准，计算量会爆炸，且很多标准可能失效。因此需要进行筛选。\n计算区分度 (Discriminative Power)： 系统使用当前的评分标准池对那 G 个回答进行打分。 计算每个评分标准在 G 个回答上的得分方差 (Standard Deviation)。 筛选逻辑： 剔除无效标准： 如果某个标准对所有回答的打分都是 1（大家都做到了）或者都是 0（大家都做不到），说明这个标准在当前阶段没有区分度，直接剔除。 保留高价值标准： 按照方差从大到小排序，只保留前 K_{max} 个（例如 5 个）最具区分度的标准。 目的： 确保奖励信号始终关注模型当前最需要改进的地方（即那些模型有时候能做对、有时候做不对的地方）。 奖励计算与更新\n最终的奖励信号由三部分组成，用于指导 GRPO 算法更新模型：\n评分标准奖励： 由 LLM Judge 根据筛选后的评分标准对答案打分（0, 0.5, 1）。 引用奖励 (Citation Reward)： 检查引用的准确性（Precision）和召回率（Recall）。如果模型引用了不存在的文献或引用内容不支持论点，会受到惩罚。 格式奖励 (Format Reward)： 确保模型遵守 , , 等结构化标签。 Think in Diffusion, Talk in Autoregression arXiv:2511.08923\nAR 生成质量高，但必须逐个 token 串行生成\ndLM支持并行生成多个 token，但生成质量不佳\n创新点\n在Speculative Decoding基础上，利用dLM进行并行的 Token Drafting，利用AR做Sampling/Verification\nSingle Forward Pass：利用 GPU 在内存受限场景下的Free Token Slots，在一次模型前向计算中，同时完成对上一步草稿的验证和对下一步内容的并行起草。\nNested Learning: The Illusion of Deep Learning Architectures https://abehrouz.github.io/files/NL.pdf\n如何解决LLMs静态性和持续学习能力缺失的问题\n对此提出了 Nested Learning (NL，嵌套学习)\n不将模型视为简单的层级堆叠，而是将其视为一组嵌套的、多层级的优化问题。每个组件（如注意力机制、前馈网络、优化器）都有自己的“更新频率” Linear Attention 被重构为一个两层优化问题：内层通过梯度下降更新记忆矩阵 M_t 以压缩上下文，外层通过梯度下降更新投影层 W_q, W_k, W_v Momentum被重构为一个试图记忆过去梯度的“元记忆模块” HOPE 架构\n使用了一种基于 Titans 和 Delta-rule的Self-referential学习模块。 引入了 CMS，包含一系列 MLP 块 (MLP^{(f_1)}, …, MLP^{(f_k)})。不同的块有不同的更新周期 C^{(\\ell)}。 更新规则：参数 \\theta 不是固定的，而是根据输入数据通过L2 regression 进行实时更新。这意味着模型在推理过程中也在进行某种形式的“训练”或“记忆压缩”。 推荐内容 Ultimate Guide to Vibe Coding V1.2\nSupercharge your OCR Pipelines with Open Models\nGoogle agent系列白皮书：\nintroduction-to-agents Agent Tools \u0026 Interoperability with MCP Context Engineering: Sessions \u0026 Memory Agent Quality Prototype to Production The GenAI Divide STATE OF AI IN BUSINESS 2025： GenAI鸿沟，企业在采用GenAI时普遍遇到的问题，和如何跨越鸿沟。\nOpenAI：building-an-ai-native-engineering-team\nHow to Think About GPUs\n影音记录 精选歌单 Live演出 11.15 Cory Wong\n11.28 死亡搁浅 音乐会\n书\u0026阅读摘录 罗汉堂 | Diego Comin：什么将决定全球 AI 生产率的分化？ 很多企业引入了新技术，却没有真正将其广泛地融入核心业务和工作流程。这种“拥有但未充分使用” 的现象，是导致全球生产力分化的深层原因\n当前 AI 的 “拥有率” 和 “使用强度” 都仍然很低。未来，决定企业乃至国家生产率分化的，不是谁率先拥有 AI，而是谁能充分拥抱和使用 AI。\n新技术究竟是如何推动生产率增长的（productivity growth）？要回答这个问题，我们需要从两个维度来理解技术扩散与生产率之间的关系。第一，是新技术被引入一个国家所需要的时间，这通常被称为‘采纳滞后’（adoption lag）；第二，当一项技术被引入后，它究竟在多大程度上被使用，也就是我们在经济学中所说的‘使用强度’或‘集约边际’（intensive margin）\n这意味着，那些能够把 AI 融入核心流程、提升使用强度的企业，将在未来的生产率竞争中走得更快、更远；而那些虽然采纳了 AI，却没有真正使用或只做浅尝辄止的企业，即便站在同一技术前沿，也很难从 AI 中获益\n因为，最终决定生产率差异的不在技术本身，而在技术的使用强度。\n“AI 浏览器是最差的交互形态，搜索也是” 信息爆炸与有限人类：生而有涯，知也无涯\n但问题是，底层基础设施并没有同步演化。所有浏览器的核心仍是“人”——必须由人来全程参与、观察、控制。它或许能让速度快几倍，但永远受制于人类自身的时间维度：我们是有限生物，有 24 小时、有睡眠、有寿命。\n问题不在于 Agent，而在于浏览器本身——是浏览器这套架构需要被抛弃。\n这其实回到一个核心概念——Intention（意图）。我们在互联网上常常忽略自己的真实意图，以为自己在交互，其实只是被算法牵着走。\nCode execution with MCP: Building more efficient agents As MCP usage scales, there are two common patterns that can increase agent cost and latency:Tool definitions overload the context window;Intermediate tool results consume additional tokens.\nLLMs are adept at writing code and developers should take advantage of this strength to build agents that interact with MCP servers more efficiently.\n企业 IT 部门是 AI 转型的最大阻力？| 任鑫 x 徐文浩 从MVP到MMP： AI产品的营销成本越来越贵，现在大家谈论的是MMP（Minimum Marketable Product），产品特性必须从设计之初就考虑好如何在社交媒体上传播 。\nAgent和Workflow并非对立 。在对交付结果准确性要求高的B端场景，Workflow是必需的 ；而在C端，Agent的不确定性反而是“抽卡”式成瘾性的来源 。\n不确定性的价值： AI的“智能感”并非来自100%准确，而是来自“意料之外” 。如同“抽卡”，不确定性会带来多巴胺奖励 。人们更喜欢AI提供自己无法产生的“全新维度”（如心理侧写、玄学分析）。\nIT部门的阻力： 传统企业AI落地的一大阻力是其内部IT部门 。他们想主导这件事，但往往既缺乏外部公司的技术能力，也不懂内部业务，最终卡住流程 。\n从特定场景开始自动化： 评估你公司内部的工作流，使用Cherry Studio 、N8N 或开源工具，从一个非常具体的需求，如分析云账单 、处理发票 开始构建内部Agent。\n",
+  "wordCount" : "509",
+  "inLanguage": "en",
+  "image":"https://niraya666.github.io/img/monthly/2025-07/51B8EB62-E2BD-4687-9262-8AE275816114_1_105_c.jpeg","datePublished": "2025-11-30T15:25:00+08:00",
+  "dateModified": "2025-11-30T15:25:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2025-11 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-11-30 15:25:00 +0800 CST'>November 30, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2025-07/51B8EB62-E2BD-4687-9262-8AE275816114_1_105_c.jpeg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2025-07/51B8EB62-E2BD-4687-9262-8AE275816114_1_105_c.jpeg" alt="摄于 崇明岛"></a>
+        <p>摄于 崇明岛</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#agentfold-long-horizon-web-agents-with-proactive-context-management" aria-label="AgentFold: Long-Horizon Web Agents with Proactive Context Management">AgentFold: Long-Horizon Web Agents with Proactive Context Management</a></li>
+                <li>
+                    <a href="#defeating-the-training-inference-mismatch-via-fp16" aria-label="Defeating the Training-Inference Mismatch via FP16">Defeating the Training-Inference Mismatch via FP16</a></li>
+                <li>
+                    <a href="#deep-research-tulu" aria-label="Deep Research Tulu">Deep Research Tulu</a></li>
+                <li>
+                    <a href="#think-in-diffusion-talk-in-autoregression" aria-label="Think in Diffusion, Talk in Autoregression">Think in Diffusion, Talk in Autoregression</a></li>
+                <li>
+                    <a href="#nested-learning-the-illusion-of-deep-learning-architectures" aria-label="Nested Learning: The Illusion of Deep Learning Architectures">Nested Learning: The Illusion of Deep Learning Architectures</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a></li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li>
+                <li>
+                    <a href="#live%e6%bc%94%e5%87%ba" aria-label="Live演出">Live演出</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%bd%97%e6%b1%89%e5%a0%82--diego-comin%e4%bb%80%e4%b9%88%e5%b0%86%e5%86%b3%e5%ae%9a%e5%85%a8%e7%90%83-ai-%e7%94%9f%e4%ba%a7%e7%8e%87%e7%9a%84%e5%88%86%e5%8c%96httpszhuanlanzhihucomp1974216336990307917" aria-label="罗汉堂 | Diego Comin：什么将决定全球 AI 生产率的分化？">罗汉堂 | Diego Comin：什么将决定全球 AI 生产率的分化？</a></li>
+                <li>
+                    <a href="#ai-%e6%b5%8f%e8%a7%88%e5%99%a8%e6%98%af%e6%9c%80%e5%b7%ae%e7%9a%84%e4%ba%a4%e4%ba%92%e5%bd%a2%e6%80%81%e6%90%9c%e7%b4%a2%e4%b9%9f%e6%98%af" aria-label="“AI 浏览器是最差的交互形态，搜索也是”">“AI 浏览器是最差的交互形态，搜索也是”</a></li>
+                <li>
+                    <a href="#code-execution-with-mcp-building-more-efficient-agentshttpswwwanthropiccomengineeringcode-execution-with-mcp" aria-label="Code execution with MCP: Building more efficient agents">Code execution with MCP: Building more efficient agents</a></li>
+                <li>
+                    <a href="#%e4%bc%81%e4%b8%9a-it-%e9%83%a8%e9%97%a8%e6%98%af-ai-%e8%bd%ac%e5%9e%8b%e7%9a%84%e6%9c%80%e5%a4%a7%e9%98%bb%e5%8a%9b-%e4%bb%bb%e9%91%ab-x-%e5%be%90%e6%96%87%e6%b5%a9httpswwwxiaoyuzhoufmcomepisode6900b579023cb7139490f0e5" aria-label="企业 IT 部门是 AI 转型的最大阻力？| 任鑫 x 徐文浩">企业 IT 部门是 AI 转型的最大阻力？| 任鑫 x 徐文浩</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://deepmind.google/models/gemini/">Gemini 3</a></p>
+<p><a href="https://ai.meta.com/sam3/">SAM 3</a></p>
+<p><a href="https://moonshotai.github.io/Kimi-K2/thinking.html">Kimi-K2-Thinking</a></p>
+<p><a href="https://arxiv.org/pdf/2510.26692">KIMI LINEAR</a></p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/ucbepic/docetl">DocETL</a>: A system for agentic LLM-powered data processing and ETL</p>
+<p><a href="https://github.com/ghuntley/how-to-build-a-coding-agent">how-to-build-a-coding-agent</a>: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.</p>
+<p><a href="https://github.com/karpathy/reader3">reader 3</a>: Quick illustration of how one can easily read books together with LLMs.</p>
+<p><a href="https://www.datocms-assets.com/64837/1763662397-1763646865-olmo_3_technical_report-1.pdf">Olmo 3</a>： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点</p>
+<p><a href="https://research.nvidia.com/labs/adlr/MF/">Music Flamingo: Scaling Music Understanding in Audio Language Models</a>
+<a href="https://github.com/K-Dense-AI/claude-scientific-skills">Claude Scientific Skills</a>：A set of ready to use scientific skills for Claude</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="agentfold-long-horizon-web-agents-with-proactive-context-management">AgentFold: Long-Horizon Web Agents with Proactive Context Management<a hidden class="anchor" aria-hidden="true" href="#agentfold-long-horizon-web-agents-with-proactive-context-management">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2510.24699">2510.24699</a></p>
+<p>如何有效进行context Management</p>
+<p>目前context Management遇到的问题</p>
+<ul>
+<li>ReAct：只追加，不处理，随着任务变长，上下文会迅速膨胀</li>
+<li>固定历史摘要：每步都总结；任何一次总结的失误都可能导致关键细节丢失</li>
+</ul>
+<p>提出AgentFold：核心是主动式、多尺度的上下文管理</p>
+<ul>
+<li>将context看作是一个“草稿纸”—需要主动管理和塑造的动态空间</li>
+<li>引入Folding操作：agent不仅要决定下一步的行动，还要决定如何“折叠”和管理自己的历史记录</li>
+<li>支持两种不同的粒度folding：
+<ul>
+<li>Granular Condensation： 将最近一步的详细交互，压缩成一个精简的摘要</li>
+<li>Deep Consolidation：将过去连续的多步交互合并成一个总结</li>
+</ul>
+</li>
+<li>通过SFT让LLM学会根据当前任务状态，自主决定何时、对哪些内容、以及用何种粒度进行folding</li>
+</ul>
+<h2 id="defeating-the-training-inference-mismatch-via-fp16">Defeating the Training-Inference Mismatch via FP16<a hidden class="anchor" aria-hidden="true" href="#defeating-the-training-inference-mismatch-via-fp16">#</a></h2>
+<p><a href="https://arxiv.org/pdf/2510.26788">https://arxiv.org/pdf/2510.26788</a></p>
+<p>LLM 在RL阶段普遍存在Training-Inference Mismatch问题</p>
+<p><strong>根源：</strong> Inference/Rollout 和Training/Gradient Computation 采用不同计算引擎，尽管这两个引擎在数学上是等价的，但由于硬件优化和数值精度的差异，它们会产生微小的数值偏差； 这种不匹配会导致Biased Gradient，容易出现性能突然下降和崩溃。</p>
+<p>当前广泛使用的 <strong>BF16</strong> 格式是罪魁祸首：</p>
+<ul>
+<li>BF16 虽然动态范围大（与FP32相同），能有效防止预训练中的溢出和下溢，但其<strong>精度极低</strong></li>
+<li>低精度使得计算结果对微小的实现差异非常敏感，舍入误差在自回归生成过程中不断累积，最终导致训练和推理策略的概率分布产生显著差异</li>
+<li><strong>转而使用 FP16</strong> 进行RL微调</li>
+</ul>
+<h2 id="deep-research-tulu"><strong>Deep Research Tulu</strong><a hidden class="anchor" aria-hidden="true" href="#deep-research-tulu">#</a></h2>
+<p><a href="https://www.datocms-assets.com/64837/1763496622-dr_tulu_draft.pdf">https://www.datocms-assets.com/64837/1763496622-dr_tulu_draft.pdf</a></p>
+<p><strong>创新点</strong></p>
+<p><strong>RLER (Reinforcement Learning with Evolving Rubrics):</strong> 在训练过程中动态生成和更新评分标准,而非固定的评分标准</p>
+<p><strong>Initial Search-based Rubrics</strong></p>
+<p>在训练开始前</p>
+<ul>
+<li><strong>操作：</strong> 对于训练集中的每一个问题 x，系统首先调用搜索引擎获取相关的背景文档。</li>
+<li><strong>生成：</strong> 将问题 x 和搜索到的文档输入给一个教师模型（Rubric Generator），让其生成一组初始的评分标准 R_{persist}。</li>
+<li><strong>目的：</strong> 确保评分标准是**基于事实（Grounded）**的，而不是基于模型幻觉的。例如，如果问题是关于某个具体的医学基因突变，初始标准会明确要求“答案必须提到该突变会导致 FHM1 疾病”，而不是泛泛地要求“答案要准确”。</li>
+</ul>
+<p><strong>Evolving Rubrics</strong></p>
+<p>每一步训练中，评分标准会根据模型当前的表现进行更新</p>
+<ul>
+<li><strong>采样 (Rollout)：</strong> 待训练的模型（Policy Model）针对问题 x 生成 G 个不同的回答，每个回答都包含搜索过程和最终答案。</li>
+<li><strong>对比生成 (Contrastive Generation)：</strong>
+<ul>
+<li>系统将这 G 个回答（包括它们新搜索到的信息）连同当前已有的评分标准，一起扔给 Rubric Generator。</li>
+<li><strong>指令核心：</strong> 系统会问 Generator：“对比这些回答，找出<strong>区分</strong>好回答和坏回答的关键点是什么？有哪些新的优点是之前的标准没覆盖的？有哪些新的投机取巧（Reward Hacking）的行为？”</li>
+</ul>
+</li>
+<li><strong>生成两类新标准：</strong>
+<ol>
+<li><strong>正向标准 (Positive Rubrics)：</strong> 捕捉模型探索到的新知识或高质量推理。例如：“回答中引用了 2024 年最新的 X 论文来反驳旧观点。”</li>
+<li><strong>负向标准 (Negative Rubrics)：</strong> 捕捉模型新出现的错误模式。例如：“回答为了凑字数，大量复制粘贴了搜索结果中的无关段落。”</li>
+</ol>
+</li>
+<li><strong>合并：</strong> 将新生成的标准 R_{new} 加入到当前的活跃评分标准池 R_{active} 中。</li>
+</ul>
+<p><strong>Rubric Buffer Management</strong></p>
+<p>如果一直添加新标准，计算量会爆炸，且很多标准可能失效。因此需要进行筛选。</p>
+<ul>
+<li><strong>计算区分度 (Discriminative Power)：</strong>
+<ul>
+<li>系统使用当前的评分标准池对那 G 个回答进行打分。</li>
+<li>计算每个评分标准在 G 个回答上的得分<strong>方差 (Standard Deviation)</strong>。</li>
+</ul>
+</li>
+<li><strong>筛选逻辑：</strong>
+<ul>
+<li><strong>剔除无效标准：</strong> 如果某个标准对所有回答的打分都是 1（大家都做到了）或者都是 0（大家都做不到），说明这个标准在当前阶段没有区分度，直接剔除。</li>
+<li><strong>保留高价值标准：</strong> 按照方差从大到小排序，只保留前 K_{max} 个（例如 5 个）最具区分度的标准。</li>
+</ul>
+</li>
+<li><strong>目的：</strong> 确保奖励信号始终关注模型当前最需要改进的地方（即那些模型有时候能做对、有时候做不对的地方）。</li>
+</ul>
+<p>奖励计算与更新</p>
+<p>最终的奖励信号由三部分组成，用于指导 GRPO 算法更新模型：</p>
+<ol>
+<li><strong>评分标准奖励：</strong> 由 LLM Judge 根据筛选后的评分标准对答案打分（0, 0.5, 1）。</li>
+<li><strong>引用奖励 (Citation Reward)：</strong> 检查引用的准确性（Precision）和召回率（Recall）。如果模型引用了不存在的文献或引用内容不支持论点，会受到惩罚。</li>
+<li><strong>格式奖励 (Format Reward)：</strong> 确保模型遵守 <code>&lt;think&gt;</code>, <code>&lt;call_tool&gt;</code>, <code>&lt;answer&gt;</code> 等结构化标签。</li>
+</ol>
+<h2 id="think-in-diffusion-talk-in-autoregression">Think in Diffusion, Talk in Autoregression<a hidden class="anchor" aria-hidden="true" href="#think-in-diffusion-talk-in-autoregression">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2511.08923">2511.08923</a></p>
+<p>AR 生成质量高，但必须逐个 token 串行生成</p>
+<p>dLM支持并行生成多个 token，但生成质量不佳</p>
+<p><strong>创新点</strong></p>
+<p>在Speculative Decoding基础上，利用dLM进行并行的 Token Drafting，利用AR做Sampling/Verification</p>
+<p>Single Forward Pass：利用 GPU 在内存受限场景下的Free Token Slots，在一次模型前向计算中，同时完成对上一步草稿的验证和对下一步内容的并行起草。</p>
+<h2 id="nested-learning-the-illusion-of-deep-learning-architectures">Nested Learning: The Illusion of Deep Learning Architectures<a hidden class="anchor" aria-hidden="true" href="#nested-learning-the-illusion-of-deep-learning-architectures">#</a></h2>
+<p><a href="https://abehrouz.github.io/files/NL.pdf">https://abehrouz.github.io/files/NL.pdf</a></p>
+<p>如何解决LLMs静态性和持续学习能力缺失的问题</p>
+<p>对此提出了 Nested Learning (NL，嵌套学习)</p>
+<ul>
+<li>不将模型视为简单的层级堆叠，而是将其视为一组<strong>嵌套的、多层级的优化问题</strong>。每个组件（如注意力机制、前馈网络、优化器）都有自己的“更新频率”</li>
+<li>Linear Attention 被重构为一个两层优化问题：内层通过梯度下降更新记忆矩阵 M_t 以压缩上下文，外层通过梯度下降更新投影层 W_q, W_k, W_v</li>
+<li>Momentum被重构为一个试图记忆过去梯度的“元记忆模块”</li>
+</ul>
+<p><strong>HOPE 架构</strong></p>
+<ul>
+<li>使用了一种基于 Titans 和 Delta-rule的Self-referential学习模块。</li>
+<li>引入了 CMS，包含一系列 MLP 块 (MLP^{(f_1)}, &hellip;, MLP^{(f_k)})。不同的块有不同的更新周期 C^{(\ell)}。</li>
+<li><strong>更新规则</strong>：参数 \theta 不是固定的，而是根据输入数据通过L2 regression 进行实时更新。这意味着模型在推理过程中也在进行某种形式的“训练”或“记忆压缩”。</li>
+</ul>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<p><a href="https://github.com/EnzeD/vibe-coding">Ultimate Guide to Vibe Coding V1.2</a></p>
+<p><a href="https://huggingface.co/blog/ocr-open-models">Supercharge your OCR Pipelines with Open Models</a></p>
+<p>Google agent系列白皮书：</p>
+<ul>
+<li><a href="https://www.kaggle.com/whitepaper-introduction-to-agents">introduction-to-agents</a></li>
+<li><a href="https://www.kaggle.com/whitepaper-agent-tools-and-interoperability-with-mcp">Agent Tools &amp; Interoperability with MCP</a></li>
+<li><a href="https://www.kaggle.com/whitepaper-context-engineering-sessions-and-memory">Context Engineering: Sessions &amp; Memory</a></li>
+<li><a href="https://www.kaggle.com/whitepaper-agent-quality">Agent Quality</a></li>
+<li><a href="https://www.kaggle.com/whitepaper-prototype-to-production">Prototype to Production</a></li>
+</ul>
+<p><a href="https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf">The GenAI Divide STATE OF AI IN BUSINESS 2025</a>： GenAI鸿沟，企业在采用GenAI时普遍遇到的问题，和如何跨越鸿沟。</p>
+<p>OpenAI：<a href="https://cdn.openai.com/business-guides-and-resources/building-an-ai-native-engineering-team.pdf">building-an-ai-native-engineering-team</a></p>
+<p><a href="https://jax-ml.github.io/scaling-book/gpus/">How to Think About GPUs</a></p>
+<hr>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5g13hgJHROWGF8zcNCjyt5?utm_source=generator" width="100%" height="460" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h2 id="live演出">Live演出<a hidden class="anchor" aria-hidden="true" href="#live演出">#</a></h2>
+<p>11.15 Cory Wong</p>
+<p>11.28 死亡搁浅 音乐会</p>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="罗汉堂--diego-comin什么将决定全球-ai-生产率的分化httpszhuanlanzhihucomp1974216336990307917"><a href="https://zhuanlan.zhihu.com/p/1974216336990307917">罗汉堂 | Diego Comin：什么将决定全球 AI 生产率的分化？</a><a hidden class="anchor" aria-hidden="true" href="#罗汉堂--diego-comin什么将决定全球-ai-生产率的分化httpszhuanlanzhihucomp1974216336990307917">#</a></h2>
+<blockquote>
+<p>很多企业引入了新技术，却没有真正将其广泛地融入核心业务和工作流程。这种“拥有但未充分使用” 的现象，是导致全球生产力分化的深层原因</p>
+</blockquote>
+<blockquote>
+<p>当前 AI 的 “拥有率” 和 “使用强度” 都仍然很低。未来，决定企业乃至国家生产率分化的，不是谁率先拥有 AI，而是谁能充分拥抱和使用 AI。</p>
+</blockquote>
+<blockquote>
+<p>新技术究竟是如何推动生产率增长的（productivity growth）？要回答这个问题，我们需要从两个维度来理解技术扩散与生产率之间的关系。第一，是新技术被引入一个国家所需要的时间，这通常被称为‘采纳滞后’（adoption lag）；第二，当一项技术被引入后，它究竟在多大程度上被使用，也就是我们在经济学中所说的‘使用强度’或‘集约边际’（intensive margin）</p>
+</blockquote>
+<blockquote>
+<p>这意味着，那些能够把 AI 融入核心流程、提升使用强度的企业，将在未来的生产率竞争中走得更快、更远；而那些虽然采纳了 AI，却没有真正使用或只做浅尝辄止的企业，即便站在同一技术前沿，也很难从 AI 中获益</p>
+</blockquote>
+<blockquote>
+<p>因为，最终决定生产率差异的不在技术本身，而在技术的使用强度。</p>
+</blockquote>
+<h2 id="ai-浏览器是最差的交互形态搜索也是">“AI 浏览器是最差的交互形态，搜索也是”<a hidden class="anchor" aria-hidden="true" href="#ai-浏览器是最差的交互形态搜索也是">#</a></h2>
+<blockquote>
+<p>信息爆炸与有限人类：生而有涯，知也无涯</p>
+</blockquote>
+<blockquote>
+<p>但问题是，底层基础设施并没有同步演化。所有浏览器的核心仍是“人”——必须由人来全程参与、观察、控制。它或许能让速度快几倍，但永远受制于人类自身的时间维度：我们是有限生物，有 24 小时、有睡眠、有寿命。</p>
+</blockquote>
+<blockquote>
+<p>问题不在于 Agent，而在于浏览器本身——是浏览器这套架构需要被抛弃。</p>
+</blockquote>
+<blockquote>
+<p>这其实回到一个核心概念——Intention（意图）。我们在互联网上常常忽略自己的真实意图，以为自己在交互，其实只是被算法牵着走。</p>
+</blockquote>
+<h2 id="code-execution-with-mcp-building-more-efficient-agentshttpswwwanthropiccomengineeringcode-execution-with-mcp"><a href="https://www.anthropic.com/engineering/code-execution-with-mcp"><strong>Code execution with MCP: Building more efficient agents</strong></a><a hidden class="anchor" aria-hidden="true" href="#code-execution-with-mcp-building-more-efficient-agentshttpswwwanthropiccomengineeringcode-execution-with-mcp">#</a></h2>
+<blockquote>
+<p>As MCP usage scales, there are two common patterns that can increase agent cost and latency:Tool definitions overload the context window;Intermediate tool results consume additional tokens.</p>
+</blockquote>
+<blockquote>
+<p>LLMs are adept at writing code and developers should take advantage of this strength to build agents that interact with MCP servers more efficiently.</p>
+</blockquote>
+<h2 id="企业-it-部门是-ai-转型的最大阻力-任鑫-x-徐文浩httpswwwxiaoyuzhoufmcomepisode6900b579023cb7139490f0e5"><a href="https://www.xiaoyuzhoufm.com/episode/6900b579023cb7139490f0e5">企业 IT 部门是 AI 转型的最大阻力？| 任鑫 x 徐文浩</a><a hidden class="anchor" aria-hidden="true" href="#企业-it-部门是-ai-转型的最大阻力-任鑫-x-徐文浩httpswwwxiaoyuzhoufmcomepisode6900b579023cb7139490f0e5">#</a></h2>
+<blockquote>
+<p>从MVP到MMP： AI产品的营销成本越来越贵，现在大家谈论的是MMP（Minimum Marketable Product），产品特性必须从设计之初就考虑好如何在社交媒体上传播 。</p>
+</blockquote>
+<blockquote>
+<p>Agent和Workflow并非对立 。在对交付结果准确性要求高的B端场景，Workflow是必需的 ；而在C端，Agent的不确定性反而是“抽卡”式成瘾性的来源 。</p>
+</blockquote>
+<blockquote>
+<p>不确定性的价值： AI的“智能感”并非来自100%准确，而是来自“意料之外” 。如同“抽卡”，不确定性会带来多巴胺奖励 。人们更喜欢AI提供自己无法产生的“全新维度”（如心理侧写、玄学分析）。</p>
+</blockquote>
+<blockquote>
+<p>IT部门的阻力： 传统企业AI落地的一大阻力是其内部IT部门 。他们想主导这件事，但往往既缺乏外部公司的技术能力，也不懂内部业务，最终卡住流程 。</p>
+</blockquote>
+<blockquote>
+<p>从特定场景开始自动化： 评估你公司内部的工作流，使用Cherry Studio 、N8N 或开源工具，从一个非常具体的需求，如分析云账单 、处理发票 开始构建内部Agent。</p>
+</blockquote>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2025-11%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f&amp;title=2025-11%20%e6%9c%88%e5%88%8a&amp;summary=2025-11%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f&title=2025-11%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2025-11%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2025-11%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2025-11 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2025-11%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2025-11%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="https://github.com/Niraya666/niraya666.github.io.git"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

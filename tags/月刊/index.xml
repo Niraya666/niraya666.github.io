@@ -11,8 +11,26 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 31 Oct 2025 20:25:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 15:25:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-11 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sun, 30 Nov 2025 15:25:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://deepmind.google/models/gemini/&#34;&gt;Gemini 3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ai.meta.com/sam3/&#34;&gt;SAM 3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-K2/thinking.html&#34;&gt;Kimi-K2-Thinking&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2510.26692&#34;&gt;KIMI LINEAR&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ucbepic/docetl&#34;&gt;DocETL&lt;/a&gt;: A system for agentic LLM-powered data processing and ETL&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ghuntley/how-to-build-a-coding-agent&#34;&gt;how-to-build-a-coding-agent&lt;/a&gt;: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/karpathy/reader3&#34;&gt;reader 3&lt;/a&gt;: Quick illustration of how one can easily read books together with LLMs.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.datocms-assets.com/64837/1763662397-1763646865-olmo_3_technical_report-1.pdf&#34;&gt;Olmo 3&lt;/a&gt;： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://research.nvidia.com/labs/adlr/MF/&#34;&gt;Music Flamingo: Scaling Music Understanding in Audio Language Models&lt;/a&gt;
+&lt;a href=&#34;https://github.com/K-Dense-AI/claude-scientific-skills&#34;&gt;Claude Scientific Skills&lt;/a&gt;：A set of ready to use scientific skills for Claude&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-10 月刊</title>
       <link>https://niraya666.github.io/monthly/2025-10-%E6%9C%88%E5%88%8A/</link>
