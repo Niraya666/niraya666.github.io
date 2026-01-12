@@ -11,7 +11,386 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Tue, 30 Dec 2025 20:05:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025-12 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-12-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Tue, 30 Dec 2025 20:05:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-12-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-V3.2/blob/main/assets/paper.pdf&#34;&gt;DeepSeek-V3.2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/Qwen/Qwen-Image-Layered&#34;&gt;Qwen/Qwen-Image-Layered&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/zai-org/GLM-4.7&#34;&gt;zai-org/GLM-4.7&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/MiniMaxAI/MiniMax-M2.1&#34;&gt;MiniMaxAI/MiniMax-M2.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/jinaai/jina-vlm&#34;&gt;Jina-VLM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ai.meta.com/blog/sam-audio/&#34;&gt;SAM Audio&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/BehiSecc/awesome-claude-skills&#34;&gt;Awesome Claude Skills&lt;/a&gt;: A curated list of Claude Skills.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/perstarkse/minne&#34;&gt;Minne&lt;/a&gt;: a read-it-later &amp;amp; personal knowledge management solution&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/onebirdrocks/ebook-mcp?tab=readme-ov-file&#34;&gt;Ebook-MCP&lt;/a&gt;: A MCP server that supports mainstream eBook formats including EPUB, PDF and more. Simplify your eBook user experience with LLM.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/datawhalechina/vibe-vibe&#34;&gt;vibe-vibe&lt;/a&gt;: 首个系统化 Vibe Coding 开源教程&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/datajuicer/data-juicer&#34;&gt;data-juicer&lt;/a&gt;: Data processing for and with foundation models&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Chen-zexi/open-ptc-agent&#34;&gt;open-ptc-agent&lt;/a&gt;: An open source implementation of code execution with MCP (Programatic Tool Calling)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-11 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sun, 30 Nov 2025 15:25:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://deepmind.google/models/gemini/&#34;&gt;Gemini 3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ai.meta.com/sam3/&#34;&gt;SAM 3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-K2/thinking.html&#34;&gt;Kimi-K2-Thinking&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2510.26692&#34;&gt;KIMI LINEAR&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ucbepic/docetl&#34;&gt;DocETL&lt;/a&gt;: A system for agentic LLM-powered data processing and ETL&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ghuntley/how-to-build-a-coding-agent&#34;&gt;how-to-build-a-coding-agent&lt;/a&gt;: A workshop that teaches you how to build your own coding agent. Similar to Roo code, Cline, Amp, Cursor, Windsurf or OpenCode.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/karpathy/reader3&#34;&gt;reader 3&lt;/a&gt;: Quick illustration of how one can easily read books together with LLMs.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.datocms-assets.com/64837/1763662397-1763646865-olmo_3_technical_report-1.pdf&#34;&gt;Olmo 3&lt;/a&gt;： 不仅发布模型，还发布了用于构建模型的所有数据（Dolma 3）、代码、训练日志和中间检查点&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://research.nvidia.com/labs/adlr/MF/&#34;&gt;Music Flamingo: Scaling Music Understanding in Audio Language Models&lt;/a&gt;
+&lt;a href=&#34;https://github.com/K-Dense-AI/claude-scientific-skills&#34;&gt;Claude Scientific Skills&lt;/a&gt;：A set of ready to use scientific skills for Claude&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-10 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-10-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Fri, 31 Oct 2025 20:25:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-10-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/index/sora-2/&#34;&gt;OpenAI-Sora&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/skills&#34;&gt;Anthropic introduced Agent Skills&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/html/2510.18234v1&#34;&gt;DeepSeek-OCR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/MiniMaxAI/MiniMax-M2&#34;&gt;MiniMaxAI/MiniMax-M2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/zai-org/GLM-4.6&#34;&gt;zai-org/GLM-4.6&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/index/introducing-chatgpt-atlas/&#34;&gt;ChatGPT Atlas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;OCR-VL系列：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/PaddlePaddle/PaddleOCR-VL&#34;&gt;PaddlePaddle/PaddleOCR-VL&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/allenai/olmOCR-2-7B-1025&#34;&gt;allenai/olmOCR-2-7B-1025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/datalab-to/chandra&#34;&gt;datalab-to/chandra&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/lightonai/LightOnOCR-1B-1025&#34;&gt;lightonai/LightOnOCR-1B-1025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/nanonets/Nanonets-OCR2-3B&#34;&gt;nanonets/Nanonets-OCR2-3B&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/volcengine/MineContext&#34;&gt;MineContext&lt;/a&gt;： MineContext is your proactive context-aware AI partner（Context-Engineering+ChatGPT Pulse）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ruc-datalab/DeepAnalyze&#34;&gt;DeepAnalyze&lt;/a&gt;: agentic LLM for autonomous data science.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/SalesforceAIResearch/enterprise-deep-research&#34;&gt;Enterprise Deep Research&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Pokee-AI/PokeeResearchOSS&#34;&gt;PokeeResearch-7B Agent&lt;/a&gt;: Pokee Deep Research Model Open Source Repo&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;reasoningbank-scaling-agent-self-evolving-with-reasoning-memory&#34;&gt;&lt;strong&gt;ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2509.25140&#34;&gt;2509.25140&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ReasoningBank： 从成功与失败经验中提炼可迁移推理策略的记忆框架&lt;/p&gt;
+&lt;p&gt;不再存储原始轨迹或仅成功流程，而是提取&lt;strong&gt;结构化、可复用的推理单元&lt;/strong&gt;（title + description + content）&lt;/p&gt;
+&lt;p&gt;并提出Memory-aware Test-Time Scaling (MaTTS)，Test-Time Scaling 与记忆系统结合，更多探索 → 更丰富对比信号 → 更高质量记忆 → 更好指导未来探索， 采用两种扩展方式：Parallel Scaling（多轨迹对比，提取稳定策略）和Sequential Scaling （单轨迹内自我修正）&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-09 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-09-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sun, 28 Sep 2025 20:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-09-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=99f0335c4ad9ff6153e517418d48535ab6d8afef&amp;from=research.latest-advancements-list&#34;&gt;&lt;strong&gt;Qwen3-VL&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=f0bbad0677edf58ba93d80a1e12ce458f7a80548&amp;from=research.research-list&#34;&gt;Qwen3Guard&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tongyi-agent.github.io/zh/blog/introducing-tongyi-deep-research/&#34;&gt;tongyi-deep-research&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developers.googleblog.com/en/introducing-embeddinggemma/&#34;&gt;EmbeddingGemma&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/facebookresearch/cwm&#34;&gt;Code World Model (CWM)&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/spaces/HuggingFaceM4/FineVision&#34;&gt;FineVision:Open Data Is All You Need&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/WECENG/ticket-purchase&#34;&gt;大麦抢票脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/emcie-co/parlant&#34;&gt;Parlant&lt;/a&gt;: LLM agents built for control. Designed for real-world use.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Cranot/claude-code-guide&#34;&gt;Claude Code Comprehensive Guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/JerryZLiu/Dayflow&#34;&gt;Dayflow&lt;/a&gt;: Turns your screen activity into a clean timeline with AI summaries and distraction highlights.&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;mirage-scaling-test-time-inference-with-parallel-graph-retrieval-augmented-reasoning-chains&#34;&gt;MIRAGE: Scaling Test-Time Inference with Parallel Graph-Retrieval-Augmented Reasoning Chains&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2508.18260&#34;&gt;2508.18260&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;提出了**Parallel Multi-chain Inference，**将一个复杂问题分解成多个子问题，为每个子问题启动一个独立的、并行的推理链&lt;/p&gt;
+&lt;p&gt;提出了**Adaptive Graph-based Retrieval，**与一个结构化的医学知识图谱进行交互，在推理过程中，模型可以动态地通过邻居节点扩展、多跳路径遍历等方式探索知识图谱中的实体关系和层次结构&lt;/p&gt;
+&lt;p&gt;MIRAGE框架通过四个协同工作的组件实现其功能：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://arxiv.org/html/2508.18260v1/x2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Question Decomposer&lt;/li&gt;
+&lt;li&gt;Evidence Retriever：为每个子问题启动一个并行的推理链，进行一种“边思考边搜索”的循环；检索分为两种模式：Anchor Mode（当查询涉及单个实体时，检索该实体在图谱中的局部邻居信息）；Bridge Mode （当查询涉及两个实体时，在图谱中寻找连接这两个实体的关系路径）&lt;/li&gt;
+&lt;li&gt;Answer Synthesizer：收集所有并行推理链生成的答案和证据，并交叉验证&lt;/li&gt;
+&lt;li&gt;Coordinator：管理以上三个组件的执行流程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;why-language-models-hallucinate&#34;&gt;Why Language Models Hallucinate&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf&#34;&gt;paper&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-08 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sat, 30 Aug 2025 15:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-08-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://nanobanana.ai/&#34;&gt;nano-banana&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/zh-Hans-CN/gpt-5/&#34;&gt;GPT-5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/&#34;&gt;Genie 3: A new frontier for world models&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-opus-4-1&#34;&gt;Claude Opus 4.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen-image/&#34;&gt;Qwen-Image&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/google/langextract&#34;&gt;LangExtract&lt;/a&gt;： A Python library for extracting structured information from unstructured text using LLMs with precise source grounding and interactive visualization.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/vikiboss/60s&#34;&gt;60s API&lt;/a&gt;： 一系列 高质量、开源、可靠、全球 CDN 加速 的开放 API 集合&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/enescingoz/awesome-n8n-templates&#34;&gt;n8n_automations&lt;/a&gt;：This repository contains a collection of n8n automation templates sourced from the internet.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/zaidmukaddam/scira?tab=readme-ov-file&#34;&gt;Scira&lt;/a&gt;: a minimalistic AI-powered search engine&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;gepa-reflective-prompt-evolution-can-outperform-reinforcement-learning&#34;&gt;&lt;strong&gt;GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2507.19457&#34;&gt;2507.19457&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-07 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Wed, 30 Jul 2025 14:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen3-coder/&#34;&gt;Qwen3-Coder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507&#34;&gt;Qwen3-235B-A22B 更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-K2/&#34;&gt;Kimi K2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/stepfun-ai/Step3&#34;&gt;Step3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://z.ai/blog/glm-4.5&#34;&gt;GLM4.5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/coze-dev/coze-studio&#34;&gt;Coze-studio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/boson-ai/higgs-audio&#34;&gt;Higgs Audio V2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/LibreScore/dl-librescore&#34;&gt;dl-librescore&lt;/a&gt;：Download sheet music&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/iamgio/quarkdown&#34;&gt;quarkdown&lt;/a&gt;: 基于 Markdown 的排版系统，但支持的内容更多&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;agentic-retrieval-augmented-generation-for-personalized-recommendation&#34;&gt;Agentic Retrieval Augmented Generation for Personalized Recommendation&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://www.arxiv.org/abs/2506.21931&#34;&gt;2506.21931&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;基于RAG的推荐系统中的两大核心问题:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态和简单的检索机制&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对用户意图的理解不足&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;创新点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ARAG (Agentic Retrieval-Augmented Generation)&lt;/strong&gt; 的框架，其核心是将&lt;strong&gt;多智能体（Multi-Agent）协作机制&lt;/strong&gt;引入到RAG的推荐流程中&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务&lt;/li&gt;
+&lt;li&gt;将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程&lt;/li&gt;
+&lt;li&gt;通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dynamic-chunking-for-end-to-end-hierarchical-sequence-modeling&#34;&gt;&lt;strong&gt;Dynamic Chunking for End-to-End Hierarchical Sequence Modeling&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2507.07955&#34;&gt;2507.07955&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前LLM是使用的分词存在一些弊端：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非end-to-end 的学习&lt;/li&gt;
+&lt;li&gt;对字符级别的操作（如拼写错误、大小写变化）不鲁棒&lt;/li&gt;
+&lt;li&gt;特殊语言如中文上处理效果不佳&lt;/li&gt;
+&lt;li&gt;分词结果可能不符合语义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创新：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://arxiv.org/html/2507.07955v1/x1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;动态分块：&lt;/strong&gt; 可微的、端到端学习的分块机制，能根据&lt;strong&gt;内容和上下文&lt;/strong&gt;动态决定如何切分序列； 包含： &lt;strong&gt;路由模块 (Routing Module)&lt;/strong&gt;：通过计算相邻元素表示的&lt;strong&gt;余弦相似度&lt;/strong&gt;来预测边界，&lt;strong&gt;平滑模块 (Smoothing Module)&lt;/strong&gt;：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行&lt;strong&gt;平滑插值&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-06 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sun, 29 Jun 2025 14:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.minimaxi.com/news/minimaxm1&#34;&gt;MiniMax-M1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen-vlo/&#34;&gt;Qwen VLo: 从“看懂”世界到“描绘”世界&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-Researcher/&#34;&gt;Kimi-Researcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cursor.com/en/changelog/1-0&#34;&gt;Cursor 1.0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一些embedding 基座模型更新&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen3-embedding/&#34;&gt;Qwen3 Embedding&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/jinaai/jina-embeddings-v4&#34;&gt;jinaai/jina-embeddings-v4&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的研究和论文&#34;&gt;值得关注的研究和论文&lt;/h1&gt;
+&lt;h2 id=&#34;qwenlong-l1-towards-long-context-large-reasoning-models-with-reinforcement-learning&#34;&gt;&lt;strong&gt;QwenLong-L1: Towards Long-Context Large Reasoning Models with Reinforcement Learning&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://www.arxiv.org/abs/2505.17667&#34;&gt;2505.17667&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用RL提升LM的上下文长度&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;QWEN LONG-L1 框架设计&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Progressive Context Scaling：&lt;/strong&gt; 通过curriculum-based 逐步增加训练上下文长度，使模型平滑从短上下文迁移到长上下文，有效应对训练不稳定、熵塌陷等优化问题&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Curriculum-Guided Phased RL + Difficulty-Aware Retrospective Sampling：&lt;/strong&gt; 先SFT获得初始策略，然后分阶段RL，每阶段聚焦不同长度，利用难例回溯采样强化对困难样本的探索与适应&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hybrid Reward：&lt;/strong&gt; 将“规则型（精确字符串比对）”奖励和“LLM-as-a-judge语义一致性”相结合&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GRPO/DAPO&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;三阶段训练流程&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;第一阶段：Warm-up SFT&lt;/strong&gt;（如20K token内训练，基于高质量三元组）——让模型具备基础长上下文理解和推理能力，提供RL的良好初始点。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第二阶段：分阶段RL训练&lt;/strong&gt;（如分20K和60K两个阶段，每阶段只训练对应长度样本，逐步扩展输入长度）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第三阶段：难度感知回溯采样&lt;/strong&gt;（将前一阶段准确率低、难度高的样本纳入后续阶段训练，提高模型对hard case的适应和泛化）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;how-much-do-language-models-memorize&#34;&gt;How much do language models memorize?&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://www.arxiv.org/abs/2505.24832&#34;&gt;2505.24832&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提出基于&lt;strong&gt;Kolmogorov复杂度&lt;/strong&gt;和&lt;strong&gt;信息论&lt;/strong&gt;的新记忆度量方法，将“模型对样本的记忆”定义为：在已知模型参数的情况下，样本可以被压缩到多短（即模型能帮助压缩多少信息）&lt;/li&gt;
+&lt;li&gt;GPT家族Transformer模型的容量约为&lt;strong&gt;每个参数3.6比特&lt;/strong&gt;，且与模型参数量线性相关&lt;/li&gt;
+&lt;li&gt;精度（如bfloat16到float32）提升对容量提升有限&lt;/li&gt;
+&lt;li&gt;在真实文本中，模型更容易记住包含稀有词汇的样本（高TF-IDF），尤其是非英语文本或极少见的token&lt;/li&gt;
+&lt;li&gt;当模型容量被填满后，模型会自动从“记忆具体样本”转向“泛化规律”，这与“grokking”现象相关&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reinforcement-pre-training&#34;&gt;Reinforcement Pre-Training&lt;/h2&gt;
+&lt;p&gt;arXiv:&lt;a href=&#34;https://arxiv.org/abs/2506.08007&#34;&gt;2506.08007&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;LLM 预训练主要依赖自监督的“下一个 token 预测”目标，但本质上是“记忆”而非“推理”，RL能提升模型推理能力但需要高质量的数据标注&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-05 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Fri, 30 May 2025 14:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;h2 id=&#34;google-2025-io-大会&#34;&gt;Google 2025 I/O 大会：&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.google/technology/developers/google-io-2025-collection/&#34;&gt;I/O 2025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google在2025年I/O大会上全面展示了AI的最新进展和深度整合战略，涵盖基础模型迭代（如Gemini 2.5、Gemini Diffusion、Gemma 3n、Veo 3和Imagen 4）及多模态创新&lt;/p&gt;
+&lt;h2 id=&#34;openai-codex&#34;&gt;OpenAI codex&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-codex/&#34;&gt;Introducing Codex&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;OpenAI 于 2025年5月16日推出了 Codex 软件工程代理及其驱动模型 codex-1 和 codex-mini-latest，专注提升软件开发的自动化与效率。codex-1 基于 o3 模型，优化并行处理、多轮测试和复杂项目支持，擅长代码生成、Bug 修复等任务；codex-mini-latest 则主打低延迟，适合快速命令行操作。Codex 平台通过云端隔离沙箱，安全模拟真实开发环境，自动化完成如重构、测试编写等任务，支持细致行为定制。&lt;/p&gt;
+&lt;h2 id=&#34;claude-4&#34;&gt;Claude 4&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-4&#34;&gt;Introducing Claude 4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Anthropic 于2025年5月22日发布了新一代 Claude 4 系列模型，包括 Claude Opus 4 和 Claude Sonnet 4，重点提升了编码、高级推理和对AI代理的支持能力。Opus 4 在行业编码基准测试中表现领先，拥有更强的内存与持续任务能力，并大幅减少“抄近路”行为，专注于高复杂任务和AI代理核心场景。Sonnet 4 则在提升推理与指令遵循能力的同时，平衡了性能与效率。&lt;/p&gt;
+&lt;h2 id=&#34;deepseek-r1-0528&#34;&gt;&lt;strong&gt;DeepSeek-R1-0528&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Huggingface： &lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-R1-0528&#34;&gt;deepseek-ai/DeepSeek-R1-0528&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;通过强化学习与算法优化实现推理能力提升，单问题推理深度翻倍（平均Token量从12K→23K），更强的数学、编码能力，并支持工具调用，大幅降低幻觉。同时开源了蒸馏小模型模型 &lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B&#34;&gt;deepseek-ai/DeepSeek-R1-0528-Qwen3-8B&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;flowith-neo&#34;&gt;&lt;strong&gt;Flowith Neo&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Flowith Neo 是 Flowith 团队推出的新一代 AI 智能代理，专为自动化复杂、长流程任务设计。其核心技术包括支持无限步骤的持续云端执行、强大的上下文保持能力、灵活调用多种外部工具，以及可视化工作流和自反思机制，显著提升流程的连贯性和可靠性。&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;h2 id=&#34;deerflow&#34;&gt;&lt;strong&gt;DeerFlow&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Github: &lt;a href=&#34;https://github.com/bytedance/deer-flow&#34;&gt;github.com/bytedance/deer-flow&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;由字节跳动开源的，基于LangStack 开发的Deep Research 开源项目，支持深度研究、MCP 集成、报告 AI 增强编辑以及播客生成等功能，通过Docker compose一键启动。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-04 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Mon, 28 Apr 2025 19:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;h2 id=&#34;openai-更新系列模型&#34;&gt;OpenAI 更新系列模型&lt;/h2&gt;
+&lt;p&gt;发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/gpt-4-1/&#34;&gt;Introducing GPT-4.1 in the API&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-o3-and-o4-mini/&#34;&gt;Introducing OpenAI o3 and o4-mini&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;kimi-vl-和-kimi-vl-thinking&#34;&gt;Kimi-VL 和 Kimi-VL-Thinking&lt;/h2&gt;
+&lt;p&gt;由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/moonshotai/Kimi-VL-A3B-Thinking&#34;&gt;Hugging Face Kimi-VL-Thinking 模型页面&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2504.07491&#34;&gt;Kimi-VL Technical Report&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;a2a协议&#34;&gt;A2A协议&lt;/h2&gt;
+&lt;p&gt;A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/&#34;&gt;Announcing the Agent2Agent Protocol (A2A)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwen3&#34;&gt;Qwen3&lt;/h2&gt;
+&lt;p&gt;Qwen3 是Qwen的第三代大语言模型系列，于2025年4月正式发布，包含6个稠密模型（0.6B至32B参数）和2个混合专家（MoE）模型（30B-A3B和235B-A22B）。功能与特点：Qwen3支持119种语言，训练数据高达36万亿token，具备自然语言理解、文本生成、工具调用、复杂推理及多模态交互能力。模型采用混合推理模式，可根据任务复杂度自动切换“思考”与“快速响应”模式，优化计算效率与响应速度。支持128K token上下文长度，适用于长文档处理、编程、数学推理及智能体任务。创新点：Qwen3引入动态可调MoE架构，通过分层稀疏调度和动态专家激活（最多128个专家，单token激活8个），显著降低推理耗时（15B模型推理效率提升42%）和显存占用（从28GB降至18GB）。新增Qwen3RMSNorm归一化层优化注意力机制，支持多种RoPE变体（dynamic、yarn、llama3）以提升长序列处理能力。词表优化引入动态加权合并算法，增强高频词组处理，并新增智能体专用控制符。效果：旗舰模型Qwen3-235B-A22B在Codeforces编程竞赛、AIME数学基准及BFCL推理测试中超越OpenAI的o3-mini和谷歌Gemini 2.5 Pro，Qwen3-32B在LiveCodeBench编码任务中优于OpenAI o1。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen3/&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/collections/Qwen/qwen3-67dd247413f0e2e4f653967f&#34;&gt;Huggingface&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;h2 id=&#34;inbox-zero&#34;&gt;Inbox Zero&lt;/h2&gt;
+&lt;p&gt;Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：&lt;strong&gt;AI 邮件助手&lt;/strong&gt;与&lt;strong&gt;开源邮件客户端&lt;/strong&gt;。其核心功能包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AI 个人助理&lt;/strong&gt;：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reply Zero 跟踪&lt;/strong&gt;：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;智能分类与退订&lt;/strong&gt;：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;冷邮件拦截与分析&lt;/strong&gt;：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;技术优势与适用场景&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-03 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-03-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sat, 29 Mar 2025 17:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-03-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;h2 id=&#34;deepseek-v3-0324&#34;&gt;DeepSeek V3 0324&lt;/h2&gt;
+&lt;p&gt;DeepSeek V3模型的更新版本；在多个基准测试中表现出色，整体表现接近领先的闭源模型如Claude Sonnet 3.5（但价格便宜很多）；针对多项能力做了针对性提升，如function calling，推理能力，前端代码能力等。更新版本在DeepSeek的官方网站、移动应用可体验。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/deepseek-ai/DeepSeek-V3&#34;&gt;Huggingface&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwq-32b&#34;&gt;QwQ-32B&lt;/h2&gt;
+&lt;p&gt;由Qwen 团队开发的推理模型，性能同671B参数量的R1相当；通过两阶段RL训练，第一阶段专注于数学和编码任务，利用准确性验证器和代码执行服务器提供反馈；第二阶段提升通用能力，同时保持专业领域的表现。此外QwQ具备tool-using能力，具有131,072 token的上下文长度。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwq-32b/&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/Qwen/QwQ-32B&#34;&gt;Huggingface&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwen25-omni&#34;&gt;Qwen2.5 Omni&lt;/h2&gt;
+&lt;p&gt;Qwen2.5-Omni 是一个多模态 AI 模型，能够同时处理文本、图像、音频和视频输入；该模型的创新点包括 Thinker-Talker 架构，分为“Thinker”处理输入并生成表示或文本，“Talker”则输出语音token，共享上下文，实现端到端训练和推理。此外，它使用 TMRoPE（时间对齐多模态 RoPE）技术，同步视频和音频时间戳，确保多模态数据处理的一致性。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwen2.5-omni/&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/Qwen/Qwen2.5-Omni-7B&#34;&gt;Huggingface&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;gemma-3&#34;&gt;Gemma 3&lt;/h2&gt;
+&lt;p&gt;Gemma家族的开源新作，包括 1B、4B、12B 和 27B 参数；4B、12B 和 27B 模型支持文本和图像输入，1B 模型仅限文本；1B 模型支持 32k token，4B、12B 和 27B 模型则扩展至 128k token；支持函数调用和结构化输出&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.google/technology/developers/gemma-3/&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/google/gemma-3-27b-it&#34;&gt;Huggingface&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;phi-4-multimodal&#34;&gt;Phi-4-multimodal&lt;/h2&gt;
+&lt;p&gt;具备文本、图像和音频输入的多模态模型；具有5.6B参数量；采用“混合 LoRAs”技术，将模态特定组件集成到基础语言模型中，而基础模型保持冻结状态，以确保了多模态数据处理的无缝性，避免了传统方法中因模态间干扰导致的性能下降。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://azure.microsoft.com/en-us/blog/empowering-innovation-the-next-generation-of-the-phi-family/&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/microsoft/Phi-4-multimodal-instruct&#34;&gt;Huggingface&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwen25-vl-32b-instruct&#34;&gt;Qwen2.5-VL-32B-Instruct&lt;/h2&gt;
+&lt;p&gt;32B参数量版本的Qwen2.5-VL多模态模型；&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;72B too big for VLM? 7B not strong enough! Teh you should use 32B model!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-02 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Fri, 28 Feb 2025 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;h2 id=&#34;o3-mini&#34;&gt;o3-mini&lt;/h2&gt;
+&lt;p&gt;OpenAI o3-mini 是一款高效且成本优化的推理模型，专为科学（Science）、技术（Technology）、工程（Engineering）和数学（Mathematics）（STEM）领域优化。它在数学、编程和科学推理方面表现出色，能够在 AIME 2024 和 GPQA 等基准测试中达到或超过 OpenAI o1 的水平。o3-mini 具备三种推理模式（低、中、高），可根据需求在速度和准确性之间进行权衡。此外，它支持函数调用、结构化输出和视觉任务。相比 o1-mini，o3-mini 的响应速度提高了 24%，平均响应时间为 7.7 秒。它的上下文窗口为 200k tokens，输入成本为每百万 tokens 1.10 美元，输出成本为 4.40 美元。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/openai-o3-mini/&#34;&gt;OpenAI o3-mini&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwq-max-preview&#34;&gt;QwQ-Max-Preview&lt;/h2&gt;
+&lt;p&gt;QwQ-Max-Preview是阿里巴巴Qwen系列的最新推理模型，基于Qwen2.5-Max架构开发，专注于提升数学、编码及多领域复杂问题的解决能力。该模型在LiveCodeBench代码评估中取得65.6分，超过OpenAI的o1中型模型（63.4分）和o3迷你低配版（60.9分），展现了卓越的代码生成与逻辑推理性能。其核心优势包括深度推理、Agent任务处理及通用领域适应性，特别适合需要实时响应的隐私敏感场景。作为预览版，QwQ-Max-Preview为后续开源版本铺路，未来将发布Apache 2.0许可证下的完整模型QwQ-Max及轻量级版本（如QwQ-32B），并计划推出iOS/Android端Qwen Chat应用以增强用户体验。阿里巴巴同时宣布未来三年投入530亿美元加强AI基础设施，进一步推动该模型在行业中的竞争力。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们计划在不久的将来以 Apache 2.0 许可协议开源发布 QwQ-Max 以及 Qwen2.5-Max&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;官方blog：&lt;a href=&#34;https://qwenlm.github.io/zh/blog/qwq-max-preview/&#34;&gt;&lt;think&gt;&amp;hellip;&lt;/think&gt; QwQ-Max-Preview&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;claude-37-sonnet&#34;&gt;Claude 3.7 Sonnet&lt;/h2&gt;
+&lt;p&gt;Claude 3.7 Sonnet 是 Anthropic 推出的首个“混合推理模型”，兼具快速响应和深入思考能力，能够根据任务需求在标准模式和扩展思考模式之间切换。其核心能力包括：在复杂任务中通过扩展思考模式进行详细分析和多角度考虑；在编码任务中表现出色，特别是在 SWE-bench Verified 测试中达到行业领先的 70.3%；支持多模态数据处理，展现强大的适应性；以及在 Amazon Bedrock 中提供可调整的推理预算，供开发者根据需求权衡速度、成本和性能。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-3-7-sonnet?utm_source=partner-aws&amp;utm_medium=referral&amp;utm_campaign=sonnet_3-7_launch&#34;&gt;Claude 3.7 Sonnet and Claude Code&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;grok-3&#34;&gt;Grok-3&lt;/h2&gt;
+&lt;p&gt;Grok-3是由Elon Musk的xAI公司开发的第三代AI模型，具备2.7万亿参数和12.8万亿token的训练数据集，采用基于NVIDIA GPU的Colossus超级计算集群（20万张GPU）训练，计算能力比前代提升10倍。其性能表现优异，在MMLU（多任务语言理解）基准测试中达到92.7%，GSM8K（数学推理）89.3%，AIME 2025数学竞赛93.3%，GPQA科学推理84.6%。该模型支持128,000 token的上下文窗口（扩展版达100万token），响应延迟仅67毫秒，并具备多模态处理能力（文本、代码、图像）。独特功能包括DeepSearch实时网络研究代理、&amp;ldquo;Think&amp;quot;模式分步推理，以及&amp;quot;Big Brain&amp;quot;模式强化复杂问题解决，主要应用于STEM领域、代码生成和商业分析。目前通过X平台Premium+订阅（$40/月）和专属网站Grok.com提供访问，API接口即将开放。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025-01 月刊</title>
+      <link>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Mon, 27 Jan 2025 18:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的新模型&#34;&gt;值得关注的新模型&lt;/h1&gt;
+&lt;h2 id=&#34;deepseek-r1&#34;&gt;Deepseek R1&lt;/h2&gt;
+&lt;p&gt;DeepSeek R1通过&lt;strong&gt;纯强化学习（RL）框架&lt;/strong&gt;实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时&lt;strong&gt;全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B）&lt;/strong&gt;，使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出&lt;strong&gt;自发反思与多步骤验证能力&lt;/strong&gt;，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。&lt;/p&gt;
+&lt;p&gt;技术报告: &lt;a href=&#34;https://arxiv.org/abs/2501.12948&#34;&gt;https://arxiv.org/abs/2501.12948&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Huggingface: &lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-R1&#34;&gt;https://huggingface.co/deepseek-ai/DeepSeek-R1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一些基于和关于R1的开源复刻工作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open-R1: &lt;a href=&#34;https://huggingface.co/blog/open-r1&#34;&gt;&lt;strong&gt;Open-R1: a fully open reproduction of DeepSeek-R1&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;RAGEN: &lt;a href=&#34;https://github.com/ZihanWang314/ragen/tree/main&#34;&gt;&lt;strong&gt;RAGEN: A General-Purpose Reasoning Agent Training Framework&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;kimi-k1&#34;&gt;Kimi K1&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。&lt;/strong&gt; 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练+强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。&lt;/p&gt;
+&lt;p&gt;Arxiv: &lt;a href=&#34;https://arxiv.org/abs/2501.12599&#34;&gt;Kimi k1.5: Scaling Reinforcement Learning with LLMs&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwen25-max&#34;&gt;Qwen2.5-Max&lt;/h2&gt;
+&lt;p&gt;Qwen2.5-Max 是一款经过大规模预训练的专家混合（MoE）模型，训练数据量超过 20 万亿 tokens，并通过监督微调（SFT）和人类反馈强化学习（RLHF）进行优化。该模型在多个基准测试中表现优异，包括在 Arena-Hard、LiveBench、LiveCodeBench 和 GPQA-Diamond 等评估中超越了 DeepSeek V3，并在 MMLU-Pro 大学水平知识测试中展现出竞争力，同时在与其他领先模型（如 DeepSeek V3、GPT-4o 和 Claude-3.5-Sonnet）的对比中也表现突出。Qwen2.5-Max 已集成到 Qwen Chat，支持对话交互和功能体验，同时其 API（模型名称为 qwen-max-2025-01-25）已上线，用户可通过注册阿里云账户并激活相关服务进行调用。&lt;/p&gt;
+&lt;p&gt;Blog: &lt;a href=&#34;https://qwenlm.github.io/blog/qwen2.5-max/&#34;&gt;https://qwenlm.github.io/blog/qwen2.5-max/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwen25-vl&#34;&gt;Qwen2.5-VL&lt;/h2&gt;
+&lt;p&gt;Qwen2.5-VL是由阿里云通义千问团队于2025年1月28日推出的新一代视觉语言模型，专注于提升多模态处理与视觉理解能力。该模型具备五大核心功能：通过增强的视觉理解可识别常见物体并解析图像中的文本、图表及布局；作为视觉代理支持跨设备多步骤操作（如电脑修图、手机订票）；可精准定位超过1小时长视频的特定事件片段；通过生成边界框/点实现视觉定位并输出标准化JSON坐标；针对发票/表格等扫描件提供结构化数据输出，赋能金融商业场景。其创新架构采用动态FPS采样与时间维度mRoPE对齐技术，实现视频动态分辨率处理与时间序列学习，同时通过窗口注意力机制和SwiGLU-RMSNorm优化ViT编码器，保持与Qwen2.5大语言模型架构统一。模型提供3B、7B、72B三种参数规模。&lt;/p&gt;
+&lt;p&gt;Blog: &lt;a href=&#34;https://qwenlm.github.io/blog/qwen2.5-vl/&#34;&gt;https://qwenlm.github.io/blog/qwen2.5-vl/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Huggingface: &lt;a href=&#34;https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct&#34;&gt;https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;qwen25-1m&#34;&gt;Qwen2.5-1M&lt;/h2&gt;
+&lt;p&gt;Qwen2.5-1M系列模型是由Qwen团队于2025年1月27日发布的开源大语言模型，包含Qwen2.5-7B-Instruct-1M和Qwen2.5-14B-Instruct-1M两个版本，其核心突破在于支持高达100万Token的上下文处理能力。该模型通过三阶段技术实现长上下文支持：首先在预训练阶段采用Adjusted Base Frequency方法将RoPE基础频率提升至1000万，通过渐进式扩展策略将上下文从4K扩展到256K；随后在监督微调阶段采用短指令（32K）与长指令（256K）混合训练策略，平衡长短任务性能；最终通过创新性Dual Chunk Attention技术将上下文扩展至百万量级，该技术通过重映射超大相对位置值解决位置编码外推难题。为应对超长序列处理挑战，模型引入分块预填充技术（32K分块）降低显存消耗，结合稀疏注意力优化使百万级序列的精度损失显著降低，并通过算子效率优化和动态分块流水线并行实现3.2-6.7倍的预填充加速。在性能表现上，该系列模型不仅能在百万Token的&amp;quot;大海捞针&amp;quot;任务中精准检索信息，在RULER、LV-Eval等复杂长文本理解任务中超越前代128K版本，同时在短文本任务上保持与128K版本相当的性能，其中14B版本在保持GPT-4o-mini八倍上下文长度的前提下实现了相近的短文本处理能力。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>关于月刊的诞生</title>
+      <link>https://niraya666.github.io/monthly/readme/</link>
+      <pubDate>Thu, 09 Jan 2025 17:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/readme/</guid>
+      <description>&lt;p&gt;这份月刊最初只是我的个人知识管理实验。过去一年里，我逐渐养成了每月底整理收藏夹的习惯——清理read-it-later 软件中里积压的链接，归档散落在各个平台的技术文章，把零碎的信息重新分类到Notion笔记中。&lt;/p&gt;
+&lt;p&gt;面对每天涌现的新模型、论文和开源项目，这种月度整理成了对抗信息焦虑的锚点。与其被FOMO（错失恐惧症）驱使着追逐每个热点，不如让内容先经历时间筛选。留在月刊里的，通常是经过两周沉淀后仍值得反复阅读的内容。&lt;/p&gt;
+&lt;p&gt;有三个主要原因推动我决定公开这些笔记：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;年初给自己定下的目标之一，多做一些public-writing，倒逼自己更认真地验证每个技术细节&lt;/li&gt;
+&lt;li&gt;对抗数字囤积症&lt;/li&gt;
+&lt;li&gt;如果能够帮助更多的人&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以，这个系列月刊将包含以下一些内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;模型与技术&lt;/strong&gt;：一些新出的LLM，和相关技术&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;开源项目&lt;/strong&gt;：值得关注、有趣的、最近比较火的&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;研究和论文&lt;/strong&gt;：新出的论文以及我的阅读笔记(更多关注Agent、对齐、RAG、模型架构方面内容)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推荐内容&lt;/strong&gt;：可能是一些教程，工具、产品等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;书摘&lt;/strong&gt;：正在阅读书籍文章的高亮内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有次读到一段特别共鸣的话&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你拿着相机在城市里穿行，看见一幕——光影交错，人情味流露。你按下快门。 没人关心。 但你并不是为了别人去做。你做，是因为你看到了什么。 写博客也是如此。你写，因为你思考，因为你观察，因为你需要一个“出口”来安放这些想法。 有人看吗？有就算赚到。没有也没关系。创作这件事，本身就已经完成了它的意义。 这才是重点所在。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这或许也是这一系列月刊的意义吧。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
