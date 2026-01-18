@@ -11,8 +11,55 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 27 Jul 2025 15:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jan 2026 15:32:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/%E6%9D%82/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>后管理时代：超越登巴数的组织重构</title>
+      <link>https://niraya666.github.io/essay/%E5%90%8E%E7%AE%A1%E7%90%86%E6%97%B6%E4%BB%A3%E8%B6%85%E8%B6%8A%E7%99%BB%E5%B7%B4%E6%95%B0%E7%9A%84%E7%BB%84%E7%BB%87%E9%87%8D%E6%9E%84/</link>
+      <pubDate>Sun, 18 Jan 2026 15:32:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/essay/%E5%90%8E%E7%AE%A1%E7%90%86%E6%97%B6%E4%BB%A3%E8%B6%85%E8%B6%8A%E7%99%BB%E5%B7%B4%E6%95%B0%E7%9A%84%E7%BB%84%E7%BB%87%E9%87%8D%E6%9E%84/</guid>
+      <description>&lt;p&gt;重读 Notion CEO 的 &lt;a href=&#34;https://www.notion.com/blog/steam-steel-and-infinite-minds-ai&#34;&gt;&lt;em&gt;Steam, Steel, and Infinite Minds&lt;/em&gt;&lt;/a&gt;，一种强烈的确信油然而生：我们所谈论的大变革奇点，已然临近。&lt;/p&gt;
+&lt;p&gt;相比于大众焦虑的“岗位替代”，真正的海啸正在这层表象之下酝酿——&lt;strong&gt;现有人类组织的底层逻辑，正在崩塌。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;虚假的数字化和电子化官僚主义&#34;&gt;虚假的数字化和电子化官僚主义&lt;/h2&gt;
+&lt;p&gt;审视当下的企业，我们所谓的“数字化转型”大多只是安慰剂。我们将线下的审批变成了线上的工单，将口头的汇报变成了精美的 Dashboard。&lt;strong&gt;这本质上是在用最先进的技术，维护最陈旧的官僚体系。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在这种体系下，组织中最宝贵的资产——&lt;strong&gt;Context&lt;/strong&gt;（那些关于决策的背景、隐性的知识、非结构化的意图）——依旧被层级打散、隔离，最终在传递中磨损殆尽。&lt;/p&gt;
+&lt;p&gt;这种“电子化”非但没有消灭官僚主义，反而固化了它。&lt;/p&gt;
+&lt;p&gt;这也正是我在 2022 年左右一度疯狂沉迷于 Web3 社群的原因——试图寻找一种能够瓦解旧秩序的解药。那时候，笃信“Code is law”，试图构建一个完全扁平、民主的新世界。但随着热潮退去，残酷的现实让我意识到，我们似乎只是在两种极端的死局之间来回摇摆，无处可逃：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;极端民主（DAO）：缺乏中心节点，沟通成本极高。没有人拥有“拍板”的权力，所有的时间都被耗费在无休止的“开会扯皮”上；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;中央集权（传统科层制）：看似高效，表面上井井有条，内部却陷入了无止境的空转；这一系统下可以简化出三种角色：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;传话筒型的中层：&lt;/strong&gt; 信息在传递中必然失真，为了刷存在感，他们甚至需要人为制造障碍&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;浑水摸鱼的底层：&lt;/strong&gt; 在复杂的科层掩护下，表演性地工作&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;不懂装懂的高层：&lt;/strong&gt; 凭借政治地位（或者说是基于过去过时的经验）而非业务能力瞎指挥，决策与现实严重脱节&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;究其根本，是人类大脑从未进化出应对现代大规模协作的能力——我们受限于&lt;strong&gt;登巴数&lt;/strong&gt;（Dunbar&amp;rsquo;s number）。受限于新皮层的大小，一个人能维持稳定社交关系的上限大约是 150 人（严格来说，这个数字不是绝对的，至少对于核心圈子的大小普遍在15-20人之间）&lt;/p&gt;
+&lt;p&gt;一旦超过这个数字，单纯靠人情和记忆的协作网络就会崩溃。为了突破这个生物学瓶颈，我们不得不发明了“科层制”（Hierarchy）。我们需要小组、部门、层级这些抽象概念来分摊沟通成本，但这同时也成为了诅咒：科层制本质上是一种有损压缩算法。为了获得规模，我们牺牲了信息的保真度，最终制造了坚硬的信息茧房。&lt;/p&gt;
+&lt;h2 id=&#34;平庸之恶&#34;&gt;平庸之恶&lt;/h2&gt;
+&lt;p&gt;如果引入汉娜·阿伦特的视角，现有的组织形式不仅是低效的，甚至是不道德的。&lt;/p&gt;
+&lt;p&gt;阿伦特在《艾希曼在耶路撒冷》中指出，真正的恶往往不是出于某种邪恶的本性，而是源于&lt;strong&gt;无思（Thoughtlessness）&lt;/strong&gt;。在现代科层制中，这种“无思”被制度化了。&lt;/p&gt;
+&lt;p&gt;人被异化为了“齿轮”。我们被剥夺了做决策的权力，同时也顺理成章地逃避了对结果负责的义务。当“恶”或“平庸”被切割成无数个细小的行政环节——有人负责造纸，有人负责盖章，有人负责运输——每一个环节看起来都是无辜的、合规的，甚至是在追求卓越效率的。&lt;/p&gt;
+&lt;p&gt;于是最终导致了深层的冷漠：&lt;strong&gt;只要流程是正确的（Process-correct），结果再糟糕（Result-disaster）也与我无关。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;大量的精力被用于“对齐”、用于“汇报”、用于在 PPT 上雕花。每个人都在勤奋地按章办事，但集体却在无可挽回地滑向平庸甚至灾难。&lt;/p&gt;
+&lt;h2 id=&#34;第三条路&#34;&gt;第三条路&lt;/h2&gt;
+&lt;p&gt;直到 AI Agent 的出现，似乎让我看到了打破了上述的二元对立之可能。&lt;/p&gt;
+&lt;p&gt;过去这半年来使用 Claude Code 的体验让我震惊，这是一种真正的“人机协作”体验，不知不觉从chatbot对话框中的“请帮我…”，变成了自然的“让我们把…”。我们在维护着同一份上下文context，可以是代码、文档甚至可以是任何可读可写的文件。这或许就是某种程度上协作关系的重构吧。&lt;/p&gt;
+&lt;p&gt;真正的“善”，可能不是靠人的道德说教，而是靠系统的极度透明与逻辑化。&lt;/p&gt;
+&lt;p&gt;AI 不会有“平庸之恶”，因为它没有私欲，不搞办公室政治，它只对 &lt;strong&gt;Goal&lt;/strong&gt;和 &lt;strong&gt;Context&lt;/strong&gt; 负责。&lt;/p&gt;
+&lt;p&gt;一种 &lt;strong&gt;&amp;ldquo;Human-AI-Human&amp;rdquo;&lt;/strong&gt; 的新模式，开启了“第三条道路”：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;消灭“传话筒”的失真&lt;/strong&gt;。人类中层习惯于将 A 理解为 A-，传达给下级变成 B，还要夹带私货。而 AI Agent 是一个完美的“Context 汇总中心”。它能无损地保存所有背景信息，瞬间将 High-level 的意图转化为精准的 Technical spec。它消灭了“信息差”这个传统权力的来源。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>写在WAIC2025门票售罄之后</title>
       <link>https://niraya666.github.io/essay/waic2025/</link>
