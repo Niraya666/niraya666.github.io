@@ -11,8 +11,44 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 18 Jan 2026 15:32:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 Jan 2026 21:08:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感</title>
+      <link>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</link>
+      <pubDate>Mon, 19 Jan 2026 21:08:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</guid>
+      <description>&lt;p&gt;读完 Anthropic 的一篇博客&lt;a href=&#34;https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents&#34;&gt; &lt;em&gt;Demystifying evals for AI agents&lt;/em&gt;&lt;/a&gt;，深有感触。&lt;/p&gt;
+&lt;p&gt;结合文章内容和最近的工程实践，整理了一些关于构建 Agent 评估体系的笔记，和一些思考。&lt;/p&gt;
+&lt;h2 id=&#34;为什么需要-evals&#34;&gt;为什么需要 Evals？&lt;/h2&gt;
+&lt;p&gt;Evals 的本质不是为了打分，而是为了让开发可量化。&lt;/p&gt;
+&lt;p&gt;在缺乏评估体系时，开发团队往往面临着极大的不确定性：无论是优化 Prompt 还是更换基座模型，都难以判断这些变更是真正解决了问题，还是在引入新问题的同时破坏了原有的能力。&lt;/p&gt;
+&lt;p&gt;在早期的 Demo 阶段，依赖人工测试或许能快速验证想法。然而，Agent 系统不同于单次交互的对话模型，它包含多步骤推理和动态工具调用。随着系统复杂度的增加，手动测试的覆盖率和回归效率将难以为继，团队很容易陷入“由于缺乏前置检测，只能依赖线上反馈被动修复 Bug”的恶性循环。&lt;/p&gt;
+&lt;p&gt;此外，Evals 也是产品与研发之间的通用语言。将模糊的主观感受，转化为准确率、响应延迟和 Token 成本等可度量的工程指标。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fbd42e7b2f3e9bb5218142796d3ede4816588dec0-4584x2834.png&amp;amp;w=3840&amp;amp;q=75&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;目前的评估方式，依旧还是三大件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;人工评估&lt;/strong&gt;：最准确但最贵。通常用来作为Golden，用于校准自动评估的准确性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;代码基准 (Code-based)&lt;/strong&gt;：适用于有明确唯一答案的场景（如数学计算、代码运行）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LLM-as-a-judge&lt;/strong&gt;：目前的主流。用更强的模型去评估其他模型的输出。&lt;strong&gt;关键点&lt;/strong&gt;：需要经过人类专家的校准。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;（注：关于评估的具体细节与最佳实践，推荐参考 Hugging Face  的 &lt;strong&gt;&lt;a href=&#34;https://huggingface.co/spaces/OpenEvals/evaluation-guidebook#the-model-builder-perspective-am-i-building-a-strong-model&#34;&gt;The LLM Evaluation Guidebook&lt;/a&gt;&lt;/strong&gt; ）&lt;/p&gt;
+&lt;h2 id=&#34;agent-eval-和llm-eval-的不同&#34;&gt;Agent Eval 和LLM Eval 的不同&lt;/h2&gt;
+&lt;p&gt;相比于单纯的 RAG 或 LLM 评估，Agent 的评估复杂度要高得多。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从“测模型”到“测系统”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;正如&lt;a href=&#34;https://epoch.ai/gradient-updates/why-benchmarking-is-hard&#34;&gt;Why benchmarking is hard&lt;/a&gt;，中提到的“许多变动的部件和自由度都会影响最终结果”。在 Agent 开发中，&lt;/p&gt;
+&lt;p&gt;我们测试的永远不是“裸模型”，而是 &lt;strong&gt;“模型 + Harness”&lt;/strong&gt; 这个整体。&lt;/p&gt;
+&lt;p&gt;这里的Harness 分成两大部分：Eval Harness（我们的评估系统本身）+ Agent Harness (Scaffold)。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>后管理时代：超越登巴数的组织重构</title>
       <link>https://niraya666.github.io/essay/%E5%90%8E%E7%AE%A1%E7%90%86%E6%97%B6%E4%BB%A3%E8%B6%85%E8%B6%8A%E7%99%BB%E5%B7%B4%E6%95%B0%E7%9A%84%E7%BB%84%E7%BB%87%E9%87%8D%E6%9E%84/</link>

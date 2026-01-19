@@ -2,16 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niraya666.github.io/tags/agent/</loc>
+    <lastmod>2026-01-19T21:08:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/eval/</loc>
+    <lastmod>2026-01-19T21:08:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/</loc>
+    <lastmod>2026-01-19T21:08:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/</loc>
+    <lastmod>2026-01-19T21:08:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/</loc>
+    <lastmod>2026-01-19T21:08:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</loc>
+    <lastmod>2026-01-19T21:08:00+08:00</lastmod>
+  </url><url>
     <loc>https://niraya666.github.io/tags/ai/</loc>
     <lastmod>2026-01-18T15:32:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/essay/</loc>
-    <lastmod>2026-01-18T15:32:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/</loc>
-    <lastmod>2026-01-18T15:32:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/</loc>
     <lastmod>2026-01-18T15:32:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/essay/%E5%90%8E%E7%AE%A1%E7%90%86%E6%97%B6%E4%BB%A3%E8%B6%85%E8%B6%8A%E7%99%BB%E5%B7%B4%E6%95%B0%E7%9A%84%E7%BB%84%E7%BB%87%E9%87%8D%E6%9E%84/</loc>
@@ -32,13 +44,7 @@
     <loc>https://niraya666.github.io/monthly/2025-11%E6%9C%88%E5%88%8A/</loc>
     <lastmod>2025-11-30T15:25:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/tags/agent/</loc>
-    <lastmod>2025-11-24T20:08:00+08:00</lastmod>
-  </url><url>
     <loc>https://niraya666.github.io/tags/deep-research/</loc>
-    <lastmod>2025-11-24T20:08:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/posts/</loc>
     <lastmod>2025-11-24T20:08:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
@@ -91,9 +97,6 @@
   </url><url>
     <loc>https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/</loc>
     <lastmod>2025-06-29T14:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/eval/</loc>
-    <lastmod>2025-06-11T15:04:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/eval_1/</loc>
     <lastmod>2025-06-11T15:04:00+08:00</lastmod>

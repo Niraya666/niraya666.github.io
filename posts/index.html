@@ -195,6 +195,39 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>读完 Anthropic 的一篇博客 Demystifying evals for AI agents，深有感触。
+结合文章内容和最近的工程实践，整理了一些关于构建 Agent 评估体系的笔记，和一些思考。
+为什么需要 Evals？ Evals 的本质不是为了打分，而是为了让开发可量化。
+在缺乏评估体系时，开发团队往往面临着极大的不确定性：无论是优化 Prompt 还是更换基座模型，都难以判断这些变更是真正解决了问题，还是在引入新问题的同时破坏了原有的能力。
+在早期的 Demo 阶段，依赖人工测试或许能快速验证想法。然而，Agent 系统不同于单次交互的对话模型，它包含多步骤推理和动态工具调用。随着系统复杂度的增加，手动测试的覆盖率和回归效率将难以为继，团队很容易陷入“由于缺乏前置检测，只能依赖线上反馈被动修复 Bug”的恶性循环。
+此外，Evals 也是产品与研发之间的通用语言。将模糊的主观感受，转化为准确率、响应延迟和 Token 成本等可度量的工程指标。
+目前的评估方式，依旧还是三大件：
+人工评估：最准确但最贵。通常用来作为Golden，用于校准自动评估的准确性。
+代码基准 (Code-based)：适用于有明确唯一答案的场景（如数学计算、代码运行）。
+LLM-as-a-judge：目前的主流。用更强的模型去评估其他模型的输出。关键点：需要经过人类专家的校准。
+（注：关于评估的具体细节与最佳实践，推荐参考 Hugging Face 的 The LLM Evaluation Guidebook ）
+Agent Eval 和LLM Eval 的不同 相比于单纯的 RAG 或 LLM 评估，Agent 的评估复杂度要高得多。
+从“测模型”到“测系统” 正如Why benchmarking is hard，中提到的“许多变动的部件和自由度都会影响最终结果”。在 Agent 开发中，
+我们测试的永远不是“裸模型”，而是 “模型 &#43; Harness” 这个整体。
+这里的Harness 分成两大部分：Eval Harness（我们的评估系统本身）&#43; Agent Harness (Scaffold)。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-19 21:08:00 +0800 CST'>January 19, 2026</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to 如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感" href="https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Tongyi Deep Research 论文笔记
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -537,30 +570,6 @@ from openai import OpenAI client = OpenAI( base_url=&#34;https://openrouter.ai/a
   </div>
   <footer class="entry-footer"><span title='2025-03-11 19:24:00 +0800 CST'>March 11, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to RAG工具箱：RAG Tutorial for Beginner" href="https://niraya666.github.io/posts/rag-tutorial-for-beginner/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">当AI开始展现&#34;顿悟时刻&#34;意味着什么
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>写在前面 本文是前段时间部门内技术分享的文字稿整理；
-主要包含2个方面：对于R1模型的简单科普，和开发团队的gen-AI使用指南；
-原以为春节假期能稍作休整，未曾料想deepSeek-R1在春节期间引发行业关注。节后复工，各层级领导便密集展开AI技术进展问询。
-原计划的&#34;二月摸鱼指南&#34;彻底落空，既要向管理层科普大语言模型技术原理，又要指正领导们被各种营销号洗脑所形成的错误认知；既要推进部门AI应用培训，又要加速系统上线进程；简直了，真是TM的谢谢 DeppSeek了。
-About DS R1 什么是Reasoning model 何为推理（reasoning）：是对信息进行处理和推断，形成判断或结论的过程；推理通常是一个包含多个推断步骤的过程。推理通常被认为需要抽象思维——也就是说，推理的能力不局限于具体的例子，而是更为普遍的。
-In Thinking, Fast and Slow, Daniel Kahneman defined System 1 as the automatic, intuitive mode of thinking, and System 2 as the slower, more analytical mode. In the context of autoregressive language models, the usual inference process is akin to System 1 — models generate answers directly. Reasoning is System 2 thinking - models or systems takes time to deliberate to solve more complex problems.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-02-23 23:00:00 +0800 CST'>February 23, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to 当AI开始展现&#34;顿悟时刻&#34;意味着什么" href="https://niraya666.github.io/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
