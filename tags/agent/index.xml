@@ -11,8 +11,45 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Jan 2026 21:08:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 Jan 2026 21:55:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Infra: sandbox技术和选型</title>
+      <link>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</link>
+      <pubDate>Mon, 26 Jan 2026 21:55:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</guid>
+      <description>&lt;h2 id=&#34;背景-从context-engineering-角度出发&#34;&gt;背景: 从Context Engineering 角度出发&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在量子力学中，希尔伯特空间内的任何复杂&lt;strong&gt;量子态&lt;/strong&gt;，本质上都是一组&lt;strong&gt;正交完备基矢&lt;/strong&gt;的线性叠加&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在过去我们总是以为，只要给LLM足够多的tools，则agent就更强大，但事实总是事与愿违，工具并非越多越好，过多的工具，会降低使用准确率和浪费宝贵的上下文，也就是 &lt;strong&gt;Context Rot；&lt;/strong&gt; 于是乎，有了一个新的领域：&lt;strong&gt;Context Engineering。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;根据业界领先的context Engineering的经验：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cursor 的 &amp;ldquo;File-based Tools&amp;rdquo;&lt;/strong&gt;： Cursor 采取了一种文档化方案，将工具的“说明书”全部文件化。当 Agent 需要使用某个能力时，它会先通过Retrieval找到对应的文档，阅读后生成代码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Manus 的 &amp;ldquo;Context Offloading&amp;rdquo;&lt;/strong&gt;： 在 Manus 的设计中，采用了层级化的工具架构。为了应对复杂的长流程任务，Agent 不再试图把所有中间状态都记在 Context Window 里，而是利用&lt;strong&gt;文件系统&lt;/strong&gt;进行 Context Offloading（上下文卸载）。文件系统成为了 Agent 的外挂memory（不同于compact的有损压缩，Offloading是无损的）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Anthropic 的 &amp;ldquo;Programming tool-using&amp;rdquo; 和skills&lt;/strong&gt;：由agent自身编写代码实现tool-call相比于直接的tool-call能够节约大量context；同时agent skills本质上也是利用了file-system，对宝贵的context 进行节约的设计&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;显而易见，&lt;strong&gt;代码执行环境 (Code Execution)&lt;/strong&gt; 和 &lt;strong&gt;可读写的文件系统 (File System)&lt;/strong&gt; 已经超越了辅助工具的范畴，成为 Agent 组件中必要且不可或缺的部分。&lt;/p&gt;
+&lt;p&gt;しかし赋予 Agent “写代码”和“改文件”的能力，等同于赋予了它巨大的破坏力。&lt;/p&gt;
+&lt;p&gt;与传统软件确定的执行路径不同，Agent 的行为是基于概率和上下文动态生成的&lt;/p&gt;
+&lt;p&gt;意味着：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Prompt Injection&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Agent 的幻觉导致死循环或资源耗尽&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，通过为 Agent 划定严格的 &lt;strong&gt;安全边界（Sandbox）&lt;/strong&gt;——如网络隔离、文件系统隔离、进程隔离，便显得尤为重要。&lt;/p&gt;
+&lt;p&gt;此外与 Claude Code 这样跑在开发者本地电脑上的 Coding Agent 不同，开发者通常拥有把控风险的能力（虽然在 &amp;ldquo;YOLO 模式&amp;rdquo; 下误删文件的事故屡见不鲜）；对于部署在云端的 Agent 服务，这两者存在着信任边界的差异，用户不希望为 Agent 的每一次执行 点击“批准”，&lt;strong&gt;只要 Agent 在sandbox内折腾，它就是安全的&lt;/strong&gt;；&lt;/p&gt;</description>
+    </item>
     <item>
       <title>如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感</title>
       <link>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</link>

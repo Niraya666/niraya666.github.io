@@ -195,6 +195,38 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Agent Infra: sandbox技术和选型
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>背景: 从Context Engineering 角度出发 在量子力学中，希尔伯特空间内的任何复杂量子态，本质上都是一组正交完备基矢的线性叠加
+在过去我们总是以为，只要给LLM足够多的tools，则agent就更强大，但事实总是事与愿违，工具并非越多越好，过多的工具，会降低使用准确率和浪费宝贵的上下文，也就是 Context Rot； 于是乎，有了一个新的领域：Context Engineering。
+根据业界领先的context Engineering的经验：
+Cursor 的 “File-based Tools”： Cursor 采取了一种文档化方案，将工具的“说明书”全部文件化。当 Agent 需要使用某个能力时，它会先通过Retrieval找到对应的文档，阅读后生成代码
+Manus 的 “Context Offloading”： 在 Manus 的设计中，采用了层级化的工具架构。为了应对复杂的长流程任务，Agent 不再试图把所有中间状态都记在 Context Window 里，而是利用文件系统进行 Context Offloading（上下文卸载）。文件系统成为了 Agent 的外挂memory（不同于compact的有损压缩，Offloading是无损的）
+Anthropic 的 “Programming tool-using” 和skills：由agent自身编写代码实现tool-call相比于直接的tool-call能够节约大量context；同时agent skills本质上也是利用了file-system，对宝贵的context 进行节约的设计
+显而易见，代码执行环境 (Code Execution) 和 可读写的文件系统 (File System) 已经超越了辅助工具的范畴，成为 Agent 组件中必要且不可或缺的部分。
+しかし赋予 Agent “写代码”和“改文件”的能力，等同于赋予了它巨大的破坏力。
+与传统软件确定的执行路径不同，Agent 的行为是基于概率和上下文动态生成的
+意味着：
+Prompt Injection
+Agent 的幻觉导致死循环或资源耗尽
+因此，通过为 Agent 划定严格的 安全边界（Sandbox）——如网络隔离、文件系统隔离、进程隔离，便显得尤为重要。
+此外与 Claude Code 这样跑在开发者本地电脑上的 Coding Agent 不同，开发者通常拥有把控风险的能力（虽然在 “YOLO 模式” 下误删文件的事故屡见不鲜）；对于部署在云端的 Agent 服务，这两者存在着信任边界的差异，用户不希望为 Agent 的每一次执行 点击“批准”，只要 Agent 在sandbox内折腾，它就是安全的；
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-26 21:55:00 +0800 CST'>January 26, 2026</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to Agent Infra: sandbox技术和选型" href="https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -533,43 +565,6 @@ Technical Report
   </div>
   <footer class="entry-footer"><span title='2025-03-12 16:44:00 +0800 CST'>March 12, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to RAG工具箱：基于多模态大模型的文档解析方案（2025版）" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">RAG工具箱：RAG Tutorial for Beginner
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>一些适合入门的RAG材料
-原理、科普 Retrieval Augmented Generation (RAG) for LLMs
-Langchain|Retrieval augmented generation (RAG)
-A Practitioners Guide to Retrieval Augmented Generation (RAG)
-RAG for Beginners: The Complete Guide to Retrieval Augmented Generation
-What is Retrieval Augmented Generation (RAG)?
-Retrieval augmented generation (RAG)
-思考题：
-Why RAG？ RAG解决了什么问题？RAG和SFT如何选择？RAG的优势？
-什么样的问题是RAG无法解决的？什么样的数据适合使用RAG
-为什么要做chunking？chunk-size受那些因素制约？
-什么是embedding？向量库在做什么？一定要做语义匹配吗？什么是reranking？
-如何evaluate 检索效果的好坏 ？
-RAG中，LLMs起到的作用？
-Hands-On 前置任务 获取模型服务：
-获得LLMs供应商API： 推荐 OpenRouter（仅LLMs，需要梯子，境外信用卡或Crypto），SilconFlow（LLMs&#43;embedding,无需梯子,有送token），Groq（仅LLMs, 需梯子，速度快，免费）
-或采用本地部署： 推荐Ollama
-例子,采用openRouter API实现LLM对话：
-from openai import OpenAI client = OpenAI( base_url=&#34;https://openrouter.ai/api/v1&#34;, api_key=&#34;&lt;OPENROUTER_API_KEY&gt;&#34;, ) completion = client.chat.completions.create( model=&#34;openai/gpt-4o&#34;, messages=[ { &#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;What is the meaning of life?&#34; } ] ) print(completion.choices[0].message.content) 例子：基于本地ollama启动的deepseek R1（蒸馏版本）对话
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 19:24:00 +0800 CST'>March 11, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to RAG工具箱：RAG Tutorial for Beginner" href="https://niraya666.github.io/posts/rag-tutorial-for-beginner/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
