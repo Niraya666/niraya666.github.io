@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-01 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+DeepSeek-OCR-2: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码
+Qwen3-VL-Embedding: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式
+Kimi-K2.5: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍
+Anthropic-Cowork: 面向非开发者的AI Agent工具（&ldquo;Claude Code for the rest of your work&rdquo;），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务
+值得关注的开源项目
+aigc-weekly: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊
+vibe-kanban: Get 10X more out of Claude Code, Codex or any coding agent
+clawdbot: Your own personal AI assistant. Any OS. Any Platform. The lobster way
+makepad-skills: Build App with Makepad and AI skills">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2026-01 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+DeepSeek-OCR-2: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码
+Qwen3-VL-Embedding: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式
+Kimi-K2.5: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍
+Anthropic-Cowork: 面向非开发者的AI Agent工具（&ldquo;Claude Code for the rest of your work&rdquo;），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务
+值得关注的开源项目
+aigc-weekly: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊
+vibe-kanban: Get 10X more out of Claude Code, Codex or any coding agent
+clawdbot: Your own personal AI assistant. Any OS. Any Platform. The lobster way
+makepad-skills: Build App with Makepad and AI skills" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/297C6764-6489-4362-A186-C38D8763A430_1_102_o.jpeg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-01-31T15:00:00+08:00" />
+<meta property="article:modified_time" content="2026-01-31T15:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/297C6764-6489-4362-A186-C38D8763A430_1_102_o.jpeg" />
+<meta name="twitter:title" content="2026-01 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+DeepSeek-OCR-2: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码
+Qwen3-VL-Embedding: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式
+Kimi-K2.5: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍
+Anthropic-Cowork: 面向非开发者的AI Agent工具（&ldquo;Claude Code for the rest of your work&rdquo;），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务
+值得关注的开源项目
+aigc-weekly: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊
+vibe-kanban: Get 10X more out of Claude Code, Codex or any coding agent
+clawdbot: Your own personal AI assistant. Any OS. Any Platform. The lobster way
+makepad-skills: Build App with Makepad and AI skills"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-01 月刊",
+      "item": "https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-01 月刊",
+  "name": "2026-01 月刊",
+  "description": "值得关注的模型和新技术 DeepSeek-OCR-2: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码\nQwen3-VL-Embedding: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式\nKimi-K2.5: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍\nAnthropic-Cowork: 面向非开发者的AI Agent工具（\u0026ldquo;Claude Code for the rest of your work\u0026rdquo;），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务\n值得关注的开源项目 aigc-weekly: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊\nvibe-kanban: Get 10X more out of Claude Code, Codex or any coding agent\nclawdbot: Your own personal AI assistant. Any OS. Any Platform. The lobster way\nmakepad-skills: Build App with Makepad and AI skills\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 DeepSeek-OCR-2: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码\nQwen3-VL-Embedding: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式\nKimi-K2.5: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍\nAnthropic-Cowork: 面向非开发者的AI Agent工具（“Claude Code for the rest of your work”），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务\n值得关注的开源项目 aigc-weekly: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊\nvibe-kanban: Get 10X more out of Claude Code, Codex or any coding agent\nclawdbot: Your own personal AI assistant. Any OS. Any Platform. The lobster way\nmakepad-skills: Build App with Makepad and AI skills\nebook-mcp: A MCP server that supports mainstream eBook formats including EPUB, PDF and more. Simplify your eBook user experience with LLM\n值得关注的研究和论文 Step-DeepResearch arXiv:2512.20491\n将深度研究能力拆解为四个原子能力：规划（Planning）、深度搜寻（Information Seeking）、反思验证（Reflection \u0026 Verification）、报告写作（Reporting），针对每种能力设计专门的数据合成流水线，构建了从 Agentic Mid-training → SFT → RL 的完整训练路径，并提出了面向中文真实应用场景的 ADR-Bench 基准测试\n数据合成流水线\n从\"预测下一个Token\"转向\"决策下一个原子动作\"\nPlanning \u0026 Task Decomposition：逆向工程策略，收集高质量技术报告、学术综述，提取标题和摘要，利用 LLM 逆向推导\"是什么样的任务导致了这份报告\"，生成高难度用户查询。使用原报告摘要结构作为\"上帝视角\"的规划作为 Ground Truth，过滤偏离规划逻辑的样本\nDeep Search \u0026 Information Seeking：训练模型进行多跳推理、挖掘隐藏实体\n基于图的合成：选取非通用\"种子节点\"，BFS 扩展构建子图，验证图谱中的边（三元组），基于验证后的子图生成多跳推理问答对 基于多文档的合成：从 Wiki-doc 索引库模拟 Agent 在文档超链接中随机游走，收集路径信息反向生成 难度过滤：使用 QwQ-32b 作为过滤器，能直接解决的 Query 被剔除，确保只保留需要深度研究的难题 Reflection, Verification \u0026 Cross-Validation：让模型学会 Self-Correction 和 Fact-Checking\n错误-反思循环（Error-Reflection Loop）：专家模型生成搜索轨迹 → 结果错误 → 基于错误进行反思 → 带着记忆重试（最多3次）。只保留\"经过反思后最终做对\"的轨迹 深度验证工作流（Deep Verification Workflow）：构建教师系统（提取 Agent → 规划 Agent → 验证 Agent → 报告 Agent）进行事实核查，生成 \u003c验证点, 结论, 证据\u003e 三元组，使用裁判模型验证逻辑自洽性 训练阶段\nAgentic Mid-training（32K 上下文）：注入原子能力。规划能力使用逆向工程法从研报摘要反推任务指令；搜索能力基于知识图谱构建复杂推理子图；反思能力通过自我纠错生成\"反思-修正\"数据 Agentic Mid-training（128K 上下文）：引入工具调用，模拟真实长上下文 Web 交互，训练模型在海量信息中提取关键内容 Post-training SFT：Deep Search 针对有标准答案的任务保留\"正确且路径最短\"的轨迹；Deep Research 针对开放式任务训练全流程（意图-规划-执行-反思-写作），强制要求严格的引用格式 \\cite{} RL：使用 PPO 算法，训练专门的 Rubrics Judge 模型，采用严格奖励映射（Strict Reward Mapping）：正面标准只有\"完全满足\"才给分，负面标准只要有瑕疵就判0分。采用 ReAct Single-agent Everything is Context: Agentic File System Abstraction arXiv:2512.05470\n将 Unix “everything is a file” 理念迁移到 GenAI 的上下文工程架构，把知识库、记忆存储、MCP 工具、人类注释等都挂载成统一命名空间中的\"文件/目录\"。在开源框架 AIGNE 中实现了 Agentic File System（AFS）\n核心架构\n文件系统层（AFS / SystemFS）：提供 list/read/write/search 等文件操作，每个文件/目录可带元数据和可执行 action（如分析、摘要、验证），形成\"可执行的上下文节点\" 持久上下文仓库：将 History、Memory、Scratchpad 统一建模为生命周期 History：记录所有原始交互和中间推理步骤，作为不可变\"事实源\" Memory：面向 agent/会话的结构化、可索引记忆（事实记忆、情节记忆、语义记忆等），带访问控制和溯源 Scratchpad：任务级临时工作区，结束时将有用内容写回 Memory 或 History Agentic Memory: Unified Long-Term and Short-Term Memory Management arXiv:2601.01885\n让同一个 Agent 学会统一管理 LTM+STM，自动决定何时/如何存、取、滤、总结记忆\n统一记忆管理框架 AgeMem\n将所有 LTM/STM 操作做成一组工具（Add/Update/Delete/Retrieve、Summary/Filter 等），直接并入 Agent 的动作空间，而不是外围 pipeline。同一策略网络既负责推理，又负责记忆操作决策\nRL 训练三阶段\n阶段 1：在任务问题未揭示前的「闲聊/信息收集」中，学习构建和维护 LTM（Add/Update/Delete） 阶段 2：在有大量语义相关但无关的干扰信息下，学习STM 的过滤和压缩（Filter/Summary） 阶段 3：在正式任务上联合推理+LTM 检索+STM 管理，端到端协调 奖励设计\n答案正确性 + 上下文管理奖励（压缩效率）+ 长期记忆奖励 + 违例惩罚\nRemember Me, Refine Me: Dynamic Procedural Memory Framework arXiv:2512.10696\n让代理的外部记忆从\"被动存档\"变成\"可自进化的程序性记忆\"\n核心机制\n从成功轨迹做 success pattern recognition，总结关键步骤与策略；对失败做 failure analysis，总结坑和错误 用\"usage scenario（使用场景）“向量来索引经验，而不是只用原始 query 或关键词 只把成功轨迹的总结加入经验池，并配合\"失败反思-再尝试-若成功再入库\"的机制；若多次被用却无助于成功、平均效用低于阈值 β，则删除 发布了细粒度程序性记忆数据集 reme.library 具体实现\n经验获取：多次采样轨迹得到成功+失败路径，LLM 作为 summarizer 做三类分析（成功模式、失败原因、对比分析），输出结构化经验 $E=\\langle \\omega, e, \\kappa, c, \\tau\\rangle$（usage scenario、经验内容、关键词、置信度、涉及工具）。用 LLM-as-a-Judge 过滤，相似度去重，将 usage scenario 的嵌入向量作为索引存入向量库\n经验重用：用 Embedding 对任务 query 编码，与经验中的 usage scenario 计算余弦相似度，用 rewriting 模块将多条经验融合成针对当前任务的操作指南，作为 in-context 示例拼进执行 LLM 的提示中\n经验精炼：在线执行阶段，默认只把成功轨迹的总结加入经验池（selective addition）。若任务失败，触发\"失败反思”，summarizer 分析失败轨迹提出改进建议，执行 LLM 按建议再试，若新尝试成功则把从失败中提炼的教训加入经验池，若仍失败则丢弃。记录每条经验被检索次数 $f$ 与其带来成功的次数 $u$，只在 $f \\ge \\alpha$（如5次）后才考虑删除；若 $u/f \u003c \\beta$（如0.5），则视为\"高频低效\"经验，从池中移除\nTraining AI Co-Scientists Using Rubric Rewards arXiv:2512.23707\n针对开放式科学研究目标的 RL 训练方法，解决两个核心问题：难以生成满足所有显性和隐性约束的具体研究方案；验证\"想法\"或\"计划\"的好坏通常需要实际执行实验，难以获得即时反馈\nRubric Rewards：从科学论文中自动提取的准则，包含对研究计划的具体要求和评价维度\n自动化数据构建：从海量科学论文语料库自动提取\"研究目标（Goal）-评分准则（Rubric）-研究计划\"三元组，构建大规模多样化训练数据集 ResearchPlanGen\nRL with Self-Grading：利用模型自身作为\"评分员\"，根据评分准则对生成的计划进行打分，以此作为奖励信号训练模型\nAgentOCR: Reimagining Agent History via Optical Self-Compression arXiv:2601.04786\n把\"观测-动作历史\"渲染成一张（或多张）图像，由 VLM 读图，而不是直接喂长文本\nSegment Optical Caching：将历史拆成可哈希的文本段，按内容做 key，缓存对应的渲染图块，再通过拼接构成当前历史图像。重复出现的段无需重复渲染，减少渲染延迟和显存占用\nAgentic Self-Compression：把渲染压缩率当成一个由 agent 决策的\"工具参数\"（ 标签），RL 中联合优化任务奖励和\"压缩奖励\"，让 agent 学会在不同时间步自适应地选择合适的压缩率，平衡信息保真和 token 成本\nMemRL: Self-Evolving Agents via Runtime Reinforcement Learning on Episodic Memory arXiv:2601.03192\n将记忆检索从\"语义匹配\"问题转化为\"基于价值的决策问题\"，建模成非参数化的 Q-learning 问题\n意图-经验-效用三元组\n记忆库 $\\mathcal{M}$ 中的每一项是一个三元组 $(z_i, e_i, Q_i)$：\n$z_i$ (Intent)：用户意图或查询的嵌入向量 $e_i$ (Experience)：具体的执行轨迹或解决方案 $Q_i$ (Utility)：效用值（Q-value），估计将该经验应用于相似意图时的预期成功率 两阶段检索\n基于相似度的召回：召回语义上与当前查询 $s$ 最相关的一组候选记忆 $\\mathcal{C}(s)$ 价值感知选择：对候选记忆重新排序，得分公式结合相似度和 Q 值： $$score(s, z_i, e_i) = (1-\\lambda) \\cdot sim(s, z_i) + \\lambda \\cdot \\hat{Q}(z_i, e_i)$$ 运行时更新（完全在记忆空间中进行，不涉及模型反向传播）\n智能体检索记忆并生成解决方案 $y$，环境给出反馈奖励 $r$（成功为1，失败为-1） 更新 Q 值：使用蒙特卡洛式更新规则 $Q_{new} \\leftarrow Q_{old} + \\alpha(r - Q_{old})$ 写入新经验：如果是新的探索轨迹，LLM 对其进行总结并作为新条目 $(z, e_{new}, Q_{init})$ 写入记忆库 Qwen3-VL-Embedding and Qwen3-VL-Reranker 基于 Qwen3-VL 的多模态检索框架\nEmbedding 模型：采用双编码器（Bi-encoder）架构，输入指令和多模态内容，取最后一个 \u003c|endoftext|\u003e token 的隐藏状态作为向量表示\nReranker 模型：采用交叉编码器（Cross-encoder）架构，同时输入查询和文档，通过计算输出 “yes” 和 “no” token 的概率差来判定相关性\n训练流程三阶段\n对比预训练：使用约 3 亿条大规模合成的弱监督数据进行对比学习，建立基础多模态理解能力 多任务微调：加入高质量精选数据（约 4000 万条），进行多任务对比学习（Embedding）和有监督微调（Reranker），针对不同任务使用特定 Loss 函数 蒸馏与融合：利用训练好的强力 Reranker 对 Embedding 模型进行知识蒸馏，通过模型融合技术平衡检索能力与通用分类能力，最终得到 S3 版本 蒸馏 Loss\n$$\\mathcal{L}{distill}=-\\sum{i=1}^{k+1}P_{reranker}(d_{i}|q)\\log P_{embedding}(d_{i}|q)$$\n使用训练好的 Reranker（Cross-Encoder）对每个 Query 的候选文档（1个正样本+k个负样本）打分得到概率分布 $P_{reranker}$，训练 Embedding 模型使其生成的余弦相似度分布 $P_{embedding}$ 尽可能接近 Reranker 的分布\n困难负样本挖掘\n实施\"召回-相关性过滤\"两阶段流程：\n召回：使用当前 Embedding 模型从语料库检索 Top-K 最相似文档 Positive Refinement：确保 Query 至少有一个检索回来的文档分数 $s \u003e t^+$，否则丢弃 Hard Negative Selection：选择分数满足 $s \u003c s^+ + \\delta^-$ 的文档作为硬负样本 Loss 函数\nInfoNCE Loss（用于检索任务）：解决非对称检索问题，分母引入 mask 机制剔除潜在\"假负样本\" $$\\mathcal{L}{retrieval}=-\\frac{1}{N}\\sum{i}^{N}\\log\\frac{e^{(s(q_{i},d_{i}^{+})/\\tau)}}{Z_{i}}$$\nCoSent Loss（用于语义文本相似度 STS）：解决标签为连续实数值（如相似度 4.5 分）而非简单 0/1 的任务 $$\\mathcal{L}{sts}=\\log(1+\\sum{\\hat{s}(q_{i},d_{j})\u003e\\hat{s}(q_{m},d_{n})}e^{\\frac{\\cos(q_{m},d_{n})-\\cos(q_{i},d_{j})}{\\tau}})$$\nArenaRL arXiv:2601.06487\n通过组内相对排序（Intra-group Relative Ranking）获取奖励信号\nSeeded Single-Elimination：利用贪婪解码生成的轨迹作为\"锚点\"进行预排序（Seeding），然后进行二叉树淘汰赛\n推荐内容 学习资源 learn-claude-code: 仅用16行Bash代码实现一个极简版Claude Code，理解Agent的核心原理\nAgent Skills 资源 SkillsMP: Agent Skills 市场，收录超过110000个兼容Claude Code、Codex CLI和ChatGPT的Skills，采用开放的SKILL.md格式\nAwesome Claude Skills: 精选的Claude Skills集合，包含content-research-writer等高质量Skill\n实用 Skills ralph-wiggum: 实现迭代式自引用AI开发循环的Claude Code插件\nplanning-with-files: 基于文件的规划Skill，帮助Claude Code更好地处理复杂项目规划\nnotebooklm-skill: 与Google NotebookLM集成的Skill，增强研究笔记能力\nsuperpowers: 为Claude Code添加额外的\"超能力\"功能扩展\nfrontend-design: Anthropic官方的前端设计Skill，优化UI/UX设计工作流\nnews-aggregator-skill: 新闻聚合Skill，自动收集和整理资讯\nbaoyu-skills: 宝玉的Claude Skills集合，包含多种实用工具\nhumanizer: 帮助优化AI生成内容，使其更具人性化表达\neverything-claude-code: Claude Code相关资源的综合整理仓库\nAgent 基础设施 PAI: Personal AI Infrastructure，用于增强人类能力的Agentic AI基础设施\n影音记录 精选歌单 书\u0026阅读摘录 解读 Anthropic2026经济指数报告：给AI生产力泼的第一盆冷水 人机协作的多轮对话虽然慢，但更稳——每一轮都是一次纠错机会，不容易让小问题滚成大雪球。\n如果移除Claude目前能够胜任的工作任务，整体劳动力市场会经历一次\"去技能化\"。\n在发展中国家，早期采用者往往是技术用户，有特定的高价值应用场景，或者用AI来获取教育资源。这是\"技术红利\"阶段。 … 在发达国家，AI已经进入\"多元化使用\"阶段——不只是工作，也有大量个人和休闲用途。\n也就是说你要想从AI那里获得高价值产出，你首先得具备提出高价值问题的能力。 Anthropic自己的结论是——仅仅扩大AI的接入是不够的，还需要提升人力资本，才能让AI真正发挥效果。\n谁先有技能，谁先把AI变成杠杆；谁没有技能底子，AI再强也只是搜索引擎或者是一个聊天机器。\nReid Hoffman 企业 AI 策略的误区和建议 当前企业 AI 的策略往往倒置：许多人关注首席 AI 官和试点项目，但真正的价值在于解决组织中浪费时间的“平凡”工作；\n建议从“协调层”入手，这是企业内部最大的语言工作负载，包括会议、笔记、文档、行动项和状态更新。通过 AI 使组织记忆结构化和可检索，避免依赖特定人员；\nAI 收益应该在工作流层面共享，由一线员工发现真实的自动化机会；\nCode Agent 能降低分析成本，可以让企业更容易做多维度的问题分析与诊断；\n想要胜出的企业需及早培养日常 AI 的使用习惯，让收益“复利”；目标不仅是采用，而是集体对 AI 真正理解\n深度解读 AGI-Next 2026：分化、新范式、Agent 与全球 AI 竞赛的 40 条重要判断 toC 场景的任务瓶颈往往不是模型不够大，而是 Context 和 Environment 的缺失； 自主学习是共识性极强的新范式，是 2026 年几乎所有人都会投入到这个方向；\n模型即 Agent，Agent 即产品\n自主学习、 active learning、continual learning 以及 self-learning 等本质上都在表达同一个预期，即模型自主学习能力提升，可以在人类不介入的情况下不断提升智能。 … 自主学习能够体现到 personalization 上，但衡量它是否“变好了”会变得很难\nVibe code benchmark How we connect context to code agents impacts their performance.\nThere is a consistent pattern: optimized llms.txt \u003e vector database \u003e llms.txt \u003e context stuffing. llms.txt is just RAG with full documents as retrieval units.\nI noticed that the descriptions were pretty bad in the initial llms.txt file. So, I had an LLM read each URL and summarize it (here’s a package I made for this), creating the optimized llms.txt. This performed better on the benchmark.\nVector databases scale well, but retrieval can be sensitive to things like embedding, chunk size, k-nearest neighbors,\nIt’s a simple, but relies on good document descriptions\n用第一性原理拆解 Agentic Coding：从理论到实操 核心策略是采用“短对话、精简上下文”的模式，将复杂任务拆解为专注的子对话，并借助“复利工程”将 bug 修复、代码审查等日常经验沉淀为可复用的项目知识库，使系统获得记忆并实现效率的持续增长\nCoding Agent 面临的一个根本性问题是：它们在会话之间没有持久记忆。\nCoding Agent 实际上只能有效利用其中的 10-15%。超过 20% 后，成本和性能都会急剧恶化 Agent 会在达到约 20% 时强制中断，而最佳实践是在 15% 之前就重启会话。 这可能是最重要的一条实践：保持对话简短、专注，每个对话只做一件事。 当对话超过 80K-100K token 时，考虑开始新对话\n当你修复一个 bug 时，不要只是改代码。问自己： 这类问题能否通过添加 lint 规则来预防？是否应该在 Rules 或者 AGENTS.md 中记录这个陷阱？能否编写一个测试来防止回归？代码审查清单是否需要更新？\n一个务实的做法是：\n把「只存在于人脑中」的知识显式化：写下来，放进文档 在 Agent 主导的模块中，给 Agent 更多自主权 在人类频繁维护的核心模块中，保持人类友好的风格 在工具接口上，提供 AI 友好的选项（如 –json 输出） 在模型同质化的时代，陈冕摸着Manus过河 人们往往高估技术的短期效益，却低估其长期影响。\n然而有趣的是，这位深谙大厂规则的老兵，在AI时代却发起了一场小小的“兵变”：在Lovart，他拿掉了产品经理（PM）的位置。\n工具的智能化将终结“需求管理者”的使命，而将舞台完全留给“需求定义者”。\n算法工程师的决策底气：不是性格，而是知识密度 很多算法工程师会有这样的自我审视：我也想更勇敢地做决策，而不是一味求稳、只做执行 问题几乎从来不在勇气，而在知识储备\n没有足够的技术积累做支撑，任何“勇敢决策”都只是空谈； 而真正成熟、可持续的决策能力，来源于对技术边界的清晰认知。\n但如果你平时不持续关注论文和业界实践，就根本意识不到这些路径的存在，自然也谈不上决策\n敢不敢决策，往往取决于你“有没有得选”。\n问题不在于你不够谨慎，而在于： 你对这些方案的理解，停留在“听说过”层面。真正能支撑决策的知识储备，至少包括三层：\n这个方案解决的核心问题是什么 它的适用场景和边界条件 在真实业务中，最容易踩的坑在哪里 算法方案真正有价值的，不是具体实现，而是底层逻辑\n最高级的决策能力，从来不是选方案，而是造方案。 而“造方案”的前提，依然是足够扎实的知识储备。\n精准选论文，而不是广撒网 明确自己的主战场 目标不是“跟上所有热点”，而是构建稳定、可复用的认知体系。\n每篇论文至少回答五个问题： 解决什么工程痛点核心创新点是什么哪些模块是关键（看 ablation）适用什么数据和场景在真实业务中可能会失败在哪\n为什么“多看论文”，不是学术焦虑，而是工程刚需 给自己建立固定的“技术输入源”\n如何做 AI Agent 喜欢的基础软件 Infra 软件的主要使用者，正在从开发者（人类）迅速转向 AI Agent。\n当基础软件的核心用户不再是人，而是 AI 时，它应该具备哪些本质特征 尤其是越靠近底层的部分：文件系统、操作系统、编程语言、进程模型、I/O 抽象。这些东西几十年下来，形态在演进，但核心思想、接口边界，以及背后的假设，变化并不大 … 如果你希望设计的是“给 AI Agent 使用的软件”，那你必须尽可能去贴合这些古老、却被一再验证的心智模型。\nAgent 不是在等待一个更聪明强大的系统，而是更喜欢一个“它已经懂的系统”然后用比人类娴熟1000倍的效率写胶水代码扩展它\nAgent 应该如何与你的系统对话。在 Agent 作为用户的时代，一个好的软件接口，至少需要同时满足三个条件： 可以被自然语言描述 可以被符号逻辑固化 并且能够交付确定性的结果。\n自然语言非常适合用来表达意图，但它并不适合承担执行语义。一旦任务要被复用，组合和自动化验证，就必须被压缩成一种明确、稳定、可推理的形式。 而我认为目前（2025年底）最好的逻辑符号描述，就是代码，即使对于非编程 Agent 来说也是。\n这里说的“极致的成本”，并不是简单意义上的“便宜”，而是指在满足大量长尾需求的前提下，系统的成本还能不能撑得住。 AI 把很多原本“不值得做”的需求都变得可行了 我觉得 Agent 改变的，恰恰是这一点。AI Agent 第一次把“计算”这件事，真正意义上地民主化了\n一个真正成功的 Agent 公司，最终不应该是一家“卖 token 的公司”。\n代码不再稀缺，软件也不再是需要精心维护的东西，系统被创建、试用、丢弃，都会变得非常自然。\n只是工程的重点变了：不再是把某一个系统打磨到极致，而是去设计那些能被 AI 大规模使用、反复试错、低成本运行的基础能力。\nEvaluating Deep Agents: Our Learnings Deep Agents need a fresh, clean environment for each eval run in order to ensure reproducible results.\nThe broader point: Deep Agent evals require environments that resets per test – otherwise your evals become flaky and difficult to reproduce.\nTip: Mock out your API requests\n2025年年终总结（二） 但现在脑中的第一个问题是“还需不需要人？\n但现在的情况已经不同了。职级已经没有意义，过去的经验也没有意义，人的价值从按照“本人产出的劳动数量及质量”来评估，变成了是否能提高AI的能力，人加AI要大于AI本身的产出，这样才行。\n人本身是没有价值的。只有在人的能力强到一定程度之后，能够做到辅助AI变强，才开始变得有价值起来。\n如果把人+所有个人能获取的AI当成一个智能体，整体来看，它的能力分布会和电子能级在材料里的分布很像：低于或达到某个水准线的智能体遍地都是，求着客户给它活干，以证明自己还是有用的；而高于这个水准线的智能体则指数级地变少，获取和使用它非常花钱，还常常排不到。\n这个水准线，就是AI洪水的高度，就是人类社会的“费米能级”。低于费米能级的职业，可能在一夜之间就被颠覆掉，就像一场洪水或者地震一样，前一天还是岁月静好，后一天整个行业被端掉了\n在这种环境下，真正稀缺的不再是实现愿望的能力，而是“愿望”本身，以及将愿望化为现实的那份坚持\n这种唾手可得的便利，会让许多人逐渐失去思考的动力，久而久之丧失原创能力，思想被生成式内容和推荐系统所绑架和同化 … 这就是新时代对“懒人”的定义：不再是因为体力上的懒惰，而是精神上没有空闲去思考，没有能力去构思独特的东西。\n每个人都将面临从“员工”角色向“老板”或“创始人”角色的转变\n因为这份宏大的愿望，或许正是他们一辈子充满前进动力，主动思考的根本源泉，也是让他们始终屹立于“费米能级”之上的关键。\nMaker’s Schedule, Manager’s Schedule There are two types of schedule, which I’ll call the manager’s schedule and the maker’s schedule\nThey generally prefer to use time in units of half a day at least. You can’t write or program well in units of an hour. That’s barely enough time to get started.\nFor someone on the maker’s schedule, having a meeting is like throwing an exception. It doesn’t merely cause you to switch from one task to another; it changes the mode in which you work.\nAnd ambitious projects are by definition close to the limits of your capacity. A small decrease in morale is enough to kill them off.\n",
+  "wordCount" : "1074",
+  "inLanguage": "en",
+  "image":"https://niraya666.github.io/img/monthly/2026/297C6764-6489-4362-A186-C38D8763A430_1_102_o.jpeg","datePublished": "2026-01-31T15:00:00+08:00",
+  "dateModified": "2026-01-31T15:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-01 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2026-01-31 15:00:00 +0800 CST'>January 31, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/297C6764-6489-4362-A186-C38D8763A430_1_102_o.jpeg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/297C6764-6489-4362-A186-C38D8763A430_1_102_o.jpeg" alt=""></a>
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#step-deepresearch" aria-label="Step-DeepResearch">Step-DeepResearch</a></li>
+                <li>
+                    <a href="#everything-is-context-agentic-file-system-abstraction" aria-label="Everything is Context: Agentic File System Abstraction">Everything is Context: Agentic File System Abstraction</a></li>
+                <li>
+                    <a href="#agentic-memory-unified-long-term-and-short-term-memory-management" aria-label="Agentic Memory: Unified Long-Term and Short-Term Memory Management">Agentic Memory: Unified Long-Term and Short-Term Memory Management</a></li>
+                <li>
+                    <a href="#remember-me-refine-me-dynamic-procedural-memory-framework" aria-label="Remember Me, Refine Me: Dynamic Procedural Memory Framework">Remember Me, Refine Me: Dynamic Procedural Memory Framework</a></li>
+                <li>
+                    <a href="#training-ai-co-scientists-using-rubric-rewards" aria-label="Training AI Co-Scientists Using Rubric Rewards">Training AI Co-Scientists Using Rubric Rewards</a></li>
+                <li>
+                    <a href="#agentocr-reimagining-agent-history-via-optical-self-compression" aria-label="AgentOCR: Reimagining Agent History via Optical Self-Compression">AgentOCR: Reimagining Agent History via Optical Self-Compression</a></li>
+                <li>
+                    <a href="#memrl-self-evolving-agents-via-runtime-reinforcement-learning-on-episodic-memory" aria-label="MemRL: Self-Evolving Agents via Runtime Reinforcement Learning on Episodic Memory">MemRL: Self-Evolving Agents via Runtime Reinforcement Learning on Episodic Memory</a></li>
+                <li>
+                    <a href="#qwen3-vl-embedding-and-qwen3-vl-reranker" aria-label="Qwen3-VL-Embedding and Qwen3-VL-Reranker">Qwen3-VL-Embedding and Qwen3-VL-Reranker</a></li>
+                <li>
+                    <a href="#arenarl" aria-label="ArenaRL">ArenaRL</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ad%a6%e4%b9%a0%e8%b5%84%e6%ba%90" aria-label="学习资源">学习资源</a></li>
+                <li>
+                    <a href="#agent-skills-%e8%b5%84%e6%ba%90" aria-label="Agent Skills 资源">Agent Skills 资源</a></li>
+                <li>
+                    <a href="#%e5%ae%9e%e7%94%a8-skills" aria-label="实用 Skills">实用 Skills</a></li>
+                <li>
+                    <a href="#agent-%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="Agent 基础设施">Agent 基础设施</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#%e8%a7%a3%e8%af%bb-anthropic2026%e7%bb%8f%e6%b5%8e%e6%8c%87%e6%95%b0%e6%8a%a5%e5%91%8a%e7%bb%99ai%e7%94%9f%e4%ba%a7%e5%8a%9b%e6%b3%bc%e7%9a%84%e7%ac%ac%e4%b8%80%e7%9b%86%e5%86%b7%e6%b0%b4httpszhuanlanzhihucomp1997522093269591343" aria-label="解读 Anthropic2026经济指数报告：给AI生产力泼的第一盆冷水">解读 Anthropic2026经济指数报告：给AI生产力泼的第一盆冷水</a></li>
+                <li>
+                    <a href="#reid-hoffman-%e4%bc%81%e4%b8%9a-ai-%e7%ad%96%e7%95%a5%e7%9a%84%e8%af%af%e5%8c%ba%e5%92%8c%e5%bb%ba%e8%ae%aehttpsxcomindigoxstatus2014574891140571200rw_tt_threadtrue" aria-label="Reid Hoffman 企业 AI 策略的误区和建议">Reid Hoffman 企业 AI 策略的误区和建议</a></li>
+                <li>
+                    <a href="#%e6%b7%b1%e5%ba%a6%e8%a7%a3%e8%af%bb-agi-next-2026%e5%88%86%e5%8c%96%e6%96%b0%e8%8c%83%e5%bc%8fagent-%e4%b8%8e%e5%85%a8%e7%90%83-ai-%e7%ab%9e%e8%b5%9b%e7%9a%84-40-%e6%9d%a1%e9%87%8d%e8%a6%81%e5%88%a4%e6%96%adhttpsmpweixinqqcoms__bizmzg2oty0mdk0nqmid2247520510idx1snffb241930b5b6fe38203e2c4dbefd129poc_tokenhm0vbmmjyu5ol3hhivcepefw3g_hfnv7kmd4woa_" aria-label="深度解读 AGI-Next 2026：分化、新范式、Agent 与全球 AI 竞赛的 40 条重要判断">深度解读 AGI-Next 2026：分化、新范式、Agent 与全球 AI 竞赛的 40 条重要判断</a></li>
+                <li>
+                    <a href="#vibe-code-benchmarkhttpsrlancemartingithubio20250403vibe-code" aria-label="Vibe code benchmark">Vibe code benchmark</a></li>
+                <li>
+                    <a href="#%e7%94%a8%e7%ac%ac%e4%b8%80%e6%80%a7%e5%8e%9f%e7%90%86%e6%8b%86%e8%a7%a3-agentic-coding%e4%bb%8e%e7%90%86%e8%ae%ba%e5%88%b0%e5%ae%9e%e6%93%8dhttpsmpweixinqqcoms__bizmzi1mzyzmje0mqmid2247517928idx1sn67a360ce0119faa8d37d81678eb376a5poc_tokenhh8ubmmjhalbtkd4nstoxtnd3jd2io6unf2sbwai" aria-label="用第一性原理拆解 Agentic Coding：从理论到实操">用第一性原理拆解 Agentic Coding：从理论到实操</a></li>
+                <li>
+                    <a href="#%e5%9c%a8%e6%a8%a1%e5%9e%8b%e5%90%8c%e8%b4%a8%e5%8c%96%e7%9a%84%e6%97%b6%e4%bb%a3%e9%99%88%e5%86%95%e6%91%b8%e7%9d%80manus%e8%bf%87%e6%b2%b3httpszhuanlanzhihucomp1995577806973838131" aria-label="在模型同质化的时代，陈冕摸着Manus过河">在模型同质化的时代，陈冕摸着Manus过河</a></li>
+                <li>
+                    <a href="#%e7%ae%97%e6%b3%95%e5%b7%a5%e7%a8%8b%e5%b8%88%e7%9a%84%e5%86%b3%e7%ad%96%e5%ba%95%e6%b0%94%e4%b8%8d%e6%98%af%e6%80%a7%e6%a0%bc%e8%80%8c%e6%98%af%e7%9f%a5%e8%af%86%e5%af%86%e5%ba%a6httpszhuanlanzhihucomp1989401884113531246" aria-label="算法工程师的决策底气：不是性格，而是知识密度">算法工程师的决策底气：不是性格，而是知识密度</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e5%81%9a-ai-agent-%e5%96%9c%e6%ac%a2%e7%9a%84%e5%9f%ba%e7%a1%80%e8%bd%af%e4%bb%b6httpsmpweixinqqcomsbzcrwggzninbk9k2l38lyg" aria-label="如何做 AI Agent 喜欢的基础软件">如何做 AI Agent 喜欢的基础软件</a></li>
+                <li>
+                    <a href="#evaluating-deep-agents-our-learningshttpsxcomlangchainaistatus2006589207196930109rw_tt_threadtrue" aria-label="Evaluating Deep Agents: Our Learnings">Evaluating Deep Agents: Our Learnings</a></li>
+                <li>
+                    <a href="#2025%e5%b9%b4%e5%b9%b4%e7%bb%88%e6%80%bb%e7%bb%93%e4%ba%8chttpszhuanlanzhihucomp1991073922217709984" aria-label="2025年年终总结（二）">2025年年终总结（二）</a></li>
+                <li>
+                    <a href="#makers-schedule-managers-schedulehttpspaulgrahamcommakersschedulehtml" aria-label="Maker&rsquo;s Schedule, Manager&rsquo;s Schedule">Maker&rsquo;s Schedule, Manager&rsquo;s Schedule</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://huggingface.co/deepseek-ai/DeepSeek-OCR-2">DeepSeek-OCR-2</a>: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码</p>
+<p><a href="https://qwen.ai/blog?id=qwen3-vl-embedding">Qwen3-VL-Embedding</a>: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式</p>
+<p><a href="https://www.kimi.com/ai-models/kimi-k2-5">Kimi-K2.5</a>: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍</p>
+<p><a href="https://claude.com/blog/cowork-research-preview">Anthropic-Cowork</a>: 面向非开发者的AI Agent工具（&ldquo;Claude Code for the rest of your work&rdquo;），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务</p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/miantiao-me/aigc-weekly">aigc-weekly</a>: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊</p>
+<p><a href="https://github.com/BloopAI/vibe-kanban">vibe-kanban</a>: Get 10X more out of Claude Code, Codex or any coding agent</p>
+<p><a href="https://github.com/clawdbot/clawdbot">clawdbot</a>: Your own personal AI assistant. Any OS. Any Platform. The lobster way</p>
+<p><a href="https://github.com/ZhangHanDong/makepad-skills">makepad-skills</a>: Build App with Makepad and AI skills</p>
+<p><a href="https://github.com/onebirdrocks/ebook-mcp">ebook-mcp</a>: A MCP server that supports mainstream eBook formats including EPUB, PDF and more. Simplify your eBook user experience with LLM</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="step-deepresearch">Step-DeepResearch<a hidden class="anchor" aria-hidden="true" href="#step-deepresearch">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2512.20491">2512.20491</a></p>
+<p>将深度研究能力拆解为四个<strong>原子能力</strong>：规划（Planning）、深度搜寻（Information Seeking）、反思验证（Reflection &amp; Verification）、报告写作（Reporting），针对每种能力设计专门的数据合成流水线，构建了从 Agentic Mid-training → SFT → RL 的完整训练路径，并提出了面向中文真实应用场景的 ADR-Bench 基准测试</p>
+<p><strong>数据合成流水线</strong></p>
+<p>从&quot;预测下一个Token&quot;转向&quot;决策下一个原子动作&quot;</p>
+<ul>
+<li>
+<p><strong>Planning &amp; Task Decomposition</strong>：逆向工程策略，收集高质量技术报告、学术综述，提取标题和摘要，利用 LLM 逆向推导&quot;是什么样的任务导致了这份报告&quot;，生成高难度用户查询。使用原报告摘要结构作为&quot;上帝视角&quot;的规划作为 Ground Truth，过滤偏离规划逻辑的样本</p>
+</li>
+<li>
+<p><strong>Deep Search &amp; Information Seeking</strong>：训练模型进行多跳推理、挖掘隐藏实体</p>
+<ul>
+<li>基于图的合成：选取非通用&quot;种子节点&quot;，BFS 扩展构建子图，验证图谱中的边（三元组），基于验证后的子图生成多跳推理问答对</li>
+<li>基于多文档的合成：从 Wiki-doc 索引库模拟 Agent 在文档超链接中随机游走，收集路径信息反向生成 <code>&lt;Query, Answer&gt;</code></li>
+<li>难度过滤：使用 QwQ-32b 作为过滤器，能直接解决的 Query 被剔除，确保只保留需要深度研究的难题</li>
+</ul>
+</li>
+<li>
+<p><strong>Reflection, Verification &amp; Cross-Validation</strong>：让模型学会 Self-Correction 和 Fact-Checking</p>
+<ul>
+<li>错误-反思循环（Error-Reflection Loop）：专家模型生成搜索轨迹 → 结果错误 → 基于错误进行反思 → 带着记忆重试（最多3次）。只保留&quot;经过反思后最终做对&quot;的轨迹</li>
+<li>深度验证工作流（Deep Verification Workflow）：构建教师系统（提取 Agent → 规划 Agent → 验证 Agent → 报告 Agent）进行事实核查，生成 <code>&lt;验证点, 结论, 证据&gt;</code> 三元组，使用裁判模型验证逻辑自洽性</li>
+</ul>
+</li>
+</ul>
+<p><strong>训练阶段</strong></p>
+<ul>
+<li><strong>Agentic Mid-training（32K 上下文）</strong>：注入原子能力。规划能力使用逆向工程法从研报摘要反推任务指令；搜索能力基于知识图谱构建复杂推理子图；反思能力通过自我纠错生成&quot;反思-修正&quot;数据</li>
+<li><strong>Agentic Mid-training（128K 上下文）</strong>：引入工具调用，模拟真实长上下文 Web 交互，训练模型在海量信息中提取关键内容</li>
+<li><strong>Post-training SFT</strong>：Deep Search 针对有标准答案的任务保留&quot;正确且路径最短&quot;的轨迹；Deep Research 针对开放式任务训练全流程（意图-规划-执行-反思-写作），强制要求严格的引用格式 <code>\cite{}</code></li>
+<li><strong>RL</strong>：使用 PPO 算法，训练专门的 Rubrics Judge 模型，采用<strong>严格奖励映射</strong>（Strict Reward Mapping）：正面标准只有&quot;完全满足&quot;才给分，负面标准只要有瑕疵就判0分。采用 ReAct Single-agent</li>
+</ul>
+<hr>
+<h2 id="everything-is-context-agentic-file-system-abstraction">Everything is Context: Agentic File System Abstraction<a hidden class="anchor" aria-hidden="true" href="#everything-is-context-agentic-file-system-abstraction">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2512.05470">2512.05470</a></p>
+<p>将 Unix &ldquo;everything is a file&rdquo; 理念迁移到 GenAI 的上下文工程架构，把知识库、记忆存储、MCP 工具、人类注释等都挂载成统一命名空间中的&quot;文件/目录&quot;。在开源框架 AIGNE 中实现了 Agentic File System（AFS）</p>
+<p><strong>核心架构</strong></p>
+<ul>
+<li><strong>文件系统层（AFS / SystemFS）</strong>：提供 list/read/write/search 等文件操作，每个文件/目录可带元数据和可执行 action（如分析、摘要、验证），形成&quot;可执行的上下文节点&quot;</li>
+<li><strong>持久上下文仓库</strong>：将 History、Memory、Scratchpad 统一建模为生命周期
+<ul>
+<li>History：记录所有原始交互和中间推理步骤，作为不可变&quot;事实源&quot;</li>
+<li>Memory：面向 agent/会话的结构化、可索引记忆（事实记忆、情节记忆、语义记忆等），带访问控制和溯源</li>
+<li>Scratchpad：任务级临时工作区，结束时将有用内容写回 Memory 或 History</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="agentic-memory-unified-long-term-and-short-term-memory-management">Agentic Memory: Unified Long-Term and Short-Term Memory Management<a hidden class="anchor" aria-hidden="true" href="#agentic-memory-unified-long-term-and-short-term-memory-management">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2601.01885">2601.01885</a></p>
+<p>让同一个 Agent 学会统一管理 LTM+STM，自动决定何时/如何存、取、滤、总结记忆</p>
+<p><strong>统一记忆管理框架 AgeMem</strong></p>
+<p>将所有 LTM/STM 操作做成一组工具（Add/Update/Delete/Retrieve、Summary/Filter 等），<strong>直接并入 Agent 的动作空间</strong>，而不是外围 pipeline。同一策略网络既负责推理，又负责记忆操作决策</p>
+<p><strong>RL 训练三阶段</strong></p>
+<ul>
+<li>阶段 1：在任务问题未揭示前的「闲聊/信息收集」中，学习<strong>构建和维护 LTM</strong>（Add/Update/Delete）</li>
+<li>阶段 2：在有大量语义相关但无关的干扰信息下，学习<strong>STM 的过滤和压缩</strong>（Filter/Summary）</li>
+<li>阶段 3：在正式任务上联合推理+LTM 检索+STM 管理，端到端协调</li>
+</ul>
+<p><strong>奖励设计</strong></p>
+<p>答案正确性 + 上下文管理奖励（压缩效率）+ 长期记忆奖励 + 违例惩罚</p>
+<hr>
+<h2 id="remember-me-refine-me-dynamic-procedural-memory-framework">Remember Me, Refine Me: Dynamic Procedural Memory Framework<a hidden class="anchor" aria-hidden="true" href="#remember-me-refine-me-dynamic-procedural-memory-framework">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2512.10696">2512.10696</a></p>
+<p>让代理的外部记忆从&quot;被动存档&quot;变成&quot;可自进化的程序性记忆&quot;</p>
+<p><strong>核心机制</strong></p>
+<ul>
+<li>从成功轨迹做 success pattern recognition，总结关键步骤与策略；对失败做 failure analysis，总结坑和错误</li>
+<li>用&quot;usage scenario（使用场景）&ldquo;向量来索引经验，而不是只用原始 query 或关键词</li>
+<li>只把成功轨迹的总结加入经验池，并配合&quot;失败反思-再尝试-若成功再入库&quot;的机制；若多次被用却无助于成功、平均效用低于阈值 β，则删除</li>
+<li>发布了细粒度程序性记忆数据集 <strong>reme.library</strong></li>
+</ul>
+<p><strong>具体实现</strong></p>
+<ol>
+<li>
+<p><strong>经验获取</strong>：多次采样轨迹得到成功+失败路径，LLM 作为 summarizer 做三类分析（成功模式、失败原因、对比分析），输出结构化经验 $E=\langle \omega, e, \kappa, c, \tau\rangle$（usage scenario、经验内容、关键词、置信度、涉及工具）。用 LLM-as-a-Judge 过滤，相似度去重，将 usage scenario 的嵌入向量作为索引存入向量库</p>
+</li>
+<li>
+<p><strong>经验重用</strong>：用 Embedding 对任务 query 编码，与经验中的 usage scenario 计算余弦相似度，用 rewriting 模块将多条经验融合成针对当前任务的操作指南，作为 in-context 示例拼进执行 LLM 的提示中</p>
+</li>
+<li>
+<p><strong>经验精炼</strong>：在线执行阶段，默认只把成功轨迹的总结加入经验池（selective addition）。若任务失败，触发&quot;失败反思&rdquo;，summarizer 分析失败轨迹提出改进建议，执行 LLM 按建议再试，若新尝试成功则把从失败中提炼的教训加入经验池，若仍失败则丢弃。记录每条经验被检索次数 $f$ 与其带来成功的次数 $u$，只在 $f \ge \alpha$（如5次）后才考虑删除；若 $u/f &lt; \beta$（如0.5），则视为&quot;高频低效&quot;经验，从池中移除</p>
+</li>
+</ol>
+<hr>
+<h2 id="training-ai-co-scientists-using-rubric-rewards">Training AI Co-Scientists Using Rubric Rewards<a hidden class="anchor" aria-hidden="true" href="#training-ai-co-scientists-using-rubric-rewards">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2512.23707">2512.23707</a></p>
+<p>针对开放式科学研究目标的 RL 训练方法，解决两个核心问题：难以生成满足所有显性和隐性约束的具体研究方案；验证&quot;想法&quot;或&quot;计划&quot;的好坏通常需要实际执行实验，难以获得即时反馈</p>
+<p><strong>Rubric Rewards</strong>：从科学论文中自动提取的准则，包含对研究计划的具体要求和评价维度</p>
+<p><strong>自动化数据构建</strong>：从海量科学论文语料库自动提取&quot;研究目标（Goal）-评分准则（Rubric）-研究计划&quot;三元组，构建大规模多样化训练数据集 ResearchPlanGen</p>
+<p><strong>RL with Self-Grading</strong>：利用模型自身作为&quot;评分员&quot;，根据评分准则对生成的计划进行打分，以此作为奖励信号训练模型</p>
+<hr>
+<h2 id="agentocr-reimagining-agent-history-via-optical-self-compression">AgentOCR: Reimagining Agent History via Optical Self-Compression<a hidden class="anchor" aria-hidden="true" href="#agentocr-reimagining-agent-history-via-optical-self-compression">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2601.04786">2601.04786</a></p>
+<p>把&quot;观测-动作历史&quot;渲染成一张（或多张）图像，由 VLM 读图，而不是直接喂长文本</p>
+<p><strong>Segment Optical Caching</strong>：将历史拆成可哈希的文本段，按内容做 key，缓存对应的渲染图块，再通过拼接构成当前历史图像。重复出现的段无需重复渲染，减少渲染延迟和显存占用</p>
+<p><strong>Agentic Self-Compression</strong>：把渲染压缩率当成一个由 agent 决策的&quot;工具参数&quot;（<code>&lt;compression&gt;</code> 标签），RL 中联合优化任务奖励和&quot;压缩奖励&quot;，让 agent 学会在不同时间步自适应地选择合适的压缩率，平衡信息保真和 token 成本</p>
+<hr>
+<h2 id="memrl-self-evolving-agents-via-runtime-reinforcement-learning-on-episodic-memory">MemRL: Self-Evolving Agents via Runtime Reinforcement Learning on Episodic Memory<a hidden class="anchor" aria-hidden="true" href="#memrl-self-evolving-agents-via-runtime-reinforcement-learning-on-episodic-memory">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2601.03192">2601.03192</a></p>
+<p>将记忆检索从&quot;语义匹配&quot;问题转化为&quot;<strong>基于价值的决策问题</strong>&quot;，建模成非参数化的 Q-learning 问题</p>
+<p><strong>意图-经验-效用三元组</strong></p>
+<p>记忆库 $\mathcal{M}$ 中的每一项是一个三元组 $(z_i, e_i, Q_i)$：</p>
+<ul>
+<li>$z_i$ (Intent)：用户意图或查询的嵌入向量</li>
+<li>$e_i$ (Experience)：具体的执行轨迹或解决方案</li>
+<li>$Q_i$ (Utility)：效用值（Q-value），估计将该经验应用于相似意图时的预期成功率</li>
+</ul>
+<p><strong>两阶段检索</strong></p>
+<ol>
+<li>基于相似度的召回：召回语义上与当前查询 $s$ 最相关的一组候选记忆 $\mathcal{C}(s)$</li>
+<li>价值感知选择：对候选记忆重新排序，得分公式结合相似度和 Q 值：
+$$score(s, z_i, e_i) = (1-\lambda) \cdot sim(s, z_i) + \lambda \cdot \hat{Q}(z_i, e_i)$$</li>
+</ol>
+<p><strong>运行时更新</strong>（完全在记忆空间中进行，不涉及模型反向传播）</p>
+<ul>
+<li>智能体检索记忆并生成解决方案 $y$，环境给出反馈奖励 $r$（成功为1，失败为-1）</li>
+<li>更新 Q 值：使用蒙特卡洛式更新规则 $Q_{new} \leftarrow Q_{old} + \alpha(r - Q_{old})$</li>
+<li>写入新经验：如果是新的探索轨迹，LLM 对其进行总结并作为新条目 $(z, e_{new}, Q_{init})$ 写入记忆库</li>
+</ul>
+<hr>
+<h2 id="qwen3-vl-embedding-and-qwen3-vl-reranker">Qwen3-VL-Embedding and Qwen3-VL-Reranker<a hidden class="anchor" aria-hidden="true" href="#qwen3-vl-embedding-and-qwen3-vl-reranker">#</a></h2>
+<p>基于 Qwen3-VL 的多模态检索框架</p>
+<p><strong>Embedding 模型</strong>：采用双编码器（Bi-encoder）架构，输入指令和多模态内容，取最后一个 <code>&lt;|endoftext|&gt;</code> token 的隐藏状态作为向量表示</p>
+<p><strong>Reranker 模型</strong>：采用交叉编码器（Cross-encoder）架构，同时输入查询和文档，通过计算输出 &ldquo;yes&rdquo; 和 &ldquo;no&rdquo; token 的概率差来判定相关性</p>
+<p><strong>训练流程三阶段</strong></p>
+<ol>
+<li><strong>对比预训练</strong>：使用约 3 亿条大规模合成的弱监督数据进行对比学习，建立基础多模态理解能力</li>
+<li><strong>多任务微调</strong>：加入高质量精选数据（约 4000 万条），进行多任务对比学习（Embedding）和有监督微调（Reranker），针对不同任务使用特定 Loss 函数</li>
+<li><strong>蒸馏与融合</strong>：利用训练好的强力 Reranker 对 Embedding 模型进行知识蒸馏，通过模型融合技术平衡检索能力与通用分类能力，最终得到 S3 版本</li>
+</ol>
+<p><strong>蒸馏 Loss</strong></p>
+<p>$$\mathcal{L}<em>{distill}=-\sum</em>{i=1}^{k+1}P_{reranker}(d_{i}|q)\log P_{embedding}(d_{i}|q)$$</p>
+<p>使用训练好的 Reranker（Cross-Encoder）对每个 Query 的候选文档（1个正样本+k个负样本）打分得到概率分布 $P_{reranker}$，训练 Embedding 模型使其生成的余弦相似度分布 $P_{embedding}$ 尽可能接近 Reranker 的分布</p>
+<p><strong>困难负样本挖掘</strong></p>
+<p>实施&quot;召回-相关性过滤&quot;两阶段流程：</p>
+<ul>
+<li>召回：使用当前 Embedding 模型从语料库检索 Top-K 最相似文档</li>
+<li>Positive Refinement：确保 Query 至少有一个检索回来的文档分数 $s &gt; t^+$，否则丢弃</li>
+<li>Hard Negative Selection：选择分数满足 $s &lt; s^+ + \delta^-$ 的文档作为硬负样本</li>
+</ul>
+<p><strong>Loss 函数</strong></p>
+<ul>
+<li>
+<p><strong>InfoNCE Loss</strong>（用于检索任务）：解决非对称检索问题，分母引入 mask 机制剔除潜在&quot;假负样本&quot;
+$$\mathcal{L}<em>{retrieval}=-\frac{1}{N}\sum</em>{i}^{N}\log\frac{e^{(s(q_{i},d_{i}^{+})/\tau)}}{Z_{i}}$$</p>
+</li>
+<li>
+<p><strong>CoSent Loss</strong>（用于语义文本相似度 STS）：解决标签为连续实数值（如相似度 4.5 分）而非简单 0/1 的任务
+$$\mathcal{L}<em>{sts}=\log(1+\sum</em>{\hat{s}(q_{i},d_{j})&gt;\hat{s}(q_{m},d_{n})}e^{\frac{\cos(q_{m},d_{n})-\cos(q_{i},d_{j})}{\tau}})$$</p>
+</li>
+</ul>
+<hr>
+<h2 id="arenarl">ArenaRL<a hidden class="anchor" aria-hidden="true" href="#arenarl">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2601.06487">2601.06487</a></p>
+<p>通过<strong>组内相对排序</strong>（Intra-group Relative Ranking）获取奖励信号</p>
+<p><strong>Seeded Single-Elimination</strong>：利用贪婪解码生成的轨迹作为&quot;锚点&quot;进行预排序（Seeding），然后进行二叉树淘汰赛</p>
+<hr>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="学习资源">学习资源<a hidden class="anchor" aria-hidden="true" href="#学习资源">#</a></h2>
+<p><a href="https://github.com/shareAI-lab/learn-claude-code">learn-claude-code</a>: 仅用16行Bash代码实现一个极简版Claude Code，理解Agent的核心原理</p>
+<h2 id="agent-skills-资源">Agent Skills 资源<a hidden class="anchor" aria-hidden="true" href="#agent-skills-资源">#</a></h2>
+<p><a href="https://skillsmp.com/">SkillsMP</a>: Agent Skills 市场，收录超过110000个兼容Claude Code、Codex CLI和ChatGPT的Skills，采用开放的SKILL.md格式</p>
+<p><a href="https://github.com/ComposioHQ/awesome-claude-skills">Awesome Claude Skills</a>: 精选的Claude Skills集合，包含content-research-writer等高质量Skill</p>
+<h2 id="实用-skills">实用 Skills<a hidden class="anchor" aria-hidden="true" href="#实用-skills">#</a></h2>
+<p><a href="https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md">ralph-wiggum</a>: 实现迭代式自引用AI开发循环的Claude Code插件</p>
+<p><a href="https://github.com/OthmanAdi/planning-with-files">planning-with-files</a>: 基于文件的规划Skill，帮助Claude Code更好地处理复杂项目规划</p>
+<p><a href="https://github.com/PleasePrompto/notebooklm-skill">notebooklm-skill</a>: 与Google NotebookLM集成的Skill，增强研究笔记能力</p>
+<p><a href="https://github.com/obra/superpowers">superpowers</a>: 为Claude Code添加额外的&quot;超能力&quot;功能扩展</p>
+<p><a href="https://github.com/anthropics/frontend-design">frontend-design</a>: Anthropic官方的前端设计Skill，优化UI/UX设计工作流</p>
+<p><a href="https://github.com/cclank/news-aggregator-skill">news-aggregator-skill</a>: 新闻聚合Skill，自动收集和整理资讯</p>
+<p><a href="https://github.com/JimLiu/baoyu-skills">baoyu-skills</a>: 宝玉的Claude Skills集合，包含多种实用工具</p>
+<p><a href="https://github.com/blader/humanizer">humanizer</a>: 帮助优化AI生成内容，使其更具人性化表达</p>
+<p><a href="https://github.com/affaan-m/everything-claude-code">everything-claude-code</a>: Claude Code相关资源的综合整理仓库</p>
+<h2 id="agent-基础设施">Agent 基础设施<a hidden class="anchor" aria-hidden="true" href="#agent-基础设施">#</a></h2>
+<p><a href="https://github.com/danielmiessler/PAI">PAI</a>: Personal AI Infrastructure，用于增强人类能力的Agentic AI基础设施</p>
+<hr>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7zaYPvf0CmS8I1RCO3ufb0?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="解读-anthropic2026经济指数报告给ai生产力泼的第一盆冷水httpszhuanlanzhihucomp1997522093269591343"><a href="https://zhuanlan.zhihu.com/p/1997522093269591343"><strong>解读 Anthropic2026经济指数报告：给AI生产力泼的第一盆冷水</strong></a><a hidden class="anchor" aria-hidden="true" href="#解读-anthropic2026经济指数报告给ai生产力泼的第一盆冷水httpszhuanlanzhihucomp1997522093269591343">#</a></h2>
+<blockquote>
+<p>人机协作的多轮对话虽然慢，但更稳——每一轮都是一次纠错机会，不容易让小问题滚成大雪球。</p>
+</blockquote>
+<blockquote>
+<p>如果移除Claude目前能够胜任的工作任务，整体劳动力市场会经历一次&quot;去技能化&quot;。</p>
+</blockquote>
+<blockquote>
+<p>在发展中国家，早期采用者往往是技术用户，有特定的高价值应用场景，或者用AI来获取教育资源。这是&quot;技术红利&quot;阶段。
+…
+在发达国家，AI已经进入&quot;多元化使用&quot;阶段——不只是工作，也有大量个人和休闲用途。</p>
+</blockquote>
+<blockquote>
+<p>也就是说你要想从AI那里获得高价值产出，你首先得具备提出高价值问题的能力。
+Anthropic自己的结论是——仅仅扩大AI的接入是不够的，还需要提升人力资本，才能让AI真正发挥效果。</p>
+</blockquote>
+<blockquote>
+<p>谁先有技能，谁先把AI变成杠杆；谁没有技能底子，AI再强也只是搜索引擎或者是一个聊天机器。</p>
+</blockquote>
+<h2 id="reid-hoffman-企业-ai-策略的误区和建议httpsxcomindigoxstatus2014574891140571200rw_tt_threadtrue"><a href="https://x.com/indigox/status/2014574891140571200/?rw_tt_thread=True"><strong>Reid Hoffman 企业 AI 策略的误区和建议</strong></a><a hidden class="anchor" aria-hidden="true" href="#reid-hoffman-企业-ai-策略的误区和建议httpsxcomindigoxstatus2014574891140571200rw_tt_threadtrue">#</a></h2>
+<blockquote>
+<p>当前企业 AI 的策略往往倒置：许多人关注首席 AI 官和试点项目，但真正的价值在于解决组织中浪费时间的“平凡”工作；</p>
+</blockquote>
+<blockquote>
+<p>建议从“协调层”入手，这是企业内部最大的语言工作负载，包括会议、笔记、文档、行动项和状态更新。通过 AI 使组织记忆结构化和可检索，避免依赖特定人员；</p>
+</blockquote>
+<blockquote>
+<p>AI 收益应该在工作流层面共享，由一线员工发现真实的自动化机会；</p>
+</blockquote>
+<blockquote>
+<p>Code Agent 能降低分析成本，可以让企业更容易做多维度的问题分析与诊断；</p>
+</blockquote>
+<blockquote>
+<p>想要胜出的企业需及早培养日常 AI 的使用习惯，让收益“复利”；目标不仅是采用，而是集体对 AI 真正理解</p>
+</blockquote>
+<h2 id="深度解读-agi-next-2026分化新范式agent-与全球-ai-竞赛的-40-条重要判断httpsmpweixinqqcoms__bizmzg2oty0mdk0nqmid2247520510idx1snffb241930b5b6fe38203e2c4dbefd129poc_tokenhm0vbmmjyu5ol3hhivcepefw3g_hfnv7kmd4woa_"><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTY0MDk0NQ==&mid=2247520510&idx=1&sn=ffb241930b5b6fe38203e2c4dbefd129&poc_token=HM0VbmmjyU5Ol3hHiVcEpefw3g_hfnV7Kmd4woA_">深度解读 AGI-Next 2026：分化、新范式、Agent 与全球 AI 竞赛的 40 条重要判断</a><a hidden class="anchor" aria-hidden="true" href="#深度解读-agi-next-2026分化新范式agent-与全球-ai-竞赛的-40-条重要判断httpsmpweixinqqcoms__bizmzg2oty0mdk0nqmid2247520510idx1snffb241930b5b6fe38203e2c4dbefd129poc_tokenhm0vbmmjyu5ol3hhivcepefw3g_hfnv7kmd4woa_">#</a></h2>
+<blockquote>
+<p>toC 场景的任务瓶颈往往不是模型不够大，而是 Context 和 Environment 的缺失；
+自主学习是共识性极强的新范式，是 2026 年几乎所有人都会投入到这个方向；</p>
+</blockquote>
+<blockquote>
+<p>模型即 Agent，Agent 即产品</p>
+</blockquote>
+<blockquote>
+<p>自主学习、 active learning、continual learning 以及 self-learning 等本质上都在表达同一个预期，即模型自主学习能力提升，可以在人类不介入的情况下不断提升智能。
+…
+自主学习能够体现到 personalization 上，但衡量它是否“变好了”会变得很难</p>
+</blockquote>
+<h2 id="vibe-code-benchmarkhttpsrlancemartingithubio20250403vibe-code"><a href="https://rlancemartin.github.io/2025/04/03/vibe-code/">Vibe code benchmark</a><a hidden class="anchor" aria-hidden="true" href="#vibe-code-benchmarkhttpsrlancemartingithubio20250403vibe-code">#</a></h2>
+<blockquote>
+<p>How we connect context to code agents impacts their performance.</p>
+</blockquote>
+<blockquote>
+<p>There is a consistent pattern: optimized llms.txt &gt; vector database &gt; llms.txt &gt; context stuffing. llms.txt is just RAG with full documents as retrieval units.</p>
+</blockquote>
+<blockquote>
+<p>I noticed that the descriptions were pretty bad in the initial llms.txt file. So, I had an LLM read each URL and summarize it (here’s a package I made for this), creating the optimized llms.txt. This performed better on the benchmark.</p>
+</blockquote>
+<blockquote>
+<p>Vector databases scale well, but retrieval can be sensitive to things like embedding, chunk size, k-nearest neighbors,</p>
+</blockquote>
+<blockquote>
+<p>It’s a simple, but relies on good document descriptions</p>
+</blockquote>
+<h2 id="用第一性原理拆解-agentic-coding从理论到实操httpsmpweixinqqcoms__bizmzi1mzyzmje0mqmid2247517928idx1sn67a360ce0119faa8d37d81678eb376a5poc_tokenhh8ubmmjhalbtkd4nstoxtnd3jd2io6unf2sbwai"><a href="https://mp.weixin.qq.com/s?__biz=MzI1MzYzMjE0MQ==&mid=2247517928&idx=1&sn=67a360ce0119faa8d37d81678eb376a5&poc_token=HH8UbmmjHALBtkd4NStOXtnd3JD2Io6unF2Sbwai">用第一性原理拆解 Agentic Coding：从理论到实操</a><a hidden class="anchor" aria-hidden="true" href="#用第一性原理拆解-agentic-coding从理论到实操httpsmpweixinqqcoms__bizmzi1mzyzmje0mqmid2247517928idx1sn67a360ce0119faa8d37d81678eb376a5poc_tokenhh8ubmmjhalbtkd4nstoxtnd3jd2io6unf2sbwai">#</a></h2>
+<blockquote>
+<p>核心策略是采用“短对话、精简上下文”的模式，将复杂任务拆解为专注的子对话，并借助“复利工程”将 bug 修复、代码审查等日常经验沉淀为可复用的项目知识库，使系统获得记忆并实现效率的持续增长</p>
+</blockquote>
+<blockquote>
+<p>Coding Agent 面临的一个根本性问题是：它们在会话之间没有持久记忆。</p>
+</blockquote>
+<blockquote>
+<p>Coding Agent 实际上只能有效利用其中的 10-15%。超过 20% 后，成本和性能都会急剧恶化
+Agent 会在达到约 20% 时强制中断，而最佳实践是在 15% 之前就重启会话。
+这可能是最重要的一条实践：保持对话简短、专注，每个对话只做一件事。
+当对话超过 80K-100K token 时，考虑开始新对话</p>
+</blockquote>
+<blockquote>
+<p>当你修复一个 bug 时，不要只是改代码。问自己：
+这类问题能否通过添加 lint 规则来预防？是否应该在 Rules 或者 <a href="http://agents.md/">AGENTS.md</a> 中记录这个陷阱？能否编写一个测试来防止回归？代码审查清单是否需要更新？</p>
+</blockquote>
+<blockquote>
+<p>一个务实的做法是：</p>
+<ol>
+<li>把「只存在于人脑中」的知识显式化：写下来，放进文档</li>
+<li>在 Agent 主导的模块中，给 Agent 更多自主权</li>
+<li>在人类频繁维护的核心模块中，保持人类友好的风格</li>
+<li>在工具接口上，提供 AI 友好的选项（如 &ndash;json 输出）</li>
+</ol>
+</blockquote>
+<h2 id="在模型同质化的时代陈冕摸着manus过河httpszhuanlanzhihucomp1995577806973838131"><a href="https://zhuanlan.zhihu.com/p/1995577806973838131">在模型同质化的时代，陈冕摸着Manus过河</a><a hidden class="anchor" aria-hidden="true" href="#在模型同质化的时代陈冕摸着manus过河httpszhuanlanzhihucomp1995577806973838131">#</a></h2>
+<blockquote>
+<p>人们往往高估技术的短期效益，却低估其长期影响。</p>
+</blockquote>
+<blockquote>
+<p>然而有趣的是，这位深谙大厂规则的老兵，在AI时代却发起了一场小小的“兵变”：在Lovart，他拿掉了产品经理（PM）的位置。</p>
+</blockquote>
+<blockquote>
+<p>工具的智能化将终结“需求管理者”的使命，而将舞台完全留给“需求定义者”。</p>
+</blockquote>
+<h2 id="算法工程师的决策底气不是性格而是知识密度httpszhuanlanzhihucomp1989401884113531246"><a href="https://zhuanlan.zhihu.com/p/1989401884113531246">算法工程师的决策底气：不是性格，而是知识密度</a><a hidden class="anchor" aria-hidden="true" href="#算法工程师的决策底气不是性格而是知识密度httpszhuanlanzhihucomp1989401884113531246">#</a></h2>
+<blockquote>
+<p>很多算法工程师会有这样的自我审视：我也想更勇敢地做决策，而不是一味求稳、只做执行
+问题几乎从来不在勇气，而在知识储备</p>
+</blockquote>
+<blockquote>
+<p>没有足够的技术积累做支撑，任何“勇敢决策”都只是空谈； 而真正成熟、可持续的决策能力，来源于对技术边界的清晰认知。</p>
+</blockquote>
+<blockquote>
+<p>但如果你平时不持续关注论文和业界实践，就根本意识不到这些路径的存在，自然也谈不上决策</p>
+</blockquote>
+<blockquote>
+<p>敢不敢决策，往往取决于你“有没有得选”。</p>
+</blockquote>
+<blockquote>
+<p>问题不在于你不够谨慎，而在于： 你对这些方案的理解，停留在“听说过”层面。真正能支撑决策的知识储备，至少包括三层：</p>
+</blockquote>
+<ul>
+<li>这个方案解决的核心问题是什么</li>
+<li>它的适用场景和边界条件</li>
+<li>在真实业务中，最容易踩的坑在哪里</li>
+</ul>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>算法方案真正有价值的，不是具体实现，而是底层逻辑</p>
+<p>最高级的决策能力，从来不是选方案，而是造方案。
+而“造方案”的前提，依然是足够扎实的知识储备。</p>
+</blockquote>
+<blockquote>
+<p>精准选论文，而不是广撒网
+明确自己的主战场
+目标不是“跟上所有热点”，而是构建稳定、可复用的认知体系。</p>
+</blockquote>
+<blockquote>
+<p>每篇论文至少回答五个问题：
+解决什么工程痛点核心创新点是什么哪些模块是关键（看 ablation）适用什么数据和场景在真实业务中可能会失败在哪</p>
+</blockquote>
+<blockquote>
+<p>为什么“多看论文”，不是学术焦虑，而是工程刚需
+给自己建立固定的“技术输入源”</p>
+</blockquote>
+<h2 id="如何做-ai-agent-喜欢的基础软件httpsmpweixinqqcomsbzcrwggzninbk9k2l38lyg"><a href="https://mp.weixin.qq.com/s/BZcRwgGZNinBK9K2L38LYg">如何做 AI Agent 喜欢的基础软件</a><a hidden class="anchor" aria-hidden="true" href="#如何做-ai-agent-喜欢的基础软件httpsmpweixinqqcomsbzcrwggzninbk9k2l38lyg">#</a></h2>
+<blockquote>
+<p>Infra 软件的主要使用者，正在从开发者（人类）迅速转向 AI Agent。</p>
+</blockquote>
+<blockquote>
+<p>当基础软件的核心用户不再是人，而是 AI 时，它应该具备哪些本质特征
+尤其是越靠近底层的部分：文件系统、操作系统、编程语言、进程模型、I/O 抽象。这些东西几十年下来，形态在演进，但核心思想、接口边界，以及背后的假设，变化并不大
+…
+如果你希望设计的是“给 AI Agent 使用的软件”，那你必须尽可能去贴合这些古老、却被一再验证的心智模型。</p>
+</blockquote>
+<blockquote>
+<p>Agent 不是在等待一个更聪明强大的系统，而是更喜欢一个“它已经懂的系统”然后用比人类娴熟1000倍的效率写胶水代码扩展它</p>
+</blockquote>
+<blockquote>
+<p>Agent 应该如何与你的系统对话。在 Agent 作为用户的时代，一个好的软件接口，至少需要同时满足三个条件：
+可以被自然语言描述
+可以被符号逻辑固化
+并且能够交付确定性的结果。</p>
+</blockquote>
+<blockquote>
+<p>自然语言非常适合用来表达意图，但它并不适合承担执行语义。一旦任务要被复用，组合和自动化验证，就必须被压缩成一种明确、稳定、可推理的形式。
+而我认为目前（2025年底）最好的逻辑符号描述，就是代码，即使对于非编程 Agent 来说也是。</p>
+</blockquote>
+<blockquote>
+<p>这里说的“极致的成本”，并不是简单意义上的“便宜”，而是指在满足大量长尾需求的前提下，系统的成本还能不能撑得住。
+AI 把很多原本“不值得做”的需求都变得可行了
+我觉得 Agent 改变的，恰恰是这一点。AI Agent 第一次把“计算”这件事，真正意义上地民主化了</p>
+</blockquote>
+<blockquote>
+<p>一个真正成功的 Agent 公司，最终不应该是一家“卖 token 的公司”。</p>
+</blockquote>
+<blockquote>
+<p>代码不再稀缺，软件也不再是需要精心维护的东西，系统被创建、试用、丢弃，都会变得非常自然。</p>
+</blockquote>
+<blockquote>
+<p>只是工程的重点变了：不再是把某一个系统打磨到极致，而是去设计那些能被 AI 大规模使用、反复试错、低成本运行的基础能力。</p>
+</blockquote>
+<h2 id="evaluating-deep-agents-our-learningshttpsxcomlangchainaistatus2006589207196930109rw_tt_threadtrue"><a href="https://x.com/LangChainAI/status/2006589207196930109/?rw_tt_thread=True">Evaluating Deep Agents: Our Learnings</a><a hidden class="anchor" aria-hidden="true" href="#evaluating-deep-agents-our-learningshttpsxcomlangchainaistatus2006589207196930109rw_tt_threadtrue">#</a></h2>
+<blockquote>
+<p>Deep Agents need a fresh, clean environment for each eval run in order to ensure reproducible results.</p>
+</blockquote>
+<blockquote>
+<p>The broader point: Deep Agent evals require environments that resets per test &ndash; otherwise your evals become flaky and difficult to reproduce.</p>
+</blockquote>
+<blockquote>
+<p>Tip: Mock out your API requests</p>
+</blockquote>
+<h2 id="2025年年终总结二httpszhuanlanzhihucomp1991073922217709984"><a href="https://zhuanlan.zhihu.com/p/1991073922217709984">2025年年终总结（二）</a><a hidden class="anchor" aria-hidden="true" href="#2025年年终总结二httpszhuanlanzhihucomp1991073922217709984">#</a></h2>
+<blockquote>
+<p>但现在脑中的第一个问题是“还需不需要人？</p>
+</blockquote>
+<blockquote>
+<p>但现在的情况已经不同了。职级已经没有意义，过去的经验也没有意义，人的价值从按照“本人产出的劳动数量及质量”来评估，变成了是否能提高AI的能力，人加AI要大于AI本身的产出，这样才行。</p>
+</blockquote>
+<blockquote>
+<p>人本身是没有价值的。只有在人的能力强到一定程度之后，能够做到辅助AI变强，才开始变得有价值起来。</p>
+</blockquote>
+<blockquote>
+<p>如果把人+所有个人能获取的AI当成一个智能体，整体来看，它的能力分布会和电子能级在材料里的分布很像：低于或达到某个水准线的智能体遍地都是，求着客户给它活干，以证明自己还是有用的；而高于这个水准线的智能体则指数级地变少，获取和使用它非常花钱，还常常排不到。</p>
+</blockquote>
+<blockquote>
+<p>这个水准线，就是AI洪水的高度，就是人类社会的“费米能级”。低于费米能级的职业，可能在一夜之间就被颠覆掉，就像一场洪水或者地震一样，前一天还是岁月静好，后一天整个行业被端掉了</p>
+</blockquote>
+<blockquote>
+<p>在这种环境下，真正稀缺的不再是实现愿望的能力，而是“愿望”本身，以及将愿望化为现实的那份坚持</p>
+</blockquote>
+<blockquote>
+<p>这种唾手可得的便利，会让许多人逐渐失去思考的动力，久而久之丧失原创能力，思想被生成式内容和推荐系统所绑架和同化
+…
+这就是新时代对“懒人”的定义：不再是因为体力上的懒惰，而是精神上没有空闲去思考，没有能力去构思独特的东西。</p>
+</blockquote>
+<blockquote>
+<p>每个人都将面临从“员工”角色向“老板”或“创始人”角色的转变</p>
+</blockquote>
+<blockquote>
+<p>因为这份宏大的愿望，或许正是他们一辈子充满前进动力，主动思考的根本源泉，也是让他们始终屹立于“费米能级”之上的关键。</p>
+</blockquote>
+<h2 id="makers-schedule-managers-schedulehttpspaulgrahamcommakersschedulehtml"><a href="https://paulgraham.com/makersschedule.html">Maker&rsquo;s Schedule, Manager&rsquo;s Schedule</a><a hidden class="anchor" aria-hidden="true" href="#makers-schedule-managers-schedulehttpspaulgrahamcommakersschedulehtml">#</a></h2>
+<blockquote>
+<p>There are two types of schedule, which I&rsquo;ll call the manager&rsquo;s schedule and the maker&rsquo;s schedule</p>
+</blockquote>
+<blockquote>
+<p>They generally prefer to use time in units of half a day at least. You can&rsquo;t write or program well in units of an hour. That&rsquo;s barely enough time to get started.</p>
+</blockquote>
+<blockquote>
+<p>For someone on the maker&rsquo;s schedule, having a meeting is like throwing an exception. It doesn&rsquo;t merely cause you to switch from one task to another; it changes the mode in which you work.</p>
+</blockquote>
+<blockquote>
+<p>And ambitious projects are by definition close to the limits of your capacity. A small decrease in morale is enough to kill them off.</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-01%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f&amp;title=2026-01%20%e6%9c%88%e5%88%8a&amp;summary=2026-01%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f&title=2026-01%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-01%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-01%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-01 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-01%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-01-%25E6%259C%2588%25E5%2588%258A%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -11,8 +11,24 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 30 Dec 2025 20:05:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Jan 2026 15:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2026-01 月刊</title>
+      <link>https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/</link>
+      <pubDate>Sat, 31 Jan 2026 15:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-OCR-2&#34;&gt;DeepSeek-OCR-2&lt;/a&gt;: 3B参数的视觉文档理解模型，核心创新是 Visual Causal Flow 和 DeepEncoder V2，能够动态重排序视觉token，实现更类人的视觉编码&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qwen.ai/blog?id=qwen3-vl-embedding&#34;&gt;Qwen3-VL-Embedding&lt;/a&gt;: 基于Qwen3-VL的多模态检索框架，包含Embedding模型（负责初阶段高效召回）和Reranker模型（负责二阶段精细重排序），采用多阶段训练范式&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kimi.com/ai-models/kimi-k2-5&#34;&gt;Kimi-K2.5&lt;/a&gt;: Moonshot AI 开源的原生多模态Agentic模型，基于约15万亿混合视觉和文本token的持续预训练，支持Agent Swarm能力可协调多达100个子代理并行工作，将长周期工作流执行时间缩短高达4.5倍&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://claude.com/blog/cowork-research-preview&#34;&gt;Anthropic-Cowork&lt;/a&gt;: 面向非开发者的AI Agent工具（&amp;ldquo;Claude Code for the rest of your work&amp;rdquo;），基于与Claude Code相同的Agent架构，可在Claude Desktop中直接使用，无需打开终端，支持文件管理、文档处理和基础计算任务&lt;/p&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/miantiao-me/aigc-weekly&#34;&gt;aigc-weekly&lt;/a&gt;: Agili 的 AIGC 周刊 - 一个由 Agentic AI Agent 驱动的 AIGC（人工智能生成内容）精选周刊&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/BloopAI/vibe-kanban&#34;&gt;vibe-kanban&lt;/a&gt;: Get 10X more out of Claude Code, Codex or any coding agent&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/clawdbot/clawdbot&#34;&gt;clawdbot&lt;/a&gt;: Your own personal AI assistant. Any OS. Any Platform. The lobster way&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ZhangHanDong/makepad-skills&#34;&gt;makepad-skills&lt;/a&gt;: Build App with Makepad and AI skills&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025-12 月刊</title>
       <link>https://niraya666.github.io/monthly/2025-12-%E6%9C%88%E5%88%8A/</link>
