@@ -11,95 +11,42 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 18 Jan 2026 15:32:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Feb 2026 14:32:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>后管理时代：超越登巴数的组织重构</title>
-      <link>https://niraya666.github.io/essay/%E5%90%8E%E7%AE%A1%E7%90%86%E6%97%B6%E4%BB%A3%E8%B6%85%E8%B6%8A%E7%99%BB%E5%B7%B4%E6%95%B0%E7%9A%84%E7%BB%84%E7%BB%87%E9%87%8D%E6%9E%84/</link>
-      <pubDate>Sun, 18 Jan 2026 15:32:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/essay/%E5%90%8E%E7%AE%A1%E7%90%86%E6%97%B6%E4%BB%A3%E8%B6%85%E8%B6%8A%E7%99%BB%E5%B7%B4%E6%95%B0%E7%9A%84%E7%BB%84%E7%BB%87%E9%87%8D%E6%9E%84/</guid>
-      <description>&lt;p&gt;重读 Notion CEO 的 &lt;a href=&#34;https://www.notion.com/blog/steam-steel-and-infinite-minds-ai&#34;&gt;&lt;em&gt;Steam, Steel, and Infinite Minds&lt;/em&gt;&lt;/a&gt;，一种强烈的确信油然而生：我们所谈论的大变革奇点，已然临近。&lt;/p&gt;
-&lt;p&gt;相比于大众焦虑的“岗位替代”，真正的海啸正在这层表象之下酝酿——&lt;strong&gt;现有人类组织的底层逻辑，正在崩塌。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;虚假的数字化和电子化官僚主义&#34;&gt;虚假的数字化和电子化官僚主义&lt;/h2&gt;
-&lt;p&gt;审视当下的企业，我们所谓的“数字化转型”大多只是安慰剂。我们将线下的审批变成了线上的工单，将口头的汇报变成了精美的 Dashboard。&lt;strong&gt;这本质上是在用最先进的技术，维护最陈旧的官僚体系。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在这种体系下，组织中最宝贵的资产——&lt;strong&gt;Context&lt;/strong&gt;（那些关于决策的背景、隐性的知识、非结构化的意图）——依旧被层级打散、隔离，最终在传递中磨损殆尽。&lt;/p&gt;
-&lt;p&gt;这种“电子化”非但没有消灭官僚主义，反而固化了它。&lt;/p&gt;
-&lt;p&gt;这也正是我在 2022 年左右一度疯狂沉迷于 Web3 社群的原因——试图寻找一种能够瓦解旧秩序的解药。那时候，笃信“Code is law”，试图构建一个完全扁平、民主的新世界。但随着热潮退去，残酷的现实让我意识到，我们似乎只是在两种极端的死局之间来回摇摆，无处可逃：&lt;/p&gt;
+      <title>为什么传统 IT 注定做不好 AI——从《创新者的窘境》说起</title>
+      <link>https://niraya666.github.io/essay/%E5%88%9B%E6%96%B0%E8%80%85%E7%9A%84%E7%AA%98%E5%A2%83_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 19 Feb 2026 14:32:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/essay/%E5%88%9B%E6%96%B0%E8%80%85%E7%9A%84%E7%AA%98%E5%A2%83_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;克里斯坦森在《创新者的窘境》中提出了一个反直觉的洞见：良好的管理本身可能就是导致失败的原因。&lt;/p&gt;
+&lt;p&gt;这个看似悖论的判断，在我亲历的 AI 转型浪潮中得到了残酷的验证。当一个传统 IT 组织试图拥抱 AI 时，它往往不是在做真正的创新，而是在用最先进的技术维护最陈旧的官僚体系。&lt;/p&gt;
+&lt;p&gt;这不是技术问题，这是组织结构与价值体系的深层冲突。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一延续性创新与颠覆性创新&#34;&gt;一、延续性创新与颠覆性创新&lt;/h2&gt;
+&lt;p&gt;克里斯坦森将创新分为截然不同的两类：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;极端民主（DAO）：缺乏中心节点，沟通成本极高。没有人拥有“拍板”的权力，所有的时间都被耗费在无休止的“开会扯皮”上；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;中央集权（传统科层制）：看似高效，表面上井井有条，内部却陷入了无止境的空转；这一系统下可以简化出三种角色：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;传话筒型的中层：&lt;/strong&gt; 信息在传递中必然失真，为了刷存在感，他们甚至需要人为制造障碍&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;浑水摸鱼的底层：&lt;/strong&gt; 在复杂的科层掩护下，表演性地工作&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;不懂装懂的高层：&lt;/strong&gt; 凭借政治地位（或者说是基于过去过时的经验）而非业务能力瞎指挥，决策与现实严重脱节&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;**延续性创新 (Sustaining Innovation)：**大公司最擅长的。它的目的是把现有产品做得更好，满足现有的高端客户——因为这些客户愿意支付更高的溢价，能带来最高的利润率。&lt;/li&gt;
+&lt;li&gt;**颠覆性创新 (Disruptive Innovation)：**刚出现时通常被认为是低端或劣质的。它的性能往往不如主流产品，利润率极低，市场也很小；但在更便宜、更简单、更小巧、更方便等方面具有优势。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;究其根本，是人类大脑从未进化出应对现代大规模协作的能力——我们受限于&lt;strong&gt;登巴数&lt;/strong&gt;（Dunbar&amp;rsquo;s number）。受限于新皮层的大小，一个人能维持稳定社交关系的上限大约是 150 人（严格来说，这个数字不是绝对的，至少对于核心圈子的大小普遍在15-20人之间）&lt;/p&gt;
-&lt;p&gt;一旦超过这个数字，单纯靠人情和记忆的协作网络就会崩溃。为了突破这个生物学瓶颈，我们不得不发明了“科层制”（Hierarchy）。我们需要小组、部门、层级这些抽象概念来分摊沟通成本，但这同时也成为了诅咒：科层制本质上是一种有损压缩算法。为了获得规模，我们牺牲了信息的保真度，最终制造了坚硬的信息茧房。&lt;/p&gt;
-&lt;h2 id=&#34;平庸之恶&#34;&gt;平庸之恶&lt;/h2&gt;
-&lt;p&gt;如果引入汉娜·阿伦特的视角，现有的组织形式不仅是低效的，甚至是不道德的。&lt;/p&gt;
-&lt;p&gt;阿伦特在《艾希曼在耶路撒冷》中指出，真正的恶往往不是出于某种邪恶的本性，而是源于&lt;strong&gt;无思（Thoughtlessness）&lt;/strong&gt;。在现代科层制中，这种“无思”被制度化了。&lt;/p&gt;
-&lt;p&gt;人被异化为了“齿轮”。我们被剥夺了做决策的权力，同时也顺理成章地逃避了对结果负责的义务。当“恶”或“平庸”被切割成无数个细小的行政环节——有人负责造纸，有人负责盖章，有人负责运输——每一个环节看起来都是无辜的、合规的，甚至是在追求卓越效率的。&lt;/p&gt;
-&lt;p&gt;于是最终导致了深层的冷漠：&lt;strong&gt;只要流程是正确的（Process-correct），结果再糟糕（Result-disaster）也与我无关。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;大量的精力被用于“对齐”、用于“汇报”、用于在 PPT 上雕花。每个人都在勤奋地按章办事，但集体却在无可挽回地滑向平庸甚至灾难。&lt;/p&gt;
-&lt;h2 id=&#34;第三条路&#34;&gt;第三条路&lt;/h2&gt;
-&lt;p&gt;直到 AI Agent 的出现，似乎让我看到了打破了上述的二元对立之可能。&lt;/p&gt;
-&lt;p&gt;过去这半年来使用 Claude Code 的体验让我震惊，这是一种真正的“人机协作”体验，不知不觉从chatbot对话框中的“请帮我…”，变成了自然的“让我们把…”。我们在维护着同一份上下文context，可以是代码、文档甚至可以是任何可读可写的文件。这或许就是某种程度上协作关系的重构吧。&lt;/p&gt;
-&lt;p&gt;真正的“善”，可能不是靠人的道德说教，而是靠系统的极度透明与逻辑化。&lt;/p&gt;
-&lt;p&gt;AI 不会有“平庸之恶”，因为它没有私欲，不搞办公室政治，它只对 &lt;strong&gt;Goal&lt;/strong&gt;和 &lt;strong&gt;Context&lt;/strong&gt; 负责。&lt;/p&gt;
-&lt;p&gt;一种 &lt;strong&gt;&amp;ldquo;Human-AI-Human&amp;rdquo;&lt;/strong&gt; 的新模式，开启了“第三条道路”：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;消灭“传话筒”的失真&lt;/strong&gt;。人类中层习惯于将 A 理解为 A-，传达给下级变成 B，还要夹带私货。而 AI Agent 是一个完美的“Context 汇总中心”。它能无损地保存所有背景信息，瞬间将 High-level 的意图转化为精准的 Technical spec。它消灭了“信息差”这个传统权力的来源。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>写在WAIC2025门票售罄之后</title>
-      <link>https://niraya666.github.io/essay/waic2025/</link>
-      <pubDate>Sun, 27 Jul 2025 15:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/essay/waic2025/</guid>
-      <description>&lt;p&gt;一年一度的WAIC&lt;/p&gt;
-&lt;p&gt;依旧还是那个WAIC&lt;/p&gt;
-&lt;p&gt;换汤不换药般的机器人+雷同的LLMs应用&lt;/p&gt;
-&lt;p&gt;和去年相比，只是都套上了智能体的外壳&lt;/p&gt;
-&lt;p&gt;但看着近乎趋同的对话页面，LLM调用着差不多的MCP-tools&lt;/p&gt;
-&lt;p&gt;大厂中厂小厂做的都是差不多的东西&lt;/p&gt;
-&lt;p&gt;只有一种基调——效率提升&lt;/p&gt;
-&lt;p&gt;所有人都在狂欢，似乎美好的未来已经不远了&lt;/p&gt;
+&lt;p&gt;窘境在于：管理者为了对股东负责、为了追求利润最大化，&lt;strong&gt;理智地&lt;/strong&gt;决定不投资颠覆性技术，继续专注于延续性创新。然而，正是这个正确的决定，导致了公司错失未来，最终走向衰亡。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这不是错误，而是理性的诅咒。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 对于传统 IT 来说，正是这样一种颠覆性创新。&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;GPT-4曾让我们一窥奇迹，以为未来已至&lt;/p&gt;
-&lt;p&gt;奈何2年过去了，AGI的宏大愿景，落地时却成了千篇一律的“提效工具”&lt;/p&gt;
-&lt;p&gt;取而代之的是商业的功利，内卷的现实&lt;/p&gt;
-&lt;p&gt;以及创造力的匮乏&lt;/p&gt;
-&lt;p&gt;效率的提升，到底是解放人还是异化人？&lt;/p&gt;
+&lt;h2 id=&#34;二价值观的冲突&#34;&gt;二、价值观的冲突&lt;/h2&gt;
+&lt;p&gt;传统 IT 和 AI 研发遵循的是两套完全不同的价值体系，这种冲突在克里斯坦森看来并非偶然，而是根植于&lt;strong&gt;价值网络&lt;/strong&gt;的内在逻辑。&lt;/p&gt;
+&lt;p&gt;价值网络决定了企业的成本结构、所需规模以及必须实现的基本增长率。当企业在某个特定的网络内逐渐积累经验，它会形成符合该网络独特要求的能力、组织结构和文化。IT 部门诞生于一个追求稳定、可预测的价值网络，而 AI 则需要完全不同的生存土壤。&lt;/p&gt;
+&lt;p&gt;这种冲突首先体现在资源分配逻辑上。克里斯坦森指出，在经营状况良好的企业中，&amp;ldquo;客户有效地控制了资源分配模式&amp;rdquo;。良好的资源分配流程的设计初衷就是淘汰得不到客户认可的提案——这正是大企业的经营之道。但问题是，破坏性技术的最终用户或应用领域是无法预知的，&amp;ldquo;你无法对尚不存在的市场进行分析&amp;rdquo;。当一个 AI 项目的 ROI 无法被现有客户价值网络所验证时，它就会在资源分配中被系统性淘汰。&lt;/p&gt;
+&lt;p&gt;更深层的冲突在于组织能力本身。&amp;ldquo;一个机构的能力独立于机构内部工作人员的能力而存在，&amp;ldquo;克里斯坦森写道，&amp;ldquo;一个机构的能力体现在其流程和价值观中，而且正是构成当前业务模式核心能力的流程和价值观，决定了它们无力应对市场的破坏性变化。&amp;ldquo;IT 部门引以为傲的零事故流程、层层审批机制、供应商管理制度——这些构成其核心能力的要素，恰恰成为拥抱 AI 创新的枷锁。&lt;/p&gt;
+&lt;p&gt;当 IT 部门被赋予 AI 转型的使命时，它本能地会用自己熟悉的方式来管理：制定标准、建立流程、控制风险。但这恰恰是扼杀 AI 创新的方式。&lt;/p&gt;
+&lt;p&gt;IT 追求稳定，AI 需要混乱；IT 害怕失败，AI 拥抱试错；IT 看重合规，AI 追求突破。&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;这两年流行的“超级个体”一词&lt;/p&gt;
-&lt;p&gt;描绘着一种诱人的图景：一个人借助AI完成一个团队的工作&lt;/p&gt;
-&lt;p&gt;进而实现前所未有的自由和财富&lt;/p&gt;
-&lt;p&gt;那么代价呢？&lt;/p&gt;
-&lt;p&gt;工作生活边际彻底消失，巨大的压力，和原子化&lt;/p&gt;
-&lt;p&gt;同时也巧妙的把资本追求效率最大化、劳动力成本最小化&lt;/p&gt;
-&lt;p&gt;包装成了个人自我实现的励志故事&lt;/p&gt;
-&lt;p&gt;以及某种高傲自大的，精英主义的偏见&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;于此同时AI正制造着信息焦虑&lt;/p&gt;
-&lt;p&gt;愈发严重的信息过载和FOMO&lt;/p&gt;
-&lt;p&gt;被动驱使着对于新技术新论文的疯狂追逐，生怕被落下&lt;/p&gt;
-&lt;p&gt;Read-it-later工具只是把焦虑从“现在必须读”变成了“未来必须读”&lt;/p&gt;
-&lt;p&gt;而后就是越来越长的代办清单，以及越重的负罪感&lt;/p&gt;
-&lt;p&gt;AI或许并未让我们变得更强，只是放大了我们的欲望&lt;/p&gt;
-&lt;p&gt;我们依然是那个血肉之躯的自己，却开始产生无所不能的幻觉&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;或许做AI已经变得不Cool了&lt;/p&gt;
-&lt;p&gt;最近脑子里总是回响着甜梅号《站在太阳之上》的旋律&lt;/p&gt;
-&lt;p&gt;我们还能不能创造出美好的东西？&lt;/p&gt;</description>
+&lt;h2 id=&#34;三用-20-世纪的规则管理-21-世纪的技术&#34;&gt;三、用 20 世纪的规则管理 21 世纪的技术&lt;/h2&gt;
+&lt;p&gt;传统 IT 部门面对 AI 时，会本能地套用既有的管理流程。但这些流程往往成为创新的绊脚石。&lt;/p&gt;
+&lt;p&gt;一个真实的场景：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DeepSeek 刚发布 R1 时，试图导入 671B 模型权重进行内部测试。IT 部门的回复是：这是&amp;quot;新型业务需求&amp;rdquo;，需要从业务和安全角度进行全方位评估。等流程走完——风险评估、合规审查、供应商准入、数据出境审查——这个模型可能已经更新了两个版本。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
