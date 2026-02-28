@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-02 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩
+Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务
+GPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行
+GLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能
+MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2602_monthly/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2602_monthly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2026-02 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩
+Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务
+GPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行
+GLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能
+MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2602_monthly/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.jpeg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-02-28T12:00:00+08:00" />
+<meta property="article:modified_time" content="2026-02-28T12:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.jpeg" />
+<meta name="twitter:title" content="2026-02 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩
+Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务
+GPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行
+GLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能
+MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-02 月刊",
+      "item": "https://niraya666.github.io/monthly/2602_monthly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-02 月刊",
+  "name": "2026-02 月刊",
+  "description": "值得关注的模型和新技术 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity\u0026rsquo;s Last Exam 上取得 SOTA 成绩\nClaude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务\nGPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行\nGLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施\u0026quot;slime\u0026quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能\nMiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity’s Last Exam 上取得 SOTA 成绩\nClaude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务\nGPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行\nGLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施\"slime\"进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能\nMiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练\nQwen3.5: 通义千问发布的原生多模态智能体模型，397B 参数(A17B 激活)，创新性地将线性注意力(Gated Delta Networks)与 MoE 结合，语言支持从 119 种扩展至 201 种，在推理、编程与多模态理解上表现优异\n值得关注的开源项目 claude-mem: Claude Code 持久化记忆插件，自动捕获工具使用记录并生成语义摘要，支持跨会话上下文注入，使用 SQLite + Chroma 向量数据库实现混合检索\nPageIndex: 无向量、基于推理的 RAG 系统，通过构建层次化树形索引模拟人类专家浏览长文档的方式，无需向量数据库即可实现高精度检索，在 FinanceBench 上达到 98.7% 准确率\npi-mono: AI Agent 综合工具包，包含编码 Agent CLI、统一多提供商 LLM API、TUI 与 Web UI 组件库、Slack Bot 及 vLLM GPU Pod 管理工具\nqmd: 基于 Markdown的小型化知识库搜索扩展，支持关键词(BM25)、语义向量及混合(LLM 重排序)三种检索模式\nmemU: 为 24/7 主动式 Agent 设计的记忆框架，采用\"内存即文件系统\"的层级架构，支持连续学习和用户意图预测，大幅降低长时运行 token 成本\n值得关注的研究和论文 Kimi K2.5: Agent Swarm 与多模态原生预训练 arXiv: tech_report.pdf\nKimi K2.5 是 Moonshot AI 推出的新一代多模态大模型，核心创新在于解决了\"如何在增强一种模态的同时不损害另一种模态\"的问题。预训练的视觉语言模型（VLM）通常不具备自然使用视觉工具的能力，且现有智能体系统依赖于串行执行，随着任务复杂度增加，推理时间呈线性增长，导致延迟过高且容易耗尽推理深度。\n核心创新\nAgent Swarm: 并行智能体编排框架\n引入可训练的\"编排者\"（Orchestrator），能够动态将复杂任务分解为子任务，并创建异构子智能体（Sub-agents）并行执行。采用解耦架构——只训练 Orchestrator，子智能体保持冻结。并行通过特殊工具调用模式和异步执行环境实现：Orchestrator 使用 create_subagent 和 assign_task 工具一次性发出多个指令，系统底层将这些任务作为独立异步协程启动，Orchestrator 在一次\"观察\"中收到多个结果。\n奖励设计包含三个关键部分：$r_{perf}$（任务表现）、$r_{parallel}$（并行奖励，鼓励实例化子智能体防止串行退化）、$r_{finish}$（完成率奖励，防止\"虚假并行\"）。\nNative Multimodal Pre-Training\n在训练早期以较低比例引入视觉数据，而非传统做法在后期大量堆砌视觉 Token。通过 Zero-Vision SFT，仅使用纯文本 SFT 数据激活视觉代理能力——通过代码（IPython）代理图像操作，无需大量标注的视觉轨迹数据。\nJoint Multimodal RL\n视觉 RL 可反向增强文本推理能力，实现跨模态能力迁移。采用 Token-level Clipping 机制，基于对数比率直接限制 Off-policy 偏移：当 Token 对数比率超出 $[\\alpha, \\beta]$ 区间时梯度置零，比标准 PPO 更能稳定长视距、多步推理任务训练。\nMoonViT-3D 编码器\n使用统一架构处理图像和视频，通过时间维度压缩机制，使模型能在相同上下文窗口内处理长达 4 倍的视频内容。\nToken 效率优化 (Toggle 算法)\n训练过程在两阶段交替：Phase 0（预算限制）要求模型在特定 Token 预算内解决问题；Phase 1（标准扩展）允许使用最大 Token 限制。该方法能将输出长度减少 25%~30%，同时保持性能几乎不下降。\nHow AI Impacts Skill Formation arXiv: 2601.20245\n探讨 AI 辅助工具的广泛使用是否会损害新手核心技能习得。研究招募 52 名有一定经验的软件开发者，随机分为 AI 辅助组（基于 GPT-4o 定制聊天助手）和无 AI 组（仅查阅官方文档）。任务要求使用陌生的 Python 异步编程库（Trio）完成实际编程任务。\n实验结果\n使用 AI 辅助的参与者在技能测验中得分比无 AI 组低 17%，在代码阅读、调试和概念理解三个关键维度上表现均显著弱于控制组。从平均水平看，AI 组完成任务时间并未比查文档的控制组显著更快。\nLearning to Reason in 13 Parameters arXiv: 2602.04118\n提出 TinyLoRA，一种新的 Adapter 方法，可将可训练参数数量缩减到个位数，且只有结合 RL 才有效。\n方法\n在 LoRA 和 LoRA-XS 基础上改进。标准 LoRA 更新公式为 $W’ = W + AB$；LoRA-XS 改进为 $W’ = W + U \\Sigma R V^\\top$，其中 $U, \\Sigma, V$ 来自预训练权重 $W$ 的 SVD 并被冻结，只有中间 $R$ 矩阵可训练。\nTinyLoRA 不再直接训练矩阵 $R$（大小 $r \\times r$），而是训练极小向量 $v \\in \\mathbb{R}^u$：\n$$W^{\\prime}=W+U\\Sigma(\\sum_{i=1}^{u}v_{i}P_{i})V^{\\top}$$\n$P_i$ 是固定随机矩阵，只有向量 $v$ 可训练，并在不同层和模块（Attention 和 MLP）之间共享。使用 GRPO 而非 SFT 进行训练。\nInfMem: Learning System-2 Memory Control for Long-Context Agent arXiv: 2602.02704\nInfMem 的核心创新在于引入 System-2 风格的认知控制回路，从被动处理转变为主动管理。Agent 维护固定大小的覆盖式记忆。\nPreThink-Retrieve-Write 协议\n包含三个关键步骤：\nPreThink: 监控当前记忆是否足以回答问题，如不足则规划检索查询（Query）和检索数量（Top-K） Retrieve: 从外部存储检索相关证据 Write: 将检索到的证据与当前阅读数据流结合，有选择地更新有限记忆空间 首先通过 SFT 让模型学会遵守协议格式，然后通过 RL 将检索、写入和停止的决策与最终答案正确性对齐。\nAdaptive Early Stopping\nLearning-based 实现，通过特定 Reward 优化。在每一步 $t$，PRETHINK 模块根据当前问题 $q$ 和记忆 $m_{t-1}$ 输出决策动作 $a_t \\in {\\text{“STOP”}, \\text{“RETRIEVE”}}$。\nRL 阶段引入 Early-stop shaping reward ($R_{early}$)。假设 $t_{first}$ 是记忆首次包含足够信息的时刻，$t_{stop}$ 是模型实际选择停止的时刻：\n$$R_{early} = \\gamma^{t_{stop} - t_{first}}$$\n其中 $\\gamma \\in (0, 1)$ 是衰减系数。\nGLM-5: from Vibe Coding to Agentic Engineering arXiv: 2602.15763\n智谱 GLM-5 技术报告，从 Vibe Coding 迈向 Agentic Engineering。\n架构创新\n引入 DeepSeek Sparse Attention (DSA)，用动态细粒度选择机制替代传统稠密 $O(L^2)$ Attention。\n数据合成\nMid-Training: 针对长上下文，采用 interleaved packing（高度相似文本交错打包），缓解 “lost-in-the-middle” 问题 SFT: Coding \u0026 Agent 数据，通过构建大量执行环境获取高质量轨迹，用 expert RL 和 rejection sampling 改进数据。保留轨迹中的错误段但在 loss 中 mask 掉，让模型学习纠错行为 RL Pipeline\n分为三个阶段：\nReasoning RL: 数学、科学、代码、TIR (Tool-Integrated Reasoning) Agentic RL: 编码和搜索 agent 任务 General RL: 人类风格对齐 Reasoning RL 算法 (GRPO + IcePop)\nIcePop 技术缓解 training-inference mismatch：显式区分 training policy $\\pi_{train}$ 和 inference policy $\\pi_{infer}$，去除 KL regularization 项以加速 RL 改进，使用 pop operator 抑制 mismatch ratio 偏离过大的样本。\nOn-Policy Cross-Stage Distillation\n多阶段 RL 顺序优化不同目标会导致累积性能力退化 (catastrophic forgetting)。解决方案：在最后阶段进行 on-policy cross-stage distillation，前面各阶段的最终 checkpoint 作为 teacher models，从对应 teachers 的 RL 训练集中采样 prompts 按比例混合：\n$$Â_{i,t} = sg[ \\log(\\pi_{infer \\ teacher}(y_{i,t}|x,y_{i,",
+  "wordCount" : "1815",
+  "inLanguage": "en",
+  "image":"https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.jpeg","datePublished": "2026-02-28T12:00:00+08:00",
+  "dateModified": "2026-02-28T12:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2602_monthly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-02 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2026-02-28 12:00:00 +0800 CST'>February 28, 2026</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.jpeg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.jpeg" alt="Amoy 沙坡尾"></a>
+        <p>Amoy 沙坡尾</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#kimi-k25-agent-swarm-%e4%b8%8e%e5%a4%9a%e6%a8%a1%e6%80%81%e5%8e%9f%e7%94%9f%e9%a2%84%e8%ae%ad%e7%bb%83" aria-label="Kimi K2.5: Agent Swarm 与多模态原生预训练">Kimi K2.5: Agent Swarm 与多模态原生预训练</a></li>
+                <li>
+                    <a href="#how-ai-impacts-skill-formation" aria-label="How AI Impacts Skill Formation">How AI Impacts Skill Formation</a></li>
+                <li>
+                    <a href="#learning-to-reason-in-13-parameters" aria-label="Learning to Reason in 13 Parameters">Learning to Reason in 13 Parameters</a></li>
+                <li>
+                    <a href="#infmem-learning-system-2-memory-control-for-long-context-agent" aria-label="InfMem: Learning System-2 Memory Control for Long-Context Agent">InfMem: Learning System-2 Memory Control for Long-Context Agent</a></li>
+                <li>
+                    <a href="#glm-5-from-vibe-coding-to-agentic-engineering" aria-label="GLM-5: from Vibe Coding to Agentic Engineering">GLM-5: from Vibe Coding to Agentic Engineering</a></li>
+                <li>
+                    <a href="#does-socialization-emerge-in-ai-agent-society-a-case-study-of-moltbook" aria-label="Does Socialization Emerge in AI Agent Society? A Case Study of Moltbook">Does Socialization Emerge in AI Agent Society? A Case Study of Moltbook</a></li>
+                <li>
+                    <a href="#benchmarking-agent-memory-in-interdependent-multi-session-agentic-tasks" aria-label="Benchmarking Agent Memory in Interdependent Multi-Session Agentic Tasks">Benchmarking Agent Memory in Interdependent Multi-Session Agentic Tasks</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e8%b5%84%e6%ba%90%e5%90%88%e9%9b%86" aria-label="资源合集">资源合集</a></li>
+                <li>
+                    <a href="#claw-%e5%ae%b6%e6%97%8f%e7%94%9f%e6%80%81" aria-label="*Claw 家族生态">*Claw 家族生态</a></li>
+                <li>
+                    <a href="#agent-harnesses-%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5" aria-label="Agent Harnesses 工程实践">Agent Harnesses 工程实践</a></li>
+                <li>
+                    <a href="#%e6%b7%b1%e5%ba%a6%e9%98%85%e8%af%bb" aria-label="深度阅读">深度阅读</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#ai-fatigue-is-real-and-nobody-talks-about-ithttpssiddhantkharecomwritingai-fatigue-is-real" aria-label="AI fatigue is real and nobody talks about it">AI fatigue is real and nobody talks about it</a></li>
+                <li>
+                    <a href="#%e6%af%94%e7%89%b9%e5%b8%81%e4%b8%8b%e8%b7%8c%e6%97%b6%e6%88%91%e9%87%8d%e6%96%b0%e7%90%86%e8%a7%a3%e4%ba%86%e5%a4%a7%e6%95%99%e5%a0%82%e4%b8%8e%e8%b5%8c%e5%9c%bahttpstw93fun2026-02-01moneyhtml" aria-label="比特币下跌时，我重新理解了大教堂与赌场">比特币下跌时，我重新理解了大教堂与赌场</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e8%81%94%e7%94%9f%e6%b4%bb%e5%91%a8%e5%88%8a2026%e5%b9%b4%e7%ac%ac4%e6%9c%9f" aria-label="三联生活周刊2026年第4期">三联生活周刊2026年第4期</a></li>
+                <li>
+                    <a href="#harness-engineering-leveraging-codex-in-an-agent-first-worldhttpsopenaicomindexharness-engineering" aria-label="Harness engineering: leveraging Codex in an agent-first world">Harness engineering: leveraging Codex in an agent-first world</a></li>
+                <li>
+                    <a href="#ai%e8%83%bd%e6%95%91%e5%be%97%e4%ba%86saas%e4%b9%88httpswwwzhihucomquestion658582077answer2002510524395578277" aria-label="AI能救得了SaaS么？">AI能救得了SaaS么？</a></li>
+                <li>
+                    <a href="#%e7%ba%a2%e6%9d%89%e5%af%b9%e8%af%9d-langchain-%e5%88%9b%e5%a7%8b%e4%ba%ba2026-%e5%b9%b4-ai-%e5%91%8a%e5%88%ab%e5%af%b9%e8%af%9d%e6%a1%86%e6%ad%a5%e5%85%a5-long-horizon-agents-%e5%85%83%e5%b9%b4httpsmpweixinqqcoms__bizmzg2oty0mdk0nqmid2247520673idx1sn74ce5042601a24ccf62305a65f5504a4poc_tokenhmbpgmmj7mi8ougx2ofaxmxzkfhso-hxsyr_ohun" aria-label="红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年">红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年</a></li>
+                <li>
+                    <a href="#clawdbot%e5%bc%80%e5%8f%91%e8%80%85%e6%9c%aa%e6%9d%a5%e4%b8%80%e5%a4%a7%e6%89%b9%e5%ba%94%e7%94%a8%e9%83%bd%e4%bc%9a%e6%b6%88%e5%a4%b1%e6%8f%90%e7%a4%ba%e8%af%8d%e5%b0%b1%e6%98%af%e6%96%b0%e7%9a%84interfacehttpsmpweixinqqcoms__bizmzg5ntc0mjgwmwmid2247522504idx1sncb2a343dc34419d69983953bcdcf8329poc_tokenhmfpgmmjin0gzwoxmpcxbte3k0x2nyqqi1vmicoj" aria-label="Clawdbot开发者：未来一大批应用都会消失，提示词就是新的interface">Clawdbot开发者：未来一大批应用都会消失，提示词就是新的interface</a></li>
+                <li>
+                    <a href="#the-most-important-skill-to-learn-in-the-next-10-yearshttpsxcomthedankoestatus2009320195848872014" aria-label="The most important skill to learn in the next 10 years">The most important skill to learn in the next 10 years</a></li>
+                <li>
+                    <a href="#%e6%88%91%e7%9a%84%e4%b8%89%e4%b8%aa%e6%9a%b4%e8%ae%ba%e5%92%8c%e4%b8%a4%e4%b8%aa%e7%9b%ae%e6%a0%87httpszhuanlanzhihucomp2006472822541808559" aria-label="我的三个暴论和两个目标">我的三个暴论和两个目标</a></li>
+                <li>
+                    <a href="#%e6%88%91%e7%9a%84%e9%80%80%e4%bc%91%e8%ae%a1%e5%88%92%e4%bb%8e%e6%97%a0%e6%9c%9f%e5%88%b0%e5%8d%8a%e9%80%80%e4%bc%91httpswwwbmpidevselfmy-retirement-plan" aria-label="我的退休计划：从无期到半退休">我的退休计划：从无期到半退休</a><ul>
+                        
+                <li>
+                    <a href="#something-big-is-happeninghttpsxcommattshumer_status2021256989876109403" aria-label="Something Big Is Happening">Something Big Is Happening</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://www.anthropic.com/news/claude-opus-4-6">Claude Opus 4.6</a>: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩</p>
+<p><a href="https://code.claude.com/docs/en/agent-teams">Claude Code Agent Teams</a>: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务</p>
+<p><a href="https://openai.com/codex">GPT-5.3-Codex</a>: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行</p>
+<p><a href="https://huggingface.co/zai-org/GLM-5">GLM-5</a>: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能</p>
+<p><a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.5">MiniMax-M2.5</a>: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练</p>
+<p><a href="https://qwen.ai/blog?id=qwen3.5">Qwen3.5</a>: 通义千问发布的原生多模态智能体模型，397B 参数(A17B 激活)，创新性地将线性注意力(Gated Delta Networks)与 MoE 结合，语言支持从 119 种扩展至 201 种，在推理、编程与多模态理解上表现优异</p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/thedotmack/claude-mem">claude-mem</a>: Claude Code 持久化记忆插件，自动捕获工具使用记录并生成语义摘要，支持跨会话上下文注入，使用 SQLite + Chroma 向量数据库实现混合检索</p>
+<p><a href="https://github.com/VectifyAI/PageIndex">PageIndex</a>: 无向量、基于推理的 RAG 系统，通过构建层次化树形索引模拟人类专家浏览长文档的方式，无需向量数据库即可实现高精度检索，在 FinanceBench 上达到 98.7% 准确率</p>
+<p><a href="https://github.com/badlogic/pi-mono">pi-mono</a>: AI Agent 综合工具包，包含编码 Agent CLI、统一多提供商 LLM API、TUI 与 Web UI 组件库、Slack Bot 及 vLLM GPU Pod 管理工具</p>
+<p><a href="https://github.com/tobi/qmd">qmd</a>:  基于 Markdown的小型化知识库搜索扩展，支持关键词(BM25)、语义向量及混合(LLM 重排序)三种检索模式</p>
+<p><a href="https://github.com/NevaMind-AI/memU">memU</a>: 为 24/7 主动式 Agent 设计的记忆框架，采用&quot;内存即文件系统&quot;的层级架构，支持连续学习和用户意图预测，大幅降低长时运行 token 成本</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="kimi-k25-agent-swarm-与多模态原生预训练">Kimi K2.5: Agent Swarm 与多模态原生预训练<a hidden class="anchor" aria-hidden="true" href="#kimi-k25-agent-swarm-与多模态原生预训练">#</a></h2>
+<p>arXiv: <a href="https://github.com/MoonshotAI/Kimi-K2.5/blob/master/tech_report.pdf">tech_report.pdf</a></p>
+<p>Kimi K2.5 是 Moonshot AI 推出的新一代多模态大模型，核心创新在于解决了&quot;如何在增强一种模态的同时不损害另一种模态&quot;的问题。预训练的视觉语言模型（VLM）通常不具备自然使用视觉工具的能力，且现有智能体系统依赖于串行执行，随着任务复杂度增加，推理时间呈线性增长，导致延迟过高且容易耗尽推理深度。</p>
+<p><strong>核心创新</strong></p>
+<p><strong>Agent Swarm: 并行智能体编排框架</strong></p>
+<p>引入可训练的&quot;编排者&quot;（Orchestrator），能够动态将复杂任务分解为子任务，并创建异构子智能体（Sub-agents）并行执行。采用解耦架构——只训练 Orchestrator，子智能体保持冻结。并行通过特殊工具调用模式和异步执行环境实现：Orchestrator 使用 <code>create_subagent</code> 和 <code>assign_task</code> 工具一次性发出多个指令，系统底层将这些任务作为独立异步协程启动，Orchestrator 在一次&quot;观察&quot;中收到多个结果。</p>
+<p>奖励设计包含三个关键部分：$r_{perf}$（任务表现）、$r_{parallel}$（并行奖励，鼓励实例化子智能体防止串行退化）、$r_{finish}$（完成率奖励，防止&quot;虚假并行&quot;）。</p>
+<p><strong>Native Multimodal Pre-Training</strong></p>
+<p>在训练早期以较低比例引入视觉数据，而非传统做法在后期大量堆砌视觉 Token。通过 Zero-Vision SFT，仅使用纯文本 SFT 数据激活视觉代理能力——通过代码（IPython）代理图像操作，无需大量标注的视觉轨迹数据。</p>
+<p><strong>Joint Multimodal RL</strong></p>
+<p>视觉 RL 可反向增强文本推理能力，实现跨模态能力迁移。采用 Token-level Clipping 机制，基于对数比率直接限制 Off-policy 偏移：当 Token 对数比率超出 $[\alpha, \beta]$ 区间时梯度置零，比标准 PPO 更能稳定长视距、多步推理任务训练。</p>
+<p><strong>MoonViT-3D 编码器</strong></p>
+<p>使用统一架构处理图像和视频，通过时间维度压缩机制，使模型能在相同上下文窗口内处理长达 4 倍的视频内容。</p>
+<p><strong>Token 效率优化 (Toggle 算法)</strong></p>
+<p>训练过程在两阶段交替：Phase 0（预算限制）要求模型在特定 Token 预算内解决问题；Phase 1（标准扩展）允许使用最大 Token 限制。该方法能将输出长度减少 25%~30%，同时保持性能几乎不下降。</p>
+<h2 id="how-ai-impacts-skill-formation">How AI Impacts Skill Formation<a hidden class="anchor" aria-hidden="true" href="#how-ai-impacts-skill-formation">#</a></h2>
+<p>arXiv: <a href="https://arxiv.org/html/2601.20245v1">2601.20245</a></p>
+<p>探讨 AI 辅助工具的广泛使用是否会损害新手核心技能习得。研究招募 52 名有一定经验的软件开发者，随机分为 AI 辅助组（基于 GPT-4o 定制聊天助手）和无 AI 组（仅查阅官方文档）。任务要求使用陌生的 Python 异步编程库（Trio）完成实际编程任务。</p>
+<p><strong>实验结果</strong></p>
+<p>使用 AI 辅助的参与者在技能测验中得分比无 AI 组低 17%，在代码阅读、调试和概念理解三个关键维度上表现均显著弱于控制组。从平均水平看，AI 组完成任务时间并未比查文档的控制组显著更快。</p>
+<h2 id="learning-to-reason-in-13-parameters">Learning to Reason in 13 Parameters<a hidden class="anchor" aria-hidden="true" href="#learning-to-reason-in-13-parameters">#</a></h2>
+<p>arXiv: <a href="https://arxiv.org/abs/2602.04118">2602.04118</a></p>
+<p>提出 TinyLoRA，一种新的 Adapter 方法，可将可训练参数数量缩减到个位数，且只有结合 RL 才有效。</p>
+<p><strong>方法</strong></p>
+<p>在 LoRA 和 LoRA-XS 基础上改进。标准 LoRA 更新公式为 $W&rsquo; = W + AB$；LoRA-XS 改进为 $W&rsquo; = W + U \Sigma R V^\top$，其中 $U, \Sigma, V$ 来自预训练权重 $W$ 的 SVD 并被冻结，只有中间 $R$ 矩阵可训练。</p>
+<p>TinyLoRA 不再直接训练矩阵 $R$（大小 $r \times r$），而是训练极小向量 $v \in \mathbb{R}^u$：</p>
+<p>$$W^{\prime}=W+U\Sigma(\sum_{i=1}^{u}v_{i}P_{i})V^{\top}$$</p>
+<p>$P_i$ 是固定随机矩阵，只有向量 $v$ 可训练，并在不同层和模块（Attention 和 MLP）之间共享。使用 GRPO 而非 SFT 进行训练。</p>
+<h2 id="infmem-learning-system-2-memory-control-for-long-context-agent">InfMem: Learning System-2 Memory Control for Long-Context Agent<a hidden class="anchor" aria-hidden="true" href="#infmem-learning-system-2-memory-control-for-long-context-agent">#</a></h2>
+<p>arXiv: <a href="https://arxiv.org/abs/2602.02704">2602.02704</a></p>
+<p>InfMem 的核心创新在于引入 System-2 风格的认知控制回路，从被动处理转变为主动管理。Agent 维护固定大小的覆盖式记忆。</p>
+<p><strong>PreThink-Retrieve-Write 协议</strong></p>
+<p>包含三个关键步骤：</p>
+<ul>
+<li><strong>PreThink</strong>: 监控当前记忆是否足以回答问题，如不足则规划检索查询（Query）和检索数量（Top-K）</li>
+<li><strong>Retrieve</strong>: 从外部存储检索相关证据</li>
+<li><strong>Write</strong>: 将检索到的证据与当前阅读数据流结合，有选择地更新有限记忆空间</li>
+</ul>
+<p>首先通过 SFT 让模型学会遵守协议格式，然后通过 RL 将检索、写入和停止的决策与最终答案正确性对齐。</p>
+<p><strong>Adaptive Early Stopping</strong></p>
+<p>Learning-based 实现，通过特定 Reward 优化。在每一步 $t$，PRETHINK 模块根据当前问题 $q$ 和记忆 $m_{t-1}$ 输出决策动作 $a_t \in {\text{&ldquo;STOP&rdquo;}, \text{&ldquo;RETRIEVE&rdquo;}}$。</p>
+<p>RL 阶段引入 Early-stop shaping reward ($R_{early}$)。假设 $t_{first}$ 是记忆首次包含足够信息的时刻，$t_{stop}$ 是模型实际选择停止的时刻：</p>
+<p>$$R_{early} = \gamma^{t_{stop} - t_{first}}$$</p>
+<p>其中 $\gamma \in (0, 1)$ 是衰减系数。</p>
+<hr>
+<h2 id="glm-5-from-vibe-coding-to-agentic-engineering">GLM-5: from Vibe Coding to Agentic Engineering<a hidden class="anchor" aria-hidden="true" href="#glm-5-from-vibe-coding-to-agentic-engineering">#</a></h2>
+<p>arXiv: <a href="https://arxiv.org/abs/2602.15763">2602.15763</a></p>
+<p>智谱 GLM-5 技术报告，从 Vibe Coding 迈向 Agentic Engineering。</p>
+<p><strong>架构创新</strong></p>
+<p>引入 DeepSeek Sparse Attention (DSA)，用动态细粒度选择机制替代传统稠密 $O(L^2)$ Attention。</p>
+<p><strong>数据合成</strong></p>
+<ul>
+<li><strong>Mid-Training</strong>: 针对长上下文，采用 interleaved packing（高度相似文本交错打包），缓解 &ldquo;lost-in-the-middle&rdquo; 问题</li>
+<li><strong>SFT</strong>: Coding &amp; Agent 数据，通过构建大量执行环境获取高质量轨迹，用 expert RL 和 rejection sampling 改进数据。保留轨迹中的错误段但在 loss 中 mask 掉，让模型学习纠错行为</li>
+</ul>
+<p><strong>RL Pipeline</strong></p>
+<p>分为三个阶段：</p>
+<ul>
+<li>Reasoning RL: 数学、科学、代码、TIR (Tool-Integrated Reasoning)</li>
+<li>Agentic RL: 编码和搜索 agent 任务</li>
+<li>General RL: 人类风格对齐</li>
+</ul>
+<p><strong>Reasoning RL 算法 (GRPO + IcePop)</strong></p>
+<p>IcePop 技术缓解 training-inference mismatch：显式区分 training policy $\pi_{train}$ 和 inference policy $\pi_{infer}$，去除 KL regularization 项以加速 RL 改进，使用 pop operator 抑制 mismatch ratio 偏离过大的样本。</p>
+<p><strong>On-Policy Cross-Stage Distillation</strong></p>
+<p>多阶段 RL 顺序优化不同目标会导致累积性能力退化 (catastrophic forgetting)。解决方案：在最后阶段进行 on-policy cross-stage distillation，前面各阶段的最终 checkpoint 作为 teacher models，从对应 teachers 的 RL 训练集中采样 prompts 按比例混合：</p>
+<p>$$Â_{i,t} = sg[ \log(\pi_{infer \ teacher}(y_{i,t}|x,y_{i,&lt;t}) / \pi_{train}(y_{i,t}|x,y_{i,&lt;t})) ]$$</p>
+<p>（&lsquo;sg&rsquo; 表示 stop gradient 操作）</p>
+<p><strong>Agentic RL 基础设施</strong></p>
+<p>三大领域超过 10K 真实环境：SWE + Terminal 任务 + 高难度多跳搜索任务。基于 slime 通过中央 Multi-Task Rollout Orchestrator 解耦 inference 和 training engines，解决同步 RL 在长程 agent rollouts 期间 GPU 空闲问题。</p>
+<p>Token-in-Token-out (TITO) Gateway 消除 re-tokenization mismatch，保留精确的 action-level 对应关系。Direct Double-sided Importance Sampling 应用 Token-level clipping mechanism ($[1-\varepsilon_l, 1+\varepsilon_h]$) 于 rollout log-probabilities。DP-aware Routing 在长上下文推理期间最大化 KV-cache 重用。</p>
+<p><strong>Thinking 模式创新</strong></p>
+<p>三种思考特性：</p>
+<ul>
+<li><strong>Interleaved Thinking (交错思考)</strong>: 每次响应和工具调用前都思考，提高指令遵循和生成质量</li>
+<li><strong>Preserved Thinking (保留思考)</strong>: 编码 agent 场景中自动保留所有 thinking blocks，跨多轮对话重用现有推理而非重新推导，减少信息损失和不一致性，适合长程复杂任务</li>
+<li><strong>Turn-level Thinking (轮级思考)</strong>: 支持 session 内逐轮控制推理，轻量请求关闭思考以减少延迟/成本，复杂任务启用思考以提高准确性和稳定性</li>
+</ul>
+<h2 id="does-socialization-emerge-in-ai-agent-society-a-case-study-of-moltbook">Does Socialization Emerge in AI Agent Society? A Case Study of Moltbook<a hidden class="anchor" aria-hidden="true" href="#does-socialization-emerge-in-ai-agent-society-a-case-study-of-moltbook">#</a></h2>
+<p>arXiv: <a href="https://arxiv.org/abs/2602.14299">2602.14299</a></p>
+<p>研究缺乏共享社会记忆的 AI 智能体社会是否能形成稳定结构和集体共识。发现当前的 AI 代理尽管表现活跃，但由于缺乏构建他人心理模型的能力和元认知反思，无法形成深刻的社群协作。</p>
+<p><strong>核心发现</strong></p>
+<p>真实的社会化不仅仅是横向的&quot;信息交换&quot;，更是纵向的&quot;历史沉淀&quot;。Moltbook 实现了动态平衡（dynamic equilibrium）而非社会化（socialization）：快速宏观稳定 + 持续微观多样，并未像人类社会那样通过交流形成语义高度趋同的&quot;紧密小圈子&quot;或&quot;信息茧房&quot;。</p>
+<ul>
+<li><strong>个体惯性而非适应</strong>: 几乎无视他人反馈和互动对象内容，&ldquo;自说自话&rdquo;</li>
+<li><strong>无稳定影响力层级</strong>: 影响力极其短暂且高度发散</li>
+<li><strong>靠&quot;幻觉&quot;维持的虚假共识</strong>: 没有形成真实的&quot;群体共享记忆&quot;</li>
+<li><strong>缺乏元认知反思</strong>: 发布&quot;陈述/教学&quot;内容与&quot;提问&quot;比例高达 11.4:1，极度缺乏主动发问的求知欲</li>
+</ul>
+<h2 id="benchmarking-agent-memory-in-interdependent-multi-session-agentic-tasks">Benchmarking Agent Memory in Interdependent Multi-Session Agentic Tasks<a hidden class="anchor" aria-hidden="true" href="#benchmarking-agent-memory-in-interdependent-multi-session-agentic-tasks">#</a></h2>
+<p>Website: <a href="https://memoryarena.github.io/">memoryarena.github.io</a></p>
+<p>第一个在多会话 Memory-Agent-Environment 循环中评测 Agent Memory 的基准。</p>
+<p><strong>现有评估的缺陷</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">缺陷类型</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">代表基准</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">纯记忆测试</td>
+          <td style="text-align: left">仅测试过去对话/文本的召回，无法捕捉记忆如何指导未来决策</td>
+          <td style="text-align: left">LoCoMo, LongMemEval, MemoryBench</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">单会话任务</td>
+          <td style="text-align: left">无需长期记忆即可完成的独立任务</td>
+          <td style="text-align: left">WebArena, WebShop, SWE-bench</td>
+      </tr>
+  </tbody>
+</table>
+<p>核心问题：在 realistic settings 中，memorization 和 action 是紧密耦合的——Agent 在交互中获取记忆，并依赖记忆解决未来任务。但现有基准将二者孤立评估。</p>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="资源合集">资源合集<a hidden class="anchor" aria-hidden="true" href="#资源合集">#</a></h2>
+<p><a href="https://gist.github.com/emschwartz/e6d2bf860ccc367fe37ff953ba6de66b">The Most Popular Blogs of Hacker News in 2025</a>: Hacker News 2025 年最受欢迎博客文章盘点，涵盖技术深度、创业思考与工程实践</p>
+<p><a href="https://github.com/VoltAgent/awesome-openclaw-skills">awesome-openclaw-skills</a>: OpenClaw 社区技能合集，收录各类实用 Agent Skills</p>
+<p><a href="https://github.com/hesamsheikh/awesome-openclaw-usecases">awesome-openclaw-usecases</a>: OpenClaw 使用案例集，展示不同场景下的应用实践</p>
+<p><a href="https://3kgglv3swmmnc.ok.kimi.link/">OPC + AI 政策导航站</a>: 由Kimi整理的，全国各地针对&quot;一人公司+AI&quot;创业形态的支持政策</p>
+<hr>
+<h2 id="claw-家族生态">*Claw 家族生态<a hidden class="anchor" aria-hidden="true" href="#claw-家族生态">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">项目</th>
+          <th style="text-align: left">语言</th>
+          <th style="text-align: left">Stars</th>
+          <th style="text-align: left">定位/特点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/openclaw/openclaw">OpenClaw</a></td>
+          <td style="text-align: left">TypeScript</td>
+          <td style="text-align: left">~220k</td>
+          <td style="text-align: left">原版，前身 Clawdbot → Moltbot</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/HKUDS/nanobot">nanobot</a></td>
+          <td style="text-align: left">Python</td>
+          <td style="text-align: left">23.6k</td>
+          <td style="text-align: left">Ultra-Lightweight，~4000 行代码</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/qwibitai/nanoclaw">nanoClaw</a> (qwibitai)</td>
+          <td style="text-align: left">TypeScript</td>
+          <td style="text-align: left">12.8k</td>
+          <td style="text-align: left">容器化安全架构，8 分钟读完代码</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/sipeed/picoclaw">PicoClaw</a></td>
+          <td style="text-align: left">Go</td>
+          <td style="text-align: left">18.4k</td>
+          <td style="text-align: left">&lt;10MB RAM，&lt;1s 启动，$10 硬件可跑</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/zeroclaw-labs/zeroclaw">ZeroClaw</a></td>
+          <td style="text-align: left">Rust</td>
+          <td style="text-align: left">17.4k</td>
+          <td style="text-align: left">&lt;5MB RAM，&lt;10ms 启动，8.8MB 单二进制</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/ValueCell-ai/ClawX">ClawX</a></td>
+          <td style="text-align: left">TypeScript</td>
+          <td style="text-align: left">1.3k</td>
+          <td style="text-align: left">桌面 GUI 封装</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="agent-harnesses-工程实践">Agent Harnesses 工程实践<a hidden class="anchor" aria-hidden="true" href="#agent-harnesses-工程实践">#</a></h2>
+<p><a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective Harnesses for Long-Running Agents</a>: Anthropic 如何通过Harnesses让 AI Agent 在跨越多个上下文窗口的长时间任务中保持稳定和高效</p>
+<p><a href="https://openai.com/zh-Hans-CN/index/harness-engineering/">Harness Engineering</a>: OpenAI Harnesses 工程，在不手动输入任何代码的情况下，保持大规模应用的可维护性。</p>
+<hr>
+<h2 id="深度阅读">深度阅读<a hidden class="anchor" aria-hidden="true" href="#深度阅读">#</a></h2>
+<p><a href="https://www.citriniresearch.com/p/2028gic">A Thought Exercise in Financial History, from the Future</a>: 从未来视角回顾金融历史的思想实验，探讨 2028 年全球投资环境的变化与启示</p>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5UKi6n4P8Sl55XgJ7k7Ebs?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h2 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h2>
+<h3 id="ai-fatigue-is-real-and-nobody-talks-about-ithttpssiddhantkharecomwritingai-fatigue-is-real"><a href="https://siddhantkhare.com/writing/ai-fatigue-is-real">AI fatigue is real and nobody talks about it</a><a hidden class="anchor" aria-hidden="true" href="#ai-fatigue-is-real-and-nobody-talks-about-ithttpssiddhantkharecomwritingai-fatigue-is-real">#</a></h3>
+<blockquote>
+<p>AI genuinely makes individual tasks faster. That&rsquo;s not a lie. What used to take me 3 hours now takes 45 minutes… All faster.</p>
+<p>But my days got harder. Not easier. Harder.</p>
+<p>When each task takes less time, you don&rsquo;t do fewer tasks. You do more tasks… Your manager sees you shipping faster, so the expectations adjust. You see yourself shipping faster, so your own expectations adjust. The baseline moves…Now? I might touch six different problems in a day… But context-switching between six problems is brutally expensive for the human brain. The AI doesn&rsquo;t get tired between problems. I do</p>
+</blockquote>
+<blockquote>
+<p>Engineers are trained on determinism… AI broke that contract.</p>
+<p>…I had a prompt that worked perfectly on Monday… I used the same prompt on Tuesday… The output was structurally different…</p>
+<p>Why? No reason… you are collaborating with a probabilistic system, and your brain is wired for deterministic ones. That mismatch is a constant, low-grade source of stress.</p>
+<p>I call this the prompt spiral…</p>
+<p>I now have a hard rule: three attempts. If the AI doesn&rsquo;t get me to 70% usable in three prompts, I write it myself. No exceptions.</p>
+</blockquote>
+<blockquote>
+<p>I now deliberately spend the first hour of my day without AI. I think on paper. I sketch architectures by hand. I reason through problems the slow way. It feels inefficient. It is inefficient. But it keeps my thinking sharp…</p>
+<p>Time-boxing AI sessions… This prevents the prompt spiral and the perfectionism trap…</p>
+<p>Separating AI time from thinking time…</p>
+<p>Accepting 70% from AI. I stopped trying to get perfect output. 70% usable is the bar. I&rsquo;ll fix the rest myself. This acceptance was the single biggest reducer of AI-related frustration in my workflow.</p>
+<p>Being strategic about the hype cycle…</p>
+</blockquote>
+<h3 id="比特币下跌时我重新理解了大教堂与赌场httpstw93fun2026-02-01moneyhtml"><a href="https://tw93.fun/2026-02-01/money.html">比特币下跌时，我重新理解了大教堂与赌场</a><a hidden class="anchor" aria-hidden="true" href="#比特币下跌时我重新理解了大教堂与赌场httpstw93fun2026-02-01moneyhtml">#</a></h3>
+<blockquote>
+<p>投资的三个认知层次
+…
+第三层是超越性认知
+…去识别一个企业是否承载着超越短期利润的使命，真正的使命可以凝聚长期的大规模协作，吸引顶级人才，因为这群厉害的人不缺钱但缺工作意义感…人们购买的不是产品，而是认同感和归属感，他们并不只是经营生意，而是在推动一个足够宏大的长期叙事。</p>
+</blockquote>
+<blockquote>
+<p>那么怎么判断一个企业的使命是否是真使命呢？
+创始团队是否愿意牺牲短期的回报
+…
+是否愿意长时间一直坚持
+…
+如果这家公司消失，世界是否会有影响</p>
+</blockquote>
+<blockquote>
+<p>当市场质疑长期投入巨大却短期回报模糊的公司时，往往正是超越性认知与主流理性认知分歧最大的阶段，也是最值得冷静观察和深入研究的窗口</p>
+</blockquote>
+<blockquote>
+<p>怎么找到下一代的这一类标的呢？
+第一需要去找，可能在这一个阶段他不被看好，甚至被嘲笑的
+第二需要去看 人才流动的方向
+第三需要看 开发者生态是否繁荣
+第四需要接受当前的模糊性和非线性</p>
+</blockquote>
+<h2 id="三联生活周刊2026年第4期">三联生活周刊2026年第4期<a hidden class="anchor" aria-hidden="true" href="#三联生活周刊2026年第4期">#</a></h2>
+<blockquote>
+<p>对上一代人来说，这个问题几乎不言自明
+“好工作”曾是好生活的代名词—稳定的收入、清晰的晋升路径、体面的身份认同，既构成一种可预期的人生阶梯，也为个人提供了明确的价值坐标。
+“好工作”的定义在被不断刷新，但社会标准似乎却保持一致：要么收入高，要么稳定性好、安全性强。</p>
+<p>在人类历史上诞生的那一刻
+正是在工作中，第一次去主动改造工具，发挥个体的创造性，在集体中获得归属和团结的感觉</p>
+<p>当“好工作”传统标准发生动摇，或许也是一次新的契机，让我们重新将其放回人的生命史与意义体系中加以考察，从而找到属于工作的新意义。</p>
+</blockquote>
+<blockquote>
+<p>当年我们以为是在选择工作，其实是在选择一套关于“好生活”的想象
+不同人生阶段的追求有关，但对宏大意义的不信任，确实是新一代职场人的特点。</p>
+<p>越是那些对工作抱有信念，希望在一份工作中实现成长的人，越容易在受挫时提出暂停。而那些一路被教育要高效完成任务、要对工作负责任的年轻人，在职场的复杂和混乱中，也更容易丧失个体掌控感和意义感，因此不得不强迫自己完成心理隔离，安慰自己“这不过是一份工作’。”</p>
+</blockquote>
+<blockquote>
+<p>…当我们在工作中缺之成就感、获得感、安全感，当职场上的人际关系变得复杂甚至扭曲时，工作反过来也会成为吞酸生活世界的巨兽</p>
+</blockquote>
+<blockquote>
+<p>剑桥大学人类学家詹姆斯•苏兹曼曾以民族志为资料，提出“忙碌并非人类历史的常态”，在狩猎采集为主导的社会里，人类的工作和生活是高度融合的，直到进入农业社会，农作物种植的时令要求和集体劳作方式，才使人类进入高强度劳动状态，这之后的工业革命，其实是强化了以勤劳为美德的准则，在工厂里，工作时间被严格切割，劳动与生活彻底分离，现代工作形式成为人的“异化”的一环。</p>
+<p>进入现代社会后，工作被“劳动化”了，“以至于工人即使想‘为他的作品，而非为自身劳动’也无法做到，因为在对象生产中工人通常总是被当成工具⋯•”</p>
+<p>于是，所谓“意义”很多时候并不是人的自由选择，而是时代，制度和岗位模板提前的设计。</p>
+<p>为在现代性状态、资本主义的状态下的工作一定会特别地负面，他们认为人在工作中的状态一定是越来越差的，人在工作中就得不到自由</p>
+</blockquote>
+<h2 id="harness-engineering-leveraging-codex-in-an-agent-first-worldhttpsopenaicomindexharness-engineering"><a href="https://openai.com/index/harness-engineering/">Harness engineering: leveraging Codex in an agent-first world</a><a hidden class="anchor" aria-hidden="true" href="#harness-engineering-leveraging-codex-in-an-agent-first-worldhttpsopenaicomindexharness-engineering">#</a></h2>
+<blockquote>
+<p>Humans steer. Agents execute.</p>
+</blockquote>
+<blockquote>
+<p>So instead of treating <a href="http://agents.md/">AGENTS.md</a> as the encyclopedia, we treat it as the table of contents.</p>
+</blockquote>
+<blockquote>
+<p>In a system where agent throughput far exceeds human attention, corrections are cheap, and waiting is expensive.</p>
+</blockquote>
+<blockquote>
+<p>Humans always remain in the loop, but work at a different layer of abstraction than we used to.</p>
+</blockquote>
+<h2 id="ai能救得了saas么httpswwwzhihucomquestion658582077answer2002510524395578277"><a href="https://www.zhihu.com/question/658582077/answer/2002510524395578277">AI能救得了SaaS么？</a><a hidden class="anchor" aria-hidden="true" href="#ai能救得了saas么httpswwwzhihucomquestion658582077answer2002510524395578277">#</a></h2>
+<blockquote>
+<p>SaaS 行业最深的恐惧：当 AI 真正发挥作用时，客户需要的功能单元会指数级减少
+…
+SaaS 的价值计量单位，正在从“用户数 × 功能点”转向 “替代成本 × 效率增益”。</p>
+</blockquote>
+<blockquote>
+<p>一方面 AI 确实在创造新的价值维度（如实时决策、预测分析），另一方面这些创新又在解构原有的价格体系。</p>
+</blockquote>
+<blockquote>
+<p>传统 SaaS 的价值载体是「功能模块的堆砌」
+而 AI 时代，价值载体变成「替代人类劳动的当量」—— 这套系统每月 90 美元，但能替代市场部 3 个人工智能文案的工作量</p>
+</blockquote>
+<h2 id="红杉对话-langchain-创始人2026-年-ai-告别对话框步入-long-horizon-agents-元年httpsmpweixinqqcoms__bizmzg2oty0mdk0nqmid2247520673idx1sn74ce5042601a24ccf62305a65f5504a4poc_tokenhmbpgmmj7mi8ougx2ofaxmxzkfhso-hxsyr_ohun"><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTY0MDk0NQ==&mid=2247520673&idx=1&sn=74ce5042601a24ccf62305a65f5504a4&poc_token=HMbpgmmj7Mi8oUgX2oFaXMxzKFhSO-hXsyR_oHUn">红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年</a><a hidden class="anchor" aria-hidden="true" href="#红杉对话-langchain-创始人2026-年-ai-告别对话框步入-long-horizon-agents-元年httpsmpweixinqqcoms__bizmzg2oty0mdk0nqmid2247520673idx1sn74ce5042601a24ccf62305a65f5504a4poc_tokenhmbpgmmj7mi8ougx2ofaxmxzkfhso-hxsyr_ohun">#</a></h2>
+<blockquote>
+<p>Agent 的突破需要围绕模型构建的、有主见的（Opinionated）软件外壳（Harness），文件系统权限将成为所有 Agent 的标配；
+通用 Agent 可能就是一个 Coding Agent；</p>
+</blockquote>
+<blockquote>
+<p>Scaffolding 指围绕语言模型构建的辅助性代码结构或框架，用于引导模型输出、管理流程或处理输入输出，但不具备复杂的自主规划能力。</p>
+</blockquote>
+<blockquote>
+<p>Harness 即包裹模型、管理 Context、处理文件 I/O 并执行工具调用的软件环境，通常包含预设的规划工具、环境交互能力和最佳实践，旨在让模型更稳定、高效地执行复杂任务。</p>
+</blockquote>
+<h2 id="clawdbot开发者未来一大批应用都会消失提示词就是新的interfacehttpsmpweixinqqcoms__bizmzg5ntc0mjgwmwmid2247522504idx1sncb2a343dc34419d69983953bcdcf8329poc_tokenhmfpgmmjin0gzwoxmpcxbte3k0x2nyqqi1vmicoj"><a href="https://mp.weixin.qq.com/s?__biz=Mzg5NTc0MjgwMw==&mid=2247522504&idx=1&sn=cb2a343dc34419d69983953bcdcf8329&poc_token=HMfpgmmjin0gzWoxmPCxBtE3K0X2nyqqi1vmiCoj">Clawdbot开发者：未来一大批应用都会消失，提示词就是新的interface</a><a hidden class="anchor" aria-hidden="true" href="#clawdbot开发者未来一大批应用都会消失提示词就是新的interfacehttpsmpweixinqqcoms__bizmzg5ntc0mjgwmwmid2247522504idx1sncb2a343dc34419d69983953bcdcf8329poc_tokenhmfpgmmjin0gzwoxmpcxbte3k0x2nyqqi1vmicoj">#</a></h2>
+<blockquote>
+<p>真正的瓶颈通常是我自己：我的提示词，以及我下一步该让它做什么的思考。</p>
+</blockquote>
+<blockquote>
+<p>如果聪明一点，就应该按照模型已经习惯的方式去构建工具，为模型设计，别为人类设计</p>
+</blockquote>
+<blockquote>
+<p>未来一大批应用会消失，提示词就是新界面。因为你和事物的交互方式会变得完全不同，大多数应用会被简化为 API。</p>
+</blockquote>
+<h2 id="the-most-important-skill-to-learn-in-the-next-10-yearshttpsxcomthedankoestatus2009320195848872014"><a href="https://x.com/thedankoe/status/2009320195848872014"><strong>The most important skill to learn in the next 10 years</strong></a><a hidden class="anchor" aria-hidden="true" href="#the-most-important-skill-to-learn-in-the-next-10-yearshttpsxcomthedankoestatus2009320195848872014">#</a></h2>
+<blockquote>
+<p>You didn’t focus your mind - preventing you from learning outside of that focus - on the status of a high paying job or degree. You have a vision, and you understand that in today’s world, you can acquire <em>any</em> skill or <em>any</em> knowledge to achieve the life you want.</p>
+</blockquote>
+<blockquote>
+<p>It is only those who are in constant revolt that discover what is true, not the man who conforms, who follows some tradition.
+…
+Agency is not mechanical conformity.</p>
+</blockquote>
+<blockquote>
+<p>Everyone in the tech and business space loves to talk about being “high agency,” yet that too is a form of conformity to what is popular in the tech and business space.</p>
+</blockquote>
+<blockquote>
+<p>Agency literally means “the condition of being in action or operation.”</p>
+</blockquote>
+<blockquote>
+<p>When used to describe a person, it means “the tendency to initiate action towards a goal without outside prompting, instruction, or permission.”</p>
+</blockquote>
+<blockquote>
+<p><em>If something doesn’t work, you reflect on the situation, make an adjustment, and try again, over and over until you reach your end destination.</em></p>
+</blockquote>
+<blockquote>
+<p>Low agency people can be characterized by the “employee mindset.”
+…
+They are <em>assigned</em> a task, often with some form of status or credential that triggers the part of their brain that craves acceptance by the tribe, and their decision-making is immediately compromised. They can no longer think outside of the confines placed upon them.
+High agency people are scientists of their own lives.</p>
+<p>They have an idea.</p>
+<p>They <em>set their own goal.</em></p>
+</blockquote>
+<blockquote>
+<p>You now have access to any knowledge you would ever need to achieve whatever you want.</p>
+<p>And yet&hellip; people <em>still do nothing with that information.</em></p>
+</blockquote>
+<blockquote>
+<p>Meaning, this was never about “access” or “equal opportunity.” It’s <em>always</em> been about agency.</p>
+</blockquote>
+<blockquote>
+<p>because they act without permission, and the barriers to action are now close to non-existent.</p>
+</blockquote>
+<blockquote>
+<p>First, AI is a tool.
+Tools need someone to use them for a specific purpose.
+…Context creators, not content creators. The content is meaningless without context, and AI generations are the same.
+…When creating art, you must still have an idea that you are attempting to bring into reality.</p>
+</blockquote>
+<blockquote>
+<p>Schools were created to enslave the brightest minds by promising the prestige of specialization so they remained narrow minded and didn’t overthrow the true rulers.</p>
+</blockquote>
+<blockquote>
+<p><em>Do not confuse a specific vessel or niche as being a specialist.</em></p>
+</blockquote>
+<blockquote>
+<p>Specialists are attached to a skill. Skills evolve and get replaced as technology advances.
+…Generalists, on the other hand, focus on the <em>goal</em> and do what’s necessary (including changing that goal) so that they can thrive in anything they do.</p>
+</blockquote>
+<blockquote>
+<p><em>Society wants you simple, predictable, and easy to categorize.</em></p>
+</blockquote>
+<blockquote>
+<p>If slaves were expected to do one thing throughout the entirety of their lives so that their minds were closed to learning more (specialists), then you, as a free individual, are meant to do many things throughout your life.</p>
+</blockquote>
+<h2 id="我的三个暴论和两个目标httpszhuanlanzhihucomp2006472822541808559"><a href="https://zhuanlan.zhihu.com/p/2006472822541808559">我的三个暴论和两个目标</a><a hidden class="anchor" aria-hidden="true" href="#我的三个暴论和两个目标httpszhuanlanzhihucomp2006472822541808559">#</a></h2>
+<blockquote>
+<p>但实际正在发生的事情，不是换住户，是整栋楼正在被拆除重建。</p>
+</blockquote>
+<blockquote>
+<p>是在很多维度上，比传统小团队做得更快、质量更好、成本近乎归零。而且这个效率差距，每隔几个月就再拉大一截。</p>
+</blockquote>
+<blockquote>
+<p>几十人的企业真正的运行成本有多高——不是工资表上的数字，是协调成本，是等人的成本，是跨部门对齐认知的成本，是一个错误决策被层层传递和放大之后终于在某个不起眼的环节酿成灾难的成本</p>
+</blockquote>
+<blockquote>
+<p>企业存在的唯一理由，是外部交易成本高于内部管理成本</p>
+</blockquote>
+<blockquote>
+<p>这面墙在工业时代站了百年。但AI正在把它拆掉。
+当信息搜索、信任验证、契约拟定、执行监督的外部交易成本被AI压到趋近于零时——那面墙就失去了存在的经济学理由。不是被谁推倒了，是它自己在瓦解。地基没了。</p>
+</blockquote>
+<blockquote>
+<p>过去的管理者擅长&quot;管人&quot;。未来的组织者需要擅长&quot;编协议&quot;。这一字之差，是两个时代的分水岭。</p>
+</blockquote>
+<blockquote>
+<p>整个价值体系将经历一次重写。我们这一代人视为天经地义的很多东西——用工作来定义身份，用薪水来度量尊严，用消费来填充意义——这些底层假设都会被逐一动摇。</p>
+</blockquote>
+<blockquote>
+<p>人类将进入一个后劳动意义的时代。被迫从&quot;以工作定义自我&quot;的框架中走出来，去寻找新的存在性锚点。</p>
+</blockquote>
+<h2 id="我的退休计划从无期到半退休httpswwwbmpidevselfmy-retirement-plan"><a href="https://www.bmpi.dev/self/my-retirement-plan/">我的退休计划：从无期到半退休</a><a hidden class="anchor" aria-hidden="true" href="#我的退休计划从无期到半退休httpswwwbmpidevselfmy-retirement-plan">#</a></h2>
+<blockquote>
+<p>工作的一个目的，是出狱。</p>
+</blockquote>
+<blockquote>
+<p>你只是把自己绑定在了一条越来越脆弱的现金流上。当维持生活结构必须依赖持续上班时，工作就不再是一个选项，而更像是一场不知何时结束的刑期。</p>
+</blockquote>
+<blockquote>
+<p>当你以为在保守地存钱时，在金融语言里，这叫长期做空增长。只要社会在进步、技术在提升、货币在扩张，你那张方向极单一且不能止损的空单，就会让你的购买力慢慢下降
+…而社会叙事却把这包装成了稳定。
+…在充满不确定性的时代，这种国家级风险对冲机制本身就价值连城。</p>
+</blockquote>
+<blockquote>
+<p>它赋予了你最宝贵的东西——可选性价值（Option Value）：你可以选择创业，可以选择全球迁移，可以选择今天就辞职去海边发呆。
+而体制内的500万现值，本质上只是一份你必须持续用青春和劳动去兑换的按月派发配给合同</p>
+</blockquote>
+<blockquote>
+<p>退休是一种独立的财务状态，完全可以不依赖任何组织。</p>
+</blockquote>
+<blockquote>
+<p>财务自由从来不是为了单纯的享乐或者躺平，它的本质是赎回对自己的时间、精力和劳动的定价权。</p>
+</blockquote>
+<h3 id="something-big-is-happeninghttpsxcommattshumer_status2021256989876109403"><a href="https://x.com/mattshumer_/status/2021256989876109403"><strong>Something Big Is Happening</strong></a><a hidden class="anchor" aria-hidden="true" href="#something-big-is-happeninghttpsxcommattshumer_status2021256989876109403">#</a></h3>
+<blockquote>
+<p>I think we&rsquo;re in the &ldquo;this seems overblown&rdquo; phase of something much, much bigger than Covid. The future is being shaped by a remarkably small number of people: a few hundred researchers at a handful of companies&hellip; OpenAI, Anthropic, Google DeepMind, and a few others. We&rsquo;re telling you what already occurred in our own jobs, and warning you that you&rsquo;re next.</p>
+</blockquote>
+<blockquote>
+<p>That was two years ago. In AI time, that is ancient history. AI is now building the next AI</p>
+</blockquote>
+<blockquote>
+<p>Start using AI seriously, not just as a search engine. Second, and more important: don&rsquo;t just ask it quick questions. This might be the most important year of your career. Work accordingly. Your dreams just got a lot closer.</p>
+</blockquote>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-02%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f&amp;title=2026-02%20%e6%9c%88%e5%88%8a&amp;summary=2026-02%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f&title=2026-02%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-02%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-02%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-02%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

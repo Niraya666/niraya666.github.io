@@ -11,8 +11,20 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 31 Jan 2026 15:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Feb 2026 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2026-02 月刊</title>
+      <link>https://niraya666.github.io/monthly/2602_monthly/</link>
+      <pubDate>Sat, 28 Feb 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2602_monthly/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-opus-4-6&#34;&gt;Claude Opus 4.6&lt;/a&gt;: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&amp;rsquo;s Last Exam 上取得 SOTA 成绩&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://code.claude.com/docs/en/agent-teams&#34;&gt;Claude Code Agent Teams&lt;/a&gt;: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/codex&#34;&gt;GPT-5.3-Codex&lt;/a&gt;: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/zai-org/GLM-5&#34;&gt;GLM-5&lt;/a&gt;: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&amp;quot;slime&amp;quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/MiniMaxAI/MiniMax-M2.5&#34;&gt;MiniMax-M2.5&lt;/a&gt;: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2026-01 月刊</title>
       <link>https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/</link>
