@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 | LZY Blog</title>
+<meta name="keywords" content="Eval, Agent">
+<meta name="description" content="Intro
+过去一段时间，如果尝试过用claude-code 官方的skills-creator构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&gt; 手动跑测试 -&gt; 检查结果” 的循环中。
+直到几天前， 看到了 Anthropic 官方发布的关于 skill-creator 重大更新的文档，给出了一套更加系统、正规和工程化的解法。
+简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。
+借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。
+TL;DR 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环
+新版本 SKill-Creator 总览
+除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：
+
+
+评估系统
+
+
+优化系统
+
+
+其中评估 包含两个维度：
+
+
+触发评估 (Trigger Evaluation)：测试 Skill 的 description 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”
+
+
+功能评估 (Functional Evaluation)：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度
+
+
+而优化部分，负责根据评估结果进行自动化或半自动化的改进：
+
+
+description 优化：自动迭代优化Skills的描述，直至触发率达到预期
+
+
+功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令
+
+
+
+">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化" />
+<meta property="og:description" content="Intro
+过去一段时间，如果尝试过用claude-code 官方的skills-creator构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&gt; 手动跑测试 -&gt; 检查结果” 的循环中。
+直到几天前， 看到了 Anthropic 官方发布的关于 skill-creator 重大更新的文档，给出了一套更加系统、正规和工程化的解法。
+简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。
+借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。
+TL;DR 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环
+新版本 SKill-Creator 总览
+除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：
+
+
+评估系统
+
+
+优化系统
+
+
+其中评估 包含两个维度：
+
+
+触发评估 (Trigger Evaluation)：测试 Skill 的 description 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”
+
+
+功能评估 (Functional Evaluation)：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度
+
+
+而优化部分，负责根据评估结果进行自动化或半自动化的改进：
+
+
+description 优化：自动迭代优化Skills的描述，直至触发率达到预期
+
+
+功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令
+
+
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-15T21:38:00+08:00" />
+<meta property="article:modified_time" content="2026-03-15T21:38:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化"/>
+<meta name="twitter:description" content="Intro
+过去一段时间，如果尝试过用claude-code 官方的skills-creator构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&gt; 手动跑测试 -&gt; 检查结果” 的循环中。
+直到几天前， 看到了 Anthropic 官方发布的关于 skill-creator 重大更新的文档，给出了一套更加系统、正规和工程化的解法。
+简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。
+借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。
+TL;DR 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环
+新版本 SKill-Creator 总览
+除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：
+
+
+评估系统
+
+
+优化系统
+
+
+其中评估 包含两个维度：
+
+
+触发评估 (Trigger Evaluation)：测试 Skill 的 description 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”
+
+
+功能评估 (Functional Evaluation)：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度
+
+
+而优化部分，负责根据评估结果进行自动化或半自动化的改进：
+
+
+description 优化：自动迭代优化Skills的描述，直至触发率达到预期
+
+
+功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令
+
+
+
+"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://niraya666.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化",
+      "item": "https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化",
+  "name": "告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化",
+  "description": "Intro 过去一段时间，如果尝试过用claude-code 官方的skills-creator构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -\u0026gt; 手动跑测试 -\u0026gt; 检查结果” 的循环中。\n直到几天前， 看到了 Anthropic 官方发布的关于 skill-creator 重大更新的文档，给出了一套更加系统、正规和工程化的解法。\n简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。\n借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。\nTL;DR 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环\n新版本 SKill-Creator 总览 除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：\n评估系统\n优化系统\n其中评估 包含两个维度：\n触发评估 (Trigger Evaluation)：测试 Skill 的 description 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”\n功能评估 (Functional Evaluation)：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度\n而优化部分，负责根据评估结果进行自动化或半自动化的改进：\ndescription 优化：自动迭代优化Skills的描述，直至触发率达到预期\n功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令\n",
+  "keywords": [
+    "Eval", "Agent"
+  ],
+  "articleBody": "Intro 过去一段时间，如果尝试过用claude-code 官方的skills-creator构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -\u003e 手动跑测试 -\u003e 检查结果” 的循环中。\n直到几天前， 看到了 Anthropic 官方发布的关于 skill-creator 重大更新的文档，给出了一套更加系统、正规和工程化的解法。\n简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。\n借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。\nTL;DR 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环\n新版本 SKill-Creator 总览 除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：\n评估系统\n优化系统\n其中评估 包含两个维度：\n触发评估 (Trigger Evaluation)：测试 Skill 的 description 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”\n功能评估 (Functional Evaluation)：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度\n而优化部分，负责根据评估结果进行自动化或半自动化的改进：\ndescription 优化：自动迭代优化Skills的描述，直至触发率达到预期\n功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令\n为了保证评估的客观性，采用多个subagent 隔离上下文实现进行评测\nExecutor： 在隔离环境中并行运行任务，生成执行记录（transcript.md）和输出文件\nGrader：依据预设的断言，从执行记录中寻找证据，判定 PASS/FAIL 并输出 grading.json\nComparator/Analyzer：通过 A/B 盲测对比版本优劣，并分析胜出原因，提供可操作的改进建议\n评估指标体系 触发评估指标 当评估 skill 描述的触发准确性时，使用以下指标：\n指标 计算公式 含义 True Positive (TP) 应该触发且确实触发的次数 正确的触发 False Positive (FP) 不应触发但却触发的次数 错误的触发 True Negative (TN) 不应触发且确实没触发的次数 正确的不触发 False Negative (FN) 应该触发但没触发的次数 遗漏的触发 Precision TP / (TP + FP) 触发时的准确率 Recall TP / (TP + FN) 召回率（覆盖率） Accuracy (TP + TN) / (TP + TN + FP + FN) 总体准确率 Trigger Rate (TP + FP) / Total Runs 实际触发的比例 计算示例（run_loop.py lines 154-167）：\ndef print_eval_stats(label, results, elapsed): pos = [r for r in results if r[\"should_trigger\"]] neg = [r for r in results if not r[\"should_trigger\"]] # 计算 TP, FN tp = sum(r[\"triggers\"] for r in pos) pos_runs = sum(r[\"runs\"] for r in pos) fn = pos_runs - tp # 计算 FP, TN fp = sum(r[\"triggers\"] for r in neg) neg_runs = sum(r[\"runs\"] for r in neg) tn = neg_runs - fp total = tp + tn + fp + fn precision = tp / (tp + fp) if (tp + fp) \u003e 0 else 1.0 recall = tp / (tp + fn) if (tp + fn) \u003e 0 else 1.0 accuracy = (tp + tn) / total if total \u003e 0 else 0.0 print(f\"{label}: {tp+tn}/{total} correct, \" f\"precision={precision:.0%} recall={recall:.0%} \" f\"accuracy={accuracy:.0%}\") Assertion 评估指标 当评估 skill 的输出质量时，使用以下指标：\n指标 说明 Pass Rate 通过的断言数 / 总断言数 Passed 通过的断言数量 Failed 失败的断言数量 Total 总断言数量 性能指标 指标 单位 说明 Time Seconds 秒 执行时间 Tokens 个 Token 使用量 Tool Calls 次 工具调用次数 Errors 次 遇到的错误数 统计聚合\n{ \"pass_rate\": { \"mean\": 0.85, // 平均通过率 \"stddev\": 0.05, // 标准差 \"min\": 0.80, // 最小值 \"max\": 0.90 // 最大值 } } Delta 计算 比较两个配置（with_skill vs without_skill）的差异：\n{ \"delta\": { \"pass_rate\": \"+0.50\", // 通过率提升 50% \"time_seconds\": \"+13.0\", // 时间增加 13 秒 \"tokens\": \"+1700\" // Token 增加 1700 } } 输入层（测试集） Draft Skills： Skills草稿\nevals.json 测试用例集（功能测试文件）：评估 skill 的功能质量（输出是否正确、完整、有用）而非触发准确性\ntrigger_eval.json 触发评估集 （触发测试文件）：评估 skill 描述的触发准确性（该触发时触发，不该触发时不触发）\n测试集的构建：半自动生成， 结合 AI 生成 + 人工审查\nevals.json: 位于/evals/evals.json\n格式如下：\n{ \"skill_name\": \"example-skill\", \"evals\": [ { \"id\": 1, \"prompt\": \"用户任务的提示词，例如：'帮我填写这个 PDF 表单，路径在 ~/Downloads/application.pdf'\", \"expected_output\": \"期望输出的描述，例如：'成功填写 PDF 表单，生成新文件'\", \"files\": [ \"evals/files/sample1.pdf\", \"evals/files/input_data.json\" ], \"expectations\": [ \"输出包含正确的表单字段值\", \"使用了 fill_pdf.py 脚本\", \"生成的 PDF 文件存在且可读\", \"所有必填字段都已填写\" ] }, { \"id\": 2, \"prompt\": \"另一个测试场景...\", \"expected_output\": \"...\", \"files\": [], \"expectations\": [\"...\"] } ] } trigger_eval.json\nCC会首先生成 20 个触发评估查询, 10个should_trigger=true 的查询（应该触发）， 和10个should_trigger=false 的查询（不应触发）\n而后生成一个交互式 HTML 界面（基于 assets/eval_review.html）供人工审查和编辑\n最终结果保存在： /evals/trigger_evals.json\n格式：\n[ { \"query\": \"hey can you help me fill out this pdf form? its in ~/Downloads/application.pdf and i need to put my name as John Smith\", \"should_trigger\": true }, ... { \"query\": \"merge these 3 word docs into a single pdf please\", \"should_trigger\": false }, ... ] Subagent设计 整体而言，分为4种角色分工\nSubagent 职责 输入 输出 Executor 执行 Skill + Prompt 输出文件 + 执行记录 Grader 打分 输出 + 断言清单 grading.json Comparator 盲测比较 输出A + 输出B comparison.json (胜者) Analyzer 分析 比较结果 + Skills + 记录 analysis.json Executor Executor 是通过 CC 的 Agent tool 直接调用的subagent （即默认的general-purpose）\n(from SKILL.md line 169)\nStep 1: Spawn all runs (with-skill AND baseline) in the same turn For each test case, spawn two subagents in the same turn — one with the skill, one without. This is important: don’t spawn the with-skill runs first and then come back for baselines later. Launch everything at once so it all finishes around the same time.\nWith-skill run:\nExecute this task: - Skill path: - Task: - Input files: ",
+  "wordCount" : "1780",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2026-03-15T21:38:00+08:00",
+  "dateModified": "2026-03-15T21:38:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2026-03-15 21:38:00 +0800 CST'>March 15, 2026</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#intro" aria-label="Intro">Intro</a></li>
+                <li>
+                    <a href="#%e6%96%b0%e7%89%88%e6%9c%ac-skill-creator-%e6%80%bb%e8%a7%88" aria-label="新版本 SKill-Creator 总览">新版本 SKill-Creator 总览</a></li>
+                <li>
+                    <a href="#%e8%af%84%e4%bc%b0%e6%8c%87%e6%a0%87%e4%bd%93%e7%b3%bb" aria-label="评估指标体系">评估指标体系</a><ul>
+                        
+                <li>
+                    <a href="#%e8%a7%a6%e5%8f%91%e8%af%84%e4%bc%b0%e6%8c%87%e6%a0%87" aria-label="触发评估指标">触发评估指标</a></li>
+                <li>
+                    <a href="#assertion-%e8%af%84%e4%bc%b0%e6%8c%87%e6%a0%87" aria-label="Assertion 评估指标">Assertion 评估指标</a></li>
+                <li>
+                    <a href="#%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87" aria-label="性能指标">性能指标</a></li>
+                <li>
+                    <a href="#delta-%e8%ae%a1%e7%ae%97" aria-label="Delta 计算">Delta 计算</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%be%93%e5%85%a5%e5%b1%82%e6%b5%8b%e8%af%95%e9%9b%86" aria-label="输入层（测试集）">输入层（测试集）</a></li>
+                <li>
+                    <a href="#subagent%e8%ae%be%e8%ae%a1" aria-label="Subagent设计">Subagent设计</a><ul>
+                        
+                <li>
+                    <a href="#executor" aria-label="Executor">Executor</a><ul>
+                        
+                <li>
+                    <a href="#step-1-spawn-all-runs-with-skill-and-baseline-in-the-same-turn" aria-label="Step 1: Spawn all runs (with-skill AND baseline) in the same turn">Step 1: Spawn all runs (with-skill AND baseline) in the same turn</a></li></ul>
+                </li>
+                <li>
+                    <a href="#grader-agent" aria-label="Grader Agent">Grader Agent</a><ul>
+                        
+                <li>
+                    <a href="#%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b" aria-label="工作流程">工作流程</a></li>
+                <li>
+                    <a href="#%e8%be%93%e5%85%a5%e5%8f%82%e6%95%b0" aria-label="输入参数">输入参数</a></li>
+                <li>
+                    <a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" aria-label="输出格式">输出格式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#comparator-agent" aria-label="Comparator Agent">Comparator Agent</a><ul>
+                        
+                <li>
+                    <a href="#%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b-1" aria-label="工作流程">工作流程</a></li>
+                <li>
+                    <a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f-1" aria-label="输出格式">输出格式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#analyzer-agent" aria-label="Analyzer Agent">Analyzer Agent</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%af%84%e4%bc%b0%e4%b8%8e%e4%bc%98%e5%8c%96%e6%b5%81%e7%a8%8b" aria-label="评估与优化流程">评估与优化流程</a><ul>
+                        
+                <li>
+                    <a href="#%e5%8a%9f%e8%83%bd%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96" aria-label="功能评估和优化">功能评估和优化</a></li>
+                <li>
+                    <a href="#%e8%a7%a6%e5%8f%91%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96" aria-label="触发评估和优化">触发评估和优化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%b0%8f%e7%bb%93" aria-label="小结">小结</a><ul>
+                        
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83" aria-label="参考">参考</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="intro">Intro<a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h1>
+<p>过去一段时间，如果尝试过用claude-code 官方的<code>skills-creator</code>构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&gt; 手动跑测试 -&gt; 检查结果” 的循环中。</p>
+<p>直到几天前， 看到了 Anthropic 官方发布的关于 <code>skill-creator</code> 重大更新的文档，给出了一套更加系统、正规和工程化的解法。</p>
+<p>简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。</p>
+<p>借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。</p>
+<p><strong>TL;DR</strong> 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环</p>
+<h1 id="新版本-skill-creator-总览">新版本 SKill-Creator 总览<a hidden class="anchor" aria-hidden="true" href="#新版本-skill-creator-总览">#</a></h1>
+<p>除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：</p>
+<ul>
+<li>
+<p>评估系统</p>
+</li>
+<li>
+<p>优化系统</p>
+</li>
+</ul>
+<p>其中<strong>评估</strong> 包含两个维度：</p>
+<ul>
+<li>
+<p><strong>触发评估 (Trigger Evaluation)</strong>：测试 Skill 的 <code>description</code> 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”</p>
+</li>
+<li>
+<p><strong>功能评估 (Functional Evaluation)</strong>：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度</p>
+</li>
+</ul>
+<p>而优化部分，负责根据评估结果进行自动化或半自动化的改进：</p>
+<ul>
+<li>
+<p>description 优化：自动迭代优化Skills的描述，直至触发率达到预期</p>
+</li>
+<li>
+<p>功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令</p>
+</li>
+</ul>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/Agent-Based%20Data%20Scoring-2026-03-13-084156.png" alt="Agent-Based Data Scoring-2026-03-13-084156.png"  />
+</p>
+<p>为了保证评估的客观性，采用多个subagent 隔离上下文实现进行评测</p>
+<ol>
+<li>
+<p><strong>Executor：</strong> 在隔离环境中并行运行任务，生成执行记录（<a href="transcript.md">transcript.md</a>）和输出文件</p>
+</li>
+<li>
+<p><strong>Grader</strong>：依据预设的断言，从执行记录中寻找证据，判定 PASS/FAIL 并输出 <code>grading.json</code></p>
+</li>
+<li>
+<p><strong>Comparator/Analyzer</strong>：通过 A/B 盲测对比版本优劣，并分析胜出原因，提供可操作的改进建议</p>
+</li>
+</ol>
+<h1 id="评估指标体系"><strong>评估指标体系</strong><a hidden class="anchor" aria-hidden="true" href="#评估指标体系">#</a></h1>
+<h2 id="触发评估指标"><strong>触发评估指标</strong><a hidden class="anchor" aria-hidden="true" href="#触发评估指标">#</a></h2>
+<p>当评估 skill 描述的触发准确性时，使用以下指标：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">指标</th>
+          <th style="text-align: left">计算公式</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>True Positive (TP)</strong></td>
+          <td style="text-align: left">应该触发且确实触发的次数</td>
+          <td style="text-align: left">正确的触发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>False Positive (FP)</strong></td>
+          <td style="text-align: left">不应触发但却触发的次数</td>
+          <td style="text-align: left">错误的触发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>True Negative (TN)</strong></td>
+          <td style="text-align: left">不应触发且确实没触发的次数</td>
+          <td style="text-align: left">正确的不触发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>False Negative (FN)</strong></td>
+          <td style="text-align: left">应该触发但没触发的次数</td>
+          <td style="text-align: left">遗漏的触发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Precision</strong></td>
+          <td style="text-align: left">TP / (TP + FP)</td>
+          <td style="text-align: left">触发时的准确率</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Recall</strong></td>
+          <td style="text-align: left">TP / (TP + FN)</td>
+          <td style="text-align: left">召回率（覆盖率）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Accuracy</strong></td>
+          <td style="text-align: left">(TP + TN) / (TP + TN + FP + FN)</td>
+          <td style="text-align: left">总体准确率</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Trigger Rate</strong></td>
+          <td style="text-align: left">(TP + FP) / Total Runs</td>
+          <td style="text-align: left">实际触发的比例</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>计算示例（run_loop.py lines 154-167）：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_eval_stats</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&#34;should_trigger&#34;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">neg</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="p">[</span><span class="s2">&#34;should_trigger&#34;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算 TP, FN</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&#34;triggers&#34;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pos_runs</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&#34;runs&#34;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fn</span> <span class="o">=</span> <span class="n">pos_runs</span> <span class="o">-</span> <span class="n">tp</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算 FP, TN</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&#34;triggers&#34;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">neg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">neg_runs</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&#34;runs&#34;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">neg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tn</span> <span class="o">=</span> <span class="n">neg_runs</span> <span class="o">-</span> <span class="n">fp</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span> <span class="o">+</span> <span class="n">fp</span> <span class="o">+</span> <span class="n">fn</span>
+</span></span><span class="line"><span class="cl">    <span class="n">precision</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">recall</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span> <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> correct, &#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="sa">f</span><span class="s2">&#34;precision=</span><span class="si">{</span><span class="n">precision</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2"> recall=</span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2"> &#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="sa">f</span><span class="s2">&#34;accuracy=</span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="assertion-评估指标"><strong>Assertion 评估指标</strong><a hidden class="anchor" aria-hidden="true" href="#assertion-评估指标">#</a></h2>
+<p>当评估 skill 的输出质量时，使用以下指标：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">指标</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Pass Rate</strong></td>
+          <td style="text-align: left">通过的断言数 / 总断言数</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Passed</strong></td>
+          <td style="text-align: left">通过的断言数量</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Failed</strong></td>
+          <td style="text-align: left">失败的断言数量</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Total</strong></td>
+          <td style="text-align: left">总断言数量</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="性能指标"><strong>性能指标</strong><a hidden class="anchor" aria-hidden="true" href="#性能指标">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">指标</th>
+          <th style="text-align: left">单位</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Time Seconds</strong></td>
+          <td style="text-align: left">秒</td>
+          <td style="text-align: left">执行时间</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Tokens</strong></td>
+          <td style="text-align: left">个</td>
+          <td style="text-align: left">Token 使用量</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Tool Calls</strong></td>
+          <td style="text-align: left">次</td>
+          <td style="text-align: left">工具调用次数</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Errors</strong></td>
+          <td style="text-align: left">次</td>
+          <td style="text-align: left">遇到的错误数</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>统计聚合</strong></p>
+<pre tabindex="0"><code>{
+  &#34;pass_rate&#34;: {
+    &#34;mean&#34;: 0.85,     // 平均通过率
+    &#34;stddev&#34;: 0.05,   // 标准差
+    &#34;min&#34;: 0.80,      // 最小值
+    &#34;max&#34;: 0.90       // 最大值
+  }
+}
+</code></pre><h2 id="delta-计算"><strong>Delta 计算</strong><a hidden class="anchor" aria-hidden="true" href="#delta-计算">#</a></h2>
+<p>比较两个配置（with_skill vs without_skill）的差异：</p>
+<pre tabindex="0"><code>{
+  &#34;delta&#34;: {
+    &#34;pass_rate&#34;: &#34;+0.50&#34;,        // 通过率提升 50%
+    &#34;time_seconds&#34;: &#34;+13.0&#34;,     // 时间增加 13 秒
+    &#34;tokens&#34;: &#34;+1700&#34;            // Token 增加 1700
+  }
+}
+</code></pre><h1 id="输入层测试集">输入层（测试集）<a hidden class="anchor" aria-hidden="true" href="#输入层测试集">#</a></h1>
+<ul>
+<li>
+<p>Draft Skills：  Skills草稿</p>
+</li>
+<li>
+<p>evals.json 测试用例集（功能测试文件）：评估 skill 的<strong>功能质量</strong>（输出是否正确、完整、有用）而非触发准确性</p>
+</li>
+<li>
+<p>trigger_eval.json 触发评估集 （触发测试文件）：评估 skill 描述的<strong>触发准确性</strong>（该触发时触发，不该触发时不触发）</p>
+</li>
+</ul>
+<p><strong>测试集的构建：半自动生成</strong>， 结合 AI 生成 + 人工审查</p>
+<p><code>evals.json</code>: 位于<skill-directory>/evals/evals.json</p>
+<p>格式如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;skill_name&#34;</span><span class="p">:</span> <span class="s2">&#34;example-skill&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;evals&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;prompt&#34;</span><span class="p">:</span> <span class="s2">&#34;用户任务的提示词，例如：&#39;帮我填写这个 PDF 表单，路径在 ~/Downloads/application.pdf&#39;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;expected_output&#34;</span><span class="p">:</span> <span class="s2">&#34;期望输出的描述，例如：&#39;成功填写 PDF 表单，生成新文件&#39;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;evals/files/sample1.pdf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;evals/files/input_data.json&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;expectations&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;输出包含正确的表单字段值&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;使用了 fill_pdf.py 脚本&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;生成的 PDF 文件存在且可读&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;所有必填字段都已填写&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;prompt&#34;</span><span class="p">:</span> <span class="s2">&#34;另一个测试场景...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;expected_output&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;files&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;expectations&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;...&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>trigger_eval.json</code></p>
+<p>CC会首先生成 20 个触发评估查询, 10个should_trigger=true 的查询（应该触发）， 和10个should_trigger=false 的查询（不应触发）</p>
+<p>而后生成一个<strong>交互式 HTML 界面</strong>（基于 <code>assets/eval_review.html</code>）供<strong>人工审查和编辑</strong></p>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/image.png" alt="image.png"  />
+</p>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/image%201.png" alt="image 1.png"  />
+</p>
+<p>最终结果保存在： <code>&lt;skill-directory&gt;/evals/trigger_evals.json</code></p>
+<p>格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="s2">&#34;hey can you help me fill out this pdf form? its in ~/Downloads/application.pdf and i need to put my name as John Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;should_trigger&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="err">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="s2">&#34;merge these 3 word docs into a single pdf please&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;should_trigger&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="err">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><h1 id="subagent设计">Subagent设计<a hidden class="anchor" aria-hidden="true" href="#subagent设计">#</a></h1>
+<p>整体而言，分为4种角色分工</p>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/Agent-Based%20Data%20Scoring-2026-03-13-084706.png" alt="Agent-Based Data Scoring-2026-03-13-084706.png"  />
+</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Subagent</strong></th>
+          <th style="text-align: left"><strong>职责</strong></th>
+          <th style="text-align: left"><strong>输入</strong></th>
+          <th style="text-align: left"><strong>输出</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Executor</strong></td>
+          <td style="text-align: left">执行</td>
+          <td style="text-align: left">Skill + Prompt</td>
+          <td style="text-align: left">输出文件 + 执行记录</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Grader</strong></td>
+          <td style="text-align: left">打分</td>
+          <td style="text-align: left">输出 + 断言清单</td>
+          <td style="text-align: left">grading.json</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Comparator</strong></td>
+          <td style="text-align: left">盲测比较</td>
+          <td style="text-align: left">输出A + 输出B</td>
+          <td style="text-align: left">comparison.json (胜者)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Analyzer</strong></td>
+          <td style="text-align: left">分析</td>
+          <td style="text-align: left">比较结果 + Skills + 记录</td>
+          <td style="text-align: left">analysis.json</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="executor"><strong>Executor</strong><a hidden class="anchor" aria-hidden="true" href="#executor">#</a></h2>
+<p>Executor 是通过 <strong>CC</strong> 的 Agent tool 直接调用的<strong>subagent</strong> （即默认的general-purpose）</p>
+<p>(from SKILL.md line 169)</p>
+<blockquote>
+<h3 id="step-1-spawn-all-runs-with-skill-and-baseline-in-the-same-turn">Step 1: Spawn all runs (with-skill AND baseline) in the same turn<a hidden class="anchor" aria-hidden="true" href="#step-1-spawn-all-runs-with-skill-and-baseline-in-the-same-turn">#</a></h3>
+<p>For each test case, spawn two subagents in the same turn — one with the skill, one without. This is important: don&rsquo;t spawn the with-skill runs first and then come back for baselines later. Launch everything at once so it all finishes around the same time.</p>
+<p><strong>With-skill run:</strong></p>
+<pre tabindex="0"><code>Execute this task:
+- Skill path: &lt;path-to-skill&gt;
+- Task: &lt;eval prompt&gt;
+- Input files: &lt;eval files if any, or &#34;none&#34;&gt;
+- Save outputs to: &lt;workspace&gt;/iteration-&lt;N&gt;/eval-&lt;ID&gt;/with_skill/outputs/
+- Outputs to save: &lt;what the user cares about — e.g., &#34;the .docx file&#34;, &#34;the final CSV&#34;&gt;
+</code></pre><p><strong>Baseline run</strong> (same prompt, but the baseline depends on context):</p>
+<ul>
+<li>
+<p><strong>Creating a new skill</strong>: no skill at all. Same prompt, no skill path, save to <code>without_skill/outputs/</code>.</p>
+</li>
+<li>
+<p><strong>Improving an existing skill</strong>: the old version. Before editing, snapshot the skill (<code>cp -r &lt;skill-path&gt; &lt;workspace&gt;/skill-snapshot/</code>), then point the baseline subagent at the snapshot. Save to <code>old_skill/outputs/</code>.</p>
+</li>
+</ul>
+<p>Write an <code>eval_metadata.json</code> for each test case (assertions can be empty for now). Give each eval a descriptive name based on what it&rsquo;s testing — not just &ldquo;eval-0&rdquo;. Use this name for the directory too. If this iteration uses new or modified eval prompts, create these files for each new eval directory — don&rsquo;t assume they carry over from previous iterations.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;eval_id&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;eval_name&#34;</span><span class="p">:</span> <span class="s2">&#34;descriptive-name-here&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;prompt&#34;</span><span class="p">:</span> <span class="s2">&#34;The user&#39;s task prompt&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;assertions&#34;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></blockquote>
+<p><strong>&ldquo;spawn</strong> <strong>subagent&rdquo;</strong> = 使用 Claude Code 的 Agent tool 启动子代理</p>
+<p>Executor 是直接被调用的通用子代理， 同一回合内的对照实验</p>
+<ul>
+<li>
+<p><strong>With-skill run</strong>：加载新 Skill，执行任务</p>
+</li>
+<li>
+<p>Baseline run： 不带任何技能， 只凭 Claude 的基础能力执行同样的任务</p>
+</li>
+</ul>
+<p>结果，记录下一份 <code>transcript.md</code>——包含了模型执行了哪些步骤、调用了什么工具、输出了什么中间内容</p>
+<h2 id="grader-agent"><strong>Grader Agent</strong><a hidden class="anchor" aria-hidden="true" href="#grader-agent">#</a></h2>
+<p><code>skill-creator/agents/grader.md</code></p>
+<blockquote>
+<p>Evaluate expectations against an execution transcript and outputs.</p>
+</blockquote>
+<p><strong>独立审计</strong> + <strong>质量控制</strong></p>
+<p>核心任务在于评估技能执行结果是否满足预定义的expectations，通过审查执行transcript和输出文件，对每个期望进行 pass/fail 判断。此外同时支持：</p>
+<ul>
+<li>
+<p>提取并验证隐含声明（implicit claims）</p>
+</li>
+<li>
+<p>评估自身的评估过程（meta-evaluation）</p>
+</li>
+<li>
+<p>提供评估改进建议</p>
+</li>
+</ul>
+<h3 id="工作流程"><strong>工作流程</strong><a hidden class="anchor" aria-hidden="true" href="#工作流程">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">1</span><span class="err">：</span><span class="n">阅读执行记录</span> <span class="p">(</span><span class="n">Transcript</span><span class="p">)</span><span class="err">：</span><span class="n">通读执行过程</span><span class="err">，</span><span class="n">了解执行者遇到了什么提示</span><span class="err">、</span><span class="n">采取了什么步骤以及最终结果</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">2</span><span class="err">：</span><span class="n">检查输出文件</span> <span class="p">(</span><span class="n">Outputs</span><span class="p">)</span><span class="err">：</span><span class="n">深入输出目录</span><span class="err">，</span><span class="n">不仅看执行记录怎么说</span><span class="err">，</span><span class="n">还要亲自</span><span class="err">（</span><span class="n">使用工具</span><span class="err">）</span><span class="n">检查文件的实际内容和质量</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">3</span><span class="err">：</span><span class="n">评估各项预期</span> <span class="p">(</span><span class="n">Evaluate</span> <span class="n">Assertions</span><span class="p">)</span><span class="err">：</span><span class="n">逐一核对预设的期望条件</span><span class="err">，</span><span class="n">寻找确凿证据来判定是</span> <span class="n">PASS</span><span class="err">（</span><span class="n">通过</span><span class="err">）</span><span class="n">还是</span> <span class="n">FAIL</span><span class="err">（</span><span class="n">失败</span><span class="err">），</span><span class="n">并拒绝仅停留在表面的</span><span class="err">“</span><span class="n">伪合规</span><span class="err">”。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">4</span><span class="err">：</span><span class="n">提取并验证声明</span> <span class="p">(</span><span class="n">Verify</span> <span class="n">Claims</span><span class="p">)</span><span class="err">：</span><span class="n">除了预设条件</span><span class="err">，</span><span class="n">它还会主动从执行记录和输出中提取事实</span><span class="err">、</span><span class="n">流程和质量相关的</span><span class="err">“</span><span class="n">隐性声明</span><span class="err">”，</span><span class="n">并验证其真伪</span><span class="err">，</span><span class="n">以抓住预设条件可能漏掉的问题</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">5</span><span class="err">：</span><span class="n">阅读用户笔记</span> <span class="p">(</span><span class="n">User</span> <span class="n">Notes</span><span class="p">)</span><span class="err">：</span><span class="n">如果存在用户笔记</span><span class="err">，</span><span class="n">它会读取并提取执行者标记的不确定性或遇到的问题</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">6</span><span class="err">：</span><span class="n">审视评估标准</span> <span class="p">(</span><span class="n">Critique</span> <span class="n">the</span> <span class="n">Evals</span><span class="p">)</span><span class="err">：</span><span class="n">站在更高的维度</span><span class="err">，</span><span class="n">指出哪些</span><span class="err">“</span><span class="n">考题</span><span class="err">”</span><span class="n">太容易通过</span><span class="err">（</span><span class="n">例如只检查了文件名而没检查内容</span><span class="err">），</span><span class="n">或者哪些重要结果根本没有被考察到</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">步骤</span> <span class="mi">7</span> <span class="o">&amp;</span> <span class="mi">8</span><span class="err">：</span><span class="n">整合数据并输出</span><span class="err">：</span><span class="n">读取执行指标</span><span class="err">（</span><span class="n">如工具调用次数</span><span class="err">）</span><span class="n">和耗时数据</span><span class="err">，</span><span class="n">最后将所有结果写入一个结构化的</span> <span class="n">JSON</span> <span class="n">文件中</span>
+</span></span></code></pre></div><h3 id="输入参数"><strong>输入参数</strong><a hidden class="anchor" aria-hidden="true" href="#输入参数">#</a></h3>
+<pre tabindex="0"><code>expectations: 期望列表（从 evals.json 获取）
+transcript_path: 执行transcript记录路径
+outputs_dir: 输出文件目录
+</code></pre><h3 id="输出格式"><strong>输出格式</strong><a hidden class="anchor" aria-hidden="true" href="#输出格式">#</a></h3>
+<p>生成 <code>{outputs_dir}/../grading.json</code>：</p>
+<pre tabindex="0"><code>{
+    &#34;expectations&#34;: [
+      {
+        &#34;text&#34;: &#34;原始断言文本&#34;,
+        &#34;passed&#34;: true/false,
+        &#34;evidence&#34;: &#34;支持判断的具体引用或描述&#34;
+      }
+    ],
+    &#34;summary&#34;: {
+      &#34;passed&#34;: 2,
+      &#34;failed&#34;: 1,
+      &#34;total&#34;: 3,
+      &#34;pass_rate&#34;: 0.67
+    },
+    &#34;claims&#34;: [...],
+    &#34;eval_feedback&#34;: {
+      &#34;suggestions&#34;: [...],
+      &#34;overall&#34;: &#34;对评估设计的整体评价&#34;
+    }
+  }
+</code></pre><p>评分标准</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">**</span><span class="n">PASS</span> <span class="n">when</span><span class="o">**</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">The</span> <span class="n">transcript</span> <span class="ow">or</span> <span class="n">outputs</span> <span class="n">clearly</span> <span class="n">demonstrate</span> <span class="n">the</span> <span class="n">expectation</span> <span class="ow">is</span> <span class="n">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">Specific</span> <span class="n">evidence</span> <span class="n">can</span> <span class="n">be</span> <span class="n">cited</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">The</span> <span class="n">evidence</span> <span class="n">reflects</span> <span class="n">genuine</span> <span class="n">substance</span><span class="p">,</span> <span class="ow">not</span> <span class="n">just</span> <span class="n">surface</span> <span class="n">compliance</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">a</span> <span class="n">file</span> <span class="n">exists</span> <span class="n">AND</span> <span class="n">contains</span> <span class="n">correct</span> <span class="n">content</span><span class="p">,</span> <span class="ow">not</span> <span class="n">just</span> <span class="n">the</span> <span class="n">right</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">**</span><span class="n">FAIL</span> <span class="n">when</span><span class="o">**</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">No</span> <span class="n">evidence</span> <span class="n">found</span> <span class="k">for</span> <span class="n">the</span> <span class="n">expectation</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">Evidence</span> <span class="n">contradicts</span> <span class="n">the</span> <span class="n">expectation</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">The</span> <span class="n">expectation</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">verified</span> <span class="kn">from</span> <span class="nn">available</span> <span class="n">information</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">The</span> <span class="n">evidence</span> <span class="ow">is</span> <span class="n">superficial</span> <span class="err">—</span> <span class="n">the</span> <span class="n">assertion</span> <span class="ow">is</span> <span class="n">technically</span> <span class="n">satisfied</span> <span class="n">but</span> <span class="n">the</span> <span class="n">underlying</span> <span class="n">task</span> <span class="n">outcome</span> <span class="ow">is</span> <span class="n">wrong</span> <span class="ow">or</span> <span class="n">incomplete</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">The</span> <span class="n">output</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">meet</span> <span class="n">the</span> <span class="n">assertion</span> <span class="n">by</span> <span class="n">coincidence</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">by</span> <span class="n">actually</span> <span class="n">doing</span> <span class="n">the</span> <span class="n">work</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">**</span><span class="n">When</span> <span class="n">uncertain</span><span class="o">**</span><span class="p">:</span> <span class="n">The</span> <span class="n">burden</span> <span class="n">of</span> <span class="n">proof</span> <span class="n">to</span> <span class="k">pass</span> <span class="ow">is</span> <span class="n">on</span> <span class="n">the</span> <span class="n">expectation</span><span class="o">.</span>
+</span></span></code></pre></div><p>（Step 4: Extract and Verify Claims）</p>
+<blockquote>
+<p>Beyond the predefined expectations, extract implicit claims from the outputs and verify them</p>
+</blockquote>
+<p>即Hallucination 检查。</p>
+<p>“隐性声明（implicit claims）”: 除了expectations 之外的检查项，Agent在执行时产生的statements（顺口吐露的陈述？）</p>
+<p>由于这些 statements 不在 Rubric 里，传统测试会之间跳过。而Step4  Grader 会逐个检查agent的statements是否存在幻觉或者是撒谎的情况。</p>
+<p>implicit claims被大致分成：</p>
+<ul>
+<li>
+<p>Factual claims： 事实层面；如agent claims “该表单包含 12 个字段”， 则Grader需要亲自去数</p>
+</li>
+<li>
+<p>Process claims： 流程层面； 如 agent claims “使用了 pypdf 库来填写这个表单“, 则Grader需要检查日志或者代码，避免出现“假装自己调用了” 的情况</p>
+</li>
+<li>
+<p>Quality claims： 质量层面； 当Agent 自信地claims“所有必填字段都已正确填写”， Grader必须检查一下是否属实。</p>
+</li>
+</ul>
+<p>（Step 6: Critique the Evals）</p>
+<blockquote>
+<p>Good assertions test meaningful outcomes — assertions that are hard to satisfy without actually doing the work correctly.</p>
+</blockquote>
+<p>好的测试用例（断言）应该考察那些有实质意义的结果。在评判完执行表现后，反过来评判测试用例本身的质量（只有在发现“明显的差距（clear gap）”时才提出建议）。</p>
+<p>好的建议应该指向那些能测试meaningful outcomes的断言：确保测试具备“区分度”。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">-</span> <span class="n">An</span> <span class="n">assertion</span> <span class="n">that</span> <span class="n">passed</span> <span class="n">but</span> <span class="n">would</span> <span class="n">also</span> <span class="k">pass</span> <span class="k">for</span> <span class="n">a</span> <span class="n">clearly</span> <span class="n">wrong</span> <span class="n">output</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">checking</span> <span class="n">filename</span> <span class="n">existence</span> <span class="n">but</span> <span class="ow">not</span> <span class="n">file</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">An</span> <span class="n">important</span> <span class="n">outcome</span> <span class="n">you</span> <span class="n">observed</span> <span class="err">—</span> <span class="n">good</span> <span class="ow">or</span> <span class="n">bad</span> <span class="err">—</span> <span class="n">that</span> <span class="n">no</span> <span class="n">assertion</span> <span class="n">covers</span> <span class="n">at</span> <span class="nb">all</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">An</span> <span class="n">assertion</span> <span class="n">that</span> <span class="n">can</span><span class="s1">&#39;t actually be verified from the available outputs</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>防止Anti-Shortcut： 标准太低agent容易只看重表面合规；</p>
+</li>
+<li>
+<p>检查盲区：审查输出时，观察到了某个非常重要好的（或坏的）结果，但现有的所有断言都没有对这个结果进行考察</p>
+</li>
+<li>
+<p>无足够信息判断真伪</p>
+</li>
+</ul>
+<p>简单来说，Grader Agent不是简单地打分，而是：Evaluate → Verify Claims → Critique Evals → 数据整合结构化输出（包括性能指标） 的流程。</p>
+<h2 id="comparator-agent">Comparator Agent<a hidden class="anchor" aria-hidden="true" href="#comparator-agent">#</a></h2>
+<p>盲测比较。</p>
+<p>核心任务在于：<strong>盲比较两个输出，判断哪个更好</strong> —— 不知道 A/B 分别来自哪个 skill，避免偏见</p>
+<h3 id="工作流程-1"><strong>工作流程</strong><a hidden class="anchor" aria-hidden="true" href="#工作流程-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">读取输出</span> <span class="p">(</span><span class="n">Read</span> <span class="n">Both</span> <span class="n">Outputs</span><span class="p">)</span><span class="err">：</span><span class="n">检查</span> <span class="n">A</span> <span class="n">和</span> <span class="n">B</span> <span class="n">的文件或目录</span><span class="err">，</span><span class="n">并注意其类型</span><span class="err">、</span><span class="n">结构和内容</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">理解任务</span> <span class="p">(</span><span class="n">Understand</span> <span class="n">the</span> <span class="n">Task</span><span class="p">)</span><span class="err">：</span><span class="n">仔细阅读</span> <span class="n">eval_prompt</span><span class="err">，</span><span class="n">明确任务要求生成的产物</span><span class="err">，</span><span class="n">以及区分好坏输出的关键质量指标</span><span class="err">（</span><span class="n">如准确性</span><span class="err">、</span><span class="n">完整性</span><span class="err">、</span><span class="n">格式等</span><span class="err">）。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">生成评估矩阵</span> <span class="p">(</span><span class="n">Generate</span> <span class="n">Evaluation</span> <span class="n">Rubric</span><span class="p">)</span><span class="err">：</span><span class="n">基于具体任务</span><span class="err">，</span><span class="n">动态生成</span><span class="err">“</span><span class="n">内容</span><span class="err">”</span><span class="n">和</span><span class="err">“</span><span class="n">结构</span><span class="err">”</span><span class="n">两个维度的评分标准</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">依据矩阵评估</span> <span class="p">(</span><span class="n">Evaluate</span> <span class="n">Each</span> <span class="n">Output</span><span class="p">)</span><span class="err">：</span><span class="n">针对</span> <span class="n">A</span> <span class="n">和</span> <span class="n">B</span><span class="err">，</span><span class="n">对矩阵中的每项标准进行</span> <span class="mi">1</span><span class="o">-</span><span class="mi">5</span> <span class="n">分的打分</span><span class="err">，</span><span class="n">并计算出</span> <span class="mi">1</span><span class="o">-</span><span class="mi">10</span> <span class="n">分制的总分</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">检查断言</span> <span class="p">(</span><span class="n">Check</span> <span class="n">Assertions</span><span class="p">)</span><span class="err">：</span><span class="n">如果输入包含了</span> <span class="n">expectations</span><span class="err">，</span><span class="n">则分别针对</span> <span class="n">A</span> <span class="n">和</span> <span class="n">B</span> <span class="n">检查这些断言</span><span class="err">，</span><span class="n">计算通过率作为辅助证据</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">确定获胜者</span> <span class="p">(</span><span class="n">Determine</span> <span class="n">the</span> <span class="n">Winner</span><span class="p">)</span><span class="err">：</span><span class="n">按优先级决定胜者</span><span class="err">。</span><span class="n">首要依据是评估矩阵的总分</span><span class="err">，</span><span class="n">次要依据是断言通过率</span><span class="err">，</span><span class="n">如果两者真实水平完全相等才宣布平局</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">写入结果</span> <span class="p">(</span><span class="n">Write</span> <span class="n">Comparison</span> <span class="n">Results</span><span class="p">)</span><span class="err">：</span><span class="n">将比较结果保存为指定的</span> <span class="n">JSON</span> <span class="n">文件</span><span class="err">。</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># comparator.md 输入参数</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;output_a_path&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>      <span class="c1"># 匿名输出 A</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;output_b_path&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>      <span class="c1"># 匿名输出 B</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;eval_prompt&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>        <span class="c1"># 原始任务</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;expectations&#34;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>        <span class="c1"># 期望列表（可选）</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>评分 Rubric：</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">维度</th>
+          <th style="text-align: left">1 (Poor)</th>
+          <th style="text-align: left">3 (Acceptable)</th>
+          <th style="text-align: left">5 (Excellent)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Content</strong></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Correctness</td>
+          <td style="text-align: left">Major errors</td>
+          <td style="text-align: left">Minor errors</td>
+          <td style="text-align: left">Fully correct</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Completeness</td>
+          <td style="text-align: left">Missing key elements</td>
+          <td style="text-align: left">Mostly complete</td>
+          <td style="text-align: left">All elements present</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Accuracy</td>
+          <td style="text-align: left">Significant inaccuracies</td>
+          <td style="text-align: left">Minor inaccuracies</td>
+          <td style="text-align: left">Accurate throughout</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Structure</strong></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Organization</td>
+          <td style="text-align: left">Disorganized</td>
+          <td style="text-align: left">Reasonably organized</td>
+          <td style="text-align: left">Clear, logical</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Formatting</td>
+          <td style="text-align: left">Inconsistent/broken</td>
+          <td style="text-align: left">Mostly consistent</td>
+          <td style="text-align: left">Professional</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Usability</td>
+          <td style="text-align: left">Difficult to use</td>
+          <td style="text-align: left">Usable with effort</td>
+          <td style="text-align: left">Easy to use</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="输出格式-1"><strong>输出格式</strong><a hidden class="anchor" aria-hidden="true" href="#输出格式-1">#</a></h3>
+<p>生成 <code>comparison.json</code>：</p>
+<pre tabindex="0"><code>{
+  &#34;winner&#34;: &#34;A&#34; | &#34;B&#34; | &#34;TIE&#34;,
+  &#34;reasoning&#34;: &#34;获胜原因说明&#34;,
+  &#34;rubric&#34;: {
+    &#34;content_criteria&#34;: {
+      &#34;correctness&#34;: {&#34;a_score&#34;: 4, &#34;b_score&#34;: 5, &#34;notes&#34;: &#34;...&#34;},
+      &#34;completeness&#34;: {&#34;a_score&#34;: 3, &#34;b_score&#34;: 4, &#34;notes&#34;: &#34;...&#34;},
+      &#34;accuracy&#34;: {&#34;a_score&#34;: 5, &#34;b_score&#34;: 4, &#34;notes&#34;: &#34;...&#34;}
+    },
+    &#34;structure_criteria&#34;: {
+      &#34;organization&#34;: {&#34;a_score&#34;: 4, &#34;b_score&#34;: 3, &#34;notes&#34;: &#34;...&#34;},
+      &#34;formatting&#34;: {&#34;a_score&#34;: 5, &#34;b_score&#34;: 4, &#34;notes&#34;: &#34;...&#34;},
+      &#34;usability&#34;: {&#34;a_score&#34;: 4, &#34;b_score&#34;: 5, &#34;notes&#34;: &#34;...&#34;}
+    }
+  },
+  &#34;overall_scores&#34;: {
+    &#34;a_score&#34;: 8.2,
+    &#34;b_score&#34;: 8.5
+  },
+  &#34;output_quality&#34;: {
+    &#34;a_strengths&#34;: [&#34;优势1&#34;, &#34;优势2&#34;],
+    &#34;a_weaknesses&#34;: [&#34;劣势1&#34;, &#34;劣势2&#34;],
+    &#34;b_strengths&#34;: [&#34;优势1&#34;, &#34;优势2&#34;],
+    &#34;b_weaknesses&#34;: [&#34;劣势1&#34;, &#34;劣势2&#34;]
+  },
+  &#34;expectation_results&#34;: {
+    &#34;a_pass_rate&#34;: 0.8,
+    &#34;b_pass_rate&#34;: 0.9,
+    &#34;details&#34;: [...]
+  }
+}
+</code></pre><p>设计哲学：</p>
+<p>为了确保评判完全客观且基于输出质量本身，采用Blindness（双盲）的设计，确保Agent在评估时只能基于输出结果本身。</p>
+<p>同时依靠评估Rubric，避免完全的主观评分。并将Overall rubric score（综合结果）作为首要的决策依据，而非单独Expectation scores，避免hacking情况发生。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">### Step 6: Determine the Winner</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Compare</span> <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span> <span class="n">based</span> <span class="n">on</span> <span class="p">(</span><span class="ow">in</span> <span class="n">priority</span> <span class="n">order</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">1.</span> <span class="o">**</span><span class="n">Primary</span><span class="o">**</span><span class="p">:</span> <span class="n">Overall</span> <span class="n">rubric</span> <span class="n">score</span> <span class="p">(</span><span class="n">content</span> <span class="o">+</span> <span class="n">structure</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="o">**</span><span class="n">Secondary</span><span class="o">**</span><span class="p">:</span> <span class="n">Assertion</span> <span class="k">pass</span> <span class="n">rates</span> <span class="p">(</span><span class="k">if</span> <span class="n">applicable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="o">**</span><span class="n">Tiebreaker</span><span class="o">**</span><span class="p">:</span> <span class="n">If</span> <span class="n">truly</span> <span class="n">equal</span><span class="p">,</span> <span class="n">declare</span> <span class="n">a</span> <span class="n">TIE</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Be</span> <span class="n">decisive</span> <span class="o">-</span> <span class="n">ties</span> <span class="n">should</span> <span class="n">be</span> <span class="n">rare</span><span class="o">.</span> <span class="n">One</span> <span class="n">output</span> <span class="ow">is</span> <span class="n">usually</span> <span class="n">better</span><span class="p">,</span> <span class="n">even</span> <span class="k">if</span> <span class="n">marginally</span><span class="o">.</span>
+</span></span></code></pre></div><h2 id="analyzer-agent"><strong>Analyzer Agent</strong><a hidden class="anchor" aria-hidden="true" href="#analyzer-agent">#</a></h2>
+<p>针对skills迭代优化而设计的复盘agent，通过深入执行中的细节，找出成功失败的根本原因，并输出如何修改的建议。</p>
+<p>主要分为两大核心任务：</p>
+<ul>
+<li>
+<p><strong>盲测复盘 (Blind Comparison Analysis)</strong>：在两个不同版本的Skills（Winner vs. Loser）决出胜负后，对它们进行“揭盲”分析。通过对比两者的指令、工具和执行记录，找出胜者的制胜关键，并为败者提供<strong>改进方案</strong>。</p>
+</li>
+<li>
+<p><strong>基准测试模式挖掘 (Benchmark Pattern Analysis)</strong>：在批量基准测试后，挖掘汇总数据背后的规律和异常</p>
+</li>
+</ul>
+<p>对于<strong>盲测复盘</strong>模式</p>
+<p><strong>分析过程：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="n">读取</span> <span class="n">comparison</span><span class="o">.</span><span class="n">json</span><span class="err">（</span><span class="n">谁赢了</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="n">Unblind</span><span class="err">：</span><span class="n">确定</span> <span class="n">A</span> <span class="n">和</span> <span class="n">B</span> <span class="n">分别是哪个技能</span>
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="n">读取两个技能定义文件</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.</span> <span class="n">读取两个执行成绩单</span>
+</span></span><span class="line"><span class="cl"><span class="mf">5.</span> <span class="n">对比分析</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl">   <span class="o">-</span> <span class="n">指令遵循度</span>
+</span></span><span class="line"><span class="cl">   <span class="o">-</span> <span class="n">执行策略差异</span>
+</span></span><span class="line"><span class="cl">   <span class="o">-</span> <span class="n">工具使用模式</span>
+</span></span><span class="line"><span class="cl"><span class="mf">6.</span> <span class="n">归因分析</span><span class="err">：</span><span class="n">赢家为什么赢</span><span class="err">？</span>
+</span></span><span class="line"><span class="cl"><span class="mf">7.</span> <span class="n">生成改进建议</span><span class="err">（</span><span class="n">优先级排序</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.</span> <span class="n">输出</span> <span class="n">analysis</span><span class="o">.</span><span class="n">json</span>
+</span></span></code></pre></div><p><strong>输出格式：</strong> 生成 <code>analysis.json</code></p>
+<pre tabindex="0"><code>{
+  &#34;comparison_summary&#34;: {
+    &#34;winner&#34;: &#34;skill-v2&#34;,
+    &#34;loser&#34;: &#34;skill-v1&#34;,
+    &#34;score_difference&#34;: 1.5,
+    &#34;key_differentiator&#34;: &#34;更详细的指令&#34;
+  },
+  &#34;winner_strengths&#34;: [
+    &#34;明确的步骤分解&#34;,
+    &#34;更好的错误处理指导&#34;,
+    &#34;清晰的输出格式要求&#34;
+  ],
+  &#34;loser_weaknesses&#34;: [
+    &#34;指令过于抽象&#34;,
+    &#34;缺少具体例子&#34;,
+    &#34;未说明边界情况处理&#34;
+  ],
+  &#34;instruction_following&#34;: {
+    &#34;winner_score&#34;: 9,
+    &#34;loser_score&#34;: 6,
+    &#34;notes&#34;: &#34;赢家更准确地遵循了技能定义&#34;
+  },
+  &#34;improvement_suggestions&#34;: [
+    {
+      &#34;priority&#34;: &#34;HIGH&#34;,
+      &#34;category&#34;: &#34;指令清晰度&#34;,
+      &#34;suggestion&#34;: &#34;添加步骤分解和具体示例&#34;,
+      &#34;expected_impact&#34;: &#34;提高输出质量和一致性&#34;
+    },
+    {
+      &#34;priority&#34;: &#34;MEDIUM&#34;,
+      &#34;category&#34;: &#34;错误处理&#34;,
+      &#34;suggestion&#34;: &#34;明确说明边界情况处理策略&#34;,
+      &#34;expected_impact&#34;: &#34;减少失败率&#34;
+    },
+    {
+      &#34;priority&#34;: &#34;LOW&#34;,
+      &#34;category&#34;: &#34;格式化&#34;,
+      &#34;suggestion&#34;: &#34;统一输出格式要求&#34;,
+      &#34;expected_impact&#34;: &#34;改善可读性&#34;
+    }
+  ],
+  &#34;transcript_insights&#34;: {
+    &#34;winner_patterns&#34;: [&#34;使用了更多工具&#34;, &#34;更系统的探索&#34;],
+    &#34;loser_patterns&#34;: [&#34;跳过了某些步骤&#34;, &#34;过早结束&#34;]
+  }
+}
+</code></pre><p>对于Benchmark 模式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="n">读取</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">json</span><span class="err">（</span><span class="n">聚合数据</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="n">分析每个期望的通过率和方差</span>
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="n">识别模式</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl">   <span class="o">-</span> <span class="n">稳定期望</span> <span class="n">vs</span> <span class="n">不稳定期望</span>
+</span></span><span class="line"><span class="cl">   <span class="o">-</span> <span class="n">简单任务</span> <span class="n">vs</span> <span class="n">困难任务</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.</span> <span class="n">分析指标趋势</span><span class="err">（</span><span class="n">时间</span><span class="err">、</span><span class="n">token</span><span class="err">、</span><span class="n">工具</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="mf">5.</span> <span class="n">检测异常和离群值</span>
+</span></span><span class="line"><span class="cl"><span class="mf">6.</span> <span class="n">生成观察列表</span><span class="err">（</span><span class="n">基于数据的洞察</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="mf">7.</span> <span class="n">输出观察数组</span>
+</span></span></code></pre></div><p>benchmark.json 来源于aggregate_benchmark.py，通过脚本生成汇总报告。</p>
+<p>在 Benchmark 分析中，更关注于方差和异常点。</p>
+<h1 id="评估与优化流程">评估与优化流程<a hidden class="anchor" aria-hidden="true" href="#评估与优化流程">#</a></h1>
+<p>Skill 评估分为两个独立的流程：</p>
+<ol>
+<li>
+<p><strong>功能评估</strong>：测试 skill 的输出质量（使用 evals.json）</p>
+</li>
+<li>
+<p><strong>触发评估</strong>：测试 skill 描述的触发准确性（使用 trigger_eval.json）</p>
+</li>
+</ol>
+<h2 id="功能评估和优化"><strong>功能评估和优化</strong><a hidden class="anchor" aria-hidden="true" href="#功能评估和优化">#</a></h2>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/Agent-Based%20Data%20Scoring-2026-03-15-081114.png" alt="Agent-Based Data Scoring-2026-03-15-081114.png"  />
+</p>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/Agent-Based%20Data%20Scoring-2026-03-12-062253.png" alt="Agent-Based Data Scoring-2026-03-12-062253.png"  />
+</p>
+<p>生成测试用例 → Executor →Grade → analyzer → (comparator) → Human-Review → 迭代 → …</p>
+<p>对于功能优化而言，需要 CC + 用户协作（因为涉及理解任务、判断输出质量、决策如何改进）</p>
+<h2 id="触发评估和优化"><strong>触发评估和优化</strong><a hidden class="anchor" aria-hidden="true" href="#触发评估和优化">#</a></h2>
+<p><img loading="lazy" src="/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/Agent-Based%20Data%20Scoring-2026-03-12-063021.png" alt="Agent-Based Data Scoring-2026-03-12-063021.png"  />
+</p>
+<p>在后台运行 <code>scripts.run_loop</code> 脚本，将测试集划分为 60% 的训练集和 40% 的测试集，多次测试当前的描述（每个查询跑 3 次以获得稳定的触发率），并让 CC 根据失败的案例提出改进描述的建议。</p>
+<p>最多会迭代 5 次。完成后，系统会生成一份 HTML 报告，并根据测试集的得分（为了防止过拟合）输出一个 <code>best_description</code></p>
+<p>相比之下，触发优化完全交给脚本自动跑（因为只是改一段描述文字，task单纯）。</p>
+<p>几个核心脚本：</p>
+<p><code>run_eval.py</code></p>
+<p>触发评估；</p>
+<ul>
+<li>
+<p>使用 <code>claude -p</code> 执行查询并监控 stream events</p>
+</li>
+<li>
+<p>通过 <code>content_block_start</code> 事件早期检测触发</p>
+</li>
+<li>
+<p>支持并行执行以提高效率</p>
+</li>
+</ul>
+<p><code>run_loop.py</code></p>
+<p>将 eval 和 improve 串联成迭代循环，直到全部通过或达到最大迭代次数。</p>
+<p><strong>核心逻辑</strong>：</p>
+<ul>
+<li>
+<p><strong>Train/Test</strong> <strong>分割</strong>：支持 holdout 机制（默认 40%），防止过拟合</p>
+</li>
+<li>
+<p>迭代执行：</p>
+<ul>
+<li>
+<p>运行 eval（train + test）</p>
+</li>
+<li>
+<p>如果 train 全部通过 → 结束</p>
+</li>
+<li>
+<p>否则，调用 improve_description 生成新 description</p>
+</li>
+<li>
+<p>继续下一轮</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>防过拟合设计</strong>：向 improve 提供 history 时会隐藏 test 分数</p>
+</li>
+<li>
+<p><strong>最佳结果选择</strong>：根据 test 分数（或 train 分数）选择历史最佳 description</p>
+</li>
+<li>
+<p>实时生成 HTML 报告，自动打开浏览器展示进度</p>
+</li>
+</ul>
+<p><code>improve_description.py</code></p>
+<p>描述优化: 根据评估失败的案例，调用 Claude 生成改进后的 skill description</p>
+<p><strong>核心逻辑</strong>：</p>
+<ul>
+<li>
+<p>分析 eval 结果，分类出：</p>
+<ul>
+<li>
+<p><strong>Failed</strong> <strong>triggers</strong>：应该触发但没触发</p>
+</li>
+<li>
+<p><strong>False</strong> <strong>triggers</strong>：不该触发但触发了</p>
+</li>
+</ul>
+</li>
+<li>
+<p>构建详细的 prompt，包含：</p>
+<ul>
+<li>
+<p>当前 description</p>
+</li>
+<li>
+<p>失败案例分析</p>
+</li>
+<li>
+<p>历史尝试记录（防止重复）</p>
+</li>
+<li>
+<p>Skill 完整内容（供参考）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>调用 claude -p 生成新的 description</p>
+</li>
+<li>
+<p>如果生成超过 1024 字符限制，会自动重写</p>
+</li>
+</ul>
+<h1 id="小结">小结<a hidden class="anchor" aria-hidden="true" href="#小结">#</a></h1>
+<p>回顾新版 skill-creator 的重构， 其代表了 Agent 开发模式从手动调优（Prompt Engineering）向评估驱动工程（Eval-Driven Engineering）的范式转变 （或者也可以叫做Harness-Engineering）。</p>
+<p>几个具借鉴意义的设计理念：</p>
+<p><strong>物理隔离确保客观性</strong>：通过 Subagent 机制严格隔离上下文，避免了主 Agent 与 Subagent 之间、不同测试用例之间的 Context 污染，保证了评估的绝对公平</p>
+<p><strong>不只是LLM-as-a-judge</strong>：Grader 不仅只是核对Rubric打分，还会主动提取隐性声明（Implicit Claims）做事实核查。它甚至会反向审视测试用例本身的合理性（Critique Evals），有效防止了 Agent hacking。</p>
+<p><strong>双盲去偏见</strong>：A/B 双盲比较确保评判基于输出质量本身。</p>
+<p><strong>非单一指标</strong>： 不仅关注最终的成功率，还将方差、异常值、Token 消耗等性能指标纳入考量。</p>
+<p>不可否认，目前的自动化仍有边界。当前系统仅能实现 Skill 描述的自动迭代。由于功能逻辑的复杂性，Skill Body 的指令与代码优化依然高度依赖人机协作（Human-in-the-loop）。完全依靠一次交互实现 100% 的能力进阶仍不现实。</p>
+<p>但也至少指明了方向。</p>
+<h2 id="参考">参考<a hidden class="anchor" aria-hidden="true" href="#参考">#</a></h2>
+<p><a href="https://claude.com/blog/improving-skill-creator-test-measure-and-refine-agent-skills">claude-blog: improving-skill-creator-test-measure-and-refine-agent-skills</a></p>
+<p><a href="https://github.com/anthropics/skills/tree/main/skills/skill-creator">skill-creator</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/eval/">Eval</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Agent Infra: sandbox技术和选型</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on x"
+            href="https://x.com/intent/tweet/?text=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f&amp;hashtags=Eval%2cAgent">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f&amp;title=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96&amp;summary=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f&title=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on telegram"
+            href="https://telegram.me/share/url?text=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96&u=https%3a%2f%2fniraya666.github.io%2fposts%2f%25E5%2591%258A%25E5%2588%25AB%25E6%2589%258B%25E5%258A%25A8%25E4%25BC%2598%25E5%258C%2596%25E4%25BB%258E%25E6%2596%25B0%25E7%2589%2588-skill-creator-%25E7%259C%258B-agent-skills%25E7%259A%2584%25E5%25B7%25A5%25E7%25A8%258B%25E5%258C%2596%25E8%25AF%2584%25E4%25BC%25B0%25E5%2592%258C%25E4%25BC%2598%25E5%258C%2596%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
