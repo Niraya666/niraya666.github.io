@@ -11,12 +11,12 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Mar 2026 21:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 15:38:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化</title>
       <link>https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</link>
-      <pubDate>Sun, 15 Mar 2026 21:38:00 +0800</pubDate>
+      <pubDate>Mon, 30 Mar 2026 15:38:00 +0800</pubDate>
       <guid>https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</guid>
       <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;过去一段时间，如果尝试过用claude-code 官方的&lt;code&gt;skills-creator&lt;/code&gt;构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&amp;gt; 手动跑测试 -&amp;gt; 检查结果” 的循环中。&lt;/p&gt;
@@ -54,6 +54,25 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e5%91%8a%e5%88%ab%e6%89%8b%e5%8a%a8%e4%bc%98%e5%8c%96%ef%bc%9a%e4%bb%8e%e6%96%b0%e7%89%88%20Skill-creator%20%e7%9c%8b%20Agent%20Skills%e7%9a%84%e5%b7%a5%e7%a8%8b%e5%8c%96%e8%af%84%e4%bc%b0%e5%92%8c%e4%bc%98%e5%8c%96-assets/Agent-Based%20Data%20Scoring-2026-03-13-084156.png&#34; alt=&#34;Agent-Based Data Scoring-2026-03-13-084156.png&#34;  /&gt;
 &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2026-03 月刊</title>
+      <link>https://niraya666.github.io/monthly/2603_monthly/</link>
+      <pubDate>Mon, 30 Mar 2026 15:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2603_monthly/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.minimaxi.com/news/minimax-m27-zh&#34;&gt;MiniMax M2.7&lt;/a&gt;: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现&amp;quot;模型自我进化&amp;quot;的闭环&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2603.15031&#34;&gt;Attention Residuals&lt;/a&gt;: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层&amp;quot;信息稀释&amp;quot;问题&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/&#34;&gt;Gemini Embedding-002&lt;/a&gt;: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://openai.com/index/introducing-gpt-5-4/&#34;&gt;GPT-5.4&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;值得关注的开源项目&#34;&gt;值得关注的开源项目&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/karpathy/autoresearch&#34;&gt;karpathy/autoresearch&lt;/a&gt;: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/bytedance/deer-flow&#34;&gt;bytedance/deer-flow&lt;/a&gt;: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/letta-ai/claude-subconscious&#34;&gt;letta-ai/claude-subconscious&lt;/a&gt;: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前&amp;quot;低语&amp;quot;指导&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/supermemoryai/supermemory&#34;&gt;supermemoryai/supermemory&lt;/a&gt;: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/jackwener/opencli&#34;&gt;jackwener/opencli&lt;/a&gt;: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50+ 网站和桌面应用&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/koala73/worldmonitor&#34;&gt;koala73/worldmonitor&lt;/a&gt;: AI 驱动的实时全球情报仪表盘，435+ 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI&lt;/p&gt;</description>
     </item>
     <item>
       <title>2026-02 月刊</title>

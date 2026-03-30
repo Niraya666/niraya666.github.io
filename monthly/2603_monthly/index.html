@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-03 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊, Agent, Self-Evolution">
+<meta name="description" content="值得关注的模型和新技术
+MiniMax M2.7: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现&quot;模型自我进化&quot;的闭环
+Attention Residuals: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层&quot;信息稀释&quot;问题
+Gemini Embedding-002: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间
+GPT-5.4
+
+值得关注的开源项目
+karpathy/autoresearch: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验
+bytedance/deer-flow: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server
+letta-ai/claude-subconscious: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前&quot;低语&quot;指导
+supermemoryai/supermemory: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成
+jackwener/opencli: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50&#43; 网站和桌面应用
+koala73/worldmonitor: AI 驱动的实时全球情报仪表盘，435&#43; 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2603_monthly/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/monthly/2603_monthly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2026-03 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+MiniMax M2.7: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现&quot;模型自我进化&quot;的闭环
+Attention Residuals: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层&quot;信息稀释&quot;问题
+Gemini Embedding-002: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间
+GPT-5.4
+
+值得关注的开源项目
+karpathy/autoresearch: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验
+bytedance/deer-flow: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server
+letta-ai/claude-subconscious: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前&quot;低语&quot;指导
+supermemoryai/supermemory: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成
+jackwener/opencli: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50&#43; 网站和桌面应用
+koala73/worldmonitor: AI 驱动的实时全球情报仪表盘，435&#43; 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2603_monthly/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/CB9F4F5C-38EC-49C1-B89E-3FA5C78338C1_1_201_a.jpeg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-03-30T15:00:00+08:00" />
+<meta property="article:modified_time" content="2026-03-30T15:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/CB9F4F5C-38EC-49C1-B89E-3FA5C78338C1_1_201_a.jpeg" />
+<meta name="twitter:title" content="2026-03 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+MiniMax M2.7: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现&quot;模型自我进化&quot;的闭环
+Attention Residuals: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层&quot;信息稀释&quot;问题
+Gemini Embedding-002: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间
+GPT-5.4
+
+值得关注的开源项目
+karpathy/autoresearch: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验
+bytedance/deer-flow: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server
+letta-ai/claude-subconscious: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前&quot;低语&quot;指导
+supermemoryai/supermemory: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成
+jackwener/opencli: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50&#43; 网站和桌面应用
+koala73/worldmonitor: AI 驱动的实时全球情报仪表盘，435&#43; 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-03 月刊",
+      "item": "https://niraya666.github.io/monthly/2603_monthly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-03 月刊",
+  "name": "2026-03 月刊",
+  "description": "值得关注的模型和新技术 MiniMax M2.7: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现\u0026quot;模型自我进化\u0026quot;的闭环\nAttention Residuals: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层\u0026quot;信息稀释\u0026quot;问题\nGemini Embedding-002: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间\nGPT-5.4\n值得关注的开源项目 karpathy/autoresearch: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验\nbytedance/deer-flow: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server\nletta-ai/claude-subconscious: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前\u0026quot;低语\u0026quot;指导\nsupermemoryai/supermemory: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成\njackwener/opencli: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50+ 网站和桌面应用\nkoala73/worldmonitor: AI 驱动的实时全球情报仪表盘，435+ 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI\n",
+  "keywords": [
+    "月刊", "Agent", "Self-Evolution"
+  ],
+  "articleBody": "值得关注的模型和新技术 MiniMax M2.7: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现\"模型自我进化\"的闭环\nAttention Residuals: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层\"信息稀释\"问题\nGemini Embedding-002: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间\nGPT-5.4\n值得关注的开源项目 karpathy/autoresearch: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验\nbytedance/deer-flow: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server\nletta-ai/claude-subconscious: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前\"低语\"指导\nsupermemoryai/supermemory: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成\njackwener/opencli: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50+ 网站和桌面应用\nkoala73/worldmonitor: AI 驱动的实时全球情报仪表盘，435+ 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI\n值得关注的研究和论文 Learning Personalized Agents from Human Feedback arXiv:2602.20478\nPAHF 引入了一个三步持续学习循环（行动前澄清 → 行动实施 → 行动后反馈），使智能体能够从实时交互中在线学习个性化偏好\n核心组件\n组件 目的 解决的问题 行动前交互 行动前请求澄清 部分可观测性（已知的确定性） 行动执行 基于检索到的偏好做出决策 任务完成 行动后反馈 出错后更新记忆 非平稳性（偏好漂移） Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents? arXiv:2602.11988\n由 LLM 生成的上下文文件会降低任务成功率，并增加 20%+ 的推理成本，而开发者编写的文件仅能带来微弱的性能提升（+4%）\nAGENTbench：一个全新的基准测试，包含来自 12 个仓库的 138 个实例，所有实例均包含开发者提供的上下文文件\n三种评估设置\nNone（无）：无上下文文件 LLM：由 LLM 生成的上下文文件（使用智能体的 /init 命令） Human（人类）：开发者提供的上下文文件 实验结果\n设置 SWE-bench Lite AGENTbench 成本影响 无上下文文件 基线 基线 基线 LLM 生成 成功率 -0.5% 成功率 -2% 成本 +20-23% 开发者编写 N/A 成功率 +4% 成本 +19% 人类编写的上下文文件应该只描述最低限度的要求，在仓库缺乏文档时最有用\nThink Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens arXiv:2602.13517\n引入了 Deep-Thinking Ratio (DTR)，通过识别模型内部预测在深层发生显著修正的标记（Tokens）来衡量推理质量；DTR 与准确率的相关性（r=0.828）远强于生成长度（r=-0.544）\n核心洞察\nLong-CoT 存在 over-thinking 的问题，并非生成越长推理质量越高\nDeep-Thinking Tokens\n在收敛之前，其内部预测在模型深层仍经历显著修正的 Token。判定标准：\n提取中间层分布：对每一层 $l$，使用反嵌入矩阵 $W_U$ 投影隐藏状态 $h_{t,l}$，得到概率分布 $p_{t,l}$ 计算 JS 散度：测量中间层与最终层分布之间的差异：$D_{t,l} = \\text{JSD}(p_{t,L} | p_{t,l})$ 确定稳定深度：找到首个满足阈值（g=0.5）的深度 $c_t$ 分类 DT Tokens：如果稳定深度 $c_t$ 处于模型总层数 $L$ 的后 15%，则判定为 DT Tokens DTR 计算\n$$\\text{DTR} = \\frac{\\text{Deep-Thinking Tokens 数量}}{\\text{总 Token 数量}}$$\nOpenClaw-RL: Train Any Agent Simply by Talking arXiv:2603.10165\n核心洞察：Next-State Signals 是通用的——所有 Agent 交互产生的下一个状态信号都可以被统一利用来训练策略\n信号提取框架\n信号类型 提取方式 信息内容 Evaluative Signals (评估信号) PRM Judge → 标量奖励 动作执行得好不好 Directive Signals (指令信号) Hindsight-Guided OPD → token-level 监督 动作应该怎么改 Hindsight-Guided On-Policy Distillation (OPD)\nHindsight Hint Extraction：Judge 模型对动作序列和下一状态进行处理，生成 1-3 句话的改进提示 Enhanced Teacher Context：将 Hint 拼接至原始输入，构建增强版教师上下文 Token-level Directional Advantage：同一模型分别作为 Teacher（知道提示）和 Student（不知提示），计算每个 Token 的条件概率差异 $$A_i^{\\text{OPD}} = \\log \\pi_{\\theta}(y_i \\mid s_{\\text{enhanced}}, y_{",
+  "wordCount" : "1171",
+  "inLanguage": "en",
+  "image":"https://niraya666.github.io/img/monthly/2026/CB9F4F5C-38EC-49C1-B89E-3FA5C78338C1_1_201_a.jpeg","datePublished": "2026-03-30T15:00:00+08:00",
+  "dateModified": "2026-03-30T15:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2603_monthly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-03 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2026-03-30 15:00:00 +0800 CST'>March 30, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/CB9F4F5C-38EC-49C1-B89E-3FA5C78338C1_1_201_a.jpeg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/CB9F4F5C-38EC-49C1-B89E-3FA5C78338C1_1_201_a.jpeg" alt="前滩"></a>
+        <p>前滩</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#learning-personalized-agents-from-human-feedback" aria-label="Learning Personalized Agents from Human Feedback">Learning Personalized Agents from Human Feedback</a></li>
+                <li>
+                    <a href="#evaluating-agentsmd-are-repository-level-context-files-helpful-for-coding-agents" aria-label="Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?">Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?</a></li>
+                <li>
+                    <a href="#think-deep-not-just-long-measuring-llm-reasoning-effort-via-deep-thinking-tokens" aria-label="Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens">Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens</a></li>
+                <li>
+                    <a href="#openclaw-rl-train-any-agent-simply-by-talking" aria-label="OpenClaw-RL: Train Any Agent Simply by Talking">OpenClaw-RL: Train Any Agent Simply by Talking</a></li>
+                <li>
+                    <a href="#skillnet-create-evaluate-and-connect-ai-skills" aria-label="SkillNet: Create, Evaluate, and Connect AI Skills">SkillNet: Create, Evaluate, and Connect AI Skills</a></li>
+                <li>
+                    <a href="#msa-memory-sparse-attention-for-efficient-end-to-end-memory-model-scaling-to-100m-tokens" aria-label="MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens">MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ad%a6%e4%b9%a0%e8%b5%84%e6%ba%90" aria-label="学习资源">学习资源</a><ul>
+                        
+                <li>
+                    <a href="#agent-%e8%87%aa%e6%88%91%e6%bc%94%e5%8c%96" aria-label="Agent 自我演化">Agent 自我演化</a></li>
+                <li>
+                    <a href="#claude-codeclaw-%e5%ad%a6%e4%b9%a0%e8%b5%84%e6%96%99" aria-label="Claude-code/Claw 学习资料">Claude-code/Claw 学习资料</a></li>
+                <li>
+                    <a href="#agent-skills-%e8%b5%84%e6%ba%90" aria-label="Agent Skills 资源">Agent Skills 资源</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#the-self-driving-codebasehttpsbackground-agentscom" aria-label="The Self-Driving Codebase">The Self-Driving Codebase</a></li>
+                <li>
+                    <a href="#saas-%e5%b7%b2%e6%ad%bbcaas-%e6%96%b0%e7%94%9f%e6%97%a0%e7%95%8c%e9%9d%a2%e5%88%9b%e4%b8%9a%e7%9a%84%e5%85%b4%e8%b5%b7httpszhuanlanzhihucomp2011345883636196878" aria-label="SaaS 已死，CaaS 新生——无界面创业的兴起">SaaS 已死，CaaS 新生——无界面创业的兴起</a></li>
+                <li>
+                    <a href="#agent-harness-is-the-real-producthttpsxcomhxlfed14status2028116431876116660" aria-label="Agent Harness is the Real Product">Agent Harness is the Real Product</a></li>
+                <li>
+                    <a href="#how-to-be-a-world-class-agentic-engineerhttpsxcomsystematiclsstatus2028814227004395561" aria-label="How To Be A World-Class Agentic Engineer">How To Be A World-Class Agentic Engineer</a></li>
+                <li>
+                    <a href="#productive-individuals-dont-make-productive-firmshttpsxcomgsivulkastatus2031797989908627849" aria-label="Productive Individuals Don’t Make Productive Firms">Productive Individuals Don’t Make Productive Firms</a></li>
+                <li>
+                    <a href="#what-i-learned-from-two-weeks-inside-chinas-ai-ecosystemhttpsxcomzemariamacedostatus2036779960598163864" aria-label="What I Learned from Two Weeks Inside China’s AI Ecosystem">What I Learned from Two Weeks Inside China’s AI Ecosystem</a></li>
+                <li>
+                    <a href="#ibm%e5%92%8c%e7%ba%b3%e7%b2%b9httpsbookdoubancomsubject30308559" aria-label="《IBM和纳粹》">《IBM和纳粹》</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://www.minimaxi.com/news/minimax-m27-zh">MiniMax M2.7</a>: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现&quot;模型自我进化&quot;的闭环</p>
+<p><a href="https://arxiv.org/abs/2603.15031">Attention Residuals</a>: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层&quot;信息稀释&quot;问题</p>
+<p><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/">Gemini Embedding-002</a>: Google DeepMind 首个原生多模态 Embedding 模型，将文本、图像、视频、音频统一映射到同一向量空间</p>
+<p><a href="https://openai.com/index/introducing-gpt-5-4/">GPT-5.4</a></p>
+<hr>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/karpathy/autoresearch">karpathy/autoresearch</a>: Andrej Karpathy 开源的极简自主研究系统，夜间运行、零人工干预，人类编写 program.md 定义目标，Agent 自主修改代码完成实验</p>
+<p><a href="https://github.com/bytedance/deer-flow">bytedance/deer-flow</a>: 字节跳动开源的 Super Agent Harness，基于 LangGraph 构建，内置子代理编排、长期记忆、沙箱执行，支持多平台 IM 集成与 MCP Server</p>
+<p><a href="https://github.com/letta-ai/claude-subconscious">letta-ai/claude-subconscious</a>: Letta 团队开发的 Claude Code 插件，后台运行的 Agent 观察会话、阅读代码库、跨会话记忆偏好，在每次提示前&quot;低语&quot;指导</p>
+<p><a href="https://github.com/supermemoryai/supermemory">supermemoryai/supermemory</a>: State-of-the-art AI 记忆引擎，三大记忆基准测试均排名第一，自动提取事实、构建用户画像、处理知识更新与矛盾，提供 MCP Server 和多框架集成</p>
+<p><a href="https://github.com/jackwener/opencli">jackwener/opencli</a>: 将任何网站、Electron 应用或本地 CLI 工具变成命令行接口，复用 Chrome 登录态，零 LLM 成本，覆盖 50+ 网站和桌面应用</p>
+<p><a href="https://github.com/koala73/worldmonitor">koala73/worldmonitor</a>: AI 驱动的实时全球情报仪表盘，435+ 新闻源跨 15 分类，双地图引擎，金融雷达覆盖 92 个交易所，支持 21 种语言和本地 AI</p>
+<hr>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="learning-personalized-agents-from-human-feedback">Learning Personalized Agents from Human Feedback<a hidden class="anchor" aria-hidden="true" href="#learning-personalized-agents-from-human-feedback">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2602.20478">2602.20478</a></p>
+<p>PAHF 引入了一个<strong>三步持续学习循环</strong>（行动前澄清 → 行动实施 → 行动后反馈），使智能体能够从实时交互中在线学习个性化偏好</p>
+<p><strong>核心组件</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">组件</th>
+          <th style="text-align: left">目的</th>
+          <th style="text-align: left">解决的问题</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>行动前交互</strong></td>
+          <td style="text-align: left">行动前请求澄清</td>
+          <td style="text-align: left">部分可观测性（已知的确定性）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>行动执行</strong></td>
+          <td style="text-align: left">基于检索到的偏好做出决策</td>
+          <td style="text-align: left">任务完成</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>行动后反馈</strong></td>
+          <td style="text-align: left">出错后更新记忆</td>
+          <td style="text-align: left">非平稳性（偏好漂移）</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="evaluating-agentsmd-are-repository-level-context-files-helpful-for-coding-agents">Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?<a hidden class="anchor" aria-hidden="true" href="#evaluating-agentsmd-are-repository-level-context-files-helpful-for-coding-agents">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2602.11988">2602.11988</a></p>
+<p><strong>由 LLM 生成的上下文文件会降低任务成功率，并增加 20%+ 的推理成本</strong>，而开发者编写的文件仅能带来微弱的性能提升（+4%）</p>
+<p><strong>AGENTbench</strong>：一个全新的基准测试，包含来自 12 个仓库的 138 个实例，所有实例均包含开发者提供的上下文文件</p>
+<p><strong>三种评估设置</strong></p>
+<ol>
+<li><strong>None（无）</strong>：无上下文文件</li>
+<li><strong>LLM</strong>：由 LLM 生成的上下文文件（使用智能体的 <code>/init</code> 命令）</li>
+<li><strong>Human（人类）</strong>：开发者提供的上下文文件</li>
+</ol>
+<p><strong>实验结果</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">设置</th>
+          <th style="text-align: left">SWE-bench Lite</th>
+          <th style="text-align: left">AGENTbench</th>
+          <th style="text-align: left">成本影响</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">无上下文文件</td>
+          <td style="text-align: left">基线</td>
+          <td style="text-align: left">基线</td>
+          <td style="text-align: left">基线</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>LLM 生成</strong></td>
+          <td style="text-align: left">成功率 -0.5%</td>
+          <td style="text-align: left"><strong>成功率 -2%</strong></td>
+          <td style="text-align: left"><strong>成本 +20-23%</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>开发者编写</strong></td>
+          <td style="text-align: left">N/A</td>
+          <td style="text-align: left"><strong>成功率 +4%</strong></td>
+          <td style="text-align: left">成本 +19%</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>人类编写的上下文文件应该只描述最低限度的要求，在仓库缺乏文档时最有用</p>
+</blockquote>
+<hr>
+<h2 id="think-deep-not-just-long-measuring-llm-reasoning-effort-via-deep-thinking-tokens">Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens<a hidden class="anchor" aria-hidden="true" href="#think-deep-not-just-long-measuring-llm-reasoning-effort-via-deep-thinking-tokens">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2602.13517">2602.13517</a></p>
+<p>引入了 <strong>Deep-Thinking Ratio (DTR)</strong>，通过识别模型内部预测在深层发生显著修正的标记（Tokens）来衡量推理质量；DTR 与准确率的相关性（r=0.828）远强于生成长度（r=-0.544）</p>
+<p><strong>核心洞察</strong></p>
+<p>Long-CoT 存在 over-thinking 的问题，并非生成越长推理质量越高</p>
+<p><strong>Deep-Thinking Tokens</strong></p>
+<p>在收敛之前，其内部预测在模型深层仍经历显著修正的 Token。判定标准：</p>
+<ul>
+<li>提取中间层分布：对每一层 $l$，使用反嵌入矩阵 $W_U$ 投影隐藏状态 $h_{t,l}$，得到概率分布 $p_{t,l}$</li>
+<li>计算 JS 散度：测量中间层与最终层分布之间的差异：$D_{t,l} = \text{JSD}(p_{t,L} | p_{t,l})$</li>
+<li>确定稳定深度：找到首个满足阈值（g=0.5）的深度 $c_t$</li>
+<li>分类 DT Tokens：如果稳定深度 $c_t$ 处于模型总层数 $L$ 的后 15%，则判定为 DT Tokens</li>
+</ul>
+<p><strong>DTR 计算</strong></p>
+<p>$$\text{DTR} = \frac{\text{Deep-Thinking Tokens 数量}}{\text{总 Token 数量}}$$</p>
+<hr>
+<h2 id="openclaw-rl-train-any-agent-simply-by-talking">OpenClaw-RL: Train Any Agent Simply by Talking<a hidden class="anchor" aria-hidden="true" href="#openclaw-rl-train-any-agent-simply-by-talking">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2603.10165">2603.10165</a></p>
+<p><strong>核心洞察：Next-State Signals 是通用的</strong>——所有 Agent 交互产生的下一个状态信号都可以被统一利用来训练策略</p>
+<p><strong>信号提取框架</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">信号类型</th>
+          <th style="text-align: left">提取方式</th>
+          <th style="text-align: left">信息内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Evaluative Signals</strong> (评估信号)</td>
+          <td style="text-align: left">PRM Judge → 标量奖励</td>
+          <td style="text-align: left">动作执行得好不好</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Directive Signals</strong> (指令信号)</td>
+          <td style="text-align: left">Hindsight-Guided OPD → token-level 监督</td>
+          <td style="text-align: left">动作应该怎么改</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Hindsight-Guided On-Policy Distillation (OPD)</strong></p>
+<ol>
+<li><strong>Hindsight Hint Extraction</strong>：Judge 模型对动作序列和下一状态进行处理，生成 1-3 句话的改进提示</li>
+<li><strong>Enhanced Teacher Context</strong>：将 Hint 拼接至原始输入，构建增强版教师上下文</li>
+<li><strong>Token-level Directional Advantage</strong>：同一模型分别作为 Teacher（知道提示）和 Student（不知提示），计算每个 Token 的条件概率差异</li>
+</ol>
+<p>$$A_i^{\text{OPD}} = \log \pi_{\theta}(y_i \mid s_{\text{enhanced}}, y_{&lt;i}) - \log \pi_{\theta}(y_i \mid s_t, y_{&lt;i})$$</p>
+<p><strong>系统架构</strong></p>
+<p>OpenClaw-RL 采用异步运行架构：Policy Serving、Environment Server、PRM/Judge、Trainer 四组件分离</p>
+<hr>
+<h2 id="skillnet-create-evaluate-and-connect-ai-skills">SkillNet: Create, Evaluate, and Connect AI Skills<a hidden class="anchor" aria-hidden="true" href="#skillnet-create-evaluate-and-connect-ai-skills">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2603.04448">2603.04448</a></p>
+<p>避免 Agent 重复造轮子，通过 Skill Creation → Skill Structuring &amp; Relation Graph → Skill Evaluation 实现技能的统一管理与复用</p>
+<p><strong>Skill Relation Graph</strong></p>
+<p>不基于向量检索搜索 skills，而是采用 DAG + Unified Ontology 构建 skills 间的计算拓扑：</p>
+<ol>
+<li><strong>Skill Taxonomy</strong>：层级化树状结构对所有技能进行领域划分</li>
+<li><strong>四类核心有向图边</strong>：
+<ul>
+<li><code>similar_to</code>：连接功能同构但实现细节不同的技能</li>
+<li><code>depend_on</code>：定义前置条件</li>
+<li><code>compose_with</code>：定义哪些原子技能可以拼接成复杂工作流</li>
+<li><code>belong_to</code>：定义树状拆解结构</li>
+</ul>
+</li>
+</ol>
+<p><strong>Skill 评估维度</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">维度</th>
+          <th style="text-align: left">评估方式</th>
+          <th style="text-align: left">指标</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Safety</td>
+          <td style="text-align: left">静态代码分析</td>
+          <td style="text-align: left">漏洞率（Injection Risks、Filesystem Abuse）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Completeness</td>
+          <td style="text-align: left">文档映射分析</td>
+          <td style="text-align: left">Feature/API Coverage</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Executability</td>
+          <td style="text-align: left">沙盒化动态测试</td>
+          <td style="text-align: left">Success Rate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Maintainability</td>
+          <td style="text-align: left">静态结构分析</td>
+          <td style="text-align: left">Schema Drift</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Cost-awareness</td>
+          <td style="text-align: left">沙盒化动态测试</td>
+          <td style="text-align: left">平均调用成本</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="msa-memory-sparse-attention-for-efficient-end-to-end-memory-model-scaling-to-100m-tokens">MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens<a hidden class="anchor" aria-hidden="true" href="#msa-memory-sparse-attention-for-efficient-end-to-end-memory-model-scaling-to-100m-tokens">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2603.23516">2603.23516</a></p>
+<p><strong>Scalable Sparse Attention</strong>：将 Retrieval 和 Generation 融合为一个端到端可导的统一循环</p>
+<p><strong>核心机制</strong></p>
+<ul>
+<li><strong>Chunk-mean Pooling</strong>：将长文档的 Latent state（K、V 矩阵以及路由键 $K_r$）进行高比例压缩</li>
+<li><strong>内容感知稀疏化</strong>：当前 Query 被投影为 $Q_r$，与全局 $K_r$ 进行相似度匹配，动态挑选 Top-k 个 Chunks</li>
+<li><strong>端到端可微</strong>：路由机制由模型内部的投影矩阵实现，Loss 可通过反向传播更新权重</li>
+</ul>
+<p><strong>关键创新</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">技术</th>
+          <th style="text-align: left">解决的问题</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Document-wise RoPE</strong></td>
+          <td style="text-align: left">海量文档拼接时位置编码数值过大导致的位置漂移和外推崩溃</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Memory Parallel</strong></td>
+          <td style="text-align: left">轻量级路由键放 GPU 显存，内容键值放内存，平衡速度与容量</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Memory Interleaving</strong></td>
+          <td style="text-align: left">Multi-hop reasoning 中模型容易&quot;忘记目标&quot;或&quot;线索断链&quot;，采用自适应交替循环：Generative retrieval → 上下文扩展 → 生成</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>与现有方案对比</strong></p>
+<ul>
+<li>原始 Transformer (Full-attention)：$O(N^2)$ 复杂度</li>
+<li>RAG：检索与生成断层，检索器无法随模型迭代</li>
+<li><strong>MSA</strong>：检索内置在注意力层中，Next-token Loss 可直接优化检索准确率</li>
+</ul>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="学习资源">学习资源<a hidden class="anchor" aria-hidden="true" href="#学习资源">#</a></h2>
+<h3 id="agent-自我演化">Agent 自我演化<a hidden class="anchor" aria-hidden="true" href="#agent-自我演化">#</a></h3>
+<p>处理MiniMax-M2.7 和 Andrej Karpathy 的autoresearch外，3月份还有不少有关 Agent self-Evolution有关的研究</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">项目</th>
+          <th style="text-align: left">论文</th>
+          <th style="text-align: left">代码库</th>
+          <th style="text-align: left">核心贡献</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>EvoX</strong></td>
+          <td style="text-align: left">arXiv:<a href="https://arxiv.org/abs/2602.23413">2602.23413</a></td>
+          <td style="text-align: left"><a href="https://github.com/skydiscover-ai/skydiscover">skydiscover-ai/skydiscover</a></td>
+          <td style="text-align: left">模型自我进化框架</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Hyperagents</strong></td>
+          <td style="text-align: left">arXiv:<a href="https://arxiv.org/abs/2603.19461">2603.19461</a></td>
+          <td style="text-align: left"><a href="https://github.com/facebookresearch/Hyperagents">facebookresearch/Hyperagents</a></td>
+          <td style="text-align: left">超参数优化的Agent系统</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>AutoAgent</strong></td>
+          <td style="text-align: left">arXiv:<a href="https://arxiv.org/abs/2603.09716">2603.09716</a></td>
+          <td style="text-align: left">vicFigure/AutoAgent (待发布)</td>
+          <td style="text-align: left">全自动Agent生成框架</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Memento-Skills</strong></td>
+          <td style="text-align: left">arXiv:<a href="https://arxiv.org/abs/2603.18743">2603.18743</a></td>
+          <td style="text-align: left"><a href="https://github.com/Memento-Teams/Memento-Skills">Memento-Teams/Memento-Skills</a></td>
+          <td style="text-align: left">可遗忘与更新的技能管理</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>SkillCraft</strong></td>
+          <td style="text-align: left">arXiv:<a href="https://arxiv.org/abs/2603.00718">2603.00718</a></td>
+          <td style="text-align: left"><a href="https://github.com/shiqichen17/SkillCraft">shiqichen17/SkillCraft</a></td>
+          <td style="text-align: left">面向复杂任务的技能合成</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="claude-codeclaw-学习资料">Claude-code/Claw 学习资料<a hidden class="anchor" aria-hidden="true" href="#claude-codeclaw-学习资料">#</a></h3>
+<p><a href="https://github.com/datawhalechina/hello-claw">Hello Claw</a>: Datawhale 出品的Claw入门教程</p>
+<p><a href="https://github.com/shareAI-lab/claw0">Claw0</a>: ShareAI Lab的Claw实践指南</p>
+<p><a href="https://agentway.dev/zh/openclaw">AgentWay</a>: Claude-code/Claw 开发资源导航，系统整理工具链与最佳实践</p>
+<p><a href="https://x.com/HiTw93/status/2032091246588518683">你不知道的 Claude Code：架构、治理与工程实践</a>: 详细的Claude Code原理解析与工程实践指南</p>
+<h3 id="agent-skills-资源">Agent Skills 资源<a hidden class="anchor" aria-hidden="true" href="#agent-skills-资源">#</a></h3>
+<p><a href="https://github.com/slavingia/skills/">slavingia/skills</a>: Sahil Lavingia基于《The Minimalist Entrepreneur》理念设计的Claude Code Skills集合</p>
+<p><a href="https://github.com/zarazhangrui/follow-builders">follow-builders</a>: AI builders digest — monitors top AI builders on X and YouTube podcasts, remixes their content into digestible summaries. Follow builders, not influencers.</p>
+<hr>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0bY5m9BTw8qfj64qgDuIyS?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="the-self-driving-codebasehttpsbackground-agentscom"><a href="https://background-agents.com/">The Self-Driving Codebase</a><a hidden class="anchor" aria-hidden="true" href="#the-self-driving-codebasehttpsbackground-agentscom">#</a></h2>
+<blockquote>
+<p>How do we get from today&rsquo;s delivery process to a self-driving codebase?</p>
+<p>Individual speed ≠ organizational velocity.</p>
+<p>Agents running in the background need their own execution environment with a full toolchain, ability to run tests and access via secrets to systems.</p>
+<p>Remove the human from the invocation loop</p>
+<p>Your engineers aren&rsquo;t in the loop. They&rsquo;re on the loop.</p>
+</blockquote>
+<h2 id="saas-已死caas-新生无界面创业的兴起httpszhuanlanzhihucomp2011345883636196878"><a href="https://zhuanlan.zhihu.com/p/2011345883636196878">SaaS 已死，CaaS 新生——无界面创业的兴起</a><a hidden class="anchor" aria-hidden="true" href="#saas-已死caas-新生无界面创业的兴起httpszhuanlanzhihucomp2011345883636196878">#</a></h2>
+<blockquote>
+<p>企业的核心护城河，不再是”代码与 UI”，而是”专属场景图谱（Context）与记忆体系（Memory）”。</p>
+<p>SaaS 厂商并不关心企业的场景是否适配，只关心企业是否持续付费。但大模型的出现，彻底击碎了这种”强耦合”关系。这意味着，传统 SaaS 那层昂贵的”交互外壳”，价值开始趋零。</p>
+<p>而真正稀缺、不可替代的，是企业独有的”状态（State）”—— 那些沉淀在老员工脑子里的隐性经验、存在于 Slack 对话里的破碎决策、藏在历史订单中的客户偏好、贯穿企业十年发展的失败复盘，这些才是企业的”不动产”，也是 AI 真正能产生价值的核心。</p>
+<p>记忆层的核心价值，在于”决策审计”与”经验复用”。具体来说，它包含两个核心功能：决策轨迹留存、经验复用与优化</p>
+<p>长期记忆的本质不是存储，而是组织——让Agent能从过往交互中快速定位可利用的知识片段，并在新情境下进行适应性重组</p>
+</blockquote>
+<h2 id="agent-harness-is-the-real-producthttpsxcomhxlfed14status2028116431876116660"><a href="https://x.com/Hxlfed14/status/2028116431876116660">Agent Harness is the Real Product</a><a hidden class="anchor" aria-hidden="true" href="#agent-harness-is-the-real-producthttpsxcomhxlfed14status2028116431876116660">#</a></h2>
+<blockquote>
+<p>The model is interchangeable. The harness is the product.</p>
+<p>A framework is abstractions&hellip; pretty unopinionated. Harnesses are batteries included</p>
+<p>The model decides <em>what</em> to do. The harness decides what the model <em>can see</em>, what tools it <em>can use</em>, and what happens <em>when it fails</em>.</p>
+</blockquote>
+<h2 id="how-to-be-a-world-class-agentic-engineerhttpsxcomsystematiclsstatus2028814227004395561"><a href="https://x.com/systematicls/status/2028814227004395561">How To Be A World-Class Agentic Engineer</a><a hidden class="anchor" aria-hidden="true" href="#how-to-be-a-world-class-agentic-engineerhttpsxcomsystematiclsstatus2028814227004395561">#</a></h2>
+<blockquote>
+<p>The point of this is to say that the most important principle to hold is the realization that every new generation of agents will force you to rethink what is optimal, which is why less is more.</p>
+<p>Today, I want to dispel all of that and leave you guys with a simple, honest statement, and we&rsquo;ll go from there. You don&rsquo;t need the latest agentic harnesses, you don&rsquo;t need to install a million packages and you absolutely do not need to feel the need to read a million things to stay competitive. In fact, your enthusiasm is likely doing more harm than good.</p>
+<p>Context is everything … You suffer from context bloat - which is just a fancy way of saying your agents are overwhelmed with too much information!</p>
+<p>Separate research from implementation</p>
+<p>I find that &ldquo;neutral&rdquo; prompts work&hellip; I don&rsquo;t say &ldquo;Find me a bug in the database&rdquo;, instead, I say &ldquo;Search through the database, try to follow along with the logic of each component, and report back all findings.&rdquo;</p>
+<p>If you don&rsquo;t want your agent to do something, write it as a rule. Skills are like rules, except rather than encoding preferences</p>
+<p>Letting Your Agents Know How To End The Task&hellip; Tests are a very very good milestone for agents,</p>
+<p>The natural extension of this is to create a &ldquo;contract&rdquo; with your agent, and embed it into a rule. Say, this {TASK}_CONTRACT.md constitutes what needs to be done</p>
+<p>That’s it. That’s really the secret. Keep it simple, use rules and skills and CLAUDE.md as a directory and be religiously mindful about their context and their design limitations.</p>
+<p>No agent today is perfect. You can relegate much of the design and implementation to the agents, but you will need to own the outcome.</p>
+</blockquote>
+<h2 id="productive-individuals-dont-make-productive-firmshttpsxcomgsivulkastatus2031797989908627849"><a href="https://x.com/gsivulka/status/2031797989908627849">Productive Individuals Don’t Make Productive Firms</a><a hidden class="anchor" aria-hidden="true" href="#productive-individuals-dont-make-productive-firmshttpsxcomgsivulkastatus2031797989908627849">#</a></h2>
+<blockquote>
+<p>It was when we finally redesigned the institution and the technology together that the upside materialized.</p>
+<p>Because of a simple fact: productive individuals do not make productive firms.</p>
+<p>The real shift isn’t from tools to services, it’s building the technology and the institution together</p>
+</blockquote>
+<h2 id="what-i-learned-from-two-weeks-inside-chinas-ai-ecosystemhttpsxcomzemariamacedostatus2036779960598163864"><a href="https://x.com/ZeMariaMacedo/status/2036779960598163864">What I Learned from Two Weeks Inside China’s AI Ecosystem</a><a hidden class="anchor" aria-hidden="true" href="#what-i-learned-from-two-weeks-inside-chinas-ai-ecosystemhttpsxcomzemariamacedostatus2036779960598163864">#</a></h2>
+<blockquote>
+<p>China’s educational system produces excellence but doesn’t leave enough space for deviation. The output is founders who are exceptional executors of known problems&hellip;</p>
+<p>Most Chinese funds have built their entire theses around backing the best alumni from Bytedance or DJI — pedigree over spikiness, credential over conviction.</p>
+<p>Chinese open source is genuinely impressive — but the closed models remain significantly behind the best Western ones, and the gap is likely to widen</p>
+<p>That tier of breakout private software company largely doesn’t exist in China — and the few exceptions, like HeyGen, Manus, and GenSpark, ended up leaving once they did find it.</p>
+<p>The West is considerably more hostile toward China than China is toward the West.</p>
+<p>Chinese founders see no contradiction in combining Chinese engineering execution and hardware depth with Western go-to-market and product vision. That combination&hellip; will produce some genuinely remarkable companies.</p>
+</blockquote>
+<h2 id="ibm和纳粹httpsbookdoubancomsubject30308559"><a href="https://book.douban.com/subject/30308559/">《IBM和纳粹》</a><a hidden class="anchor" aria-hidden="true" href="#ibm和纳粹httpsbookdoubancomsubject30308559">#</a></h2>
+<p>Edwin Black 著</p>
+<blockquote>
+<p>许多人都曾为计算机时代和信息时代的到来而欣喜若狂。我便是其中之一。但现在，身为大屠杀幸存者的儿子，我被一股强烈的意识所吞噬，这种意识带给我一种全新的认识。在这个“认知时代”（Age of Realization），我们将重新审视技术的觉醒。除非我们了解纳粹分子如何获取名单，否则将有更多人被那些名单所编码。</p>
+</blockquote>
+<blockquote>
+<p>IBM谨遵一条“不道德”的特殊信条：只要有能力做，那就应该做。对于盲目的技术官僚而言，手段永远比目的重要</p>
+</blockquote>
+<p>结合上个月密集爆发的一系列新闻，书中的警告仿佛正在现实中重演：Anthropic 因拒绝为五角大楼提供涉及国内监控与自主武器的 AI 技术而遭封杀；OpenAI 则顺势拿下了国防部的军工订单；Palantir 的数据服务正被 ICE（美国移民局）用于精准抓捕非法移民；而在近期的美以伊冲突中，甚至传闻 AI 的致命误判导致一所小学被战斧导弹夷为平地。
+重读此书促使自己重新思考：技术伦理的边界在哪里？</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
+      <li><a href="https://niraya666.github.io/tags/self-evolution/">Self-Evolution</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-03%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a%2cAgent%2cSelf-Evolution">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f&amp;title=2026-03%20%e6%9c%88%e5%88%8a&amp;summary=2026-03%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f&title=2026-03%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-03%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-03%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-03 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-03%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2603_monthly%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
