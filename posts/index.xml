@@ -11,8 +11,31 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 15:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2026 21:03:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南</title>
+      <link>https://niraya666.github.io/posts/agent-harness-design/</link>
+      <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-harness-design/</guid>
+      <description>&lt;h2 id=&#34;引子&#34;&gt;&lt;strong&gt;引子&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;“今天你 Harness 了吗？”&lt;/p&gt;
+&lt;p&gt;2026 年，&amp;ldquo;Harness&amp;quot;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。&lt;/p&gt;
+&lt;p&gt;在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 &lt;strong&gt;Harness 本身。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这篇文章只回答一个问题：&lt;strong&gt;一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;造好 Harness，Agent 会完成剩下的。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;正本清源harness-到底是什么&#34;&gt;&lt;strong&gt;正本清源：Harness 到底是什么&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。&lt;/p&gt;
+&lt;p&gt;在传统软件工程中，&lt;strong&gt;Test Harness（测试自动化框架）&lt;/strong&gt; 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。&lt;/p&gt;
+&lt;p&gt;而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://niraya666.github.io/img/%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97-assets/image.png&#34; alt=&#34;image.png&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。&lt;/p&gt;
+&lt;p&gt;目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化</title>
       <link>https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</link>

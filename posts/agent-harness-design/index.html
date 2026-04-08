@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 | LZY Blog</title>
+<meta name="keywords" content="Agent-Infra, Agent-Harness, Agent">
+<meta name="description" content="引子
+“今天你 Harness 了吗？”
+2026 年，&ldquo;Harness&quot;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。
+在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 Harness 本身。
+这篇文章只回答一个问题：一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？
+以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。
+
+造好 Harness，Agent 会完成剩下的。
+
+正本清源：Harness 到底是什么
+要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。
+在传统软件工程中，Test Harness（测试自动化框架） 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。
+而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。
+
+
+直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。
+目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。">
+<meta name="author" content="Theme PaperMod">
+<link rel="canonical" href="https://niraya666.github.io/posts/agent-harness-design/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/posts/agent-harness-design/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南" />
+<meta property="og:description" content="引子
+“今天你 Harness 了吗？”
+2026 年，&ldquo;Harness&quot;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。
+在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 Harness 本身。
+这篇文章只回答一个问题：一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？
+以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。
+
+造好 Harness，Agent 会完成剩下的。
+
+正本清源：Harness 到底是什么
+要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。
+在传统软件工程中，Test Harness（测试自动化框架） 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。
+而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。
+
+
+直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。
+目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/posts/agent-harness-design/" />
+<meta property="og:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-08T21:03:00+08:00" />
+<meta property="article:modified_time" content="2026-04-08T21:03:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/images/papermod-cover.png" />
+<meta name="twitter:title" content="浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南"/>
+<meta name="twitter:description" content="引子
+“今天你 Harness 了吗？”
+2026 年，&ldquo;Harness&quot;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。
+在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 Harness 本身。
+这篇文章只回答一个问题：一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？
+以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。
+
+造好 Harness，Agent 会完成剩下的。
+
+正本清源：Harness 到底是什么
+要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。
+在传统软件工程中，Test Harness（测试自动化框架） 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。
+而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。
+
+
+直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。
+目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://niraya666.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南",
+      "item": "https://niraya666.github.io/posts/agent-harness-design/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南",
+  "name": "浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南",
+  "description": "引子 “今天你 Harness 了吗？”\n2026 年，\u0026ldquo;Harness\u0026quot;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。\n在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 Harness 本身。\n这篇文章只回答一个问题：一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？\n以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。\n造好 Harness，Agent 会完成剩下的。\n正本清源：Harness 到底是什么 要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。\n在传统软件工程中，Test Harness（测试自动化框架） 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。\n而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。\n直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。\n目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。\n",
+  "keywords": [
+    "Agent-Infra", "Agent-Harness", "Agent"
+  ],
+  "articleBody": "引子 “今天你 Harness 了吗？”\n2026 年，“Harness\"大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。\n在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 Harness 本身。\n这篇文章只回答一个问题：一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？\n以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。\n造好 Harness，Agent 会完成剩下的。\n正本清源：Harness 到底是什么 要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。\n在传统软件工程中，Test Harness（测试自动化框架） 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。\n而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。\n直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。\n目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。\n“Agent Harness: External set of functionality to enhance a model’s runtime execution. …\n而真正的爆火，来自 Anthropic: Effective harnesses for long-running agents (Nov 26, 2025) 和 OpenAI: Harness engineering: leveraging Codex in an agent-first world (Feb 11, 2026) 的两篇文章。\n简单来说，如果用一句话定义： Harness 就是包裹在 LLM 外面的软件外壳——它把一个只会说话的模型，变成一个能做事的 Agent，甚至是能持续运行数小时的 long-running Agent。\n包括 LangChain 在内的各种生态为了跑马圈地，创造了无数概念把人搞得云里雾里，所以，Agent Frameworks, Runtimes, scaffolding, Harnesses 这些词究竟有什么区别？\n结合 LangChain 的文章：Agent Frameworks, Runtimes, and Harnesses - oh my!\nRuntime：解决“agent 怎么在生产里稳定、可持久地跑”的底层基础设施。\nFramework：提供一套抽象和编程模型，帮你“更容易写 agent 应用”。\nHarness：在 framework 之上加上默认配置、工具和工作流，做成“拿来就能跑任务的高层套件”。\n（概念都是人造的，都是先有了物，才有了概念）\n设计哲学：Less is More 从 How To Be A World-Class Agentic Engineer 以及 Learning the Bitter Lesson 中所总结的经验和教训便是：Less is More。各种人为加入的结构或偏置虽然短期有用，却会在长期成为限制，应随着模型和计算能力提升逐步去除。\n具体来说，The Bitter Lesson 在 Agent 领域的推论：\n在 Harness 中写的每一行\"聪明\"的控制逻辑，都是在和未来的模型能力对赌。如：\n2024 年你写了精巧的 ReAct 状态机 → 2025 年模型原生支持多轮工具调用，你的状态机成了负担\n2025 年你写了复杂的 Planning 模块 → 2026 年模型的 reasoning 能力足以自主规划，你的 Planner 成了天花板\n这不是说不需要 Harness，而是说：Harness 的每一个组件都应该问自己——“这个东西，模型自己能不能学会？”\n如果答案是\"迟早能”，那它就是辅助组件，写的时候就要预留拆除的口子。 如果答案是\"不可能\"（因为它涉及的是 LLM 外部的物理世界），那它就是核心组件。\n换句话说，极简的、最小化必要的组件，才是一个能扛住未来 3-6 个月模型迭代的 Harness 的核心。\n具体的，如果以 “Long-running”为目标，Harness 的组件可以被划分为两类：\n核心组件： Agent-loop、Context 管理、原子化核心工具、File-system 、Hooks 与 Subagent 隔离（或者是task管理）\n辅助组件（短期内的补丁，长期会被取代的）\n核心组件 Agent Loop 所有关于 Agent 的故事都始于 Agent-Loop。一个好的 Agent-Loop 必然是极其简洁的，由 LLM 主导决策，而非人为预设路径。\n从底层来看，LLM 依然是一个预测下一个 Token 的自回归模型。这个基本盘在长远来看是成立的。Agent-Loop 的作用仅仅是：执行工具 → 捕获结果 → 追加上下文 → 再次调用 LLM 。\ndef agent_loop(query): messages = [{\"role\": \"user\", \"content\": query}] while True: response = client.messages.create( model=MODEL, system=SYSTEM, messages=messages, tools=TOOLS, max_tokens=8000, ) messages.append({\"role\": \"assistant\", \"content\": response.content}) if response.stop_reason != \"tool_use\": return results = [] for block in response.content: if block.type == \"tool_use\": output = run_bash(block.input[\"command\"]) results.append({ \"type\": \"tool_result\", \"tool_use_id\": block.id, \"content\": output, }) messages.append({\"role\": \"user\", \"content\": results}) （from learn-claude-code）\n这就是 agent 的核心循环。所有的\"智能\"都来自同一个地方：LLM 预测下一个 token 时的内在推理。Harness 只是把 tool response 喂回去，让这个推理过程能够持续。\n当然，从工程角度和生产级考虑，agent-loop 本质上仍是这个 while-true 循环，但需要增加大量的防御机制来提升韧性。\n据非官方流出的 claude-code 源码分析，queryLoop（src/query.ts:241）围绕核心循环构建了超过 1700 行的防御层，包括：\nStreaming 处理\n权限检查\nTool 格式处理、校验\n错误恢复\n…\nContext 管理 过去半年多，“Context Engineering\"这个词开始频繁出现。它指的不是简单的 Prompt 调优，而是解决一个更根本的矛盾：不断累加的 Message 同 LLM 有限的 context-length 和注意力之间的矛盾。在 Long-running 状态下，持续 append 的 messages 最终会导致：\nContext 溢出：超出 LLM context-window 的物理上界\nContext Rot： 在窗口内，不代表模型能有效处理，无效信息过多会严重干扰模型的推理\n优秀的 Harness 如何处理 Context？\nContext 管理不仅仅是拼接修剪 Prompt，其中最核心的原则是 token 成本，或者说是 KV-cache 的缓存命中率。也就是说，在保证缓存命中的前提下，进行 context 的优化。\n1. Microcompact\n处理掉前几轮 tool-using 产生的 tool result 中间结果。据源码分析，Claude-code 分成了两种处理方式：\nTime-based Microcompact：当用户离开一段时间后回来，服务端的 prompt cache 已经过期，此时无需保护缓存，直接构造新的消息对象替换旧的工具结果内容。\nCached Microcompact（Context editing）：在 cache 存活期间不能替换消息内容，而是通过 Anthropic API 的 Context editing 机制，在 API 层面删除指定工具的 tool_result。\n2. Summary、Compact、Auto-Compact\n当手动或自动触发阈值时，Harness 会调用 LLM，根据现有的 context 进行总结和摘要并替换掉之前的 context。以 Claude Code 为例，摘要中通常包含：\n// 摘要必须包含以下9个部分 1. Primary Request and Intent // 主要请求和意图 2. Key Technical Concepts // 关键技术概念 3. Files and Code Sections // 文件和代码段 4. Errors and fixes // 错误和修复 5. Problem Solving // 问题解决 6. All user messages // 所有用户消息 7. Pending Tasks // 待处理任务 8. Current Work // 当前工作 9. Optional Next Step // 可选下一步 在 Anthropic Claude API 中，system prompt 与 Messages 是独立的，因此可以采用\"完全 summary\"模式——把历史消息整体替换为摘要。\n相比之下，OpenAI 的 Codex 采用\"初始上下文 + 最近用户消息（最多 20k tokens）+ 摘要\"的分层模式：\n3. Offload\n不同于 compact 的有损压缩，offload 利用 file-system，将 context 写入文件中永久保存，然后释放对应的 context 窗口，在后续按需加载，实现无损压缩。\n4. Isolation\n对于存在大量工具调用和探索的过程，将大任务拆解成多个小任务，分别由 subagent 完成，从而实现 context 的独立和隔离，避免 context 的污染。\nContext 管理的目标：在信息完整度 × KV-Cache 命中率 × Token 成本 之间取最优解\n原子化工具 严格来说，LLM 所谓的 tool-using，并不是真正在“使用工具”。模型本身只是在输出一种特殊格式的工具调用文本；真正的工具执行，是由 Harness 去解析这些文本后，转化为对环境的真实调用。\n然而，工具并非越多越好。\n过多的工具不仅会降低调用准确率，还会占用宝贵的上下文，带来明显的 Context Rot。对于 Agent 来说，真正重要的不是工具数量，而是工具是否具备：\n原子性\n正交性\n完备性\n可组合性\n换句话说，工具层应该尽可能“原语化”——每个工具只做一件明确的事，但这些工具之间可以自由组合，从而构建出复杂行为。\n无论是 Manus 的三层工具设计，还是 Anthropic 提出的 tool-search-tool 与 programmatic tool calling，背后的核心问题其实是同一个：\n对 Agent / LLM 而言，什么才是“原生工具”？\n所谓原生工具，不是工程师为了业务方便封装出的高度特化接口，而是那些模型更熟悉、更容易理解、也更容易稳定调用的工具形式。也可以说，它们是 agent-oriented tools。\nbash is all you need\n像 Bash、文件读写、文本编辑、正则处理这类底层能力，本来就是 Linux 和软件工程世界中最常见的操作接口；它们在训练数据中出现频率极高，也更容易进入 agentic RL 的训练分布。相比之下，那些人为定义、语义暧昧、接口风格各异的自定义工具，往往会显著增加 Agent 的理解与选择负担。\n因此，与其为 Agent 提供几百个高度特化的第三方插件，不如优先提供少量稳定、低层、可组合的基础能力。\n（面向 Agent 的 CRUD？）\nFile System 在 Agent 系统里，file system 的意义远不只是“保存文件”。\n一方面，file system可以将原本停留在上下文窗口中的信息持久化下来，包括中间结果、计划、草稿、观察记录，以及工作记忆（也就是上文所提到的context offload）。\n另一方面，file system本身也是最自然的执行环境之一。尤其在 coding agent 场景下，代码、配置、日志、测试输出、脚本和文档，本来就是围绕文件来组织的。相比额外发明一套新的记忆接口或工具抽象，直接提供 read、write、edit 等基础操作，更符合 Agent 的使用习惯，也更贴近操作系统级的真实工作流。\n因此，在 harness 中，file system 往往承担至少三类关键角色：\n工作记忆（Working Memory）：保存中间状态、任务计划、阶段性结论和临时产物\n执行环境（Execution Environment）：承载代码、脚本、配置、输入输出和运行结果\n隔离边界（Sandbox）：通过受控目录、虚拟文件系统或沙箱环境限制 Agent 的操作范围与权限\n在这篇文章中 Everything is Context: Agentic File System Abstraction for Context Engineering，借用了Unix 哲学中的“Everything is a file” 理念，之于 agent的file-system中。\nSubagent Subagent 最初是 context isolation 的手段，进一步则演化为一种任务调度与多 Agent 协作的基本单元\n在很多任务里，主 agent 的上下文是非常宝贵的资源。像搜索大型代码库、运行测试、排查错误、做长时间分析这类任务，往往会产生大量过程性噪音。如果把这些中间过程全部塞进主对话，不仅会污染主线上下文，也会降低后续推理和决策的质量。\n因此，一个自然的做法是：spawn 一个 subagent，让它在独立的上下文中完成这些“脏活”。\n主对话不需要消费完整过程，只需要接收一个总结性的结果。从 main-agent 的视角看，它只是调用了一个高阶工具AgentTool，然后等待（或稍后收到）一段总结文本，再将这段文本作为 tool_result 写回自己的上下文。换句话说，subagent 的引入并没有改变核心的 queryLoop 结构。\n进一步看，它也是一种任务调度机制。\n这种调度通常有两种形式：\n同步 subagent：像普通工具一样调用，阻塞等待结果\n异步 subagent：作为后台任务运行，主对话继续推进，结果稍后回收\n一旦进入异步模式，系统就必须维护一个全局任务注册表（例如 Claude Code 中的 AppState.tasks），在后台持续运行，完成后通过信息注入的方式加入到主 agent 的 agent-loop 中。\n当多个后台 subagent 同时运行时，subagent 的价值就不再只是 context isolation，也是 multi-agent orchestration 的起点。\nHooks 为了保持 agent-loop 的简洁，新的能力不应该继续往 loop 内部堆。\n否则，一个本来只有“执行工具 → 捕获结果 → 追加上下文 → 再次调用LLM”四步的循环，很快就会被各式各样的业务逻辑拖成一个巨大的 if-else 状态机。\nHooks 的意义，就在于把这些复杂性移到 loop 外部。\n通过 PreToolUse、PostToolUse、PreCompact、SubagentStop 等事件，harness 可以在关键节点捕捉状态、注入上下文、拦截风险、验证结果，而不必让 loop 自己理解所有规则。\n因此，hooks 的本质不是“多几个扩展点”，而是把机制和策略分离：\nloop 负责推进执行\nhooks 负责施加控制\n表面上看，hooks 只是提供了一堆事件名；但更重要的是，这些事件定义了 Agent 系统中的关键边界。\n一旦边界清晰，很多能力就不再需要直接修改 loop 本身，而是可以通过外部策略注入：\n安全策略可以挂在工具调用前后\n记忆治理可以挂在 compact 前后\n任务编排可以挂在 subagent 生命周期上\n…\n边界组件 除了上文提到的六大核心组件，还有一些常被讨论的概念。它们并非每个都是必需品，但理解它们的位置有助于避免过度设计。\nCheckpointing / Recovery\n对于 Long-running Agent 来说，错误恢复和状态检查点确实重要。但从 Harness 的视角看，Checkpointing 更像是一种跨组件的横切能力：File System 负责持久化，Hooks 负责在关键节点触发保存，Agent Loop 负责从断点恢复。它很难被单独抽象为一个独立的\"组件”，而是各个核心组件协作的产物。\nPlanner / Todo-list\n还记得 2026 年初，Claude Code 取消了内置的 todo-list 工具。原因很直接：新版本模型的 reasoning 能力已经足够强，不再需要人为维护一个显式的待办列表。这恰好印证了 Bitter Lesson 的预言——你今天写的 Planning 模块，很可能就是明天第一个被拆除的辅助组件。如果一定要做，请确保它能被干净地剥离，而不是和 Loop 深度耦合。\nSkills\nSkills 本质上是核心组件的组合产物：一个 Command Registry 加上按需的 Message Injection，以及一堆md文件。它不属于 Harness 的底层，而是 Harness 之上的应用层。\nMCP / Plugins\nMCP是一个协议层，不是 Harness 本体。支持 MCP 当然是个加分项，但它解决的是\"如何暴露外部资源\"的问题，而非\"Harness 应该具备哪些核心能力\"的问题。\nMemory\nMemory 无疑是重要的，但截至目前，业内尚未形成共识的形态。无论是 OpenClaw 还是 Claude Code，普遍采用基于 Markdown 文件的轻量级记忆方案。这种\"文件即记忆\"的方式虽然朴素，却恰好符合 Harness 的极简哲学——与其造一个复杂的记忆数据库，不如让 Agent 用最熟悉的文件接口来管理自己的长期状态。\nAgent Team and Multi-agent\n扩展到多 Agent 时，每个 Agent 内部的 Harness 组件完全不变——同样的 agent loop、同样的 context 管理、同样的原子工具。唯一新增的是 Agent 之间的连接方式。\n如果你的 Harness 为单 Agent 设计得足够好，扩展到 team 时，90% 的基础设施可以直接复用。Subagent 和 Agent Team Member 的区别可以用下表概括：\n维度 Subagent Agent Team Member 生命周期 任务完成 → 销毁 跨任务存活，可能运行数小时 身份 匿名（只有 task 描述） 有角色身份（“reviewer”、“coder”、“tester”） 状态 无状态，结果返回后消失 有持久状态（自己的 context 历史、记忆文件） 生成方式 主 agent spawn 预先定义 / 动态 spawn 均可 从 Harness 的角度，多 Agent 系统需要额外提供：\nAgent 注册表：谁在跑、角色是什么、当前状态\n生命周期钩子：on_spawn、on_idle、on_terminate\n优雅退出与资源回收：这是最容易被忽视、也最关键的一点\nSubagent 是单向的（主 agent 发任务 → subagent 返回结果），而 Agent Team 需要双向甚至多向通信。但通信方式的设计，依然应该遵循\"贴合 LLM 习惯\"的原则：共享文件系统本身就是最自然的通信通道。\nHarness Engineering = Bigger Loop 受限于篇幅，这里不展开太多 Harness Engineering 的内容。借用这篇文章 Harness Engineering 在讨论什么：三个 Scaling 维度的统一框架 的观点，Harness Engineering 的核心关键词是 Scalability——时间的延展、空间的扩展、以及交互方式的进化。\n从笔者的角度，私认为Harness Engineering 和compound-Engineering 是同义词，真正的价值在于 如何让 Agent 越跑越好？\n这一切的前提，都是一个好用的 Harness 加上一个更大的 Loop。\n一个完整的 Agent 系统存在两个循环：\nInner Loop（Agent Loop）：单次任务内的\"工具调用 → 结果捕获 → 上下文追加 → 下一步决策\"循环。这是本文的核心讨论对象。\nOuter Loop（Evolution Loop）：跨任务的\"执行 → 评估 → 反馈 → 改进\"循环。这是 Harness Engineering 的核心讨论对象。\n这些内容在 Andrej Karpathy 的autoresearch 或者是 Ralph Loop 中都能看到。\nOuter Loop 不需要另起一套架构，它是 Inner Loop 的核心组件在更大时间尺度上的复用。 Hooks 提供观测点，File System 提供持久化记忆，Subagent 提供并行实验能力，Context 管理保证运行不会失控。\n好 Harness 的设计原则 1. 极简性 (Minimality)\n能不加的组件就不加。每个组件都问自己：\n“如果去掉它，agent 是完全不能跑，还是只是跑得没那么好？”\n前者是核心，后者是辅助。\n2. 可拆卸性 (Removability)\n辅助组件必须能被干净地移除，而不是和核心组件纠缠在一起。\n这是 Bitter Lesson 的工程实践：你今天写的东西，\n要让六个月后的自己能轻松删掉。\n3. 模型无关性 (Model Agnosticism)\nHarness 不应该为某个特定模型的怪癖做特殊适配。\n好的 harness 换一个模型，改个 API 调用就能跑。\n（当然，针对特定模型的 prompt 优化是另一回事）\n4. 面向进化 (Evolution-Ready)\nHarness 的终极目标不是\"跑一个任务\"，\n而是\"提供一个让 agent 越跑越好的环境\"。\n每个组件的设计都应该考虑：\n它如何为 Outer Loop 贡献数据、反馈、或可调参数？\n结语 Agent Harness 不是越复杂越好。恰恰相反，它的价值在于克制。\n2023-2026 年的 Agent 发展史，本质上是一部\"人为控制逻辑不断被模型能力淘汰\"的历史。Harness 的真正使命，是为模型提供一个稳定、安全、可进化的运行环境，然后把决策权交还给模型本身。\n",
+  "wordCount" : "972",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/images/papermod-cover.png","datePublished": "2026-04-08T21:03:00+08:00",
+  "dateModified": "2026-04-08T21:03:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Theme PaperMod"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/posts/agent-harness-design/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2026-04-08 21:03:00 +0800 CST'>April 8, 2026</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Theme PaperMod
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%bc%95%e5%ad%90" aria-label="引子">引子</a></li>
+                <li>
+                    <a href="#%e6%ad%a3%e6%9c%ac%e6%b8%85%e6%ba%90harness-%e5%88%b0%e5%ba%95%e6%98%af%e4%bb%80%e4%b9%88" aria-label="正本清源：Harness 到底是什么">正本清源：Harness 到底是什么</a></li>
+                <li>
+                    <a href="#%e8%ae%be%e8%ae%a1%e5%93%b2%e5%ad%a6less-is-more" aria-label="设计哲学：Less is More">设计哲学：Less is More</a></li>
+                <li>
+                    <a href="#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6" aria-label="核心组件">核心组件</a><ul>
+                        
+                <li>
+                    <a href="#agent-loop" aria-label="Agent Loop">Agent Loop</a></li>
+                <li>
+                    <a href="#context-%e7%ae%a1%e7%90%86" aria-label="Context 管理">Context 管理</a></li>
+                <li>
+                    <a href="#%e5%8e%9f%e5%ad%90%e5%8c%96%e5%b7%a5%e5%85%b7" aria-label="原子化工具">原子化工具</a></li>
+                <li>
+                    <a href="#file-system" aria-label="File System">File System</a></li>
+                <li>
+                    <a href="#subagent" aria-label="Subagent">Subagent</a></li>
+                <li>
+                    <a href="#hooks" aria-label="Hooks">Hooks</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%be%b9%e7%95%8c%e7%bb%84%e4%bb%b6" aria-label="边界组件">边界组件</a></li>
+                <li>
+                    <a href="#harness-engineering--bigger-loop" aria-label="Harness Engineering = Bigger Loop">Harness Engineering = Bigger Loop</a></li>
+                <li>
+                    <a href="#%e5%a5%bd-harness-%e7%9a%84%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99" aria-label="好 Harness 的设计原则">好 Harness 的设计原则</a></li>
+                <li>
+                    <a href="#%e7%bb%93%e8%af%ad" aria-label="结语">结语</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="引子"><strong>引子</strong><a hidden class="anchor" aria-hidden="true" href="#引子">#</a></h2>
+<p>“今天你 Harness 了吗？”</p>
+<p>2026 年，&ldquo;Harness&quot;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。</p>
+<p>在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 <strong>Harness 本身。</strong></p>
+<p>这篇文章只回答一个问题：<strong>一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？</strong></p>
+<p>以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。</p>
+<blockquote>
+<p><strong>造好 Harness，Agent 会完成剩下的。</strong></p>
+</blockquote>
+<h2 id="正本清源harness-到底是什么"><strong>正本清源：Harness 到底是什么</strong><a hidden class="anchor" aria-hidden="true" href="#正本清源harness-到底是什么">#</a></h2>
+<p>要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。</p>
+<p>在传统软件工程中，<strong>Test Harness（测试自动化框架）</strong> 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。</p>
+<p>而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。</p>
+<p><img loading="lazy" src="/img/%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97-assets/image.png" alt="image.png"  />
+</p>
+<p>直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。</p>
+<p>目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。</p>
+<blockquote>
+<p>“Agent Harness: <strong>External set of functionality to enhance a model&rsquo;s runtime execution</strong>. …</p>
+</blockquote>
+<p>而真正的爆火，来自 <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic: Effective harnesses for long-running agents</a> (Nov 26, 2025) 和 <a href="https://openai.com/index/harness-engineering/">OpenAI: Harness engineering: leveraging Codex in an agent-first world</a> (Feb 11, 2026) 的两篇文章。</p>
+<p><img loading="lazy" src="/img/%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97-assets/image%201.png" alt="image 1.png"  />
+</p>
+<p>简单来说，如果用一句话定义： Harness 就是<strong>包裹在 LLM 外面的软件外壳</strong>——它把一个只会说话的模型，变成一个<strong>能做事</strong>的 Agent，甚至是能持续运行数小时的 <strong>long-running</strong> Agent。</p>
+<p>包括 LangChain 在内的各种生态为了跑马圈地，创造了无数概念把人搞得云里雾里，所以，Agent Frameworks, Runtimes, scaffolding, Harnesses 这些词究竟有什么区别？</p>
+<p>结合 LangChain 的文章：<a href="https://blog.langchain.com/agent-frameworks-runtimes-and-harnesses-oh-my/">Agent Frameworks, Runtimes, and Harnesses - oh my!</a></p>
+<ul>
+<li>
+<p><strong>Runtime</strong>：解决“agent 怎么在生产里稳定、可持久地跑”的底层基础设施。</p>
+</li>
+<li>
+<p><strong>Framework</strong>：提供一套抽象和编程模型，帮你“更容易写 agent 应用”。</p>
+</li>
+<li>
+<p><strong>Harness</strong>：在 framework 之上加上默认配置、工具和工作流，做成“拿来就能跑任务的高层套件”。</p>
+</li>
+</ul>
+<p><img loading="lazy" src="/img/%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97-assets/Pasted%202026-04-05-19-23-57.png" alt="Pasted 2026-04-05-19-23-57.png"  />
+</p>
+<p>（概念都是人造的，都是先有了物，才有了概念）</p>
+<h2 id="设计哲学less-is-more"><strong>设计哲学：Less is More</strong><a hidden class="anchor" aria-hidden="true" href="#设计哲学less-is-more">#</a></h2>
+<p>从 <a href="https://x.com/systematicls/status/2028814227004395561">How To Be A World-Class Agentic Engineer</a> 以及 <a href="https://rlancemartin.github.io/2025/07/30/bitter_lesson/">Learning the Bitter Lesson</a> 中所总结的经验和教训便是：<strong>Less is More</strong>。各种人为加入的结构或偏置虽然短期有用，却会在长期成为限制，应随着模型和计算能力提升逐步去除。</p>
+<p>具体来说，The Bitter Lesson 在 Agent 领域的推论：</p>
+<p>在 Harness 中写的每一行&quot;聪明&quot;的控制逻辑，都是在和未来的模型能力对赌。如：</p>
+<ul>
+<li>
+<p>2024 年你写了精巧的 ReAct 状态机 → 2025 年模型原生支持多轮工具调用，你的状态机成了负担</p>
+</li>
+<li>
+<p>2025 年你写了复杂的 Planning 模块 → 2026 年模型的 reasoning 能力足以自主规划，你的 Planner 成了天花板</p>
+</li>
+</ul>
+<p>这不是说不需要 Harness，而是说：<strong>Harness 的每一个组件都应该问自己——&ldquo;这个东西，模型自己能不能学会？&rdquo;</strong></p>
+<p>如果答案是&quot;迟早能&rdquo;，那它就是辅助组件，写的时候就要预留拆除的口子。 如果答案是&quot;不可能&quot;（因为它涉及的是 LLM 外部的物理世界），那它就是核心组件。</p>
+<p>换句话说，极简的、最小化必要的组件，才是一个能扛住未来 3-6 个月模型迭代的 Harness 的核心。</p>
+<p>具体的，如果以 “Long-running”为目标，Harness 的组件可以被划分为两类：</p>
+<ul>
+<li>
+<p><strong>核心组件：</strong> Agent-loop、Context 管理、原子化核心工具、File-system 、Hooks 与 Subagent 隔离（或者是task管理）</p>
+</li>
+<li>
+<p>辅助组件（短期内的补丁，长期会被取代的）</p>
+</li>
+</ul>
+<h2 id="核心组件"><strong>核心组件</strong><a hidden class="anchor" aria-hidden="true" href="#核心组件">#</a></h2>
+<h3 id="agent-loop"><strong>Agent Loop</strong><a hidden class="anchor" aria-hidden="true" href="#agent-loop">#</a></h3>
+<p>所有关于 Agent 的故事都始于 Agent-Loop。一个好的 Agent-Loop 必然是极其简洁的，由 LLM 主导决策，而非人为预设路径。</p>
+<p>从底层来看，LLM 依然是一个预测下一个 Token 的自回归模型。这个基本盘在长远来看是成立的。Agent-Loop 的作用仅仅是：<strong>执行工具 → 捕获结果 → 追加上下文 → 再次调用 LLM 。</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">agent_loop</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">query</span><span class="p">}]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="n">SYSTEM</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;assistant&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">stop_reason</span> <span class="o">!=</span> <span class="s2">&#34;tool_use&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">block</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&#34;tool_use&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">output</span> <span class="o">=</span> <span class="n">run_bash</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="s2">&#34;command&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;tool_result&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;tool_use_id&#34;</span><span class="p">:</span> <span class="n">block</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">output</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">results</span><span class="p">})</span>
+</span></span></code></pre></div><p>（from <strong><a href="https://github.com/shareAI-lab/learn-claude-code">learn-claude-code</a></strong>）</p>
+<p>这就是 agent 的核心循环。所有的&quot;智能&quot;都来自同一个地方：<strong>LLM 预测下一个 token 时的内在推理</strong>。Harness 只是把 tool response 喂回去，让这个推理过程能够持续。</p>
+<p>当然，从工程角度和生产级考虑，agent-loop 本质上仍是这个 while-true 循环，但需要增加大量的防御机制来提升韧性。</p>
+<p>据非官方流出的 claude-code 源码分析，<code>queryLoop</code>（<code>src/query.ts:241</code>）围绕核心循环构建了超过 1700 行的防御层，包括：</p>
+<ul>
+<li>
+<p>Streaming 处理</p>
+</li>
+<li>
+<p>权限检查</p>
+</li>
+<li>
+<p>Tool 格式处理、校验</p>
+</li>
+<li>
+<p>错误恢复</p>
+</li>
+<li>
+<p>…</p>
+</li>
+</ul>
+<h3 id="context-管理"><strong>Context 管理</strong><a hidden class="anchor" aria-hidden="true" href="#context-管理">#</a></h3>
+<p>过去半年多，&ldquo;Context Engineering&quot;这个词开始频繁出现。它指的不是简单的 Prompt 调优，而是解决一个更根本的矛盾：<strong>不断累加的 Message 同 LLM 有限的 context-length 和注意力之间的矛盾</strong>。在 Long-running 状态下，持续 append 的 messages 最终会导致：</p>
+<ul>
+<li>
+<p><strong>Context 溢出</strong>：超出 LLM context-window 的物理上界</p>
+</li>
+<li>
+<p><strong>Context Rot</strong>： 在窗口内，不代表模型能有效处理，无效信息过多会严重干扰模型的推理</p>
+</li>
+</ul>
+<p>优秀的 Harness 如何处理 Context？</p>
+<p>Context 管理不仅仅是拼接修剪 Prompt，其中最核心的原则是 token 成本，或者说是 KV-cache 的缓存命中率。也就是说，在保证缓存命中的前提下，进行 context 的优化。</p>
+<p><strong>1. Microcompact</strong></p>
+<p>处理掉前几轮 tool-using 产生的 tool result 中间结果。据源码分析，Claude-code 分成了两种处理方式：</p>
+<ul>
+<li>
+<p><strong>Time-based Microcompact</strong>：当用户离开一段时间后回来，服务端的 prompt cache 已经过期，此时无需保护缓存，直接构造新的消息对象替换旧的工具结果内容。</p>
+</li>
+<li>
+<p><strong>Cached Microcompact</strong>（<a href="https://platform.claude.com/docs/en/build-with-claude/context-editing">Context editing</a>）：在 cache 存活期间不能替换消息内容，而是通过 Anthropic API 的 Context editing 机制，在 API 层面删除指定工具的 <code>tool_result</code>。</p>
+</li>
+</ul>
+<p><strong>2. Summary、Compact、Auto-Compact</strong></p>
+<p>当手动或自动触发阈值时，Harness 会调用 LLM，根据现有的 context 进行总结和摘要并替换掉之前的 context。以 Claude Code 为例，摘要中通常包含：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// 摘要必须包含以下9个部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">1</span><span class="p">.</span> <span class="nx">Primary</span> <span class="nx">Request</span> <span class="nx">and</span> <span class="nx">Intent</span>      <span class="c1">// 主要请求和意图
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">2</span><span class="p">.</span> <span class="nx">Key</span> <span class="nx">Technical</span> <span class="nx">Concepts</span>          <span class="c1">// 关键技术概念
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">3</span><span class="p">.</span> <span class="nx">Files</span> <span class="nx">and</span> <span class="nx">Code</span> <span class="nx">Sections</span>         <span class="c1">// 文件和代码段
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">4</span><span class="p">.</span> <span class="nx">Errors</span> <span class="nx">and</span> <span class="nx">fixes</span>                <span class="c1">// 错误和修复
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">5</span><span class="p">.</span> <span class="nx">Problem</span> <span class="nx">Solving</span>                 <span class="c1">// 问题解决
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">6</span><span class="p">.</span> <span class="nx">All</span> <span class="nx">user</span> <span class="nx">messages</span>               <span class="c1">// 所有用户消息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">7</span><span class="p">.</span> <span class="nx">Pending</span> <span class="nx">Tasks</span>                   <span class="c1">// 待处理任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">8</span><span class="p">.</span> <span class="nx">Current</span> <span class="nx">Work</span>                    <span class="c1">// 当前工作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">9</span><span class="p">.</span> <span class="nx">Optional</span> <span class="nx">Next</span> <span class="nx">Step</span>              <span class="c1">// 可选下一步
+</span></span></span></code></pre></div><p>在 <strong>Anthropic Claude API</strong> 中，system prompt 与 Messages 是独立的，因此可以采用&quot;完全 summary&quot;模式——把历史消息整体替换为摘要。</p>
+<p>相比之下，OpenAI 的 Codex 采用&quot;初始上下文 + 最近用户消息（最多 20k tokens）+ 摘要&quot;的分层模式：</p>
+<p><img loading="lazy" src="/img/%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97-assets/Pasted%202026-04-06-16-00-03.jpg" alt="Pasted 2026-04-06-16-00-03.jpg"  />
+</p>
+<p><strong>3. Offload</strong></p>
+<p>不同于 compact 的有损压缩，offload 利用 file-system，将 context 写入文件中永久保存，然后释放对应的 context 窗口，在后续按需加载，实现无损压缩。</p>
+<p><strong>4. Isolation</strong></p>
+<p>对于存在大量工具调用和探索的过程，将大任务拆解成多个小任务，分别由 subagent 完成，从而实现 context 的独立和隔离，避免 context 的污染。</p>
+<p>Context 管理的目标：在信息完整度 × KV-Cache 命中率 × Token 成本 之间取最优解</p>
+<h3 id="原子化工具"><strong>原子化工具</strong><a hidden class="anchor" aria-hidden="true" href="#原子化工具">#</a></h3>
+<p>严格来说，LLM 所谓的 <em>tool-using</em>，并不是真正在“使用工具”。模型本身只是在输出一种特殊格式的工具调用文本；真正的工具执行，是由 Harness 去解析这些文本后，转化为对环境的真实调用。</p>
+<p>然而，工具并非越多越好。<br>
+过多的工具不仅会降低调用准确率，还会占用宝贵的上下文，带来明显的 <strong>Context Rot</strong>。对于 Agent 来说，真正重要的不是工具数量，而是工具是否具备：</p>
+<ul>
+<li>
+<p><strong>原子性</strong></p>
+</li>
+<li>
+<p><strong>正交性</strong></p>
+</li>
+<li>
+<p><strong>完备性</strong></p>
+</li>
+<li>
+<p><strong>可组合性</strong></p>
+</li>
+</ul>
+<p>换句话说，工具层应该尽可能“原语化”——每个工具只做一件明确的事，但这些工具之间可以自由组合，从而构建出复杂行为。</p>
+<p>无论是 Manus 的三层工具设计，还是 Anthropic 提出的 tool-search-tool 与 programmatic tool calling，背后的核心问题其实是同一个：</p>
+<blockquote>
+<p>对 Agent / LLM 而言，什么才是“原生工具”？</p>
+</blockquote>
+<p>所谓原生工具，不是工程师为了业务方便封装出的高度特化接口，而是那些<strong>模型更熟悉、更容易理解、也更容易稳定调用的工具形式</strong>。也可以说，它们是 <strong>agent-oriented tools</strong>。</p>
+<blockquote>
+<p><strong>bash is all you need</strong></p>
+</blockquote>
+<p>像 Bash、文件读写、文本编辑、正则处理这类底层能力，本来就是 Linux 和软件工程世界中最常见的操作接口；它们在训练数据中出现频率极高，也更容易进入 agentic RL 的训练分布。相比之下，那些人为定义、语义暧昧、接口风格各异的自定义工具，往往会显著增加 Agent 的理解与选择负担。</p>
+<p>因此，与其为 Agent 提供几百个高度特化的第三方插件，不如优先提供少量稳定、低层、可组合的基础能力。</p>
+<p>（面向 Agent 的 CRUD？）</p>
+<h3 id="file-system">File <strong>System</strong><a hidden class="anchor" aria-hidden="true" href="#file-system">#</a></h3>
+<p>在 Agent 系统里，file system 的意义远不只是“保存文件”。</p>
+<p>一方面，file system可以将原本停留在上下文窗口中的信息持久化下来，包括中间结果、计划、草稿、观察记录，以及工作记忆（也就是上文所提到的context offload）。</p>
+<p>另一方面，file system本身也是最自然的执行环境之一。尤其在 coding agent 场景下，代码、配置、日志、测试输出、脚本和文档，本来就是围绕文件来组织的。相比额外发明一套新的记忆接口或工具抽象，直接提供 <code>read</code>、<code>write</code>、<code>edit</code> 等基础操作，更符合 Agent 的使用习惯，也更贴近操作系统级的真实工作流。</p>
+<p>因此，在 harness 中，file system 往往承担至少三类关键角色：</p>
+<ul>
+<li>
+<p><strong>工作记忆（Working Memory）</strong>：保存中间状态、任务计划、阶段性结论和临时产物</p>
+</li>
+<li>
+<p><strong>执行环境（Execution Environment）</strong>：承载代码、脚本、配置、输入输出和运行结果</p>
+</li>
+<li>
+<p><strong>隔离边界（Sandbox）</strong>：通过受控目录、虚拟文件系统或沙箱环境限制 Agent 的操作范围与权限</p>
+</li>
+</ul>
+<p>在这篇文章中 <a href="https://arxiv.org/abs/2512.05470">Everything is Context: Agentic File System Abstraction for Context Engineering</a>，借用了Unix 哲学中的“Everything is a file” 理念，之于 agent的file-system中。</p>
+<h3 id="subagent"><strong>Subagent</strong><a hidden class="anchor" aria-hidden="true" href="#subagent">#</a></h3>
+<p><strong>Subagent 最初是 context isolation 的手段，进一步则演化为一种任务调度与多 Agent 协作的基本单元</strong></p>
+<p>在很多任务里，主 agent 的上下文是非常宝贵的资源。像搜索大型代码库、运行测试、排查错误、做长时间分析这类任务，往往会产生大量过程性噪音。如果把这些中间过程全部塞进主对话，不仅会污染主线上下文，也会降低后续推理和决策的质量。</p>
+<p>因此，一个自然的做法是：<strong>spawn 一个 subagent，让它在独立的上下文中完成这些“脏活”</strong>。<br>
+<br>
+主对话不需要消费完整过程，只需要接收一个总结性的结果。从 main-agent 的视角看，它只是调用了一个高阶工具<code>AgentTool</code>，然后等待（或稍后收到）一段总结文本，再将这段文本作为 <code>tool_result</code> 写回自己的上下文。换句话说，subagent 的引入并没有改变核心的 <code>queryLoop</code> 结构。</p>
+<p>进一步看，它也是一种<strong>任务调度机制</strong>。</p>
+<p>这种调度通常有两种形式：</p>
+<ul>
+<li>
+<p><strong>同步 subagent</strong>：像普通工具一样调用，阻塞等待结果</p>
+</li>
+<li>
+<p><strong>异步 subagent</strong>：作为后台任务运行，主对话继续推进，结果稍后回收</p>
+</li>
+</ul>
+<p>一旦进入异步模式，系统就必须维护一个全局任务注册表（例如 Claude Code 中的 <code>AppState.tasks</code>），在后台持续运行，完成后通过信息注入的方式加入到主 agent 的 agent-loop 中。</p>
+<p>当多个后台 subagent 同时运行时，subagent 的价值就不再只是 context isolation，<strong>也是 multi-agent orchestration 的起点</strong>。</p>
+<h3 id="hooks"><strong>Hooks</strong><a hidden class="anchor" aria-hidden="true" href="#hooks">#</a></h3>
+<p>为了保持 agent-loop 的简洁，新的能力不应该继续往 loop 内部堆。<br>
+<br>
+否则，一个本来只有“执行工具 → 捕获结果 → 追加上下文 → 再次调用LLM”四步的循环，很快就会被各式各样的业务逻辑拖成一个巨大的 <code>if-else</code> 状态机。</p>
+<p>Hooks 的意义，就在于把这些复杂性移到 loop 外部。</p>
+<p>通过 <code>PreToolUse</code>、<code>PostToolUse</code>、<code>PreCompact</code>、<code>SubagentStop</code> 等事件，harness 可以在关键节点捕捉状态、注入上下文、拦截风险、验证结果，而不必让 loop 自己理解所有规则。<br>
+<br>
+因此，hooks 的本质不是“多几个扩展点”，而是<strong>把机制和策略分离</strong>：</p>
+<ul>
+<li>
+<p>loop 负责推进执行</p>
+</li>
+<li>
+<p>hooks 负责施加控制</p>
+</li>
+</ul>
+<p>表面上看，hooks 只是提供了一堆事件名；但更重要的是，这些事件定义了 <strong>Agent 系统中的关键边界</strong>。</p>
+<p>一旦边界清晰，很多能力就不再需要直接修改 loop 本身，而是可以通过外部策略注入：</p>
+<ul>
+<li>
+<p>安全策略可以挂在工具调用前后</p>
+</li>
+<li>
+<p>记忆治理可以挂在 compact 前后</p>
+</li>
+<li>
+<p>任务编排可以挂在 subagent 生命周期上</p>
+</li>
+<li>
+<p>…</p>
+</li>
+</ul>
+<h2 id="边界组件"><strong>边界组件</strong><a hidden class="anchor" aria-hidden="true" href="#边界组件">#</a></h2>
+<p>除了上文提到的六大核心组件，还有一些常被讨论的概念。它们并非每个都是必需品，但理解它们的位置有助于避免过度设计。</p>
+<p><strong>Checkpointing / Recovery</strong></p>
+<p>对于 Long-running Agent 来说，错误恢复和状态检查点确实重要。但从 Harness 的视角看，Checkpointing 更像是一种跨组件的横切能力：File System 负责持久化，Hooks 负责在关键节点触发保存，Agent Loop 负责从断点恢复。它很难被单独抽象为一个独立的&quot;组件&rdquo;，而是各个核心组件协作的产物。</p>
+<p><strong>Planner / Todo-list</strong></p>
+<p>还记得 2026 年初，<a href="https://x.com/trq212/status/2014480496013803643">Claude Code 取消了内置的 todo-list 工具</a>。原因很直接：新版本模型的 reasoning 能力已经足够强，不再需要人为维护一个显式的待办列表。这恰好印证了 Bitter Lesson 的预言——你今天写的 Planning 模块，很可能就是明天第一个被拆除的辅助组件。如果一定要做，请确保它能被干净地剥离，而不是和 Loop 深度耦合。</p>
+<p><strong>Skills</strong></p>
+<p>Skills 本质上是核心组件的组合产物：一个 Command Registry 加上按需的 Message Injection，以及一堆md文件。它不属于 Harness 的底层，而是 Harness 之上的应用层。</p>
+<p><strong>MCP / Plugins</strong></p>
+<p>MCP是一个协议层，不是 Harness 本体。支持 MCP 当然是个加分项，但它解决的是&quot;如何暴露外部资源&quot;的问题，而非&quot;Harness 应该具备哪些核心能力&quot;的问题。</p>
+<p><strong>Memory</strong></p>
+<p>Memory 无疑是重要的，但截至目前，业内尚未形成共识的形态。无论是 OpenClaw 还是 Claude Code，普遍采用基于 Markdown 文件的轻量级记忆方案。这种&quot;文件即记忆&quot;的方式虽然朴素，却恰好符合 Harness 的极简哲学——与其造一个复杂的记忆数据库，不如让 Agent 用最熟悉的文件接口来管理自己的长期状态。</p>
+<p><strong>Agent Team and Multi-agent</strong></p>
+<p>扩展到多 Agent 时，每个 Agent 内部的 Harness 组件<strong>完全不变</strong>——同样的 agent loop、同样的 context 管理、同样的原子工具。唯一新增的是 Agent 之间的<strong>连接方式</strong>。</p>
+<p>如果你的 Harness 为单 Agent 设计得足够好，扩展到 team 时，90% 的基础设施可以直接复用。Subagent 和 Agent Team Member 的区别可以用下表概括：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">维度</th>
+          <th style="text-align: left">Subagent</th>
+          <th style="text-align: left">Agent Team Member</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">生命周期</td>
+          <td style="text-align: left">任务完成 → 销毁</td>
+          <td style="text-align: left">跨任务存活，可能运行数小时</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">身份</td>
+          <td style="text-align: left">匿名（只有 task 描述）</td>
+          <td style="text-align: left">有角色身份（&ldquo;reviewer&rdquo;、&ldquo;coder&rdquo;、&ldquo;tester&rdquo;）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">状态</td>
+          <td style="text-align: left">无状态，结果返回后消失</td>
+          <td style="text-align: left">有持久状态（自己的 context 历史、记忆文件）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">生成方式</td>
+          <td style="text-align: left">主 agent spawn</td>
+          <td style="text-align: left">预先定义 / 动态 spawn 均可</td>
+      </tr>
+  </tbody>
+</table>
+<p>从 Harness 的角度，多 Agent 系统需要额外提供：</p>
+<ul>
+<li>
+<p><strong>Agent 注册表</strong>：谁在跑、角色是什么、当前状态</p>
+</li>
+<li>
+<p><strong>生命周期钩子</strong>：<code>on_spawn</code>、<code>on_idle</code>、<code>on_terminate</code></p>
+</li>
+<li>
+<p><strong>优雅退出与资源回收</strong>：这是最容易被忽视、也最关键的一点</p>
+</li>
+</ul>
+<p>Subagent 是单向的（主 agent 发任务 → subagent 返回结果），而 Agent Team 需要双向甚至多向通信。但通信方式的设计，依然应该遵循&quot;贴合 LLM 习惯&quot;的原则：<strong>共享文件系统本身就是最自然的通信通道</strong>。</p>
+<h2 id="harness-engineering--bigger-loop"><strong>Harness Engineering = Bigger Loop</strong><a hidden class="anchor" aria-hidden="true" href="#harness-engineering--bigger-loop">#</a></h2>
+<p>受限于篇幅，这里不展开太多 Harness Engineering 的内容。借用这篇文章 <a href="https://yage.ai/share/harness-engineering-scalability-20260330.html">Harness Engineering 在讨论什么：三个 Scaling 维度的统一框架 的观点</a>，Harness Engineering 的核心关键词是 <strong>Scalability</strong>——时间的延展、空间的扩展、以及交互方式的进化。</p>
+<p>从笔者的角度，私认为Harness Engineering 和compound-Engineering 是同义词，真正的价值在于 <strong>如何让 Agent 越跑越好？</strong></p>
+<p>这一切的前提，都是一个好用的 Harness 加上一个更大的 Loop。</p>
+<p>一个完整的 Agent 系统存在两个循环：</p>
+<ul>
+<li>
+<p><strong>Inner Loop（Agent Loop）</strong>：单次任务内的&quot;工具调用 → 结果捕获 → 上下文追加 → 下一步决策&quot;循环。这是本文的核心讨论对象。</p>
+</li>
+<li>
+<p><strong>Outer Loop（Evolution Loop）</strong>：跨任务的&quot;执行 → 评估 → 反馈 → 改进&quot;循环。这是 Harness Engineering 的核心讨论对象。</p>
+</li>
+</ul>
+<p>这些内容在 Andrej Karpathy 的<a href="https://github.com/karpathy/autoresearch">autoresearch</a> 或者是 <a href="https://claude.com/plugins/ralph-loop">Ralph Loop</a> 中都能看到。</p>
+<p><strong>Outer Loop 不需要另起一套架构，它是 Inner Loop 的核心组件在更大时间尺度上的复用。</strong> Hooks 提供观测点，File System 提供持久化记忆，Subagent 提供并行实验能力，Context 管理保证运行不会失控。</p>
+<h2 id="好-harness-的设计原则"><strong>好 Harness 的设计原则</strong><a hidden class="anchor" aria-hidden="true" href="#好-harness-的设计原则">#</a></h2>
+<p><strong>1. 极简性 (Minimality)</strong></p>
+<p>能不加的组件就不加。每个组件都问自己：</p>
+<p>&ldquo;如果去掉它，agent 是完全不能跑，还是只是跑得没那么好？&rdquo;</p>
+<p>前者是核心，后者是辅助。</p>
+<p><strong>2. 可拆卸性 (Removability)</strong></p>
+<p>辅助组件必须能被干净地移除，而不是和核心组件纠缠在一起。</p>
+<p>这是 Bitter Lesson 的工程实践：你今天写的东西，</p>
+<p>要让六个月后的自己能轻松删掉。</p>
+<p><strong>3. 模型无关性 (Model Agnosticism)</strong></p>
+<p>Harness 不应该为某个特定模型的怪癖做特殊适配。</p>
+<p>好的 harness 换一个模型，改个 API 调用就能跑。</p>
+<p>（当然，针对特定模型的 prompt 优化是另一回事）</p>
+<p><strong>4. 面向进化 (Evolution-Ready)</strong></p>
+<p>Harness 的终极目标不是&quot;跑一个任务&quot;，</p>
+<p>而是&quot;提供一个让 agent 越跑越好的环境&quot;。</p>
+<p>每个组件的设计都应该考虑：</p>
+<p>它如何为 Outer Loop 贡献数据、反馈、或可调参数？</p>
+<h2 id="结语"><strong>结语</strong><a hidden class="anchor" aria-hidden="true" href="#结语">#</a></h2>
+<p>Agent Harness 不是越复杂越好。恰恰相反，它的价值在于<strong>克制</strong>。</p>
+<p>2023-2026 年的 Agent 发展史，本质上是一部&quot;人为控制逻辑不断被模型能力淘汰&quot;的历史。Harness 的真正使命，是为模型提供一个<strong>稳定、安全、可进化的运行环境</strong>，然后把决策权交还给模型本身。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/agent-infra/">Agent-Infra</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent-harness/">Agent-Harness</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/">
+    <span class="title">Next »</span>
+    <br>
+    <span>告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on x"
+            href="https://x.com/intent/tweet/?text=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f&amp;hashtags=Agent-Infra%2cAgent-Harness%2cAgent">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f&amp;title=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97&amp;summary=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f&title=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on telegram"
+            href="https://telegram.me/share/url?text=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e6%b5%85%e8%b0%88Agent%20Harness%20%ef%bc%9a%e9%9d%a2%e5%90%91%202026%20%e7%9a%84%20AI%20Agent%20Harness%20%e6%9c%80%e5%b0%8f%e5%8c%96%e8%ae%be%e8%ae%a1%e6%8c%87%e5%8d%97&u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-harness-design%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

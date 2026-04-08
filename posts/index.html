@@ -195,6 +195,35 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>引子 “今天你 Harness 了吗？”
+2026 年，“Harness&#34;大概是 AI Agent 领域被用得最多的一个词，也伴随着巨大的误解。反观过去这 2-3 年内 AI 发展，伴随的是如雨后春笋般出现的各式各样 agent 框架、脚手架和编排工具，大多也深陷技术债的泥潭，从此销声匿迹。
+在本文中，先不谈宏大的 Harness Engineering（笔者认为这个词更多包含了让 Agent 自我迭代优化的含义），只聊聊 Harness 本身。
+这篇文章只回答一个问题：一个面向未来的、最小化的 Agent Harness，到底由哪些不可替代的核心组件构成？
+以及，在当下的技术语境里，如何摆脱过去两年积累的技术债，选择或开发一个合适的 Agent Harness。
+造好 Harness，Agent 会完成剩下的。
+正本清源：Harness 到底是什么 要搞清楚 Harness 到底是什么，需要先做一点简单的赛博考古。
+在传统软件工程中，Test Harness（测试自动化框架） 指的是为了执行测试而建立的自动化环境，核心目标是“去人工化”。
+而在 LLM、Agent 领域，harness 起初更多被用在 LLM 评测语境下，如 SWE-bench 等复杂的评测基准中，单纯的 LLM 无法拿高分，需要一套外置循环和工具来辅助测试。此时，Harness 仅限于 Eval 领域。
+直到 Claude-Code 等应用的出现，agent harness 逐渐有了新的含义：支撑 AI 工作的底座。
+目前能找到最早的来源， 2025 年 9 月 23 日，开发者 Vivek Trivedy 在博客中首次系统阐述“agent harness”。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-08 21:03:00 +0800 CST'>April 8, 2026</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to 浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南" href="https://niraya666.github.io/posts/agent-harness-design/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -508,40 +537,6 @@ relationships 用triplet的表示：
   </div>
   <footer class="entry-footer"><span title='2025-05-20 18:44:00 +0800 CST'>May 20, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to 初探 Mem0" href="https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">LangMem: 一些学习笔记
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。
-一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。
-总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。
-Core-Concepts core-concepts 在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural
-Collection Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；
-适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等
-更新方式：需要合并新信息，避免重复或冲突
-检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果
-Profiles 存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据
-适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；
-更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；
-检索方式：直接查找用户的 Profile
-Procedural Memory 类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上
-适用场景：需要长期优化 Agent行为和交互方式，少走弯路
-总结
-Memory Type 用途 智能体示例 典型存储模式 Semantic Facts &amp; Knowledge User preferences; knowledge triplets Profile或Collection Episodic Past Experiences Few-shot examples; 过往对话摘要 Collection Procedural System Behavior Core personality and response patterns Prompt rules或Collection Writing memories 提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-04-10 10:44:00 +0800 CST'>April 10, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to LangMem: 一些学习笔记" href="https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
