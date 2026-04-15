@@ -11,8 +11,47 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Mar 2025 16:44:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2026 16:16:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>借LLM-wiki 聊聊知识管理</title>
+      <link>https://niraya666.github.io/posts/%E5%80%9Fllm-wiki-%E8%81%8A%E8%81%8A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 15 Apr 2026 16:16:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/%E5%80%9Fllm-wiki-%E8%81%8A%E8%81%8A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;TL; DR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AK的LLM-wiki 本质上没有太新的东西，大家的思路方向基本上形成共识，只是缺乏一个KOL发声和传播。毕竟一些观点从小卡拉米嘴里说出是爆论，而从AK嘴里说出则成了真理。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;过去传统的 naive-RAG（文档解析-分块-向量索引-语义检索-召回）已死&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RAG、知识库面临的问题是garbage-in-garbage-out， 解决的出路是让 LLM/Agent 承担文档清洗、自动标注、合成语料、分层管理和检查校验&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;知识&amp;quot;不等于&amp;quot;文档&amp;rdquo;， &amp;ldquo;index no storage&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;过去不少的知识管理方法论和思路都值得结合AI做一遍&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;引言&#34;&gt;&lt;strong&gt;引言&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;在信息爆炸的年代，我们不是在管理知识，我们是在管理&lt;strong&gt;焦虑&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;80 年前，Vannevar Bush 在《As We May Think》里描绘了 Memex：一个人的全部书籍、记录和通信，都能通过一台机器被快速、灵活地调用。后来 Tiago Forte 教我们 CODE信息管理，卢曼用 Zettelkasten 证明了一个制片的工人也能变成社会学教授。但所有这些方法论都有一个共同的瓶颈：&lt;strong&gt;整理成本太高了&lt;/strong&gt;。大多数人读完一篇文章，第二步就放弃了。&lt;/p&gt;
+&lt;p&gt;在前 LLM 时代，第二大脑的答案是&amp;quot;强化第一大脑&amp;quot;。你得手动剪藏、手动分类、手动建立链接，然后 hoping 某天这些积累能产生复利。但在 AI 能替你读、替你写、替你总结的今天，这个答案变得模糊了——它究竟是来&lt;strong&gt;强化&lt;/strong&gt;你的，是来&lt;strong&gt;取代&lt;/strong&gt;你的，还是你们将&lt;strong&gt;协作进化&lt;/strong&gt;？&lt;/p&gt;
+&lt;h2 id=&#34;传统-rag-已死&#34;&gt;&lt;strong&gt;传统 RAG 已死&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;文档解析 → 分块 → 向量索引 → 语义检索 → 召回。这套流水线起初是为了解决 LLM 的幻觉问题，把外部知识作为上下文喂进模型。&lt;/p&gt;
+&lt;p&gt;但它本质上还是传统的信息检索，只是加了个LLM的壳子。随着 Agent 范式的兴起，它正在回归它本来应该待的地方：&lt;strong&gt;一个给 Agent 配置的查询工具。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;回看过去这1-2年的实践，随着模型能力越来越强，几个同RAG、检索、context有关的问题，但一直没怎么变过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;garbage-in-garbage-out&lt;/strong&gt;： 很多时候原始文档本身就是混乱的、缺乏结构的，各种调优分块策略、召回策略都救不了，不如从源头将文档清洗成agent喜欢的上下文，毕竟这些dirty work 可以交给 Agent 来自动完成了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何有效利用有限的context窗口： 即便LLM的context-length 从4096 一路涨到了几百K，全部塞入并不是解决方法；毕竟LLM存在context-rot的问题，为LLM精选context 实际上也是大家过去一直在做的事&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;结合自己过去的一些实践，越来越觉得，传统 RAG 的问题并不只是“召回不准”，而是它默认了一种过于理想化的信息访问方式，似乎问题就解决了。但现实里，这套流程往往只在简单问答上有效。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
       <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
