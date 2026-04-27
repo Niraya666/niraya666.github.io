@@ -221,6 +221,35 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">【Agent-memory】拆解 Claude Code 的记忆架构
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TL；DR
+Markdown is all you need.
+没有语义检索，没有向量库，没有 embedding——只有 md 文件和对应的索引文件（同样也是 md）。md 的提取、维护、检索全部交给 sub-agent（部分由 main-agent 完成）。
+极简主义的存储哲学：纯文件系统、多层级、可解释、极易迁移。
+写在前面 如何让 agent 越跑越好，给agent套上memory，这是市面上绝大多数Agent-harness都在做的事情。当绝大多数harness 为了memory而引入向量索引，引入RAG时，Claude-code 依旧走着之前的grep 的老路：只使用markdown文件；反直觉的极简主义，恰恰因为源码泄露，让我们有机会一窥其全貌。
+简单来说，Claude Code 的 memory 可分为 CLAUDE.md 和 Auto-memory 两大类（也对应着不同时间段的发展）。这篇文章更着墨于 auto-memory，CLAUDE.md 的相关内容放在附录——毕竟这些内容在绝大多数 vibe-coding 教学和官方文档中都能找到。
+后文讨论的 memory，默认指 auto-memory。
+Claude-code memory 概览 两大核心：
+Auto memory：Claude 自动保存有用的上下文，如项目模式、关键命令和你的偏好。存储在 ~/.claude/projects/&lt;project&gt;/memory/ 目录中。
+CLAUDE.md 文件：你编写和维护的 markdown 文件，包含给 Claude 的指令、规则和偏好。
+特性 CLAUDE.md Auto Memory 谁写的 你（用户/团队） Claude 自动写入 内容 规则、指令、项目约定 学习到的偏好和模式 存储位置 项目目录 / 用户目录 ~/.claude/projects/.../memory/ 是否应提交到 git 是（团队共享） 否（个人机器本地） Claude Code 的 Memory 系统是一个多层次的持久化架构，为了让 agent 能够：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-27 17:05:00 +0800 CST'>April 27, 2026</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to 【Agent-memory】拆解 Claude Code 的记忆架构" href="https://niraya666.github.io/posts/cc-memory/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">借LLM-wiki 聊聊知识管理
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -526,34 +555,6 @@ Gemini &amp; Qwen: 直接在API中提供了明确的thinking_budget参数设置
   </div>
   <footer class="entry-footer"><span title='2025-08-05 20:12:00 +0800 CST'>August 5, 2025</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to 拒绝“想太多”：大模型Thinking Budget控制方案解析" href="https://niraya666.github.io/posts/thinking-budget-0805/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">从下半场开始，对于评估的重新思考: 一些概念
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>引子 前一段时间，OpenAI 研究员姚顺雨在一篇广受关注的文章《The Second Half》中提出：
-“I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.”
-指出，AI 发展的“下半场”已经到来，而其中一个核心议题，就是对 evaluation的重新思考。我们需要的不再是单纯地创造更难的 benchmark，然后在这些 benchmark 上“刷分”，而是要更加关注评测的实用性、创新性，以及其与真实世界的契合度。
-过去，我们往往过于关注模型本身、训练方法以及各种fancy的技术手段，却忽略了模型与真实世界的交互和落地应用。而 evaluation，正是连接模型能力与实际需求的关键环节。
-本文最初的出发点，是梳理 Hugging Face Evaluation 系列文章中的一些要点。需要说明的是，HF 的文章主要聚焦于如何评测LLM的能力，考虑到其成文的时间，其中部分内容在当前 LLM 能力飞速提升的背景下，显得有些滞后。但这也为我们提供了一个契机，从后来者的视角重新思考 evaluation 的意义，并尝试将这些理念应用到更加复杂和多样化的 AI 系统中，如RAG和AI-agent。
-在机器学习和深度学习的流程中，Evaluation是衡量模型性能的核心环节。它贯穿于模型开发的始终：从训练阶段的实时监控，到上线前的最终验证，再到部署后的持续追踪。
-简单来说，评估的目标是回答两个问题：
-模型是否有效？（性能指标）
-模型是否可靠？（鲁棒性、泛化能力）
-以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-06-11 15:04:00 +0800 CST'>June 11, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to 从下半场开始，对于评估的重新思考: 一些概念" href="https://niraya666.github.io/posts/eval_1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
