@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI | LZY Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/tags/ai/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/ai/index.xml">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/tags/ai/">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/tags/ai/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="AI" />
+<meta property="og:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://niraya666.github.io/tags/ai/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="AI"/>
+<meta name="twitter:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/tags/">Tags</a></div>
+  <h1>
+    AI
+    <a href="/tags/ai/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Prologue: From an Old Question to a New One I remember when I first started out in this industry, I followed a question on Zhihu:
+“The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won’t BAT (Baidu, Alibaba, Tencent) step into it?”
+Over five years later, this question still has no definitive answer — but the times have changed.
+Back then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the “technology is scarce” premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they’ll tell you: it’s not that simple.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-06-10 11:00:00 +0800 CST'>June 10, 2026</span>&nbsp;·&nbsp;22 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do" href="https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">为什么传统 IT 注定做不好 AI——从《创新者的窘境》说起
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>克里斯坦森在《创新者的窘境》中提出了一个反直觉的洞见：良好的管理本身可能就是导致失败的原因。
+这个看似悖论的判断，在我亲历的 AI 转型浪潮中得到了残酷的验证。当一个传统 IT 组织试图拥抱 AI 时，它往往不是在做真正的创新，而是在用最先进的技术维护最陈旧的官僚体系。
+这不是技术问题，这是组织结构与价值体系的深层冲突。
+一、延续性创新与颠覆性创新 克里斯坦森将创新分为截然不同的两类：
+**延续性创新 (Sustaining Innovation)：**大公司最擅长的。它的目的是把现有产品做得更好，满足现有的高端客户——因为这些客户愿意支付更高的溢价，能带来最高的利润率。 **颠覆性创新 (Disruptive Innovation)：**刚出现时通常被认为是低端或劣质的。它的性能往往不如主流产品，利润率极低，市场也很小；但在更便宜、更简单、更小巧、更方便等方面具有优势。 窘境在于：管理者为了对股东负责、为了追求利润最大化，理智地决定不投资颠覆性技术，继续专注于延续性创新。然而，正是这个正确的决定，导致了公司错失未来，最终走向衰亡。
+这不是错误，而是理性的诅咒。
+AI 对于传统 IT 来说，正是这样一种颠覆性创新。
+二、价值观的冲突 传统 IT 和 AI 研发遵循的是两套完全不同的价值体系，这种冲突在克里斯坦森看来并非偶然，而是根植于价值网络的内在逻辑。
+价值网络决定了企业的成本结构、所需规模以及必须实现的基本增长率。当企业在某个特定的网络内逐渐积累经验，它会形成符合该网络独特要求的能力、组织结构和文化。IT 部门诞生于一个追求稳定、可预测的价值网络，而 AI 则需要完全不同的生存土壤。
+这种冲突首先体现在资源分配逻辑上。克里斯坦森指出，在经营状况良好的企业中，“客户有效地控制了资源分配模式”。良好的资源分配流程的设计初衷就是淘汰得不到客户认可的提案——这正是大企业的经营之道。但问题是，破坏性技术的最终用户或应用领域是无法预知的，“你无法对尚不存在的市场进行分析”。当一个 AI 项目的 ROI 无法被现有客户价值网络所验证时，它就会在资源分配中被系统性淘汰。
+更深层的冲突在于组织能力本身。“一个机构的能力独立于机构内部工作人员的能力而存在，“克里斯坦森写道，“一个机构的能力体现在其流程和价值观中，而且正是构成当前业务模式核心能力的流程和价值观，决定了它们无力应对市场的破坏性变化。“IT 部门引以为傲的零事故流程、层层审批机制、供应商管理制度——这些构成其核心能力的要素，恰恰成为拥抱 AI 创新的枷锁。
+当 IT 部门被赋予 AI 转型的使命时，它本能地会用自己熟悉的方式来管理：制定标准、建立流程、控制风险。但这恰恰是扼杀 AI 创新的方式。
+IT 追求稳定，AI 需要混乱；IT 害怕失败，AI 拥抱试错；IT 看重合规，AI 追求突破。
+三、用 20 世纪的规则管理 21 世纪的技术 传统 IT 部门面对 AI 时，会本能地套用既有的管理流程。但这些流程往往成为创新的绊脚石。
+一个真实的场景：
+DeepSeek 刚发布 R1 时，试图导入 671B 模型权重进行内部测试。IT 部门的回复是：这是&#34;新型业务需求”，需要从业务和安全角度进行全方位评估。等流程走完——风险评估、合规审查、供应商准入、数据出境审查——这个模型可能已经更新了两个版本。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-02-19 14:32:00 +0800 CST'>February 19, 2026</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 为什么传统 IT 注定做不好 AI——从《创新者的窘境》说起" href="https://niraya666.github.io/essay/%E5%88%9B%E6%96%B0%E8%80%85%E7%9A%84%E7%AA%98%E5%A2%83_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

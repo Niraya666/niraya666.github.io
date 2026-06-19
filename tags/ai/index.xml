@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/ai/</link>
+    <description>Recent content in AI on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/og-cover.png</url>
+      <link>https://niraya666.github.io/img/og-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 10 Jun 2026 11:00:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do</title>
+      <link>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</link>
+      <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</guid>
+      <description>&lt;h2 id=&#34;prologue-from-an-old-question-to-a-new-one&#34;&gt;&lt;strong&gt;Prologue: From an Old Question to a New One&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;I remember when I first started out in this industry, I followed a question on Zhihu:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;&lt;a href=&#34;https://www.zhihu.com/question/278732236&#34;&gt;The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won&amp;rsquo;t BAT (Baidu, Alibaba, Tencent) step into it?&lt;/a&gt;&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Over five years later, this question still has no definitive answer — but the times have changed.&lt;/p&gt;
+&lt;p&gt;Back then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the &amp;ldquo;technology is scarce&amp;rdquo; premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they&amp;rsquo;ll tell you: &lt;strong&gt;it&amp;rsquo;s not that simple.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>为什么传统 IT 注定做不好 AI——从《创新者的窘境》说起</title>
+      <link>https://niraya666.github.io/essay/%E5%88%9B%E6%96%B0%E8%80%85%E7%9A%84%E7%AA%98%E5%A2%83_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 19 Feb 2026 14:32:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/essay/%E5%88%9B%E6%96%B0%E8%80%85%E7%9A%84%E7%AA%98%E5%A2%83_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;克里斯坦森在《创新者的窘境》中提出了一个反直觉的洞见：良好的管理本身可能就是导致失败的原因。&lt;/p&gt;
+&lt;p&gt;这个看似悖论的判断，在我亲历的 AI 转型浪潮中得到了残酷的验证。当一个传统 IT 组织试图拥抱 AI 时，它往往不是在做真正的创新，而是在用最先进的技术维护最陈旧的官僚体系。&lt;/p&gt;
+&lt;p&gt;这不是技术问题，这是组织结构与价值体系的深层冲突。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一延续性创新与颠覆性创新&#34;&gt;一、延续性创新与颠覆性创新&lt;/h2&gt;
+&lt;p&gt;克里斯坦森将创新分为截然不同的两类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**延续性创新 (Sustaining Innovation)：**大公司最擅长的。它的目的是把现有产品做得更好，满足现有的高端客户——因为这些客户愿意支付更高的溢价，能带来最高的利润率。&lt;/li&gt;
+&lt;li&gt;**颠覆性创新 (Disruptive Innovation)：**刚出现时通常被认为是低端或劣质的。它的性能往往不如主流产品，利润率极低，市场也很小；但在更便宜、更简单、更小巧、更方便等方面具有优势。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;窘境在于：管理者为了对股东负责、为了追求利润最大化，&lt;strong&gt;理智地&lt;/strong&gt;决定不投资颠覆性技术，继续专注于延续性创新。然而，正是这个正确的决定，导致了公司错失未来，最终走向衰亡。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这不是错误，而是理性的诅咒。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 对于传统 IT 来说，正是这样一种颠覆性创新。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二价值观的冲突&#34;&gt;二、价值观的冲突&lt;/h2&gt;
+&lt;p&gt;传统 IT 和 AI 研发遵循的是两套完全不同的价值体系，这种冲突在克里斯坦森看来并非偶然，而是根植于&lt;strong&gt;价值网络&lt;/strong&gt;的内在逻辑。&lt;/p&gt;
+&lt;p&gt;价值网络决定了企业的成本结构、所需规模以及必须实现的基本增长率。当企业在某个特定的网络内逐渐积累经验，它会形成符合该网络独特要求的能力、组织结构和文化。IT 部门诞生于一个追求稳定、可预测的价值网络，而 AI 则需要完全不同的生存土壤。&lt;/p&gt;
+&lt;p&gt;这种冲突首先体现在资源分配逻辑上。克里斯坦森指出，在经营状况良好的企业中，&amp;ldquo;客户有效地控制了资源分配模式&amp;rdquo;。良好的资源分配流程的设计初衷就是淘汰得不到客户认可的提案——这正是大企业的经营之道。但问题是，破坏性技术的最终用户或应用领域是无法预知的，&amp;ldquo;你无法对尚不存在的市场进行分析&amp;rdquo;。当一个 AI 项目的 ROI 无法被现有客户价值网络所验证时，它就会在资源分配中被系统性淘汰。&lt;/p&gt;
+&lt;p&gt;更深层的冲突在于组织能力本身。&amp;ldquo;一个机构的能力独立于机构内部工作人员的能力而存在，&amp;ldquo;克里斯坦森写道，&amp;ldquo;一个机构的能力体现在其流程和价值观中，而且正是构成当前业务模式核心能力的流程和价值观，决定了它们无力应对市场的破坏性变化。&amp;ldquo;IT 部门引以为傲的零事故流程、层层审批机制、供应商管理制度——这些构成其核心能力的要素，恰恰成为拥抱 AI 创新的枷锁。&lt;/p&gt;
+&lt;p&gt;当 IT 部门被赋予 AI 转型的使命时，它本能地会用自己熟悉的方式来管理：制定标准、建立流程、控制风险。但这恰恰是扼杀 AI 创新的方式。&lt;/p&gt;
+&lt;p&gt;IT 追求稳定，AI 需要混乱；IT 害怕失败，AI 拥抱试错；IT 看重合规，AI 追求突破。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三用-20-世纪的规则管理-21-世纪的技术&#34;&gt;三、用 20 世纪的规则管理 21 世纪的技术&lt;/h2&gt;
+&lt;p&gt;传统 IT 部门面对 AI 时，会本能地套用既有的管理流程。但这些流程往往成为创新的绊脚石。&lt;/p&gt;
+&lt;p&gt;一个真实的场景：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DeepSeek 刚发布 R1 时，试图导入 671B 模型权重进行内部测试。IT 部门的回复是：这是&amp;quot;新型业务需求&amp;rdquo;，需要从业务和安全角度进行全方位评估。等流程走完——风险评估、合规审查、供应商准入、数据出境审查——这个模型可能已经更新了两个版本。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

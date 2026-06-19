@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agent-Harness on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/agent-harness/</link>
+    <description>Recent content in Agent-Harness on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/og-cover.png</url>
+      <link>https://niraya666.github.io/img/og-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 08 Apr 2026 21:03:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/agent-harness/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026</title>
+      <link>https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/</link>
+      <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/</guid>
+      <description>&lt;h2 id=&#34;prologue&#34;&gt;Prologue&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;Have you Harnessed today?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;In 2026, &amp;ldquo;Harness&amp;rdquo; is probably the most-used word in the AI agent space — and it comes with enormous misunderstandings. Look back at the past 2–3 years of AI development and you&amp;rsquo;ll see a mushrooming of agent frameworks, scaffolding, and orchestration tools, most of which sank deep into the mire of technical debt before vanishing without a trace.&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;m not going to dwell on the grand vision of harness engineering (a term that, in my view, carries the connotation of agents self-iterating and optimizing). Let&amp;rsquo;s just talk about &lt;strong&gt;the harness itself.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

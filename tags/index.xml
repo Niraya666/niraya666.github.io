@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/</link>
+    <description>Recent content in Tags on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/og-cover.png</url>
+      <link>https://niraya666.github.io/img/og-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 15 Jun 2026 21:02:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>游记</title>
+      <link>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</link>
+      <pubDate>Mon, 15 Jun 2026 21:02:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI</title>
+      <link>https://niraya666.github.io/tags/ai/</link>
+      <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI-Native</title>
+      <link>https://niraya666.github.io/tags/ai-native/</link>
+      <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/ai-native/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Music</title>
+      <link>https://niraya666.github.io/tags/music/</link>
+      <pubDate>Thu, 30 Apr 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/music/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent</title>
+      <link>https://niraya666.github.io/tags/agent/</link>
+      <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/agent/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent-Harness</title>
+      <link>https://niraya666.github.io/tags/agent-harness/</link>
+      <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/agent-harness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent-Infra</title>
+      <link>https://niraya666.github.io/tags/agent-infra/</link>
+      <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/agent-infra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>杂</title>
+      <link>https://niraya666.github.io/tags/%E6%9D%82/</link>
+      <pubDate>Thu, 19 Feb 2026 14:32:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/%E6%9D%82/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do | LZY Blog</title>
+<meta name="keywords" content="AI, AI-Native">
+<meta name="description" content="Prologue: From an Old Question to a New One
+I remember when I first started out in this industry, I followed a question on Zhihu:
+
+&ldquo;The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won&rsquo;t BAT (Baidu, Alibaba, Tencent) step into it?&rdquo;
+
+Over five years later, this question still has no definitive answer — but the times have changed.
+Back then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the &ldquo;technology is scarce&rdquo; premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they&rsquo;ll tell you: it&rsquo;s not that simple.">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do" />
+<meta property="og:description" content="Prologue: From an Old Question to a New One
+I remember when I first started out in this industry, I followed a question on Zhihu:
+
+&ldquo;The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won&rsquo;t BAT (Baidu, Alibaba, Tencent) step into it?&rdquo;
+
+Over five years later, this question still has no definitive answer — but the times have changed.
+Back then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the &ldquo;technology is scarce&rdquo; premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they&rsquo;ll tell you: it&rsquo;s not that simple." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-06-10T11:00:00+08:00" />
+<meta property="article:modified_time" content="2026-06-10T11:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do"/>
+<meta name="twitter:description" content="Prologue: From an Old Question to a New One
+I remember when I first started out in this industry, I followed a question on Zhihu:
+
+&ldquo;The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won&rsquo;t BAT (Baidu, Alibaba, Tencent) step into it?&rdquo;
+
+Over five years later, this question still has no definitive answer — but the times have changed.
+Back then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the &ldquo;technology is scarce&rdquo; premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they&rsquo;ll tell you: it&rsquo;s not that simple."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Posts",
+      "item": "https://niraya666.github.io/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "The Hardest Part of AI Transformation Isn't AI — It's the Dirty Work Nobody Wants to Do",
+      "item": "https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Hardest Part of AI Transformation Isn't AI — It's the Dirty Work Nobody Wants to Do",
+  "name": "The Hardest Part of AI Transformation Isn\u0027t AI — It\u0027s the Dirty Work Nobody Wants to Do",
+  "description": "Prologue: From an Old Question to a New One I remember when I first started out in this industry, I followed a question on Zhihu:\n\u0026ldquo;The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won\u0026rsquo;t BAT (Baidu, Alibaba, Tencent) step into it?\u0026rdquo;\nOver five years later, this question still has no definitive answer — but the times have changed.\nBack then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the \u0026ldquo;technology is scarce\u0026rdquo; premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they\u0026rsquo;ll tell you: it\u0026rsquo;s not that simple.\n",
+  "keywords": [
+    "AI", "AI-Native"
+  ],
+  "articleBody": "Prologue: From an Old Question to a New One I remember when I first started out in this industry, I followed a question on Zhihu:\n“The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won’t BAT (Baidu, Alibaba, Tencent) step into it?”\nOver five years later, this question still has no definitive answer — but the times have changed.\nBack then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the “technology is scarce” premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they’ll tell you: it’s not that simple.\nAnd so this old question takes on a new form in the AI era:\n“AI is already this powerful — why can’t these industries get moving?”\nRecently, the term FDE (Forward Deployed Engineer) has suddenly caught fire among major AI companies — and at its core, it’s a response to this very question: if the models are already powerful enough, then the “last mile” bottleneck must lie in the customer site, in the data, in the process, in the organization.\nThis article is my attempt to answer this old question, drawing on years of observation and hands-on practice.\nLet me put the conclusion up front:\nWhat most industries are missing right now isn’t AI — it’s X-Ops.\nIn other words, the question has never been “should we adopt AI?” — it’s whether this industry, this company, this production line, this workflow has been transformed into a system that AI can plug into, understand, participate in, and feed back into.\nWhy Has the Software Industry Been Hit Hardest by AI? It’s not AI. It’s DevOps.\nIf you look at the fields where AI has truly “broken in” over the past two years, the software industry itself appears to have taken the biggest hit. The reason the software industry has been hit hardest by AI isn’t that its practitioners are the smartest, nor that models happen to favor code — it’s that over the past two decades, it inadvertently transformed itself into the industry that’s easiest for AI to plug into.\nAI-Friendliness Wasn’t Born This Way If I had to list the traits that put AI in its element within the software industry, here’s what I’d pick:\nOpen corpus, easy to access: GitHub\nShort feedback cycles: Write code, compile, run tests, see results — feedback arrives in seconds or minutes\nAI-friendly context: Code has comments, modules have interfaces, changes have diffs — nearly everything is textual and structured\nVerifiable correctness: Unit tests, integration tests, CI pipelines provide an automatic grading mechanism for whatever the AI writes\nThese four pieces together set the iteration flywheel in motion: generate → verify → get feedback → fix → regenerate.\nBut go back to around the year 2000, and the software industry actually looked a lot more like today’s traditional industries. Release cycles were measured in years. A single version would be polished for months and shipped on a CD. What truly changed everything was the transformation of the delivery model brought by the internet. Software no longer went through “manufacture → copy → ship → install” — instead it became “develop → release → get feedback → update → re-release.” Once this closed loop took shape, the entire way the industry organized itself was forced to restructure:\nBecause you needed to release frequently, you needed version control (Git)\nBecause you needed to integrate frequently, you needed CI/CD\nBecause you needed to collaborate across teams, you needed code review, issue tracking, API documentation\nBecause things could go wrong in production at any moment, you needed logging, monitoring, alerting, observability\nBecause releasing carried high risk, you needed gradual rollout, rollback, A/B testing\nBecause collaboration kept scaling up, you needed Agile, DevOps, SRE (Site Reliability Engineering)\nThis entire apparatus is what we today collectively call DevOps. But the essence of DevOps isn’t a particular combination of tools — it’s an engineering culture that makes the entire process of “how software is produced, delivered, operated, and improved” explicit, versioned, automated, and observable.\nThe “Byproduct” DevOps Left Behind Became AI’s Food Here’s the most interesting part: DevOps was never designed for AI. It solved problems of human-to-human collaboration, the balance between quality and speed, the engineering challenge of delivering at scale.\nBut its byproducts almost perfectly hit every piece of infrastructure the AI era demands:\nWhat DevOps left behind What it means for AI Git repos + commit history Traceable evolution history and training data Issues / PRs / Code Review Labeled human decision data Unit tests / CI An automatic grader — AI changes get verified instantly README / API docs / Design Docs Structured context Logs / Traces / Metrics Runtime feedback signals Canary deployment / Rollback A safe trial-and-error mechanism In other words, the software industry spent twenty years turning its production process into a system that is extraordinarily friendly to any external agent — whether that agent is a new hire, an outsourced team, or an AI.\nWhen the coding agent arrived, it didn’t need the software industry to do any extra adapting. It simply plugged into a collaboration infrastructure that had been ready and waiting for it all along.\nKnowledge Accumulation Got “Embedded” Into the Production Process This is the single thing the software industry has done that other industries should learn from most.\nIn many industries, “knowledge management” is something that requires its own project approval, its own budget, its own performance review — someone has to write documentation, maintain the wiki, run training sessions. But because it has no direct link to business output, it’s always the lowest priority, and it never gets done well.\nIn the software industry, by contrast, knowledge accumulation isn’t an “extra thing” — it’s a byproduct of the production process.\nAn engineer doesn’t need to make any “extra effort” to do knowledge management. As long as he follows the established practices, knowledge gets automatically captured in a structured form.\nFlip the lens to most traditional industries: knowledge lives in people’s heads, in some sheet of some Excel file, in WeChat chat histories. It’s not that knowledge isn’t being produced — it’s that it’s scattered everywhere, exists in all manner of forms, hard to find and hard to read.\nThe other side of this coin: the reason AI still can’t break into other industries isn’t that the models aren’t strong enough — it’s that those industries haven’t yet prepared themselves to onboard any “external agent” — whether that agent is an AI, or a new employee.\nWhy Can’t Most Industries Absorb AI? A world without a source of truth.\nDirty, Dirty, Dirty, Dirty Anyone who’s done one or two AI deployment projects in a traditional industry will know these scenes all too well:\nDirty data: numbers don’t match across systems, systems don’t match reality, and nobody knows what a given data field actually means.\nDirty processes: the SOP (Standard Operating Procedure) and manuals are written in meticulous detail, but nothing actually runs the way the flowchart says it does.\nDirty systems: a dozen-plus systems spanning different eras and different vendors — interfaces either don’t exist, or they’re SOAP, or the workflow is “export to Excel and import it again.”\nDirty knowledge: the core know-how lives inside a veteran’s head, in WeChat chat logs, in some unmaintained Excel file nobody owns.\nStack all four kinds of dirty on top of each other, and for AI to actually deliver value becomes nearly impossible.\nBut the deeper problem isn’t that “things are dirty right now” — it’s that over the past decade-plus, digital transformation didn’t actually solve this. In many places, it made it worse.\nMost Turned Into Dashboards Over the past decade, nearly every halfway-respectable industrial enterprise has done “digital transformation,” “Industrial Internet,” “smart factory,” “centralized data platform.” But if you look at what these projects actually delivered, the vast majority produced the same thing: a big screen, a few dashboards, a handful of reports.\nThe various systems, each abbreviated to an English acronym, all sounded right. The project proposals wrote up smoothly. The acceptance demos all ran fine. But they share one common trait: they don’t change how the enterprise operates — they merely “display” the results of how the enterprise already operates.\nAnd so they all ended up as big-screen dashboards for the boss. Display is not the same as change. It became a kind of digital bureaucracy.\nTools, Processes, Organization Let me try to break down the things in an enterprise that “can be digitized / made intelligent” into three layers.\nTool Layer\nWhat this layer does, fundamentally, is: take things where “people already know what to do” and do them faster, more reliably, cheaper.\nThe vast majority of “AI projects” and “digital transformation projects” operate at this layer. The reason is simple — they’re easy to get approved, easy to sign off, easy to tell a story about. (I also call this peripheral intelligence.)\nProcess Layer\nTake the links that used to depend on human coordination, meeting-driven decisions, and experience-based judgment, and turn them into system-driven chains with feedback and room for optimization.\nThe value here is far higher than at the Tool Layer, but it demands data that flows, systems that connect, processes that are explicit, and accountability that is clear. This is where the vast majority of enterprises get stuck — because it requires you to clean up the “four kinds of dirty” first.\nOrganization Layer\nThe enterprise itself, as a complex system: how it is described, how it is run, how it is improved.\nPeople can handle local problems by experience, but they struggle to manage a high-dimensional, dynamic, multi-objective, tightly-constrained system in real time. What the third layer aims to do is turn this complex system itself into something that can be modeled, monitored, and tuned.\nThis is the layer where AI-Native should truly come into play. But it has an awkward characteristic: it’s a hard sell.\nIf you accept this three-layer framework, one thing becomes clear: what makes AI transformation genuinely hard isn’t the models — it’s the dirty work.\nAnd here’s the problem: nobody wanted to do this dirty work over the past few decades, and it’s hard to imagine anyone wanting to do it in the future. Because it doesn’t win glory, doesn’t earn credit, doesn’t make slides, doesn’t advance careers.\nGenuine and Pseudo Tacit Knowledge There’s a widely-circulated saying: “A lot of what we do in this industry is tacit knowledge — AI can’t learn it.”\nThat’s half right, and half wrong.\nGenuine tacit knowledge absolutely exists. But pseudo tacit knowledge is far more common:\nThings that could have been written down, but nobody wrote them. Things that could have been structured, but the organization doesn’t reward it. Things that could have been shared, but sharing them means losing personal leverage. A huge amount of what gets called “experience” in vertical industries actually falls into the latter category. Treating pseudo tacit knowledge as genuine tacit knowledge and enshrining it has two results: first, the cost of bringing new people into the field is enormous — the only path is “follow people, watch people, put in the years”; second, AI deployment hits a wall, because what AI feeds on most is accessible, structured, verifiable context.\nAnd the reason the software industry lets newcomers ramp up fast and AI plug in quickly is precisely that it has institutionalized the practice of making explicit what can be made explicit — if you don’t make it explicit, your PR won’t pass, CI won’t run, code review won’t approve. The process forces you to spit your knowledge out.\nBehind this are two fundamentally different organizational forms.\nThe internet and open-source communities are organized around products, systems, collaboration, and reusability — they form a product organization.\nMany traditional industries, by contrast, are expert organizations.\nDimension Product Organization Expert Organization Code / work output Code must be readable by others Whoever understands it calls the shots Interfaces / usage Interfaces must be usable by others Whoever has seniority makes the call Role of documentation Documentation must be readable by newcomers Documentation serves audits, not collaboration Problem handling Bugs must be reproducible by others Whoever stepped on the landmine first has authority Module design Modules must be replaceable Whoever controls the equipment, data, and process has the leverage Knowledge flow Knowledge must flow across teams Newcomers learn by following people, not systems Newcomer growth Depends on documentation, processes, systems, and community accumulation Depends on masters, mentors, and experience transmission Source of authority Comes from product quality, system capability, and collaboration efficiency Comes from experience, seniority, resource control, and historical accumulation An expert organization feels “safer” on the surface — because critical capability is locked inside a few people and won’t spiral out of control. But it has one fatal side effect: it is a system closed to outsiders (whether those outsiders are newcomers or agents).\nWhich leads to an awkward situation: AI can’t get in, because newcomers can’t get in either.\nSo, Where Is the Bottleneck? Back to the opening question: why can’t most industries absorb AI?\nBecause over the past few decades, they never built an internal system that is “friendly to outsiders.” This isn’t a problem of “AI can’t get in” — it’s a problem of “no systematic force can get in.” AI has simply shone a fresh light on it.\nAnd the real irony is — the way many industries are investing in AI right now is still piling more “agent”-branded dashboards onto the first layer (the Tool Layer), rather than paying down the debt they’ve accumulated on the second and third layers.\nThe ROI Trap Most companies, when crunching the numbers on AI, are using an algorithm from a previous era. That algorithm determines that they can see at most a small sliver of AI’s value — and it also dooms their AI transformation to remain stuck at the level of “a cheaper person.”\nThree Layers of ROI Here I draw on the framework from The Three Layers of ROI for AI Agents.\nLayer 1 ROI: how many people AI replaced, how much time it saved, how much cost it cut.\nThis is the AI value that the vast majority of companies grasp most easily. Its strength is that it’s intuitive; its weakness is that it has a low ceiling.\nBecause at its core, it’s about making old processes cheaper and faster — it doesn’t change how the company operates. The role AI plays here is simply that of a “cheaper person.”\nLayer 2 ROI: AI enables people to do things they previously couldn’t do, or couldn’t do well.\nThe value is far higher than Layer 1, but the barrier to entry is also far higher. It requires companies to be willing to spend on “invisible infrastructure.” The vast majority of companies get stuck at this layer. Not because they can’t do the math, but because this investment demands that the CEO have 3-5 years of patience, while most managers operate with a 6-12 month horizon.\nLayer 3 ROI: the agent is part of the organization.\nIts core question isn’t “what can AI do for me?”, but: what permissions does the agent hold within the organization? At this point, it is no longer just a “tool” — it becomes a new kind of actor in how the organization runs, and the company’s entire way of working must be redesigned around it.\nThis is what AI-Native really means. Not “we use AI,” but “the organization has redesigned how it works around AI.” The returns are non-linear, compounding, and long-term.\nWhy Does the Money Always Flow to Layer 1? It’s not that companies can’t see the value of Layer 2 and Layer 3 — it’s that their decision-making mechanisms can only write checks for Layer 1.\nThis is the most awkward part of AI transformation. The reason Layer 2 and Layer 3 ROI is so high is precisely because they are built on “paying down debt” — cleaning up dirty data, untangling broken processes, capturing scattered knowledge, and connecting isolated systems.\nAnd this “debt” is what every manager over the past several decades racked up in pursuit of their own short-term KPIs.\nSo in the end, everyone settles on a kind of low-level consensus:\nBuild an AI system that doesn’t change power structures, doesn’t change business processes, doesn’t challenge existing KPIs — one that can be signed off on, can be demoed, can be written up in reports.\nIt looks like the company “uses AI,” but nothing about how the company actually operates has changed in any meaningful way.\nAnd so, the vast majority of companies only know how to calculate Layer 1 ROI. They will naturally use AI as a cheaper person. But there’s a fatal problem here — when everyone uses AI as a cheaper person, the market will rapidly erase that value. Advantages from cost reduction are short-term, replicable, and something competitors can catch up to quickly.\nThe Essence of AI Transformation Isn’t Technical A somewhat uncomfortable conclusion:\nThe deeper AI transformation goes, the less it becomes a technical problem and the more it becomes a problem of authority, process, and organization.\nThe Philosophy of X-Ops The essence of turning something into Ops is transforming a complex system into a control system that can receive feedback, self-regulate, and learn.\nBy this point, the first three sections have laid out the problem with considerable clarity:\nThe software industry was hit hardest by AI, not because it understands AI best, but because it spent the last two decades building DevOps\nMost traditional industries cannot absorb AI, not because AI isn’t powerful enough, but because they have no source of truth\nMost enterprises’ AI transformations stall at the first layer, not because the ROI math doesn’t add up, but because their decision-making apparatus can only fund what produces visible ROI\nIf an industry genuinely wants to absorb AI, what it needs isn’t “AI” — it’s its own flavor of Ops. I call this X-Ops, where X can be any industry that wants to be genuinely transformed by AI.\nBut X-Ops is not simply “copy DevOps into another industry.” It’s a deeper way of thinking — about how an organization turns itself into a system that can be continuously observed, continuously fed back into, and continuously improved.\nA Control-Theoretic Lens: The Organization as a Feedback System The core idea of control theory is remarkably simple: for any system to operate continuously in an uncertain environment and improve itself, it must have a closed loop — sense, decide, act, receive feedback, then return to sensing.\nDevOps, in fact, closely resembles a control system.\nWhen you break DevOps apart, it maps almost directly onto a control-theoretic structure:\nControl Theory Concept DevOps Counterpart Controlled system Production software systems, infrastructure, user experience Target state SLO (Service Level Objective), business metrics, reliability goals, delivery targets Sensor Logs, metrics, tracing, monitoring, alerting, user feedback Controller CI/CD pipelines, release strategies, platform rules, team decisions Actuator Deployment, rollback, scaling, rate limiting, circuit breaking, feature flags Disturbance Traffic spikes, code defects, dependency failures, user behavior changes Feedback loop Monitor → assess → adjust → observe again Learning mechanism Incident postmortems, continuous improvement, automated test hardening So DevOps is not merely “automated deployment.”\nThe problem with the traditional development model is that feedback is too slow: requirements go live months later, incidents are only discovered after they happen, and only after ops takes over does development realize the code was never operable.\nDevOps fixes this by shortening the feedback chain:\nCode commit → automated testing → automated deployment → production observability → user feedback → rapid correction.\nThis is remarkably similar to negative feedback in control theory: detect the deviation, correct it, and bring the system back within the target range.\nAt the same time, “stability” in DevOps is not stillness — it is dynamic stability. This point is crucial. Traditional management likes to pursue “no change,” believing that fewer changes bring stability. The DevOps logic is closer to control theory: stability isn’t the absence of change, but remaining controllable amidst continuous change. Or, put another way:\nSmall-step changes, rapid detection, rapid rollback, rapid recovery, continuous learning.\nNow look at the organizational level. The vast majority of companies are not a closed-loop system. They are more like an open-loop pipeline: leadership makes a call → orders are issued → execution happens → … and then nothing.\nAnd AI’s real value is built precisely on top of closed loops. The working style that suits models best is small-step iteration: propose a change, run it, see the results, correct, and go again. If an organization itself lacks a mechanism for “runnable, verifiable, rollback-able,” then AI can’t find its place — it can’t know whether it got things right, and it can’t know where to go next.\nSo the first meaning of X-Ops is this: transform the organization from an open-loop system into a closed-loop system.\nThe Three Foundations Control theory provides an abstract lens. To make it concrete, I believe there are three foundations.\nThe Fact Layer\nDoes the system have visibility? A source of truth — this doesn’t mean all data must be piped into a data warehouse, nor that all knowledge must become a knowledge graph. But certain things must be established as “the source of fact.” You can describe it in terms of “data lineage” or “ontology,” but the core purpose is the same: solving the problem of AI-ready organizational context. This layer addresses what AI ought to trust.\nThe Change Record\nDoes the system have adjustability? AI has no hands. The physical world and the digital world are inherently separated. To prevent the gap between the two from growing ever wider, critical changes must be traceable. This can be loosely compared to Git, but the point isn’t to slap on “Git” — it’s that the act of change itself must be institutionalized. Who changed what? Why? What is the blast radius? This layer addresses whether AI can understand the organization’s evolution.\nThe Evaluation \u0026 Feedback System\nDoes the system have learnability? For the vast majority of deep learning or AI deployment projects, I’ve consistently insisted on evaluation first: build a test set → define evaluation metrics → design the evaluation methodology → evaluate → optimize → evaluate again. This approach is a universal methodology from data science, originally applied to complex system optimization problems. It generalizes far beyond its original domain.\nBuilding Short Feedback Loops Some will say: “In our industry, safety requirements are too strict, quality demands too high, customer expectations too unforgiving — we can’t iterate fast the way the internet does.”\nBut the higher-risk the system, the stronger its version management should be, the more rigorous its testing, the more comprehensive its automated verification, the more meticulous its change records. In other words, the harder it is to “iterate fast,” the more an industry needs Ops — not for speed, but for control.\nThe essence of DevOps has never been “fast.” It’s “still controllable while being fast.” Build your own feedback cadence — it might be monthly, quarterly, annually, but it must be a closed loop.\nThe Human Use of Human Beings The deepest meaning of X-Ops is redefining the role of human beings within the organization.\nIn the past, people in organizations primarily played two roles: the executor (the one who does the work) and the decider (the one who calls the shots). The former is responsible for getting things done; the latter is responsible for deciding what to do and how. Before the age of AI, both roles were scarce — execution required skill, judgment required experience.\nAI has changed this structure. Execution grows cheaper by the day, and judgment is beginning to be partially taken over by AI.\nLooking back at past waves of technological change, technology rarely eliminates human value outright — it more often shifts where value resides. From the Industrial Revolution to AI, the human role has been steadily moving from “directly operating on objects” to “designing, monitoring, and regulating a system that operates on objects.”\nAt this point, human value hasn’t disappeared — it has moved up a level.\nP vs NP offers a metaphor: finding an answer may be extraordinarily hard, but verifying one may be relatively easy. Just as a year ago we were still doing classical programming by hand, today the conversation has shifted to harness engineering — from “I build the thing myself, with my own hands” to “I define the goals, constraints, tests, acceptance criteria, and feedback loops, and let the machine generate results within a controllable range.” The critical position for humans is no longer being the producer of every specific output, but rather the higher-level evaluator, goal-setter, constraint-designer, feedback-loop builder.\nOf course, people’s fear of “automation” is more a matter of control and distribution — and in the age of AI, what deepens the fear even further is that it now encroaches on the position of “evaluator” itself. But all of that is a discussion for another day.\nThe Three Dangers of X-Ops X-Ops sounds like a perfectly correct methodology: make things explicit, make things versioned, build feedback loops, continuously improve. But the more correct something is, the more easily it mutates inside an organization. Especially in large companies and traditional industries, any methodology eventually risks becoming new processes, new systems, new forms — even new bureaucracy.\nThe first danger is tool worship.\nX-Ops is not “buy a set of Ops tools.” If you think bringing in Git and CI/CD means you’ve done X-Ops, you’ve most likely just wrapped a new layer of bureaucratic shell around the same old thing.\nThe second danger is metric alienation.\nThe moment you build a measurement system, someone in the organization will start optimizing the metric itself rather than the goal behind it — reward hacking. Goodhart’s Law: when a measure becomes a target, it ceases to be a good measure. The goal of X-Ops is to use measurement to drive improvement, not to use measurement to punish people. The moment metrics are used to assign blame, the organization instinctively begins to fabricate data and hide problems, and you’re right back on the well-worn path to digital bureaucracy.\nThe third danger is the illusion of control.\nThe most dangerous deviation of all is treating engineering as everything — everything must be measurable, everything must be automatable, everything must be regression-testable. A truly mature X-Ops is the discipline of knowing what can be engineered, and what should not be.\nConclusion Back to the opening question.\nBecause the question isn’t just whether AI is there — it’s whether the industry itself has become a system that AI can understand, participate in, and optimize.\nOtherwise, AI is just a more advanced shell wrapped around the same old way of operating.\nReal AI transformation isn’t about putting AI into the enterprise — it’s about turning the enterprise into a system that can run together with AI.\nOtherwise, so-called intelligent transformation, in the end, will merely become another form of digital bureaucracy.\n",
+  "wordCount" : "4547",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/img/og-cover.png","datePublished": "2026-06-10T11:00:00+08:00",
+  "dateModified": "2026-06-10T11:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/" title="中文"
+                            aria-label="中文">中文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/en/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/en/posts/">AI Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do
+    </h1>
+    <div class="post-meta"><span title='2026-06-10 11:00:00 +0800 CST'>June 10, 2026</span>&nbsp;·&nbsp;22 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#prologue-from-an-old-question-to-a-new-one" aria-label="Prologue: From an Old Question to a New One">Prologue: From an Old Question to a New One</a></li>
+                <li>
+                    <a href="#why-has-the-software-industry-been-hit-hardest-by-ai" aria-label="Why Has the Software Industry Been Hit Hardest by AI?">Why Has the Software Industry Been Hit Hardest by AI?</a><ul>
+                        
+                <li>
+                    <a href="#ai-friendliness-wasnt-born-this-way" aria-label="AI-Friendliness Wasn&rsquo;t Born This Way">AI-Friendliness Wasn&rsquo;t Born This Way</a></li>
+                <li>
+                    <a href="#the-byproduct-devops-left-behind-became-ais-food" aria-label="The &ldquo;Byproduct&rdquo; DevOps Left Behind Became AI&rsquo;s Food">The &ldquo;Byproduct&rdquo; DevOps Left Behind Became AI&rsquo;s Food</a></li>
+                <li>
+                    <a href="#knowledge-accumulation-got-embedded-into-the-production-process" aria-label="Knowledge Accumulation Got &ldquo;Embedded&rdquo; Into the Production Process">Knowledge Accumulation Got &ldquo;Embedded&rdquo; Into the Production Process</a></li></ul>
+                </li>
+                <li>
+                    <a href="#why-cant-most-industries-absorb-ai" aria-label="Why Can&rsquo;t Most Industries Absorb AI?">Why Can&rsquo;t Most Industries Absorb AI?</a><ul>
+                        
+                <li>
+                    <a href="#dirty-dirty-dirty-dirty" aria-label="Dirty, Dirty, Dirty, Dirty">Dirty, Dirty, Dirty, Dirty</a></li>
+                <li>
+                    <a href="#most-turned-into-dashboards" aria-label="Most Turned Into Dashboards">Most Turned Into Dashboards</a></li>
+                <li>
+                    <a href="#tools-processes-organization" aria-label="Tools, Processes, Organization">Tools, Processes, Organization</a></li>
+                <li>
+                    <a href="#genuine-and-pseudo-tacit-knowledge" aria-label="Genuine and Pseudo Tacit Knowledge">Genuine and Pseudo Tacit Knowledge</a></li>
+                <li>
+                    <a href="#so-where-is-the-bottleneck" aria-label="So, Where Is the Bottleneck?">So, Where Is the Bottleneck?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#the-roi-trap" aria-label="The ROI Trap">The ROI Trap</a><ul>
+                        
+                <li>
+                    <a href="#three-layers-of-roi" aria-label="Three Layers of ROI">Three Layers of ROI</a></li>
+                <li>
+                    <a href="#why-does-the-money-always-flow-to-layer-1" aria-label="Why Does the Money Always Flow to Layer 1?">Why Does the Money Always Flow to Layer 1?</a></li>
+                <li>
+                    <a href="#the-essence-of-ai-transformation-isnt-technical" aria-label="The Essence of AI Transformation Isn&rsquo;t Technical">The Essence of AI Transformation Isn&rsquo;t Technical</a></li></ul>
+                </li>
+                <li>
+                    <a href="#the-philosophy-of-x-ops" aria-label="The Philosophy of X-Ops">The Philosophy of X-Ops</a><ul>
+                        
+                <li>
+                    <a href="#a-control-theoretic-lens-the-organization-as-a-feedback-system" aria-label="A Control-Theoretic Lens: The Organization as a Feedback System">A Control-Theoretic Lens: The Organization as a Feedback System</a></li>
+                <li>
+                    <a href="#the-three-foundations" aria-label="The Three Foundations">The Three Foundations</a></li>
+                <li>
+                    <a href="#building-short-feedback-loops" aria-label="Building Short Feedback Loops">Building Short Feedback Loops</a></li>
+                <li>
+                    <a href="#the-human-use-of-human-beings" aria-label="The Human Use of Human Beings">The Human Use of Human Beings</a></li>
+                <li>
+                    <a href="#the-three-dangers-of-x-ops" aria-label="The Three Dangers of X-Ops">The Three Dangers of X-Ops</a></li></ul>
+                </li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="prologue-from-an-old-question-to-a-new-one"><strong>Prologue: From an Old Question to a New One</strong><a hidden class="anchor" aria-hidden="true" href="#prologue-from-an-old-question-to-a-new-one">#</a></h2>
+<p>I remember when I first started out in this industry, I followed a question on Zhihu:</p>
+<blockquote>
+<p>&ldquo;<a href="https://www.zhihu.com/question/278732236">The internet has been fought to a bloody red ocean, yet smart manufacturing remains a wasteland — why won&rsquo;t BAT (Baidu, Alibaba, Tencent) step into it?</a>&rdquo;</p>
+</blockquote>
+<p>Over five years later, this question still has no definitive answer — but the times have changed.</p>
+<p>Back then, the subtext was: technology is scarce, industries are waiting to be transformed, and as long as the top-tier players are willing to enter the fray, things will happen. Reality has since falsified that assumption in nearly every way imaginable. And now, LLMs have pushed the &ldquo;technology is scarce&rdquo; premise even further. But ask anyone pushing AI adoption in a traditional industry, and odds are they&rsquo;ll tell you: <strong>it&rsquo;s not that simple.</strong></p>
+<p>And so this old question takes on a new form in the AI era:</p>
+<blockquote>
+<p><strong>&ldquo;AI is already this powerful — why can&rsquo;t these industries get moving?&rdquo;</strong></p>
+</blockquote>
+<p>Recently, the term FDE (Forward Deployed Engineer) has suddenly caught fire among major AI companies — and at its core, it&rsquo;s a response to this very question: if the models are already powerful enough, then the &ldquo;last mile&rdquo; bottleneck must lie in the customer site, in the data, in the process, in the organization.</p>
+<p>This article is my attempt to answer this old question, drawing on years of observation and hands-on practice.</p>
+<p>Let me put the conclusion up front:</p>
+<p><strong>What most industries are missing right now isn&rsquo;t AI — it&rsquo;s X-Ops.</strong></p>
+<p>In other words, the question has never been &ldquo;should we adopt AI?&rdquo; — it&rsquo;s whether this industry, this company, this production line, this workflow <strong>has been transformed into a system that AI can plug into, understand, participate in, and feed back into.</strong></p>
+<h2 id="why-has-the-software-industry-been-hit-hardest-by-ai"><strong>Why Has the Software Industry Been Hit Hardest by AI?</strong><a hidden class="anchor" aria-hidden="true" href="#why-has-the-software-industry-been-hit-hardest-by-ai">#</a></h2>
+<p><strong>It&rsquo;s not AI. It&rsquo;s DevOps.</strong></p>
+<p>If you look at the fields where AI has truly &ldquo;broken in&rdquo; over the past two years, the software industry itself appears to have taken the biggest hit. The reason the software industry has been hit hardest by AI isn&rsquo;t that its practitioners are the smartest, nor that models happen to favor code — it&rsquo;s that over the past two decades, <strong>it inadvertently transformed itself into the industry that&rsquo;s easiest for AI to plug into</strong>.</p>
+<h3 id="ai-friendliness-wasnt-born-this-way"><strong>AI-Friendliness Wasn&rsquo;t Born This Way</strong><a hidden class="anchor" aria-hidden="true" href="#ai-friendliness-wasnt-born-this-way">#</a></h3>
+<p>If I had to list the traits that put AI in its element within the software industry, here&rsquo;s what I&rsquo;d pick:</p>
+<ul>
+<li>
+<p><strong>Open corpus, easy to access</strong>: GitHub</p>
+</li>
+<li>
+<p><strong>Short feedback cycles</strong>: Write code, compile, run tests, see results — feedback arrives in seconds or minutes</p>
+</li>
+<li>
+<p><strong>AI-friendly context</strong>: Code has comments, modules have interfaces, changes have diffs — nearly everything is textual and structured</p>
+</li>
+<li>
+<p><strong>Verifiable correctness</strong>: Unit tests, integration tests, CI pipelines provide an automatic grading mechanism for whatever the AI writes</p>
+</li>
+</ul>
+<p>These four pieces together set the iteration flywheel in motion: <strong>generate → verify → get feedback → fix → regenerate.</strong></p>
+<p>But go back to around the year 2000, and the software industry actually looked a lot more like today&rsquo;s traditional industries. Release cycles were measured in years. A single version would be polished for months and shipped on a CD. What truly changed everything was <strong>the transformation of the delivery model brought by the internet</strong>. Software no longer went through &ldquo;manufacture → copy → ship → install&rdquo; — instead it became &ldquo;develop → release → get feedback → update → re-release.&rdquo; Once this closed loop took shape, the entire way the industry organized itself was forced to restructure:</p>
+<ul>
+<li>
+<p>Because you needed to release frequently, you needed <strong>version control</strong> (Git)</p>
+</li>
+<li>
+<p>Because you needed to integrate frequently, you needed <strong>CI/CD</strong></p>
+</li>
+<li>
+<p>Because you needed to collaborate across teams, you needed <strong>code review, issue tracking, API documentation</strong></p>
+</li>
+<li>
+<p>Because things could go wrong in production at any moment, you needed <strong>logging, monitoring, alerting, observability</strong></p>
+</li>
+<li>
+<p>Because releasing carried high risk, you needed <strong>gradual rollout, rollback, A/B testing</strong></p>
+</li>
+<li>
+<p>Because collaboration kept scaling up, you needed <strong>Agile, DevOps, SRE (Site Reliability Engineering)</strong></p>
+</li>
+</ul>
+<p>This entire apparatus is what we today collectively call <strong>DevOps</strong>. But the essence of DevOps isn&rsquo;t a particular combination of tools — it&rsquo;s <strong>an engineering culture that makes the entire process of &ldquo;how software is produced, delivered, operated, and improved&rdquo; explicit, versioned, automated, and observable</strong>.</p>
+<h3 id="the-byproduct-devops-left-behind-became-ais-food"><strong>The &ldquo;Byproduct&rdquo; DevOps Left Behind Became AI&rsquo;s Food</strong><a hidden class="anchor" aria-hidden="true" href="#the-byproduct-devops-left-behind-became-ais-food">#</a></h3>
+<p>Here&rsquo;s the most interesting part: DevOps was never designed for AI. It solved problems of human-to-human collaboration, the balance between quality and speed, the engineering challenge of delivering at scale.</p>
+<p>But its byproducts almost perfectly hit every piece of infrastructure the AI era demands:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">What DevOps left behind</th>
+          <th style="text-align: left">What it means for AI</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Git repos + commit history</td>
+          <td style="text-align: left">Traceable evolution history and training data</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Issues / PRs / Code Review</td>
+          <td style="text-align: left">Labeled human decision data</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Unit tests / CI</td>
+          <td style="text-align: left">An automatic grader — AI changes get verified instantly</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">README / API docs / Design Docs</td>
+          <td style="text-align: left">Structured context</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Logs / Traces / Metrics</td>
+          <td style="text-align: left">Runtime feedback signals</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Canary deployment / Rollback</td>
+          <td style="text-align: left">A safe trial-and-error mechanism</td>
+      </tr>
+  </tbody>
+</table>
+<p>In other words, <strong>the software industry spent twenty years turning its production process into a system that is extraordinarily friendly to any external agent — whether that agent is a new hire, an outsourced team, or an AI</strong>.</p>
+<p>When the coding agent arrived, it didn&rsquo;t need the software industry to do any extra adapting. It simply plugged into a collaboration infrastructure that had been ready and waiting for it all along.</p>
+<h3 id="knowledge-accumulation-got-embedded-into-the-production-process"><strong>Knowledge Accumulation Got &ldquo;Embedded&rdquo; Into the Production Process</strong><a hidden class="anchor" aria-hidden="true" href="#knowledge-accumulation-got-embedded-into-the-production-process">#</a></h3>
+<p>This is the single thing the software industry has done that other industries should learn from most.</p>
+<p>In many industries, &ldquo;knowledge management&rdquo; is something that requires its own project approval, its own budget, its own performance review — someone has to write documentation, maintain the wiki, run training sessions. But because it has no direct link to business output, it&rsquo;s always the lowest priority, and it never gets done well.</p>
+<p>In the software industry, by contrast, <strong>knowledge accumulation isn&rsquo;t an &ldquo;extra thing&rdquo; — it&rsquo;s a byproduct of the production process</strong>.</p>
+<p>An engineer doesn&rsquo;t need to make any &ldquo;extra effort&rdquo; to do knowledge management. <strong>As long as he follows the established practices, knowledge gets automatically captured in a structured form.</strong></p>
+<p>Flip the lens to most traditional industries: knowledge lives in people&rsquo;s heads, in some sheet of some Excel file, in WeChat chat histories. It&rsquo;s not that knowledge isn&rsquo;t being produced — it&rsquo;s that it&rsquo;s scattered everywhere, exists in all manner of forms, hard to find and hard to read.</p>
+<p>The other side of this coin: <strong>the reason AI still can&rsquo;t break into other industries isn&rsquo;t that the models aren&rsquo;t strong enough — it&rsquo;s that those industries haven&rsquo;t yet prepared themselves to onboard any &ldquo;external agent&rdquo;</strong> — whether that agent is an AI, or a new employee.</p>
+<h2 id="why-cant-most-industries-absorb-ai"><strong>Why Can&rsquo;t Most Industries Absorb AI?</strong><a hidden class="anchor" aria-hidden="true" href="#why-cant-most-industries-absorb-ai">#</a></h2>
+<p>A world without a source of truth.</p>
+<h3 id="dirty-dirty-dirty-dirty"><strong>Dirty, Dirty, Dirty, Dirty</strong><a hidden class="anchor" aria-hidden="true" href="#dirty-dirty-dirty-dirty">#</a></h3>
+<p>Anyone who&rsquo;s done one or two AI deployment projects in a traditional industry will know these scenes all too well:</p>
+<ul>
+<li>
+<p><strong>Dirty data</strong>: numbers don&rsquo;t match across systems, systems don&rsquo;t match reality, and nobody knows what a given data field actually means.</p>
+</li>
+<li>
+<p><strong>Dirty processes</strong>: the SOP (Standard Operating Procedure) and manuals are written in meticulous detail, but nothing actually runs the way the flowchart says it does.</p>
+</li>
+<li>
+<p><strong>Dirty systems</strong>: a dozen-plus systems spanning different eras and different vendors — interfaces either don&rsquo;t exist, or they&rsquo;re SOAP, or the workflow is &ldquo;export to Excel and import it again.&rdquo;</p>
+</li>
+<li>
+<p><strong>Dirty knowledge</strong>: the core know-how lives inside a veteran&rsquo;s head, in WeChat chat logs, in some unmaintained Excel file nobody owns.</p>
+</li>
+</ul>
+<p>Stack all four kinds of dirty on top of each other, and for AI to actually deliver value becomes nearly impossible.</p>
+<p>But the deeper problem isn&rsquo;t that &ldquo;things are dirty right now&rdquo; — it&rsquo;s that <strong>over the past decade-plus, digital transformation didn&rsquo;t actually solve this. In many places, it made it worse.</strong></p>
+<h3 id="most-turned-into-dashboards"><strong>Most Turned Into Dashboards</strong><a hidden class="anchor" aria-hidden="true" href="#most-turned-into-dashboards">#</a></h3>
+<p>Over the past decade, nearly every halfway-respectable industrial enterprise has done &ldquo;digital transformation,&rdquo; &ldquo;Industrial Internet,&rdquo; &ldquo;smart factory,&rdquo; &ldquo;centralized data platform.&rdquo; But if you look at what these projects actually delivered, the vast majority produced the same thing: <strong>a big screen, a few dashboards, a handful of reports.</strong></p>
+<p>The various systems, each abbreviated to an English acronym, all sounded right. The project proposals wrote up smoothly. The acceptance demos all ran fine. But they share one common trait: <strong>they don&rsquo;t change how the enterprise operates — they merely &ldquo;display&rdquo; the results of how the enterprise already operates.</strong></p>
+<p>And so they all ended up as big-screen dashboards for the boss. Display is not the same as change. It became a kind of digital bureaucracy.</p>
+<h3 id="tools-processes-organization"><strong>Tools, Processes, Organization</strong><a hidden class="anchor" aria-hidden="true" href="#tools-processes-organization">#</a></h3>
+<p>Let me try to break down the things in an enterprise that &ldquo;can be digitized / made intelligent&rdquo; into three layers.</p>
+<p><strong>Tool Layer</strong></p>
+<p>What this layer does, fundamentally, is: <strong>take things where &ldquo;people already know what to do&rdquo; and do them faster, more reliably, cheaper.</strong></p>
+<p>The vast majority of &ldquo;AI projects&rdquo; and &ldquo;digital transformation projects&rdquo; operate at this layer. The reason is simple — they&rsquo;re easy to get approved, easy to sign off, easy to tell a story about. (I also call this peripheral intelligence.)</p>
+<p><strong>Process Layer</strong></p>
+<p>Take the links that used to depend on human coordination, meeting-driven decisions, and experience-based judgment, and turn them into system-driven chains with feedback and room for optimization.</p>
+<p>The value here is far higher than at the Tool Layer, but it demands <strong>data that flows, systems that connect, processes that are explicit, and accountability that is clear.</strong> This is where the vast majority of enterprises get stuck — because it requires you to clean up the &ldquo;four kinds of dirty&rdquo; first.</p>
+<p><strong>Organization Layer</strong></p>
+<p><strong>The enterprise itself, as a complex system: how it is described, how it is run, how it is improved.</strong></p>
+<p>People can handle local problems by experience, but they struggle to manage a high-dimensional, dynamic, multi-objective, tightly-constrained system in real time. What the third layer aims to do is <strong>turn this complex system itself into something that can be modeled, monitored, and tuned.</strong></p>
+<p>This is the layer where AI-Native should truly come into play. But it has an awkward characteristic: <strong>it&rsquo;s a hard sell.</strong></p>
+<p>If you accept this three-layer framework, one thing becomes clear: <strong>what makes AI transformation genuinely hard isn&rsquo;t the models — it&rsquo;s the dirty work.</strong></p>
+<p>And here&rsquo;s the problem: <strong>nobody wanted to do this dirty work over the past few decades, and it&rsquo;s hard to imagine anyone wanting to do it in the future.</strong> Because it doesn&rsquo;t win glory, doesn&rsquo;t earn credit, doesn&rsquo;t make slides, doesn&rsquo;t advance careers.</p>
+<h3 id="genuine-and-pseudo-tacit-knowledge"><strong>Genuine and Pseudo Tacit Knowledge</strong><a hidden class="anchor" aria-hidden="true" href="#genuine-and-pseudo-tacit-knowledge">#</a></h3>
+<p>There&rsquo;s a widely-circulated saying: <strong>&ldquo;A lot of what we do in this industry is tacit knowledge — AI can&rsquo;t learn it.&rdquo;</strong></p>
+<p>That&rsquo;s half right, and half wrong.</p>
+<p><strong>Genuine tacit knowledge</strong> absolutely exists. But <strong>pseudo tacit knowledge</strong> is far more common:</p>
+<ul>
+<li>Things that could have been written down, but nobody wrote them.</li>
+<li>Things that could have been structured, but the organization doesn&rsquo;t reward it.</li>
+<li>Things that could have been shared, but sharing them means losing personal leverage.</li>
+</ul>
+<p>A huge amount of what gets called &ldquo;experience&rdquo; in vertical industries actually falls into the latter category. Treating pseudo tacit knowledge as genuine tacit knowledge and enshrining it has two results: first, <strong>the cost of bringing new people into the field is enormous</strong> — the only path is &ldquo;follow people, watch people, put in the years&rdquo;; second, <strong>AI deployment hits a wall</strong>, because what AI feeds on most is accessible, structured, verifiable context.</p>
+<p>And the reason the software industry lets newcomers ramp up fast and AI plug in quickly is precisely that <strong>it has institutionalized the practice of making explicit what can be made explicit</strong> — if you don&rsquo;t make it explicit, your PR won&rsquo;t pass, CI won&rsquo;t run, code review won&rsquo;t approve. The process forces you to spit your knowledge out.</p>
+<p>Behind this are two fundamentally different organizational forms.</p>
+<p>The internet and open-source communities are organized around products, systems, collaboration, and reusability — they form a product organization.</p>
+<p><strong>Many traditional industries, by contrast, are expert organizations.</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Dimension</th>
+          <th style="text-align: left">Product Organization</th>
+          <th style="text-align: left">Expert Organization</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Code / work output</td>
+          <td style="text-align: left">Code must be readable by others</td>
+          <td style="text-align: left">Whoever understands it calls the shots</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Interfaces / usage</td>
+          <td style="text-align: left">Interfaces must be usable by others</td>
+          <td style="text-align: left">Whoever has seniority makes the call</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Role of documentation</td>
+          <td style="text-align: left">Documentation must be readable by newcomers</td>
+          <td style="text-align: left">Documentation serves audits, not collaboration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Problem handling</td>
+          <td style="text-align: left">Bugs must be reproducible by others</td>
+          <td style="text-align: left">Whoever stepped on the landmine first has authority</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Module design</td>
+          <td style="text-align: left">Modules must be replaceable</td>
+          <td style="text-align: left">Whoever controls the equipment, data, and process has the leverage</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Knowledge flow</td>
+          <td style="text-align: left">Knowledge must flow across teams</td>
+          <td style="text-align: left">Newcomers learn by following people, not systems</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Newcomer growth</td>
+          <td style="text-align: left">Depends on documentation, processes, systems, and community accumulation</td>
+          <td style="text-align: left">Depends on masters, mentors, and experience transmission</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Source of authority</td>
+          <td style="text-align: left">Comes from product quality, system capability, and collaboration efficiency</td>
+          <td style="text-align: left">Comes from experience, seniority, resource control, and historical accumulation</td>
+      </tr>
+  </tbody>
+</table>
+<p>An expert organization feels &ldquo;safer&rdquo; on the surface — because critical capability is locked inside a few people and won&rsquo;t spiral out of control. But it has one fatal side effect: <strong>it is a system closed to outsiders</strong> (whether those outsiders are newcomers or agents).</p>
+<p>Which leads to an awkward situation: <strong>AI can&rsquo;t get in, because newcomers can&rsquo;t get in either.</strong></p>
+<h3 id="so-where-is-the-bottleneck"><strong>So, Where Is the Bottleneck?</strong><a hidden class="anchor" aria-hidden="true" href="#so-where-is-the-bottleneck">#</a></h3>
+<p>Back to the opening question: why can&rsquo;t most industries absorb AI?</p>
+<p>Because over the past few decades, they <strong>never built an internal system that is &ldquo;friendly to outsiders.&rdquo;</strong> This isn&rsquo;t a problem of &ldquo;AI can&rsquo;t get in&rdquo; — it&rsquo;s a problem of &ldquo;no systematic force can get in.&rdquo; AI has simply shone a fresh light on it.</p>
+<p>And the real irony is — <strong>the way many industries are investing in AI right now is still piling more &ldquo;agent&rdquo;-branded dashboards onto the first layer (the Tool Layer), rather than paying down the debt they&rsquo;ve accumulated on the second and third layers.</strong></p>
+<h2 id="the-roi-trap"><strong>The ROI Trap</strong><a hidden class="anchor" aria-hidden="true" href="#the-roi-trap">#</a></h2>
+<p>Most companies, when crunching the numbers on AI, are using an algorithm from a previous era. That algorithm determines that they can see at most a small sliver of AI&rsquo;s value — and it also dooms their AI transformation to remain stuck at the level of &ldquo;a cheaper person.&rdquo;</p>
+<h3 id="three-layers-of-roi"><strong>Three Layers of ROI</strong><a hidden class="anchor" aria-hidden="true" href="#three-layers-of-roi">#</a></h3>
+<p>Here I draw on the framework from <a href="https://www.henrypray.com/writings/the-three-layers-of-roi-for-ai-agents">The Three Layers of ROI for AI Agents</a>.</p>
+<p><strong>Layer 1 ROI: how many people AI replaced, how much time it saved, how much cost it cut.</strong></p>
+<p>This is the AI value that the vast majority of companies grasp most easily. Its strength is that it&rsquo;s <strong>intuitive</strong>; its weakness is that it has a <strong>low ceiling</strong>.</p>
+<p>Because at its core, it&rsquo;s about <strong>making old processes cheaper and faster</strong> — it doesn&rsquo;t change how the company operates. The role AI plays here is simply that of a &ldquo;cheaper person.&rdquo;</p>
+<p><strong>Layer 2 ROI: AI enables people to do things they previously couldn&rsquo;t do, or couldn&rsquo;t do well.</strong></p>
+<p><strong>The value is far higher than Layer 1, but the barrier to entry is also far higher.</strong> It requires companies to be willing to spend on &ldquo;invisible infrastructure.&rdquo; The vast majority of companies get stuck at this layer. Not because they can&rsquo;t do the math, but because <strong>this investment demands that the CEO have 3-5 years of patience</strong>, while most managers operate with a 6-12 month horizon.</p>
+<p><strong>Layer 3 ROI: the agent is part of the organization.</strong></p>
+<p>Its core question isn&rsquo;t &ldquo;what can AI do for me?&rdquo;, but: <strong>what permissions does the agent hold within the organization?</strong> At this point, it is no longer just a &ldquo;tool&rdquo; — it becomes <strong>a new kind of actor in how the organization runs</strong>, and the company&rsquo;s entire way of working must be redesigned around it.</p>
+<p>This is what <strong>AI-Native</strong> really means. <strong>Not &ldquo;we use AI,&rdquo; but &ldquo;the organization has redesigned how it works around AI.&rdquo;</strong> The returns are non-linear, compounding, and long-term.</p>
+<h3 id="why-does-the-money-always-flow-to-layer-1"><strong>Why Does the Money Always Flow to Layer 1?</strong><a hidden class="anchor" aria-hidden="true" href="#why-does-the-money-always-flow-to-layer-1">#</a></h3>
+<p><strong>It&rsquo;s not that companies can&rsquo;t see the value of Layer 2 and Layer 3 — it&rsquo;s that their decision-making mechanisms can only write checks for Layer 1.</strong></p>
+<p>This is the most awkward part of AI transformation. The reason Layer 2 and Layer 3 ROI is so high is precisely because they are built on <strong>&ldquo;paying down debt&rdquo;</strong> — cleaning up dirty data, untangling broken processes, capturing scattered knowledge, and connecting isolated systems.</p>
+<p>And this &ldquo;debt&rdquo; is what every manager over the past several decades <strong>racked up in pursuit of their own short-term KPIs.</strong></p>
+<p>So in the end, everyone settles on a kind of <strong>low-level consensus</strong>:</p>
+<blockquote>
+<p>Build an AI system that doesn&rsquo;t change power structures, doesn&rsquo;t change business processes, doesn&rsquo;t challenge existing KPIs — one that can be signed off on, can be demoed, can be written up in reports.</p>
+</blockquote>
+<p>It looks like the company &ldquo;uses AI,&rdquo; but nothing about how the company actually operates has changed in any meaningful way.</p>
+<p>And so, the vast majority of companies only know how to calculate Layer 1 ROI. They will naturally use AI as a cheaper person. But there&rsquo;s a fatal problem here — <strong>when everyone uses AI as a cheaper person, the market will rapidly erase that value.</strong> Advantages from cost reduction are short-term, replicable, and something competitors can catch up to quickly.</p>
+<h3 id="the-essence-of-ai-transformation-isnt-technical"><strong>The Essence of AI Transformation Isn&rsquo;t Technical</strong><a hidden class="anchor" aria-hidden="true" href="#the-essence-of-ai-transformation-isnt-technical">#</a></h3>
+<p>A somewhat uncomfortable conclusion:</p>
+<p><strong>The deeper AI transformation goes, the less it becomes a technical problem and the more it becomes a problem of authority, process, and organization.</strong></p>
+<h2 id="the-philosophy-of-x-ops"><strong>The Philosophy of X-Ops</strong><a hidden class="anchor" aria-hidden="true" href="#the-philosophy-of-x-ops">#</a></h2>
+<p><strong>The essence of turning something into Ops is transforming a complex system into a control system that can receive feedback, self-regulate, and learn.</strong></p>
+<p>By this point, the first three sections have laid out the problem with considerable clarity:</p>
+<ul>
+<li>
+<p>The software industry was hit hardest by AI, <strong>not because it understands AI best, but because it spent the last two decades building DevOps</strong></p>
+</li>
+<li>
+<p>Most traditional industries cannot absorb AI, <strong>not because AI isn&rsquo;t powerful enough, but because they have no source of truth</strong></p>
+</li>
+<li>
+<p>Most enterprises&rsquo; AI transformations stall at the first layer, <strong>not because the ROI math doesn&rsquo;t add up, but because their decision-making apparatus can only fund what produces visible ROI</strong></p>
+</li>
+</ul>
+<p><strong>If an industry genuinely wants to absorb AI, what it needs isn&rsquo;t &ldquo;AI&rdquo; — it&rsquo;s its own flavor of Ops.</strong> I call this <strong>X-Ops</strong>, where X can be any industry that wants to be genuinely transformed by AI.</p>
+<p>But X-Ops is not simply &ldquo;copy DevOps into another industry.&rdquo; It&rsquo;s a deeper way of thinking — <strong>about how an organization turns itself into a system that can be continuously observed, continuously fed back into, and continuously improved.</strong></p>
+<h3 id="a-control-theoretic-lens-the-organization-as-a-feedback-system">A Control-Theoretic Lens: The Organization as a Feedback System<a hidden class="anchor" aria-hidden="true" href="#a-control-theoretic-lens-the-organization-as-a-feedback-system">#</a></h3>
+<p>The core idea of control theory is remarkably simple: <strong>for any system to operate continuously in an uncertain environment and improve itself, it must have a closed loop — sense, decide, act, receive feedback, then return to sensing.</strong></p>
+<p>DevOps, in fact, closely resembles a control system.</p>
+<p>When you break DevOps apart, it maps almost directly onto a control-theoretic structure:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Control Theory Concept</th>
+          <th style="text-align: left">DevOps Counterpart</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Controlled system</td>
+          <td style="text-align: left">Production software systems, infrastructure, user experience</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Target state</td>
+          <td style="text-align: left">SLO (Service Level Objective), business metrics, reliability goals, delivery targets</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Sensor</td>
+          <td style="text-align: left">Logs, metrics, tracing, monitoring, alerting, user feedback</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Controller</td>
+          <td style="text-align: left">CI/CD pipelines, release strategies, platform rules, team decisions</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Actuator</td>
+          <td style="text-align: left">Deployment, rollback, scaling, rate limiting, circuit breaking, feature flags</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Disturbance</td>
+          <td style="text-align: left">Traffic spikes, code defects, dependency failures, user behavior changes</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Feedback loop</td>
+          <td style="text-align: left">Monitor → assess → adjust → observe again</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Learning mechanism</td>
+          <td style="text-align: left">Incident postmortems, continuous improvement, automated test hardening</td>
+      </tr>
+  </tbody>
+</table>
+<p>So DevOps is not merely &ldquo;automated deployment.&rdquo;</p>
+<p>The problem with the traditional development model is that feedback is too slow: requirements go live months later, incidents are only discovered after they happen, and only after ops takes over does development realize the code was never operable.</p>
+<p>DevOps fixes this by shortening the feedback chain:</p>
+<p><strong>Code commit → automated testing → automated deployment → production observability → user feedback → rapid correction.</strong></p>
+<p>This is remarkably similar to negative feedback in control theory: detect the deviation, correct it, and bring the system back within the target range.</p>
+<p>At the same time, &ldquo;stability&rdquo; in DevOps is not stillness — it is dynamic stability. This point is crucial. Traditional management likes to pursue &ldquo;no change,&rdquo; believing that fewer changes bring stability. The DevOps logic is closer to control theory: stability isn&rsquo;t the absence of change, but remaining controllable amidst continuous change. Or, put another way:</p>
+<blockquote>
+<p><strong>Small-step changes, rapid detection, rapid rollback, rapid recovery, continuous learning.</strong></p>
+</blockquote>
+<p>Now look at the organizational level. The vast majority of companies are <strong>not a closed-loop system</strong>. They are more like an open-loop pipeline: leadership makes a call → orders are issued → execution happens → … and then nothing.</p>
+<p>And AI&rsquo;s real value is built precisely on top of closed loops. The working style that suits models best is small-step iteration: propose a change, run it, see the results, correct, and go again. If an organization itself lacks a mechanism for &ldquo;runnable, verifiable, rollback-able,&rdquo; then AI can&rsquo;t find its place — it can&rsquo;t know whether it got things right, and it can&rsquo;t know where to go next.</p>
+<p>So the first meaning of X-Ops is this: <strong>transform the organization from an open-loop system into a closed-loop system.</strong></p>
+<h3 id="the-three-foundations"><strong>The Three Foundations</strong><a hidden class="anchor" aria-hidden="true" href="#the-three-foundations">#</a></h3>
+<p>Control theory provides an abstract lens. To make it concrete, I believe there are three foundations.</p>
+<p><strong>The Fact Layer</strong></p>
+<p>Does the system have visibility? A source of truth — this doesn&rsquo;t mean all data must be piped into a data warehouse, nor that all knowledge must become a knowledge graph. But certain things must be established as &ldquo;the source of fact.&rdquo; You can describe it in terms of &ldquo;data lineage&rdquo; or &ldquo;ontology,&rdquo; but the core purpose is the same: solving the problem of AI-ready organizational context. This layer addresses what AI ought to trust.</p>
+<p><strong>The Change Record</strong></p>
+<p>Does the system have adjustability? AI has no hands. The physical world and the digital world are inherently separated. To prevent the gap between the two from growing ever wider, critical changes must be traceable. This can be loosely compared to Git, but the point isn&rsquo;t to slap on &ldquo;Git&rdquo; — it&rsquo;s that the act of change itself must be institutionalized. Who changed what? Why? What is the blast radius? This layer addresses whether AI can understand the organization&rsquo;s evolution.</p>
+<p><strong>The Evaluation &amp; Feedback System</strong></p>
+<p>Does the system have learnability? For the vast majority of deep learning or AI deployment projects, I&rsquo;ve consistently insisted on evaluation first: build a test set → define evaluation metrics → design the evaluation methodology → evaluate → optimize → evaluate again. This approach is a universal methodology from data science, originally applied to complex system optimization problems. It generalizes far beyond its original domain.</p>
+<h3 id="building-short-feedback-loops"><strong>Building Short Feedback Loops</strong><a hidden class="anchor" aria-hidden="true" href="#building-short-feedback-loops">#</a></h3>
+<p>Some will say: &ldquo;In our industry, safety requirements are too strict, quality demands too high, customer expectations too unforgiving — we can&rsquo;t iterate fast the way the internet does.&rdquo;</p>
+<p>But <strong>the higher-risk the system, the stronger its version management should be, the more rigorous its testing, the more comprehensive its automated verification, the more meticulous its change records.</strong> In other words, the harder it is to &ldquo;iterate fast,&rdquo; the more an industry needs Ops — not for speed, but for <strong>control</strong>.</p>
+<p>The essence of DevOps has never been &ldquo;fast.&rdquo; It&rsquo;s &ldquo;still controllable while being fast.&rdquo; Build your own feedback cadence — it might be monthly, quarterly, annually, but <strong>it must be a closed loop</strong>.</p>
+<h3 id="the-human-use-of-human-beings">The Human Use of Human Beings<a hidden class="anchor" aria-hidden="true" href="#the-human-use-of-human-beings">#</a></h3>
+<p>The deepest meaning of X-Ops is <strong>redefining the role of human beings within the organization.</strong></p>
+<p>In the past, people in organizations primarily played two roles: <strong>the executor</strong> (the one who does the work) and <strong>the decider</strong> (the one who calls the shots). The former is responsible for getting things done; the latter is responsible for deciding what to do and how. Before the age of AI, both roles were scarce — execution required skill, judgment required experience.</p>
+<p>AI has changed this structure. <strong>Execution grows cheaper by the day, and judgment is beginning to be partially taken over by AI.</strong></p>
+<p>Looking back at past waves of technological change, technology rarely eliminates human value outright — it more often shifts where value resides. From the Industrial Revolution to AI, the human role has been steadily moving from &ldquo;directly operating on objects&rdquo; to &ldquo;designing, monitoring, and regulating a system that operates on objects.&rdquo;</p>
+<p>At this point, human value hasn&rsquo;t disappeared — it has moved up a level.</p>
+<p>P vs NP offers a metaphor: finding an answer may be extraordinarily hard, but verifying one may be relatively easy. Just as a year ago we were still doing classical programming by hand, today the conversation has shifted to harness engineering — from &ldquo;I build the thing myself, with my own hands&rdquo; to &ldquo;I define the goals, constraints, tests, acceptance criteria, and feedback loops, and let the machine generate results within a controllable range.&rdquo; The critical position for humans is no longer being the producer of every specific output, but rather the higher-level evaluator, goal-setter, constraint-designer, feedback-loop builder.</p>
+<p>Of course, people&rsquo;s fear of &ldquo;automation&rdquo; is more a matter of control and distribution — and in the age of AI, what deepens the fear even further is that it now encroaches on the position of &ldquo;evaluator&rdquo; itself. But all of that is a discussion for another day.</p>
+<h3 id="the-three-dangers-of-x-ops"><strong>The Three Dangers of X-Ops</strong><a hidden class="anchor" aria-hidden="true" href="#the-three-dangers-of-x-ops">#</a></h3>
+<p>X-Ops sounds like a perfectly correct methodology: make things explicit, make things versioned, build feedback loops, continuously improve. But the more correct something is, the more easily it mutates inside an organization. Especially in large companies and traditional industries, any methodology eventually risks becoming new processes, new systems, new forms — even new bureaucracy.</p>
+<p>The first danger is <strong>tool worship</strong>.</p>
+<p>X-Ops is not &ldquo;buy a set of Ops tools.&rdquo; If you think bringing in Git and CI/CD means you&rsquo;ve done X-Ops, you&rsquo;ve most likely just wrapped a new layer of bureaucratic shell around the same old thing.</p>
+<p>The second danger is <strong>metric alienation</strong>.</p>
+<p>The moment you build a measurement system, someone in the organization will start optimizing the metric itself rather than the goal behind it — reward hacking. <strong>Goodhart&rsquo;s Law</strong>: when a measure becomes a target, it ceases to be a good measure. The goal of X-Ops is to use measurement to <strong>drive improvement</strong>, not to use measurement to <strong>punish people</strong>. The moment metrics are used to assign blame, the organization instinctively begins to fabricate data and hide problems, and you&rsquo;re right back on the well-worn path to digital bureaucracy.</p>
+<p>The third danger is the <strong>illusion of control</strong>.</p>
+<p>The most dangerous deviation of all is <strong>treating engineering as everything</strong> — everything must be measurable, everything must be automatable, everything must be regression-testable. A truly mature X-Ops is the discipline of knowing what can be engineered, and what should not be.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Back to the opening question.</p>
+<p>Because the question isn&rsquo;t just whether AI is there — it&rsquo;s whether the industry itself has become a system that AI can understand, participate in, and optimize.</p>
+<p>Otherwise, AI is just a more advanced shell wrapped around the same old way of operating.</p>
+<p>Real AI transformation isn&rsquo;t about putting AI into the enterprise — it&rsquo;s about turning the enterprise into a system that can run together with AI.</p>
+<p>Otherwise, so-called intelligent transformation, in the end, will merely become another form of digital bureaucracy.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/en/tags/ai/">AI</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/ai-native/">AI-Native</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/">
+    <span class="title">Next »</span>
+    <br>
+    <span>On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on x"
+            href="https://x.com/intent/tweet/?text=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f&amp;hashtags=AI%2cAI-Native">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f&amp;title=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do&amp;summary=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do&amp;source=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f&title=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on whatsapp"
+            href="https://api.whatsapp.com/send?text=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do%20-%20https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on telegram"
+            href="https://telegram.me/share/url?text=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=The%20Hardest%20Part%20of%20AI%20Transformation%20Isn%27t%20AI%20%e2%80%94%20It%27s%20the%20Dirty%20Work%20Nobody%20Wants%20to%20Do&u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fai-transformation-hardest-part-isnt-ai-but-dirty-work%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/en/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
