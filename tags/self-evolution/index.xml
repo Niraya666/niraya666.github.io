@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Self-Evolution on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/self-evolution/</link>
+    <link>http://localhost:1313/tags/self-evolution/</link>
     <description>Recent content in Self-Evolution on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,12 +12,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 30 Mar 2026 15:00:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/self-evolution/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/self-evolution/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2026-03 月刊</title>
-      <link>https://niraya666.github.io/monthly/2603_monthly/</link>
+      <link>http://localhost:1313/monthly/2603_monthly/</link>
       <pubDate>Mon, 30 Mar 2026 15:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/monthly/2603_monthly/</guid>
+      <guid>http://localhost:1313/monthly/2603_monthly/</guid>
       <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.minimaxi.com/news/minimax-m27-zh&#34;&gt;MiniMax M2.7&lt;/a&gt;: MiniMax 发布的自研迭代模型，核心创新是模型深度参与自身训练数据的生成与筛选，实现&amp;quot;模型自我进化&amp;quot;的闭环&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2603.15031&#34;&gt;Attention Residuals&lt;/a&gt;: Kimi 团队提出的新型残差连接机制，用 softmax attention 替代固定权重累加，解决 Transformer 深层&amp;quot;信息稀释&amp;quot;问题&lt;/p&gt;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agent-Skills on LZY Blog</title>
+    <link>http://localhost:1313/en/tags/agent-skills/</link>
+    <description>Recent content in Agent-Skills on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/og-cover.png</url>
+      <link>https://niraya666.github.io/img/og-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Jun 2026 20:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns</title>
+      <link>http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>
+      <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</guid>
+      <description>&lt;p&gt;If you pull apart agent memory, there are really two distinct threads running through it.&lt;/p&gt;
+&lt;p&gt;The first is &lt;strong&gt;personal memory&lt;/strong&gt;: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on &amp;ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

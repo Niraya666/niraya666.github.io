@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI-Native on LZY Blog</title>
-    <link>https://niraya666.github.io/en/tags/ai-native/</link>
+    <link>http://localhost:1313/en/tags/ai-native/</link>
     <description>Recent content in AI-Native on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,12 +12,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 10 Jun 2026 11:00:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/en/tags/ai-native/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/tags/ai-native/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do</title>
-      <link>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</link>
+      <link>http://localhost:1313/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</link>
       <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</guid>
+      <guid>http://localhost:1313/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</guid>
       <description>&lt;h2 id=&#34;prologue-from-an-old-question-to-a-new-one&#34;&gt;&lt;strong&gt;Prologue: From an Old Question to a New One&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;I remember when I first started out in this industry, I followed a question on Zhihu:&lt;/p&gt;
 &lt;blockquote&gt;

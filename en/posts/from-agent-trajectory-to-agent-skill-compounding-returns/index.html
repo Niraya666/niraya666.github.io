@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns | LZY Blog</title>
+<meta name="keywords" content="Agent, Agent-skills">
+<meta name="description" content="If you pull apart agent memory, there are really two distinct threads running through it.
+The first is personal memory: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on &ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.&rdquo;">
+<meta name="author" content="LZY">
+<link rel="canonical" href="http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns" />
+<meta property="og:description" content="If you pull apart agent memory, there are really two distinct threads running through it.
+The first is personal memory: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on &ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.&rdquo;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-06-02T20:00:00+08:00" />
+<meta property="article:modified_time" content="2026-06-02T20:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns"/>
+<meta name="twitter:description" content="If you pull apart agent memory, there are really two distinct threads running through it.
+The first is personal memory: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on &ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.&rdquo;"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Posts",
+      "item": "http://localhost:1313/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns",
+      "item": "http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns",
+  "name": "From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns",
+  "description": "If you pull apart agent memory, there are really two distinct threads running through it.\nThe first is personal memory: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on \u0026ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.\u0026rdquo;\n",
+  "keywords": [
+    "Agent", "Agent-skills"
+  ],
+  "articleBody": "If you pull apart agent memory, there are really two distinct threads running through it.\nThe first is personal memory: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on “does it remember, does it understand, and can it retrieve the right user information at the right time.”\nThe second is procedural memory: how an agent avoids repeating mistakes, distills reusable lessons from both successes and failures, and gets better the more it runs — compounding improvement over time. This thread is concerned with things like task success rates on agentic benchmarks, tool-calling efficiency, error-rate reduction, token-cost reduction, and whether real-world usage builds genuine engineering compound interest.\nThis article follows the second thread.\nThese days, agent harnesses like Claude Code, Hermes-agent, OpenClaw, and others accumulate a wealth of trajectories over extended use. Those trajectories capture some of the most valuable signals from an agent’s interaction with its environment.\nThe problem, though, is that even we humans don’t make great use of these trajectories. Most of the time, they’re treated as logs, debug records, or at best stuffed back into context as retrieval fodder. An agent harness that’s been running for six months might have accumulated thousands of task trajectories — and yet the next time a similar problem comes up, the agent starts from scratch, exploring the same dead ends and stepping into the same traps.\nThis raises a core question:\nHow do you actually turn trajectories into skills?\nTake a system like Hermes-agent. After enough mileage, the list of skills keeps growing. But how many of those skills are genuinely effective?\nThis article draws on a few recent pieces of work to discuss a question that’s becoming increasingly important: how to automatically mine, summarize, validate, and optimize agent skills from large collections of agent trajectories — skills that future tasks can actually reuse.\nHermes-agent as the Entry Point Hermes-agent has an interesting pitch: an agent that gets better the more you use it. In practice, this means distilling past experience into external memory that can be reused in the future. That external memory falls roughly into two categories.\nThe first is declarative memory — factual knowledge about the user, the project, the environment, and preferences. Concretely, this takes the form of USER.md and MEMORY.md. This kind of memory answers the question “how can the agent know you better.”\nThe second is procedural memory — skills. Concretely, this means sessions and messages written into state.db, plus the skills that get distilled into markdown files.\nMore specifically, the automatic skill learning in Hermes-agent is closer to a prompt-driven self-sedimentation mechanism. Its prompt gives the agent a triggering rule: when you finish a complex task, go through multiple tool calls, fix a tricky error, or discover a non-trivial workflow, you should save that approach as a skill. And if you find a skill you are using is outdated, incomplete, or wrong, patch it immediately — don’t wait for the user to point it out.\nSKILLS_GUIDANCE = ( \"After completing a complex task (5+ tool calls), fixing a tricky error, \" \"or discovering a non-trivial workflow, save the approach as a \" \"skill with skill_manage so you can reuse it next time.\\n\" \"When using a skill and finding it outdated, incomplete, or wrong, \" \"patch it immediately with skill_manage(action='patch') — don't wait to be asked. \" \"Skills that aren't maintained become liabilities.\" ) The actual persistence is handled by the skill_manage tool, which provides a few basic actions: create creates a new SKILL.md, patch does partial replacement of an existing skill, edit does a full rewrite, write_file adds supporting files, and delete removes skills that are no longer needed.\nThe upside is that it is simple, direct, and interpretable. But it is also rough around the edges.\nIt mostly relies on the model’s own judgment to decide what experience is worth turning into a skill. It feels more like post-hoc sedimentation after a single task, rather than distilling common patterns across multiple successful and failed trajectories. There is no evaluation. Does it actually improve task success rates? Are the skills genuinely effective? Over time, the skill bank keeps growing, but which skills are still useful and which have gone stale is unclear. It demonstrates the simplest possible loop — the agent discovers a workflow while working, writes it up as a skill, and closes the circle. It also exposes the real problems that follow-up research needs to solve: how to automatically induce skills from large numbers of trajectories, how to validate skills, how to merge them, how to optimize them, and how to keep the skill bank from turning into a junkyard.\nOutside the core Hermes-agent, Nous has also spun out a separate project called hermes-agent-self-evolution, which pushes this skill-sedimentation idea toward an external optimizer style of self-evolution. The idea is to read existing skills, prompts, tool descriptions, or code, combine them with execution traces, use DSPy + GEPA to generate candidate variants, and then produce a better version through evaluation, constraint checking, and human review.\n# https://github.com/NousResearch/hermes-agent-self-evolution/README.md Read current skill/prompt/tool ──► Generate eval dataset │ ▼ GEPA Optimizer ◄── Execution traces │ ▲ ▼ │ Candidate variants ──► Evaluate │ Constraint gates (tests, size limits, benchmarks) │ ▼ Best variant ──► PR against hermes-agent Think of it as an external optimizer: it treats skills / prompts / tool descriptions as optimizable objects, uses execution traces to explain why something failed, and searches for better text variants. That said, this project is still in its early stages — most features are still listed as planned.\nTrace2Skill: Batch Trajectory Induction https://arxiv.org/abs/2603.25158\nWhen we’re dealing not with a single skill or a single task, but with a large collection of successful and failed trajectories, how do we automatically induce transferable skills from them?\nA single trajectory from a single task is easily colored by randomness. The lesson learned from one run isn’t necessarily a stable pattern. If every local lesson gets written straight into the skill bank, you end up with fragmentation, duplication, conflicting rules, and overfitting.\nTrace2Skill starts from a different premise: collect a batch of trajectories first, then induce common patterns from the overall distribution.\nThe full Trace2Skill pipeline breaks down into three stages:\nStage 1: Trajectory Generation frozen agent + initial skill S0 → roll out on evolution tasks → collect successful trajectories T+ and failed trajectories T- Stage 2: Parallel Multi-Agent Patch Proposal dispatch one analyst sub-agent per trajectory → success analyzer A+ summarizes winning patterns → failure analyzer A- performs agentic root-cause analysis → each trajectory produces a trajectory-local skill patch Stage 3: Conflict-Free Patch Consolidation merge all patches hierarchically → deduplicate, resolve conflicts, filter out spurious patterns → distill into a unified skill directory S* In essence, this decomposes “from trajectories to skill” into three sub-problems:\nWhere does experience come from? From the agent’s real rollouts in the task environment. How is local experience expressed? As trajectory-local patches, not written directly into the final skill. How do multiple local experiences become a stable skill? Through hierarchical merging, conflict detection, and format validation — culminating in a unified skill directory. That said, Trace2Skill isn’t a full-blown self-learning agent operating in a real environment. In the paper and codebase, it’s evaluated on SpreadsheetBench, where the error analyst can compare against ground truth and verify a failure cause with minimal repair. This works well for benchmarking.\nBut in real-world settings, most tasks don’t have a clear ground truth. Whether an analysis report is good enough, or whether a code change matches the user’s intent — these are hard to judge with a single evaluator.\nSkillOpt: Treating Skills as Trainable External Parameters https://arxiv.org/abs/2605.23904\nCan a skill be further optimized? In other words, is a skill just a one-shot summary of experience, or can it be continuously trained through feedback — like model parameters? This is precisely where SkillOpt enters the picture.\nSkillOpt asks: given a current skill, how well does it perform across a batch of tasks? Which rules should be added, deleted, or replaced? Did the change actually make the agent stronger? And if it didn’t, should the change be rejected?\nThe implication is that skills aren’t just experience-summary documents — they’re external state that can be optimized. SkillOpt borrows ideas from deep learning and applies them to the optimization of natural-language skills. The basic setup: the target model stays frozen; the execution harness stays frozen; the task environment stays frozen. The only thing being optimized is the external skill document — through text-space optimization, analogous to deep learning training.\nThe SkillOpt pipeline breaks down into several steps:\ncurrent skill S_t ↓ target agent runs a batch of tasks with S_t → scored trajectories ↓ optimizer model analyzes success/failure mini-batches ↓ proposes add / delete / replace edits ↓ caps each round's edits via a textual learning rate ↓ validates on a held-out selection split ↓ accept only if score improves; otherwise reject and log as negative feedback ↓ after multiple epochs, export best_skill.md The optimizer model can propose changes, but whether they’re accepted isn’t determined by the model’s confidence — it’s determined by the held-out validation score.\nHow It Works Forward pass: the target agent runs a rollout batch\nThe frozen target agent takes the current skill and executes a batch of tasks. The harness records task metadata, messages, tool calls, observations, command outputs, final answers, verifier feedback, and benchmark-specific context.\nThis mirrors the forward pass in deep learning — except the output isn’t a loss tensor. It’s:\nscored trajectories: task current skill agent messages tool calls observations final answer verifier feedback score This is critical: SkillOpt depends on scored rollouts. Without a score, the downstream validation gate has nothing to work with.\nBackward pass: minibatch reflection\nThese trajectories tell the optimizer two kinds of things:\nSuccessful trajectories: which rules in the current skill are likely working, and which behaviors should be preserved. Failed trajectories: what guidance the current skill is missing, which rules aren’t precise enough, and which actions need to be prohibited or replaced. SkillOpt doesn’t cram all trajectories into the optimizer model at once. Instead, it splits successes and failures into reflection mini-batches.\nFailure mini-batches produce corrective edits. They answer:\nWhat common problems do these failed trajectories expose? What checking steps is the current skill missing? Which existing rules are too vague? Which behaviors should be explicitly banned? Success mini-batches produce preservation edits. They answer:\nWhich behaviors led to success? Which rules should be kept or emphasized? Which effective workflows shouldn't be broken by future edits? Add / Delete / Replace\nThe optimizer model’s output isn’t a full rewrite of the skill — it’s a set of structured edits. Local edits make each update more controllable and auditable, as opposed to rewriting the entire SKILL.md.\nTextual Learning Rate\nSkill updates are constrained as controlled textual operations. In model training there’s a learning rate; SkillOpt brings this idea to text-space: each round limits how many edits can be applied. This addresses the common problem where agent skills easily “learn into chaos.” The core insight: skill evolution should be continuous, not a tear-down-and-rebuild every time.\nValidation Gate\nAfter each round produces a candidate skill, SkillOpt has the same frozen target agent re-run tasks on the held-out selection split using that candidate. The modification is only accepted if the candidate skill’s score strictly exceeds the current skill’s score.\nRejected-Edit Buffer\nIf a candidate skill doesn’t pass the validation gate, SkillOpt doesn’t simply discard the attempt. It records the rejected edits, telling future optimizer runs:\nWhich modification directions were tried but failed; Which rules seemed reasonable but hurt performance; Which failure patterns still haven't been resolved; Which edits caused regressions. It’s essentially an optimizer memory, but more granular: which skill edits were attempted but failed validation.\nFinal output: best_skill.md\nLimitations SkillOpt has clear limitations.\nFirst, it’s heavily dependent on scored trajectories. Tasks need a reasonably reliable scoring mechanism — whether exact match, unit tests, a benchmark evaluator, or LLM-as-judge. You need some way to produce comparable scores. This is relatively straightforward in benchmarks, but much harder in real-world environments.\nAutoSkill: Online Lifelong Skill Lifecycle https://arxiv.org/abs/2603.01145\nHow should skills be continuously generated, maintained, and reused?\nAs users interact with an agent over the long term, they keep expressing stable preferences, work habits, formatting requirements, task constraints, and operational patterns. AutoSkill attempts to turn these transient interaction experiences into explicit, reusable, maintainable, and retrievable skills.\nReal user-agent interactions are very different from benchmark trajectories.\nIn a benchmark, task boundaries are clear, inputs and outputs are well-defined, and there’s often an evaluator. Whether a spreadsheet task is solved correctly, whether code passes tests, whether a web task is completed — these can all be scored fairly directly.\nReal user interactions are rarely like that. Users repeatedly express needs that aren’t really “task-shaped.” These don’t have a single right answer like an exam question, but they matter a lot.\nTraditional memory can preserve these preferences, but memory tends to be just facts or fragments. For example:\nThe user prefers a formal style. The user dislikes excessive technical jargon. The project uses pnpm. This kind of memory handles “knowing what,” but doesn’t necessarily translate into “how to do it later.” AutoSkill’s goal is to further abstract these recurring interaction experiences into skills — procedural artifacts with trigger conditions, behavioral goals, constraints, and execution methods.\nSo AutoSkill’s core insight is this: user interaction experience shouldn’t just be saved as memory — it should be abstracted into executable, long-lived skills.\nThe overall closed loop:\nUser conversation / agent trajectory / conversation history ↓ Extract reusable skill candidate ↓ Retrieve similar existing skills ↓ Decision: discard / add / merge ↓ Write or update SKILL.md in SkillBank ↓ On future requests: query rewrite + hybrid retrieval ↓ Inject relevant skills into LLM prompt ↓ New feedback triggers another round of skill evolution At the heart of it are two loops.\nThe first is the response generation loop. When a new request arrives, AutoSkill rewrites the retrieval query based on the current query and historical context, retrieves relevant skills from the SkillBank, injects them into the prompt, and helps the model generate a response.\nThe second is the skill evolution loop. After each interaction, the system tries to extract reusable skill candidates from user input and interaction traces, then decides whether the candidate should be discarded, added as a new skill, or merged into an existing skill.\nThe key design point in AutoSkill: new candidates don’t go straight into the SkillBank. They first retrieve the most similar existing skills, and only the candidate plus a small set of nearest-neighbor skills are sent to the management judge — not the entire SkillBank jammed into the prompt. This serves two purposes: first, it avoids skill duplication; second, it keeps the management decision scalable.\nThe management judge makes three types of decisions:\ndiscard: The candidate is too vague, low-signal, non-transferable, one-off, or already covered by the existing bank. add: The candidate represents a new durable capability. merge: The candidate and an existing skill belong to the same capability; the existing skill should be updated. The decision is based on four dimensions:\njob-to-be-done deliverable type hard constraints / success criteria required tools / workflow Only merge when stripping away instance-level details still leaves the same capability; otherwise add; if it’s not worth keeping long-term, discard.\nIf the decision is merge, AutoSkill invokes the skill merging module. This isn’t simple text concatenation — it performs a semantic union:\nPreserve the original skill's capability identity. Incorporate the candidate's new reusable constraints, examples, and execution details. Remove duplicate content. Drop outdated or irrelevant topic constraints. Avoid regression — keep the important checks from the original skill. Don't introduce new standards the user never explicitly set. After merging, the skill version number increments.\nAutoSkill persists skills as regular files. The default layout:\nSkillBank/ Users///SKILL.md Common//SKILL.md vectors/ .meta.json .ids.txt .vecs.f32 index/ skills-bm25.* skill_usage_stats.json Users/ holds user-personalized skills, Common holds shared skills, vectors caches embeddings, and index stores the BM25 index and usage statistics.\nThat said, AutoSkill has limitations.\nThe main pipeline relies heavily on an LLM to judge whether a candidate is worth saving, whether it should be merged, and how to merge — rather than being based on scored validation. It’s better suited for learning preferences, styles, workflows, and personalized constraints. For complex tool-using tasks, extracting skills purely from user interaction may not be enough. SkillX: Hierarchical Skill Knowledge Base https://arxiv.org/abs/2604.04804\nThe core idea behind SkillX is to organize agent experience into a hierarchical Skill Knowledge Base rather than a flat list of skills. Or put differently: experience should be decomposed into skills at different granularities that can be composed together.\nTake a strong agent, have it roll out on training tasks, collect successful trajectories; distill those trajectories into three layers of skills — planning, functional, and atomic; then apply clustering, quality filtering, schema validation, and iterative refinement across multiple rounds. The end result is a Skill Knowledge Base that is retrievable, injectable, and transferable to weaker agents.\nThe overall pipeline looks like this:\nTraining tasks ↓ Strong backbone agent rollout ↓ Filter successful trajectories ↓ Extract three-layer skills: Planning Skills Functional Skills Atomic Skills ↓ Clustering / merging / splitting ↓ Two-stage filtering: general quality filter tool schema filter ↓ Skill Library update: add / modify / keep ↓ Explore under-used / failure-prone tools ↓ Synthesize new tasks, continue rollout, continue extracting skills ↓ Form a plug-and-play SkillKB The framework breaks agent experience into three layers.\nPlanning Skill captures “how to organize a long-horizon task”\nFunctional Skill: reusable tool subroutines\nAtomic Skill: tool-level usage constraints and failure patterns\nAnd SkillX doesn’t stop after a single pass of extracting skills from trajectories. It introduces iterative skills refinement, letting the SkillKB keep improving across multiple rounds.\nStarting from the current skill library, it rolls out on training tasks, extracts multi-level skills, then applies refinement operators — Skills Merge and Skills Filter — and finally updates the Skill Library via add / modify / keep.\nThe value of SkillX is that it turns agent experience from a single agent’s private experience into transferable public skills. Think of it as a form of non-parametric distillation: not distilling a strong model’s capabilities into a weaker model’s parameters, but distilling a strong model’s execution experience into an external SkillKB — and the weaker model gains capability by retrieving and injecting from that SkillKB.\nOf course, SkillX has clear boundaries too. It suits scenarios where the tool environment is relatively stable, and it’s designed primarily for tool-using agents.\nRethinking Through the Lens of RL If we re-examine Traj2Skill (as an umbrella for this family of methods) from an RL perspective, the essence may not be “distilling knowledge from trajectories” — it’s:\nExtracting reusable policy improvement units from the distribution of historical behavior.\nAn agent’s behavioral process in an environment can be abstracted as a policy generating trajectories and maximizing expected return:\n$$ J(\\pi)=\\mathbb{E}{\\tau\\sim\\pi}\\left[\\sum{t=0}^T\\gamma^t r_t\\right] $$\nHere, a trajectory records the complete interaction — state, observation, tool calls, and environment feedback.\nSo the goal of Traj2Skill isn’t just to extract human-readable lessons from a trajectory. It’s to find structured behavioral patterns in existing trajectories such that the new policy $\\pi’$ achieves a higher expected return on future tasks than the original policy $\\pi$:\n$$ J(\\pi’) \u003e J(\\pi) $$\nThe key difference is that Traj2Skill typically doesn’t update model parameters directly. Instead, it updates an external skill library — separate from the model itself.\ntrajectory → experience signal → update external skill library → guide future policy Viewed this way, a skill is not ordinary memory, nor a compressed version of a task log. It’s more like an externalized policy prior.\nIf we bring Agentic-RL into the comparison, Agentic-RL is closer to end-to-end policy optimization — it optimizes the model itself. Traj2Skill, by contrast, is closer to modular policy improvement — it optimizes reusable behavioral modules external to the model.\nFrom an engineering standpoint, this is also what makes the skill library appealing. An LLM-based policy is expensive to train, slow to update, weak in interpretability, and ill-suited for frequent fine-tuning. But a skill library is externalized, readable, editable, searchable, and versionable. It offers a lighter-weight path for policy improvement than directly updating model parameters. This is likely what motivates work like SkillOpt: bringing skills into a closed loop of “generate — evaluate — optimize.”\nLooked at differently, the two approaches aren’t substitutes — they can complement each other. That’s exactly what SAGE / SkillRL are exploring: incorporating skills into reinforcement learning or policy optimization frameworks.\nZooming out further: trajectories are too long, too specific, too contingent. What’s truly valuable is extracting behavioral structures that transfer across tasks. So where does Traj2Skill sit — closer to offline RL, or behavior cloning?\nA lot of current Traj2Skill work is actually closer to behavior cloning. The basic pipeline of trajectory mining is: summarize frequent patterns, compress, reuse. But there’s a problem here: a successful trajectory is not the same as an optimal trajectory.\nThis is the credit assignment problem. The final return of a long-horizon agent trajectory may come from only a handful of key decisions — not from every step along the way. What’s truly worth distilling into a skill is not necessarily the most frequently occurring behavioral snippets, but the behavioral structures that can consistently improve expected return on future tasks.\nThis perspective also exposes the hardest problem for Traj2Skill: where does the reward come from? Benchmarks have standard answers, but real-world environments are different — there’s often no simple ground truth. This means that the ceiling of a real-world Traj2Skill system depends heavily on the quality of its evaluator.\nIf we lay these pieces of work side by side, they each tackle different parts of the trajectory-to-skill pipeline:\nHermes-agent: self-sedimentation after a single trajectory Trace2Skill: experience induction across multiple trajectories SkillOpt: evaluation-driven skill optimization AutoSkill: long-term skill lifecycle management SkillX: hierarchical skill organization and strong-to-weak transfer So the core of Traj2Skill-style work breaks down into two questions.\nThe first is SkillOps: how to create, merge, retrieve, inject, version, evaluate, and retire skills — without letting the skill bank degrade into a junkyard.\nThe second is the deeper question: how to perform credit assignment over trajectories to identify behavioral structures that genuinely improve expected return.\nThe former solves for long-term operation. The latter answers whether this is really about “summarizing experience” — or about policy improvement.\n",
+  "wordCount" : "3752",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/img/og-cover.png","datePublished": "2026-06-02T20:00:00+08:00",
+  "dateModified": "2026-06-02T20:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="http://localhost:1313/" title="中文"
+                            aria-label="中文">中文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/en/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/en/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/en/posts/">AI Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns
+    </h1>
+    <div class="post-meta"><span title='2026-06-02 20:00:00 +0800 CST'>June 2, 2026</span>&nbsp;·&nbsp;18 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#hermes-agent-as-the-entry-point" aria-label="Hermes-agent as the Entry Point">Hermes-agent as the Entry Point</a></li>
+                <li>
+                    <a href="#trace2skill-batch-trajectory-induction" aria-label="Trace2Skill: Batch Trajectory Induction">Trace2Skill: Batch Trajectory Induction</a></li>
+                <li>
+                    <a href="#skillopt-treating-skills-as-trainable-external-parameters" aria-label="SkillOpt: Treating Skills as Trainable External Parameters">SkillOpt: Treating Skills as Trainable External Parameters</a><ul>
+                        
+                <li>
+                    <a href="#how-it-works" aria-label="How It Works">How It Works</a></li>
+                <li>
+                    <a href="#limitations" aria-label="Limitations">Limitations</a></li></ul>
+                </li>
+                <li>
+                    <a href="#autoskill-online-lifelong-skill-lifecycle" aria-label="AutoSkill: Online Lifelong Skill Lifecycle">AutoSkill: Online Lifelong Skill Lifecycle</a></li>
+                <li>
+                    <a href="#skillx-hierarchical-skill-knowledge-base" aria-label="SkillX: Hierarchical Skill Knowledge Base">SkillX: Hierarchical Skill Knowledge Base</a></li>
+                <li>
+                    <a href="#rethinking-through-the-lens-of-rl" aria-label="Rethinking Through the Lens of RL">Rethinking Through the Lens of RL</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>If you pull apart agent memory, there are really two distinct threads running through it.</p>
+<p>The first is <strong>personal memory</strong>: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on &ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.&rdquo;</p>
+<p>The second is <strong>procedural memory</strong>: how an agent avoids repeating mistakes, distills reusable lessons from both successes and failures, and gets better the more it runs — compounding improvement over time. This thread is concerned with things like task success rates on agentic benchmarks, tool-calling efficiency, error-rate reduction, token-cost reduction, and whether real-world usage builds genuine engineering compound interest.</p>
+<p>This article follows the second thread.</p>
+<p>These days, agent harnesses like Claude Code, Hermes-agent, OpenClaw, and others accumulate a wealth of trajectories over extended use. Those trajectories capture some of the most valuable signals from an agent&rsquo;s interaction with its environment.</p>
+<p>The problem, though, is that even we humans don&rsquo;t make great use of these trajectories. Most of the time, they&rsquo;re treated as logs, debug records, or at best stuffed back into context as retrieval fodder. An agent harness that&rsquo;s been running for six months might have accumulated thousands of task trajectories — and yet the next time a similar problem comes up, the agent starts from scratch, exploring the same dead ends and stepping into the same traps.</p>
+<p>This raises a core question:</p>
+<p><strong>How do you actually turn trajectories into skills?</strong></p>
+<p>Take a system like Hermes-agent. After enough mileage, the list of skills keeps growing. But how many of those skills are genuinely effective?</p>
+<p>This article draws on a few recent pieces of work to discuss a question that&rsquo;s becoming increasingly important: how to automatically mine, summarize, validate, and optimize agent skills from large collections of agent trajectories — skills that future tasks can actually reuse.</p>
+<h2 id="hermes-agent-as-the-entry-point">Hermes-agent as the Entry Point<a hidden class="anchor" aria-hidden="true" href="#hermes-agent-as-the-entry-point">#</a></h2>
+<p>Hermes-agent has an interesting pitch: an agent that gets better the more you use it. In practice, this means distilling past experience into external memory that can be reused in the future. That external memory falls roughly into two categories.</p>
+<p>The first is <strong>declarative memory</strong> — factual knowledge about the user, the project, the environment, and preferences. Concretely, this takes the form of <code>USER.md</code> and <code>MEMORY.md</code>. This kind of memory answers the question &ldquo;how can the agent know you better.&rdquo;</p>
+<p>The second is <strong>procedural memory</strong> — skills. Concretely, this means sessions and messages written into <code>state.db</code>, plus the skills that get distilled into markdown files.</p>
+<p>More specifically, the automatic skill learning in Hermes-agent is closer to a <strong>prompt-driven</strong> self-sedimentation mechanism. Its <a href="https://github.com/NousResearch/hermes-agent/blob/main/agent/prompt_builder.py#L165">prompt</a> gives the agent a triggering rule: when you finish a complex task, go through multiple tool calls, fix a tricky error, or discover a non-trivial workflow, you should save that approach as a skill. And if you find a skill you are using is outdated, incomplete, or wrong, patch it immediately — don&rsquo;t wait for the user to point it out.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">SKILLS_GUIDANCE</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;After completing a complex task (5+ tool calls), fixing a tricky error, &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;or discovering a non-trivial workflow, save the approach as a &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;skill with skill_manage so you can reuse it next time.</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;When using a skill and finding it outdated, incomplete, or wrong, &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;patch it immediately with skill_manage(action=&#39;patch&#39;) — don&#39;t wait to be asked. &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Skills that aren&#39;t maintained become liabilities.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>The actual persistence is handled by the <code>skill_manage</code> tool, which provides a few basic actions: <code>create</code> creates a new <code>SKILL.md</code>, <code>patch</code> does partial replacement of an existing skill, <code>edit</code> does a full rewrite, <code>write_file</code> adds supporting files, and <code>delete</code> removes skills that are no longer needed.</p>
+<p>The upside is that it is simple, direct, and interpretable. But it is also rough around the edges.</p>
+<ul>
+<li>It mostly relies on the model&rsquo;s own judgment to decide what experience is worth turning into a skill.</li>
+<li>It feels more like post-hoc sedimentation after a single task, rather than distilling common patterns across multiple successful and failed trajectories.</li>
+<li>There is no evaluation. Does it actually improve task success rates? Are the skills genuinely effective?</li>
+<li>Over time, the skill bank keeps growing, but which skills are still useful and which have gone stale is unclear.</li>
+</ul>
+<p>It demonstrates the simplest possible loop — the agent discovers a workflow while working, writes it up as a skill, and closes the circle. It also exposes the real problems that follow-up research needs to solve: how to automatically induce skills from large numbers of trajectories, how to validate skills, how to merge them, how to optimize them, and how to keep the skill bank from turning into a junkyard.</p>
+<p>Outside the core Hermes-agent, Nous has also spun out a separate project called <a href="https://github.com/NousResearch/hermes-agent-self-evolution"><code>hermes-agent-self-evolution</code></a>, which pushes this skill-sedimentation idea toward an <strong>external optimizer</strong> style of self-evolution. The idea is to read existing skills, prompts, tool descriptions, or code, combine them with execution traces, use DSPy + GEPA to generate candidate variants, and then produce a better version through evaluation, constraint checking, and human review.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># https://github.com/NousResearch/hermes-agent-self-evolution/README.md</span>
+</span></span><span class="line"><span class="cl"><span class="n">Read</span> <span class="n">current</span> <span class="n">skill</span><span class="o">/</span><span class="n">prompt</span><span class="o">/</span><span class="n">tool</span> <span class="err">──►</span> <span class="n">Generate</span> <span class="nb">eval</span> <span class="n">dataset</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">│</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">▼</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">GEPA</span> <span class="n">Optimizer</span> <span class="err">◄──</span> <span class="n">Execution</span> <span class="n">traces</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">│</span>                    <span class="err">▲</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">▼</span>                    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">Candidate</span> <span class="n">variants</span> <span class="err">──►</span> <span class="n">Evaluate</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">│</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">Constraint</span> <span class="n">gates</span> <span class="p">(</span><span class="n">tests</span><span class="p">,</span> <span class="n">size</span> <span class="n">limits</span><span class="p">,</span> <span class="n">benchmarks</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">│</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">▼</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">Best</span> <span class="n">variant</span> <span class="err">──►</span> <span class="n">PR</span> <span class="n">against</span> <span class="n">hermes</span><span class="o">-</span><span class="n">agent</span>
+</span></span></code></pre></div><p>Think of it as an external optimizer: it treats skills / prompts / tool descriptions as optimizable objects, uses execution traces to explain why something failed, and searches for better text variants. That said, this project is still in its early stages — most features are still listed as planned.</p>
+<!-- BRIDGE: Hermes-agent shows us the simplest loop for skill creation, but it also reveals the limits of drawing lessons from a single trajectory. The real challenge — and the next logical step — is to induce skills from a population of trajectories, not just one-off experiences. -->
+<h2 id="trace2skill-batch-trajectory-induction">Trace2Skill: Batch Trajectory Induction<a hidden class="anchor" aria-hidden="true" href="#trace2skill-batch-trajectory-induction">#</a></h2>
+<p><a href="https://arxiv.org/abs/2603.25158">https://arxiv.org/abs/2603.25158</a></p>
+<p>When we&rsquo;re dealing not with a single skill or a single task, but with a large collection of successful and failed trajectories, how do we automatically induce transferable skills from them?</p>
+<p>A single trajectory from a single task is easily colored by randomness. The lesson learned from one run isn&rsquo;t necessarily a stable pattern. If every local lesson gets written straight into the skill bank, you end up with fragmentation, duplication, conflicting rules, and overfitting.</p>
+<p>Trace2Skill starts from a different premise: collect a batch of trajectories first, then induce common patterns from the overall distribution.</p>
+<p>The full Trace2Skill pipeline breaks down into three stages:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Stage</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Trajectory</span> <span class="n">Generation</span>
+</span></span><span class="line"><span class="cl">  <span class="n">frozen</span> <span class="n">agent</span> <span class="o">+</span> <span class="n">initial</span> <span class="n">skill</span> <span class="n">S0</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">roll</span> <span class="n">out</span> <span class="n">on</span> <span class="n">evolution</span> <span class="n">tasks</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">collect</span> <span class="n">successful</span> <span class="n">trajectories</span> <span class="n">T</span><span class="o">+</span> <span class="ow">and</span> <span class="n">failed</span> <span class="n">trajectories</span> <span class="n">T</span><span class="o">-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Stage</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Parallel</span> <span class="n">Multi</span><span class="o">-</span><span class="n">Agent</span> <span class="n">Patch</span> <span class="n">Proposal</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dispatch</span> <span class="n">one</span> <span class="n">analyst</span> <span class="n">sub</span><span class="o">-</span><span class="n">agent</span> <span class="n">per</span> <span class="n">trajectory</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">success</span> <span class="n">analyzer</span> <span class="n">A</span><span class="o">+</span> <span class="n">summarizes</span> <span class="n">winning</span> <span class="n">patterns</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">failure</span> <span class="n">analyzer</span> <span class="n">A</span><span class="o">-</span> <span class="n">performs</span> <span class="n">agentic</span> <span class="n">root</span><span class="o">-</span><span class="n">cause</span> <span class="n">analysis</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">each</span> <span class="n">trajectory</span> <span class="n">produces</span> <span class="n">a</span> <span class="n">trajectory</span><span class="o">-</span><span class="n">local</span> <span class="n">skill</span> <span class="n">patch</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Stage</span> <span class="mi">3</span><span class="p">:</span> <span class="n">Conflict</span><span class="o">-</span><span class="n">Free</span> <span class="n">Patch</span> <span class="n">Consolidation</span>
+</span></span><span class="line"><span class="cl">  <span class="n">merge</span> <span class="nb">all</span> <span class="n">patches</span> <span class="n">hierarchically</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">deduplicate</span><span class="p">,</span> <span class="n">resolve</span> <span class="n">conflicts</span><span class="p">,</span> <span class="nb">filter</span> <span class="n">out</span> <span class="n">spurious</span> <span class="n">patterns</span>
+</span></span><span class="line"><span class="cl">  <span class="err">→</span> <span class="n">distill</span> <span class="n">into</span> <span class="n">a</span> <span class="n">unified</span> <span class="n">skill</span> <span class="n">directory</span> <span class="n">S</span><span class="o">*</span>
+</span></span></code></pre></div><p>In essence, this decomposes &ldquo;from trajectories to skill&rdquo; into three sub-problems:</p>
+<ul>
+<li>Where does experience come from? From the agent&rsquo;s real rollouts in the task environment.</li>
+<li>How is local experience expressed? As trajectory-local patches, not written directly into the final skill.</li>
+<li>How do multiple local experiences become a stable skill? Through hierarchical merging, conflict detection, and format validation — culminating in a unified skill directory.</li>
+</ul>
+<p>That said, Trace2Skill isn&rsquo;t a full-blown self-learning agent operating in a real environment. In the paper and codebase, it&rsquo;s evaluated on SpreadsheetBench, where the error analyst can compare against ground truth and verify a failure cause with minimal repair. This works well for benchmarking.</p>
+<p>But in real-world settings, most tasks don&rsquo;t have a clear ground truth. Whether an analysis report is good enough, or whether a code change matches the user&rsquo;s intent — these are hard to judge with a single evaluator.</p>
+<!-- BRIDGE: Trace2Skill addresses the induction problem — extracting patterns across many trajectories — but it leaves an open question at the other end of the pipeline: once you have a skill, can you systematically improve it over time? -->
+<h2 id="skillopt-treating-skills-as-trainable-external-parameters">SkillOpt: Treating Skills as Trainable External Parameters<a hidden class="anchor" aria-hidden="true" href="#skillopt-treating-skills-as-trainable-external-parameters">#</a></h2>
+<p><a href="https://arxiv.org/abs/2605.23904">https://arxiv.org/abs/2605.23904</a></p>
+<p>Can a skill be further optimized? In other words, is a skill just a one-shot summary of experience, or can it be continuously trained through feedback — like model parameters? This is precisely where SkillOpt enters the picture.</p>
+<p>SkillOpt asks: given a current skill, how well does it perform across a batch of tasks? Which rules should be added, deleted, or replaced? Did the change actually make the agent stronger? And if it didn&rsquo;t, should the change be rejected?</p>
+<p>The implication is that skills aren&rsquo;t just experience-summary documents — they&rsquo;re external state that can be optimized. SkillOpt borrows ideas from deep learning and applies them to the optimization of natural-language skills. The basic setup: the target model stays frozen; the execution harness stays frozen; the task environment stays frozen. <strong>The only thing being optimized is the external skill document</strong> — through text-space optimization, analogous to deep learning training.</p>
+<hr>
+<p>The SkillOpt pipeline breaks down into several steps:</p>
+<pre tabindex="0"><code>current skill S_t
+  ↓
+target agent runs a batch of tasks with S_t → scored trajectories
+  ↓
+optimizer model analyzes success/failure mini-batches
+  ↓
+proposes add / delete / replace edits
+  ↓
+caps each round&#39;s edits via a textual learning rate
+  ↓
+validates on a held-out selection split
+  ↓
+accept only if score improves; otherwise reject and log as negative feedback
+  ↓
+after multiple epochs, export best_skill.md
+</code></pre><p>The optimizer model can propose changes, but whether they&rsquo;re accepted isn&rsquo;t determined by the model&rsquo;s confidence — it&rsquo;s determined by the held-out validation score.</p>
+<hr>
+<h3 id="how-it-works">How It Works<a hidden class="anchor" aria-hidden="true" href="#how-it-works">#</a></h3>
+<p><strong>Forward pass: the target agent runs a rollout batch</strong></p>
+<p>The frozen target agent takes the current skill and executes a batch of tasks. The harness records task metadata, messages, tool calls, observations, command outputs, final answers, verifier feedback, and benchmark-specific context.</p>
+<p>This mirrors the forward pass in deep learning — except the output isn&rsquo;t a loss tensor. It&rsquo;s:</p>
+<pre tabindex="0"><code>scored trajectories:
+  task
+  current skill
+  agent messages
+  tool calls
+  observations
+  final answer
+  verifier feedback
+  score
+</code></pre><p>This is critical: <strong>SkillOpt depends on scored rollouts</strong>. Without a score, the downstream validation gate has nothing to work with.</p>
+<hr>
+<p><strong>Backward pass: minibatch reflection</strong></p>
+<p>These trajectories tell the optimizer two kinds of things:</p>
+<ul>
+<li>Successful trajectories: which rules in the current skill are likely working, and which behaviors should be preserved.</li>
+<li>Failed trajectories: what guidance the current skill is missing, which rules aren&rsquo;t precise enough, and which actions need to be prohibited or replaced.</li>
+</ul>
+<p>SkillOpt doesn&rsquo;t cram all trajectories into the optimizer model at once. Instead, it splits successes and failures into reflection mini-batches.</p>
+<p>Failure mini-batches produce <strong>corrective edits</strong>. They answer:</p>
+<pre tabindex="0"><code>What common problems do these failed trajectories expose?
+What checking steps is the current skill missing?
+Which existing rules are too vague?
+Which behaviors should be explicitly banned?
+</code></pre><p>Success mini-batches produce <strong>preservation edits</strong>. They answer:</p>
+<pre tabindex="0"><code>Which behaviors led to success?
+Which rules should be kept or emphasized?
+Which effective workflows shouldn&#39;t be broken by future edits?
+</code></pre><hr>
+<p><strong>Add / Delete / Replace</strong></p>
+<p>The optimizer model&rsquo;s output isn&rsquo;t a full rewrite of the skill — it&rsquo;s a set of structured edits. Local edits make each update more controllable and auditable, as opposed to rewriting the entire <code>SKILL.md</code>.</p>
+<hr>
+<p><strong>Textual Learning Rate</strong></p>
+<p>Skill updates are constrained as controlled textual operations. In model training there&rsquo;s a learning rate; SkillOpt brings this idea to text-space: each round limits how many edits can be applied. This addresses the common problem where agent skills easily &ldquo;learn into chaos.&rdquo; The core insight: <strong>skill evolution should be continuous, not a tear-down-and-rebuild every time.</strong></p>
+<hr>
+<p><strong>Validation Gate</strong></p>
+<p>After each round produces a candidate skill, SkillOpt has the same frozen target agent re-run tasks on the held-out selection split using that candidate. The modification is only accepted if the candidate skill&rsquo;s score strictly exceeds the current skill&rsquo;s score.</p>
+<hr>
+<p><strong>Rejected-Edit Buffer</strong></p>
+<p>If a candidate skill doesn&rsquo;t pass the validation gate, SkillOpt doesn&rsquo;t simply discard the attempt. It records the rejected edits, telling future optimizer runs:</p>
+<pre tabindex="0"><code>Which modification directions were tried but failed;
+Which rules seemed reasonable but hurt performance;
+Which failure patterns still haven&#39;t been resolved;
+Which edits caused regressions.
+</code></pre><p>It&rsquo;s essentially an optimizer memory, but more granular: <strong>which skill edits were attempted but failed validation</strong>.</p>
+<hr>
+<p><strong>Final output: best_skill.md</strong></p>
+<hr>
+<h3 id="limitations">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations">#</a></h3>
+<p>SkillOpt has clear limitations.</p>
+<p>First, it&rsquo;s heavily dependent on scored trajectories. Tasks need a reasonably reliable scoring mechanism — whether exact match, unit tests, a benchmark evaluator, or LLM-as-judge. You need some way to produce comparable scores. This is relatively straightforward in benchmarks, but much harder in real-world environments.</p>
+<hr>
+<!-- BRIDGE: SkillOpt's validation-driven approach works well when scoring is available, but in many real-world scenarios reliable evaluation signals are scarce. That's where a different challenge emerges: managing the full skill lifecycle over extended human-agent interaction. -->
+<h2 id="autoskill-online-lifelong-skill-lifecycle">AutoSkill: Online Lifelong Skill Lifecycle<a hidden class="anchor" aria-hidden="true" href="#autoskill-online-lifelong-skill-lifecycle">#</a></h2>
+<p><a href="https://arxiv.org/abs/2603.01145">https://arxiv.org/abs/2603.01145</a></p>
+<p>How should skills be continuously generated, maintained, and reused?</p>
+<p>As users interact with an agent over the long term, they keep expressing stable preferences, work habits, formatting requirements, task constraints, and operational patterns. AutoSkill attempts to turn these transient interaction experiences into explicit, reusable, maintainable, and retrievable skills.</p>
+<p>Real user-agent interactions are very different from benchmark trajectories.</p>
+<p>In a benchmark, task boundaries are clear, inputs and outputs are well-defined, and there&rsquo;s often an evaluator. Whether a spreadsheet task is solved correctly, whether code passes tests, whether a web task is completed — these can all be scored fairly directly.</p>
+<p>Real user interactions are rarely like that. Users repeatedly express needs that aren&rsquo;t really &ldquo;task-shaped.&rdquo; These don&rsquo;t have a single right answer like an exam question, but they matter a lot.</p>
+<p>Traditional memory can preserve these preferences, but memory tends to be just facts or fragments. For example:</p>
+<pre tabindex="0"><code>The user prefers a formal style.
+The user dislikes excessive technical jargon.
+The project uses pnpm.
+</code></pre><p>This kind of memory handles &ldquo;knowing what,&rdquo; but doesn&rsquo;t necessarily translate into &ldquo;how to do it later.&rdquo; AutoSkill&rsquo;s goal is to further abstract these recurring interaction experiences into skills — procedural artifacts with trigger conditions, behavioral goals, constraints, and execution methods.</p>
+<p>So AutoSkill&rsquo;s core insight is this: user interaction experience shouldn&rsquo;t just be saved as memory — it should be abstracted into executable, long-lived skills.</p>
+<p>The overall closed loop:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">User</span> <span class="n">conversation</span> <span class="o">/</span> <span class="n">agent</span> <span class="n">trajectory</span> <span class="o">/</span> <span class="n">conversation</span> <span class="n">history</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">Extract</span> <span class="n">reusable</span> <span class="n">skill</span> <span class="n">candidate</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">Retrieve</span> <span class="n">similar</span> <span class="n">existing</span> <span class="n">skills</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">Decision</span><span class="p">:</span> <span class="n">discard</span> <span class="o">/</span> <span class="n">add</span> <span class="o">/</span> <span class="n">merge</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">Write</span> <span class="ow">or</span> <span class="n">update</span> <span class="n">SKILL</span><span class="o">.</span><span class="n">md</span> <span class="ow">in</span> <span class="n">SkillBank</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">On</span> <span class="n">future</span> <span class="n">requests</span><span class="p">:</span> <span class="n">query</span> <span class="n">rewrite</span> <span class="o">+</span> <span class="n">hybrid</span> <span class="n">retrieval</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">Inject</span> <span class="n">relevant</span> <span class="n">skills</span> <span class="n">into</span> <span class="n">LLM</span> <span class="n">prompt</span>
+</span></span><span class="line"><span class="cl">  <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">New</span> <span class="n">feedback</span> <span class="n">triggers</span> <span class="n">another</span> <span class="nb">round</span> <span class="n">of</span> <span class="n">skill</span> <span class="n">evolution</span>
+</span></span></code></pre></div><p>At the heart of it are two loops.</p>
+<p>The first is the <strong>response generation loop</strong>. When a new request arrives, AutoSkill rewrites the retrieval query based on the current query and historical context, retrieves relevant skills from the SkillBank, injects them into the prompt, and helps the model generate a response.</p>
+<p>The second is the <strong>skill evolution loop</strong>. After each interaction, the system tries to extract reusable skill candidates from user input and interaction traces, then decides whether the candidate should be discarded, added as a new skill, or merged into an existing skill.</p>
+<p>The key design point in AutoSkill: <strong>new candidates don&rsquo;t go straight into the SkillBank</strong>. They first retrieve the most similar existing skills, and only the candidate plus a small set of nearest-neighbor skills are sent to the management judge — not the entire SkillBank jammed into the prompt. This serves two purposes: first, it avoids skill duplication; second, it keeps the management decision scalable.</p>
+<p>The management judge makes three types of decisions:</p>
+<pre tabindex="0"><code>discard: The candidate is too vague, low-signal, non-transferable, one-off, or already covered by the existing bank.
+add: The candidate represents a new durable capability.
+merge: The candidate and an existing skill belong to the same capability; the existing skill should be updated.
+</code></pre><p>The decision is based on four dimensions:</p>
+<pre tabindex="0"><code>job-to-be-done
+deliverable type
+hard constraints / success criteria
+required tools / workflow
+</code></pre><p>Only merge when stripping away instance-level details still leaves the same capability; otherwise add; if it&rsquo;s not worth keeping long-term, discard.</p>
+<p>If the decision is merge, AutoSkill invokes the skill merging module. This isn&rsquo;t simple text concatenation — it performs a <strong>semantic union</strong>:</p>
+<pre tabindex="0"><code>Preserve the original skill&#39;s capability identity.
+Incorporate the candidate&#39;s new reusable constraints, examples, and execution details.
+Remove duplicate content.
+Drop outdated or irrelevant topic constraints.
+Avoid regression — keep the important checks from the original skill.
+Don&#39;t introduce new standards the user never explicitly set.
+</code></pre><p>After merging, the skill version number increments.</p>
+<p>AutoSkill persists skills as regular files. The default layout:</p>
+<pre tabindex="0"><code>SkillBank/
+  Users/&lt;user_id&gt;/&lt;skill-slug&gt;/SKILL.md
+  Common/&lt;skill-slug&gt;/SKILL.md
+  vectors/
+    &lt;embedding-signature&gt;.meta.json
+    &lt;embedding-signature&gt;.ids.txt
+    &lt;embedding-signature&gt;.vecs.f32
+  index/
+    skills-bm25.*
+    skill_usage_stats.json
+</code></pre><p><code>Users/&lt;user_id&gt;</code> holds user-personalized skills, <code>Common</code> holds shared skills, <code>vectors</code> caches embeddings, and <code>index</code> stores the BM25 index and usage statistics.</p>
+<p>That said, AutoSkill has limitations.</p>
+<ul>
+<li>The main pipeline relies heavily on an LLM to judge whether a candidate is worth saving, whether it should be merged, and how to merge — rather than being based on scored validation.</li>
+<li>It&rsquo;s better suited for learning preferences, styles, workflows, and personalized constraints. For complex tool-using tasks, extracting skills purely from user interaction may not be enough.</li>
+</ul>
+<!-- BRIDGE: AutoSkill keeps skills alive and relevant through ongoing interaction, but it says less about how those skills should be structured internally. For agents that use a wide range of tools, a flat list quickly becomes unwieldy — what you need is an organized hierarchy. -->
+<h2 id="skillx-hierarchical-skill-knowledge-base">SkillX: Hierarchical Skill Knowledge Base<a hidden class="anchor" aria-hidden="true" href="#skillx-hierarchical-skill-knowledge-base">#</a></h2>
+<p><a href="https://arxiv.org/abs/2604.04804">https://arxiv.org/abs/2604.04804</a></p>
+<p>The core idea behind SkillX is to organize agent experience into a <strong>hierarchical Skill Knowledge Base</strong> rather than a flat list of skills. Or put differently: experience should be decomposed into skills at different granularities that can be composed together.</p>
+<p><strong>Take a strong agent, have it roll out on training tasks, collect successful trajectories; distill those trajectories into three layers of skills — planning, functional, and atomic; then apply clustering, quality filtering, schema validation, and iterative refinement across multiple rounds. The end result is a Skill Knowledge Base that is retrievable, injectable, and transferable to weaker agents.</strong></p>
+<p>The overall pipeline looks like this:</p>
+<pre tabindex="0"><code>Training tasks
+  ↓
+Strong backbone agent rollout
+  ↓
+Filter successful trajectories
+  ↓
+Extract three-layer skills:
+    Planning Skills
+    Functional Skills
+    Atomic Skills
+  ↓
+Clustering / merging / splitting
+  ↓
+Two-stage filtering:
+    general quality filter
+    tool schema filter
+  ↓
+Skill Library update:
+    add / modify / keep
+  ↓
+Explore under-used / failure-prone tools
+  ↓
+Synthesize new tasks, continue rollout, continue extracting skills
+  ↓
+Form a plug-and-play SkillKB
+</code></pre><p>The framework breaks agent experience into three layers.</p>
+<ul>
+<li>
+<p><strong>Planning Skill</strong> captures &ldquo;how to organize a long-horizon task&rdquo;</p>
+</li>
+<li>
+<p><strong>Functional Skill</strong>: reusable tool subroutines</p>
+</li>
+<li>
+<p><strong>Atomic Skill</strong>: tool-level usage constraints and failure patterns</p>
+</li>
+</ul>
+<p>And SkillX doesn&rsquo;t stop after a single pass of extracting skills from trajectories. It introduces <strong>iterative skills refinement</strong>, letting the SkillKB keep improving across multiple rounds.</p>
+<p>Starting from the current skill library, it rolls out on training tasks, extracts multi-level skills, then applies refinement operators — Skills Merge and Skills Filter — and finally updates the Skill Library via <code>add / modify / keep</code>.</p>
+<p>The value of SkillX is that it turns agent experience from a single agent&rsquo;s private experience into transferable public skills. Think of it as a form of <strong>non-parametric distillation</strong>: not distilling a strong model&rsquo;s capabilities into a weaker model&rsquo;s parameters, but distilling a strong model&rsquo;s execution experience into an external SkillKB — and the weaker model gains capability by retrieving and injecting from that SkillKB.</p>
+<p>Of course, SkillX has clear boundaries too. It suits scenarios where the tool environment is relatively stable, and it&rsquo;s designed primarily for <strong>tool-using agents</strong>.</p>
+<h2 id="rethinking-through-the-lens-of-rl">Rethinking Through the Lens of RL<a hidden class="anchor" aria-hidden="true" href="#rethinking-through-the-lens-of-rl">#</a></h2>
+<p>If we re-examine Traj2Skill (as an umbrella for this family of methods) from an RL perspective, the essence may not be &ldquo;distilling knowledge from trajectories&rdquo; — it&rsquo;s:</p>
+<p><strong>Extracting reusable policy improvement units from the distribution of historical behavior.</strong></p>
+<p>An agent&rsquo;s behavioral process in an environment can be abstracted as a policy generating trajectories and maximizing expected return:</p>
+<p>$$
+J(\pi)=\mathbb{E}<em>{\tau\sim\pi}\left[\sum</em>{t=0}^T\gamma^t r_t\right]
+$$</p>
+<p>Here, a trajectory records the complete interaction — state, observation, tool calls, and environment feedback.</p>
+<p>So the goal of Traj2Skill isn&rsquo;t just to extract human-readable lessons from a trajectory. It&rsquo;s to find structured behavioral patterns in existing trajectories such that the new policy $\pi&rsquo;$ achieves a higher expected return on future tasks than the original policy $\pi$:</p>
+<p>$$
+J(\pi&rsquo;) &gt; J(\pi)
+$$</p>
+<p>The key difference is that Traj2Skill typically doesn&rsquo;t update model parameters directly. Instead, it updates an external skill library — separate from the model itself.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">trajectory</span> <span class="err">→</span> <span class="n">experience</span> <span class="n">signal</span> <span class="err">→</span> <span class="n">update</span> <span class="n">external</span> <span class="n">skill</span> <span class="n">library</span> <span class="err">→</span> <span class="n">guide</span> <span class="n">future</span> <span class="n">policy</span>
+</span></span></code></pre></div><p>Viewed this way, a skill is not ordinary memory, nor a compressed version of a task log. It&rsquo;s more like an <strong>externalized policy prior</strong>.</p>
+<p>If we bring Agentic-RL into the comparison, Agentic-RL is closer to <strong>end-to-end policy optimization</strong> — it optimizes the model itself. Traj2Skill, by contrast, is closer to <strong>modular policy improvement</strong> — it optimizes reusable behavioral modules external to the model.</p>
+<p>From an engineering standpoint, this is also what makes the skill library appealing. An LLM-based policy is expensive to train, slow to update, weak in interpretability, and ill-suited for frequent fine-tuning. But a skill library is externalized, readable, editable, searchable, and versionable. It offers a lighter-weight path for policy improvement than directly updating model parameters. This is likely what motivates work like SkillOpt: bringing skills into a closed loop of &ldquo;generate — evaluate — optimize.&rdquo;</p>
+<p>Looked at differently, the two approaches aren&rsquo;t substitutes — they can complement each other. That&rsquo;s exactly what <a href="https://arxiv.org/html/2512.17102v2">SAGE</a> / <a href="https://arxiv.org/html/2602.08234v1">SkillRL</a> are exploring: incorporating skills into reinforcement learning or policy optimization frameworks.</p>
+<p>Zooming out further: trajectories are too long, too specific, too contingent. What&rsquo;s truly valuable is extracting behavioral structures that transfer across tasks. So where does Traj2Skill sit — closer to offline RL, or behavior cloning?</p>
+<p>A lot of current Traj2Skill work is actually closer to <strong>behavior cloning</strong>. The basic pipeline of trajectory mining is: summarize frequent patterns, compress, reuse. But there&rsquo;s a problem here: a successful trajectory is not the same as an optimal trajectory.</p>
+<p>This is the <strong>credit assignment</strong> problem. The final return of a long-horizon agent trajectory may come from only a handful of key decisions — not from every step along the way. What&rsquo;s truly worth distilling into a skill is not necessarily the most frequently occurring behavioral snippets, but the behavioral structures that can <em>consistently improve expected return on future tasks</em>.</p>
+<p>This perspective also exposes the hardest problem for Traj2Skill: where does the reward come from? Benchmarks have standard answers, but real-world environments are different — there&rsquo;s often no simple ground truth. This means that the ceiling of a real-world Traj2Skill system depends heavily on the quality of its <strong>evaluator</strong>.</p>
+<p>If we lay these pieces of work side by side, they each tackle different parts of the trajectory-to-skill pipeline:</p>
+<ul>
+<li>Hermes-agent: self-sedimentation after a single trajectory</li>
+<li>Trace2Skill: experience induction across multiple trajectories</li>
+<li>SkillOpt: evaluation-driven skill optimization</li>
+<li>AutoSkill: long-term skill lifecycle management</li>
+<li>SkillX: hierarchical skill organization and strong-to-weak transfer</li>
+</ul>
+<p>So the core of Traj2Skill-style work breaks down into two questions.</p>
+<p>The first is <strong>SkillOps</strong>: how to create, merge, retrieve, inject, version, evaluate, and retire skills — without letting the skill bank degrade into a junkyard.</p>
+<p>The second is the deeper question: how to perform <strong>credit assignment</strong> over trajectories to identify behavioral structures that genuinely improve expected return.</p>
+<p>The former solves for long-term operation. The latter answers whether this is really about &ldquo;summarizing experience&rdquo; — or about <strong>policy improvement</strong>.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/en/tags/agent/">Agent</a></li>
+      <li><a href="http://localhost:1313/en/tags/agent-skills/">Agent-Skills</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do</span>
+  </a>
+  <a class="next" href="http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/">
+    <span class="title">Next »</span>
+    <br>
+    <span>On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on x"
+            href="https://x.com/intent/tweet/?text=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns&amp;url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f&amp;hashtags=Agent%2cAgent-skills">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f&amp;title=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns&amp;summary=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns&amp;source=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f&title=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on whatsapp"
+            href="https://api.whatsapp.com/send?text=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns%20-%20http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on telegram"
+            href="https://telegram.me/share/url?text=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns&amp;url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=From%20Agent%20Trajectory%20to%20Agent%20Skill%3a%20How%20to%20Turn%20Experience%20into%20Compounding%20Returns&u=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2ffrom-agent-trajectory-to-agent-skill-compounding-returns%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="http://localhost:1313/en/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
