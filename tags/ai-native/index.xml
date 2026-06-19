@@ -14,6 +14,49 @@
     <lastBuildDate>Wed, 10 Jun 2026 11:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/ai-native/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>AI转型最难的不是AI，而是那些没人愿意干的脏活</title>
+      <link>https://niraya666.github.io/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/</link>
+      <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/</guid>
+      <description>&lt;h2 id=&#34;开头--从一个老问题到一个新问题&#34;&gt;&lt;strong&gt;开头 · 从一个老问题到一个新问题&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;记得刚入行时，我在知乎上关注了一个问题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;&lt;a href=&#34;https://www.zhihu.com/question/278732236&#34;&gt;互联网已经杀成了红海，制造业智能制造却还寥寥无几，为什么 BAT 不去涉足智能制造？&lt;/a&gt;&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;5 年多过去了，这个问题没有标准答案，但时代变了。&lt;/p&gt;
+&lt;p&gt;当年的潜台词是，技术是稀缺的，行业是等待被改造的，只要顶级玩家肯下场，事情就会发生。这个假设几乎被现实反着证伪了一遍。而到了今天，大模型把&amp;quot;技术稀缺&amp;quot;这个前提又往前推了一大步。但如果去问任何一个在传统行业里推动 AI 落地的人，他大概率会告诉你：&lt;strong&gt;没那么容易&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;于是这个老问题，在 AI 时代换了一种新的问法：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;AI 都已经这么强了，为什么这些行业还是转不动？&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最近 FDE（Forward Deployed Engineer）这个词在 AI 大厂之间突然火起来，本质上就是对这个问题的一种回应——既然模型已经足够强，那么&amp;quot;最后一公里&amp;quot;的瓶颈一定在客户现场、在数据、在流程、在组织。&lt;/p&gt;
+&lt;p&gt;这篇文章，是我结合过去几年的观察和实践，对这个老问题的一次尝试作答。&lt;/p&gt;
+&lt;p&gt;先把结论写在前面：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;绝大多数行业现在缺的不是 AI，而是 X-Ops。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;也就是说，问题从来不在&amp;quot;要不要上 AI&amp;quot;，而在于这个行业、这家公司、这条产线、这套流程，&lt;strong&gt;有没有被改造成一个 AI 可以接入、理解、参与和反馈的系统&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;为什么软件行业被-ai-冲击最猛&#34;&gt;&lt;strong&gt;为什么软件行业被 AI 冲击最猛？&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;不是因为 AI，而是因为 DevOps。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果观察过去两年 AI 真正&amp;quot;杀进去&amp;quot;的领域，似乎冲击最大就是软件行业本身。软件行业之所以被 AI 冲击最猛，并不是因为它的从业者最聪明，也不是因为模型偏爱代码，而是因为它在过去二十年里，&lt;strong&gt;无意中把自己改造成了一个 AI 最容易接入的行业&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;ai-友好并不是天生的&#34;&gt;&lt;strong&gt;AI 友好并不是天生的&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;如果罗列软件行业的几个特征，能让AI如鱼得水，我会选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;语料开源、易获取&lt;/strong&gt;： github&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;反馈周期短&lt;/strong&gt;：写完代码，编译、跑测试、看结果，秒级或分钟级就能拿到反馈&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;上下文对 AI 友好&lt;/strong&gt;： 代码有注释、模块有接口、变更有 diff，几乎所有东西都是文本化、结构化的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;正确性可验证&lt;/strong&gt;： 单元测试、集成测试、CI 流水线，提供了一套&amp;quot;AI 写完之后能自动判分&amp;quot;的机制&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这四点合在一起，迭代飞轮就转起来了：&lt;strong&gt;生成 → 验证 → 反馈 → 修正 → 再生成。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;但回到 2000 年前后，软件行业其实更像今天的传统行业。发布周期以&amp;quot;年&amp;quot;为单位，一个版本要打磨好几个月，刻成光盘卖出去。真正改变这一切的，是&lt;strong&gt;互联网带来的交付模式变革&lt;/strong&gt;。软件不再需要被&amp;quot;制造—复制—运输—安装&amp;quot;，而是变成了&amp;quot;开发—发布—反馈—更新—再发布&amp;quot;。这个闭环一旦形成，整个行业的组织方式就被倒逼着重构：&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do</title>
       <link>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</link>
       <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>

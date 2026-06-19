@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Agent-Skills | LZY Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/tags/agent-skills/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/agent-skills/index.xml">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/tags/agent-skills/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="Agent-Skills" />
+<meta property="og:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://niraya666.github.io/tags/agent-skills/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="Agent-Skills"/>
+<meta name="twitter:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/tags/">Tags</a></div>
+  <h1>
+    Agent-Skills
+    <a href="/tags/agent-skills/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>如果把 agent memory 拆开看，其实有两条不同的主线。
+第一条是 personal memory：agent 如何更懂你，理解用户偏好、长期上下文、隐含约束和历史决策。这类问题更接近 long-context QA，评估的重点往往是“它是否记得、是否理解、是否能在正确场景下调用用户相关信息”。
+第二条是 procedural memory：agent 如何避免重复犯错，如何从过去的成功与失败中总结出可复用经验，如何越跑越好、越用越强。它更关心的是 agentic benchmark 上的任务成功率、工具调用效率、错误率下降、 token的成本下降，以及在真实环境中是否能形成工程复利。
+这篇文章主要讨论第二条路线。
+今天很多 agent-harness， Claude Code、Hermes-agent、OpenClaw等，在长期使用后都会积累大量 trajectory这些轨迹实际上记录了 agent 和环境交互中最宝贵的东西。
+但问题是，人类对这些 trajectory 的利用率尚且不足。大多数时候，trajectory 被当成日志、debug 记录，或者最多作为检索材料塞回上下文。一个 agent-harness 跑了半年，可能积累了成千上万条任务轨迹，但下次遇到相似问题时，agent 仍然可能从零开始探索，重复踩同样的坑。
+引出了一个核心问题：
+trajectory 到底如何才能变成 skill？
+以 Hermes-agent 这类系统为例，用久了之后会发现 skills 可能越来越多。但真正有效的 skills 有多少？
+本文将借最近几篇相关工作，讨论一个正在变得重要的问题：如何从大量 agent trajectories 中，自动挖掘、总结、验证并优化可以被未来任务复用的 agent skills。
+以hermes-agent 作为入口 Hermes-agent 有一个很有意思的定位：一个会随着使用而变强的 agent。也就是把过去的经验沉淀为可以被未来复用的外部记忆。这里的外部记忆大致可以分成两类：
+第一类是 declarative memory，也就是关于用户、项目、环境和偏好的事实记忆，具体形式是 USER.md 和MEMORY.md， 这类 memory 解决的是“agent 如何更懂你”的问题。
+第二类是 procedural memory，也就是 skills。具体形式是写入到state.db 中的 sessions/messages，以及被总结成 md 的skills。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-06-02 20:00:00 +0800 CST'>June 2, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利" href="https://niraya666.github.io/posts/agent-traj2skills/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

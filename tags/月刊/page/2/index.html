@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>月刊 | LZY Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/index.xml">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="月刊" />
+<meta property="og:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="月刊"/>
+<meta name="twitter:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/tags/">Tags</a></div>
+  <h1>
+    月刊
+    <a href="/tags/%E6%9C%88%E5%88%8A/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-07/34A30229-4B86-4923-8428-ECE6EB8009D0_1_105_c.webp" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-07 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 Qwen3-Coder Qwen3-235B-A22B 更新 Kimi K2 Step3 GLM4.5 值得关注的开源项目 Coze-studio Higgs Audio V2 dl-librescore：Download sheet music quarkdown: 基于 Markdown 的排版系统，但支持的内容更多 值得关注的研究和论文 Agentic Retrieval Augmented Generation for Personalized Recommendation arXiv:2506.21931
+基于RAG的推荐系统中的两大核心问题:
+静态和简单的检索机制 对用户意图的理解不足 创新点
+ARAG (Agentic Retrieval-Augmented Generation) 的框架，其核心是将多智能体（Multi-Agent）协作机制引入到RAG的推荐流程中
+设计了四个Agent:将复杂的推荐任务分解为用户理解、内容对齐、上下文总结和最终排序等多个子任务 将推荐过程从简单的“检索-然后-生成”模式，转变为一个由多个智能体协同进行的“推理-然后-排序”的过程 通过智能体的协作，ARAG能够动态地构建和提炼用于最终排序的上下文信息 Dynamic Chunking for End-to-End Hierarchical Sequence Modeling arXiv:2507.07955
+目前LLM是使用的分词存在一些弊端：
+非end-to-end 的学习 对字符级别的操作（如拼写错误、大小写变化）不鲁棒 特殊语言如中文上处理效果不佳 分词结果可能不符合语义 创新：
+提出了一套名为动态分块（Dynamic Chunking, DC）的机制，并将其整合到一个新颖的分层网络（Hierarchical Network, H-Net）架构中
+动态分块： 可微的、端到端学习的分块机制，能根据内容和上下文动态决定如何切分序列； 包含： 路由模块 (Routing Module)：通过计算相邻元素表示的余弦相似度来预测边界，平滑模块 (Smoothing Module)：在解码（上采样）阶段，使用类似指数移动平均（EMA）的方法，根据边界预测的置信度对表示进行平滑插值
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-07-30 14:00:00 +0800 CST'>July 30, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-07 月刊" href="https://niraya666.github.io/monthly/2025-07-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-06/05AD2FC8-44EA-429E-B836-D6F98019DE26_1_105_c.webp" alt="摄于 厦门">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-06 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 MiniMax-M1
+Qwen VLo: 从“看懂”世界到“描绘”世界
+Kimi-Researcher
+Cursor 1.0
+一些embedding 基座模型更新
+Qwen3 Embedding
+jinaai/jina-embeddings-v4
+值得关注的研究和论文 QwenLong-L1: Towards Long-Context Large Reasoning Models with Reinforcement Learning arXiv:2505.17667
+使用RL提升LM的上下文长度
+QWEN LONG-L1 框架设计
+Progressive Context Scaling： 通过curriculum-based 逐步增加训练上下文长度，使模型平滑从短上下文迁移到长上下文，有效应对训练不稳定、熵塌陷等优化问题 Curriculum-Guided Phased RL &#43; Difficulty-Aware Retrospective Sampling： 先SFT获得初始策略，然后分阶段RL，每阶段聚焦不同长度，利用难例回溯采样强化对困难样本的探索与适应 Hybrid Reward： 将“规则型（精确字符串比对）”奖励和“LLM-as-a-judge语义一致性”相结合 GRPO/DAPO 三阶段训练流程
+第一阶段：Warm-up SFT（如20K token内训练，基于高质量三元组）——让模型具备基础长上下文理解和推理能力，提供RL的良好初始点。 第二阶段：分阶段RL训练（如分20K和60K两个阶段，每阶段只训练对应长度样本，逐步扩展输入长度）。 第三阶段：难度感知回溯采样（将前一阶段准确率低、难度高的样本纳入后续阶段训练，提高模型对hard case的适应和泛化） How much do language models memorize? arXiv:2505.24832
+提出基于Kolmogorov复杂度和信息论的新记忆度量方法，将“模型对样本的记忆”定义为：在已知模型参数的情况下，样本可以被压缩到多短（即模型能帮助压缩多少信息） GPT家族Transformer模型的容量约为每个参数3.6比特，且与模型参数量线性相关 精度（如bfloat16到float32）提升对容量提升有限 在真实文本中，模型更容易记住包含稀有词汇的样本（高TF-IDF），尤其是非英语文本或极少见的token 当模型容量被填满后，模型会自动从“记忆具体样本”转向“泛化规律”，这与“grokking”现象相关 Reinforcement Pre-Training arXiv:2506.08007
+LLM 预训练主要依赖自监督的“下一个 token 预测”目标，但本质上是“记忆”而非“推理”，RL能提升模型推理能力但需要高质量的数据标注
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-29 14:00:00 +0800 CST'>June 29, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-06 月刊" href="https://niraya666.github.io/monthly/2025-06-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-05/332F56A7-A497-49D6-A2C1-3CAFB6200C0F_1_105_c.webp" alt="摄于 径山花海">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-05 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 Google 2025 I/O 大会： I/O 2025
+Google在2025年I/O大会上全面展示了AI的最新进展和深度整合战略，涵盖基础模型迭代（如Gemini 2.5、Gemini Diffusion、Gemma 3n、Veo 3和Imagen 4）及多模态创新
+OpenAI codex Introducing Codex
+OpenAI 于 2025年5月16日推出了 Codex 软件工程代理及其驱动模型 codex-1 和 codex-mini-latest，专注提升软件开发的自动化与效率。codex-1 基于 o3 模型，优化并行处理、多轮测试和复杂项目支持，擅长代码生成、Bug 修复等任务；codex-mini-latest 则主打低延迟，适合快速命令行操作。Codex 平台通过云端隔离沙箱，安全模拟真实开发环境，自动化完成如重构、测试编写等任务，支持细致行为定制。
+Claude 4 Introducing Claude 4
+Anthropic 于2025年5月22日发布了新一代 Claude 4 系列模型，包括 Claude Opus 4 和 Claude Sonnet 4，重点提升了编码、高级推理和对AI代理的支持能力。Opus 4 在行业编码基准测试中表现领先，拥有更强的内存与持续任务能力，并大幅减少“抄近路”行为，专注于高复杂任务和AI代理核心场景。Sonnet 4 则在提升推理与指令遵循能力的同时，平衡了性能与效率。
+DeepSeek-R1-0528 Huggingface： deepseek-ai/DeepSeek-R1-0528
+通过强化学习与算法优化实现推理能力提升，单问题推理深度翻倍（平均Token量从12K→23K），更强的数学、编码能力，并支持工具调用，大幅降低幻觉。同时开源了蒸馏小模型模型 deepseek-ai/DeepSeek-R1-0528-Qwen3-8B。
+Flowith Neo Flowith Neo 是 Flowith 团队推出的新一代 AI 智能代理，专为自动化复杂、长流程任务设计。其核心技术包括支持无限步骤的持续云端执行、强大的上下文保持能力、灵活调用多种外部工具，以及可视化工作流和自反思机制，显著提升流程的连贯性和可靠性。
+值得关注的开源项目 DeerFlow Github: github.com/bytedance/deer-flow
+由字节跳动开源的，基于LangStack 开发的Deep Research 开源项目，支持深度研究、MCP 集成、报告 AI 增强编辑以及播客生成等功能，通过Docker compose一键启动。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-30 14:00:00 +0800 CST'>May 30, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-05 月刊" href="https://niraya666.github.io/monthly/2025-05-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-04/C0B7BE20-3CE6-42F4-ADC1-02C54F7EB5BC_1_105_c.webp" alt="摄于 滴水湖">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-04 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 OpenAI 更新系列模型 发布了多款新一代AI模型，包括o3、o4-mini、GPT-4.1及其mini和nano版本。这些模型在推理能力、成本效益和多模态处理等方面实现了提升。o3专注于复杂推理和工具使用，已在ChatGPT Plus等产品中取代前代模型。o4-mini则以高性价比和多模态能力为亮点。GPT-4.1系列主打超长上下文和高效编码，mini和nano版本进一步降低成本和延迟。
+Introducing GPT-4.1 in the API
+Introducing OpenAI o3 and o4-mini
+Kimi-VL 和 Kimi-VL-Thinking 由Moonshot AI推出了新一代视觉语言模型Kimi-VL及其，主打高效多模态推理高级版本Kimi-VL-Thinking。采用轻量级混合专家架构（16B总参数量，2.8B的激活参数），支持128K上下文窗口和超高分辨率视觉输入，Kimi-VL-Thinking通过链式思考和强化学习训练，专注于复杂推理和数学任务。
+Hugging Face Kimi-VL-Thinking 模型页面
+Kimi-VL Technical Report
+A2A协议 A2A协议（Agent2Agent Protocol）是由谷歌于2025年4月10日在Google Cloud Next 2025大会上宣布开源的标准智能体交互协议，旨在实现跨平台、跨供应商的AI智能体（AI Agent）无缝通信与协作。功能与特点：A2A协议通过统一规则支持多模态协作，允许智能体共享和处理文本、音频、视频等多种数据格式，兼容HTTP、SSE、JSON-RPC等现有标准，降低企业集成成本。其核心机制包括Agent Card，用于智能体能力发现与协作对接，支持自然、非结构化协作模式，即使智能体不共享内存或上下文也能协同工作。
+Announcing the Agent2Agent Protocol (A2A)
+Qwen3 Qwen3 是Qwen的第三代大语言模型系列，于2025年4月正式发布，包含6个稠密模型（0.6B至32B参数）和2个混合专家（MoE）模型（30B-A3B和235B-A22B）。功能与特点：Qwen3支持119种语言，训练数据高达36万亿token，具备自然语言理解、文本生成、工具调用、复杂推理及多模态交互能力。模型采用混合推理模式，可根据任务复杂度自动切换“思考”与“快速响应”模式，优化计算效率与响应速度。支持128K token上下文长度，适用于长文档处理、编程、数学推理及智能体任务。创新点：Qwen3引入动态可调MoE架构，通过分层稀疏调度和动态专家激活（最多128个专家，单token激活8个），显著降低推理耗时（15B模型推理效率提升42%）和显存占用（从28GB降至18GB）。新增Qwen3RMSNorm归一化层优化注意力机制，支持多种RoPE变体（dynamic、yarn、llama3）以提升长序列处理能力。词表优化引入动态加权合并算法，增强高频词组处理，并新增智能体专用控制符。效果：旗舰模型Qwen3-235B-A22B在Codeforces编程竞赛、AIME数学基准及BFCL推理测试中超越OpenAI的o3-mini和谷歌Gemini 2.5 Pro，Qwen3-32B在LiveCodeBench编码任务中优于OpenAI o1。
+Blog
+Huggingface
+值得关注的开源项目 Inbox Zero Inbox Zero 是一个开源的 AI 邮件管理工具，旨在通过智能化功能帮助用户快速清空收件箱并高效处理邮件。项目包含两部分：AI 邮件助手与开源邮件客户端。其核心功能包括：
+AI 个人助理：基于用户自定义的文本指令，可自动执行邮件管理操作（如起草回复、标记分类、归档、标记垃圾邮件或触发网络钩子），显著减少手动处理时间。 Reply Zero 跟踪：实时追踪需用户回复的邮件及等待他人回复的邮件，提升沟通效率。 智能分类与退订：自动整理联系人邮件并智能归类，支持一键批量退订低价值订阅。 冷邮件拦截与分析：自动过滤陌生发件人邮件，并提供每日/周/月邮件活动统计，帮助用户优化收件箱管理。 技术优势与适用场景
+项目采用 Next.js、Tailwind CSS 等现代技术栈构建，支持通过 Vercel 快速部署或自托管，兼容 Anthropic、OpenAI 等 LLM 模型，甚至可集成本地 Ollama 服务以降低成本。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-28 19:00:00 +0800 CST'>April 28, 2025</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-04 月刊" href="https://niraya666.github.io/monthly/2025-04-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-03/246C29B4-C253-4C00-BE9C-8E9650884D4E_1_105_c.webp" alt="摄于 舟山 朱家尖大青山">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-03 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 DeepSeek V3 0324 DeepSeek V3模型的更新版本；在多个基准测试中表现出色，整体表现接近领先的闭源模型如Claude Sonnet 3.5（但价格便宜很多）；针对多项能力做了针对性提升，如function calling，推理能力，前端代码能力等。更新版本在DeepSeek的官方网站、移动应用可体验。
+Huggingface
+QwQ-32B 由Qwen 团队开发的推理模型，性能同671B参数量的R1相当；通过两阶段RL训练，第一阶段专注于数学和编码任务，利用准确性验证器和代码执行服务器提供反馈；第二阶段提升通用能力，同时保持专业领域的表现。此外QwQ具备tool-using能力，具有131,072 token的上下文长度。
+Blog
+Huggingface
+Qwen2.5 Omni Qwen2.5-Omni 是一个多模态 AI 模型，能够同时处理文本、图像、音频和视频输入；该模型的创新点包括 Thinker-Talker 架构，分为“Thinker”处理输入并生成表示或文本，“Talker”则输出语音token，共享上下文，实现端到端训练和推理。此外，它使用 TMRoPE（时间对齐多模态 RoPE）技术，同步视频和音频时间戳，确保多模态数据处理的一致性。
+Blog
+Huggingface
+Gemma 3 Gemma家族的开源新作，包括 1B、4B、12B 和 27B 参数；4B、12B 和 27B 模型支持文本和图像输入，1B 模型仅限文本；1B 模型支持 32k token，4B、12B 和 27B 模型则扩展至 128k token；支持函数调用和结构化输出
+Blog
+Huggingface
+Phi-4-multimodal 具备文本、图像和音频输入的多模态模型；具有5.6B参数量；采用“混合 LoRAs”技术，将模态特定组件集成到基础语言模型中，而基础模型保持冻结状态，以确保了多模态数据处理的无缝性，避免了传统方法中因模态间干扰导致的性能下降。
+Blog
+Huggingface
+Qwen2.5-VL-32B-Instruct 32B参数量版本的Qwen2.5-VL多模态模型；
+72B too big for VLM? 7B not strong enough! Teh you should use 32B model!
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-29 17:00:00 +0800 CST'>March 29, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-03 月刊" href="https://niraya666.github.io/monthly/2025-03-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-02%20%E6%9C%88%E5%88%8A%201a52555697de80d9a84dfc8c32fcb6cf/0E5F0FD2-B499-49AD-AEE5-69D8F7E6CEBD_1_105_c.webp" alt="摄于 东京 浅草文化观光中心">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-02 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的模型和新技术 o3-mini OpenAI o3-mini 是一款高效且成本优化的推理模型，专为科学（Science）、技术（Technology）、工程（Engineering）和数学（Mathematics）（STEM）领域优化。它在数学、编程和科学推理方面表现出色，能够在 AIME 2024 和 GPQA 等基准测试中达到或超过 OpenAI o1 的水平。o3-mini 具备三种推理模式（低、中、高），可根据需求在速度和准确性之间进行权衡。此外，它支持函数调用、结构化输出和视觉任务。相比 o1-mini，o3-mini 的响应速度提高了 24%，平均响应时间为 7.7 秒。它的上下文窗口为 200k tokens，输入成本为每百万 tokens 1.10 美元，输出成本为 4.40 美元。
+OpenAI o3-mini
+QwQ-Max-Preview QwQ-Max-Preview是阿里巴巴Qwen系列的最新推理模型，基于Qwen2.5-Max架构开发，专注于提升数学、编码及多领域复杂问题的解决能力。该模型在LiveCodeBench代码评估中取得65.6分，超过OpenAI的o1中型模型（63.4分）和o3迷你低配版（60.9分），展现了卓越的代码生成与逻辑推理性能。其核心优势包括深度推理、Agent任务处理及通用领域适应性，特别适合需要实时响应的隐私敏感场景。作为预览版，QwQ-Max-Preview为后续开源版本铺路，未来将发布Apache 2.0许可证下的完整模型QwQ-Max及轻量级版本（如QwQ-32B），并计划推出iOS/Android端Qwen Chat应用以增强用户体验。阿里巴巴同时宣布未来三年投入530亿美元加强AI基础设施，进一步推动该模型在行业中的竞争力。
+我们计划在不久的将来以 Apache 2.0 许可协议开源发布 QwQ-Max 以及 Qwen2.5-Max
+官方blog：… QwQ-Max-Preview
+Claude 3.7 Sonnet Claude 3.7 Sonnet 是 Anthropic 推出的首个“混合推理模型”，兼具快速响应和深入思考能力，能够根据任务需求在标准模式和扩展思考模式之间切换。其核心能力包括：在复杂任务中通过扩展思考模式进行详细分析和多角度考虑；在编码任务中表现出色，特别是在 SWE-bench Verified 测试中达到行业领先的 70.3%；支持多模态数据处理，展现强大的适应性；以及在 Amazon Bedrock 中提供可调整的推理预算，供开发者根据需求权衡速度、成本和性能。
+Claude 3.7 Sonnet and Claude Code
+Grok-3 Grok-3是由Elon Musk的xAI公司开发的第三代AI模型，具备2.7万亿参数和12.8万亿token的训练数据集，采用基于NVIDIA GPU的Colossus超级计算集群（20万张GPU）训练，计算能力比前代提升10倍。其性能表现优异，在MMLU（多任务语言理解）基准测试中达到92.7%，GSM8K（数学推理）89.3%，AIME 2025数学竞赛93.3%，GPQA科学推理84.6%。该模型支持128,000 token的上下文窗口（扩展版达100万token），响应延迟仅67毫秒，并具备多模态处理能力（文本、代码、图像）。独特功能包括DeepSearch实时网络研究代理、“Think&#34;模式分步推理，以及&#34;Big Brain&#34;模式强化复杂问题解决，主要应用于STEM领域、代码生成和商业分析。目前通过X平台Premium&#43;订阅（$40/月）和专属网站Grok.com提供访问，API接口即将开放。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-28 11:00:00 +0800 CST'>February 28, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-02 月刊" href="https://niraya666.github.io/monthly/2025-02-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://niraya666.github.io/img/monthly/2025-01%20%E6%9C%88%E5%88%8A%201872555697de804a9d80c128b816b5d0/5729D26E-98D7-44CC-96E3-C288CF5AB2DC_1_105_c.webp" alt="摄于 浦东美术馆">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2025-01 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>值得关注的新模型 Deepseek R1 DeepSeek R1通过纯强化学习（RL）框架实现了推理能力的突破，首次验证了无需依赖传统监督微调（SFT）或蒙特卡洛树搜索（MCTS）等复杂方法，仅通过两阶段RL优化即可显著提升模型逻辑推理性能。其综合能力直接对标OpenAI的o1模型，在数学（MATH-500达97.3%）、代码生成等核心指标上实现部分超越，同时全面开源模型权重、训练技术文档及6个蒸馏版本（1.5B-70B），使开发者可灵活适配不同算力场景。尤为引人注目的是，该模型在训练中展现出自发反思与多步骤验证能力，研究者观察到其通过内部反馈机制主动修正推理路径的“顿悟时刻”，揭示了AI系统自我优化的新可能。此外，其研发成本仅为560万美元（基于2048块H800 GPU），相比同类模型降低1-2个数量级。
+技术报告: https://arxiv.org/abs/2501.12948
+Huggingface: https://huggingface.co/deepseek-ai/DeepSeek-R1
+一些基于和关于R1的开源复刻工作：
+Open-R1: Open-R1: a fully open reproduction of DeepSeek-R1 RAGEN: RAGEN: A General-Purpose Reasoning Agent Training Framework Kimi K1 Kimi K1的核心创新在于通过强化学习驱动的多模态架构，首次实现端到端的视觉与推理深度融合。 该模型突破传统分阶段处理模式，直接将图像输入与逻辑推演结合，支持模糊图像解析、手写题识别等复杂场景，并引入反思机制修正推理错误；其两阶段训练框架（预训练&#43;强化学习规模化优化）显著提升思维链生成质量，使模型在数学、物理、化学等跨学科测试中超越国际主流视觉模型（如OpenAI o1）。
+Arxiv: Kimi k1.5: Scaling Reinforcement Learning with LLMs
+Qwen2.5-Max Qwen2.5-Max 是一款经过大规模预训练的专家混合（MoE）模型，训练数据量超过 20 万亿 tokens，并通过监督微调（SFT）和人类反馈强化学习（RLHF）进行优化。该模型在多个基准测试中表现优异，包括在 Arena-Hard、LiveBench、LiveCodeBench 和 GPQA-Diamond 等评估中超越了 DeepSeek V3，并在 MMLU-Pro 大学水平知识测试中展现出竞争力，同时在与其他领先模型（如 DeepSeek V3、GPT-4o 和 Claude-3.5-Sonnet）的对比中也表现突出。Qwen2.5-Max 已集成到 Qwen Chat，支持对话交互和功能体验，同时其 API（模型名称为 qwen-max-2025-01-25）已上线，用户可通过注册阿里云账户并激活相关服务进行调用。
+Blog: https://qwenlm.github.io/blog/qwen2.5-max/
+Qwen2.5-VL Qwen2.5-VL是由阿里云通义千问团队于2025年1月28日推出的新一代视觉语言模型，专注于提升多模态处理与视觉理解能力。该模型具备五大核心功能：通过增强的视觉理解可识别常见物体并解析图像中的文本、图表及布局；作为视觉代理支持跨设备多步骤操作（如电脑修图、手机订票）；可精准定位超过1小时长视频的特定事件片段；通过生成边界框/点实现视觉定位并输出标准化JSON坐标；针对发票/表格等扫描件提供结构化数据输出，赋能金融商业场景。其创新架构采用动态FPS采样与时间维度mRoPE对齐技术，实现视频动态分辨率处理与时间序列学习，同时通过窗口注意力机制和SwiGLU-RMSNorm优化ViT编码器，保持与Qwen2.5大语言模型架构统一。模型提供3B、7B、72B三种参数规模。
+Blog: https://qwenlm.github.io/blog/qwen2.5-vl/
+Huggingface: https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct
+Qwen2.5-1M Qwen2.5-1M系列模型是由Qwen团队于2025年1月27日发布的开源大语言模型，包含Qwen2.5-7B-Instruct-1M和Qwen2.5-14B-Instruct-1M两个版本，其核心突破在于支持高达100万Token的上下文处理能力。该模型通过三阶段技术实现长上下文支持：首先在预训练阶段采用Adjusted Base Frequency方法将RoPE基础频率提升至1000万，通过渐进式扩展策略将上下文从4K扩展到256K；随后在监督微调阶段采用短指令（32K）与长指令（256K）混合训练策略，平衡长短任务性能；最终通过创新性Dual Chunk Attention技术将上下文扩展至百万量级，该技术通过重映射超大相对位置值解决位置编码外推难题。为应对超长序列处理挑战，模型引入分块预填充技术（32K分块）降低显存消耗，结合稀疏注意力优化使百万级序列的精度损失显著降低，并通过算子效率优化和动态分块流水线并行实现3.2-6.7倍的预填充加速。在性能表现上，该系列模型不仅能在百万Token的&#34;大海捞针&#34;任务中精准检索信息，在RULER、LV-Eval等复杂长文本理解任务中超越前代128K版本，同时在短文本任务上保持与128K版本相当的性能，其中14B版本在保持GPT-4o-mini八倍上下文长度的前提下实现了相近的短文本处理能力。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-01-27 18:00:00 +0800 CST'>January 27, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 2025-01 月刊" href="https://niraya666.github.io/monthly/2025-01-%E6%9C%88%E5%88%8A/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">关于月刊的诞生
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这份月刊最初只是我的个人知识管理实验。过去一年里，我逐渐养成了每月底整理收藏夹的习惯——清理read-it-later 软件中里积压的链接，归档散落在各个平台的技术文章，把零碎的信息重新分类到Notion笔记中。
+面对每天涌现的新模型、论文和开源项目，这种月度整理成了对抗信息焦虑的锚点。与其被FOMO（错失恐惧症）驱使着追逐每个热点，不如让内容先经历时间筛选。留在月刊里的，通常是经过两周沉淀后仍值得反复阅读的内容。
+有三个主要原因推动我决定公开这些笔记：
+年初给自己定下的目标之一，多做一些public-writing，倒逼自己更认真地验证每个技术细节 对抗数字囤积症 如果能够帮助更多的人 所以，这个系列月刊将包含以下一些内容：
+模型与技术：一些新出的LLM，和相关技术 开源项目：值得关注、有趣的、最近比较火的 研究和论文：新出的论文以及我的阅读笔记(更多关注Agent、对齐、RAG、模型架构方面内容) 推荐内容：可能是一些教程，工具、产品等 书摘：正在阅读书籍文章的高亮内容 有次读到一段特别共鸣的话
+你拿着相机在城市里穿行，看见一幕——光影交错，人情味流露。你按下快门。 没人关心。 但你并不是为了别人去做。你做，是因为你看到了什么。 写博客也是如此。你写，因为你思考，因为你观察，因为你需要一个“出口”来安放这些想法。 有人看吗？有就算赚到。没有也没关系。创作这件事，本身就已经完成了它的意义。 这才是重点所在。
+这或许也是这一系列月刊的意义吧。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-01-09 17:00:00 +0800 CST'>January 9, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 关于月刊的诞生" href="https://niraya666.github.io/monthly/readme/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">
+      «&nbsp;&nbsp;1/2
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

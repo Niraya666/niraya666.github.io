@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Eval | LZY Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/tags/eval/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/eval/index.xml">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/tags/eval/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="Eval" />
+<meta property="og:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://niraya666.github.io/tags/eval/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="Eval"/>
+<meta name="twitter:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/tags/">Tags</a></div>
+  <h1>
+    Eval
+    <a href="/tags/eval/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Intro 过去一段时间，如果尝试过用claude-code 官方的skills-creator构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&gt; 手动跑测试 -&gt; 检查结果” 的循环中。
+直到几天前， 看到了 Anthropic 官方发布的关于 skill-creator 重大更新的文档，给出了一套更加系统、正规和工程化的解法。
+简单来说，新版的 skill-creator 已经不再是一个单纯的 SKILL.md 模板生成，而成了一套包含**“skill 草稿 → 评测 → 迭代”** 的完整工作流。
+借着这次更新，尝试拆解一下如何用更系统化的方式来做 Skill 的评估与优化。
+TL;DR 新版的核心是用 Agent 来评估和优化 Agent，通过多角色分工实现了类似持续集成（CI）的自动化测试闭环
+新版本 SKill-Creator 总览 除去原先版本就具备的Skills模版生成，新版Skill-creator 可以理解成由两个相互协作的核心子系统组成：
+评估系统
+优化系统
+其中评估 包含两个维度：
+触发评估 (Trigger Evaluation)：测试 Skill 的 description 是否能在正确的查询下被激活，避免“误触发”或“该触发时不触发”
+功能评估 (Functional Evaluation)：基于断言（Assertion）测试输出质量，验证 Skill 执行任务的正确性、完整性和专业度
+而优化部分，负责根据评估结果进行自动化或半自动化的改进：
+description 优化：自动迭代优化Skills的描述，直至触发率达到预期
+功能优化： 半自动化，引导用户根据评分反馈和 Analyzer Agent 的改进建议，重写 Skill body 中的指令
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-30 15:38:00 +0800 CST'>March 30, 2026</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化" href="https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>读完 Anthropic 的一篇博客 Demystifying evals for AI agents，深有感触。
+结合文章内容和最近的工程实践，整理了一些关于构建 Agent 评估体系的笔记，和一些思考。
+为什么需要 Evals？ Evals 的本质不是为了打分，而是为了让开发可量化。
+在缺乏评估体系时，开发团队往往面临着极大的不确定性：无论是优化 Prompt 还是更换基座模型，都难以判断这些变更是真正解决了问题，还是在引入新问题的同时破坏了原有的能力。
+在早期的 Demo 阶段，依赖人工测试或许能快速验证想法。然而，Agent 系统不同于单次交互的对话模型，它包含多步骤推理和动态工具调用。随着系统复杂度的增加，手动测试的覆盖率和回归效率将难以为继，团队很容易陷入“由于缺乏前置检测，只能依赖线上反馈被动修复 Bug”的恶性循环。
+此外，Evals 也是产品与研发之间的通用语言。将模糊的主观感受，转化为准确率、响应延迟和 Token 成本等可度量的工程指标。
+目前的评估方式，依旧还是三大件：
+人工评估：最准确但最贵。通常用来作为Golden，用于校准自动评估的准确性。
+代码基准 (Code-based)：适用于有明确唯一答案的场景（如数学计算、代码运行）。
+LLM-as-a-judge：目前的主流。用更强的模型去评估其他模型的输出。关键点：需要经过人类专家的校准。
+（注：关于评估的具体细节与最佳实践，推荐参考 Hugging Face 的 The LLM Evaluation Guidebook ）
+Agent Eval 和LLM Eval 的不同 相比于单纯的 RAG 或 LLM 评估，Agent 的评估复杂度要高得多。
+从“测模型”到“测系统” 正如Why benchmarking is hard，中提到的“许多变动的部件和自由度都会影响最终结果”。在 Agent 开发中，
+我们测试的永远不是“裸模型”，而是 “模型 &#43; Harness” 这个整体。
+这里的Harness 分成两大部分：Eval Harness（我们的评估系统本身）&#43; Agent Harness (Scaffold)。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-19 21:08:00 +0800 CST'>January 19, 2026</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感" href="https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">从下半场开始，对于评估的重新思考: 一些概念
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>引子 前一段时间，OpenAI 研究员姚顺雨在一篇广受关注的文章《The Second Half》中提出：
+“I think we should fundamentally re-think evaluation. It means not just to create new and harder benchmarks, but to fundamentally question existing evaluation setups and create new ones, so that we are forced to invent new methods beyond the working recipe.”
+指出，AI 发展的“下半场”已经到来，而其中一个核心议题，就是对 evaluation的重新思考。我们需要的不再是单纯地创造更难的 benchmark，然后在这些 benchmark 上“刷分”，而是要更加关注评测的实用性、创新性，以及其与真实世界的契合度。
+过去，我们往往过于关注模型本身、训练方法以及各种fancy的技术手段，却忽略了模型与真实世界的交互和落地应用。而 evaluation，正是连接模型能力与实际需求的关键环节。
+本文最初的出发点，是梳理 Hugging Face Evaluation 系列文章中的一些要点。需要说明的是，HF 的文章主要聚焦于如何评测LLM的能力，考虑到其成文的时间，其中部分内容在当前 LLM 能力飞速提升的背景下，显得有些滞后。但这也为我们提供了一个契机，从后来者的视角重新思考 evaluation 的意义，并尝试将这些理念应用到更加复杂和多样化的 AI 系统中，如RAG和AI-agent。
+在机器学习和深度学习的流程中，Evaluation是衡量模型性能的核心环节。它贯穿于模型开发的始终：从训练阶段的实时监控，到上线前的最终验证，再到部署后的持续追踪。
+简单来说，评估的目标是回答两个问题：
+模型是否有效？（性能指标）
+模型是否可靠？（鲁棒性、泛化能力）
+以经典的猫狗分类任务为例，在训练前，我们可能将数据集划分为trainingset，evalset，和testset （经典的7:2:1）保证训练数据与测试数据无重叠；对于分类问题，可能选择Accuracy、Precision和Recall 作为metrics，在训练过程中监控模型在evalset上的情况（是否存在overfitting之类的问题）；训练结束后，在testset上验证模型的最终性能，判断是否达到预期目标。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-11 15:04:00 +0800 CST'>June 11, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 从下半场开始，对于评估的重新思考: 一些概念" href="https://niraya666.github.io/posts/eval_1/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

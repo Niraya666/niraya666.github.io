@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Agent-Memory | LZY Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/tags/agent-memory/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/tags/agent-memory/index.xml">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/tags/agent-memory/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="Agent-Memory" />
+<meta property="og:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://niraya666.github.io/tags/agent-memory/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="Agent-Memory"/>
+<meta name="twitter:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/tags/">Tags</a></div>
+  <h1>
+    Agent-Memory
+    <a href="/tags/agent-memory/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">【Agent - Memory】Hermes-Agent 的 Memory 设计拆解
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> TL;DR Hermes 的记忆系统不是&#34;一个记忆库&#34;，而是把不同稳定性、不同粒度、不同调用成本的信息放到不同层里。
+写在开头 最近在调研各家 Agent 的记忆系统设计。Hermes-Agent 在 memory 这一块明显走了另一条路——既没有像 OpenClaw 那样留下大量流水账式的 md 文件，也没有把所有内容塞进向量库。它把记忆按生命周期和稳定性做了分层：稳定事实直接写文件，会话历史进 SQLite，复杂用户画像交给 Provider 插件，而&#34;做事方法&#34;则沉淀进 Skills 自我迭代。
+实际效果也更好。下面把这套结构拆开看。 整体而言，Hermes 的 memory 系统由四种正交的存储 &#43; 调用机制组合而成：
+层级 载体 注入方式 适合存放 当前上下文 本轮 messages — 工作记忆 文件事实记忆 MEMORY.md / USER.md 启动时全量注入系统提示 高价值稳定事实 会话历史 SessionDB（SQLite &#43; FTS5） 按需 session_search 工具调用 完整历史、决策上下文 外部记忆 MemoryProvider 插件 prefetch &#43; 工具调用 语义检索、知识图谱、画像 程序性记忆 Skills（SKILL.md） 索引常驻、全文按需加载 “怎么做&#34;的可复用流程 这套设计的关键不是&#34;有一个记忆库”，而是把不同稳定性、不同粒度、不同调用成本的信息，放到不同层里。
+文件持久化记忆：MEMORY.md 与 USER.md Markdown 文件设计 内置文件记忆由两个文件构成：
+文件 target 默认字符上限 内容定位 MEMORY.md memory 2200 chars Agent 自己的笔记：环境、项目约定、工具 quirks、稳定经验 USER.md user 1375 chars 用户画像：姓名、角色、偏好、沟通风格、工作习惯 这里用字符数而不是 token 数，是为了和模型无关，并让容量控制更确定。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-05-11 14:00:00 +0800 CST'>May 11, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解" href="https://niraya666.github.io/posts/agent-memory-hermes/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">【Agent-memory】拆解 Claude Code 的记忆架构
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TL；DR
+Markdown is all you need.
+没有语义检索，没有向量库，没有 embedding——只有 md 文件和对应的索引文件（同样也是 md）。md 的提取、维护、检索全部交给 sub-agent（部分由 main-agent 完成）。
+极简主义的存储哲学：纯文件系统、多层级、可解释、极易迁移。
+写在前面 如何让 agent 越跑越好，给agent套上memory，这是市面上绝大多数Agent-harness都在做的事情。当绝大多数harness 为了memory而引入向量索引，引入RAG时，Claude-code 依旧走着之前的grep 的老路：只使用markdown文件；反直觉的极简主义，恰恰因为源码泄露，让我们有机会一窥其全貌。
+简单来说，Claude Code 的 memory 可分为 CLAUDE.md 和 Auto-memory 两大类（也对应着不同时间段的发展）。这篇文章更着墨于 auto-memory，CLAUDE.md 的相关内容放在附录——毕竟这些内容在绝大多数 vibe-coding 教学和官方文档中都能找到。
+后文讨论的 memory，默认指 auto-memory。
+Claude-code memory 概览 两大核心：
+Auto memory：Claude 自动保存有用的上下文，如项目模式、关键命令和你的偏好。存储在 ~/.claude/projects/&lt;project&gt;/memory/ 目录中。
+CLAUDE.md 文件：你编写和维护的 markdown 文件，包含给 Claude 的指令、规则和偏好。
+特性 CLAUDE.md Auto Memory 谁写的 你（用户/团队） Claude 自动写入 内容 规则、指令、项目约定 学习到的偏好和模式 存储位置 项目目录 / 用户目录 ~/.claude/projects/.../memory/ 是否应提交到 git 是（团队共享） 否（个人机器本地） Claude Code 的 Memory 系统是一个多层次的持久化架构，为了让 agent 能够：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-27 17:05:00 +0800 CST'>April 27, 2026</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 【Agent-memory】拆解 Claude Code 的记忆架构" href="https://niraya666.github.io/posts/cc-memory/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">初探 Mem0
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>写在开头 本文是对于Mem0的论文解读和使用记录；
+Mem0 是一款面向LLM应用的memory layer框架，同时是开源的。虽然它最早在 2024 年中旬亮相，起初的框架设计并没有太多亮眼之处，不过在最近，发布了一次比较重大的更新（基本上是重构了）采用了基于 AI-agent 的对话记忆提取、更新和查询等机制，实际体验下来，算是目前为止比较好用的了。
+Paper笔记 Paper
+创新点 Mem0架构：提出了一种可扩展的、以记忆为中心的AI代理架构，能够动态地从对话中抽取、整合和检索关键信息，实现长期、跨会话的记忆
+Mem0g（图记忆扩展）：在基础架构上进一步引入“图结构记忆”，用有向标注图（节点为实体，边为关系）来捕捉对话中复杂的实体关系和事件顺序，提升多跳推理和时序推理能力
+Mem0实现 extraction phase:
+每当有一对新的消息$(m_{t},m_{t−1})$进入系统时，系统会启动记忆抽取流程
+系统会同时参考两类上下文信息: 全局对话摘要（S）和 最近的消息序列${m_{t−m}, …, m_{t−2}}$
+组合成一个完整的提示（prompt）P，输入给LLM实现的抽取函数ϕ。LLM会基于这些信息，抽取出本轮对话中值得记忆的关键信息（$Ω = (ω_1,…,ω_n )$），作为候选事实，准备加入知识库
+为保障S始终是最新的，使用异步摘要生成模块，定期刷新摘要内容
+update phase：
+核心任务：检查这些新事实和已有记忆之间的关系和证知识库的内容既不重复，也不矛盾，始终保持一致和精简
+对每一个新抽取的事实（$ω_i$），系统会检索数据库中与之最相似的s条已有记忆（用向量嵌入做语义相似度检索）, 将$ω_i$ 和相似记忆一起交给LLM，由LLM从以下4种工具选择并执行（tool-using）：
+ADD
+UPDATE
+DELETE
+NOOP （什么也不做）
+具体算法
+Mem0g实现 以图$G = ( V , E , L )$ 建模记忆，(实体、关系、和语义label)
+每个entity（node）包含三部分信息：
+entity type classification：用于标记这个实体属于哪一类
+embedding vector：实体语义含义的向量表示，便于后续做语义相似度检索和推理
+metadata： 主要包括创建时间戳（creation timestamp），用于记录这个实体被加入知识图谱的时间，有助于时序推理
+relationships 用triplet的表示：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-20 18:44:00 +0800 CST'>May 20, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 初探 Mem0" href="https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">LangMem: 一些学习笔记
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。
+一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。
+总体来看，LangMem 作为 LangChain 推出的一款 memory 框架，设计上较为常规，虽有部分值得借鉴之处，但亮点不多，不建议投入过多时间深入研究。同时，与 LangChain 的其他项目类似，其代码结构和文档编写较为混乱，阅读体验不佳。
+Core-Concepts core-concepts 在LangMem所设计的memory体系中， 定义了几种不同的Typical Storage Pattern：Collection 、 Profiles和Procedural
+Collection Collection 主要用于存储不受限制的知识，适用于需要长期积累和检索的信息。每条记忆被存储为独立的文档或记录，可以在需要时进行搜索和回忆；
+适用场景：记录用户的长期知识，例如用户的兴趣、职业背景、技能等
+更新方式：需要合并新信息，避免重复或冲突
+检索方式：通过语义搜索或关键词匹配来查找，结合记忆的重要性和使用频率来优化检索结果
+Profiles 存储结构化的用户信息，例如用户的姓名、语言偏好、沟通风格等。与 Collection 不同，Profile 只存储最新的状态，而不是累积所有历史信息。Profile 作为单一文档存储，每次更新时都会覆盖旧数据
+适用场景：适用于需要快速访问当前状态的应用，例如个性化推荐、用户设置；适用于需要严格定义数据结构的场景，例如用户档案、系统配置；
+更新方式：不会创建新记录，而是直接更新现有的 Profile；适用于只关心最新状态的应用，而不是历史；
+检索方式：直接查找用户的 Profile
+Procedural Memory 类似于人类的工作记忆，用于存储如何执行任务的知识，主要体现在system prompts 和行为优化上
+适用场景：需要长期优化 Agent行为和交互方式，少走弯路
+总结
+Memory Type 用途 智能体示例 典型存储模式 Semantic Facts &amp; Knowledge User preferences; knowledge triplets Profile或Collection Episodic Past Experiences Few-shot examples; 过往对话摘要 Collection Procedural System Behavior Core personality and response patterns Prompt rules或Collection Writing memories 提供了两种写入memory的方法：及时写入（适用于要求即时记忆反映的场景）和一段时间后的异步写入（适用于高效处理和存储大量信息的场景）
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-10 10:44:00 +0800 CST'>April 10, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to LangMem: 一些学习笔记" href="https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

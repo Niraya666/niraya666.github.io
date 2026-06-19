@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Travels | LZY Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Travels - LZY Blog">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/travel/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://niraya666.github.io/travel/index.xml">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/travel/">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/travel/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="Travels" />
+<meta property="og:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://niraya666.github.io/travel/" />
+<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:title" content="Travels"/>
+<meta name="twitter:description" content="AI Agent / RAG / LLM 工程的技术博客。从 Agent Harness 设计到 RAG 评估体系，一个认真写代码也认真写字的 AI 实践者。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Travels",
+      "item": "https://niraya666.github.io/travel/"
+    }
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span class="active">游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a></div>
+  <h1>
+    Travels
+    <a href="/travel/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">大阪游记：时光交错下的日本探索
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2024-春夏之交 大阪
+旅行时间2天3夜
+在多邻国上学了快一年的散装日语，受到了看大河剧、日本电影和玩日本游戏的影响，我决定利用刚获得的三年多次入境签证，以及51假期的空闲时间，去日本看看。考虑到时间限制，我选择了关西的交通枢纽和经济中心——大阪，作为这次日本之行的第一站。
+对于日本，尤其是大阪，我的第一印象是热门景区和场所人非常多。这主要是因为赶上了日本的10天黄金周，同时由于日元汇率低迷，大量外国人涌入日本消费和旅游。然而，在居民区，特别是我所住的浪速区，情况则大为不同，晚上和清晨几乎见不到几个人，给人一种非常萧条的感觉。中国人会说，这叫做“缺乏人气”。此外，随处可见的大乌鸦加深了这种萧条感。或许这也可能是宫崎英高在《黑魂》系列中乌鸦的灵感来源吧。在日本，乌鸦似乎被视为吉祥的象征。
+游玩篇 出了民宿，我的第一站是不远处的难波八阪神社。这里以其狮子头形状的大狮子殿闻名，成为了一处热门的打卡地点。据说，这个狮子头具有驱除灾难和带来好运的力量。
+经过两站地下铁，即可到达动物园前站， 这里是新世界的入口。
+新世界，曾是日本向西方看齐、力图“脱亚入欧”时的产物。在20世纪初，日本大量吸纳西方文化元素，并在大阪建立了这一街区。然而时光流转，21世纪的今天，这里更像是一个保存良好的“旧世界”。街区内充满昭和时代的气息，从游戏厅、炸串店到浮夸的店面招牌，甚至粉红色影院，处处透露出时代的印记。
+作为泡沫经济时期产物， 粉红影院现在主要吸引了一部分中老年男性和非传统性别的人士。影院的“学生半价”标志显得有些讽刺，同时也透露出一种时代变迁的哀愁。鉴于这类场所的特殊性，不推荐旅行者单独前往。
+新世界的标志性建筑通天阁，则见证了区域的多重历史。这座铁塔最初在1912年仿照巴黎的埃菲尔铁塔建造，但在二战中因为“献纳”政策而被拆除，用其材料支持军工。通天阁的现代版本建于1956年，为了迎接万博会而重建，塔身醒目地印有日立的广告，成为了大阪的新地标。
+西成区，与新世界仅一路之隔，是大阪的旧城区。这个区域以较复杂的治安情况、流浪汉的较高出现率，以及成人娱乐业而知名。其中，著名的酒吧一条街和在中文互联网上广为人知的飞田新地均位于此地。游客在此区域应特别小心，避免随意使用手机或拍照，以尊重当地文化和增加个人安全。
+往新世界东北边走， 则能到达天王寺车站，商圈，以及以此命名此地的四天王寺。这里的天王寺车站作为从关西机场到大阪市区的两条主要电车线路之一JR西日本的终点站，同前面走过的西成区和新世界相比， 自然非常繁华。
+天王寺站前
+JR西日本机场线之HARUKA， 以Hello- Kitty涂装著称。
+日本的许多古迹因二战的轰炸和历史上的大地震而稀少，多数是在原址上修复或重建的。四天王寺就是这样的例子，它是日本历史悠久的寺庙之一，最初由飞鸟时期的圣德太子创建。虽然历经多次战火，我们今天所见的四天王寺主要是1957年后的重建。
+前往天王寺途中，偶遇的一心寺。
+在天王寺附近，我意外地发现了一个旧书集市。在那里，我用400日元买到了一本1994年的旧书。虽然还有很多书我想买想看，但考虑到海关的限制和行李空间的限制，我只能忍痛放弃。
+不可免俗的道顿堀格利高小人
+蟹道乐
+夜幕降临， 抵达梅田，乘坐hep five摩天轮，体验大阪夜景。
+hep five摩天轮
+第二天，前往大阪历史博物馆和大阪城， 以及shooping。
+大阪城
+大阪城始建于1583年，由丰臣秀吉下令建造。大阪城的天守阁如今是博物馆，展示了丰臣秀吉的生平、战国时期的武器和铠甲，以及大阪城的历史变迁。
+如果对于历史感兴趣的小伙伴， 大阪城公园边上的大阪历史博物馆也值得逛一逛。 大阪历史博物馆展示了古代大阪作为日本重要商业城市的发展过程，以及现代大阪的城市化进程。参观路线从10楼一路到7楼，6楼为特别展。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 16:32:00 +0800 CST'>May 16, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 大阪游记：时光交错下的日本探索" href="https://niraya666.github.io/travel/%E5%A4%A7%E9%98%AA%E6%B8%B8%E8%AE%B0%E6%97%B6%E5%85%89%E4%BA%A4%E9%94%99%E4%B8%8B%E7%9A%84%E6%97%A5%E6%9C%AC%E6%8E%A2%E7%B4%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">游记：2024-春 昆明大理
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>游记：2024-春 昆明大理 昆明 时间似乎停止了 不知为何在昆明有一种回到兰州的感觉，一样的三线省会，似曾相识的破败老城区街道，赫鲁晓夫楼，砖瓦房，和五六十年代的家属大院，似乎时间就停止流动了。我不认为这是种贬义的表达，至少清晨行走在老街区，唤起了我上学时，清晨走出校园到火车站赶火车的尘封记忆。 不过需要提一嘴的是，似乎当前的实体经济，特别是在老城区，不论是这次旅行所看到的，还是之前在故乡和别的城市所看到的，可以说是很糟糕了。目光所及有一半的店面处于关门转让的状态，而开着的那一半，又有近乎三成处于清仓甩卖中。
+古镇PTSD 在全国绝大多数古镇逐渐趋同演化的当下，不知这是否是件悲哀的事。因为去云南省博物馆的途中会路过官渡古镇，遂决定顺便去看看。从古镇的东北边进入至正门而出，这次访问让我有幸同时见证了从破败而真实的古镇到商业化过度开发的古镇的转变。
+在历史长河中被剥夺了名字的人 在昆明这个城市名字的由来中，有一段被历史辗转淡忘的故事。昆明这一名称起源于昆明夷——西汉时期活跃在洱海周边的一个游牧民族。而在这片土地上生活的滇人，一个拥有先进青铜技术的农耕文明，不断地抵抗游牧民族的侵扰。尽管如此，在历史的长河中，正是这些滇人创造了辉煌的文明，却在历史的演进中失去了自己的名字。这不禁让人感受到一种悲剧的讽刺——在自己孕育辉煌的土地上，却被剥夺了命名的权力。这反映出历史的无情，以及文化与权力之间复杂的交织。
+故乡与迁徙 在省博的临时展区，有幸看到了一个关于迁徙和故乡的特别展。 正巧这次来云南的最初目的也是为了探寻人生的下一个迁徙地。
+今天，流动成为常态。我们祖辈所拥有的那种一生居于一地的安稳逐渐被打破。很多人离开熟悉的地方，到另一处，与来自天南地北的人一起，不知不觉将异乡生活成故乡。
+而提到故乡，你会想到什么？是那方伴你长大的土地，是老屋里围炉团聚的家人，是家乡菜的味道和浓浓的乡音，是家门口熟悉的街道、树林和田地，是小时候玩耍的院子，和那群如今已各奔东西的伙伴。无论走多远，想到那一草一木，一人一景，就安宁。
+这也许就是人们一直以来追寻的栖息地。在远方，在心里，它叫“香格里拉”。
+现代的我们因为各种原因，在故乡与异乡之间辗转，继续着“迁徙与流动”。展览策划过程中，我们以“故乡”“现居地”“理想地”为题，以“故事&#43;展品”的方式开启活动征集，鼓励不同身份的人群通过不同角度的讲述，分享他们的感受与思考。在近一个月的时间里，我们得到了大家的积极回响。在大家的分享中，我们与不同的故事和记忆相连，也看到因为不同而更加多元、广阔的世界。
+这里展示的文字和物品，是记忆的承载，也是对“故的未来。
+乡”的“好久不见”，它记录着我们的成长，也指引着我们
+大理 这次来大理的初始动机是实地考察和调研“数字游民”这个群体，他们是否真正像想象中的自由，他们是如何工作和生活的， 他们背后的故事又是什么？ 以及他们为什么选择大理？
+感谢Dalihub， 让我有幸认识一群有趣的人。
+来自海边房子
+Dalihub的秘密空间
+救火途中的直升机
+自由飞翔
+猜你喜欢是“坏”的吗 在大理的第二天，我便幸运地参与了一场与我的工作密切相关的线下沙龙活动，主题涉及推荐系统。我的工作列表中正好有一项是关于如何防止大型科技公司通过推荐系统作恶的问题。 活动中，主讲人“西雅图大黄蜂”提出了一个观点：所有的算法和技术本质上都是中性的，真正的“恶”是由使用它们的人带来的。作为技术从业者，我们当然不希望看到自己的发明像原子弹一样被用于恶劣的目的。但现实往往很残酷，技术的接受与否很大程度上是由资本决定的，而非我们。
+之前我考虑过一个想法：将推荐系统的召回和排序分开，召回过程保留在服务器端，而排序则转移到用户端，这样一来可以提高用户的隐私保护。技术上并不复杂，真正的挑战来自于资本或大公司缺乏推行此类改变的动力。除非有一天，大多数用户愿意为保护隐私牺牲一定的便利性，否则这种改变还遥遥无期，至少在当前的中国是这样的。
+再次感谢主理人Nian和主讲人魏峰，一次难忘的体验。
+真的躺平吗？不，只是喘口气 选择大理的理由： 成本，气候， 和有趣的人们
+在大理，你可以遇到形形色色的人物：那些选择在此旅居的设计师，决定在退休后移居大理的上海夫妇，因成本考虑而搬来的独立开发者，还有视大理为家的咨询师小姐姐。这些都是构成大理独特社群氛围的不同面貌。
+当你不确定下一步该做什么时，不妨去洱海边走走，那里的美景足以让你放慢脚步，深呼吸，重新找回自己的节奏。在大理，即便是“躺平”，也是一种享受生活、与自然和谐共处的态度。
+洱海边落日
+取舍，及时调整自己的欲望 在网上能看到很多对于大理的劝退文， 无外乎就是过度商业化网红化， 城市规划稀烂，交通不方便，宰客现象严重等等。 以上我都认同， 对于一个习惯了大城市便利的人而言， 初到大理的感受的确是如此。 和在地的小伙伴聊下来，发现及时调整自己的欲望还是挺重要的。
+但是，在早晨拉开窗帘看到洱海的一瞬间， 似乎这一切都是值得的。
+随处可见的丁达尔效应
+去跳海，去发疯！
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-10 00:00:00 +0800 CST'>April 10, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;LZY</footer>
+  <a class="entry-link" aria-label="post link to 游记：2024-春 昆明大理" href="https://niraya666.github.io/travel/%E6%B8%B8%E8%AE%B02024-%E6%98%A5-%E6%98%86%E6%98%8E%E5%A4%A7%E7%90%86/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://niraya666.github.io/travel/">
+      «&nbsp;&nbsp;1/2
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
