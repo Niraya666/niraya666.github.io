@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on LZY Blog</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://niraya666.github.io/posts/</link>
     <description>Recent content in Posts on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,40 +12,40 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI转型最难的不是AI，而是那些没人愿意干的脏活</title>
-      <link>http://localhost:1313/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/</link>
+      <link>https://niraya666.github.io/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/</link>
       <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/</guid>
+      <guid>https://niraya666.github.io/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/</guid>
       <description>探讨 AI 转型中常被忽视的关键瓶颈：脏数据、无文档流程、集成债务、评估缺口和组织惯性，而非模型选择本身。</description>
     </item>
     <item>
       <title>从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利</title>
-      <link>http://localhost:1313/posts/agent-traj2skills/</link>
+      <link>https://niraya666.github.io/posts/agent-traj2skills/</link>
       <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-traj2skills/</guid>
+      <guid>https://niraya666.github.io/posts/agent-traj2skills/</guid>
       <description>如何从 Agent 的历史运行轨迹中提取、验证、去重和优化可复用技能，将经验转化为工程上的复利增长。</description>
     </item>
     <item>
       <title>【Agent - Memory】Hermes-Agent 的 Memory 设计拆解</title>
-      <link>http://localhost:1313/posts/agent-memory-hermes/</link>
+      <link>https://niraya666.github.io/posts/agent-memory-hermes/</link>
       <pubDate>Mon, 11 May 2026 14:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-memory-hermes/</guid>
+      <guid>https://niraya666.github.io/posts/agent-memory-hermes/</guid>
       <description>拆解 Hermes-Agent 的分层记忆设计，包括文件事实记忆、会话数据库、外部 Memory Provider 和可持续迭代的 Skills。</description>
     </item>
     <item>
       <title>【Agent-memory】拆解 Claude Code 的记忆架构</title>
-      <link>http://localhost:1313/posts/cc-memory/</link>
+      <link>https://niraya666.github.io/posts/cc-memory/</link>
       <pubDate>Mon, 27 Apr 2026 17:05:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/cc-memory/</guid>
+      <guid>https://niraya666.github.io/posts/cc-memory/</guid>
       <description>拆解 Claude Code 的分层记忆架构，分析文件记忆、会话状态、外部检索与 Skills 如何协同工作。</description>
     </item>
     <item>
       <title>借LLM-wiki 聊聊知识管理</title>
-      <link>http://localhost:1313/posts/%E5%80%9Fllm-wiki-%E8%81%8A%E8%81%8A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/%E5%80%9Fllm-wiki-%E8%81%8A%E8%81%8A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/</link>
       <pubDate>Wed, 15 Apr 2026 16:16:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%80%9Fllm-wiki-%E8%81%8A%E8%81%8A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%80%9Fllm-wiki-%E8%81%8A%E8%81%8A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/</guid>
       <description>&lt;p&gt;&lt;strong&gt;TL; DR&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;AK的LLM-wiki 本质上没有太新的东西，大家的思路方向基本上形成共识，只是缺乏一个KOL发声和传播。毕竟一些观点从小卡拉米嘴里说出是爆论，而从AK嘴里说出则成了真理。&lt;/p&gt;
 &lt;ul&gt;
@@ -54,52 +54,52 @@
     </item>
     <item>
       <title>浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南</title>
-      <link>http://localhost:1313/posts/agent-harness-design/</link>
+      <link>https://niraya666.github.io/posts/agent-harness-design/</link>
       <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-harness-design/</guid>
+      <guid>https://niraya666.github.io/posts/agent-harness-design/</guid>
       <description>面向 2026 年的 AI Agent Harness 最小化设计指南：解析 loop、tools、filesystem、context、memory、subagent 和 observability 等核心组件。</description>
     </item>
     <item>
       <title>告别手动优化：从新版 Skill-creator 看 Agent Skills的工程化评估和优化</title>
-      <link>http://localhost:1313/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</link>
+      <link>https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</link>
       <pubDate>Mon, 30 Mar 2026 15:38:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%91%8A%E5%88%AB%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96%E4%BB%8E%E6%96%B0%E7%89%88-skill-creator-%E7%9C%8B-agent-skills%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AF%84%E4%BC%B0%E5%92%8C%E4%BC%98%E5%8C%96/</guid>
       <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
 &lt;p&gt;过去一段时间，如果尝试过用claude-code 官方的&lt;code&gt;skills-creator&lt;/code&gt;构建agent skills，大概率会发现：agent自己构建的skills往往不好用。于是乎，为了验证一个新写的 Skill 是否真正有效，不得不陷入无止境的“修改 Prompt -&amp;gt; 手动跑测试 -&amp;gt; 检查结果” 的循环中。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Agent Infra: sandbox技术和选型</title>
-      <link>http://localhost:1313/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</link>
+      <link>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</link>
       <pubDate>Mon, 26 Jan 2026 21:55:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</guid>
+      <guid>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</guid>
       <description>从 Context Engineering 出发，梳理 AI Agent 沙箱需要解决的隔离、文件系统、代码执行和生命周期管理问题，并比较主流技术方案。</description>
     </item>
     <item>
       <title>如何构建可靠的 Agent 评估体系：读 Anthropic 技术博客有感</title>
-      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</link>
+      <link>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</link>
       <pubDate>Mon, 19 Jan 2026 21:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</guid>
       <description>基于 Anthropic 技术博客，探讨构建可靠 AI Agent 评估体系的方法论，包括任务定义、评估维度和实践建议。</description>
     </item>
     <item>
       <title>Tongyi Deep Research 论文笔记</title>
-      <link>http://localhost:1313/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
+      <link>https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Mon, 24 Nov 2025 20:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</guid>
       <description>通义 Deep Research 论文阅读笔记，分析其如何使用 30B 参数实现接近闭源模型的 deep research 效果。</description>
     </item>
     <item>
       <title>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</title>
-      <link>http://localhost:1313/posts/rag-toolkits-copali/</link>
+      <link>https://niraya666.github.io/posts/rag-toolkits-copali/</link>
       <pubDate>Mon, 22 Sep 2025 18:56:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag-toolkits-copali/</guid>
+      <guid>https://niraya666.github.io/posts/rag-toolkits-copali/</guid>
       <description>讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。</description>
     </item>
     <item>
       <title>RAG工具箱：ColBERT</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
       <pubDate>Tue, 12 Aug 2025 20:56:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -107,54 +107,54 @@
     </item>
     <item>
       <title>拒绝“想太多”：大模型Thinking Budget控制方案解析</title>
-      <link>http://localhost:1313/posts/thinking-budget-0805/</link>
+      <link>https://niraya666.github.io/posts/thinking-budget-0805/</link>
       <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/thinking-budget-0805/</guid>
+      <guid>https://niraya666.github.io/posts/thinking-budget-0805/</guid>
       <description>分析大模型 overthinking 问题及 Thinking Budget 控制方案，比较主流模型 API 的推理长度和计算预算配置。</description>
     </item>
     <item>
       <title>从下半场开始，对于评估的重新思考: 一些概念</title>
-      <link>http://localhost:1313/posts/eval_1/</link>
+      <link>https://niraya666.github.io/posts/eval_1/</link>
       <pubDate>Wed, 11 Jun 2025 15:04:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/eval_1/</guid>
+      <guid>https://niraya666.github.io/posts/eval_1/</guid>
       <description>从模型评估进入 AI 下半场的背景出发，重新梳理 benchmark、任务定义、评估指标和真实场景有效性之间的关系。</description>
     </item>
     <item>
       <title>初探 Mem0</title>
-      <link>http://localhost:1313/posts/%E5%88%9D%E6%8E%A2mem0/</link>
+      <link>https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/</link>
       <pubDate>Tue, 20 May 2025 18:44:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%88%9D%E6%8E%A2mem0/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%88%9D%E6%8E%A2mem0/</guid>
       <description>&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
 &lt;p&gt;本文是对于&lt;a href=&#34;https://github.com/mem0ai/mem0&#34;&gt;Mem0&lt;/a&gt;的论文解读和使用记录；&lt;/p&gt;
 &lt;p&gt;Mem0 是一款面向LLM应用的memory layer框架，同时是开源的。虽然它最早在 2024 年中旬亮相，起初的框架设计并没有太多亮眼之处，不过在最近，发布了一次比较重大的更新（基本上是重构了）采用了基于 AI-agent 的对话记忆提取、更新和查询等机制，实际体验下来，算是目前为止比较好用的了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>LangMem: 一些学习笔记</title>
-      <link>http://localhost:1313/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <link>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Thu, 10 Apr 2025 10:44:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://niraya666.github.io/posts/langmem-%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;本文是我在阅读 LangMem 的源码与相关文档过程中整理的一些学习笔记。&lt;/p&gt;
 &lt;p&gt;一直以来，我对智能体（Agent）的记忆机制充满好奇：理想的 memory 应该具备怎样的结构？又该如何设计？目前市面上关于 memory 的实现大多中规中矩，尚未看到令人眼前一亮的方案。为此，我决定多参考一些开源项目，以期获得新的灵感。&lt;/p&gt;</description>
     </item>
     <item>
       <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
       <pubDate>Wed, 12 Mar 2025 16:44:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
       <description>梳理 2025 年基于 VLM 的文档解析方案，比较 Qwen-VL、OlmOCR 等模型及其在 OCR、版面理解和复杂文档处理中的表现。</description>
     </item>
     <item>
       <title>RAG工具箱：RAG Tutorial for Beginner</title>
-      <link>http://localhost:1313/posts/rag-tutorial-for-beginner/</link>
+      <link>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</link>
       <pubDate>Tue, 11 Mar 2025 19:24:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag-tutorial-for-beginner/</guid>
+      <guid>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</guid>
       <description>面向初学者整理 RAG 的核心原理、入门教程、实践课程、常用框架和进一步学习材料。</description>
     </item>
     <item>
       <title>当AI开始展现&#34;顿悟时刻&#34;意味着什么</title>
-      <link>http://localhost:1313/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</link>
+      <link>https://niraya666.github.io/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</link>
       <pubDate>Sun, 23 Feb 2025 23:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%BD%93ai%E5%BC%80%E5%A7%8B%E5%B1%95%E7%8E%B0%E9%A1%BF%E6%82%9F%E6%97%B6%E5%88%BB%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88/</guid>
       <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;本文是前段时间部门内技术分享的文字稿整理；&lt;/p&gt;
 &lt;p&gt;主要包含2个方面：对于R1模型的简单科普，和开发团队的gen-AI使用指南；&lt;/p&gt;
@@ -162,9 +162,9 @@
     </item>
     <item>
       <title>RLHF 之路：强化学习复习之上篇</title>
-      <link>http://localhost:1313/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</link>
+      <link>https://niraya666.github.io/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</link>
       <pubDate>Thu, 23 Jan 2025 15:21:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</guid>
+      <guid>https://niraya666.github.io/posts/rlhf-%E4%B9%8B%E8%B7%AF%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E4%B9%8B%E4%B8%8A%E7%AF%87/</guid>
       <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;决定开启一个新系列，是时候系统性地学习一下 Alignment、RLHF 等相关内容了。&lt;/p&gt;
 &lt;p&gt;学习过程中，经常会在一些公式推导上卡住，可能是因为之前的基础不够扎实，加上学过的内容遗忘较多。
@@ -172,46 +172,46 @@
     </item>
     <item>
       <title>Milvus-2.5版本：学习笔记和备忘录</title>
-      <link>http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 25 Dec 2024 15:49:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://niraya666.github.io/posts/milvus-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%92%8C%E5%A4%87%E5%BF%98%E5%BD%95%E4%BB%8E2.0-%E5%88%B02.5%E7%89%88%E6%9C%AC%E7%9A%84%E4%BB%8E%E5%A4%B4%E5%AD%A6%E4%B9%A0/</guid>
       <description>&lt;p&gt;几年前初识 Milvus 的契机，来源于开发一个图像相似检索的应用，当时市面上向量库的可选择项并不像现在这么多，且功能也仅限于单纯的向量检索。&lt;/p&gt;
 &lt;p&gt;鉴于最近有业务更新的需要，和打算重构一下之前做的RAG项目，再次有机会深入学习 Milvus，探索其在新功能和实际应用上的更多可能性。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Agent 学习笔记：框架 ｜ openAI Swarm</title>
-      <link>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
+      <link>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</link>
       <pubDate>Mon, 11 Nov 2024 11:10:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
+      <guid>https://niraya666.github.io/posts/agent-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%A1%86%E6%9E%B6--openai-swarm/</guid>
       <description>&lt;h2 id=&#34;开篇&#34;&gt;开篇&lt;/h2&gt;
 &lt;p&gt;“CloseAI” 终于又开源了新的项目，可惜OpenAI明确表示，Swarm是一个实验性框架，主要用于教育目的，不适合生产环境，也没有官方支持。不过从这样一个实验性的框架，至少能够了解到OpenAI对于Agent上的一些理解，对于Agent设计上能够有所帮助和借鉴。&lt;/p&gt;</description>
     </item>
     <item>
       <title>RAG工具箱：Query Enhancement</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
       <pubDate>Thu, 31 Oct 2024 16:04:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
       <description>介绍 RAG 中的 Query Enhancement，包括查询改写、扩展、分解、路由和多查询召回等常见优化方法。</description>
     </item>
     <item>
       <title>LLM 输出限制：Structured Outputs、受限编码和提示词工程</title>
-      <link>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
+      <link>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</link>
       <pubDate>Wed, 21 Aug 2024 14:49:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
+      <guid>https://niraya666.github.io/posts/llm-%E8%BE%93%E5%87%BA%E9%99%90%E5%88%B6structured-outputs%E5%8F%97%E9%99%90%E7%BC%96%E7%A0%81%E5%92%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</guid>
       <description>&lt;p&gt;在使用大型语言模型（LLM）时，我们常常面临一个挑战：如何从模型输出中准确提取自己所需的信息。例如，当我们希望模型输出 JSON 格式的数据时，由于模型生成的内容并不总是稳定，可能需要额外编写大量的正则表达式来匹配并提取其中的有效信息。然而，由于 LLM 的能力，导致其输出结构并不永远可靠。&lt;/p&gt;</description>
     </item>
     <item>
       <title>RAG工具箱：检索</title>
-      <link>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</link>
+      <link>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</link>
       <pubDate>Thu, 25 Jul 2024 17:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</guid>
       <description>从搜索引擎视角梳理 RAG 检索系统，讨论向量检索、关键词检索、混合召回、重排序和索引设计。</description>
     </item>
     <item>
       <title>Agent学习笔记： 如何验证模型的tool-using能力</title>
-      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
+      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</link>
       <pubDate>Tue, 25 Jun 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
+      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E7%9A%84tool-using%E8%83%BD%E5%8A%9B/</guid>
       <description>&lt;p&gt;本文将简单介绍如何评价LLM的tool-using 能力。&lt;/p&gt;
 &lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
 &lt;p&gt;在工具使用评估方面，过去的研究主要有以下几种思路：&lt;/p&gt;
@@ -222,9 +222,9 @@
     </item>
     <item>
       <title>RAG工具箱：文本分块</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
       <pubDate>Wed, 15 May 2024 16:11:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
       <description>&lt;h2 id=&#34;为什么要进行文本分块&#34;&gt;&lt;strong&gt;为什么要进行文本分块？&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。&lt;/p&gt;
 &lt;h2 id=&#34;如何进行文本分块&#34;&gt;&lt;strong&gt;如何进行文本分块&lt;/strong&gt;&lt;/h2&gt;
@@ -233,9 +233,9 @@
     </item>
     <item>
       <title>基于大语言模型的 Agent：科普向</title>
-      <link>http://localhost:1313/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
+      <link>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</link>
       <pubDate>Mon, 13 May 2024 16:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
+      <guid>https://niraya666.github.io/posts/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84-agent%E7%A7%91%E6%99%AE%E5%90%91/</guid>
       <description>&lt;h2 id=&#34;写在开头&#34;&gt;写在开头&lt;/h2&gt;
 &lt;p&gt;本文是基于最近组内技术交流的文字稿整理。&lt;/p&gt;
 &lt;h2 id=&#34;what-is-agent&#34;&gt;What is Agent？&lt;/h2&gt;
@@ -243,32 +243,32 @@
     </item>
     <item>
       <title>Agent学习笔记：OpenAI Function Calling完全指南</title>
-      <link>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <link>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Sun, 28 Apr 2024 15:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>https://niraya666.github.io/posts/agent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0openai-function-calling%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
       <description>系统介绍 OpenAI Function Calling 的工具定义、调用流程、参数校验、多工具协作和实际 Agent 开发模式。</description>
     </item>
     <item>
       <title>RAG工具箱：文档解析与表格处理</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
       <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
       <description>梳理 RAG 系统中 PDF 文档解析和表格处理的主流方案，包括 OCR、版面分析和结构化提取技术。</description>
     </item>
     <item>
       <title>RAG工具箱：评估RAG系统的方法论</title>
-      <link>http://localhost:1313/posts/rag_toolkit_eval/</link>
+      <link>https://niraya666.github.io/posts/rag_toolkit_eval/</link>
       <pubDate>Mon, 08 Apr 2024 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag_toolkit_eval/</guid>
+      <guid>https://niraya666.github.io/posts/rag_toolkit_eval/</guid>
       <description>&lt;h2 id=&#34;写在最前面&#34;&gt;写在最前面&lt;/h2&gt;
 &lt;p&gt;在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。&lt;/p&gt;
 &lt;p&gt;此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。&lt;/p&gt;</description>
     </item>
     <item>
       <title>My First Post: Hello-World!</title>
-      <link>http://localhost:1313/posts/helloworld/</link>
+      <link>https://niraya666.github.io/posts/helloworld/</link>
       <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/helloworld/</guid>
+      <guid>https://niraya666.github.io/posts/helloworld/</guid>
       <description>&lt;h2 id=&#34;hello-world&#34;&gt;Hello-World!&lt;/h2&gt;
 &lt;p&gt;欢迎来到我的博客&lt;/p&gt;
 &lt;p&gt;在这里，我将深入探索生成式人工智能的奥秘，同时也会涉猎音乐、电影等领域，分享一些个人的思考和感悟。&lt;/p&gt;

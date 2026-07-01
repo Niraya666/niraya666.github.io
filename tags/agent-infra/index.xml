@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent-Infra on LZY Blog</title>
-    <link>http://localhost:1313/tags/agent-infra/</link>
+    <link>https://niraya666.github.io/tags/agent-infra/</link>
     <description>Recent content in Agent-Infra on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,19 +12,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/agent-infra/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/agent-infra/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>浅谈Agent Harness ：面向 2026 的 AI Agent Harness 最小化设计指南</title>
-      <link>http://localhost:1313/posts/agent-harness-design/</link>
+      <link>https://niraya666.github.io/posts/agent-harness-design/</link>
       <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-harness-design/</guid>
+      <guid>https://niraya666.github.io/posts/agent-harness-design/</guid>
       <description>面向 2026 年的 AI Agent Harness 最小化设计指南：解析 loop、tools、filesystem、context、memory、subagent 和 observability 等核心组件。</description>
     </item>
     <item>
       <title>Agent Infra: sandbox技术和选型</title>
-      <link>http://localhost:1313/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</link>
+      <link>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</link>
       <pubDate>Mon, 26 Jan 2026 21:55:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</guid>
+      <guid>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</guid>
       <description>从 Context Engineering 出发，梳理 AI Agent 沙箱需要解决的隔离、文件系统、代码执行和生命周期管理问题，并比较主流技术方案。</description>
     </item>
   </channel>

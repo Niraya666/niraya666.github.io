@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI Posts on LZY Blog</title>
-    <link>http://localhost:1313/en/posts/</link>
+    <link>https://niraya666.github.io/en/posts/</link>
     <description>Recent content in AI Posts on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,26 +12,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do</title>
-      <link>http://localhost:1313/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</link>
+      <link>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</link>
       <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</guid>
+      <guid>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</guid>
       <description>Why AI transformation stalls after model selection: dirty data, undocumented workflows, integration debt, evaluation gaps, and organizational resistance are the real bottlenecks.</description>
     </item>
     <item>
       <title>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns</title>
-      <link>http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>
+      <link>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>
       <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</guid>
+      <guid>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</guid>
       <description>How to convert agent trajectories into reusable skills through extraction, validation, deduplication, evaluation, and continuous optimization.</description>
     </item>
     <item>
       <title>On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026</title>
-      <link>http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/</link>
+      <link>https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/</link>
       <pubDate>Wed, 08 Apr 2026 21:03:00 +0800</pubDate>
-      <guid>http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/</guid>
+      <guid>https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/</guid>
       <description>A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability.</description>
     </item>
   </channel>

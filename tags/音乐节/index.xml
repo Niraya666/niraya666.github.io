@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>音乐节 on LZY Blog</title>
-    <link>http://localhost:1313/tags/%E9%9F%B3%E4%B9%90%E8%8A%82/</link>
+    <link>https://niraya666.github.io/tags/%E9%9F%B3%E4%B9%90%E8%8A%82/</link>
     <description>Recent content in 音乐节 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,12 +12,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E9%9F%B3%E4%B9%90%E8%8A%82/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/%E9%9F%B3%E4%B9%90%E8%8A%82/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2024 Can-festival：在海边 混杂着雨水和泪水 向后摇</title>
-      <link>http://localhost:1313/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</link>
+      <link>https://niraya666.github.io/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</link>
       <pubDate>Wed, 25 Sep 2024 13:32:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</guid>
+      <guid>https://niraya666.github.io/travel/2024-can-festival-%E5%9C%A8%E6%B5%B7%E8%BE%B9-%E6%B7%B7%E6%9D%82%E7%9D%80%E9%9B%A8%E6%B0%B4%E5%92%8C%E6%B3%AA%E6%B0%B4-%E5%90%91%E5%90%8E%E6%91%87/</guid>
       <description>记录 2024 Can Festival 舟山音乐节之旅，以及 We Lost the Sea、TWDY 等后摇乐队带来的现场体验。</description>
     </item>
   </channel>

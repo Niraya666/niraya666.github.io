@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>RAG-Toolkits on LZY Blog</title>
-    <link>http://localhost:1313/tags/rag-toolkits/</link>
+    <link>https://niraya666.github.io/tags/rag-toolkits/</link>
     <description>Recent content in RAG-Toolkits on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,19 +12,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/rag-toolkits/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？</title>
-      <link>http://localhost:1313/posts/rag-toolkits-copali/</link>
+      <link>https://niraya666.github.io/posts/rag-toolkits-copali/</link>
       <pubDate>Mon, 22 Sep 2025 18:56:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag-toolkits-copali/</guid>
+      <guid>https://niraya666.github.io/posts/rag-toolkits-copali/</guid>
       <description>讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。</description>
     </item>
     <item>
       <title>RAG工具箱：ColBERT</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</link>
       <pubDate>Tue, 12 Aug 2025 20:56:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;前一段时间跑比赛时，苦于上分陷入瓶颈，于是便祭出了ML经典ensemble大法，其中一个分支便是选择的ColBERT，没想到，竟成了破局的关键；也由此补齐了我对“迟交互”类模型的认知。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -32,37 +32,37 @@
     </item>
     <item>
       <title>RAG工具箱：基于多模态大模型的文档解析方案（2025版）</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</link>
       <pubDate>Wed, 12 Mar 2025 16:44:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%882025%E7%89%88/</guid>
       <description>梳理 2025 年基于 VLM 的文档解析方案，比较 Qwen-VL、OlmOCR 等模型及其在 OCR、版面理解和复杂文档处理中的表现。</description>
     </item>
     <item>
       <title>RAG工具箱：RAG Tutorial for Beginner</title>
-      <link>http://localhost:1313/posts/rag-tutorial-for-beginner/</link>
+      <link>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</link>
       <pubDate>Tue, 11 Mar 2025 19:24:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag-tutorial-for-beginner/</guid>
+      <guid>https://niraya666.github.io/posts/rag-tutorial-for-beginner/</guid>
       <description>面向初学者整理 RAG 的核心原理、入门教程、实践课程、常用框架和进一步学习材料。</description>
     </item>
     <item>
       <title>RAG工具箱：Query Enhancement</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</link>
       <pubDate>Thu, 31 Oct 2024 16:04:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1query-enhancement/</guid>
       <description>介绍 RAG 中的 Query Enhancement，包括查询改写、扩展、分解、路由和多查询召回等常见优化方法。</description>
     </item>
     <item>
       <title>RAG工具箱：检索</title>
-      <link>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</link>
+      <link>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</link>
       <pubDate>Thu, 25 Jul 2024 17:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E6%A3%80%E7%B4%A2/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E6%A3%80%E7%B4%A2/</guid>
       <description>从搜索引擎视角梳理 RAG 检索系统，讨论向量检索、关键词检索、混合召回、重排序和索引设计。</description>
     </item>
     <item>
       <title>RAG工具箱：文本分块</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</link>
       <pubDate>Wed, 15 May 2024 16:11:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97/</guid>
       <description>&lt;h2 id=&#34;为什么要进行文本分块&#34;&gt;&lt;strong&gt;为什么要进行文本分块？&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;大型语言模型（LLM）和嵌入式模型都有其处理文本的长度限制。为了有效处理超出这些限制的长文本，我们需要进行文本分块。&lt;/p&gt;
 &lt;h2 id=&#34;如何进行文本分块&#34;&gt;&lt;strong&gt;如何进行文本分块&lt;/strong&gt;&lt;/h2&gt;
@@ -71,16 +71,16 @@
     </item>
     <item>
       <title>RAG工具箱：文档解析与表格处理</title>
-      <link>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
+      <link>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</link>
       <pubDate>Sat, 20 Apr 2024 17:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
+      <guid>https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E4%B8%8E%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/</guid>
       <description>梳理 RAG 系统中 PDF 文档解析和表格处理的主流方案，包括 OCR、版面分析和结构化提取技术。</description>
     </item>
     <item>
       <title>RAG工具箱：评估RAG系统的方法论</title>
-      <link>http://localhost:1313/posts/rag_toolkit_eval/</link>
+      <link>https://niraya666.github.io/posts/rag_toolkit_eval/</link>
       <pubDate>Mon, 08 Apr 2024 11:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/rag_toolkit_eval/</guid>
+      <guid>https://niraya666.github.io/posts/rag_toolkit_eval/</guid>
       <description>&lt;h2 id=&#34;写在最前面&#34;&gt;写在最前面&lt;/h2&gt;
 &lt;p&gt;在过去的几个月中，我主要致力于与RAG（检索增强生成模型）相关的研究和实验工作。通过深入地分析众多论文和项目代码，我发现虽然在RAG领域取得基本成就相对容易，但要实现出色的成果却异常困难。&lt;/p&gt;
 &lt;p&gt;此系列文章旨在分享我在RAG研究中的心得和挑战。正如我们从OpenAI的开发者日活动中看到的，即使是在这个领域的领头羊也在不断试验和努力以寻求突破。&lt;/p&gt;</description>

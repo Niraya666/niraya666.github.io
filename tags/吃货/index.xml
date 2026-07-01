@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>吃货 on LZY Blog</title>
-    <link>http://localhost:1313/tags/%E5%90%83%E8%B4%A7/</link>
+    <link>https://niraya666.github.io/tags/%E5%90%83%E8%B4%A7/</link>
     <description>Recent content in 吃货 on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,19 +12,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%90%83%E8%B4%A7/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/%E5%90%83%E8%B4%A7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>下洋：吃牛肉不止只有潮汕</title>
-      <link>http://localhost:1313/travel/%E4%B8%8B%E6%B4%8B%E5%90%83%E7%89%9B%E8%82%89%E4%B8%8D%E6%AD%A2%E5%8F%AA%E6%9C%89%E6%BD%AE%E6%B1%95/</link>
+      <link>https://niraya666.github.io/travel/%E4%B8%8B%E6%B4%8B%E5%90%83%E7%89%9B%E8%82%89%E4%B8%8D%E6%AD%A2%E5%8F%AA%E6%9C%89%E6%BD%AE%E6%B1%95/</link>
       <pubDate>Tue, 04 Feb 2025 12:02:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E4%B8%8B%E6%B4%8B%E5%90%83%E7%89%9B%E8%82%89%E4%B8%8D%E6%AD%A2%E5%8F%AA%E6%9C%89%E6%BD%AE%E6%B1%95/</guid>
+      <guid>https://niraya666.github.io/travel/%E4%B8%8B%E6%B4%8B%E5%90%83%E7%89%9B%E8%82%89%E4%B8%8D%E6%AD%A2%E5%8F%AA%E6%9C%89%E6%BD%AE%E6%B1%95/</guid>
       <description>下洋美食游记：探访潮汕以外的牛肉美食宝地，记录地道吃法和旅行攻略。</description>
     </item>
     <item>
       <title>食在大马</title>
-      <link>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</link>
+      <link>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</link>
       <pubDate>Tue, 22 Oct 2024 20:02:00 +0800</pubDate>
-      <guid>http://localhost:1313/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</guid>
+      <guid>https://niraya666.github.io/travel/%E5%A4%A7%E9%A9%AC%E6%B8%B8%E8%AE%B02024/</guid>
       <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;2024年的国庆假期，第一次带父母踏出国门，目的地定在了马来西亚。挑选这个地方，并非偶然，既因为语言上的便利，也因对食物多样性的向往。对于第一次尝试出国旅行的新手来说，这样的选择再合适不过了。尤其是对于福建闽南人，马来西亚似乎有着一种熟悉而温暖的亲切感。&lt;/p&gt;</description>
     </item>

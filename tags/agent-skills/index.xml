@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent-Skills on LZY Blog</title>
-    <link>http://localhost:1313/tags/agent-skills/</link>
+    <link>https://niraya666.github.io/tags/agent-skills/</link>
     <description>Recent content in Agent-Skills on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,12 +12,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利</title>
-      <link>http://localhost:1313/posts/agent-traj2skills/</link>
+      <link>https://niraya666.github.io/posts/agent-traj2skills/</link>
       <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/agent-traj2skills/</guid>
+      <guid>https://niraya666.github.io/posts/agent-traj2skills/</guid>
       <description>如何从 Agent 的历史运行轨迹中提取、验证、去重和优化可复用技能，将经验转化为工程上的复利增长。</description>
     </item>
   </channel>

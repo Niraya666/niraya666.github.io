@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>CoT on LZY Blog</title>
-    <link>http://localhost:1313/tags/cot/</link>
+    <link>https://niraya666.github.io/tags/cot/</link>
     <description>Recent content in CoT on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,12 +12,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/cot/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/tags/cot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>拒绝“想太多”：大模型Thinking Budget控制方案解析</title>
-      <link>http://localhost:1313/posts/thinking-budget-0805/</link>
+      <link>https://niraya666.github.io/posts/thinking-budget-0805/</link>
       <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/thinking-budget-0805/</guid>
+      <guid>https://niraya666.github.io/posts/thinking-budget-0805/</guid>
       <description>分析大模型 overthinking 问题及 Thinking Budget 控制方案，比较主流模型 API 的推理长度和计算预算配置。</description>
     </item>
   </channel>

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent-Skills on LZY Blog</title>
-    <link>http://localhost:1313/en/tags/agent-skills/</link>
+    <link>https://niraya666.github.io/en/tags/agent-skills/</link>
     <description>Recent content in Agent-Skills on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
@@ -12,12 +12,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/en/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niraya666.github.io/en/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns</title>
-      <link>http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>
+      <link>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>
       <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</guid>
+      <guid>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</guid>
       <description>How to convert agent trajectories into reusable skills through extraction, validation, deduplication, evaluation, and continuous optimization.</description>
     </item>
   </channel>
