@@ -2,44 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent-Skills on LZY Blog</title>
-    <link>https://niraya666.github.io/tags/agent-skills/</link>
+    <link>http://localhost:1313/tags/agent-skills/</link>
     <description>Recent content in Agent-Skills on LZY Blog</description>
     <image>
       <title>LZY Blog</title>
-      <url>https://niraya666.github.io/img/og-cover.png</url>
-      <link>https://niraya666.github.io/img/og-cover.png</link>
+      <url>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</url>
+      <link>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 02 Jun 2026 20:00:00 +0800</lastBuildDate>
-    <atom:link href="https://niraya666.github.io/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns</title>
-      <link>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>
-      <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</guid>
-      <description>&lt;p&gt;If you pull apart agent memory, there are really two distinct threads running through it.&lt;/p&gt;
-&lt;p&gt;The first is &lt;strong&gt;personal memory&lt;/strong&gt;: how an agent comes to understand you — your preferences, long-term context, implicit constraints, and past decisions. This kind of problem lives closer to long-context QA, and the evaluation tends to focus on &amp;ldquo;does it remember, does it understand, and can it retrieve the right user information at the right time.&amp;rdquo;&lt;/p&gt;</description>
-    </item>
+    <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/agent-skills/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利</title>
-      <link>https://niraya666.github.io/posts/agent-traj2skills/</link>
+      <link>http://localhost:1313/posts/agent-traj2skills/</link>
       <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent-traj2skills/</guid>
-      <description>&lt;p&gt;如果把 agent memory 拆开看，其实有两条不同的主线。&lt;/p&gt;
-&lt;p&gt;第一条是 &lt;strong&gt;personal memory&lt;/strong&gt;：agent 如何更懂你，理解用户偏好、长期上下文、隐含约束和历史决策。这类问题更接近 long-context QA，评估的重点往往是“它是否记得、是否理解、是否能在正确场景下调用用户相关信息”。&lt;/p&gt;
-&lt;p&gt;第二条是 &lt;strong&gt;procedural memory&lt;/strong&gt;：agent 如何避免重复犯错，如何从过去的成功与失败中总结出可复用经验，如何越跑越好、越用越强。它更关心的是 agentic benchmark 上的任务成功率、工具调用效率、错误率下降、 token的成本下降，以及在真实环境中是否能形成工程复利。&lt;/p&gt;
-&lt;p&gt;这篇文章主要讨论第二条路线。&lt;/p&gt;
-&lt;p&gt;今天很多 agent-harness， Claude Code、Hermes-agent、OpenClaw等，在长期使用后都会积累大量 trajectory这些轨迹实际上记录了 agent 和环境交互中最宝贵的东西。&lt;/p&gt;
-&lt;p&gt;但问题是，人类对这些 trajectory 的利用率尚且不足。大多数时候，trajectory 被当成日志、debug 记录，或者最多作为检索材料塞回上下文。一个 agent-harness 跑了半年，可能积累了成千上万条任务轨迹，但下次遇到相似问题时，agent 仍然可能从零开始探索，重复踩同样的坑。&lt;/p&gt;
-&lt;p&gt;引出了一个核心问题：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;trajectory 到底如何才能变成 skill？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;以 Hermes-agent 这类系统为例，用久了之后会发现 skills 可能越来越多。但真正有效的 skills 有多少？&lt;/p&gt;
-&lt;p&gt;本文将借最近几篇相关工作，讨论一个正在变得重要的问题：如何从大量 agent trajectories 中，自动挖掘、总结、验证并优化可以被未来任务复用的 agent skills。&lt;/p&gt;
-&lt;h2 id=&#34;以hermes-agent-作为入口&#34;&gt;以hermes-agent 作为入口&lt;/h2&gt;
-&lt;p&gt;Hermes-agent 有一个很有意思的定位：一个会随着使用而变强的 agent。也就是把过去的经验沉淀为可以被未来复用的外部记忆。这里的外部记忆大致可以分成两类：&lt;/p&gt;
-&lt;p&gt;第一类是 declarative memory，也就是关于用户、项目、环境和偏好的事实记忆，具体形式是 USER.md 和MEMORY.md， 这类 memory 解决的是“agent 如何更懂你”的问题。&lt;/p&gt;
-&lt;p&gt;第二类是 procedural memory，也就是 skills。具体形式是写入到state.db 中的 sessions/messages，以及被总结成 md 的skills。&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/agent-traj2skills/</guid>
+      <description>如何从 Agent 的历史运行轨迹中提取、验证、去重和优化可复用技能，将经验转化为工程上的复利增长。</description>
     </item>
   </channel>
 </rss>

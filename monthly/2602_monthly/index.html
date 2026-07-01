@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -9,22 +9,19 @@
 <meta name="keywords" content="月刊">
 <meta name="description" content="值得关注的模型和新技术
 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩
-Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务
-GPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行
-GLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能
-MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练">
+Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务">
 <meta name="author" content="LZY">
-<link rel="canonical" href="https://niraya666.github.io/monthly/2602_monthly/">
+<link rel="canonical" href="http://localhost:1313/monthly/2602_monthly/">
 <meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/monthly/2602_monthly/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/monthly/2602_monthly/">
 <noscript>
     <style>
         #theme-toggle,
@@ -79,25 +76,19 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
       </script><meta property="og:title" content="2026-02 月刊" />
 <meta property="og:description" content="值得关注的模型和新技术
 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩
-Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务
-GPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行
-GLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能
-MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练" />
+Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/monthly/2602_monthly/" />
-<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" /><meta property="article:section" content="monthly" />
+<meta property="og:url" content="http://localhost:1313/monthly/2602_monthly/" />
+<meta property="og:image" content="http://localhost:1313/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" /><meta property="article:section" content="monthly" />
 <meta property="article:published_time" content="2026-02-28T12:00:00+08:00" />
 <meta property="article:modified_time" content="2026-02-28T12:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" />
+<meta name="twitter:image" content="http://localhost:1313/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" />
 <meta name="twitter:title" content="2026-02 月刊"/>
 <meta name="twitter:description" content="值得关注的模型和新技术
 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity&rsquo;s Last Exam 上取得 SOTA 成绩
-Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务
-GPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行
-GLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施&quot;slime&quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能
-MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练"/>
+Claude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务"/>
 
 
 <script type="application/ld+json">
@@ -109,13 +100,13 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
       "@type": "ListItem",
       "position":  1 ,
       "name": "Monthlies",
-      "item": "https://niraya666.github.io/monthly/"
+      "item": "http://localhost:1313/monthly/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "2026-02 月刊",
-      "item": "https://niraya666.github.io/monthly/2602_monthly/"
+      "item": "http://localhost:1313/monthly/2602_monthly/"
     }
   ]
 }
@@ -126,14 +117,14 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
   "@type": "BlogPosting",
   "headline": "2026-02 月刊",
   "name": "2026-02 月刊",
-  "description": "值得关注的模型和新技术 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity\u0026rsquo;s Last Exam 上取得 SOTA 成绩\nClaude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务\nGPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行\nGLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施\u0026quot;slime\u0026quot;进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能\nMiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练\n",
+  "description": "值得关注的模型和新技术 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity\u0026rsquo;s Last Exam 上取得 SOTA 成绩\nClaude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务\n",
   "keywords": [
     "月刊"
   ],
   "articleBody": "值得关注的模型和新技术 Claude Opus 4.6: Anthropic 最强模型升级，改进编码能力与长程 Agentic 任务规划，首次在 Opus 级别提供 1M token 上下文窗口(beta)，在 Terminal-Bench 2.0 和 Humanity’s Last Exam 上取得 SOTA 成绩\nClaude Code Agent Teams: Claude Code 的多智能体协作功能，支持 Team lead 协调多个独立运行的 teammate 会话并行工作，teammates 可通过共享任务列表自协调并直接通信，适用于代码审查、多假设并行探索等任务\nGPT-5.3-Codex: OpenAI 推出的多智能体编码助手，内置云端环境与工作树支持，可在多项目间并行工作，配备 Skills 系统支持自定义功能扩展，支持长时间后台自动化任务执行\nGLM-5: 智谱开源的 754B 参数 MoE 模型(40B 激活)，集成 DeepSeek Sparse Attention 降低长上下文部署成本，采用自研异步 RL 基础设施\"slime\"进行后训练，在推理、编码与 Agent 任务上达到开源模型最佳性能\nMiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 80.2%，支持 100 tokens/秒推理速度，任务成本仅为 Claude Opus 4.6 的 10%，采用 Forge Agent-Native RL 框架在数十万真实环境中训练\nQwen3.5: 通义千问发布的原生多模态智能体模型，397B 参数(A17B 激活)，创新性地将线性注意力(Gated Delta Networks)与 MoE 结合，语言支持从 119 种扩展至 201 种，在推理、编程与多模态理解上表现优异\n值得关注的开源项目 claude-mem: Claude Code 持久化记忆插件，自动捕获工具使用记录并生成语义摘要，支持跨会话上下文注入，使用 SQLite + Chroma 向量数据库实现混合检索\nPageIndex: 无向量、基于推理的 RAG 系统，通过构建层次化树形索引模拟人类专家浏览长文档的方式，无需向量数据库即可实现高精度检索，在 FinanceBench 上达到 98.7% 准确率\npi-mono: AI Agent 综合工具包，包含编码 Agent CLI、统一多提供商 LLM API、TUI 与 Web UI 组件库、Slack Bot 及 vLLM GPU Pod 管理工具\nqmd: 基于 Markdown的小型化知识库搜索扩展，支持关键词(BM25)、语义向量及混合(LLM 重排序)三种检索模式\nmemU: 为 24/7 主动式 Agent 设计的记忆框架，采用\"内存即文件系统\"的层级架构，支持连续学习和用户意图预测，大幅降低长时运行 token 成本\n值得关注的研究和论文 Kimi K2.5: Agent Swarm 与多模态原生预训练 arXiv: tech_report.pdf\nKimi K2.5 是 Moonshot AI 推出的新一代多模态大模型，核心创新在于解决了\"如何在增强一种模态的同时不损害另一种模态\"的问题。预训练的视觉语言模型（VLM）通常不具备自然使用视觉工具的能力，且现有智能体系统依赖于串行执行，随着任务复杂度增加，推理时间呈线性增长，导致延迟过高且容易耗尽推理深度。\n核心创新\nAgent Swarm: 并行智能体编排框架\n引入可训练的\"编排者\"（Orchestrator），能够动态将复杂任务分解为子任务，并创建异构子智能体（Sub-agents）并行执行。采用解耦架构——只训练 Orchestrator，子智能体保持冻结。并行通过特殊工具调用模式和异步执行环境实现：Orchestrator 使用 create_subagent 和 assign_task 工具一次性发出多个指令，系统底层将这些任务作为独立异步协程启动，Orchestrator 在一次\"观察\"中收到多个结果。\n奖励设计包含三个关键部分：$r_{perf}$（任务表现）、$r_{parallel}$（并行奖励，鼓励实例化子智能体防止串行退化）、$r_{finish}$（完成率奖励，防止\"虚假并行\"）。\nNative Multimodal Pre-Training\n在训练早期以较低比例引入视觉数据，而非传统做法在后期大量堆砌视觉 Token。通过 Zero-Vision SFT，仅使用纯文本 SFT 数据激活视觉代理能力——通过代码（IPython）代理图像操作，无需大量标注的视觉轨迹数据。\nJoint Multimodal RL\n视觉 RL 可反向增强文本推理能力，实现跨模态能力迁移。采用 Token-level Clipping 机制，基于对数比率直接限制 Off-policy 偏移：当 Token 对数比率超出 $[\\alpha, \\beta]$ 区间时梯度置零，比标准 PPO 更能稳定长视距、多步推理任务训练。\nMoonViT-3D 编码器\n使用统一架构处理图像和视频，通过时间维度压缩机制，使模型能在相同上下文窗口内处理长达 4 倍的视频内容。\nToken 效率优化 (Toggle 算法)\n训练过程在两阶段交替：Phase 0（预算限制）要求模型在特定 Token 预算内解决问题；Phase 1（标准扩展）允许使用最大 Token 限制。该方法能将输出长度减少 25%~30%，同时保持性能几乎不下降。\nHow AI Impacts Skill Formation arXiv: 2601.20245\n探讨 AI 辅助工具的广泛使用是否会损害新手核心技能习得。研究招募 52 名有一定经验的软件开发者，随机分为 AI 辅助组（基于 GPT-4o 定制聊天助手）和无 AI 组（仅查阅官方文档）。任务要求使用陌生的 Python 异步编程库（Trio）完成实际编程任务。\n实验结果\n使用 AI 辅助的参与者在技能测验中得分比无 AI 组低 17%，在代码阅读、调试和概念理解三个关键维度上表现均显著弱于控制组。从平均水平看，AI 组完成任务时间并未比查文档的控制组显著更快。\nLearning to Reason in 13 Parameters arXiv: 2602.04118\n提出 TinyLoRA，一种新的 Adapter 方法，可将可训练参数数量缩减到个位数，且只有结合 RL 才有效。\n方法\n在 LoRA 和 LoRA-XS 基础上改进。标准 LoRA 更新公式为 $W’ = W + AB$；LoRA-XS 改进为 $W’ = W + U \\Sigma R V^\\top$，其中 $U, \\Sigma, V$ 来自预训练权重 $W$ 的 SVD 并被冻结，只有中间 $R$ 矩阵可训练。\nTinyLoRA 不再直接训练矩阵 $R$（大小 $r \\times r$），而是训练极小向量 $v \\in \\mathbb{R}^u$：\n$$W^{\\prime}=W+U\\Sigma(\\sum_{i=1}^{u}v_{i}P_{i})V^{\\top}$$\n$P_i$ 是固定随机矩阵，只有向量 $v$ 可训练，并在不同层和模块（Attention 和 MLP）之间共享。使用 GRPO 而非 SFT 进行训练。\nInfMem: Learning System-2 Memory Control for Long-Context Agent arXiv: 2602.02704\nInfMem 的核心创新在于引入 System-2 风格的认知控制回路，从被动处理转变为主动管理。Agent 维护固定大小的覆盖式记忆。\nPreThink-Retrieve-Write 协议\n包含三个关键步骤：\nPreThink: 监控当前记忆是否足以回答问题，如不足则规划检索查询（Query）和检索数量（Top-K） Retrieve: 从外部存储检索相关证据 Write: 将检索到的证据与当前阅读数据流结合，有选择地更新有限记忆空间 首先通过 SFT 让模型学会遵守协议格式，然后通过 RL 将检索、写入和停止的决策与最终答案正确性对齐。\nAdaptive Early Stopping\nLearning-based 实现，通过特定 Reward 优化。在每一步 $t$，PRETHINK 模块根据当前问题 $q$ 和记忆 $m_{t-1}$ 输出决策动作 $a_t \\in {\\text{“STOP”}, \\text{“RETRIEVE”}}$。\nRL 阶段引入 Early-stop shaping reward ($R_{early}$)。假设 $t_{first}$ 是记忆首次包含足够信息的时刻，$t_{stop}$ 是模型实际选择停止的时刻：\n$$R_{early} = \\gamma^{t_{stop} - t_{first}}$$\n其中 $\\gamma \\in (0, 1)$ 是衰减系数。\nGLM-5: from Vibe Coding to Agentic Engineering arXiv: 2602.15763\n智谱 GLM-5 技术报告，从 Vibe Coding 迈向 Agentic Engineering。\n架构创新\n引入 DeepSeek Sparse Attention (DSA)，用动态细粒度选择机制替代传统稠密 $O(L^2)$ Attention。\n数据合成\nMid-Training: 针对长上下文，采用 interleaved packing（高度相似文本交错打包），缓解 “lost-in-the-middle” 问题 SFT: Coding \u0026 Agent 数据，通过构建大量执行环境获取高质量轨迹，用 expert RL 和 rejection sampling 改进数据。保留轨迹中的错误段但在 loss 中 mask 掉，让模型学习纠错行为 RL Pipeline\n分为三个阶段：\nReasoning RL: 数学、科学、代码、TIR (Tool-Integrated Reasoning) Agentic RL: 编码和搜索 agent 任务 General RL: 人类风格对齐 Reasoning RL 算法 (GRPO + IcePop)\nIcePop 技术缓解 training-inference mismatch：显式区分 training policy $\\pi_{train}$ 和 inference policy $\\pi_{infer}$，去除 KL regularization 项以加速 RL 改进，使用 pop operator 抑制 mismatch ratio 偏离过大的样本。\nOn-Policy Cross-Stage Distillation\n多阶段 RL 顺序优化不同目标会导致累积性能力退化 (catastrophic forgetting)。解决方案：在最后阶段进行 on-policy cross-stage distillation，前面各阶段的最终 checkpoint 作为 teacher models，从对应 teachers 的 RL 训练集中采样 prompts 按比例混合：\n$$Â_{i,t} = sg[ \\log(\\pi_{infer \\ teacher}(y_{i,t}|x,y_{i,",
-  "wordCount" : "1815",
+  "wordCount" : "8201",
   "inLanguage": "zh-cn",
-  "image":"https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp","datePublished": "2026-02-28T12:00:00+08:00",
+  "image":"http://localhost:1313/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp","datePublished": "2026-02-28T12:00:00+08:00",
   "dateModified": "2026-02-28T12:00:00+08:00",
   "author":{
     "@type": "Person",
@@ -141,14 +132,14 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/monthly/2602_monthly/"
+    "@id": "http://localhost:1313/monthly/2602_monthly/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -170,7 +161,7 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -194,7 +185,7 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
                 </button>
                 <ul class="lang-switch"><li>|</li>
                     <li>
-                        <a href="https://niraya666.github.io/en/" title="English"
+                        <a href="http://localhost:1313/en/" title="English"
                             aria-label="English">English</a>
                     </li>
                 </ul>
@@ -202,52 +193,52 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/posts/" title="AI">
+                <a href="http://localhost:1313/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                <a href="http://localhost:1313/travel-map/" title="足迹">
                     <span>足迹</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                <a href="http://localhost:1313/musik/" title="Musik!">
                     <span>Musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -258,7 +249,7 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/monthly/">Monthlies</a></div>
     <h1 class="post-title entry-hint-parent">
       2026-02 月刊
       <span class="entry-hint" title="Draft">
@@ -268,12 +259,12 @@ MiniMax-M2.5: MiniMax 最新 RL 训练模型，在 SWE-Bench Verified 上达到 
         </svg>
       </span>
     </h1>
-    <div class="post-meta"><span title='2026-02-28 12:00:00 +0800 CST'>February 28, 2026</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;LZY
+    <div class="post-meta"><span title='2026-02-28 12:00:00 +0800 CST'>February 28, 2026</span>&nbsp;·&nbsp;17 min&nbsp;·&nbsp;LZY
 
 </div>
   </header> 
-<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" target="_blank"
-            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" alt="Amoy 沙坡尾"></a>
+<figure class="entry-cover"><a href="http://localhost:1313/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="http://localhost:1313/img/monthly/2026/BFE68FDC-43C8-4174-8335-A0BCF3353A5F_1_201_a.webp" alt="Amoy 沙坡尾"></a>
         <p>Amoy 沙坡尾</p>
 </figure><div class="toc">
     <details >
@@ -795,14 +786,14 @@ Tools need someone to use them for a specific purpose.
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+      <li><a href="http://localhost:1313/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
     </ul>
 
 
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on x"
-            href="https://x.com/intent/tweet/?text=2026-02%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            href="https://x.com/intent/tweet/?text=2026-02%20%e6%9c%88%e5%88%8a&amp;url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -811,7 +802,7 @@ Tools need someone to use them for a specific purpose.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f&amp;title=2026-02%20%e6%9c%88%e5%88%8a&amp;summary=2026-02%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f&amp;title=2026-02%20%e6%9c%88%e5%88%8a&amp;summary=2026-02%20%e6%9c%88%e5%88%8a&amp;source=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -820,7 +811,7 @@ Tools need someone to use them for a specific purpose.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f&title=2026-02%20%e6%9c%88%e5%88%8a">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f&title=2026-02%20%e6%9c%88%e5%88%8a">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -829,7 +820,7 @@ Tools need someone to use them for a specific purpose.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -838,7 +829,7 @@ Tools need someone to use them for a specific purpose.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on whatsapp"
-            href="https://api.whatsapp.com/send?text=2026-02%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            href="https://api.whatsapp.com/send?text=2026-02%20%e6%9c%88%e5%88%8a%20-%20http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -847,7 +838,7 @@ Tools need someone to use them for a specific purpose.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on telegram"
-            href="https://telegram.me/share/url?text=2026-02%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            href="https://telegram.me/share/url?text=2026-02%20%e6%9c%88%e5%88%8a&amp;url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -856,7 +847,7 @@ Tools need someone to use them for a specific purpose.
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-02 月刊 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=2026-02%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2602_monthly%2f">
+            href="https://news.ycombinator.com/submitlink?t=2026-02%20%e6%9c%88%e5%88%8a&u=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2602_monthly%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -900,7 +891,7 @@ Tools need someone to use them for a specific purpose.
     </main>
     
 <footer class="footer">
-    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2026 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

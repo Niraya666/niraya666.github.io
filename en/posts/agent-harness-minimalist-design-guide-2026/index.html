@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 | LZY Blog</title>
 <meta name="keywords" content="Agent-Infra, Agent-Harness, Agent">
-<meta name="description" content="Prologue
-&ldquo;Have you Harnessed today?&rdquo;
-In 2026, &ldquo;Harness&rdquo; is probably the most-used word in the AI agent space — and it comes with enormous misunderstandings. Look back at the past 2–3 years of AI development and you&rsquo;ll see a mushrooming of agent frameworks, scaffolding, and orchestration tools, most of which sank deep into the mire of technical debt before vanishing without a trace.
-In this article, I&rsquo;m not going to dwell on the grand vision of harness engineering (a term that, in my view, carries the connotation of agents self-iterating and optimizing). Let&rsquo;s just talk about the harness itself.">
+<meta name="description" content="A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability.">
 <meta name="author" content="LZY">
-<link rel="canonical" href="https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/">
+<link rel="canonical" href="http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/">
 <meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/posts/agent-harness-design/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -75,24 +73,18 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
           gtag('config', 'G-9KEC0300HT');
         }
       </script><meta property="og:title" content="On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026" />
-<meta property="og:description" content="Prologue
-&ldquo;Have you Harnessed today?&rdquo;
-In 2026, &ldquo;Harness&rdquo; is probably the most-used word in the AI agent space — and it comes with enormous misunderstandings. Look back at the past 2–3 years of AI development and you&rsquo;ll see a mushrooming of agent frameworks, scaffolding, and orchestration tools, most of which sank deep into the mire of technical debt before vanishing without a trace.
-In this article, I&rsquo;m not going to dwell on the grand vision of harness engineering (a term that, in my view, carries the connotation of agents self-iterating and optimizing). Let&rsquo;s just talk about the harness itself." />
+<meta property="og:description" content="A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/" />
-<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta property="og:url" content="http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2026-04-08T21:03:00+08:00" />
-<meta property="article:modified_time" content="2026-04-08T21:03:00+08:00" />
+<meta property="article:modified_time" content="2026-06-19T18:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
 <meta name="twitter:title" content="On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026"/>
-<meta name="twitter:description" content="Prologue
-&ldquo;Have you Harnessed today?&rdquo;
-In 2026, &ldquo;Harness&rdquo; is probably the most-used word in the AI agent space — and it comes with enormous misunderstandings. Look back at the past 2–3 years of AI development and you&rsquo;ll see a mushrooming of agent frameworks, scaffolding, and orchestration tools, most of which sank deep into the mire of technical debt before vanishing without a trace.
-In this article, I&rsquo;m not going to dwell on the grand vision of harness engineering (a term that, in my view, carries the connotation of agents self-iterating and optimizing). Let&rsquo;s just talk about the harness itself."/>
+<meta name="twitter:description" content="A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability."/>
 
 
 <script type="application/ld+json">
@@ -104,13 +96,13 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
       "@type": "ListItem",
       "position":  1 ,
       "name": "AI Posts",
-      "item": "https://niraya666.github.io/en/posts/"
+      "item": "http://localhost:1313/en/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026",
-      "item": "https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/"
+      "item": "http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/"
     }
   ]
 }
@@ -121,29 +113,29 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
   "@type": "BlogPosting",
   "headline": "On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026",
   "name": "On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026",
-  "description": "Prologue \u0026ldquo;Have you Harnessed today?\u0026rdquo;\nIn 2026, \u0026ldquo;Harness\u0026rdquo; is probably the most-used word in the AI agent space — and it comes with enormous misunderstandings. Look back at the past 2–3 years of AI development and you\u0026rsquo;ll see a mushrooming of agent frameworks, scaffolding, and orchestration tools, most of which sank deep into the mire of technical debt before vanishing without a trace.\nIn this article, I\u0026rsquo;m not going to dwell on the grand vision of harness engineering (a term that, in my view, carries the connotation of agents self-iterating and optimizing). Let\u0026rsquo;s just talk about the harness itself.\n",
+  "description": "A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability.",
   "keywords": [
     "Agent-Infra", "Agent-Harness", "Agent"
   ],
   "articleBody": "Prologue “Have you Harnessed today?”\nIn 2026, “Harness” is probably the most-used word in the AI agent space — and it comes with enormous misunderstandings. Look back at the past 2–3 years of AI development and you’ll see a mushrooming of agent frameworks, scaffolding, and orchestration tools, most of which sank deep into the mire of technical debt before vanishing without a trace.\nIn this article, I’m not going to dwell on the grand vision of harness engineering (a term that, in my view, carries the connotation of agents self-iterating and optimizing). Let’s just talk about the harness itself.\nThis article answers exactly one question: what are the irreplaceable core components of a future-facing, minimalist agent harness?\nAnd, within today’s technical context, how to sidestep the technical debt accumulated over the past two years and choose — or build — the right agent harness.\nBuild the harness well, and the agent will take care of the rest.\nSetting the Record Straight: What Exactly Is a Harness? To understand what a harness really is, we need to do a bit of cyber-archaeology.\nIn traditional software engineering, a test harness is an automated environment built to execute tests, with a core goal of “de-manualization.”\nIn the LLM and agent space, harness was initially used more in the context of LLM evaluation. On complex benchmarks like SWE-bench, a bare LLM cannot score highly — it needs an external loop and tools to assist. At this stage, harness was confined to the eval domain.\nIt wasn’t until applications like Claude Code appeared that agent harness gradually took on a new meaning: the foundation that supports AI work.\nThe earliest source we can find: on September 23, 2025, developer Vivek Trivedy was the first to systematically articulate “agent harness” in a blog post.\n“Agent Harness: External set of functionality to enhance a model’s runtime execution. …\nBut the concept truly exploded after two articles: Anthropic: Effective harnesses for long-running agents (Nov 26, 2025) and OpenAI: Harness engineering: leveraging Codex in an agent-first world (Feb 11, 2026).\nSimply put, in one sentence: a harness is the software shell wrapped around an LLM — it turns a model that can only talk into an agent that can get things done, and even into a long-running agent that operates for hours at a stretch.\nVarious ecosystems, LangChain included, have been staking claims by inventing a dizzying array of concepts. So what exactly is the difference between agent frameworks, runtimes, scaffolding, and harnesses?\nDrawing on LangChain’s article: Agent Frameworks, Runtimes, and Harnesses - oh my!\nRuntime: the low-level infrastructure that solves “how an agent runs stably and persistently in production.”\nFramework: provides a set of abstractions and programming models to help you “write agent applications more easily.”\nHarness: layers default configurations, tools, and workflows on top of a framework, creating a “high-level kit you can grab and run tasks with out of the box.”\n(Concepts are all man-made — the thing comes first, the concept follows.)\nDesign Philosophy: Less is More The lessons distilled from How To Be A World-Class Agentic Engineer and Learning the Bitter Lesson converge on a single idea: Less is More. The various structures and inductive biases humans inject may buy short-term wins, but over the long run they harden into constraints — they should be progressively stripped away as models and compute improve.\nHere is the corollary of The Bitter Lesson in the agent space, stated bluntly:\nEvery line of “smart” control logic you write in your harness is a bet against future model capabilities. Consider:\nIn 2024 you wrote an elaborate ReAct state machine → In 2025, models natively support multi-turn tool calling, and your state machine becomes dead weight.\nIn 2025 you wrote a complex planning module → In 2026, models’ reasoning capabilities are strong enough to plan autonomously, and your Planner becomes a ceiling rather than a scaffold.\nThis is not an argument against having a harness. It is an argument for asking, of every component you put in: “Could the model learn to do this on its own?”\nIf the answer is “sooner or later,” it is an auxiliary component — write it with a demolition plan from day one. If the answer is “never” (because it touches the physical world outside the LLM), then it qualifies as a core component.\nFlipped the other way: minimal, least-necessary components are precisely what make a harness resilient enough to survive the next 3–6 months of model iteration.\nConcretely, taking “long-running” as the target, harness components fall into two categories:\nCore components: agent loop, context management, atomic core tools, file system, hooks and subagent isolation (or task management)\nAuxiliary components: (short-term patches — destined for replacement in the long run)\nCore Components Agent Loop Every story about agents begins with the agent loop. A good agent loop is necessarily lean — the LLM drives the decision-making, not a set of pre-scripted paths imposed by humans.\nAt the lowest level, an LLM is still an autoregressive model that predicts the next token. This fundamental premise holds for the foreseeable future. The Agent Loop does only one thing: execute tools → capture results → append to context → call the LLM again.\ndef agent_loop(query): messages = [{\"role\": \"user\", \"content\": query}] while True: response = client.messages.create( model=MODEL, system=SYSTEM, messages=messages, tools=TOOLS, max_tokens=8000, ) messages.append({\"role\": \"assistant\", \"content\": response.content}) if response.stop_reason != \"tool_use\": return results = [] for block in response.content: if block.type == \"tool_use\": output = run_bash(block.input[\"command\"]) results.append({ \"type\": \"tool_result\", \"tool_use_id\": block.id, \"content\": output, }) messages.append({\"role\": \"user\", \"content\": results}) (from learn-claude-code)\nThis is the core loop of an agent. All the “intelligence” comes from the same place: the LLM’s internal reasoning as it predicts the next token. The harness simply feeds the tool response back in, so that this reasoning process can continue.\nOf course, from an engineering and production standpoint, the agent loop is still this while True loop at heart — but it needs a substantial defensive layer to build resilience.\nAccording to unofficial analysis of Claude Code’s source, queryLoop (src/query.ts:241) wraps the core loop with over 1,700 lines of defensive machinery, including:\nStreaming handling\nPermission checks\nTool format processing and validation\nError recovery\n…\nContext Management Over the past six-plus months, the term “Context Engineering” has started appearing with increasing frequency. It isn’t about simple prompt tuning — it addresses a more fundamental tension: the contradiction between ever-accumulating messages and the LLM’s finite context window and attention budget. In a long-running scenario, continuously appending messages eventually leads to:\nContext overflow: hitting the physical upper bound of the LLM’s context window\nContext Rot: staying within the window doesn’t mean the model can process everything effectively — too much irrelevant information can severely degrade the model’s reasoning\nHow does a well-designed harness handle context?\nContext management is not just about splicing and trimming prompts. The central principle is token cost — or more precisely, KV-cache hit rate. In other words: optimize context while preserving cache hits.\n1. Microcompact\nCleans up intermediate tool results generated during earlier rounds of tool use. Based on source-code analysis, Claude Code distinguishes two approaches:\nTime-based Microcompact: When the user returns after being away for a while, the server-side prompt cache has already expired. There is no cache to protect, so the harness directly constructs new message objects to replace old tool-result content.\nCached Microcompact (Context editing): While the cache is still alive, message content must not be replaced. Instead, the harness uses the Anthropic API’s Context editing mechanism to delete specific tool_result entries at the API level.\n2. Summary, Compact, Auto-Compact\nWhen a threshold is triggered — manually or automatically — the harness calls an LLM to summarize and condense the existing context, replacing the previous context with the result. In Claude Code, for example, the summary must include:\n// The summary must contain the following 9 sections 1. Primary Request and Intent // The user's main request and intent 2. Key Technical Concepts // Key technical concepts involved 3. Files and Code Sections // Files and code sections touched 4. Errors and fixes // Errors encountered and how they were fixed 5. Problem Solving // Problem-solving steps taken 6. All user messages // All messages from the user 7. Pending Tasks // Tasks still pending 8. Current Work // Work currently in progress 9. Optional Next Step // Suggested next step (optional) In the Anthropic Claude API, the system prompt is independent from Messages, which enables a “full summary” model — the entire message history is replaced with a summary.\nBy contrast, OpenAI’s Codex uses a layered approach of “initial context + most recent user messages (up to 20k tokens) + summary”:\n3. Offload\nUnlike compact, which is lossy compression, offload uses the file system to persist context into files for permanent storage, freeing the corresponding context-window space. The offloaded content can be loaded back on demand — this is lossless compression.\n4. Isolation\nFor processes that involve extensive tool calls and exploration, large tasks are decomposed into smaller sub-tasks handled by subagents. This keeps each sub-task’s context independent and isolated, preventing context contamination.\nThe goal of context management: find the optimal balance among information completeness × KV-cache hit rate × token cost.\nAtomic Tools Strictly speaking, what LLMs call tool use isn’t really “using tools.” The model itself is merely outputting tool-call text in a special format; the actual tool execution is carried out by the harness, which parses that text and translates it into real calls against the environment.\nBut more tools is not better. An excess of tools not only reduces call accuracy but also eats up precious context, causing noticeable Context Rot. For an agent, what really matters isn’t the number of tools — it’s whether the tools possess:\nAtomicity\nOrthogonality\nCompleteness\nComposability\nPut another way, the tool layer should be “primitivized” as much as possible — each tool does exactly one well-defined thing, but these tools can be freely composed to build complex behaviors.\nWhether it’s Manus’s three-tier tool design or Anthropic’s proposed tool-search-tool and programmatic tool calling, the core question behind both is the same:\nFor an agent / LLM, what counts as a “native tool”?\nA native tool isn’t a highly specialized interface that engineers wrap for business convenience. It’s a tool form that the model is more familiar with, finds easier to understand, and can invoke more reliably. You could also call them agent-oriented tools.\nbash is all you need\nLow-level capabilities like Bash, file reads and writes, text editing, and regex processing are the most common operational interfaces in the Linux and software-engineering world. They appear with extremely high frequency in training data, which also makes them far more likely to fall within the training distribution of agentic RL. By contrast, those hand-crafted custom tools — with ambiguous semantics and wildly inconsistent interface styles — often impose a significantly heavier burden on the agent’s understanding and tool-selection process.\nSo, rather than giving an agent hundreds of highly specialized third-party plugins, it’s better to prioritize a small set of stable, low-level, composable foundational capabilities.\n(CRUD for agents?)\nFile System In an agent system, the file system means far more than just “saving files.”\nOn one hand, the file system can persist information that would otherwise live only inside the context window — intermediate results, plans, drafts, observation notes, and working memory (i.e., the context offload discussed earlier).\nOn the other hand, the file system itself is one of the most natural execution environments. Especially in coding-agent scenarios, code, configuration, logs, test output, scripts, and documentation are all organized around files to begin with. Rather than inventing yet another set of memory interfaces or tool abstractions, providing basic operations like read, write, and edit aligns better with how agents actually work — and is closer to real OS-level workflows.\nFor these reasons, the file system in a harness typically plays at least three critical roles:\nWorking Memory: stores intermediate state, task plans, incremental conclusions, and temporary artifacts\nExecution Environment: hosts code, scripts, configuration, inputs/outputs, and run results\nIsolation Boundary / Sandbox: constrains the agent’s operational scope and permissions through controlled directories, virtual file systems, or sandbox environments\nThe paper Everything is Context: Agentic File System Abstraction for Context Engineering borrows the Unix philosophy of “Everything is a file” and applies it to the agent’s file system.\nSubagent The subagent began as a context isolation mechanism. It has since evolved into a fundamental unit of task scheduling and multi-agent coordination.\nIn many tasks, the main agent’s context is an extremely precious resource. Operations like searching a large codebase, running tests, debugging errors, or performing long-running analysis tend to generate enormous amounts of procedural noise. If all those intermediate steps are stuffed into the main conversation, they not only pollute the primary context but also degrade the quality of subsequent reasoning and decision-making.\nThe natural solution, then, is: spawn a subagent and let it handle the “dirty work” in an isolated context.\nThe main conversation doesn’t need to consume the full process — it only needs to receive a summarized result. From the main agent’s perspective, it simply called a higher-order tool — an AgentTool — and then waits for (or later receives) a block of summary text, which it writes back into its own context as a tool_result. In other words, introducing subagents does not alter the structure of the core queryLoop.\nZooming out further, the subagent is also a task-scheduling mechanism.\nThis scheduling generally takes two forms:\nSynchronous subagent: called like a regular tool, blocking until the result arrives\nAsynchronous subagent: runs as a background task; the main conversation continues forward, and the result is collected later\nOnce you enter asynchronous mode, the system must maintain a global task registry (e.g., AppState.tasks in Claude Code), running in the background, and inject completed results back into the main agent’s agent loop as a message.\nWhen multiple background subagents run concurrently, the subagent’s value is no longer just context isolation — it also becomes the starting point for multi-agent orchestration.\nHooks To keep the agent loop lean, new capabilities should not keep piling into the loop itself.\nOtherwise, a cycle that was originally just four steps — “execute tools → capture results → append to context → call the LLM again” — quickly gets dragged into a giant if-else state machine by all manner of business logic.\nThe point of hooks is to move that complexity outside the loop.\nThrough events like PreToolUse, PostToolUse, PreCompact, SubagentStop, and others, the harness can capture state at key inflection points, inject context, intercept risks, and validate results — without requiring the loop itself to understand every rule.\nSo the essence of hooks isn’t “a few more extension points.” It’s separating mechanism from policy:\nThe loop is responsible for advancing execution\nHooks are responsible for exerting control\nOn the surface, hooks just give you a list of event names. But more importantly, these events define the critical boundaries within an agent system.\nOnce the boundaries are clear, many capabilities no longer require direct modification of the loop itself — they can be injected as external policies:\nSecurity policies can hook around tool calls\nMemory governance can hook around compact operations\nTask orchestration can hook onto the subagent lifecycle\n…\nBoundary Components Beyond the six core components discussed above, there are a handful of concepts that come up often in conversation. Not every one of them is essential, but understanding where they sit helps you avoid over-engineering.\nCheckpointing / Recovery\nFor a long-running agent, error recovery and state checkpointing genuinely matter. But from the harness’s perspective, checkpointing is more of a cross-cutting capability that spans multiple components: the file system handles persistence, hooks trigger saves at key milestones, and the agent loop resumes from the breakpoint. It’s hard to isolate checkpointing as a standalone “component” — it’s really the emergent result of several core components working together.\nPlanner / Todo-list\nRemember in early 2026, Claude Code dropped its built-in todo-list tool. The reason was straightforward: the reasoning capability of the new model generation had become strong enough that an explicit, manually maintained todo list was no longer necessary. This is a perfect echo of The Bitter Lesson — the planning module you write today is quite likely the first auxiliary component to be ripped out tomorrow. If you absolutely must build one, make sure it can be cleanly detached rather than deeply coupled to the loop.\nSkills\nSkills are essentially a composite built from core components: a command registry, on-demand message injection, and a pile of markdown files. They don’t belong to the harness’s lower layer — they sit in the application layer above it.\nMCP / Plugins\nMCP is a protocol layer, not part of the harness itself. Supporting MCP is certainly a plus, but what it solves is “how to expose external resources,” not “what core capabilities a harness should have.”\nMemory\nMemory is undeniably important, but as of today the industry hasn’t converged on a canonical form. Whether you look at OpenClaw or Claude Code, the prevailing approach is a lightweight memory scheme based on markdown files. This “files-as-memory” approach may seem crude, but it aligns perfectly with the harness’s minimalist philosophy — instead of building an elaborate memory database, just let the agent manage its own long-term state through the file interface it already knows best.\nAgent Team and Multi-agent\nWhen you scale out to multiple agents, the harness components inside each agent stay exactly the same — the same agent loop, the same context management, the same atomic tools. The only new addition is the connection mechanism between agents.\nIf your harness is well-designed for a single agent, 90% of the infrastructure can be reused directly when you extend to a team. The difference between a subagent and an agent team member can be summarized in the table below:\nDimension Subagent Agent Team Member Lifecycle Task complete → destroyed Survives across tasks, may run for hours Identity Anonymous (only a task description) Has a role identity (“reviewer”, “coder”, “tester”) State Stateless, vanishes after returning results Has persistent state (its own context history, memory files) Spawn method Spawned by the main agent Pre-defined or dynamically spawned From the harness’s point of view, a multi-agent system requires a few additional things:\nAgent registry: who is running, what is their role, current status\nLifecycle hooks: on_spawn, on_idle, on_terminate\nGraceful shutdown and resource cleanup: this is the most overlooked — and most critical — piece\nA subagent is unidirectional (main agent dispatches a task → subagent returns a result), whereas an agent team needs bidirectional or even multi-directional communication. But the design of that communication should still follow the principle of “fit the LLM’s native habits”: a shared file system is, itself, the most natural communication channel.\nHarness Engineering = Bigger Loop Due to space constraints, I won’t go deep into harness engineering here. Borrowing the perspective from What Harness Engineering Discusses: A Unified Framework of Three Scaling Dimensions, the core keyword of harness engineering is scalability — extending across time, expanding across space, and evolving interaction paradigms.\nFrom my perspective, I personally consider harness engineering and compound engineering to be synonyms. The real value lies in: how do you make an agent run better and better over time?\nThe prerequisite for all of this is a usable harness plus a bigger loop.\nA complete agent system has two loops:\nInner loop (agent loop): the “tool call → result capture → context append → next decision” cycle within a single task. This is the primary focus of this article.\nOuter loop (evolution loop): the “execute → evaluate → feedback → improve” cycle across tasks. This is the primary focus of harness engineering.\nYou can see these ideas at play in Andrej Karpathy’s autoresearch and in Ralph Loop.\nThe outer loop doesn’t need a separate architecture — it’s the inner loop’s core components, reused on a larger time scale. Hooks provide observation points, the file system provides persistent memory, subagents provide parallel experimentation capability, and context management ensures runs don’t spiral out of control.\nDesign Principles for a Good Harness 1. Minimality\nIf a component isn’t strictly necessary, don’t add it. For every component, ask yourself:\n“If I remove this, does the agent stop working entirely — or does it just run a little less well?”\nThe former is core. The latter is auxiliary.\n2. Removability\nAuxiliary components must be cleanly removable, not entangled with core components.\nThis is The Bitter Lesson applied to engineering: whatever you write today,\nmust be easy for your future self, six months later, to delete cleanly.\n3. Model Agnosticism\nThe harness should not bake in special-case adaptations for any particular model’s quirks.\nA good harness: swap the model, change the API call, and it runs.\n(Prompt optimization for a specific model is a different matter, of course.)\n4. Evolution-Ready\nThe ultimate goal of a harness is not “run a task,”\nbut “provide an environment where the agent gets better over time.”\nEvery component’s design should answer:\nHow does it contribute data, feedback, or tunable parameters to the outer loop?\nConclusion An agent harness does not get better as it gets more complex. Quite the opposite — its value lies in restraint.\nThe history of agents from 2023 to 2026 is, at its core, a history of human-designed control logic being continuously outcompeted by model capabilities. The real mission of a harness is to provide the model with a stable, safe, evolvable runtime environment — and then get out of the way, handing the decisions back to the model itself.\nFurther Reading Anthropic: Effective harnesses for long-running agents\nlearn-claude-code\nOpenAI: Harness engineering: leveraging Codex in an agent-first world\nLearning the Bitter Lesson\nAgent Frameworks, Runtimes, and Harnesses - oh my!\nHarness design for long-running application development\nDifference Between Agent Harnesses \u0026 Agent Frameworks\nHarness Engineering Is Cybernetics\nThe importance of Agent Harness in 2026\nThe Claude Code SDK and the Birth of HaaS (Harness as a Service)\nAgent design lessons from Claude Code\nAgent Harness is the Real Product\nHarness capabilities\nAgents 2.0: From Shallow Loops to Deep Agents\n",
-  "wordCount" : "3683",
+  "wordCount" : "3687",
   "inLanguage": "en",
-  "image": "https://niraya666.github.io/img/og-cover.png","datePublished": "2026-04-08T21:03:00+08:00",
-  "dateModified": "2026-04-08T21:03:00+08:00",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-04-08T21:03:00+08:00",
+  "dateModified": "2026-06-19T18:00:00+08:00",
   "author":{
     "@type": "Person",
     "name": "LZY"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/"
+    "@id": "http://localhost:1313/en/posts/agent-harness-minimalist-design-guide-2026/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -165,7 +157,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -189,7 +181,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
                 </button>
                 <ul class="lang-switch"><li>|</li>
                     <li>
-                        <a href="https://niraya666.github.io/" title="中文"
+                        <a href="http://localhost:1313/" title="中文"
                             aria-label="中文">中文</a>
                     </li>
                 </ul>
@@ -197,27 +189,27 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/en/posts/" title="AI">
+                <a href="http://localhost:1313/en/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/en/archives" title="Archive">
+                <a href="http://localhost:1313/en/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/en/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/en/tags/" title="Tags">
+                <a href="http://localhost:1313/en/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/en/about/" title="About">
+                <a href="http://localhost:1313/en/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -228,11 +220,19 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/en/posts/">AI Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/en/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/en/posts/">AI Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026
     </h1>
-    <div class="post-meta"><span title='2026-04-08 21:03:00 +0800 CST'>April 8, 2026</span>&nbsp;·&nbsp;18 min&nbsp;·&nbsp;LZY
+    <div class="post-description">
+      A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability.
+    </div>
+    <div class="post-meta"><span title='2026-04-08 21:03:00 +0800 CST'>April 8, 2026</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;LZY&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="http://localhost:1313/posts/agent-harness-design/">中文</a>
+    </li>
+</ul>
 
 </div>
   </header> <div class="toc">
@@ -646,12 +646,12 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/en/tags/agent-infra/">Agent-Infra</a></li>
-      <li><a href="https://niraya666.github.io/en/tags/agent-harness/">Agent-Harness</a></li>
-      <li><a href="https://niraya666.github.io/en/tags/agent/">Agent</a></li>
+      <li><a href="http://localhost:1313/en/tags/agent-infra/">Agent-Infra</a></li>
+      <li><a href="http://localhost:1313/en/tags/agent-harness/">Agent-Harness</a></li>
+      <li><a href="http://localhost:1313/en/tags/agent/">Agent</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/">
+  <a class="prev" href="http://localhost:1313/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/">
     <span class="title">« Prev</span>
     <br>
     <span>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns</span>
@@ -662,7 +662,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on x"
-            href="https://x.com/intent/tweet/?text=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f&amp;hashtags=Agent-Infra%2cAgent-Harness%2cAgent">
+            href="https://x.com/intent/tweet/?text=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f&amp;hashtags=Agent-Infra%2cAgent-Harness%2cAgent">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -671,7 +671,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f&amp;title=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;summary=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;source=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f&amp;title=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;summary=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;source=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -680,7 +680,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f&title=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f&title=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -689,7 +689,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -698,7 +698,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on whatsapp"
-            href="https://api.whatsapp.com/send?text=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026%20-%20https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
+            href="https://api.whatsapp.com/send?text=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026%20-%20http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -707,7 +707,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on telegram"
-            href="https://telegram.me/share/url?text=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
+            href="https://telegram.me/share/url?text=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&amp;url=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -716,7 +716,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share On Agent Harness: A Minimalist Design Guide for AI Agent Harnesses in 2026 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
+            href="https://news.ycombinator.com/submitlink?t=On%20Agent%20Harness%3a%20A%20Minimalist%20Design%20Guide%20for%20AI%20Agent%20Harnesses%20in%202026&u=http%3a%2f%2flocalhost%3a1313%2fen%2fposts%2fagent-harness-minimalist-design-guide-2026%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -760,7 +760,7 @@ In this article, I&rsquo;m not going to dwell on the grand vision of harness eng
     </main>
     
 <footer class="footer">
-    <span>&copy; 2026 <a href="https://niraya666.github.io/en/">LZY Blog</a></span>
+    <span>&copy; 2026 <a href="http://localhost:1313/en/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

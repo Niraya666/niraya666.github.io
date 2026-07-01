@@ -1,148 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ | LZY Blog</title>
 <meta name="keywords" content="RAG-Toolkits">
-<meta name="description" content="
-现阶段的RAG是个缝合怪。
-
-写在开头
-如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？
-现阶段RAG中存在的问题
-先细数一下当前主流RAG架构中，所存在的普遍问题：
-
-
-依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。
-
-
-不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX&hellip; 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。
-
-
-图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。
-
-
-需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。
-
-
-在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。
-为什么现阶段End-to-End的RAG是可行的？
-端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。
-为什么这个方案是可行的？
-
-
-VLM的VQA能力强于OCR：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。
-
-
-Late Interaction模型的出现：以ColBERT为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而ColBERT则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。
-
-
-模型能力和基础设施的成熟：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。
-
-
-Copali系列模型
-Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考前作）
-
-
-选用 PaliGemma-3B 作为基础模型（以SigLIP作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。
-
-
-文档侧（构建索引时）：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为每个图像块生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。
-查询侧（检索）：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的每个token生成一个向量
-在检索时，使用类似ColBERT的MaxSim操作来计算查询与文档页面的相关性分数
-训练阶段，在vidore/colpali_train_set 118K个query-页面对上做对比学习获得。
-
-
-同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为ViDoRe (Visual Document Retrieval Benchmark) 的综合性评测基准。
-除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的ColQwen2模型
-
-  
-      
-          Model
-          Score on ViDoRe 🏆
-          License
-          Comments
-      
-  
-  
-      
-          vidore/colpali
-          81.3
-          Gemma
-          • Based on google/paligemma-3b-mix-448.• Checkpoint used in the ColPali paper.
-      
-      
-          vidore/colpali-v1.1
-          81.5
-          Gemma
-          • Based on google/paligemma-3b-mix-448.• Fix right padding for queries.
-      
-      
-          vidore/colpali-v1.2
-          83.9
-          Gemma
-          • Similar to vidore/colpali-v1.1.
-      
-      
-          vidore/colpali-v1.3
-          84.8
-          Gemma
-          • Similar to vidore/colpali-v1.2.• Trained with a larger effective batch size of 256 batch size for 3 epochs.
-      
-      
-          vidore/colqwen2-v0.1
-          87.3
-          Apache 2.0
-          • Based on Qwen/Qwen2-VL-2B-Instruct.• Supports dynamic resolution.• Trained using 768 image patches per page and an effective batch size of 32.
-      
-      
-          vidore/colqwen2-v1.0
-          89.3
-          Apache 2.0
-          • Similar to vidore/colqwen2-v0.1, but trained with more powerful GPUs and with a larger effective batch size (256).
-      
-      
-          vidore/colqwen2.5-v0.1
-          88.8
-          Apache 2.0
-          • Based on Qwen/Qwen2 5-VL-3B-Instruct• Supports dynamic resolution.• Trained using 768 image patches per page and an effective batch size of 32.
-      
-      
-          vidore/colqwen2.5-v0.2
-          89.4
-          Apache 2.0
-          • Similar to vidore/colqwen2.5-v0.1, but trained with slightly different hyper parameters
-      
-      
-          vidore/colSmol-256M
-          80.1
-          Apache 2.0
-          • Based on HuggingFaceTB/SmolVLM-256M-Instruct.
-      
-      
-          vidore/colSmol-500M
-          82.3
-          Apache 2.0
-          • Based on HuggingFaceTB/SmolVLM-500M-Instruct.
-      
-  
-
-（From colpali）">
+<meta name="description" content="讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。">
 <meta name="author" content="LZY">
-<link rel="canonical" href="https://niraya666.github.io/posts/rag-toolkits-copali/">
+<link rel="canonical" href="http://localhost:1313/posts/rag-toolkits-copali/">
 <meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/posts/rag-toolkits-copali/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/posts/rag-toolkits-copali/">
 <noscript>
     <style>
         #theme-toggle,
@@ -195,264 +72,18 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
           gtag('config', 'G-9KEC0300HT');
         }
       </script><meta property="og:title" content="RAG工具箱：有了Copali系列模型，我们还需要OCR吗？" />
-<meta property="og:description" content="
-现阶段的RAG是个缝合怪。
-
-写在开头
-如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？
-现阶段RAG中存在的问题
-先细数一下当前主流RAG架构中，所存在的普遍问题：
-
-
-依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。
-
-
-不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX&hellip; 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。
-
-
-图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。
-
-
-需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。
-
-
-在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。
-为什么现阶段End-to-End的RAG是可行的？
-端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。
-为什么这个方案是可行的？
-
-
-VLM的VQA能力强于OCR：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。
-
-
-Late Interaction模型的出现：以ColBERT为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而ColBERT则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。
-
-
-模型能力和基础设施的成熟：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。
-
-
-Copali系列模型
-Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考前作）
-
-
-选用 PaliGemma-3B 作为基础模型（以SigLIP作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。
-
-
-文档侧（构建索引时）：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为每个图像块生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。
-查询侧（检索）：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的每个token生成一个向量
-在检索时，使用类似ColBERT的MaxSim操作来计算查询与文档页面的相关性分数
-训练阶段，在vidore/colpali_train_set 118K个query-页面对上做对比学习获得。
-
-
-同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为ViDoRe (Visual Document Retrieval Benchmark) 的综合性评测基准。
-除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的ColQwen2模型
-
-  
-      
-          Model
-          Score on ViDoRe 🏆
-          License
-          Comments
-      
-  
-  
-      
-          vidore/colpali
-          81.3
-          Gemma
-          • Based on google/paligemma-3b-mix-448.• Checkpoint used in the ColPali paper.
-      
-      
-          vidore/colpali-v1.1
-          81.5
-          Gemma
-          • Based on google/paligemma-3b-mix-448.• Fix right padding for queries.
-      
-      
-          vidore/colpali-v1.2
-          83.9
-          Gemma
-          • Similar to vidore/colpali-v1.1.
-      
-      
-          vidore/colpali-v1.3
-          84.8
-          Gemma
-          • Similar to vidore/colpali-v1.2.• Trained with a larger effective batch size of 256 batch size for 3 epochs.
-      
-      
-          vidore/colqwen2-v0.1
-          87.3
-          Apache 2.0
-          • Based on Qwen/Qwen2-VL-2B-Instruct.• Supports dynamic resolution.• Trained using 768 image patches per page and an effective batch size of 32.
-      
-      
-          vidore/colqwen2-v1.0
-          89.3
-          Apache 2.0
-          • Similar to vidore/colqwen2-v0.1, but trained with more powerful GPUs and with a larger effective batch size (256).
-      
-      
-          vidore/colqwen2.5-v0.1
-          88.8
-          Apache 2.0
-          • Based on Qwen/Qwen2 5-VL-3B-Instruct• Supports dynamic resolution.• Trained using 768 image patches per page and an effective batch size of 32.
-      
-      
-          vidore/colqwen2.5-v0.2
-          89.4
-          Apache 2.0
-          • Similar to vidore/colqwen2.5-v0.1, but trained with slightly different hyper parameters
-      
-      
-          vidore/colSmol-256M
-          80.1
-          Apache 2.0
-          • Based on HuggingFaceTB/SmolVLM-256M-Instruct.
-      
-      
-          vidore/colSmol-500M
-          82.3
-          Apache 2.0
-          • Based on HuggingFaceTB/SmolVLM-500M-Instruct.
-      
-  
-
-（From colpali）" />
+<meta property="og:description" content="讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/rag-toolkits-copali/" />
-<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/rag-toolkits-copali/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-09-22T18:56:00+08:00" />
-<meta property="article:modified_time" content="2025-09-22T18:56:00+08:00" />
+<meta property="article:modified_time" content="2026-06-19T18:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
 <meta name="twitter:title" content="RAG工具箱：有了Copali系列模型，我们还需要OCR吗？"/>
-<meta name="twitter:description" content="
-现阶段的RAG是个缝合怪。
-
-写在开头
-如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？
-现阶段RAG中存在的问题
-先细数一下当前主流RAG架构中，所存在的普遍问题：
-
-
-依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。
-
-
-不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX&hellip; 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。
-
-
-图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。
-
-
-需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。
-
-
-在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。
-为什么现阶段End-to-End的RAG是可行的？
-端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。
-为什么这个方案是可行的？
-
-
-VLM的VQA能力强于OCR：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。
-
-
-Late Interaction模型的出现：以ColBERT为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而ColBERT则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。
-
-
-模型能力和基础设施的成熟：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。
-
-
-Copali系列模型
-Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考前作）
-
-
-选用 PaliGemma-3B 作为基础模型（以SigLIP作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。
-
-
-文档侧（构建索引时）：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为每个图像块生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。
-查询侧（检索）：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的每个token生成一个向量
-在检索时，使用类似ColBERT的MaxSim操作来计算查询与文档页面的相关性分数
-训练阶段，在vidore/colpali_train_set 118K个query-页面对上做对比学习获得。
-
-
-同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为ViDoRe (Visual Document Retrieval Benchmark) 的综合性评测基准。
-除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的ColQwen2模型
-
-  
-      
-          Model
-          Score on ViDoRe 🏆
-          License
-          Comments
-      
-  
-  
-      
-          vidore/colpali
-          81.3
-          Gemma
-          • Based on google/paligemma-3b-mix-448.• Checkpoint used in the ColPali paper.
-      
-      
-          vidore/colpali-v1.1
-          81.5
-          Gemma
-          • Based on google/paligemma-3b-mix-448.• Fix right padding for queries.
-      
-      
-          vidore/colpali-v1.2
-          83.9
-          Gemma
-          • Similar to vidore/colpali-v1.1.
-      
-      
-          vidore/colpali-v1.3
-          84.8
-          Gemma
-          • Similar to vidore/colpali-v1.2.• Trained with a larger effective batch size of 256 batch size for 3 epochs.
-      
-      
-          vidore/colqwen2-v0.1
-          87.3
-          Apache 2.0
-          • Based on Qwen/Qwen2-VL-2B-Instruct.• Supports dynamic resolution.• Trained using 768 image patches per page and an effective batch size of 32.
-      
-      
-          vidore/colqwen2-v1.0
-          89.3
-          Apache 2.0
-          • Similar to vidore/colqwen2-v0.1, but trained with more powerful GPUs and with a larger effective batch size (256).
-      
-      
-          vidore/colqwen2.5-v0.1
-          88.8
-          Apache 2.0
-          • Based on Qwen/Qwen2 5-VL-3B-Instruct• Supports dynamic resolution.• Trained using 768 image patches per page and an effective batch size of 32.
-      
-      
-          vidore/colqwen2.5-v0.2
-          89.4
-          Apache 2.0
-          • Similar to vidore/colqwen2.5-v0.1, but trained with slightly different hyper parameters
-      
-      
-          vidore/colSmol-256M
-          80.1
-          Apache 2.0
-          • Based on HuggingFaceTB/SmolVLM-256M-Instruct.
-      
-      
-          vidore/colSmol-500M
-          82.3
-          Apache 2.0
-          • Based on HuggingFaceTB/SmolVLM-500M-Instruct.
-      
-  
-
-（From colpali）"/>
+<meta name="twitter:description" content="讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。"/>
 
 
 <script type="application/ld+json">
@@ -464,13 +95,13 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "RAG工具箱：有了Copali系列模型，我们还需要OCR吗？",
-      "item": "https://niraya666.github.io/posts/rag-toolkits-copali/"
+      "item": "http://localhost:1313/posts/rag-toolkits-copali/"
     }
   ]
 }
@@ -481,29 +112,29 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
   "@type": "BlogPosting",
   "headline": "RAG工具箱：有了Copali系列模型，我们还需要OCR吗？",
   "name": "RAG工具箱：有了Copali系列模型，我们还需要OCR吗？",
-  "description": " 现阶段的RAG是个缝合怪。\n写在开头 如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？\n现阶段RAG中存在的问题 先细数一下当前主流RAG架构中，所存在的普遍问题：\n依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。\n不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX\u0026hellip; 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。\n图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。\n需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。\n在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。\n为什么现阶段End-to-End的RAG是可行的？ 端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。\n为什么这个方案是可行的？\nVLM的VQA能力强于OCR：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。\nLate Interaction模型的出现：以ColBERT为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而ColBERT则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。\n模型能力和基础设施的成熟：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。\nCopali系列模型 Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考前作）\n选用 PaliGemma-3B 作为基础模型（以SigLIP作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。\n文档侧（构建索引时）：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为每个图像块生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。\n查询侧（检索）：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的每个token生成一个向量\n在检索时，使用类似ColBERT的MaxSim操作来计算查询与文档页面的相关性分数\n训练阶段，在vidore/colpali_train_set 118K个query-页面对上做对比学习获得。\n同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为ViDoRe (Visual Document Retrieval Benchmark) 的综合性评测基准。\n除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的ColQwen2模型\nModel Score on ViDoRe 🏆 License Comments vidore/colpali 81.3 Gemma • Based on google/paligemma-3b-mix-448.\n• Checkpoint used in the ColPali paper. vidore/colpali-v1.1 81.5 Gemma • Based on google/paligemma-3b-mix-448.\n• Fix right padding for queries. vidore/colpali-v1.2 83.9 Gemma • Similar to vidore/colpali-v1.1. vidore/colpali-v1.3 84.8 Gemma • Similar to vidore/colpali-v1.2.\n• Trained with a larger effective batch size of 256 batch size for 3 epochs. vidore/colqwen2-v0.1 87.3 Apache 2.0 • Based on Qwen/Qwen2-VL-2B-Instruct.\n• Supports dynamic resolution.\n• Trained using 768 image patches per page and an effective batch size of 32. vidore/colqwen2-v1.0 89.3 Apache 2.0 • Similar to vidore/colqwen2-v0.1, but trained with more powerful GPUs and with a larger effective batch size (256). vidore/colqwen2.5-v0.1 88.8 Apache 2.0 • Based on Qwen/Qwen2 5-VL-3B-Instruct\n• Supports dynamic resolution.\n• Trained using 768 image patches per page and an effective batch size of 32. vidore/colqwen2.5-v0.2 89.4 Apache 2.0 • Similar to vidore/colqwen2.5-v0.1, but trained with slightly different hyper parameters vidore/colSmol-256M 80.1 Apache 2.0 • Based on HuggingFaceTB/SmolVLM-256M-Instruct. vidore/colSmol-500M 82.3 Apache 2.0 • Based on HuggingFaceTB/SmolVLM-500M-Instruct. （From colpali）\n",
+  "description": "讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。",
   "keywords": [
     "RAG-Toolkits"
   ],
   "articleBody": " 现阶段的RAG是个缝合怪。\n写在开头 如果回顾RAG那短暂的历史，其最初主要是为了解决模型知识的动态更新和降低模型幻觉而设计的，核心假设是知识存在于离散的、纯文本的段落中。然而，随着多模态大模型能力的提升，依然沿用着这种“先解析、再分块、后嵌入”的旧思想来处理蕴含丰富视觉信息的文档，这套当初的设计放在现在就显得有些“刻舟求剑”，甚至成了一种历史包袱。这便引出了我们今天要探讨的核心问题：为了让模型“读懂”图文并茂的复杂文档，我们真的需要如此繁琐的预处理吗？\n现阶段RAG中存在的问题 先细数一下当前主流RAG架构中，所存在的普遍问题：\n依赖专门的OCR模型，layout分析模型对文档进行信息提取：一个典型的PDF文档处理流程可能需要 layout分析模型，OCR模型，表格识别模型等。多模型则增加了系统的复杂度和延迟，而且每一步都存在一定的信息损失。\n不同文件格式需要不同的处理方式：PDF、Word、Markdown、PPTX… 每一种文件类型都需要一套不同的解析策略。这导致解析系统变得越来越臃肿，维护成本上升。\n图像信息的丢失：传统的RAG几乎是纯文本的。当遇到图像、复杂表格、流程图时，信息丢失是必然的。即便引入多模态模型做Image-Captioning，将图像转译成一段描述性文字，其信息的精确度和完整度也远远无法与原始图像相比。\n需要针对性调整分块策略和索引设计：往往需要为不同类型的文档、不同类型的场景，设计分块策略和索引结构。是按固定大小分块，还是按章节分块？对于一篇论文和一份产品手册，最佳策略显然不同。这种高度定制化的设计，使得RAG系统难以扩展和迁移，架构过于复杂。\n在前作中，曾展望过VLM在RAG领域的巨大潜力，特别是构建一个End-to-End的RAG系统。这个设想的目标，正是为了彻底推翻上述复杂的“预处理”，让信息处理回归简洁和高效。\n为什么现阶段End-to-End的RAG是可行的？ 端到端的RAG，其核心思想是“所见即所得”。不再费力地将文档“翻译”成模型能理解的纯文本格式，而是直接将文档的“视觉形态”——即文档页面图像，直接输入给VLM。\n为什么这个方案是可行的？\nVLM的VQA能力强于OCR：必须承认，在复杂文档的理解上，VLM的能力强于其OCR能力的。与其在OCR这条路上“象牙里雕花”，将复杂文档转换成纯文本形式， 不如直接将文档页面视为一张图片，利用VLM的VQA能力直接在图像上进行信息定位和回答，这不仅跳过了中间繁琐的步骤，更从根本上避免了信息在多次转换中的损失。\nLate Interaction模型的出现：以ColBERT为代表的Late Interaction模型，提供全新的思路。传统的向量检索是将整个文本块压缩成一个单一的向量，这无疑会丢失大量细节。而ColBERT则是为文本块中的每个Token都生成一个向量。检索时，则通过MaxSim操作计算相关性分数。 而这个思想可以迁移到视觉领域：将图像中的每个Patch作为向量化的基本单位，而不是对整张图片构建索引（CLIP）。 同时文档的每一页天然就是一个分块后VLM的输入单元，省去了设计Chunking策略的步骤。\n模型能力和基础设施的成熟：主流的VLM已经支持多张高分辨率图片作为输入，并且拥有足够长的上下文窗口来处理整个文档。主流的LLM推理框架也支持了多图像输入，这也为端到端的文档级理解提供了基础。\nCopali系列模型 Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开山之作。其核心思想是ColBERT在图像数据上的扩展。（ColBERT相关内容可参考前作）\n选用 PaliGemma-3B 作为基础模型（以SigLIP作为vision-encoder，通过一个线性层将图像patch映射至LLM，即Gemma-2B的嵌入空间），类似ColBERT，在LLM的输出后再增加一个投影层，从而实现多向量表示。\n文档侧（构建索引时）：将一张文档页面图像输入到ColPali中。直接通过视觉编码器将其转换为一系列图像patch（1024），这些嵌入随后被送入LLM，最终通过一个投影层，为每个图像块生成一个128维向量。这样，一页文档就被表示为一个bag-of-embeddings。\n查询侧（检索）：用户输入的文本查询（query）被送入模型的语言模型部分，同样为查询中的每个token生成一个向量\n在检索时，使用类似ColBERT的MaxSim操作来计算查询与文档页面的相关性分数\n训练阶段，在vidore/colpali_train_set 118K个query-页面对上做对比学习获得。\n同时为了系统性地评估富视觉文档的检索能力，作者创建了一个名为ViDoRe (Visual Document Retrieval Benchmark) 的综合性评测基准。\n除了以PaliGemma 为based 的模型外，还有将基础模型换成Qwen2-VL 和Qwen2.5-VL 的ColQwen2模型\nModel Score on ViDoRe 🏆 License Comments vidore/colpali 81.3 Gemma • Based on google/paligemma-3b-mix-448.\n• Checkpoint used in the ColPali paper. vidore/colpali-v1.1 81.5 Gemma • Based on google/paligemma-3b-mix-448.\n• Fix right padding for queries. vidore/colpali-v1.2 83.9 Gemma • Similar to vidore/colpali-v1.1. vidore/colpali-v1.3 84.8 Gemma • Similar to vidore/colpali-v1.2.\n• Trained with a larger effective batch size of 256 batch size for 3 epochs. vidore/colqwen2-v0.1 87.3 Apache 2.0 • Based on Qwen/Qwen2-VL-2B-Instruct.\n• Supports dynamic resolution.\n• Trained using 768 image patches per page and an effective batch size of 32. vidore/colqwen2-v1.0 89.3 Apache 2.0 • Similar to vidore/colqwen2-v0.1, but trained with more powerful GPUs and with a larger effective batch size (256). vidore/colqwen2.5-v0.1 88.8 Apache 2.0 • Based on Qwen/Qwen2 5-VL-3B-Instruct\n• Supports dynamic resolution.\n• Trained using 768 image patches per page and an effective batch size of 32. vidore/colqwen2.5-v0.2 89.4 Apache 2.0 • Similar to vidore/colqwen2.5-v0.1, but trained with slightly different hyper parameters vidore/colSmol-256M 80.1 Apache 2.0 • Based on HuggingFaceTB/SmolVLM-256M-Instruct. vidore/colSmol-500M 82.3 Apache 2.0 • Based on HuggingFaceTB/SmolVLM-500M-Instruct. （From colpali）\n那么同样思路，将基座模型换成Qwen-Omni 的ColQwen-Omni 则能够实现不止是图像维度的召回，还支持视频音频的召回。\nMulti-model Reranker 一个很直观的想法，借鉴传统RAG召回部分的做法，引入一个reranker（cross-encoder），在粗排后做一次精排以提升召回的相关性。这里推荐两个使用过的multi-model reranker。\njina-reranker-m0 jina-reranker-m0基于 Qwen2-VL-2B 构建，从经典的cross-encoder架构转变为VLM，利用VLM预训练的vision-encoder和投影层，LoRA微调了其LLM，并训练了一个 MLP 来生成衡量查询-文档相关性的排序 logits。\n支持32K上下文context（图像+text）支持不同类型任务（text2text，text2image， image2text）\nMonoQwen2-VL MonoQwen2-VL-v0.1 基于 Qwen2-VL-2B通过LoRA实现的multi-model reranker；\n训练时，采用MonoT5目标函数，即模型通过生成“True”或“False”来判断图像-查询对的相关性；采用ColPali 训练集，\n在推理时，将图像和查询一起输入模型，模型生成“True”或“False”，通过比较两个 token 的 logits，计算图像与查询的相关性得分，根据得分对候选图像进行重排序；\nimport torch from PIL import Image from transformers import AutoProcessor, Qwen2VLForConditionalGeneration # Load processor and model processor = AutoProcessor.from_pretrained(\"Qwen/Qwen2-VL-2B-Instruct\") model = Qwen2VLForConditionalGeneration.from_pretrained( \"lightonai/MonoQwen2-VL-v0.1\", device_map=\"auto\", # attn_implementation=\"flash_attention_2\", # torch_dtype=torch.bfloat16, ) # Define query and load image query = \"What is ColPali?\" image_path = \"your/path/to/image.png\" image = Image.open(image_path) # Construct the prompt and prepare input prompt = ( \"Assert the relevance of the previous image document to the following query, \" \"answer True or False. The query is: {query}\" ).format(query=query) messages = [ { \"role\": \"user\", \"content\": [ {\"type\": \"image\", \"image\": image}, {\"type\": \"text\", \"text\": prompt}, ], } ] # Apply chat template and tokenize text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True) inputs = processor(text=text, images=image, return_tensors=\"pt\").to(\"cuda\") # Run inference to obtain logits with torch.no_grad(): outputs = model(**inputs) logits_for_last_token = outputs.logits[:, -1, :] # Convert tokens and calculate relevance score true_token_id = processor.tokenizer.convert_tokens_to_ids(\"True\") false_token_id = processor.tokenizer.convert_tokens_to_ids(\"False\") relevance_score = torch.softmax(logits_for_last_token[:, [true_token_id, false_token_id]], dim=-1) # Extract and display probabilities true_prob = relevance_score[0, 0].item() false_prob = relevance_score[0, 1].item() print(f\"True probability: {true_prob:.4f}, False probability: {false_prob:.4f}\") 基于Colpali模型的MM-RAG实例 推荐几个hands-on 例子\nHuggingface: Multimodal Retrieval-Augmented Generation (RAG) with Document Retrieval (ColPali) and Vision Language Models (VLMs)\nHuggingface: Multimodal RAG with ColQwen2, Reranker, and Quantized VLMs on Consumer GPUs\nweaviate: Multimodal Retrieval-Augmented Generation (RAG)\nLanceDB: Multivector Search: Efficient Document Retrieval with ColPali and LanceDB\nMilvus: Use ColPali for Multi-Modal Retrieval with Milvus\n结语 从快速的POC角度考虑，在有足够GPU显存前提下，基于Colpali的end-to-end方案，可以用更简洁的架构实现，而避免了冗长的流程中，任意一个环节的短板都会导致系统的性能下降，同时还保持了文档中完整的图像和版面的信息； 由于Colpali主要基于英文文档进行训练的，在其他语言其他场景上的泛化能力还有待观察和测试，不过开源社区也有对应的微调方案，具体可参考：Generating a dataset of queries for training and fine-tuning ColPali models on a UFO dataset。\n参考 colpali\nColPali: Efficient Document Retrieval with Vision Language Models\nhuggingface: ColPali\nhuggingface: ColQwen2\nColPali: EFFICIENT DOCUMENT RETRIEVAL WITH VISION LANGUAGE MODELS\n",
-  "wordCount" : "507",
+  "wordCount" : "3190",
   "inLanguage": "zh-cn",
-  "image": "https://niraya666.github.io/img/og-cover.png","datePublished": "2025-09-22T18:56:00+08:00",
-  "dateModified": "2025-09-22T18:56:00+08:00",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2025-09-22T18:56:00+08:00",
+  "dateModified": "2026-06-19T18:00:00+08:00",
   "author":{
     "@type": "Person",
     "name": "LZY"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/rag-toolkits-copali/"
+    "@id": "http://localhost:1313/posts/rag-toolkits-copali/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -525,7 +156,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -549,7 +180,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
                 </button>
                 <ul class="lang-switch"><li>|</li>
                     <li>
-                        <a href="https://niraya666.github.io/en/" title="English"
+                        <a href="http://localhost:1313/en/" title="English"
                             aria-label="English">English</a>
                     </li>
                 </ul>
@@ -557,52 +188,52 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/posts/" title="AI">
+                <a href="http://localhost:1313/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                <a href="http://localhost:1313/travel-map/" title="足迹">
                     <span>足迹</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                <a href="http://localhost:1313/musik/" title="Musik!">
                     <span>Musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -613,11 +244,14 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       RAG工具箱：有了Copali系列模型，我们还需要OCR吗？
     </h1>
-    <div class="post-meta"><span title='2025-09-22 18:56:00 +0800 CST'>September 22, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;LZY
+    <div class="post-description">
+      讨论 ColPali 类视觉文档检索模型如何跳过传统 OCR、文本解析与分块流程，以及端到端多模态 RAG 的适用边界。
+    </div>
+    <div class="post-meta"><span title='2025-09-22 18:56:00 +0800 CST'>September 22, 2025</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;LZY
 
 </div>
   </header> <div class="toc">
@@ -863,15 +497,15 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/rag-toolkits/">RAG-Toolkits</a></li>
+      <li><a href="http://localhost:1313/tags/rag-toolkits/">RAG-Toolkits</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+  <a class="prev" href="http://localhost:1313/posts/tongyi-deep-research-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
     <span class="title">« </span>
     <br>
     <span>Tongyi Deep Research 论文笔记</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
+  <a class="next" href="http://localhost:1313/posts/rag%E5%B7%A5%E5%85%B7%E7%AE%B1colbert/">
     <span class="title"> »</span>
     <br>
     <span>RAG工具箱：ColBERT</span>
@@ -882,7 +516,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on x"
-            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f&amp;hashtags=RAG-Toolkits">
+            href="https://x.com/intent/tweet/?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f&amp;hashtags=RAG-Toolkits">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -891,7 +525,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f&amp;title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;summary=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -900,7 +534,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f&title=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -909,7 +543,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -918,7 +552,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on whatsapp"
-            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f">
+            href="https://api.whatsapp.com/send?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -927,7 +561,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on telegram"
-            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f">
+            href="https://telegram.me/share/url?text=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -936,7 +570,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share RAG工具箱：有了Copali系列模型，我们还需要OCR吗？ on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&u=https%3a%2f%2fniraya666.github.io%2fposts%2frag-toolkits-copali%2f">
+            href="https://news.ycombinator.com/submitlink?t=RAG%e5%b7%a5%e5%85%b7%e7%ae%b1%ef%bc%9a%e6%9c%89%e4%ba%86Copali%e7%b3%bb%e5%88%97%e6%a8%a1%e5%9e%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e8%bf%98%e9%9c%80%e8%a6%81OCR%e5%90%97%ef%bc%9f&u=http%3a%2f%2flocalhost%3a1313%2fposts%2frag-toolkits-copali%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -980,7 +614,7 @@ Contextualized Late Interaction Over PaliGemma （Copali）便是该系列的开
     </main>
     
 <footer class="footer">
-    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2026 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

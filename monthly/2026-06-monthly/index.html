@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-06 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+Claude Fable 5: Anthropic 面向复杂推理、长周期 Agentic 工作和高强度分析任务发布的新一代 Claude 模型，与 Claude Mythos 5 同期推出，重点提升长任务中的规划、执行和结果校验能力。
+Dynamic Workflows in Claude Code: Claude Code 的动态工作流能力，让 Claude 在运行时生成可复用编排脚本，将大型工程任务拆成数十到数百个并行 subagents，并通过独立复核与收敛机制处理迁移、审计和复杂代码库探索。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="http://localhost:1313/monthly/2026-06-monthly/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/monthly/2026-06-monthly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="2026-06 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+Claude Fable 5: Anthropic 面向复杂推理、长周期 Agentic 工作和高强度分析任务发布的新一代 Claude 模型，与 Claude Mythos 5 同期推出，重点提升长任务中的规划、执行和结果校验能力。
+Dynamic Workflows in Claude Code: Claude Code 的动态工作流能力，让 Claude 在运行时生成可复用编排脚本，将大型工程任务拆成数十到数百个并行 subagents，并通过独立复核与收敛机制处理迁移、审计和复杂代码库探索。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/monthly/2026-06-monthly/" />
+<meta property="og:image" content="http://localhost:1313/img/monthly/2026/DF71C4D7-140A-4929-96F3-AA3D44F8FAD0_1_105_c.webp" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-06-30T20:00:00+08:00" />
+<meta property="article:modified_time" content="2026-06-30T20:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://localhost:1313/img/monthly/2026/DF71C4D7-140A-4929-96F3-AA3D44F8FAD0_1_105_c.webp" />
+<meta name="twitter:title" content="2026-06 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+Claude Fable 5: Anthropic 面向复杂推理、长周期 Agentic 工作和高强度分析任务发布的新一代 Claude 模型，与 Claude Mythos 5 同期推出，重点提升长任务中的规划、执行和结果校验能力。
+Dynamic Workflows in Claude Code: Claude Code 的动态工作流能力，让 Claude 在运行时生成可复用编排脚本，将大型工程任务拆成数十到数百个并行 subagents，并通过独立复核与收敛机制处理迁移、审计和复杂代码库探索。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "http://localhost:1313/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-06 月刊",
+      "item": "http://localhost:1313/monthly/2026-06-monthly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-06 月刊",
+  "name": "2026-06 月刊",
+  "description": "值得关注的模型和新技术 Claude Fable 5: Anthropic 面向复杂推理、长周期 Agentic 工作和高强度分析任务发布的新一代 Claude 模型，与 Claude Mythos 5 同期推出，重点提升长任务中的规划、执行和结果校验能力。\nDynamic Workflows in Claude Code: Claude Code 的动态工作流能力，让 Claude 在运行时生成可复用编排脚本，将大型工程任务拆成数十到数百个并行 subagents，并通过独立复核与收敛机制处理迁移、审计和复杂代码库探索。\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 Claude Fable 5: Anthropic 面向复杂推理、长周期 Agentic 工作和高强度分析任务发布的新一代 Claude 模型，与 Claude Mythos 5 同期推出，重点提升长任务中的规划、执行和结果校验能力。\nDynamic Workflows in Claude Code: Claude Code 的动态工作流能力，让 Claude 在运行时生成可复用编排脚本，将大型工程任务拆成数十到数百个并行 subagents，并通过独立复核与收敛机制处理迁移、审计和复杂代码库探索。\nGLM-5.2: Z.ai 面向长周期任务推出的旗舰模型，强调 1M-token 上下文、长输出和工具调用流式输出能力，目标场景是项目级工程、复杂问答和多轮 Agent 任务。\nHermes Agent - Mixture of Agents: Nous Research 在 Hermes Agent 中提供的虚拟模型提供方机制，可将多个 reference models 的分析作为私有上下文交给 aggregator 生成最终回复和工具调用，在不破坏 Hermes 正常 agent loop 的前提下引入多模型视角。\nDeepSeek DSpark: DeepSeek-V4-Pro 的推测解码版本，在同一 checkpoint 上附加 DSpark speculative decoding 模块，用于提升 DeepSeek V4 系列的推理速度和单位硬件吞吐效率。\n值得关注的开源项目 opensquilla: 面向 token efficiency 的 AI Agent 框架，围绕 memory、MCP、skills 等机制提升同等预算下的任务执行密度。\nOpenMontage: 开源 Agentic 视频生产系统，提供 12 条 pipeline、52 个工具和 500+ agent skills，可把 AI coding assistant 扩展成视频生产工作室。\nMediaCrawler: 面向小红书、抖音、快手、B 站、微博、贴吧、知乎等平台的内容与评论采集工具，适合做公开内容分析和数据采集实验。\nDeepSpec: DeepSeek 发布的 speculative decoding 训练与评测代码库，覆盖 DSpark 相关算法、实验和评估流程。\nclaude-tap: Coding Agent API 流量拦截与本地 trace viewer，支持 Claude Code、Codex CLI、Gemini CLI、Cursor CLI、OpenCode、Kimi Code、Hermes 等多种 agent harness 的调用观测。\n值得关注的研究和论文 Do Language Models Need Sleep? Offline Recurrence for Improved Online Inference arXiv:2605.26099\n论文提出一种类似“睡眠”的离线记忆巩固机制：长上下文模型不只是要保留被挤出窗口的内容，更要在内容被清空前做额外计算，将其整理成后续推理可用的内部记忆。\nOffline Recursive Memory Consolidation\n当上下文窗口满了、KV cache 即将被丢弃前，模型进入 sleep-like consolidation 阶段，对当前 chunk 进行多次 recurrent forward pass，并反复更新 SSM block 里的 fast weights；随后清空 KV cache，继续处理后续 token。\n关键点是把额外计算从在线预测时挪到离线 consolidation 时，保持 wake-time prediction 的单步延迟。实验覆盖 cellular automata、多跳图检索和数学推理任务，结果显示 sleep duration 越长，模型在需要深层推理的样本上收益越明显。\nCompiling Agentic Workflows into LLM Weights: Near-Frontier Quality at Two Orders of Magnitude Less Cost arXiv:2605.22502\n论文讨论一个很直接的问题：对于稳定、可流程化、需要长期复用的 agent workflow，是否可以不在运行时显式编排，而是在训练阶段把流程蒸馏 / 编译进小模型，让小模型自己学会 self-orchestrate。\nSubterranean Agent\n传统 surface orchestration 是“用户 -\u003e orchestrator -\u003e LLM”，每一轮都由外部 orchestrator 注入流程、路由和决策；subterranean agent 则只在训练数据生成阶段使用 orchestrator，部署时用户直接和 fine-tuned LLM 对话。\n作者在旅行预订、Zoom 支持、保险理赔等流程上生成 workflow trajectories，再用 SFT 将流程压入小模型。结果显示，在稳定、有限、模拟分布内的客服型流程中，小模型可以在对话质量上接近显式 orchestration，同时显著降低成本。\n边界\n这不等于小模型真正学会了可验证 workflow engine 的抽象执行能力。它更像是把高频、稳定、结构化的流程压缩进参数中；一旦流程开放、规则变化频繁或分布外输入增多，显式 orchestration 和可审计状态机仍然更可靠。\nAdapting the Interface, Not the Model: Runtime Harness Adaptation for Deterministic LLM Agents arXiv:2605.22166\n论文指出很多 Agent 失败并不是模型“不会想”，而是模型和环境之间的 runtime interface / harness 设计得不好。与其微调模型，不如改造 Agent 和环境之间的接口层。\nLife-Harness 冻结 LLM 参数，不修改 benchmark 环境，只从训练轨迹中总结可复用的 harness 干预规则，然后在测试任务上固定使用。\n把 Agent Adaptation 从“改模型”转向“改接口”\n传统做法会把环境规则、工具习惯、恢复策略都吸收到模型参数里；Life-Harness 则把这些东西显式放在 harness 层。作者称之为 runtime interface adaptation：模型参数固定，环境固定，评测协议固定，只改中间的 runtime harness。\n四层 Lifecycle-Aware Harness\nEnvironment Contract Layer：交互前，把稳定环境约束、工具使用规则、业务 policy、常见坑显式写清楚。 Procedural Skill Layer：任务开始时，从训练轨迹中蒸馏 procedural skills，并根据当前任务检索相关 skill。 Action Realization Layer：模型输出 action 后、环境执行前，检查 action 是否可执行，并做 deterministic canonicalization 或 blocking。 Trajectory Regulation Layer：环境反馈后，监控轨迹是否重复、停滞、无效重试、接近预算耗尽，并触发 recovery。 从失败轨迹中演化 Harness，而不是训练模型\n作者用 Qwen3-4B-Instruct 在训练任务上跑出失败轨迹，然后用 coding agent 读取轨迹、诊断失败模式，并迭代修改 harness。测试集始终隐藏，最终 harness 在 evaluation 时固定，不再在线学习。\n整体流程可以理解成：\n收集轨迹 -\u003e 诊断失败类型 -\u003e 归因到生命周期层 -\u003e 修改 harness -\u003e 重新跑训练任务 -\u003e 检查提升和 regression -\u003e 固定 harness -\u003e 测试迁移。\nHarness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents arXiv:2605.30621\n自进化有用时，到底是谁的功劳？是 evolver 写得好，还是 task-solving agent 用得好？这篇论文把 self-evolution 拆成两个能力来分析。\n两个能力\nHarness-updating capability：模型作为 evolver 时，能否根据执行证据写出有用的持久化 harness 更新。 Harness-benefit capability：模型作为 task-solving agent 时，能否在任务执行中真正利用更新后的 harness 获益。 论文发现两者并不一致：会写更新，不等于能从更新中获益。\n实验设置\n作者把多个模型分别放在两个角色里：一部分模型作为 task-solving agent，一部分模型作为 evolver；固定任务流、初始 harness、prompt 模板、进化预算和 turn limit，然后观察不同 agent-evolver 组合的效果。\n主要发现\nHarness-updating 能力和基础模型能力关系很弱：不同 evolver 之间差距很小，任一 benchmark 上最好和最差 evolver 的差距最多只有 3.1 个百分点。 Harness-benefit 能力和基础模型能力呈非单调关系：弱模型因为不会加载或遵循 harness，收益很低；强模型因为原本已经很强，接近性能天花板，收益也有限；反而是中等能力模型最受益。 Self-Harness: Harnesses That Improve Themselves arXiv:2606.09498\nSelf-Harness 让 LLM Agent 根据自己的失败轨迹，自动改进它运行时依赖的 agent harness。论文强调，同一个 base model 在不同 harness 下表现可能差异很大；模型权重不变，变的是外围执行规则与运行机制。\n受控自改进循环\nSelf-Harness 的循环分为三个阶段：\nWeakness Mining：从执行失败中挖出可复用失败模式。 Harness Proposal：提出小范围、可解释的 harness 改动。 Proposal Validation：通过回归测试决定是否接受候选改动。 从失败案例到失败机制\n论文把失败分析从“单个失败案例”提升到“聚类后的失败机制”：根据 verifier 暴露的终止失败原因、agent 行为的因果状态、抽象行为机制形成 failure signature，再把相同 signature 的失败聚到一起。\n工程启发\nSelf-Harness 强调 minimal and auditable edits。每个候选改动都要说明来源和作用，最终接受的改动也都是可记录、可审计、可回滚的小改动，而不是一次性重写整个 agent 架构。\nCan LLM Agents Infer World Models? Evidence from Agentic Automata Learning arXiv:2606.16576\nLLM Agent 在与环境交互时，到底能不能逐步推断出隐藏的“世界模型”，还是只是靠局部模式和浅层启发式行动？论文用自动机学习构造了一个可控评测框架。\nAgentic Automata Learning\n让 Agent 通过工具调用去还原一个隐藏的确定性有限自动机 DFA。DFA 就是实验里的“世界模型”。Agent 可以问两类问题：\nMembership query：问某个字符串是否被目标 DFA 接受。 Equivalence query：提交一个候选 DFA，问它是否等价于隐藏 DFA；如果不等价，oracle 返回一个反例字符串。 评测价值\n把经典自动机学习改造成面向 tool-calling LLM agent 的评测框架。 提供相对 TTT 的额外工具调用数、规划失败 vs 推理失败、non-informative query 比例、Best Hypothesis Similarity 等过程指标，比单纯 pass/fail 更能解释 Agent 失败在哪里。 任务可程序生成、可扩展、无需人工标注，适合研究 Agent 是否具备交互式发现和世界模型归纳能力。 OpenClaw-Skill: Collective Skill Tree Search for Agentic Large Language Models arXiv:2606.16774\n论文认为“技能”可以封装可复用的程序性策略，比如如何调用工具、如何验证中间结果、如何从错误中恢复。当前 skill 方法的核心问题是碎片化、多样性不足和跨模型迁移弱。\nCollective Skill Tree Search\n核心创新是 Collective Skill Tree Search（CSTS）：让多个异构模型分别尝试解决同一个子任务，然后把它们的执行轨迹总结成候选技能节点，以缓解单模型偏差，并覆盖更多规划、执行、诊断、恢复模式。\n技能筛选\n候选 skill 一方面由多个 judge model 从清晰性、可执行性、完整性、相关性等维度打分；另一方面做“迁移性评分”，即把某个模型产生的 skill 给其他模型使用，看它是否真的能帮助其他模型完成同一子任务。最终分数是质量分和迁移分之和。\nCollective Skill Reinforcement Learning\nCSRL 不是只基于单个 skill 做 RL，而是对同一个子任务采样多个 skill-conditioned rollouts，并在整个 skill group 内比较奖励，让模型学会偏好更有效的技能策略，避免被单一 skill 诱导到同质化或次优解。\n具体流程\n任务分解：给定复杂任务 T，CSTS 先分解成有序子任务，每个子任务对应技能树的一层。 CSN-Gen 生成技能节点：多个模型分别执行同一子任务，产生包含中间推理状态、动作、观察/执行反馈和最终结果的轨迹；共享 skill synthesizer 将每条轨迹总结成一个技能节点。 CSN-Assess 筛选技能：先由多个 judge model 做质量评分，再让其他模型试用该 skill，计算迁移性评分。 构造 skill-augmented SFT 数据：选出的组合式 skill path 与对应 demonstration trajectory 组合成监督微调样本。 CSRL 强化学习：在同一子任务的多个 skill-conditioned rollouts 之间做 group-relative advantage，并用 GRPO-style clipped objective 更新策略。 推荐内容 工具与基础设施 Vercel Drop: Vercel 的拖拽部署入口，支持把文件、文件夹或 zip 包直接拖入页面完成静态站点部署，强调无配置和即时上线。\nTMA1: 本地 Agent 可观测与闭环反馈工具，记录 agent 的 LLM 调用、文件活动、构建失败和异常模式，并通过 hooks、MCP 与 anomaly detection 把可执行建议注入下一轮 reasoning。\nIntroducing the Open Knowledge Format: Google Cloud 提出的 OKF v0.1，把 LLM-wiki 模式形式化为带 YAML frontmatter 的 Markdown 文件目录，用轻量约定承载 metadata、context 和 curated knowledge。\nAgent Skills 资源 Lessons from building Claude Code: How we use skills: Anthropic 总结内部大量 Claude Code skills 的使用经验，覆盖 skill 类型、结构设计、分发、组合和度量方式，核心观点是 skill 不是单个 Markdown，而是可包含脚本、资产、数据和 hook 的可复用能力包。\nguizang-social-card-skill: 面向 Claude Code / Codex 的社交图文生成 skill，可输出小红书图文和公众号封面对，内置多套 editorial / Swiss visual layouts 与 HTML 到 PNG 流程。\nTw93 AI 岗位面试准备文章汇总: Tw93 汇总“你不知道的 Claude Code / Agent / 大模型训练 / AI Coding / GEO / 具身智能”等系列文章，适合作为传统工程师转向 AI 岗位的系统阅读清单。\n组织与行业 The symbiotic enterprise: A new model for growth: McKinsey 从组织形态角度讨论 hybrid human-AI systems，重点是通过人机共生系统自动化认知与物理劳动，而不是只把 AI 当作局部效率工具。\n影音记录 精选歌单 书\u0026阅读摘录 从工程师到 Staff：技术影响力到底是什么 这个问题会被抽象成职级：Senior、Staff、Principal。… 技术人的价值不再主要来自自己完成多少任务，而是来自能否影响更大范围的问题。…到建立长期技术方向；从个人产出，到让团队整体产出变好。…真正的技术影响力不是权力，而是信任。…所以，Staff 的第一课不是“如何让别人听我”，而是“如何让我的判断值得被相信”。\n但 Staff 级别的人需要更往前一步：判断任务背后的问题是否定义正确。…定义问题比解决任务更难，因为它要求你理解上下文…技术影响力还体现在系统权衡上。…越复杂的系统，越需要有人把这些 trade-off 摆到台面上。\n但 Staff 的价值不能只靠自己写更多代码。因为再强的人，个人时间也是有限的。…Staff 的产出，很多时候体现在别人能更好地产出。\n但技术深度不能变成技术执念。…尽量参与从问题定义、方案设计、实验验证到上线复盘的完整链路。完整链路最能训练判断。…写作会逼迫你把隐性判断显性化。…一个好的复盘，不只是总结结果，而是沉淀可迁移经验。…沟通不是把话说圆滑，而是让不同背景的人围绕同一事实做决策。…Staff 需要识别哪些债会阻碍团队未来一年，哪些只是局部不优雅。…培养不是简单答疑，而是帮助别人建立问题框架和判断标准\n如果说优秀工程师解决问题，那么 Staff 级技术人要做的是：帮助团队解决正确的问题，并让解决问题的能力持续变强\nWhy AI hasn’t replaced software engineers, and won’t There is great anxiety and uncertainty about AI replacing jobs.\nIt turns out that “AI washing” of job cuts is an economy-wide phenomenon, evidenced by many surveys:\nlayoffs are the wrong signal of AI’s potential productivity benefits in the first place!\nWhy coding agents haven’t led to labor displacement: the decide-execute-deliver sandwich\nwhat are developers doing in those meetings and why can’t it be done by AI?\n(1) deciding and specifying what to build, (2) verifying and being accountable for what is delivered, and (3) the deep human understanding\nimportant lessons junior software engineers learn is that requirements specification…if it is compressed, it leads to much more pain down the line.\nTo re-iterate, these are not two distinct categories. They are two ends of a spectrum, and there is a blurry middle.\nIn fact, not only are software engineering jobs not going away due to AI, there might even be an increase in demand for software engineers.\nthis doesn’t mean big tech companies will get even bigger. … which refers to venture capital or private equity firms buying “Main street” businesses\n观点|从Vector Database到Vector Lakebase，如何定义AI data infra的下一个十年 数据库的演化基本都遵从同一个逻辑：先承接流量，再挖掘价值，最后统一架构消除割裂\n非结构化数据真正需要的不只是检索系统。它是一个需要持续闭环的行动系统——我给它起了个名字：CS/CD，Continuous Serving + Continuous Discovery。\n这两大服务不是独立工作流，而是一个飞轮。Serving 产生反馈，Discovery 改进质量，改进后的数据和索引再回到 Serving，循环往复。\n这和当年 OLTP/OLAP 之间的鸿沟如出一辙——只是这次割裂的是在线语义检索和离线数据处理。\nLakehouse 的核心抽象是为结构化数据设计的，向量在里面只是一个很长的 float 数组，没有语义层面的理解；Parquet 文件没有 HNSW、没有 IVF、没有倒排索引。\nVector Lakebase\"一份数据，多种计算\"的概念很好理解\nCS/CD 飞轮要转得起来，第一个硬约束是：不同计算模式不能各自维护一份业务数据副本。\n统一数据层意味着系统必须存算分离——数据在 S3 上\nVector Lakebase建设的过程中，我们也踩了不少坑，也逐渐对这个东西到底该长什么样形成了一些比较确定的工程判断。 第一，存算分离 + 多层缓存 第二，统一的多模态非结构化数据管理…只能存向量而不能管理背后原始数据和元信息的系统，只是索引服务，不是数据底座。 第三，原生向量数据库能力 第四，多种计算模式 第五，开放格式，数据不锁定 第六，资源跟着数据走，不用不花钱\n组织架构的本质：信息处理的分工与协调 科层制存在，是因为人的信息处理能力有限。当AI打破了这个限制，科层制存在的理由就不成立了。…科层制的本质，就是一个信息处理的分工与汇总系统。…每个人的信息处理能力是有限的，而信息传递的准确性随距离衰减。\n科层制能运转，依赖三个隐含假设： 假设一：执行者不需要理解全局 假设二：信息向上必须汇总和压缩 假设三：决策向下必须分解和指令化 这三个假设的共同基础是：人的信息处理能力有限。 所以才需要过滤、压缩、分解\n让信息处理能力的供给从\"人的带宽\"变成了\"算力的规模\"——而算力是无限扩展的。 假设一失效：执行者可以理解全局 假设二失效：信息不再需要逐级压缩 假设三失效：决策不再需要逐级分解\n网状组织要运转，有一个不可忽视的前提——每个人都需要有足够的判断力和自主性。 组织形态的转变，和人的能力模型的转变，是耦合的\n为什么东亚人如此害怕裸辞？ 对于很多人来说，“临时”是一种很可怕的状态。\n文学其实不喜欢写“临时”相对的那一面，比如永恒的、漫长的东西。\n但是在文学里，恰恰是那些偶然的、临时性的东西，会绽放出更多的生机。相反，永恒、绵延、不朽，反而变成了令人恐惧的东西。\n只要人获得了永恒和永生，这种持续和绵延，就会消解很多事情的意义\n永生并不是祝福，而是一种永恒的折磨\n一个人一旦被许诺“永远存在”，反而会消解他在有限世界里所能产生意义的一切行为和思考。\nOpenAI、Anthropic都开始押注FDE，FDE才是Agent时代的PMF范式？ 为什么 agent 时代所有人都在抢 FDE？ 因为客户买的不是软件，而是一个「能干活的 agent」\n所以 FDE 是带着现有的产品，并在产品团队的帮助下，想办法交付那个成果，构建对客户有价值的用例（use case），以一种对客户真正有效的方式交付你已经构建的软件。\nFDE 带着现有的产品进场，去填补产品能力与实际需求之间的 gap，把路线先铺成一条「碎石路」（Gravel road）。总部的产品与工程团队再把这些现场做法抽象、泛化，修成能服务接下来五到十个客户的「高速公路」（Paved superhighway）\n所以，这就从「我如何向每个客户销售同样的东西」转变为「我如何落地并扩张」（land and expand）。\n首先需要思考的第一个问题是 FDE 团队是如何构建的，这里面有两个关键角色，我们称之为 Echo 团队和 Delta 团队。 Echo 团队成员需要具备「反叛者（rebel）」的特质，，Sham 甚至会称他们为「异端（heretics）」\n对于 Delta 团队，我们需要的是非常擅长做原型（prototyping）的人。 Delta 的错误人选是那些有完美主义的工匠型人才，这种人很擅长写代码，喜欢抽象（abstractions）层面的绝对正确，希望他们构建的软件在未来十几年都能维护\nFDE 团队在每个客户现场所做的事情确实有点像是一个创始人，但 FDE 成员的区别是他们一个可以接触到一些非常强大的产品杠杆（product leverage）的创始人\n如果从这个角度看，我们就会发现我们实际上在交付真正可重复的价值。产品团队是能让这个模式运作起来并降低成本的一个关键。\n产品团队的角色是去真正地把握产品愿景（product vision）。所以他们必须思考，在客户现场看到一个新问题时，它的通用形态会是什么样的，什么样的版本可以应用于接下来的 10 个客户。\n一旦要在不同机构和客户间部署，就会遇到无法通用的问题。于是我们把抽象层级拉高，不再预设具体对象类型，而是让 FDE 按每个客户的语境去定义。底层只提供通用的对象、属性等，Palantir Ontology 就是在这种思路下诞生的。\n这就是为什么创业公司要做 FDE 的话必须聚焦于解决 CEO 的前五大问题之一这点很重要，因为在遇到组织内阻碍时，需要能够从高层引入某个人说：「是的，给他们操作的权限、他们需要使用这种特定类型的数据库……」\nYC 有一个概念叫 Collison install，我们基本上把它归结为，不要等着人们来你的网站，你要去找他们，让他们安装软件，亲自去他们那里，去他们的办公室，坐在他们旁边。我觉得这一直是一个很好的起步策略。\nNotion 已经不看简历了，CEO 认为 AI 时代的组织架构属于 Jazz Mode 如果说传统公司像一支行进的乐队（Marching Band），每个人按照固定队形前进；那么他希望 Notion 成为一支爵士乐队（Jazz Band），每个人都有即兴发挥的空间，但又能形成整体协作。\n但是 GPT-4 给他带来的是一次宗教体验（Religious Experience）。他说当时的感受是： 如果我们不做 AI，那今天做的一切都会失去意义。 于是 Notion 再次开始重建。\n你无法精确控制最终结果。你只能： 不断实验观察模型表现调整方向\nAI 产品开发是技术优先（Technology First），而不是客户优先（Customer First）\n3.AI 正在重构整个组织：未来组织会更扁平，但不会完全扁平\n未来的人才（Talent）= Capability × Taste × Agency\n但如果里面持续混入大量创业者时，他们会不断发起新项目、挑战旧流程、提出新想法、推动组织变化，相当于给组织注入新的活力。\nIvan 说，不要试图在所有地方创新，因为组织资源有限。如果产品创新、销售创新、市场创新以及管理创新同时进行，大概率会全部失败。\n致超级个体 | To The Crazy Ones 笔者的判断相反：超级个体不是被培训出来的，而是被好奇心激发出来的。\n超级个体不是“更强的岗位人”，而是一能够重新拿回完整 Closed-loop 的人\n当你们讨论“AI 时代的人才战略”时，真正要问的不是“谁会用 AI”，而是“组织有没有允许一个人从问题发现，一直走到拿到结果”。\n人的能力明明已经被工具放大了，组织却仍然把他切成一个局部函数。\n是一个人能不能把好奇心变成行动，把行动变成作品，把作品交给真实用户，再把反馈吃回自己的判断系统里\nClosed-loop 越短，人的综合能力越容易被激发出来。\n在中台技术如日中天的时候，超级个体几乎灭绝了，取而代之的是“螺丝钉”们。\n这就是平台化的悖论：平台降低了标准动作的成本，却提高了非标准探索的成本。而今天大家在讨论的 Agent 范式就是非标探索\nDevOps 的原始精神，是缩短开发、运维和用户反馈之间的距离，让团队对交付结果负责\nLLM 和 Agent 不是简单提高某个岗位的效率，而是把被拆开的能力重新推回一个人身边\n大型组织在这里最容易犯的错，是把这种回潮理解成“员工效率提升”\n但更深的一层变化是：一个人可以重新拥有产品感。…而是：我们有没有允许一个人先把闭环跑起来？\n传统 leader 的世界不同。他们的时间被会议切成半小时，信息以汇报、周报、行业报告、供应商方案和战略会的形式进入…一线员工用身体学习，leader 用材料学习。…更麻烦的是，旧指标会惩罚探索。\n可是 AI 工业革命早期最有价值的探索，恰恰常常没有稳定名字。它一开始不是“平台”，不是“战略”，不是“创新专项”，只是一个员工觉得“这事应该可以自动化”的冲动\n两句话之间隔着一整套旧时代的预算、法务、合规、架构、绩效和职级体系。\n今天大公司的 leader 们很容易活在 -1 这一层无心（或有意）编织出的信息茧房里，活在小红书、抖音、微信视频的 AI 营销号…\n不容易成为超级个体的人，并不是不聪明。 恰恰相反，他们很多人是高分学生、优秀员工、靠谱骨干\n超级个体不是不管风险，而是会在风险可控的边界里先做一个小闭环…一个稳定组织最奖励的，往往就是这种姿态：先对齐，先学习，先写方案，先别乱动。\n人们以为超级个体掌握了更多知识，新世界真正发生的是，超级个体把知识、工具、问题和反馈重新接成了一个行动闭环。\n因为超级个体首先不是一组技能包，而是一种底层人格结构。 •好奇心强，好胜心也强 •创新精神强，同时也是别人眼中的 trouble makers •自学能力强 •自驱力强 •动手能力强\n更关键的是问四个组织问题：这个人有没有完整问题？有没有工具权限？能不能直接看见用户反馈？组织会不会认可他在正式岗位之外长出的新能力？\n恰恰相反，超级个体不是分工的终点，而是新分工的起点。…但请注意，真正关键的不是 Agent 变多，而是人重新站回最终责任人的位置。\n真正的挑战只有一个——能不能把这些资源重新接到更小的闭环上。\n工业化大公司曾经把复杂协作压进岗位、流程和层级里，那是过去的伟大成就。AI 时代要做的不是把它砸碎，而是把它重新组合到“人 + Agent + 组织资源”这个新单元里。\n",
+  "wordCount" : "8860",
+  "inLanguage": "zh-cn",
+  "image":"http://localhost:1313/img/monthly/2026/DF71C4D7-140A-4929-96F3-AA3D44F8FAD0_1_105_c.webp","datePublished": "2026-06-30T20:00:00+08:00",
+  "dateModified": "2026-06-30T20:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/monthly/2026-06-monthly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="http://localhost:1313/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-06 月刊
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2026-06-30 20:00:00 +0800 CST'>June 30, 2026</span>&nbsp;·&nbsp;18 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="http://localhost:1313/img/monthly/2026/DF71C4D7-140A-4929-96F3-AA3D44F8FAD0_1_105_c.webp" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="http://localhost:1313/img/monthly/2026/DF71C4D7-140A-4929-96F3-AA3D44F8FAD0_1_105_c.webp" alt="Tate Modern London"></a>
+        <p>Tate Modern London</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#do-language-models-need-sleep-offline-recurrence-for-improved-online-inference" aria-label="Do Language Models Need Sleep? Offline Recurrence for Improved Online Inference">Do Language Models Need Sleep? Offline Recurrence for Improved Online Inference</a></li>
+                <li>
+                    <a href="#compiling-agentic-workflows-into-llm-weights-near-frontier-quality-at-two-orders-of-magnitude-less-cost" aria-label="Compiling Agentic Workflows into LLM Weights: Near-Frontier Quality at Two Orders of Magnitude Less Cost">Compiling Agentic Workflows into LLM Weights: Near-Frontier Quality at Two Orders of Magnitude Less Cost</a></li>
+                <li>
+                    <a href="#adapting-the-interface-not-the-model-runtime-harness-adaptation-for-deterministic-llm-agents" aria-label="Adapting the Interface, Not the Model: Runtime Harness Adaptation for Deterministic LLM Agents">Adapting the Interface, Not the Model: Runtime Harness Adaptation for Deterministic LLM Agents</a></li>
+                <li>
+                    <a href="#harness-updating-is-not-harness-benefit-disentangling-evolution-capabilities-in-self-evolving-llm-agents" aria-label="Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents">Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents</a></li>
+                <li>
+                    <a href="#self-harness-harnesses-that-improve-themselves" aria-label="Self-Harness: Harnesses That Improve Themselves">Self-Harness: Harnesses That Improve Themselves</a></li>
+                <li>
+                    <a href="#can-llm-agents-infer-world-models-evidence-from-agentic-automata-learning" aria-label="Can LLM Agents Infer World Models? Evidence from Agentic Automata Learning">Can LLM Agents Infer World Models? Evidence from Agentic Automata Learning</a></li>
+                <li>
+                    <a href="#openclaw-skill-collective-skill-tree-search-for-agentic-large-language-models" aria-label="OpenClaw-Skill: Collective Skill Tree Search for Agentic Large Language Models">OpenClaw-Skill: Collective Skill Tree Search for Agentic Large Language Models</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e5%b7%a5%e5%85%b7%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="工具与基础设施">工具与基础设施</a></li>
+                <li>
+                    <a href="#agent-skills-%e8%b5%84%e6%ba%90" aria-label="Agent Skills 资源">Agent Skills 资源</a></li>
+                <li>
+                    <a href="#%e7%bb%84%e7%bb%87%e4%b8%8e%e8%a1%8c%e4%b8%9a" aria-label="组织与行业">组织与行业</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#%e4%bb%8e%e5%b7%a5%e7%a8%8b%e5%b8%88%e5%88%b0-staff%e6%8a%80%e6%9c%af%e5%bd%b1%e5%93%8d%e5%8a%9b%e5%88%b0%e5%ba%95%e6%98%af%e4%bb%80%e4%b9%88httpszhuanlanzhihucomp2051476118868434996" aria-label="从工程师到 Staff：技术影响力到底是什么">从工程师到 Staff：技术影响力到底是什么</a></li>
+                <li>
+                    <a href="#why-ai-hasnt-replaced-software-engineers-and-wonthttpswwwnormaltechaipwhy-ai-hasnt-replaced-software-engineers" aria-label="Why AI hasn’t replaced software engineers, and won’t">Why AI hasn’t replaced software engineers, and won’t</a></li>
+                <li>
+                    <a href="#%e8%a7%82%e7%82%b9%e4%bb%8evector-database%e5%88%b0vector-lakebase%e5%a6%82%e4%bd%95%e5%ae%9a%e4%b9%89ai-data-infra%e7%9a%84%e4%b8%8b%e4%b8%80%e4%b8%aa%e5%8d%81%e5%b9%b4httpsmpweixinqqcomshdrvr7z8w8de6eayz9-6oqscene334" aria-label="观点|从Vector Database到Vector Lakebase，如何定义AI data infra的下一个十年">观点|从Vector Database到Vector Lakebase，如何定义AI data infra的下一个十年</a></li>
+                <li>
+                    <a href="#%e7%bb%84%e7%bb%87%e6%9e%b6%e6%9e%84%e7%9a%84%e6%9c%ac%e8%b4%a8%e4%bf%a1%e6%81%af%e5%a4%84%e7%90%86%e7%9a%84%e5%88%86%e5%b7%a5%e4%b8%8e%e5%8d%8f%e8%b0%83httpszhuanlanzhihucomp2048877559358789506" aria-label="组织架构的本质：信息处理的分工与协调">组织架构的本质：信息处理的分工与协调</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%9c%e4%ba%9a%e4%ba%ba%e5%a6%82%e6%ad%a4%e5%ae%b3%e6%80%95%e8%a3%b8%e8%be%9ehttpsmpweixinqqcomshhsnxoi8v_qt1i46265qawscene334" aria-label="为什么东亚人如此害怕裸辞？">为什么东亚人如此害怕裸辞？</a></li>
+                <li>
+                    <a href="#openaianthropic%e9%83%bd%e5%bc%80%e5%a7%8b%e6%8a%bc%e6%b3%a8fdefde%e6%89%8d%e6%98%afagent%e6%97%b6%e4%bb%a3%e7%9a%84pmf%e8%8c%83%e5%bc%8fhttpsmpweixinqqcoms8ouv5h9qvjpq_-acij9f6a" aria-label="OpenAI、Anthropic都开始押注FDE，FDE才是Agent时代的PMF范式？">OpenAI、Anthropic都开始押注FDE，FDE才是Agent时代的PMF范式？</a></li>
+                <li>
+                    <a href="#notion-%e5%b7%b2%e7%bb%8f%e4%b8%8d%e7%9c%8b%e7%ae%80%e5%8e%86%e4%ba%86ceo-%e8%ae%a4%e4%b8%ba-ai-%e6%97%b6%e4%bb%a3%e7%9a%84%e7%bb%84%e7%bb%87%e6%9e%b6%e6%9e%84%e5%b1%9e%e4%ba%8e-jazz-modehttpszhuanlanzhihucomp2044855791073636453" aria-label="Notion 已经不看简历了，CEO 认为 AI 时代的组织架构属于 Jazz Mode">Notion 已经不看简历了，CEO 认为 AI 时代的组织架构属于 Jazz Mode</a></li>
+                <li>
+                    <a href="#%e8%87%b4%e8%b6%85%e7%ba%a7%e4%b8%aa%e4%bd%93--to-the-crazy-oneshttpsmpweixinqqcoms__bizmzaxmdmxoti2namid2649108669idx1snc9bb3541cba65b524992eda339f32e83poc_tokenhkwghwqjlat3qhcjlzcoqnc3v_yc95j5ebfifato" aria-label="致超级个体 | To The Crazy Ones">致超级个体 | To The Crazy Ones</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Claude Fable 5</a>: Anthropic 面向复杂推理、长周期 Agentic 工作和高强度分析任务发布的新一代 Claude 模型，与 Claude Mythos 5 同期推出，重点提升长任务中的规划、执行和结果校验能力。</p>
+<p><a href="https://claude.com/blog/introducing-dynamic-workflows-in-claude-code">Dynamic Workflows in Claude Code</a>: Claude Code 的动态工作流能力，让 Claude 在运行时生成可复用编排脚本，将大型工程任务拆成数十到数百个并行 subagents，并通过独立复核与收敛机制处理迁移、审计和复杂代码库探索。</p>
+<p><a href="https://z.ai/">GLM-5.2</a>: Z.ai 面向长周期任务推出的旗舰模型，强调 1M-token 上下文、长输出和工具调用流式输出能力，目标场景是项目级工程、复杂问答和多轮 Agent 任务。</p>
+<p><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mixture-of-agents">Hermes Agent - Mixture of Agents</a>: Nous Research 在 Hermes Agent 中提供的虚拟模型提供方机制，可将多个 reference models 的分析作为私有上下文交给 aggregator 生成最终回复和工具调用，在不破坏 Hermes 正常 agent loop 的前提下引入多模型视角。</p>
+<p><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-DSpark">DeepSeek DSpark</a>: DeepSeek-V4-Pro 的推测解码版本，在同一 checkpoint 上附加 DSpark speculative decoding 模块，用于提升 DeepSeek V4 系列的推理速度和单位硬件吞吐效率。</p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/opensquilla/opensquilla">opensquilla</a>: 面向 token efficiency 的 AI Agent 框架，围绕 memory、MCP、skills 等机制提升同等预算下的任务执行密度。</p>
+<p><a href="https://github.com/calesthio/OpenMontage">OpenMontage</a>: 开源 Agentic 视频生产系统，提供 12 条 pipeline、52 个工具和 500+ agent skills，可把 AI coding assistant 扩展成视频生产工作室。</p>
+<p><a href="https://github.com/NanmiCoder/MediaCrawler">MediaCrawler</a>: 面向小红书、抖音、快手、B 站、微博、贴吧、知乎等平台的内容与评论采集工具，适合做公开内容分析和数据采集实验。</p>
+<p><a href="https://github.com/deepseek-ai/DeepSpec">DeepSpec</a>: DeepSeek 发布的 speculative decoding 训练与评测代码库，覆盖 DSpark 相关算法、实验和评估流程。</p>
+<p><a href="https://github.com/liaohch3/claude-tap">claude-tap</a>: Coding Agent API 流量拦截与本地 trace viewer，支持 Claude Code、Codex CLI、Gemini CLI、Cursor CLI、OpenCode、Kimi Code、Hermes 等多种 agent harness 的调用观测。</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="do-language-models-need-sleep-offline-recurrence-for-improved-online-inference">Do Language Models Need Sleep? Offline Recurrence for Improved Online Inference<a hidden class="anchor" aria-hidden="true" href="#do-language-models-need-sleep-offline-recurrence-for-improved-online-inference">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2605.26099">2605.26099</a></p>
+<p>论文提出一种类似“睡眠”的离线记忆巩固机制：长上下文模型不只是要保留被挤出窗口的内容，更要在内容被清空前做额外计算，将其整理成后续推理可用的内部记忆。</p>
+<p><strong>Offline Recursive Memory Consolidation</strong></p>
+<p>当上下文窗口满了、KV cache 即将被丢弃前，模型进入 sleep-like consolidation 阶段，对当前 chunk 进行多次 recurrent forward pass，并反复更新 SSM block 里的 fast weights；随后清空 KV cache，继续处理后续 token。</p>
+<p>关键点是把额外计算从在线预测时挪到离线 consolidation 时，保持 wake-time prediction 的单步延迟。实验覆盖 cellular automata、多跳图检索和数学推理任务，结果显示 sleep duration 越长，模型在需要深层推理的样本上收益越明显。</p>
+<hr>
+<h2 id="compiling-agentic-workflows-into-llm-weights-near-frontier-quality-at-two-orders-of-magnitude-less-cost">Compiling Agentic Workflows into LLM Weights: Near-Frontier Quality at Two Orders of Magnitude Less Cost<a hidden class="anchor" aria-hidden="true" href="#compiling-agentic-workflows-into-llm-weights-near-frontier-quality-at-two-orders-of-magnitude-less-cost">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2605.22502">2605.22502</a></p>
+<p>论文讨论一个很直接的问题：对于稳定、可流程化、需要长期复用的 agent workflow，是否可以不在运行时显式编排，而是在训练阶段把流程蒸馏 / 编译进小模型，让小模型自己学会 self-orchestrate。</p>
+<p><strong>Subterranean Agent</strong></p>
+<p>传统 surface orchestration 是“用户 -&gt; orchestrator -&gt; LLM”，每一轮都由外部 orchestrator 注入流程、路由和决策；subterranean agent 则只在训练数据生成阶段使用 orchestrator，部署时用户直接和 fine-tuned LLM 对话。</p>
+<p>作者在旅行预订、Zoom 支持、保险理赔等流程上生成 workflow trajectories，再用 SFT 将流程压入小模型。结果显示，在稳定、有限、模拟分布内的客服型流程中，小模型可以在对话质量上接近显式 orchestration，同时显著降低成本。</p>
+<p><strong>边界</strong></p>
+<p>这不等于小模型真正学会了可验证 workflow engine 的抽象执行能力。它更像是把高频、稳定、结构化的流程压缩进参数中；一旦流程开放、规则变化频繁或分布外输入增多，显式 orchestration 和可审计状态机仍然更可靠。</p>
+<hr>
+<h2 id="adapting-the-interface-not-the-model-runtime-harness-adaptation-for-deterministic-llm-agents">Adapting the Interface, Not the Model: Runtime Harness Adaptation for Deterministic LLM Agents<a hidden class="anchor" aria-hidden="true" href="#adapting-the-interface-not-the-model-runtime-harness-adaptation-for-deterministic-llm-agents">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2605.22166">2605.22166</a></p>
+<p>论文指出很多 Agent 失败并不是模型“不会想”，而是模型和环境之间的 runtime interface / harness 设计得不好。与其微调模型，不如改造 Agent 和环境之间的接口层。</p>
+<p>Life-Harness 冻结 LLM 参数，不修改 benchmark 环境，只从训练轨迹中总结可复用的 harness 干预规则，然后在测试任务上固定使用。</p>
+<p><strong>把 Agent Adaptation 从“改模型”转向“改接口”</strong></p>
+<p>传统做法会把环境规则、工具习惯、恢复策略都吸收到模型参数里；Life-Harness 则把这些东西显式放在 harness 层。作者称之为 runtime interface adaptation：模型参数固定，环境固定，评测协议固定，只改中间的 runtime harness。</p>
+<p><strong>四层 Lifecycle-Aware Harness</strong></p>
+<ol>
+<li><strong>Environment Contract Layer</strong>：交互前，把稳定环境约束、工具使用规则、业务 policy、常见坑显式写清楚。</li>
+<li><strong>Procedural Skill Layer</strong>：任务开始时，从训练轨迹中蒸馏 procedural skills，并根据当前任务检索相关 skill。</li>
+<li><strong>Action Realization Layer</strong>：模型输出 action 后、环境执行前，检查 action 是否可执行，并做 deterministic canonicalization 或 blocking。</li>
+<li><strong>Trajectory Regulation Layer</strong>：环境反馈后，监控轨迹是否重复、停滞、无效重试、接近预算耗尽，并触发 recovery。</li>
+</ol>
+<p><strong>从失败轨迹中演化 Harness，而不是训练模型</strong></p>
+<p>作者用 Qwen3-4B-Instruct 在训练任务上跑出失败轨迹，然后用 coding agent 读取轨迹、诊断失败模式，并迭代修改 harness。测试集始终隐藏，最终 harness 在 evaluation 时固定，不再在线学习。</p>
+<p>整体流程可以理解成：</p>
+<blockquote>
+<p>收集轨迹 -&gt; 诊断失败类型 -&gt; 归因到生命周期层 -&gt; 修改 harness -&gt; 重新跑训练任务 -&gt; 检查提升和 regression -&gt; 固定 harness -&gt; 测试迁移。</p>
+</blockquote>
+<hr>
+<h2 id="harness-updating-is-not-harness-benefit-disentangling-evolution-capabilities-in-self-evolving-llm-agents">Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents<a hidden class="anchor" aria-hidden="true" href="#harness-updating-is-not-harness-benefit-disentangling-evolution-capabilities-in-self-evolving-llm-agents">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2605.30621">2605.30621</a></p>
+<p>自进化有用时，到底是谁的功劳？是 evolver 写得好，还是 task-solving agent 用得好？这篇论文把 self-evolution 拆成两个能力来分析。</p>
+<p><strong>两个能力</strong></p>
+<ul>
+<li><strong>Harness-updating capability</strong>：模型作为 evolver 时，能否根据执行证据写出有用的持久化 harness 更新。</li>
+<li><strong>Harness-benefit capability</strong>：模型作为 task-solving agent 时，能否在任务执行中真正利用更新后的 harness 获益。</li>
+</ul>
+<p>论文发现两者并不一致：<strong>会写更新，不等于能从更新中获益。</strong></p>
+<p><strong>实验设置</strong></p>
+<p>作者把多个模型分别放在两个角色里：一部分模型作为 task-solving agent，一部分模型作为 evolver；固定任务流、初始 harness、prompt 模板、进化预算和 turn limit，然后观察不同 agent-evolver 组合的效果。</p>
+<p><strong>主要发现</strong></p>
+<ul>
+<li>Harness-updating 能力和基础模型能力关系很弱：不同 evolver 之间差距很小，任一 benchmark 上最好和最差 evolver 的差距最多只有 3.1 个百分点。</li>
+<li>Harness-benefit 能力和基础模型能力呈非单调关系：弱模型因为不会加载或遵循 harness，收益很低；强模型因为原本已经很强，接近性能天花板，收益也有限；反而是中等能力模型最受益。</li>
+</ul>
+<hr>
+<h2 id="self-harness-harnesses-that-improve-themselves">Self-Harness: Harnesses That Improve Themselves<a hidden class="anchor" aria-hidden="true" href="#self-harness-harnesses-that-improve-themselves">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2606.09498">2606.09498</a></p>
+<p>Self-Harness 让 LLM Agent 根据自己的失败轨迹，自动改进它运行时依赖的 agent harness。论文强调，同一个 base model 在不同 harness 下表现可能差异很大；模型权重不变，变的是外围执行规则与运行机制。</p>
+<p><strong>受控自改进循环</strong></p>
+<p>Self-Harness 的循环分为三个阶段：</p>
+<ol>
+<li><strong>Weakness Mining</strong>：从执行失败中挖出可复用失败模式。</li>
+<li><strong>Harness Proposal</strong>：提出小范围、可解释的 harness 改动。</li>
+<li><strong>Proposal Validation</strong>：通过回归测试决定是否接受候选改动。</li>
+</ol>
+<p><strong>从失败案例到失败机制</strong></p>
+<p>论文把失败分析从“单个失败案例”提升到“聚类后的失败机制”：根据 verifier 暴露的终止失败原因、agent 行为的因果状态、抽象行为机制形成 failure signature，再把相同 signature 的失败聚到一起。</p>
+<p><strong>工程启发</strong></p>
+<p>Self-Harness 强调 minimal and auditable edits。每个候选改动都要说明来源和作用，最终接受的改动也都是可记录、可审计、可回滚的小改动，而不是一次性重写整个 agent 架构。</p>
+<hr>
+<h2 id="can-llm-agents-infer-world-models-evidence-from-agentic-automata-learning">Can LLM Agents Infer World Models? Evidence from Agentic Automata Learning<a hidden class="anchor" aria-hidden="true" href="#can-llm-agents-infer-world-models-evidence-from-agentic-automata-learning">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2606.16576">2606.16576</a></p>
+<p>LLM Agent 在与环境交互时，到底能不能逐步推断出隐藏的“世界模型”，还是只是靠局部模式和浅层启发式行动？论文用自动机学习构造了一个可控评测框架。</p>
+<p><strong>Agentic Automata Learning</strong></p>
+<p>让 Agent 通过工具调用去还原一个隐藏的确定性有限自动机 DFA。DFA 就是实验里的“世界模型”。Agent 可以问两类问题：</p>
+<ul>
+<li><strong>Membership query</strong>：问某个字符串是否被目标 DFA 接受。</li>
+<li><strong>Equivalence query</strong>：提交一个候选 DFA，问它是否等价于隐藏 DFA；如果不等价，oracle 返回一个反例字符串。</li>
+</ul>
+<p><strong>评测价值</strong></p>
+<ul>
+<li>把经典自动机学习改造成面向 tool-calling LLM agent 的评测框架。</li>
+<li>提供相对 TTT 的额外工具调用数、规划失败 vs 推理失败、non-informative query 比例、Best Hypothesis Similarity 等过程指标，比单纯 pass/fail 更能解释 Agent 失败在哪里。</li>
+<li>任务可程序生成、可扩展、无需人工标注，适合研究 Agent 是否具备交互式发现和世界模型归纳能力。</li>
+</ul>
+<hr>
+<h2 id="openclaw-skill-collective-skill-tree-search-for-agentic-large-language-models">OpenClaw-Skill: Collective Skill Tree Search for Agentic Large Language Models<a hidden class="anchor" aria-hidden="true" href="#openclaw-skill-collective-skill-tree-search-for-agentic-large-language-models">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2606.16774">2606.16774</a></p>
+<p>论文认为“技能”可以封装可复用的程序性策略，比如如何调用工具、如何验证中间结果、如何从错误中恢复。当前 skill 方法的核心问题是碎片化、多样性不足和跨模型迁移弱。</p>
+<p><strong>Collective Skill Tree Search</strong></p>
+<p>核心创新是 Collective Skill Tree Search（CSTS）：让多个异构模型分别尝试解决同一个子任务，然后把它们的执行轨迹总结成候选技能节点，以缓解单模型偏差，并覆盖更多规划、执行、诊断、恢复模式。</p>
+<p><strong>技能筛选</strong></p>
+<p>候选 skill 一方面由多个 judge model 从清晰性、可执行性、完整性、相关性等维度打分；另一方面做“迁移性评分”，即把某个模型产生的 skill 给其他模型使用，看它是否真的能帮助其他模型完成同一子任务。最终分数是质量分和迁移分之和。</p>
+<p><strong>Collective Skill Reinforcement Learning</strong></p>
+<p>CSRL 不是只基于单个 skill 做 RL，而是对同一个子任务采样多个 skill-conditioned rollouts，并在整个 skill group 内比较奖励，让模型学会偏好更有效的技能策略，避免被单一 skill 诱导到同质化或次优解。</p>
+<p><strong>具体流程</strong></p>
+<ol>
+<li><strong>任务分解</strong>：给定复杂任务 T，CSTS 先分解成有序子任务，每个子任务对应技能树的一层。</li>
+<li><strong>CSN-Gen 生成技能节点</strong>：多个模型分别执行同一子任务，产生包含中间推理状态、动作、观察/执行反馈和最终结果的轨迹；共享 skill synthesizer 将每条轨迹总结成一个技能节点。</li>
+<li><strong>CSN-Assess 筛选技能</strong>：先由多个 judge model 做质量评分，再让其他模型试用该 skill，计算迁移性评分。</li>
+<li><strong>构造 skill-augmented SFT 数据</strong>：选出的组合式 skill path 与对应 demonstration trajectory 组合成监督微调样本。</li>
+<li><strong>CSRL 强化学习</strong>：在同一子任务的多个 skill-conditioned rollouts 之间做 group-relative advantage，并用 GRPO-style clipped objective 更新策略。</li>
+</ol>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="工具与基础设施">工具与基础设施<a hidden class="anchor" aria-hidden="true" href="#工具与基础设施">#</a></h2>
+<p><a href="https://vercel.com/drop">Vercel Drop</a>: Vercel 的拖拽部署入口，支持把文件、文件夹或 zip 包直接拖入页面完成静态站点部署，强调无配置和即时上线。</p>
+<p><a href="https://tma1.ai/zh/">TMA1</a>: 本地 Agent 可观测与闭环反馈工具，记录 agent 的 LLM 调用、文件活动、构建失败和异常模式，并通过 hooks、MCP 与 anomaly detection 把可执行建议注入下一轮 reasoning。</p>
+<p><a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing">Introducing the Open Knowledge Format</a>: Google Cloud 提出的 OKF v0.1，把 LLM-wiki 模式形式化为带 YAML frontmatter 的 Markdown 文件目录，用轻量约定承载 metadata、context 和 curated knowledge。</p>
+<h2 id="agent-skills-资源">Agent Skills 资源<a hidden class="anchor" aria-hidden="true" href="#agent-skills-资源">#</a></h2>
+<p><a href="https://claude.com/blog/lessons-from-building-claude-code-how-we-use-skills">Lessons from building Claude Code: How we use skills</a>: Anthropic 总结内部大量 Claude Code skills 的使用经验，覆盖 skill 类型、结构设计、分发、组合和度量方式，核心观点是 skill 不是单个 Markdown，而是可包含脚本、资产、数据和 hook 的可复用能力包。</p>
+<p><a href="https://github.com/op7418/guizang-social-card-skill">guizang-social-card-skill</a>: 面向 Claude Code / Codex 的社交图文生成 skill，可输出小红书图文和公众号封面对，内置多套 editorial / Swiss visual layouts 与 HTML 到 PNG 流程。</p>
+<p><a href="https://x.com/HiTw93/status/2067851910464565374">Tw93 AI 岗位面试准备文章汇总</a>: Tw93 汇总“你不知道的 Claude Code / Agent / 大模型训练 / AI Coding / GEO / 具身智能”等系列文章，适合作为传统工程师转向 AI 岗位的系统阅读清单。</p>
+<h2 id="组织与行业">组织与行业<a hidden class="anchor" aria-hidden="true" href="#组织与行业">#</a></h2>
+<p><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-symbiotic-enterprise">The symbiotic enterprise: A new model for growth</a>: McKinsey 从组织形态角度讨论 hybrid human-AI systems，重点是通过人机共生系统自动化认知与物理劳动，而不是只把 AI 当作局部效率工具。</p>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1OkNlJ4fga0O0jb6BRenz2?utm_source=generator" width="100%" height="460" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="从工程师到-staff技术影响力到底是什么httpszhuanlanzhihucomp2051476118868434996"><a href="https://zhuanlan.zhihu.com/p/2051476118868434996">从工程师到 Staff：技术影响力到底是什么</a><a hidden class="anchor" aria-hidden="true" href="#从工程师到-staff技术影响力到底是什么httpszhuanlanzhihucomp2051476118868434996">#</a></h2>
+<blockquote>
+<p>这个问题会被抽象成职级：Senior、Staff、Principal。… 技术人的价值不再主要来自自己完成多少任务，而是来自能否影响更大范围的问题。…到建立长期技术方向；从个人产出，到让团队整体产出变好。…真正的技术影响力不是权力，而是信任。…所以，Staff 的第一课不是“如何让别人听我”，而是“如何让我的判断值得被相信”。</p>
+</blockquote>
+<blockquote>
+<p>但 Staff 级别的人需要更往前一步：判断任务背后的问题是否定义正确。…定义问题比解决任务更难，因为它要求你理解上下文…技术影响力还体现在系统权衡上。…越复杂的系统，越需要有人把这些 trade-off 摆到台面上。</p>
+</blockquote>
+<blockquote>
+<p>但 Staff 的价值不能只靠自己写更多代码。因为再强的人，个人时间也是有限的。…Staff 的产出，很多时候体现在别人能更好地产出。</p>
+</blockquote>
+<blockquote>
+<p>但技术深度不能变成技术执念。…尽量参与从问题定义、方案设计、实验验证到上线复盘的完整链路。完整链路最能训练判断。…写作会逼迫你把隐性判断显性化。…一个好的复盘，不只是总结结果，而是沉淀可迁移经验。…沟通不是把话说圆滑，而是让不同背景的人围绕同一事实做决策。…Staff 需要识别哪些债会阻碍团队未来一年，哪些只是局部不优雅。…培养不是简单答疑，而是帮助别人建立问题框架和判断标准</p>
+</blockquote>
+<blockquote>
+<p>如果说优秀工程师解决问题，那么 Staff 级技术人要做的是：帮助团队解决正确的问题，并让解决问题的能力持续变强</p>
+</blockquote>
+<h2 id="why-ai-hasnt-replaced-software-engineers-and-wonthttpswwwnormaltechaipwhy-ai-hasnt-replaced-software-engineers"><a href="https://www.normaltech.ai/p/why-ai-hasnt-replaced-software-engineers">Why AI hasn’t replaced software engineers, and won’t</a><a hidden class="anchor" aria-hidden="true" href="#why-ai-hasnt-replaced-software-engineers-and-wonthttpswwwnormaltechaipwhy-ai-hasnt-replaced-software-engineers">#</a></h2>
+<blockquote>
+<p>There is great anxiety and uncertainty about AI replacing jobs.</p>
+</blockquote>
+<blockquote>
+<p>It turns out that “AI washing” of job cuts is an economy-wide phenomenon, evidenced by many surveys:</p>
+</blockquote>
+<blockquote>
+<p>layoffs are the wrong signal of AI’s potential productivity benefits in the first place!</p>
+</blockquote>
+<blockquote>
+<p>Why coding agents haven’t led to labor displacement: the decide-execute-deliver sandwich</p>
+</blockquote>
+<blockquote>
+<p>what are developers doing in those meetings and why can’t it be done by AI?</p>
+</blockquote>
+<blockquote>
+<p>(1) deciding and specifying what to build, (2) verifying and being accountable for what is delivered, and (3) the deep human understanding</p>
+</blockquote>
+<blockquote>
+<p>important lessons junior software engineers learn is that requirements specification…if it is compressed, it leads to much more pain down the line.</p>
+</blockquote>
+<blockquote>
+<p>To re-iterate, these are not two distinct categories. They are two ends of a spectrum, and there is a blurry middle.</p>
+</blockquote>
+<blockquote>
+<p>In fact, not only are software engineering jobs not going away due to AI, there might even be an increase in demand for software engineers.</p>
+</blockquote>
+<blockquote>
+<p>this doesn’t mean big tech companies will get even bigger. … which refers to venture capital or private equity firms buying “Main street” businesses</p>
+</blockquote>
+<h2 id="观点从vector-database到vector-lakebase如何定义ai-data-infra的下一个十年httpsmpweixinqqcomshdrvr7z8w8de6eayz9-6oqscene334"><a href="https://mp.weixin.qq.com/s/hDRvR7Z8W8dE6EAYz9-6oQ?scene=334">观点|从Vector Database到Vector Lakebase，如何定义AI data infra的下一个十年</a><a hidden class="anchor" aria-hidden="true" href="#观点从vector-database到vector-lakebase如何定义ai-data-infra的下一个十年httpsmpweixinqqcomshdrvr7z8w8de6eayz9-6oqscene334">#</a></h2>
+<blockquote>
+<p>数据库的演化基本都遵从同一个逻辑：先承接流量，再挖掘价值，最后统一架构消除割裂</p>
+</blockquote>
+<blockquote>
+<p>非结构化数据真正需要的不只是检索系统。它是一个需要持续闭环的行动系统——我给它起了个名字：CS/CD，Continuous Serving + Continuous Discovery。</p>
+</blockquote>
+<blockquote>
+<p>这两大服务不是独立工作流，而是一个飞轮。Serving 产生反馈，Discovery 改进质量，改进后的数据和索引再回到 Serving，循环往复。</p>
+</blockquote>
+<blockquote>
+<p>这和当年 OLTP/OLAP 之间的鸿沟如出一辙——只是这次割裂的是在线语义检索和离线数据处理。</p>
+</blockquote>
+<blockquote>
+<p>Lakehouse 的核心抽象是为结构化数据设计的，向量在里面只是一个很长的 float 数组，没有语义层面的理解；Parquet 文件没有 HNSW、没有 IVF、没有倒排索引。</p>
+</blockquote>
+<blockquote>
+<p>Vector Lakebase&quot;一份数据，多种计算&quot;的概念很好理解</p>
+</blockquote>
+<blockquote>
+<p>CS/CD 飞轮要转得起来，第一个硬约束是：不同计算模式不能各自维护一份业务数据副本。</p>
+</blockquote>
+<blockquote>
+<p>统一数据层意味着系统必须存算分离——数据在 S3 上</p>
+</blockquote>
+<blockquote>
+<p>Vector Lakebase建设的过程中，我们也踩了不少坑，也逐渐对这个东西到底该长什么样形成了一些比较确定的工程判断。
+第一，存算分离 + 多层缓存
+第二，统一的多模态非结构化数据管理…只能存向量而不能管理背后原始数据和元信息的系统，只是索引服务，不是数据底座。
+第三，原生向量数据库能力
+第四，多种计算模式
+第五，开放格式，数据不锁定
+第六，资源跟着数据走，不用不花钱</p>
+</blockquote>
+<h2 id="组织架构的本质信息处理的分工与协调httpszhuanlanzhihucomp2048877559358789506"><a href="https://zhuanlan.zhihu.com/p/2048877559358789506">组织架构的本质：信息处理的分工与协调</a><a hidden class="anchor" aria-hidden="true" href="#组织架构的本质信息处理的分工与协调httpszhuanlanzhihucomp2048877559358789506">#</a></h2>
+<blockquote>
+<p>科层制存在，是因为人的信息处理能力有限。当AI打破了这个限制，科层制存在的理由就不成立了。…科层制的本质，就是一个信息处理的分工与汇总系统。…每个人的信息处理能力是有限的，而信息传递的准确性随距离衰减。</p>
+</blockquote>
+<blockquote>
+<p>科层制能运转，依赖三个隐含假设：
+假设一：执行者不需要理解全局
+假设二：信息向上必须汇总和压缩
+假设三：决策向下必须分解和指令化
+这三个假设的共同基础是：人的信息处理能力有限。 所以才需要过滤、压缩、分解</p>
+</blockquote>
+<blockquote>
+<p>让信息处理能力的供给从&quot;人的带宽&quot;变成了&quot;算力的规模&quot;——而算力是无限扩展的。
+假设一失效：执行者可以理解全局
+假设二失效：信息不再需要逐级压缩
+假设三失效：决策不再需要逐级分解</p>
+</blockquote>
+<blockquote>
+<p>网状组织要运转，有一个不可忽视的前提——每个人都需要有足够的判断力和自主性。
+组织形态的转变，和人的能力模型的转变，是耦合的</p>
+</blockquote>
+<h2 id="为什么东亚人如此害怕裸辞httpsmpweixinqqcomshhsnxoi8v_qt1i46265qawscene334"><a href="https://mp.weixin.qq.com/s/hhsNxoi8v_Qt1i46265Qaw?scene=334">为什么东亚人如此害怕裸辞？</a><a hidden class="anchor" aria-hidden="true" href="#为什么东亚人如此害怕裸辞httpsmpweixinqqcomshhsnxoi8v_qt1i46265qawscene334">#</a></h2>
+<blockquote>
+<p>对于很多人来说，“临时”是一种很可怕的状态。</p>
+</blockquote>
+<blockquote>
+<p>文学其实不喜欢写“临时”相对的那一面，比如永恒的、漫长的东西。</p>
+</blockquote>
+<blockquote>
+<p>但是在文学里，恰恰是那些偶然的、临时性的东西，会绽放出更多的生机。相反，永恒、绵延、不朽，反而变成了令人恐惧的东西。</p>
+</blockquote>
+<blockquote>
+<p>只要人获得了永恒和永生，这种持续和绵延，就会消解很多事情的意义</p>
+</blockquote>
+<blockquote>
+<p>永生并不是祝福，而是一种永恒的折磨</p>
+</blockquote>
+<blockquote>
+<p>一个人一旦被许诺“永远存在”，反而会消解他在有限世界里所能产生意义的一切行为和思考。</p>
+</blockquote>
+<h2 id="openaianthropic都开始押注fdefde才是agent时代的pmf范式httpsmpweixinqqcoms8ouv5h9qvjpq_-acij9f6a"><a href="https://mp.weixin.qq.com/s/8oUv5H9qvjpq_-aCiJ9f6A">OpenAI、Anthropic都开始押注FDE，FDE才是Agent时代的PMF范式？</a><a hidden class="anchor" aria-hidden="true" href="#openaianthropic都开始押注fdefde才是agent时代的pmf范式httpsmpweixinqqcoms8ouv5h9qvjpq_-acij9f6a">#</a></h2>
+<blockquote>
+<p>为什么 agent 时代所有人都在抢 FDE？
+因为客户买的不是软件，而是一个「能干活的 agent」</p>
+</blockquote>
+<blockquote>
+<p>所以 FDE 是带着现有的产品，并在产品团队的帮助下，想办法交付那个成果，构建对客户有价值的用例（use case），以一种对客户真正有效的方式交付你已经构建的软件。</p>
+</blockquote>
+<blockquote>
+<p>FDE 带着现有的产品进场，去填补产品能力与实际需求之间的 gap，把路线先铺成一条「碎石路」（Gravel road）。总部的产品与工程团队再把这些现场做法抽象、泛化，修成能服务接下来五到十个客户的「高速公路」（Paved superhighway）</p>
+</blockquote>
+<blockquote>
+<p>所以，这就从「我如何向每个客户销售同样的东西」转变为「我如何落地并扩张」（land and expand）。</p>
+</blockquote>
+<blockquote>
+<p>首先需要思考的第一个问题是 FDE 团队是如何构建的，这里面有两个关键角色，我们称之为 Echo 团队和 Delta 团队。
+Echo 团队成员需要具备「反叛者（rebel）」的特质，，Sham 甚至会称他们为「异端（heretics）」</p>
+<p>对于 Delta 团队，我们需要的是非常擅长做原型（prototyping）的人。
+Delta 的错误人选是那些有完美主义的工匠型人才，这种人很擅长写代码，喜欢抽象（abstractions）层面的绝对正确，希望他们构建的软件在未来十几年都能维护</p>
+</blockquote>
+<blockquote>
+<p>FDE 团队在每个客户现场所做的事情确实有点像是一个创始人，但 FDE 成员的区别是他们一个可以接触到一些非常强大的产品杠杆（product leverage）的创始人</p>
+</blockquote>
+<blockquote>
+<p>如果从这个角度看，我们就会发现我们实际上在交付真正可重复的价值。产品团队是能让这个模式运作起来并降低成本的一个关键。</p>
+</blockquote>
+<blockquote>
+<p>产品团队的角色是去真正地把握产品愿景（product vision）。所以他们必须思考，在客户现场看到一个新问题时，它的通用形态会是什么样的，什么样的版本可以应用于接下来的 10 个客户。</p>
+</blockquote>
+<blockquote>
+<p>一旦要在不同机构和客户间部署，就会遇到无法通用的问题。于是我们把抽象层级拉高，不再预设具体对象类型，而是让 FDE 按每个客户的语境去定义。底层只提供通用的对象、属性等，Palantir Ontology 就是在这种思路下诞生的。</p>
+</blockquote>
+<blockquote>
+<p>这就是为什么创业公司要做 FDE 的话必须聚焦于解决 CEO 的前五大问题之一这点很重要，因为在遇到组织内阻碍时，需要能够从高层引入某个人说：「是的，给他们操作的权限、他们需要使用这种特定类型的数据库&hellip;&hellip;」</p>
+</blockquote>
+<blockquote>
+<p>YC 有一个概念叫 Collison install，我们基本上把它归结为，不要等着人们来你的网站，你要去找他们，让他们安装软件，亲自去他们那里，去他们的办公室，坐在他们旁边。我觉得这一直是一个很好的起步策略。</p>
+</blockquote>
+<h2 id="notion-已经不看简历了ceo-认为-ai-时代的组织架构属于-jazz-modehttpszhuanlanzhihucomp2044855791073636453"><a href="https://zhuanlan.zhihu.com/p/2044855791073636453">Notion 已经不看简历了，CEO 认为 AI 时代的组织架构属于 Jazz Mode</a><a hidden class="anchor" aria-hidden="true" href="#notion-已经不看简历了ceo-认为-ai-时代的组织架构属于-jazz-modehttpszhuanlanzhihucomp2044855791073636453">#</a></h2>
+<blockquote>
+<p>如果说传统公司像一支行进的乐队（Marching Band），每个人按照固定队形前进；那么他希望 Notion 成为一支爵士乐队（Jazz Band），每个人都有即兴发挥的空间，但又能形成整体协作。</p>
+</blockquote>
+<blockquote>
+<p>但是 GPT-4 给他带来的是一次宗教体验（Religious Experience）。他说当时的感受是：
+如果我们不做 AI，那今天做的一切都会失去意义。
+于是 Notion 再次开始重建。</p>
+</blockquote>
+<blockquote>
+<p>你无法精确控制最终结果。你只能：
+不断实验观察模型表现调整方向</p>
+</blockquote>
+<blockquote>
+<p>AI 产品开发是技术优先（Technology First），而不是客户优先（Customer First）</p>
+</blockquote>
+<blockquote>
+<p><a href="http://3.ai/">3.AI</a> 正在重构整个组织：未来组织会更扁平，但不会完全扁平</p>
+</blockquote>
+<blockquote>
+<p>未来的人才（Talent）= Capability × Taste × Agency</p>
+</blockquote>
+<blockquote>
+<p>但如果里面持续混入大量创业者时，他们会不断发起新项目、挑战旧流程、提出新想法、推动组织变化，相当于给组织注入新的活力。</p>
+</blockquote>
+<blockquote>
+<p>Ivan 说，不要试图在所有地方创新，因为组织资源有限。如果产品创新、销售创新、市场创新以及管理创新同时进行，大概率会全部失败。</p>
+</blockquote>
+<h2 id="致超级个体--to-the-crazy-oneshttpsmpweixinqqcoms__bizmzaxmdmxoti2namid2649108669idx1snc9bb3541cba65b524992eda339f32e83poc_tokenhkwghwqjlat3qhcjlzcoqnc3v_yc95j5ebfifato"><a href="https://mp.weixin.qq.com/s?__biz=MzAxMDMxOTI2NA==&mid=2649108669&idx=1&sn=c9bb3541cba65b524992eda339f32e83&poc_token=HKwGHWqjLat3qHCjlZcoqnC3v_Yc95J5ebFIfAtO">致超级个体 | To The Crazy Ones</a><a hidden class="anchor" aria-hidden="true" href="#致超级个体--to-the-crazy-oneshttpsmpweixinqqcoms__bizmzaxmdmxoti2namid2649108669idx1snc9bb3541cba65b524992eda339f32e83poc_tokenhkwghwqjlat3qhcjlzcoqnc3v_yc95j5ebfifato">#</a></h2>
+<blockquote>
+<p>笔者的判断相反：超级个体不是被培训出来的，而是被好奇心激发出来的。</p>
+</blockquote>
+<blockquote>
+<p>超级个体不是“更强的岗位人”，而是一能够重新拿回完整 Closed-loop 的人</p>
+</blockquote>
+<blockquote>
+<p>当你们讨论“AI 时代的人才战略”时，真正要问的不是“谁会用 AI”，而是“组织有没有允许一个人从问题发现，一直走到拿到结果”。</p>
+</blockquote>
+<blockquote>
+<p>人的能力明明已经被工具放大了，组织却仍然把他切成一个局部函数。</p>
+</blockquote>
+<blockquote>
+<p>是一个人能不能把好奇心变成行动，把行动变成作品，把作品交给真实用户，再把反馈吃回自己的判断系统里</p>
+</blockquote>
+<blockquote>
+<p>Closed-loop 越短，人的综合能力越容易被激发出来。</p>
+</blockquote>
+<blockquote>
+<p>在中台技术如日中天的时候，超级个体几乎灭绝了，取而代之的是“螺丝钉”们。</p>
+</blockquote>
+<blockquote>
+<p>这就是平台化的悖论：平台降低了标准动作的成本，却提高了非标准探索的成本。而今天大家在讨论的 Agent 范式就是非标探索</p>
+</blockquote>
+<blockquote>
+<p>DevOps 的原始精神，是缩短开发、运维和用户反馈之间的距离，让团队对交付结果负责</p>
+</blockquote>
+<blockquote>
+<p>LLM 和 Agent 不是简单提高某个岗位的效率，而是把被拆开的能力重新推回一个人身边</p>
+</blockquote>
+<blockquote>
+<p>大型组织在这里最容易犯的错，是把这种回潮理解成“员工效率提升”</p>
+</blockquote>
+<blockquote>
+<p>但更深的一层变化是：一个人可以重新拥有产品感。…而是：我们有没有允许一个人先把闭环跑起来？</p>
+</blockquote>
+<blockquote>
+<p>传统 leader 的世界不同。他们的时间被会议切成半小时，信息以汇报、周报、行业报告、供应商方案和战略会的形式进入…一线员工用身体学习，leader 用材料学习。…更麻烦的是，旧指标会惩罚探索。</p>
+</blockquote>
+<blockquote>
+<p>可是 AI 工业革命早期最有价值的探索，恰恰常常没有稳定名字。它一开始不是“平台”，不是“战略”，不是“创新专项”，只是一个员工觉得“这事应该可以自动化”的冲动</p>
+</blockquote>
+<blockquote>
+<p>两句话之间隔着一整套旧时代的预算、法务、合规、架构、绩效和职级体系。</p>
+</blockquote>
+<blockquote>
+<p>今天大公司的 leader 们很容易活在 -1 这一层无心（或有意）编织出的信息茧房里，活在小红书、抖音、微信视频的 AI 营销号…</p>
+<p>不容易成为超级个体的人，并不是不聪明。
+恰恰相反，他们很多人是高分学生、优秀员工、靠谱骨干</p>
+</blockquote>
+<blockquote>
+<p>超级个体不是不管风险，而是会在风险可控的边界里先做一个小闭环…一个稳定组织最奖励的，往往就是这种姿态：先对齐，先学习，先写方案，先别乱动。</p>
+</blockquote>
+<blockquote>
+<p>人们以为超级个体掌握了更多知识，新世界真正发生的是，超级个体把知识、工具、问题和反馈重新接成了一个行动闭环。</p>
+</blockquote>
+<blockquote>
+<p>因为超级个体首先不是一组技能包，而是一种底层人格结构。
+•好奇心强，好胜心也强
+•创新精神强，同时也是别人眼中的 trouble makers
+•自学能力强
+•自驱力强
+•动手能力强</p>
+</blockquote>
+<blockquote>
+<p>更关键的是问四个组织问题：这个人有没有完整问题？有没有工具权限？能不能直接看见用户反馈？组织会不会认可他在正式岗位之外长出的新能力？</p>
+</blockquote>
+<blockquote>
+<p>恰恰相反，超级个体不是分工的终点，而是新分工的起点。…但请注意，真正关键的不是 Agent 变多，而是人重新站回最终责任人的位置。</p>
+</blockquote>
+<blockquote>
+<p>真正的挑战只有一个——能不能把这些资源重新接到更小的闭环上。</p>
+</blockquote>
+<blockquote>
+<p>工业化大公司曾经把复杂协作压进岗位、流程和层级里，那是过去的伟大成就。AI 时代要做的不是把它砸碎，而是把它重新组合到“人 + Agent + 组织资源”这个新单元里。</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-06%20%e6%9c%88%e5%88%8a&amp;url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f&amp;title=2026-06%20%e6%9c%88%e5%88%8a&amp;summary=2026-06%20%e6%9c%88%e5%88%8a&amp;source=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f&title=2026-06%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-06%20%e6%9c%88%e5%88%8a%20-%20http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-06%20%e6%9c%88%e5%88%8a&amp;url=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-06 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-06%20%e6%9c%88%e5%88%8a&u=http%3a%2f%2flocalhost%3a1313%2fmonthly%2f2026-06-monthly%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="http://localhost:1313/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,102 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 | LZY Blog</title>
 <meta name="keywords" content="Agent, Agent-memory">
-<meta name="description" content="
-TL;DR Hermes 的记忆系统不是&quot;一个记忆库&quot;，而是把不同稳定性、不同粒度、不同调用成本的信息放到不同层里。
-
-写在开头
-最近在调研各家 Agent 的记忆系统设计。Hermes-Agent 在 memory 这一块明显走了另一条路——既没有像 OpenClaw 那样留下大量流水账式的 md 文件，也没有把所有内容塞进向量库。它把记忆按生命周期和稳定性做了分层：稳定事实直接写文件，会话历史进 SQLite，复杂用户画像交给 Provider 插件，而&quot;做事方法&quot;则沉淀进 Skills 自我迭代。
-实际效果也更好。下面把这套结构拆开看。
-整体而言，Hermes 的 memory 系统由四种正交的存储 &#43; 调用机制组合而成：
-
-  
-      
-          层级
-          载体
-          注入方式
-          适合存放
-      
-  
-  
-      
-          当前上下文
-          本轮 messages
-          —
-          工作记忆
-      
-      
-          文件事实记忆
-          MEMORY.md / USER.md
-          启动时全量注入系统提示
-          高价值稳定事实
-      
-      
-          会话历史
-          SessionDB（SQLite &#43; FTS5）
-          按需 session_search 工具调用
-          完整历史、决策上下文
-      
-      
-          外部记忆
-          MemoryProvider 插件
-          prefetch &#43; 工具调用
-          语义检索、知识图谱、画像
-      
-      
-          程序性记忆
-          Skills（SKILL.md）
-          索引常驻、全文按需加载
-          &ldquo;怎么做&quot;的可复用流程
-      
-  
-
-这套设计的关键不是&quot;有一个记忆库&rdquo;，而是把不同稳定性、不同粒度、不同调用成本的信息，放到不同层里。
-文件持久化记忆：MEMORY.md 与 USER.md
-Markdown 文件设计
-内置文件记忆由两个文件构成：
-
-  
-      
-          文件
-          target
-          默认字符上限
-          内容定位
-      
-  
-  
-      
-          MEMORY.md
-          memory
-          2200 chars
-          Agent 自己的笔记：环境、项目约定、工具 quirks、稳定经验
-      
-      
-          USER.md
-          user
-          1375 chars
-          用户画像：姓名、角色、偏好、沟通风格、工作习惯
-      
-  
-
-这里用字符数而不是 token 数，是为了和模型无关，并让容量控制更确定。">
+<meta name="description" content="拆解 Hermes-Agent 的分层记忆设计，包括文件事实记忆、会话数据库、外部 Memory Provider 和可持续迭代的 Skills。">
 <meta name="author" content="LZY">
-<link rel="canonical" href="https://niraya666.github.io/posts/agent-memory-hermes/">
+<link rel="canonical" href="http://localhost:1313/posts/agent-memory-hermes/">
 <meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://niraya666.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/posts/agent-memory-hermes/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/posts/agent-memory-hermes/">
 <noscript>
     <style>
         #theme-toggle,
@@ -149,172 +72,18 @@ Markdown 文件设计
           gtag('config', 'G-9KEC0300HT');
         }
       </script><meta property="og:title" content="【Agent - Memory】Hermes-Agent 的 Memory 设计拆解" />
-<meta property="og:description" content="
-TL;DR Hermes 的记忆系统不是&quot;一个记忆库&quot;，而是把不同稳定性、不同粒度、不同调用成本的信息放到不同层里。
-
-写在开头
-最近在调研各家 Agent 的记忆系统设计。Hermes-Agent 在 memory 这一块明显走了另一条路——既没有像 OpenClaw 那样留下大量流水账式的 md 文件，也没有把所有内容塞进向量库。它把记忆按生命周期和稳定性做了分层：稳定事实直接写文件，会话历史进 SQLite，复杂用户画像交给 Provider 插件，而&quot;做事方法&quot;则沉淀进 Skills 自我迭代。
-实际效果也更好。下面把这套结构拆开看。
-整体而言，Hermes 的 memory 系统由四种正交的存储 &#43; 调用机制组合而成：
-
-  
-      
-          层级
-          载体
-          注入方式
-          适合存放
-      
-  
-  
-      
-          当前上下文
-          本轮 messages
-          —
-          工作记忆
-      
-      
-          文件事实记忆
-          MEMORY.md / USER.md
-          启动时全量注入系统提示
-          高价值稳定事实
-      
-      
-          会话历史
-          SessionDB（SQLite &#43; FTS5）
-          按需 session_search 工具调用
-          完整历史、决策上下文
-      
-      
-          外部记忆
-          MemoryProvider 插件
-          prefetch &#43; 工具调用
-          语义检索、知识图谱、画像
-      
-      
-          程序性记忆
-          Skills（SKILL.md）
-          索引常驻、全文按需加载
-          &ldquo;怎么做&quot;的可复用流程
-      
-  
-
-这套设计的关键不是&quot;有一个记忆库&rdquo;，而是把不同稳定性、不同粒度、不同调用成本的信息，放到不同层里。
-文件持久化记忆：MEMORY.md 与 USER.md
-Markdown 文件设计
-内置文件记忆由两个文件构成：
-
-  
-      
-          文件
-          target
-          默认字符上限
-          内容定位
-      
-  
-  
-      
-          MEMORY.md
-          memory
-          2200 chars
-          Agent 自己的笔记：环境、项目约定、工具 quirks、稳定经验
-      
-      
-          USER.md
-          user
-          1375 chars
-          用户画像：姓名、角色、偏好、沟通风格、工作习惯
-      
-  
-
-这里用字符数而不是 token 数，是为了和模型无关，并让容量控制更确定。" />
+<meta property="og:description" content="拆解 Hermes-Agent 的分层记忆设计，包括文件事实记忆、会话数据库、外部 Memory Provider 和可持续迭代的 Skills。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://niraya666.github.io/posts/agent-memory-hermes/" />
-<meta property="og:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta property="og:url" content="http://localhost:1313/posts/agent-memory-hermes/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
 <meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2026-05-11T14:00:00+08:00" />
-<meta property="article:modified_time" content="2026-05-11T14:00:00+08:00" />
+<meta property="article:modified_time" content="2026-06-19T18:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://niraya666.github.io/img/og-cover.png" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
 <meta name="twitter:title" content="【Agent - Memory】Hermes-Agent 的 Memory 设计拆解"/>
-<meta name="twitter:description" content="
-TL;DR Hermes 的记忆系统不是&quot;一个记忆库&quot;，而是把不同稳定性、不同粒度、不同调用成本的信息放到不同层里。
-
-写在开头
-最近在调研各家 Agent 的记忆系统设计。Hermes-Agent 在 memory 这一块明显走了另一条路——既没有像 OpenClaw 那样留下大量流水账式的 md 文件，也没有把所有内容塞进向量库。它把记忆按生命周期和稳定性做了分层：稳定事实直接写文件，会话历史进 SQLite，复杂用户画像交给 Provider 插件，而&quot;做事方法&quot;则沉淀进 Skills 自我迭代。
-实际效果也更好。下面把这套结构拆开看。
-整体而言，Hermes 的 memory 系统由四种正交的存储 &#43; 调用机制组合而成：
-
-  
-      
-          层级
-          载体
-          注入方式
-          适合存放
-      
-  
-  
-      
-          当前上下文
-          本轮 messages
-          —
-          工作记忆
-      
-      
-          文件事实记忆
-          MEMORY.md / USER.md
-          启动时全量注入系统提示
-          高价值稳定事实
-      
-      
-          会话历史
-          SessionDB（SQLite &#43; FTS5）
-          按需 session_search 工具调用
-          完整历史、决策上下文
-      
-      
-          外部记忆
-          MemoryProvider 插件
-          prefetch &#43; 工具调用
-          语义检索、知识图谱、画像
-      
-      
-          程序性记忆
-          Skills（SKILL.md）
-          索引常驻、全文按需加载
-          &ldquo;怎么做&quot;的可复用流程
-      
-  
-
-这套设计的关键不是&quot;有一个记忆库&rdquo;，而是把不同稳定性、不同粒度、不同调用成本的信息，放到不同层里。
-文件持久化记忆：MEMORY.md 与 USER.md
-Markdown 文件设计
-内置文件记忆由两个文件构成：
-
-  
-      
-          文件
-          target
-          默认字符上限
-          内容定位
-      
-  
-  
-      
-          MEMORY.md
-          memory
-          2200 chars
-          Agent 自己的笔记：环境、项目约定、工具 quirks、稳定经验
-      
-      
-          USER.md
-          user
-          1375 chars
-          用户画像：姓名、角色、偏好、沟通风格、工作习惯
-      
-  
-
-这里用字符数而不是 token 数，是为了和模型无关，并让容量控制更确定。"/>
+<meta name="twitter:description" content="拆解 Hermes-Agent 的分层记忆设计，包括文件事实记忆、会话数据库、外部 Memory Provider 和可持续迭代的 Skills。"/>
 
 
 <script type="application/ld+json">
@@ -326,13 +95,13 @@ Markdown 文件设计
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://niraya666.github.io/posts/"
+      "item": "http://localhost:1313/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "【Agent - Memory】Hermes-Agent 的 Memory 设计拆解",
-      "item": "https://niraya666.github.io/posts/agent-memory-hermes/"
+      "item": "http://localhost:1313/posts/agent-memory-hermes/"
     }
   ]
 }
@@ -343,29 +112,29 @@ Markdown 文件设计
   "@type": "BlogPosting",
   "headline": "【Agent - Memory】Hermes-Agent 的 Memory 设计拆解",
   "name": "【Agent - Memory】Hermes-Agent 的 Memory 设计拆解",
-  "description": " TL;DR Hermes 的记忆系统不是\u0026quot;一个记忆库\u0026quot;，而是把不同稳定性、不同粒度、不同调用成本的信息放到不同层里。\n写在开头 最近在调研各家 Agent 的记忆系统设计。Hermes-Agent 在 memory 这一块明显走了另一条路——既没有像 OpenClaw 那样留下大量流水账式的 md 文件，也没有把所有内容塞进向量库。它把记忆按生命周期和稳定性做了分层：稳定事实直接写文件，会话历史进 SQLite，复杂用户画像交给 Provider 插件，而\u0026quot;做事方法\u0026quot;则沉淀进 Skills 自我迭代。\n实际效果也更好。下面把这套结构拆开看。 整体而言，Hermes 的 memory 系统由四种正交的存储 + 调用机制组合而成：\n层级 载体 注入方式 适合存放 当前上下文 本轮 messages — 工作记忆 文件事实记忆 MEMORY.md / USER.md 启动时全量注入系统提示 高价值稳定事实 会话历史 SessionDB（SQLite + FTS5） 按需 session_search 工具调用 完整历史、决策上下文 外部记忆 MemoryProvider 插件 prefetch + 工具调用 语义检索、知识图谱、画像 程序性记忆 Skills（SKILL.md） 索引常驻、全文按需加载 \u0026ldquo;怎么做\u0026quot;的可复用流程 这套设计的关键不是\u0026quot;有一个记忆库\u0026rdquo;，而是把不同稳定性、不同粒度、不同调用成本的信息，放到不同层里。\n文件持久化记忆：MEMORY.md 与 USER.md Markdown 文件设计 内置文件记忆由两个文件构成：\n文件 target 默认字符上限 内容定位 MEMORY.md memory 2200 chars Agent 自己的笔记：环境、项目约定、工具 quirks、稳定经验 USER.md user 1375 chars 用户画像：姓名、角色、偏好、沟通风格、工作习惯 这里用字符数而不是 token 数，是为了和模型无关，并让容量控制更确定。\n",
+  "description": "拆解 Hermes-Agent 的分层记忆设计，包括文件事实记忆、会话数据库、外部 Memory Provider 和可持续迭代的 Skills。",
   "keywords": [
     "Agent", "Agent-memory"
   ],
   "articleBody": " TL;DR Hermes 的记忆系统不是\"一个记忆库\"，而是把不同稳定性、不同粒度、不同调用成本的信息放到不同层里。\n写在开头 最近在调研各家 Agent 的记忆系统设计。Hermes-Agent 在 memory 这一块明显走了另一条路——既没有像 OpenClaw 那样留下大量流水账式的 md 文件，也没有把所有内容塞进向量库。它把记忆按生命周期和稳定性做了分层：稳定事实直接写文件，会话历史进 SQLite，复杂用户画像交给 Provider 插件，而\"做事方法\"则沉淀进 Skills 自我迭代。\n实际效果也更好。下面把这套结构拆开看。 整体而言，Hermes 的 memory 系统由四种正交的存储 + 调用机制组合而成：\n层级 载体 注入方式 适合存放 当前上下文 本轮 messages — 工作记忆 文件事实记忆 MEMORY.md / USER.md 启动时全量注入系统提示 高价值稳定事实 会话历史 SessionDB（SQLite + FTS5） 按需 session_search 工具调用 完整历史、决策上下文 外部记忆 MemoryProvider 插件 prefetch + 工具调用 语义检索、知识图谱、画像 程序性记忆 Skills（SKILL.md） 索引常驻、全文按需加载 “怎么做\"的可复用流程 这套设计的关键不是\"有一个记忆库”，而是把不同稳定性、不同粒度、不同调用成本的信息，放到不同层里。\n文件持久化记忆：MEMORY.md 与 USER.md Markdown 文件设计 内置文件记忆由两个文件构成：\n文件 target 默认字符上限 内容定位 MEMORY.md memory 2200 chars Agent 自己的笔记：环境、项目约定、工具 quirks、稳定经验 USER.md user 1375 chars 用户画像：姓名、角色、偏好、沟通风格、工作习惯 这里用字符数而不是 token 数，是为了和模型无关，并让容量控制更确定。\n虽然名字带 .md，但这两个文件并不是复杂的 Markdown AST，而更像\"多条目文本文件\"。条目之间用 section sign（§）做分隔符：\n第一条稳定事实 § 第二条稳定事实，可以有多行 继续第二条 § 第三条稳定事实 读取时按完整分隔符拆分并 strip() 每条；写入时重新用分隔符 join。\\n§\\n 是一个低成本、可见、少冲突的 record delimiter：\nHermes 后续的 add / replace / remove 都把 memory 当 List[str] 操作，分隔符要能稳定还原\"一个 entry\"； Heading 会引入层级语义，但这里是平铺事实列表，不需要 ## 用户偏好、### 项目约定 这种结构；而且 heading 本身也可能出现在条目内容里——agent 写技术笔记时容易顺手敲个 markdown 小标题。 所以这两个文件不追求 Markdown 语义，而追求稳定切分、支持多行、低 token 成本、易被模型和人类同时读写。\nFrozen Snapshot：为什么写入后不立刻进系统提示 MemoryStore 同时维护两份状态：\n状态 用途 memory_entries / user_entries 当前 live 状态，工具写入后立即更新并落盘 _system_prompt_snapshot load_from_disk() 时冻结，专用于系统提示注入 由此带来的行为：\nmemory(action=\"add\") 会立刻写入磁盘； 工具返回会展示最新 live entries； 但当前会话的系统提示不变； 新记忆一般从下一个新会话才稳定进入系统提示。 这个设计服务于 prompt cache——系统提示如果每轮都变化，前缀缓存命中率会下降。\n系统提示中的渲染格式 如果文件非空，会被渲染成类似这样的 block：\n══════════════════════════════════════════════ MEMORY (your personal notes) [67% — 1,474/2,200 chars] ══════════════════════════════════════════════ Project ~/code/api uses Go 1.22, sqlc, chi router. § This machine runs macOS with Homebrew and zsh. 注入顺序在 run_agent.py::_build_system_prompt() 里：\n写入工具：memory memory 是 agent-level tool，不走普通工具 registry 的 handler，而是在 run_agent.py 中拦截，传入当前 agent 的 MemoryStore。\nSchema 只有三个动作：\naction 语义 关键参数 add 新增条目 target, content replace 用新条目替换旧条目 target, old_text, content remove 删除旧条目 target, old_text replace / remove 不需要条目 ID，而是用 old_text 做\"短且唯一的子串匹配\"。如果匹配到多条且文本不同，会拒绝并要求更具体。\n安全与并发 内置文件记忆会被注入系统提示，所以写入前会做轻量安全扫描：\nPrompt injection：ignore previous instructions、you are now ... 等； 数据外泄：curl / wget 携带 key / token / secret； 凭证读取：.env、credentials、.netrc 等； SSH 持久化：authorized_keys、~/.ssh； 隐形 Unicode：零宽字符、方向控制字符等。 并发写入靠两层机制：\n独立 .lock 文件加锁，Unix 用 fcntl.flock()，Windows 用 msvcrt.locking()； 写入临时文件后再 atomic_replace()，读者永远看到旧完整文件或新完整文件，不会读到半截文件或空文件。 什么该进 MEMORY/USER，什么不该进 核心原则：写成\"事实\"，不要写成\"命令\"。\n好例子：\nUser prefers concise answers with concrete file references. Project uses pytest with xdist; normal test command is scripts/run_tests.sh. 坏例子：\nAlways answer concisely. Run pytest with xdist before replying. 原因是 memory 会被重新读进系统提示。命令式表达很容易在未来会话里变成高优先级指令，干扰当前用户请求。程序、步骤、验证流程应进入 skill，不应进入 MEMORY.md。\n推荐保存：\n内容 target 用户反复纠正的偏好、语气、格式 user 用户身份、角色、时区、工作流习惯 user 项目路径、技术栈、测试命令、部署约定 memory 本机环境、已安装工具、平台 quirks memory 稳定 API 限制、团队约定、长期有效 workaround memory 不推荐保存：\n临时任务进度、一次性 TODO、完成工作日志； 大段原始日志、代码、表格； 公开知识或容易重新发现的事实； 已经在 AGENTS.md / SOUL.md / 项目文档里的内容； “怎么做\"的完整流程。 这些信息应分别落到 SessionDB、项目文档或 skill。\n事实提取：谁来调用 memory 工具 依赖模型在两类场景中调用 memory 工具：\n前台主 agent 在正常任务中主动发现值得保存的事实； 后台 self-improvement review fork 定期复盘对话，调用 memory 或 skill_manage。 当 memory nudge 触发时，Hermes 会在当前回答交付后启动一个 quiet 的 review agent。这个 fork：\n继承父 agent 的运行时 provider / model / credentials； 只启用 memory 和 skills toolsets； 复用父 agent 的 MemoryStore； 把\"需要复盘保存什么\"的 prompt 作为新用户消息； 成功写入后只给用户显示一个简短摘要。 触发时机 内置 memory 的触发主要有三种：\n时机 机制 当前任务中 模型看见系统提示和 memory schema 后主动调用 memory 每 N 个用户 turn memory.nudge_interval，默认代码路径是 10 复杂任务后 skills nudge 可能触发 combined review，同时复盘 memory 与 skills 注入机制 内置 MEMORY.md / USER.md 的注入是启动时全量注入，不是检索式注入：\nsession start -\u003e MemoryStore.load_from_disk() -\u003e capture frozen snapshot -\u003e _build_system_prompt() -\u003e append MEMORY block / USER block -\u003e SessionDB.update_system_prompt() Session Search：SessionDB 的会话记忆 MEMORY.md / USER.md 适合放\"少量关键事实”。但很多信息不该常驻系统提示：\n上周某次 debug 的完整过程； 某个 PR 的错误日志； 曾经讨论过的方案取舍； “我们上次在这个项目卡在哪里”。 这些属于会话历史。Hermes 把它们写入 SQLite，然后通过 session_search 按需检索。\n存储格式：SQLite 主存储路径：$HERMES_HOME/state.db\n核心 schema 在 hermes_state.py，当前 SCHEMA_VERSION = 11。主要表：\n表 作用 sessions session 元数据：source、user_id、model、system_prompt、parent_session_id、token / cost / title 等 messages 消息明细：role、content、tool_calls、tool_name、reasoning、codex items 等 messages_fts FTS5 全文索引，索引 content + tool_name + tool_calls messages_fts_trigram trigram FTS5 索引，用于 CJK / substring 搜索 state_meta key/value 元数据 schema_version schema 版本 Hermes 仍会保留 session JSON 日志，但 session_search 的检索源是 SQLite。\n消息一写入 messages，全文索引自动同步。v11 之后 FTS 表改成 inline 内容，并把 tool_name、tool_calls 也拼进索引，因此可以搜到工具调用相关内容。\n写入时机 第一次写入时按需创建 session 行——AIAgent._ensure_db_session() 在首次需要写入 SessionDB 时创建 sessions 表记录，写入的主要是会话元数据。\n每轮 run_conversation() 结束时写入——正常完成一轮对话后会走到 _persist_session(messages, conversation_history)，把本轮新增消息 flush 到 SessionDB。\n异常退出 / 中断 / API 错误时也会写入——Hermes 在很多 early return 路径都会调用 _persist_session(...)，例如 API 响应异常、重试期间中断、InterruptedError 等。目的很明确：即使对话没有正常完成，也尽量把已有上下文落盘，避免会话丢失。\n上下文压缩 / session 切换时——当上下文压缩发生时，旧 session 会被标记结束，新的 session 通过 parent_session_id 指向旧 session。这样 SessionDB 里保留了压缩前后的会话链路，而不是把所有内容混成一条无限长会话。\n搜索机制 session_search 工具在 tools/session_search_tool.py 中，支持两种模式：\n模式 触发 成本 返回 recent mode query 为空 无 LLM 调用 最近 session 的 title、preview、timestamp keyword mode query 非空 FTS + 辅助模型总结 相关 session 的聚焦摘要 Keyword mode 的流程：\nquery -\u003e SessionDB.search_messages(limit=50, exclude_sources=[\"tool\"]) -\u003e FTS5 / trigram / LIKE fallback -\u003e 按 session 分组 -\u003e child session 解析到 root parent -\u003e 跳过当前 session lineage -\u003e 读取每个候选 session 的完整 conversation -\u003e 围绕 match 截断到 MAX_SESSION_CHARS -\u003e auxiliary.session_search 模型并发总结 -\u003e JSON 返回 per-session summary 几个细节：\nlimit 会被 clamp 到 1–5，避免一次总结太多 session； 默认排除 source=\"tool\"，避免第三方工具运行产生的内部会话污染搜索结果； 当前 session 及其 parent / child lineage 会被跳过——当前上下文已经可见，无需重复召回； delegation / compression 产生的 child session 会 resolve 到 root parent，让用户看到的是\"自己的主会话\"。 检索返回格式 SessionDB.search_messages() 返回 match message 级别的数据：\n字段 说明 id message row id session_id 命中的 session role user / assistant / tool / system snippet FTS snippet，命中位置用 \u003e\u003e\u003e 和 \u003c\u003c\u003c 标记 timestamp 消息时间 tool_name 如果是工具消息，记录工具名 source cli / telegram / discord / cron 等 model session 使用的模型 session_started session 开始时间 context 命中消息前后各一条，内容截断到 200 chars session_search 不直接把这些 raw matches 注入模型，而是先按 session 聚合，再生成自然语言 recap。这样主模型获得的是\"过去那次会话发生了什么\"，而不是一堆零散的 FTS 命中。\n注意，session_search 是显式工具，不会自动注入每轮上下文。模型必须在需要回忆过去时主动调用它。\n与 MEMORY/USER.md 的对比 项 MEMORY.md / USER.md session_search 注入方式 会话开始时自动进系统提示 模型按需工具调用 容量 很小，固定上限 随 SQLite 增长 成本 每次请求固定 token 成本 搜索时才有 DB + LLM 总结成本 内容 高价值稳定事实 完整历史、任务过程、决策上下文 管理方式 agent 主动策展 自动落库、自动索引 MemoryProvider：外部记忆插件系统 内置 memory 的优势是简单、透明、零依赖，但它有三个天然限制：\n容量很小； 没有语义检索； 不负责复杂用户画像、知识图谱或跨设备同步。 Hermes 用 MemoryProvider 把这些能力交给插件系统——内置文件记忆始终保留，外部 provider 是 additive 的。\n限制：同一 agent 运行时最多支持一个 external provider。\n核心接口 agent/memory_provider.py 定义了 provider 接口：\n方法 调用时机 用途 is_available() agent init 快速检查依赖 / 凭证，不应发网络请求 initialize(session_id, **kwargs) agent startup 建连接、建表、初始化 session scope system_prompt_block() 系统提示拼装 提供静态 provider 说明或基础画像 prefetch(query, session_id=...) 每 turn API 调用前 返回相关 recall context queue_prefetch(query, session_id=...) 每 turn 完成后 后台预热下一 turn sync_turn(user, assistant, session_id=...) 完整 turn 结束后 持久化本轮对话 get_tool_schemas() tools 注入 暴露 provider 专属工具 handle_tool_call() 工具调用 执行 provider 工具 on_turn_start() 每个用户 turn 开始 cadence、scope、周期性刷新 on_session_end(messages) 真实 session 边界 flush、提取事实、生成摘要 on_session_switch() /resume、/new、compression 等 更新 provider 内部 session id on_pre_compress(messages) 上下文压缩前 在上下文丢弃前保存洞察 on_memory_write() 内置 memory add / replace 后 镜像内置事实到外部后端 on_delegation() 子 agent 完成后 父 agent 观察 delegation 结果 shutdown() session expiry / CLI exit 关闭连接、flush 队列 Recall 的注入位置 外部 provider 有两种注入路径。\n第一种是 system_prompt_block()——只在系统提示构建时进入 stable prompt，适合放 provider 状态、身份、轻量画像。\n第二种是 prefetch()——run_agent.py 在每个 turn 开始时调用一次 prefetch_all()，然后在真正送 API 前，把返回内容追加到当前用户消息上：\nuser message [System note: The following is recalled memory context, NOT new user input. Treat as authoritative reference data — this is the agent's persistent memory and should inform all responses.] provider returned context 这个 是临时注入，不会写入 messages，也不会进入 SessionDB。它的作用是既保留系统提示 cache，又给当前 turn 提供 recall。\nagent/memory_manager.py 还提供了 sanitize_context() 和 StreamingContextScrubber：\nprovider 如果返回了嵌套的 ，会被剥掉； streaming 输出中如果意外包含 memory-context span，会被 scrubber 跨 chunk 清理，避免泄漏到用户界面。 内置 Provider 一览 Provider 存储 / 能力侧重点 Honcho 云端 / 自托管 peer model、用户画像、dialectic reasoning、语义搜索 Mem0 云端事实提取、语义搜索、dedup / rerank Hindsight 云端或本地知识图谱、多策略 recall、reflect 综合 Holographic 本地 SQLite fact store、FTS5、Jaccard、HRR、trust scoring RetainDB 云端 hybrid search、memory type、delta compression ByteRover CLI 驱动、本地知识树、可选云同步、预压缩提取 Supermemory 云端语义记忆、profile recall、session graph ingest、多 container OpenViking 自托管层级知识库、tiered retrieval、自动 memory extraction 不同 provider 的工具 schema 不同，但它们都被 MemoryManager 统一路由。\n从事实记忆到程序性记忆：Skills 到目前为止讨论的都是\"是什么\"——事实型记忆（declarative memory）。但 Agent 还需要记住\"怎么做\"——程序性记忆（procedural memory）。Hermes 通过 Skills 来解决这部分。\n文件事实记忆 vs Skill 维度 文件事实记忆 Skill 记录对象 是什么 怎么做 典型内容 用户偏好、项目事实、环境约定 步骤、命令、模板、坑点、验证方法 注入方式 每个会话自动注入 索引自动注入，全文按需加载 容量 小而固定 大，可拆 references/ / templates/ / scripts/ 更新机制 memory add / replace / remove skill_manage create / patch / edit / write_file / delete 触发机制：Background Review 一轮对话结束时，如果同时满足：\nskill_manage 可用； _iters_since_skill \u003e= creation_nudge_interval（每发生一次 tool-calling iteration，_iters_since_skill 累加 1；skills.creation_nudge_interval 默认是 10）； 本轮有 final_response； 本轮没有被 interrupted； 就会触发 _spawn_background_review()。这个 review 是后台线程，发生在用户已经拿到回答之后，所以不会阻塞主任务。\nreview agent prompt（run_agent.py line 3597）里明确告诉 review agent 哪些信号值得沉淀：\n用户纠正了风格、格式、步骤、工作流； 出现了非平凡技巧、修复路径、debug 方法、工具使用模式； 某个已加载 skill 被证明缺步骤、过时或有坑； 用户要求记住某个流程； 一个复杂任务跑通后形成了可复用方法。 并规定了优先级：\n优先 patch 当前会话中已经加载或查看过的 skill； 其次更新已有 umbrella skill； 再其次给已有 skill 增加 references/、templates/、scripts/ 支持文件； 最后才创建新的 class-level skill。 skill_manage：写入程序性记忆 tools/skill_manager_tool.py 提供 skill_manage：\naction 作用 create 创建新 skill，写入完整 SKILL.md patch 对 SKILL.md 或支持文件做精确替换，推荐用于小修 edit 完整重写 SKILL.md，适合大改 delete 删除 skill，可声明 absorbed_into write_file 写入 references/ / templates/ / scripts/ / assets/ 下的支持文件 remove_file 删除支持文件 Schema 明确提示：复杂任务成功、克服错误、用户纠正的方法有效、发现非平凡 workflow、用户要求记住某程序时，应该创建或更新 skill。\n整个机制本质上是：\n对话轨迹 -\u003e 后台复盘 -\u003e 抽取可复用流程 / 坑点 / 用户纠正 -\u003e patch / create skills -\u003e 下一次系统提示中的 skill index 出现更新 -\u003e 模型按需 skill_view Memory 全生命周期 把上面四层串起来，整个 memory 系统的生命周期如下：\n可迁移设计模式 如果只看 Hermes 这套实现，会觉得\"啊就是分了几层文件加 SQLite\"。但抽象成设计原则之后，会发现有几条思路是可以迁移到其它 Agent 系统的。\n1. 分层记忆，而不是万能 Memory 不要把\"长期记忆\"全部塞进向量库。 用户偏好、事实、会话历史、操作技能其实是不同类型的数据，应该有不同的存储、召回和更新机制。\n2. 按生命周期划分记忆 不只按\"短期 / 长期\"分，而是按生命周期分（跨 session、长期事实、长期能力等）。先问这条信息应该活多久，再决定它放在哪里——不是所有内容都应该永久化，也不是所有内容都应该进入 prompt。\n3. Transcript 先落盘，语义提取后置 SessionDB 写入的是原始消息、工具调用、reasoning 等结构化 transcript；session_search 检索时再做摘要和聚焦总结。写入时尽量保真，读取时再压缩和解释——这样既避免过早总结造成信息损失，也方便未来换检索策略、换摘要模型、换 ranking 逻辑。\n4. 记忆召回和记忆写入解耦 MemoryProvider 的接口把读取和写入拆开：\nprefetch(query)：为下一次回答召回上下文； sync_turn(user, assistant)：在一轮完成后同步记忆； queue_prefetch(query)：提前为下一轮预热； on_session_end(messages)：真正 session 结束时做总结或抽取。 读写解耦的另一个好处是插件化：不同后端（向量库、知识图谱、画像服务）可以共用同一套生命周期钩子，互不干扰。\n5. Prefetch 模式：用预热降低首 token 延迟 Hermes 在每轮开始时调用 prefetch_all()，且只调用一次，缓存结果给整个 tool loop 使用；一轮结束后再 sync_all() 和 queue_prefetch_all()。记忆召回不要等模型马上要回答时才临时做——上一轮完成后就可以预热下一轮可能需要的上下文，把召回的延迟摊到用户思考的时间里。\n6. 记忆既是上下文，也是工具 MemoryProvider 不只可以注入上下文，还可以暴露 tool schema。也就是说，记忆既可以被动注入，也可以被模型主动调用。两种调用方式覆盖不同场景：被动注入处理\"每次都需要\"的高频信息，主动调用处理\"按需才查\"的稀疏信息。\n7. 文件记忆保持人类可读 USER.md / MEMORY.md 这种文件记忆的价值在于：越稳定、越用户相关、越需要信任的信息，越应该可见、可编辑、可审计。和向量库相比，纯文本文件虽然\"原始\"，但带来的透明度和可控性是无可替代的。\n8. 区分 declarative 与 procedural memory 对于可重复的工作流，沉淀成 SKILL.md，相当于把 memory 分成两类：\ndeclarative memory：用户是谁、偏好是什么、发生过什么； procedural memory：以后遇到类似任务应该怎么做。 事实记忆解决\"知道\"的问题，技能记忆解决\"会做\"的问题。两者的更新机制、注入策略、生命周期都不一样——混在一起反而互相干扰。\n",
-  "wordCount" : "1273",
+  "wordCount" : "7322",
   "inLanguage": "zh-cn",
-  "image": "https://niraya666.github.io/img/og-cover.png","datePublished": "2026-05-11T14:00:00+08:00",
-  "dateModified": "2026-05-11T14:00:00+08:00",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-05-11T14:00:00+08:00",
+  "dateModified": "2026-06-19T18:00:00+08:00",
   "author":{
     "@type": "Person",
     "name": "LZY"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://niraya666.github.io/posts/agent-memory-hermes/"
+    "@id": "http://localhost:1313/posts/agent-memory-hermes/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "LZY Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://niraya666.github.io/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -387,7 +156,7 @@ Markdown 文件设计
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <a href="http://localhost:1313/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -411,7 +180,7 @@ Markdown 文件设计
                 </button>
                 <ul class="lang-switch"><li>|</li>
                     <li>
-                        <a href="https://niraya666.github.io/en/" title="English"
+                        <a href="http://localhost:1313/en/" title="English"
                             aria-label="English">English</a>
                     </li>
                 </ul>
@@ -419,52 +188,52 @@ Markdown 文件设计
         </div>
         <ul id="menu">
             <li>
-                <a href="https://niraya666.github.io/posts/" title="AI">
+                <a href="http://localhost:1313/posts/" title="AI">
                     <span>AI</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/archives" title="Archive">
+                <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                <a href="http://localhost:1313/monthly/" title="月刊">
                     <span>月刊</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel/" title="游记">
+                <a href="http://localhost:1313/travel/" title="游记">
                     <span>游记</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                <a href="http://localhost:1313/travel-map/" title="足迹">
                     <span>足迹</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                <a href="http://localhost:1313/musik/" title="Musik!">
                     <span>Musik!</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/essay/" title="杂文">
+                <a href="http://localhost:1313/essay/" title="杂文">
                     <span>杂文</span>
                 </a>
             </li>
             <li>
-                <a href="https://niraya666.github.io/about/" title="About">
+                <a href="http://localhost:1313/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -475,11 +244,14 @@ Markdown 文件设计
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       【Agent - Memory】Hermes-Agent 的 Memory 设计拆解
     </h1>
-    <div class="post-meta"><span title='2026-05-11 14:00:00 +0800 CST'>May 11, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;LZY
+    <div class="post-description">
+      拆解 Hermes-Agent 的分层记忆设计，包括文件事实记忆、会话数据库、外部 Memory Provider 和可持续迭代的 Skills。
+    </div>
+    <div class="post-meta"><span title='2026-05-11 14:00:00 +0800 CST'>May 11, 2026</span>&nbsp;·&nbsp;15 min&nbsp;·&nbsp;LZY
 
 </div>
   </header> <div class="toc">
@@ -1341,16 +1113,16 @@ Markdown 文件设计
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
-      <li><a href="https://niraya666.github.io/tags/agent-memory/">Agent-Memory</a></li>
+      <li><a href="http://localhost:1313/tags/agent/">Agent</a></li>
+      <li><a href="http://localhost:1313/tags/agent-memory/">Agent-Memory</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://niraya666.github.io/posts/agent-traj2skills/">
+  <a class="prev" href="http://localhost:1313/posts/agent-traj2skills/">
     <span class="title">« </span>
     <br>
     <span>从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利</span>
   </a>
-  <a class="next" href="https://niraya666.github.io/posts/cc-memory/">
+  <a class="next" href="http://localhost:1313/posts/cc-memory/">
     <span class="title"> »</span>
     <br>
     <span>【Agent-memory】拆解 Claude Code 的记忆架构</span>
@@ -1361,7 +1133,7 @@ Markdown 文件设计
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on x"
-            href="https://x.com/intent/tweet/?text=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f&amp;hashtags=Agent%2cAgent-memory">
+            href="https://x.com/intent/tweet/?text=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f&amp;hashtags=Agent%2cAgent-memory">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -1370,7 +1142,7 @@ Markdown 文件设计
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f&amp;title=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;summary=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f&amp;title=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;summary=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -1379,7 +1151,7 @@ Markdown 文件设计
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f&title=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3">
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f&title=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -1388,7 +1160,7 @@ Markdown 文件设计
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f">
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -1397,7 +1169,7 @@ Markdown 文件设计
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on whatsapp"
-            href="https://api.whatsapp.com/send?text=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f">
+            href="https://api.whatsapp.com/send?text=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -1406,7 +1178,7 @@ Markdown 文件设计
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on telegram"
-            href="https://telegram.me/share/url?text=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f">
+            href="https://telegram.me/share/url?text=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -1415,7 +1187,7 @@ Markdown 文件设计
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share 【Agent - Memory】Hermes-Agent 的 Memory 设计拆解 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-hermes%2f">
+            href="https://news.ycombinator.com/submitlink?t=%e3%80%90Agent%20-%20Memory%e3%80%91Hermes-Agent%20%e7%9a%84%20Memory%20%e8%ae%be%e8%ae%a1%e6%8b%86%e8%a7%a3&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fagent-memory-hermes%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -1459,7 +1231,7 @@ Markdown 文件设计
     </main>
     
 <footer class="footer">
-    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>&copy; 2026 <a href="http://localhost:1313/">LZY Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
