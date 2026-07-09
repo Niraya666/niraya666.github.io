@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SOTA 之后：agent-memory benchmark 测了什么，又测不了什么</title>
+      <link>https://niraya666.github.io/posts/agent-memory-benchmark-summary/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-memory-benchmark-summary/</guid>
+      <description>深入解析 agent-memory benchmark 全景：从 LoCoMo、LongMemEval 到 PersonaMem，拆解对话记忆、用户画像、多模态记忆的评测方法、指标体系和数据合成流水线。</description>
+    </item>
     <item>
       <title>从 Agent Trajectory 到 Agent Skill：如何把历史经验变成复利</title>
       <link>https://niraya666.github.io/posts/agent-traj2skills/</link>

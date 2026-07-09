@@ -2,8 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niraya666.github.io/tags/agent/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/agent/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/agent/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/tags/agent-memory/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/benchmark/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/tags/llm/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+  </url><url>
     <loc>https://niraya666.github.io/</loc>
-    <lastmod>2026-07-04T14:02:00+08:00</lastmod>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -15,8 +37,27 @@
                 href="https://niraya666.github.io/"
                 />
   </url><url>
+    <loc>https://niraya666.github.io/tags/memory/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+  </url><url>
+    <loc>https://niraya666.github.io/posts/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/posts/agent-memory-benchmark-summary/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+  </url><url>
     <loc>https://niraya666.github.io/tags/</loc>
-    <lastmod>2026-07-04T14:02:00+08:00</lastmod>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -108,32 +149,6 @@
                 href="https://niraya666.github.io/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/"
                 />
   </url><url>
-    <loc>https://niraya666.github.io/posts/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/posts/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/tags/agent/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/tags/agent/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/tags/agent/"
-                />
-  </url><url>
     <loc>https://niraya666.github.io/tags/agent-skills/</loc>
     <lastmod>2026-06-19T18:00:00+08:00</lastmod>
     <xhtml:link
@@ -167,9 +182,6 @@
     <lastmod>2026-05-20T19:02:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/agent-memory-hermes/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/agent-memory/</loc>
     <lastmod>2026-06-19T18:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/musik/2025-%E6%AD%8C%E5%8D%95/</loc>
@@ -328,9 +340,6 @@
     <lastmod>2025-08-12T20:56:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/tags/cot/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://niraya666.github.io/tags/llm/</loc>
     <lastmod>2026-06-19T18:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/thinking-budget-0805/</loc>

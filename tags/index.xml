@@ -11,8 +11,43 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 04 Jul 2026 14:02:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent</title>
+      <link>https://niraya666.github.io/tags/agent/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/agent/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent-Memory</title>
+      <link>https://niraya666.github.io/tags/agent-memory/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/agent-memory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Benchmark</title>
+      <link>https://niraya666.github.io/tags/benchmark/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/benchmark/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>https://niraya666.github.io/tags/llm/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Memory</title>
+      <link>https://niraya666.github.io/tags/memory/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/tags/memory/</guid>
+      <description></description>
+    </item>
     <item>
       <title>游记</title>
       <link>https://niraya666.github.io/tags/%E6%B8%B8%E8%AE%B0/</link>
@@ -42,24 +77,10 @@
       <description></description>
     </item>
     <item>
-      <title>Agent</title>
-      <link>https://niraya666.github.io/tags/agent/</link>
-      <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/tags/agent/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Agent-Skills</title>
       <link>https://niraya666.github.io/tags/agent-skills/</link>
       <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
       <guid>https://niraya666.github.io/tags/agent-skills/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Agent-Memory</title>
-      <link>https://niraya666.github.io/tags/agent-memory/</link>
-      <pubDate>Mon, 11 May 2026 14:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/tags/agent-memory/</guid>
       <description></description>
     </item>
     <item>
@@ -137,13 +158,6 @@
       <link>https://niraya666.github.io/tags/cot/</link>
       <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
       <guid>https://niraya666.github.io/tags/cot/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>LLM</title>
-      <link>https://niraya666.github.io/tags/llm/</link>
-      <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/tags/llm/</guid>
       <description></description>
     </item>
     <item>

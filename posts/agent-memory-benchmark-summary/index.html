@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 | LZY Blog</title>
+<meta name="keywords" content="Agent-Memory, Agent, Benchmark, Memory, LLM">
+<meta name="description" content="深入解析 agent-memory benchmark 全景：从 LoCoMo、LongMemEval 到 PersonaMem，拆解对话记忆、用户画像、多模态记忆的评测方法、指标体系和数据合成流水线。">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/posts/agent-memory-benchmark-summary/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/posts/agent-memory-benchmark-summary/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="SOTA 之后：agent-memory benchmark 测了什么，又测不了什么" />
+<meta property="og:description" content="深入解析 agent-memory benchmark 全景：从 LoCoMo、LongMemEval 到 PersonaMem，拆解对话记忆、用户画像、多模态记忆的评测方法、指标体系和数据合成流水线。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/posts/agent-memory-benchmark-summary/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-07-09T19:03:00+08:00" />
+<meta property="article:modified_time" content="2026-07-09T19:03:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta name="twitter:title" content="SOTA 之后：agent-memory benchmark 测了什么，又测不了什么"/>
+<meta name="twitter:description" content="深入解析 agent-memory benchmark 全景：从 LoCoMo、LongMemEval 到 PersonaMem，拆解对话记忆、用户画像、多模态记忆的评测方法、指标体系和数据合成流水线。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://niraya666.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "SOTA 之后：agent-memory benchmark 测了什么，又测不了什么",
+      "item": "https://niraya666.github.io/posts/agent-memory-benchmark-summary/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SOTA 之后：agent-memory benchmark 测了什么，又测不了什么",
+  "name": "SOTA 之后：agent-memory benchmark 测了什么，又测不了什么",
+  "description": "深入解析 agent-memory benchmark 全景：从 LoCoMo、LongMemEval 到 PersonaMem，拆解对话记忆、用户画像、多模态记忆的评测方法、指标体系和数据合成流水线。",
+  "keywords": [
+    "Agent-Memory", "Agent", "Benchmark", "Memory", "LLM"
+  ],
+  "articleBody": "对于agent-memory领域，避不开的两个核心（所有人都刷的）bench LoCoMo和LongMemEval，但这两个bench的高分真的能说明什么问题吗？以及在具体场景下，是否还有更加针对性的bench适合使用？memory的评测只看正确率吗？还有哪些评测指标，以及这些bench的数据合成流水线是怎么做的\n这些是这篇文章尝试回答的内容。\nOverall agent-memory的相关bench，主要可以分为 对话记忆和agent 任务提升，前者关于是否能够记住用户的重要信息，后者关注agent的是否能够减少相同类型错误；\n于是二者的评测角度也不同，毕竟对于后者可以采用常用的coding bench；本篇文章主要讨论前者。\nmemory benchmark 可以从两个正交的轴来看。\n轴一:测什么内容/场景(横轴)——:事实性对话记忆(LoCoMo/LongMemEval)、个性化与用户建模(PersonaMem/PersonaLens)、经验性/环境记忆(LongMemEval-V2)。以及多模态。\n轴二:测什么能力维度(纵轴)——lifecycle abilities(更新/冲突/遗忘/拒答/时间演化)。这是切穿所有场景的评估维度。\nLong-term conversational memory Personal Memory 最早、也最常被评估的一类，是 long-term conversational memory：给定跨越多轮、多 session 的历史对话，测试 agent 是否能记住用户相关信息，并在之后的问题或回复中正确调用。\n这一类 benchmark 和传统 long-context QA 很接近。重点考察agent 能不能在很长的对话历史中（long-session和跨session），找到、理解并使用和用户有关的记忆。\nLoCoMo 📄 LoCoMo 论文 · GitHub 仓库\nLoCoMo（Long Conversation Memory）；agent-memory 领域最常被引用的 benchmark 之一。\nLoCoMo 的数据由机器—人类混合流水线生成；先基于预定义 persona 和时序事件图，让两个 LLM agent 生成长对话骨架；再由人类标注者对对话进行验证和编辑，以保证长程一致性、事件 grounding 和多模态内容的合理性。公开版本包含 10 段超长对话，每段平均约 300 轮、9K tokens，最多跨越 35 个 session。\nLoCoMo 设计了三个评估任务。\n第一个任务是 Question Answering。这是后续 memory system 论文最常使用的部分。QA 问题被分成五类：\n类别 测什么 难点 题目数量 Single-hop 单 session 内的事实回忆 从某一处对话中直接找到答案 841 Multi-hop 跨多个 session 综合信息 需要拼接多处证据 282 Temporal reasoning 时间推理 理解“之前”“之后”“几个月后”等时间关系 321 Open-domain / commonsense 对话信息 + 外部常识 不是纯检索，需要结合常识推断 96 Adversarial 不可回答或陷阱问题 防止模型在长上下文中幻觉回答 446 第二个任务是 Event Summarization。模型需要把对话历史总结成时序事件图，考察其是否理解长期对话中的事件、因果关系和时间顺序。\n第三个任务是 Multimodal Dialogue Generation。LoCoMo 的对话中包含图片分享与图片反应，因此这个任务评估模型能否结合过去对话和多模态线索，生成连贯、符合人物状态和长期叙事的回复。\n从数据结构上看（locomo10.json），json-array 每个元素代表一段完整的长对话及其标注。\n评估方式与评价指标。评估不是 LLM Judge 主导。\nQA：normalized / partial-match F1；RAG 还额外看 retrieval recall / recall@k。\nEvent Summarization：ROUGE + FactScore，其中 FactScore 会拆 atomic facts，计算 precision / recall / F1。\nMultimodal Dialogue Generation：BLEU-1/2、ROUGE-L、MM-Relevance。\n不过其限制也很明显。公开版本平均长度约 9K tokens，在 2026 年已经不足以真正拉开长上下文模型之间的差距。其次，后续很多工作主要使用 LoCoMo 的 QA 部分，把它退化成了一个文本检索/问答 benchmark；事件摘要和多模态对话生成任务在实际系统比较中使用得并不充分；\n因此，后续出现了一些针对性修正，例如 LoCoMo-Plus 和 LoCoMo-Refined。LoCoMo-Plus 的方向尤其值得注意：它试图从表层 factual recall 转向 cognitive memory，也就是测试模型能否在后续场景中应用早先对话里隐含的用户状态、目标、价值观和约束。\n📄 LoCoMo-Plus 论文 · LoCoMo-Refined GitHub 仓库\nLongMemEval 相比 LoCoMo，LongMemEval 更直接地面向 chat assistant 的长期交互记忆，目标是评估 assistant 是否能在持续、多 session 的用户交互中记录、检索、更新和推理用户信息。\n📄 LongMemEval 论文 · GitHub 仓库\nLongMemEval 包含 500 个问题，覆盖五类长期记忆能力\n能力 含义 Information Extraction 从长交互历史中回忆具体信息，包括用户或 assistant 曾经提到的细节 Multi-Session Reasoning 跨多个 session 综合信息，完成聚合、比较或推理 Knowledge Update 识别用户信息的变化，并用新信息更新旧记忆 Temporal Reasoning 理解用户信息中的时间属性，包括显式时间和 session timestamp Abstention 面对历史中没有提到的信息时，知道应该拒答而不是编造 LongMemEval 提供了不同难度设置。LongMemEval-S 的每个问题历史约 115K tokens，通常包含 30–40 个 session；LongMemEval-M 则扩展到约 500 个 session、1.5M tokens。这使其比 LoCoMo 更适合测试真实 personal assistant 在长期使用中的 memory scalability。\n评估方面，LongMemEval 采用 LLM-as-a-Judge，由 GPT-4o 判断模型回答是否正确。也提出了一个很有用的 memory system 分析框架：把长期记忆系统拆成 indexing、retrieval 和 reading 三个阶段。\n从 Personal Memory 的角度看，LongMemEval 比 LoCoMo 更接近真实用户助理场景。它不仅测试“是否记得”，还测试用户信息是否会随时间更新、是否能跨 session 综合、是否能处理时间线，以及是否能在信息缺失时拒答。\n不过，LongMemEval 本质上仍然是一个 long-context QA / retrieval-oriented benchmark。它的核心评估形式仍是从历史聊天中找到证据并回答问题。但现实 Agent 更难的是状态是动态的，因而benchmark 容易被 retrieval engineering。\n从 LongMemEval 到 LongMemEval-V2 📄 LongMemEval-V2 GitHub 仓库\n“聊天助手能不能记住长期对话” -\u003e “Agent 能不能在复杂环境中形成长期经验记忆”。\nV2 的对象不再是普通 user-assistant chat history，而是 web-agent trajectories，对应测试的五类 memory ability：\nV2 能力 含义 Static state recall 记住环境中的静态信息，例如页面布局、模块功能、重要位置 Dynamic state tracking 跟踪状态和动作如何随时间改变环境 Workflow knowledge 记住在特定环境中完成 recurring tasks 的流程 Environment gotchas 识别反复出现的局部失败模式和环境陷阱 Premise awareness 知道哪些在其他环境成立的前提，在当前部署中并不成立 V2 的上下文规模暴涨：\nsmall tier：25M tokens\nmedium tier：115M tokens\n这已经远超主流 context window。\n这大概整个 AI memory research 最近一年最大的方向变化之一。\n“LLM 如何记住长期对话” → “Agent 如何积累长期工作经验”\n或者说 chatbot memory → agentic / experiential memory。\n从数据合成pipeline角度；\nLongMemEval 的构造思路是：先设计要测试的用户记忆，再把这些记忆嵌入长聊天历史。大致分为三步：\nquestion curation： 定义了一个包含 164 个用户属性的 ontology（如lifestyle、belongings等）利用 LLM 为每个属性生成用户背景段落，再从这些背景中生成候选 question-answer pairs（人工筛选、重写和难度调整）， 标注者会将答案拆解成一个或多个 evidence statements（有些 evidence 带时间信息）\nevidence session construction： 将每条 evidence statement嵌入到一个 task-oriented user-assistant session 中，使用 self-chat 方式生成对话，用户不会直白地说出 evidence，而是在请求帮助、咨询建议或完成任务的过程中间接透露信息\nhistory compilation： 把相关 evidence sessions 插入到一串更长的 user-assistant chat history 中；无关 session 来自两类来源，根据其他不冲突用户属性合成的 self-chat sessions，以及ShareGPT 和 UltraChat；为所有 session 分配合理时间戳，从而形成一个 coherent、length-configurable 的长期聊天历史\n本质依旧是needle-in-a-haystack for personal memory。\n相比之下，LongMemEval-V2 的构造思路是：先收集 agent 在环境中执行任务的轨迹，再从轨迹中抽取一个有经验的 agent 应该记住的知识\n大致分为四步。\ntrajectory collection：从 WebArena、WorkArena 和 WorkArena++ 中收集 web-agent trajectories， 轨迹通过 AgentLab 统一接口采集，每条 trajectory 包含任务目标、状态观察、截图、accessibility tree、动作以及状态转移；通过 rejection sampling 收集成功和失败轨迹\nquestion annotation： 问题围绕五类 memory ability 构造：static state recall、dynamic state tracking、workflow knowledge、environment gotchas 和 premise awareness；并测试模型能否在没有 trajectory evidence 的情况下回答候选问题，能则过滤或改写（避免模型凭公共知识答题）\nanswer trajectory labeling： 每个问题都需要标注哪些 trajectories 真正包含答案证据，要求 evidence 能在截图或轨迹状态中被验证 （通过一批 seed answer-bearing trajectories 配合Codex 辅助扩大候选标注范围，最后由人工验证 ambiguous cases）\nhaystack creation： Small tier 会为 WebArena 和 ServiceNow 各构造一个共享的 100-trajectory haystack；Medium tier 则为每个问题构造约 500 条 trajectory 的 question-specific haystack\nEverMemBench 📄 EverMemBench 论文\n从双人对话到多人协作。一个长期嵌入团队协作的 agent，能不能在多人、多组、多时间线的环境中维护记忆。\nEverMemBench 模拟企业协作场景。数据包含多个项目、子项目、员工、群组对话和带证据的 QA。整体结构更接近：\nproject ├── sub-project / group chat │ ├── day 1 messages │ ├── day 2 messages │ └── ... ├── employees / personas ├── task timeline └── QA items with evidence references 评估 pipeline ：\nAdd → Search → Answer → Evaluate EverMemBench 的 QA 按三大维度、九个子任务组织\n大类 子任务 数量 主要看什么 Fine-grained Recall Single-hop Retrieval、Multi-hop Trajectory、Temporal Duration 762 是否能找到精确事实、链接、日期、人物、任务状态 Memory Awareness Constraint、Proactivity、Update 1,097 是否能把过去规则、约束、更新应用到新场景 Profile Understanding Style、Skill、Role 541 是否能基于长期互动理解人的风格、技能和角色 EverMemBench 的评价方式可以分成两层：任务协议和打分方式。\n任务协议上，它采用 streaming multi-group protocol：系统在 ingestion phase 按时间顺序接收 daily batches，需要自己维护 memory state；evaluation phase 再提出问题。这种协议可以测试系统在持续接收信息时如何写入、更新、检索和使用记忆，而不是一次性把历史塞进上下文。\n打分方式上：\n问题类型 评价方式 Multiple-choice 直接判断 A/B/C/D 是否正确 Open-ended LLM-as-a-Judge 判断 generated answer 和 gold answer 是否语义等价 Memory system Add → Search → Answer → Evaluate Full-context LLM 直接把完整 dialogue 作为上下文，不经过 retrieval 数据构造可以概括为：\nblueprint and profile generation → chunk-wise dialogue synthesis → evidence-grounded QA construction User Profiling and Personalization PersonaMem 📄 PersonaMem 论文 · GitHub 仓库\n核心不是“能不能背出某个事实”，而是：模型能否在长程、多轮、多 session 的用户交互历史中，形成和更新用户画像，并把最新用户状态用于个性化回答\n三个能力：模型是否能内化用户固有特征和偏好，是否能追踪用户画像/偏好的时间演化，以及是否能在新场景中据此生成个性化回应\n把问题设成：给定某个时刻以前的用户-LLM 互动历史和一个“第一人称”的 in-situ user query，模型要选出最符合当前用户状态的回答\n测的是四件事\n记住用户说过的 facts / preferences：例如用户曾说喜欢某类音乐、饮食、学习方式。\n更新记忆：用户偏好会变，模型不能只记旧偏好，例如从喜欢披萨变成因为麸质过敏而转向 gluten-free。\n从历史中检索相关片段：信息可能出现在很长的历史中，甚至有 “lost in the middle” 问题。\n把记忆用于回答，而不是仅仅复述：最难的是基于用户当前偏好给出新推荐，或迁移到新场景。v1 发现模型在简单事实回忆上还可以，但在“给新建议”“跨场景应用用户偏好”上明显更弱\nv1 数据规模：约 20 个 personas、180+ interaction histories，每条 history 最多 60 个多轮 sessions，覆盖 15 个个性化任务场景；HF 数据集提供 32k、128k、1M 三种上下文长度版本\n设计了 7 类 in-situ user query，用来覆盖不同 memory / personalization 技能\n类型 测什么 Recall user-shared facts 记住用户曾分享的事实、活动、兴趣 Suggest new ideas 推荐历史里没出现过的新东西，同时符合用户约束 Acknowledge latest user preferences 识别用户最新偏好，而不是旧偏好 Track full preference evolution 追踪偏好从过去到现在的完整变化 Revisit reasons behind preference updates 记住偏好变化背后的原因 Provide preference-aligned recommendations 主动给出与当前偏好一致的建议 Generalize to new scenarios 把从其他场景学到的用户特征迁移到新任务 v1 主评估是 4 选 1 multiple-choice accuracy：模型看到完整对话历史、当前 user query、四个候选回答，选择最符合当前用户画像的回答\nV2 改进版本\nv1 的问题 / 局限 v2 的对应修改 规模较小：v1 只有约 20 personas、180+ histories、15 个任务场景 v2 扩展到 1,000 personas、26,100 preferences/Q\u0026A pairs、325 conversation topics、335 user query topics。 偏好较显式：v2 论文指出 v1 仍主要关注 explicit preferences v2 主打 implicit personas / implicit preferences，让偏好隐藏在 email rewriting、translation、knowledge query、photo sharing 等真实交互里。 评估更偏选择题：v1 主评估是 MCQ，生成式评估受 logits 可得性限制 v2 同时提供 MCQ 和 open-ended，open-ended 使用 LLM-as-a-judge；论文称用三个 GPT-5-Chat judge 聚合判断。 缺少训练/验证集用于改进模型 v2 不只是 benchmark，还提供 train/val/test：text benchmark 5,000、train 18,500、val 2,600；multimodal benchmark 5,000、train 19,200、val 2,110。 真实使用中的 privacy/control 问题不足 v2 加入用户泄露敏感信息、用户要求“不要记住某偏好”等场景，并要求 target answers 避免使用敏感/私密信息。 更像长上下文测试，成本高 v2 提出/评估 agentic memory：把长历史压缩成约 2k-token、可读、可更新的 memory；论文称相对 32k 上下文约 16× 更省 token，并在 MCQ/open-ended 上超过直接长上下文模型。 用户偏好 vs 他人信息容易混淆 v2 数据列显式标注 who，区分当前 preference 属于用户本人还是他人，并加入与 persona 无关的数学/代码问题作为干扰。 单模态/场景覆盖有限 v2 有 text 与 multimodal 两套 benchmark，并包含 multimodal photo sharing、multilingual translation、health/medical、therapy 等场景。 v2 的定位有一个明显转向：从“显式/动态偏好记忆”升级为“隐式偏好推断 + 可训练的 agentic memory”。\nv2 特别关注用户偏好不是直接说出来，而是隐含在长对话中的情况；例如用户让模型润色邮件时，邮件内容可能无意透露季节性过敏\nv2 的每条 benchmark row 包含：persona_id、完整 persona 文件路径、32k/128k chat history 链接、user_query、correct_answer、三个 incorrect_answers、当前 preference、偏好类别、相关对话片段、该偏好是否属于用户本人、是否更新过、旧偏好、敏感信息、相关片段到 query 的 token distance 等\n🤗 PersonaMem-v2 数据集\nv2 的评估指标主要是：\nMCQ accuracy：模型从四个合理选项中选择最个性化的答案。\nOpen-ended personalization accuracy / judge score：模型直接生成回答，再由 LLM-as-a-judge 判断是否体现了 ground-truth preference；论文报告用多个 GPT-5-Chat judge 聚合。\n分组分析：按 preference type、scenario、是否 dynamic update、who、相关片段距离等维度拆解性能。官方评估脚本也会生成这些 category breakdown。\nPersonaLens PersonaMem 把个性化当成一道记忆 QA， PersonaLens更关注，在完成任务的过程中，个性化会不会被任务目标挤掉。\n📄 PersonaLens 论文\n构成上，它有 1,500 个用户画像（demographic 属性取自 PRISM Alignment 数据集，偏好由 LLM 基于 demographic 生成以保证内部一致），覆盖从 Books、Finance、Flights 到 Restaurants 等约 20 个领域。\n评测方式：双 agent 自动评测， 一个 user agent（用 Claude 3 Sonnet 实现）模拟带特定画像和情境的用户去和被测助手对话，一个 judge agent 用 LLM-as-a-Judge 评个性化、回应质量与任务完成度，并区分单领域（TSD）与多领域（TMD）任务。\n一个核心发现， 任务完成率（TCR）和个性化之间存在权衡——助手越是埋头把任务做完，越容易忽略用户偏好。\n相反，静态 QA 里不存在\"任务目标\"这个会和个性化抢注意力的竞争项。\n多模态个人记忆 记忆的来源是文字。但真实的个人记忆显然不止于此。\nagent 能否跨文本、图像、视频建立长期记忆，并在后续任务中调用它们。\n很多所谓的多模态记忆，图像只是被 caption 成文字、再塞回文本 pipeline。LoCoMo 自己就带多模态部分（图片分享），但后续绝大多数工作都把它退化成纯文本 QA 在用。\n实际上可以从，多模态在哪个环节中起作用，来看其究竟在测什么。\n输入/存储端：跨会话保存视觉信息。\n用户在早先的会话里分享了一张图，后续要记住图里的内容。\n📄 Mem-Gallery 论文\n如 Mem-Gallery，明确指出现有 benchmark 要么在纯文本多会话里评记忆、要么在单会话局部里评多模态理解，没有一个真正评估多模态记忆在长期对话轨迹中如何被保存、组织和演化。沿三个维度评估——记忆抽取与测试时适应、记忆推理、记忆知识管理。\n检索端：在视觉历史里做跨模态检索。 存下来只是第一步，能否按当前需求把对的图/帧找出来是另一回事。\n叠加个性化：多模态 × 用户建模\nPersona-MME 面向长期个性化的多模态 LLM，构造持久的多模态 persona 上下文（用户画像、常出现的社交关系、用户拥有的物品），再生成显式实体、隐式事实、干扰项三类多模态对话来控制引入的记忆信号。\n叠加真实/具身场景。属于具身/世界模型方向。如第一人称视角（egocentric）的可穿戴助手、机器人记忆、视频世界模型的记忆能力等。（暂不属于本篇的讨论范畴）\n正面看，Mem-Gallery、MemLens 这批 2026 年初的工作，是对\"图像被 caption 掉\"的纠正。\n但这一类整体还很年轻，没有收敛出 LoCoMo 那样人人都刷的标杆，各家的模态覆盖、任务形态、评测口径都还不统一。\n记忆生命周期能力 前面几类是按\"测什么内容\"划分的：对话事实、用户画像、多模态。\n而agent 会不会更新旧记忆、能不能处理冲突信息、知不知道什么时候该遗忘或拒答、能不能追踪偏好随时间的变化。这些就是记忆的生命周期（lifecycle）能力。\nlifecycle 这块是碎片化的、按单一能力切分的一堆专项 bench，且大多是 2025 下半年到 2026 年才涌现的。这本身就是一个信号：这个领域刚刚意识到\"正确率不够\"，专项评测才开始出现，还没有收敛。\n下面按能力维度组织，每个维度几个代表 bench，以及它对应的、区别于正确率的指标。\n更新（Update）\n记忆系统要记住最新版本，而不是最先说的那个。\n这一维度 LongMemEval 已有专门的 knowledge-update 子集（前面介绍过）。更进一步的是把它做成指标而非仅仅数据：有工作提出 Forgetting-Aware Memory Accuracy，专门惩罚对过期或失效记忆的依赖。\n冲突（Conflict resolution）\n记忆里出现自相矛盾的两条信息时，系统能不能只让最新、正确的那条生效？\nMemoryAgentBench 关注了：把记忆能力拆成准确检索、测试时学习、长程理解、冲突消解四项，并为冲突设了专门的 Conflict Resolution Accuracy，确保有矛盾时只有最新的有效事实被采用\n遗忘（Forgetting / 选择性保留）\n不是所有信息都该永久保留：过期的、用户明确要求\"别记住\"的，都应该被丢弃。\nMemoryAgentBench 用它新构造的 FactConsolidation 数据集专门测选择性遗忘。\n而用户主动要求遗忘和隐私相关，如PersonaMem-v2 的隐私场景（用户要求不要记住某偏好）。\n拒答（Abstention）\n不知道就说不知道。记忆系统要能识别\"证据不足\"并拒答，而不是幻觉。\nLongMemEval 专门设了 abstention 类问题来测这一点，对应的指标是 abstention rate / 拒答的准确性，同样不是普通正确率能覆盖的。\n从被动回忆到记忆驱动行动\nMemoryArena 显示，在 recall benchmark 上接近满分的模型，一旦记忆需要驱动行动就急剧下滑。很多所谓记忆 benchmark 本质是 retrieval benchmark，测的是\"针找不找得到\"，而不是\"记忆能不能真正被用起来\"。\n评估指标：除了正确率之外 如果只看正确率，会漏掉什么？\n借用一个现成的分层框架。近期一篇 memory survey 提出的 four-layer evaluation stack 把指标分成四层，正好可以作为这一节的骨架。\nLayer 1：任务效果（Task effectiveness）\n任务到底做成了没有。\n常见指标是 success rate、factual correctness、plan completion rate。落到对话记忆的 QA 形态上，就是我们前面反复见到的那些：token-level F1、BLEU、LLM-as-a-Judge 的二元/打分判定、以及 MCQ accuracy。\n这些指标彼此并不等价，选哪个会改变结论。即使LLM-as-a-Judge 更贴近语义正确性，但引入了 judge 自身的偏置。\n这时候\"谁是 SOTA\"取决于信哪个指标。\nLayer 2：记忆质量（Memory quality）\n关键指标包括：检索到的记录的 precision/recall、contradiction rate（矛盾率）、staleness distribution（过期分布）、以及对任务相关事实的 coverage。\n有工作在 LongMemEval-S 上，仅靠检索就能把某类问题的召回刷到近 99%——但这是检索召回，不是端到端正确率。\nstaleness distribution 和 contradiction rate 关注的是\"记忆里有多少已经失效或自相矛盾的内容\"。\n相应地也出现了专门的指标，比如惩罚\"依赖过期记忆\"的 Forgetting-Aware Memory Accuracy，以及确保矛盾信息只有最新版本生效的 conflict resolution accuracy。\nLayer 3：效率（Efficiency）\n核心指标：latency per memory operation、记忆内容占用的 prompt tokens、每步的 retrieval 调用次数、以及存储随时间的增长。\n这里有个测量方法学的细节值得注意：严谨的工作（如 HiMem）在报告 latency 时，只算记忆检索本身的耗时，排除 LLM 推理，以隔离记忆系统的效率、避免被底层模型的快慢污染。读效率数字时要留意它到底量的是哪一段。\nLayer 4：治理（Governance）\n记忆系统在隐私和控制上守不守规矩。\n指标包括：privacy leakage rate（隐私泄露率）、deletion compliance（删除合规——用户要求\"别记住/删掉\"时是否真的照做）、access-scope violations（越权访问，尤其在多用户共享记忆的场景）。\nPersonaMem-v2 已经把这类场景纳入：用户泄露敏感信息、或明确要求\"不要记住某个偏好\"，而模型的 target answer 被要求避免使用这些敏感/私密信息。\n这四层之间往往是trade-off的。\n所以完善的系统评测，应该是在四层上给出一条操作曲线（accuracy / store-size / latency 之间可调的权衡），而不是一个孤立的最高分。\n数据合成方法 讨论任何一个Memory benchmark 之前，都应该先问一个更基础的问题：这些多轮对话是怎么造出来的？因为合成方式几乎决定了这个 benchmark 真正在测什么，以及它先天测不了什么。\n目前主流 bench 的对话来源大致分三档\n纯人工真实数据（几乎不存在）\nLLM 生成骨架 + 人工校验（LoCoMo为代表的，基于预定义 persona 和时序事件图，用 LLM agent 架构生成对话骨架，再由人工标注者验证、编辑，以保证长程一致性）\nneedle-in-a-haystack拼装式：LongMemEval为代表，问题由人类专家撰写，承载答案的证据 session 由 LLM 模拟并人工编辑，而占绝大多数的无关 session 则从 ShareGPT、UltraChat 和模拟对话里采样\n个性化类的 bench 则更依赖 persona 驱动的全自动合成。PersonaMem 用 GPT-4o 驱动的模块化 pipeline，从 persona 出发生成多会话、带时间线的交互历史，并在对话中植入随时间演化的偏好；它的 in-situ query 是把用户当前的第一人称提问附在历史末尾，以此测\"模型能否用最新偏好作答\"。\n由于needle-in-a-haystack 本质上还是大海捞针测试，测的很大程度上是长上下文里的检索能力，而非记忆系统的组织与演化能力。\nLongMemEval 在挑选haystack session 时，刻意选取与证据话题、格式相近，但不引入冲突信息的 session，以免让问题失效。这个工程上合理的选择，恰恰意味着这个 benchmark 从构造起点就回避了知识冲突——所以它天然测不了冲突消解能力。\n此外，对\"LLM 生成的数据是否可信\"的常见担忧，答案不在于 LLM幻觉本身，而在于生成之后的过滤和检查。如PersonaMem-v2 ：对每个 Q\u0026A 施加四条硬性过滤——不看历史就必须答不出（杜绝题目泄露和生成 artifact）、正确选项须真实反映用户偏好、错误选项一律不得反映、格式不得残留生成痕迹；最终只有约三成生成的 Q\u0026A 能全部通过。\n通过率本身也反映了，未经严格过滤的合成对话里，有相当比例存在可被模型走捷径的漏洞。\n所以合成 pipeline 关系到了其能力边界本身。\n结尾 没有任何单一 benchmark 能同时覆盖agent-memory这件事的全部。每一项都需要专门构造的数据和专门设计的指标，事实回忆、个性化推断、多模态、更新、冲突、遗忘、拒答、记忆驱动行动等等。\n所以当一个 agent-memory 项目宣称自己又 SOTA 了，值得追问的始终是同一串问题：它在哪个 bench 上 SOTA？那个 bench 测的核心是什么能力，又漏掉了哪些性质？它的数据让它能测什么、注定测不了什么？它报告了哪几层指标，没报告的那几层是不是正好是它牺牲掉的？\n",
+  "wordCount" : "9938",
+  "inLanguage": "zh-cn",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-07-09T19:03:00+08:00",
+  "dateModified": "2026-07-09T19:03:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/posts/agent-memory-benchmark-summary/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      SOTA 之后：agent-memory benchmark 测了什么，又测不了什么
+    </h1>
+    <div class="post-description">
+      深入解析 agent-memory benchmark 全景：从 LoCoMo、LongMemEval 到 PersonaMem，拆解对话记忆、用户画像、多模态记忆的评测方法、指标体系和数据合成流水线。
+    </div>
+    <div class="post-meta"><span title='2026-07-09 19:03:00 +0800 CST'>July 9, 2026</span>&nbsp;·&nbsp;20 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul><ul>
+                <li>
+                    <a href="#overall" aria-label="Overall">Overall</a></li>
+                <li>
+                    <a href="#long-term-conversational-memory" aria-label="Long-term conversational memory">Long-term conversational memory</a><ul>
+                        
+                <li>
+                    <a href="#locomo" aria-label="LoCoMo">LoCoMo</a></li>
+                <li>
+                    <a href="#longmemeval" aria-label="LongMemEval">LongMemEval</a></li>
+                <li>
+                    <a href="#%e4%bb%8e-longmemeval-%e5%88%b0-longmemeval-v2" aria-label="从 LongMemEval 到 LongMemEval-V2">从 LongMemEval 到 LongMemEval-V2</a></li>
+                <li>
+                    <a href="#evermembench" aria-label="EverMemBench">EverMemBench</a></li></ul>
+                </li>
+                <li>
+                    <a href="#user-profiling-and-personalization" aria-label="User Profiling and Personalization">User Profiling and Personalization</a><ul>
+                        
+                <li>
+                    <a href="#personamem" aria-label="PersonaMem">PersonaMem</a></li>
+                <li>
+                    <a href="#personalens" aria-label="PersonaLens">PersonaLens</a></li></ul>
+                </li></ul>
+                    
+                <li>
+                    <a href="#%e5%a4%9a%e6%a8%a1%e6%80%81%e4%b8%aa%e4%ba%ba%e8%ae%b0%e5%bf%86" aria-label="多模态个人记忆">多模态个人记忆</a></li>
+                <li>
+                    <a href="#%e8%ae%b0%e5%bf%86%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e8%83%bd%e5%8a%9b" aria-label="记忆生命周期能力">记忆生命周期能力</a></li>
+                <li>
+                    <a href="#%e8%af%84%e4%bc%b0%e6%8c%87%e6%a0%87%e9%99%a4%e4%ba%86%e6%ad%a3%e7%a1%ae%e7%8e%87%e4%b9%8b%e5%a4%96" aria-label="评估指标：除了正确率之外">评估指标：除了正确率之外</a><ul>
+                        
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e5%90%88%e6%88%90%e6%96%b9%e6%b3%95" aria-label="数据合成方法">数据合成方法</a></li>
+                <li>
+                    <a href="#%e7%bb%93%e5%b0%be" aria-label="结尾">结尾</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>对于agent-memory领域，避不开的两个核心（所有人都刷的）bench LoCoMo和LongMemEval，但这两个bench的高分真的能说明什么问题吗？以及在具体场景下，是否还有更加针对性的bench适合使用？memory的评测只看正确率吗？还有哪些评测指标，以及这些bench的数据合成流水线是怎么做的</p>
+<p>这些是这篇文章尝试回答的内容。</p>
+<h2 id="overall">Overall<a hidden class="anchor" aria-hidden="true" href="#overall">#</a></h2>
+<p>agent-memory的相关bench，主要可以分为 对话记忆和agent 任务提升，前者关于是否能够记住用户的重要信息，后者关注agent的是否能够减少相同类型错误；</p>
+<p>于是二者的评测角度也不同，毕竟对于后者可以采用常用的coding bench；本篇文章主要讨论前者。</p>
+<p>memory benchmark 可以从两个正交的轴来看。</p>
+<p><strong>轴一:测什么内容/场景</strong>(横轴)——:事实性对话记忆(LoCoMo/LongMemEval)、个性化与用户建模(PersonaMem/PersonaLens)、经验性/环境记忆(LongMemEval-V2)。以及多模态。</p>
+<p><strong>轴二:测什么能力维度</strong>(纵轴)——lifecycle abilities(更新/冲突/遗忘/拒答/时间演化)。这是切穿所有场景的评估维度。</p>
+<h2 id="long-term-conversational-memory"><strong>Long-term conversational memory</strong><a hidden class="anchor" aria-hidden="true" href="#long-term-conversational-memory">#</a></h2>
+<p>Personal Memory 最早、也最常被评估的一类，是 <strong>long-term conversational memory</strong>：给定跨越多轮、多 session 的历史对话，测试 agent 是否能记住用户相关信息，并在之后的问题或回复中正确调用。</p>
+<p>这一类 benchmark 和传统 long-context QA 很接近。重点考察agent 能不能在很长的对话历史中（long-session和跨session），找到、理解并使用和用户有关的记忆。</p>
+<h3 id="locomo">LoCoMo<a hidden class="anchor" aria-hidden="true" href="#locomo">#</a></h3>
+<p>📄 <a href="https://arxiv.org/abs/2402.17753">LoCoMo 论文</a> · <a href="https://github.com/snap-research/locomo">GitHub 仓库</a></p>
+<p>LoCoMo（Long Conversation Memory）；agent-memory 领域最常被引用的 benchmark 之一。</p>
+<p>LoCoMo 的数据由机器—人类混合流水线生成；先基于预定义 persona 和时序事件图，让两个 LLM agent 生成长对话骨架；再由人类标注者对对话进行验证和编辑，以保证长程一致性、事件 grounding 和多模态内容的合理性。公开版本包含 10 段超长对话，每段平均约 300 轮、9K tokens，最多跨越 35 个 session。</p>
+<p>LoCoMo 设计了三个评估任务。</p>
+<p><img loading="lazy" src="/img/agent-memory-benchmark-assets/locomo-qa-tasks.webp" alt="LoCoMo 的三个评估任务：Question Answering、Event Summarization、Multimodal Dialogue Generation"  />
+</p>
+<p>第一个任务是 <strong>Question Answering</strong>。这是后续 memory system 论文最常使用的部分。QA 问题被分成五类：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">类别</th>
+          <th style="text-align: left">测什么</th>
+          <th style="text-align: left">难点</th>
+          <th style="text-align: left">题目数量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Single-hop</td>
+          <td style="text-align: left">单 session 内的事实回忆</td>
+          <td style="text-align: left">从某一处对话中直接找到答案</td>
+          <td style="text-align: left">841</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Multi-hop</td>
+          <td style="text-align: left">跨多个 session 综合信息</td>
+          <td style="text-align: left">需要拼接多处证据</td>
+          <td style="text-align: left">282</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Temporal reasoning</td>
+          <td style="text-align: left">时间推理</td>
+          <td style="text-align: left">理解“之前”“之后”“几个月后”等时间关系</td>
+          <td style="text-align: left">321</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Open-domain / commonsense</td>
+          <td style="text-align: left">对话信息 + 外部常识</td>
+          <td style="text-align: left">不是纯检索，需要结合常识推断</td>
+          <td style="text-align: left">96</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Adversarial</td>
+          <td style="text-align: left">不可回答或陷阱问题</td>
+          <td style="text-align: left">防止模型在长上下文中幻觉回答</td>
+          <td style="text-align: left">446</td>
+      </tr>
+  </tbody>
+</table>
+<p>第二个任务是 <strong>Event Summarization</strong>。模型需要把对话历史总结成时序事件图，考察其是否理解长期对话中的事件、因果关系和时间顺序。</p>
+<p>第三个任务是 <strong>Multimodal Dialogue Generation</strong>。LoCoMo 的对话中包含图片分享与图片反应，因此这个任务评估模型能否结合过去对话和多模态线索，生成连贯、符合人物状态和长期叙事的回复。</p>
+<p>从数据结构上看（<code>locomo10.json</code>），json-array 每个元素代表一段完整的长对话及其标注。</p>
+<p>评估方式与评价指标。评估不是 LLM Judge 主导。</p>
+<ul>
+<li>
+<p><strong>QA</strong>：normalized / partial-match F1；RAG 还额外看 retrieval recall / recall@k。</p>
+</li>
+<li>
+<p><strong>Event Summarization</strong>：ROUGE + FactScore，其中 FactScore 会拆 atomic facts，计算 precision / recall / F1。</p>
+</li>
+<li>
+<p><strong>Multimodal Dialogue Generation</strong>：BLEU-1/2、ROUGE-L、MM-Relevance。</p>
+</li>
+</ul>
+<p>不过其限制也很明显。公开版本平均长度约 9K tokens，在 2026 年已经不足以真正拉开长上下文模型之间的差距。其次，后续很多工作主要使用 LoCoMo 的 QA 部分，把它退化成了一个文本检索/问答 benchmark；事件摘要和多模态对话生成任务在实际系统比较中使用得并不充分；</p>
+<p>因此，后续出现了一些针对性修正，例如 LoCoMo-Plus 和 LoCoMo-Refined。LoCoMo-Plus 的方向尤其值得注意：它试图从表层 factual recall 转向 cognitive memory，也就是测试模型能否在后续场景中应用早先对话里隐含的用户状态、目标、价值观和约束。</p>
+<p>📄 <a href="https://arxiv.org/abs/2602.10715">LoCoMo-Plus 论文</a> · <a href="https://github.com/mem-eval-suite/LoCoMo_refined">LoCoMo-Refined GitHub 仓库</a></p>
+<h3 id="longmemeval">LongMemEval<a hidden class="anchor" aria-hidden="true" href="#longmemeval">#</a></h3>
+<p>相比 LoCoMo，LongMemEval 更直接地面向 chat assistant 的长期交互记忆，目标是评估 assistant 是否能在持续、多 session 的用户交互中记录、检索、更新和推理用户信息。</p>
+<p>📄 <a href="https://arxiv.org/abs/2410.10813">LongMemEval 论文</a> · <a href="https://github.com/xiaowu0162/LongMemEval">GitHub 仓库</a></p>
+<p><img loading="lazy" src="/img/agent-memory-benchmark-assets/longmemeval-overview.webp" alt="LongMemEval 五类长期记忆能力评测概览"  />
+</p>
+<p>LongMemEval 包含 500 个问题，覆盖五类长期记忆能力</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">能力</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Information Extraction</td>
+          <td style="text-align: left">从长交互历史中回忆具体信息，包括用户或 assistant 曾经提到的细节</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Multi-Session Reasoning</td>
+          <td style="text-align: left">跨多个 session 综合信息，完成聚合、比较或推理</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Knowledge Update</td>
+          <td style="text-align: left">识别用户信息的变化，并用新信息更新旧记忆</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Temporal Reasoning</td>
+          <td style="text-align: left">理解用户信息中的时间属性，包括显式时间和 session timestamp</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Abstention</td>
+          <td style="text-align: left">面对历史中没有提到的信息时，知道应该拒答而不是编造</td>
+      </tr>
+  </tbody>
+</table>
+<p>LongMemEval 提供了不同难度设置。LongMemEval-S 的每个问题历史约 115K tokens，通常包含 30–40 个 session；LongMemEval-M 则扩展到约 500 个 session、1.5M tokens。这使其比 LoCoMo 更适合测试真实 personal assistant 在长期使用中的 memory scalability。</p>
+<p>评估方面，LongMemEval 采用 LLM-as-a-Judge，由 GPT-4o 判断模型回答是否正确。也提出了一个很有用的 memory system 分析框架：把长期记忆系统拆成 indexing、retrieval 和 reading 三个阶段。</p>
+<p>从 Personal Memory 的角度看，LongMemEval 比 LoCoMo 更接近真实用户助理场景。它不仅测试“是否记得”，还测试用户信息是否会随时间更新、是否能跨 session 综合、是否能处理时间线，以及是否能在信息缺失时拒答。</p>
+<p>不过，LongMemEval 本质上仍然是一个 long-context QA / retrieval-oriented benchmark。它的核心评估形式仍是从历史聊天中找到证据并回答问题。但现实 Agent 更难的是状态是动态的，因而benchmark 容易被 retrieval engineering。</p>
+<h3 id="从-longmemeval-到-longmemeval-v2">从 LongMemEval 到 LongMemEval-V2<a hidden class="anchor" aria-hidden="true" href="#从-longmemeval-到-longmemeval-v2">#</a></h3>
+<p>📄 <a href="https://github.com/xiaowu0162/LongMemEval-V2">LongMemEval-V2 GitHub 仓库</a></p>
+<p>“聊天助手能不能记住长期对话” -&gt; “Agent 能不能在复杂环境中形成长期经验记忆”。</p>
+<p>V2 的对象不再是普通 user-assistant chat history，而是 web-agent trajectories，对应测试的五类 memory ability：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">V2 能力</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Static state recall</td>
+          <td style="text-align: left">记住环境中的静态信息，例如页面布局、模块功能、重要位置</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Dynamic state tracking</td>
+          <td style="text-align: left">跟踪状态和动作如何随时间改变环境</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Workflow knowledge</td>
+          <td style="text-align: left">记住在特定环境中完成 recurring tasks 的流程</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Environment gotchas</td>
+          <td style="text-align: left">识别反复出现的局部失败模式和环境陷阱</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Premise awareness</td>
+          <td style="text-align: left">知道哪些在其他环境成立的前提，在当前部署中并不成立</td>
+      </tr>
+  </tbody>
+</table>
+<p>V2 的上下文规模暴涨：</p>
+<ul>
+<li>
+<p>small tier：25M tokens</p>
+</li>
+<li>
+<p>medium tier：115M tokens</p>
+</li>
+</ul>
+<p>这已经远超主流 context window。</p>
+<p>这大概整个 AI memory research 最近一年最大的方向变化之一。</p>
+<p>“LLM 如何记住长期对话” → “Agent 如何积累长期工作经验”</p>
+<p>或者说 chatbot memory → agentic / experiential memory。</p>
+<p>从数据合成pipeline角度；</p>
+<p><strong>LongMemEval</strong> 的构造思路是：先设计要测试的用户记忆，再把这些记忆嵌入长聊天历史。大致分为三步：</p>
+<ul>
+<li>
+<p><strong>question curation</strong>： 定义了一个包含 164 个用户属性的 ontology（如lifestyle、belongings等）利用 LLM 为每个属性生成用户背景段落，再从这些背景中生成候选 question-answer pairs（人工筛选、重写和难度调整）， 标注者会将答案拆解成一个或多个 evidence statements（有些 evidence 带时间信息）</p>
+</li>
+<li>
+<p><strong>evidence session construction</strong>： 将每条 evidence statement嵌入到一个 task-oriented user-assistant session 中，使用 self-chat 方式生成对话，用户不会直白地说出 evidence，而是在请求帮助、咨询建议或完成任务的过程中间接透露信息</p>
+</li>
+<li>
+<p><strong>history compilation</strong>： 把相关 evidence sessions 插入到一串更长的 user-assistant chat history 中；无关 session 来自两类来源，根据其他不冲突用户属性合成的 self-chat sessions，以及ShareGPT 和 UltraChat；为所有 session 分配合理时间戳，从而形成一个 coherent、length-configurable 的长期聊天历史</p>
+</li>
+</ul>
+<p>本质依旧是needle-in-a-haystack for personal memory。</p>
+<p>相比之下，<strong>LongMemEval-V2 的构造思路是：先收集 agent 在环境中执行任务的轨迹，再从轨迹中抽取一个有经验的 agent 应该记住的知识</strong></p>
+<p>大致分为四步。</p>
+<ul>
+<li>
+<p><strong>trajectory collection</strong>：从 WebArena、WorkArena 和 WorkArena++ 中收集 web-agent trajectories， 轨迹通过 AgentLab 统一接口采集，每条 trajectory 包含任务目标、状态观察、截图、accessibility tree、动作以及状态转移；通过 rejection sampling 收集成功和失败轨迹</p>
+</li>
+<li>
+<p><strong>question annotation</strong>： 问题围绕五类 memory ability 构造：static state recall、dynamic state tracking、workflow knowledge、environment gotchas 和 premise awareness；并测试模型能否在没有 trajectory evidence 的情况下回答候选问题，能则过滤或改写（避免模型凭公共知识答题）</p>
+</li>
+<li>
+<p><strong>answer trajectory labeling</strong>： 每个问题都需要标注哪些 trajectories 真正包含答案证据，要求 evidence 能在截图或轨迹状态中被验证 （通过一批 seed answer-bearing trajectories 配合Codex 辅助扩大候选标注范围，最后由人工验证 ambiguous cases）</p>
+</li>
+<li>
+<p><strong>haystack creation</strong>： Small tier 会为 WebArena 和 ServiceNow 各构造一个共享的 100-trajectory haystack；Medium tier 则为每个问题构造约 500 条 trajectory 的 question-specific haystack</p>
+</li>
+</ul>
+<h3 id="evermembench">EverMemBench<a hidden class="anchor" aria-hidden="true" href="#evermembench">#</a></h3>
+<p>📄 <a href="https://arxiv.org/abs/2602.01313">EverMemBench 论文</a></p>
+<p>从双人对话到多人协作。一个长期嵌入团队协作的 agent，能不能在多人、多组、多时间线的环境中维护记忆。</p>
+<p>EverMemBench 模拟企业协作场景。数据包含多个项目、子项目、员工、群组对话和带证据的 QA。整体结构更接近：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">project
+</span></span><span class="line"><span class="cl">  ├── sub-project / group chat
+</span></span><span class="line"><span class="cl">  │     ├── day 1 messages
+</span></span><span class="line"><span class="cl">  │     ├── day 2 messages
+</span></span><span class="line"><span class="cl">  │     └── ...
+</span></span><span class="line"><span class="cl">  ├── employees / personas
+</span></span><span class="line"><span class="cl">  ├── task timeline
+</span></span><span class="line"><span class="cl">  └── QA items with evidence references
+</span></span></code></pre></div><p>评估 pipeline ：</p>
+<pre tabindex="0"><code>Add → Search → Answer → Evaluate
+</code></pre><p>EverMemBench 的 QA 按三大维度、九个子任务组织</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">大类</th>
+          <th style="text-align: left">子任务</th>
+          <th style="text-align: left">数量</th>
+          <th style="text-align: left">主要看什么</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Fine-grained Recall</strong></td>
+          <td style="text-align: left">Single-hop Retrieval、Multi-hop Trajectory、Temporal Duration</td>
+          <td style="text-align: left">762</td>
+          <td style="text-align: left">是否能找到精确事实、链接、日期、人物、任务状态</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Memory Awareness</strong></td>
+          <td style="text-align: left">Constraint、Proactivity、Update</td>
+          <td style="text-align: left">1,097</td>
+          <td style="text-align: left">是否能把过去规则、约束、更新应用到新场景</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Profile Understanding</strong></td>
+          <td style="text-align: left">Style、Skill、Role</td>
+          <td style="text-align: left">541</td>
+          <td style="text-align: left">是否能基于长期互动理解人的风格、技能和角色</td>
+      </tr>
+  </tbody>
+</table>
+<p>EverMemBench 的评价方式可以分成两层：任务协议和打分方式。</p>
+<p><strong>任务协议上</strong>，它采用 streaming multi-group protocol：系统在 ingestion phase 按时间顺序接收 daily batches，需要自己维护 memory state；evaluation phase 再提出问题。这种协议可以测试系统在持续接收信息时如何写入、更新、检索和使用记忆，而不是一次性把历史塞进上下文。</p>
+<p>打分方式上：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">问题类型</th>
+          <th style="text-align: left">评价方式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Multiple-choice</td>
+          <td style="text-align: left">直接判断 A/B/C/D 是否正确</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Open-ended</td>
+          <td style="text-align: left">LLM-as-a-Judge 判断 generated answer 和 gold answer 是否语义等价</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Memory system</td>
+          <td style="text-align: left">Add → Search → Answer → Evaluate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Full-context LLM</td>
+          <td style="text-align: left">直接把完整 dialogue 作为上下文，不经过 retrieval</td>
+      </tr>
+  </tbody>
+</table>
+<p>数据构造可以概括为：</p>
+<pre tabindex="0"><code>blueprint and profile generation
+→ chunk-wise dialogue synthesis
+→ evidence-grounded QA construction
+</code></pre><h2 id="user-profiling-and-personalization">User Profiling and Personalization<a hidden class="anchor" aria-hidden="true" href="#user-profiling-and-personalization">#</a></h2>
+<h3 id="personamem"><strong>PersonaMem</strong><a hidden class="anchor" aria-hidden="true" href="#personamem">#</a></h3>
+<p>📄 <a href="https://arxiv.org/abs/2504.14225">PersonaMem 论文</a> · <a href="https://github.com/bowen-upenn/PersonaMem">GitHub 仓库</a></p>
+<p><img loading="lazy" src="/img/agent-memory-benchmark-assets/personamem-overview.webp" alt="PersonaMem：从长期交互历史中形成和更新用户画像"  />
+</p>
+<p>核心不是“能不能背出某个事实”，而是：模型能否在长程、多轮、多 session 的用户交互历史中，形成和更新用户画像，并把最新用户状态用于个性化回答</p>
+<p>三个能力：模型是否能内化用户固有特征和偏好，是否能追踪用户画像/偏好的时间演化，以及是否能在新场景中据此生成个性化回应</p>
+<p>把问题设成：给定某个时刻以前的用户-LLM 互动历史和一个“第一人称”的 in-situ user query，模型要选出最符合当前用户状态的回答</p>
+<p>测的是四件事</p>
+<p><strong>记住用户说过的 facts / preferences</strong>：例如用户曾说喜欢某类音乐、饮食、学习方式。</p>
+<p><strong>更新记忆</strong>：用户偏好会变，模型不能只记旧偏好，例如从喜欢披萨变成因为麸质过敏而转向 gluten-free。</p>
+<p><strong>从历史中检索相关片段</strong>：信息可能出现在很长的历史中，甚至有 “lost in the middle” 问题。</p>
+<p><strong>把记忆用于回答，而不是仅仅复述</strong>：最难的是基于用户当前偏好给出新推荐，或迁移到新场景。v1 发现模型在简单事实回忆上还可以，但在“给新建议”“跨场景应用用户偏好”上明显更弱</p>
+<p>v1 数据规模：约 <strong>20 个 personas、180+ interaction histories</strong>，每条 history 最多 <strong>60 个多轮 sessions</strong>，覆盖 <strong>15 个个性化任务场景</strong>；HF 数据集提供 32k、128k、1M 三种上下文长度版本</p>
+<p>设计了 <strong>7 类 in-situ user query</strong>，用来覆盖不同 memory / personalization 技能</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">类型</th>
+          <th style="text-align: left">测什么</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Recall user-shared facts</td>
+          <td style="text-align: left">记住用户曾分享的事实、活动、兴趣</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Suggest new ideas</td>
+          <td style="text-align: left">推荐历史里没出现过的新东西，同时符合用户约束</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Acknowledge latest user preferences</td>
+          <td style="text-align: left">识别用户最新偏好，而不是旧偏好</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Track full preference evolution</td>
+          <td style="text-align: left">追踪偏好从过去到现在的完整变化</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Revisit reasons behind preference updates</td>
+          <td style="text-align: left">记住偏好变化背后的原因</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Provide preference-aligned recommendations</td>
+          <td style="text-align: left">主动给出与当前偏好一致的建议</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Generalize to new scenarios</td>
+          <td style="text-align: left">把从其他场景学到的用户特征迁移到新任务</td>
+      </tr>
+  </tbody>
+</table>
+<p>v1 主评估是 <strong>4 选 1 multiple-choice accuracy</strong>：模型看到完整对话历史、当前 user query、四个候选回答，选择最符合当前用户画像的回答</p>
+<p>V2 改进版本</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">v1 的问题 / 局限</th>
+          <th style="text-align: left">v2 的对应修改</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>规模较小</strong>：v1 只有约 20 personas、180+ histories、15 个任务场景</td>
+          <td style="text-align: left">v2 扩展到 <strong>1,000 personas、26,100 preferences/Q&amp;A pairs、325 conversation topics、335 user query topics</strong>。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>偏好较显式</strong>：v2 论文指出 v1 仍主要关注 explicit preferences</td>
+          <td style="text-align: left">v2 主打 <strong>implicit personas / implicit preferences</strong>，让偏好隐藏在 email rewriting、translation、knowledge query、photo sharing 等真实交互里。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>评估更偏选择题</strong>：v1 主评估是 MCQ，生成式评估受 logits 可得性限制</td>
+          <td style="text-align: left">v2 同时提供 <strong>MCQ 和 open-ended</strong>，open-ended 使用 LLM-as-a-judge；论文称用三个 GPT-5-Chat judge 聚合判断。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>缺少训练/验证集用于改进模型</strong></td>
+          <td style="text-align: left">v2 不只是 benchmark，还提供 train/val/test：text benchmark 5,000、train 18,500、val 2,600；multimodal benchmark 5,000、train 19,200、val 2,110。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>真实使用中的 privacy/control 问题不足</strong></td>
+          <td style="text-align: left">v2 加入用户泄露敏感信息、用户要求“不要记住某偏好”等场景，并要求 target answers 避免使用敏感/私密信息。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>更像长上下文测试，成本高</strong></td>
+          <td style="text-align: left">v2 提出/评估 agentic memory：把长历史压缩成约 2k-token、可读、可更新的 memory；论文称相对 32k 上下文约 16× 更省 token，并在 MCQ/open-ended 上超过直接长上下文模型。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>用户偏好 vs 他人信息容易混淆</strong></td>
+          <td style="text-align: left">v2 数据列显式标注 <code>who</code>，区分当前 preference 属于用户本人还是他人，并加入与 persona 无关的数学/代码问题作为干扰。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>单模态/场景覆盖有限</strong></td>
+          <td style="text-align: left">v2 有 text 与 multimodal 两套 benchmark，并包含 multimodal photo sharing、multilingual translation、health/medical、therapy 等场景。</td>
+      </tr>
+  </tbody>
+</table>
+<p>v2 的定位有一个明显转向：<strong>从“显式/动态偏好记忆”升级为“隐式偏好推断 + 可训练的 agentic memory”。</strong></p>
+<p>v2 特别关注用户偏好不是直接说出来，而是隐含在长对话中的情况；例如用户让模型润色邮件时，邮件内容可能无意透露季节性过敏</p>
+<p>v2 的每条 benchmark row 包含：<code>persona_id</code>、完整 persona 文件路径、32k/128k chat history 链接、<code>user_query</code>、<code>correct_answer</code>、三个 <code>incorrect_answers</code>、当前 <code>preference</code>、偏好类别、相关对话片段、该偏好是否属于用户本人、是否更新过、旧偏好、敏感信息、相关片段到 query 的 token distance 等</p>
+<p>🤗 <a href="https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2">PersonaMem-v2 数据集</a></p>
+<p>v2 的评估指标主要是：</p>
+<ol>
+<li>
+<p><strong>MCQ accuracy</strong>：模型从四个合理选项中选择最个性化的答案。</p>
+</li>
+<li>
+<p><strong>Open-ended personalization accuracy / judge score</strong>：模型直接生成回答，再由 LLM-as-a-judge 判断是否体现了 ground-truth preference；论文报告用多个 GPT-5-Chat judge 聚合。</p>
+</li>
+<li>
+<p><strong>分组分析</strong>：按 preference type、scenario、是否 dynamic update、who、相关片段距离等维度拆解性能。官方评估脚本也会生成这些 category breakdown。</p>
+</li>
+</ol>
+<h3 id="personalens">PersonaLens<a hidden class="anchor" aria-hidden="true" href="#personalens">#</a></h3>
+<p>PersonaMem 把个性化当成一道记忆 QA， PersonaLens更关注，在完成任务的过程中，个性化会不会被任务目标挤掉。</p>
+<p>📄 <a href="https://arxiv.org/abs/2506.09902">PersonaLens 论文</a></p>
+<p>构成上，它有 1,500 个用户画像（demographic 属性取自 PRISM Alignment 数据集，偏好由 LLM 基于 demographic 生成以保证内部一致），覆盖从 Books、Finance、Flights 到 Restaurants 等约 20 个领域。</p>
+<p>评测方式：<strong>双 agent 自动评测，</strong> 一个 user agent（用 Claude 3 Sonnet 实现）模拟带特定画像和情境的用户去和被测助手对话，一个 judge agent 用 LLM-as-a-Judge 评个性化、回应质量与任务完成度，并区分单领域（TSD）与多领域（TMD）任务。</p>
+<p>一个核心发现， 任务完成率（TCR）和个性化之间存在权衡——助手越是埋头把任务做完，越容易忽略用户偏好。</p>
+<p>相反，静态 QA 里不存在&quot;任务目标&quot;这个会和个性化抢注意力的竞争项。</p>
+<h1 id="多模态个人记忆">多模态个人记忆<a hidden class="anchor" aria-hidden="true" href="#多模态个人记忆">#</a></h1>
+<p>记忆的来源是文字。但真实的个人记忆显然不止于此。</p>
+<p>agent 能否跨文本、图像、视频建立长期记忆，并在后续任务中调用它们。</p>
+<p><strong>很多所谓的多模态记忆，图像只是被 caption 成文字、再塞回文本 pipeline</strong>。LoCoMo 自己就带多模态部分（图片分享），但后续绝大多数工作都把它退化成纯文本 QA 在用。</p>
+<p>实际上可以从，多模态在哪个环节中起作用，来看其究竟在测什么。</p>
+<p><strong>输入/存储端：跨会话保存视觉信息。</strong></p>
+<p>用户在早先的会话里分享了一张图，后续要记住图里的内容。</p>
+<p>📄 <a href="https://arxiv.org/abs/2601.03515">Mem-Gallery 论文</a></p>
+<p>如 Mem-Gallery，明确指出现有 benchmark 要么在纯文本多会话里评记忆、要么在单会话局部里评多模态理解，没有一个真正评估多模态记忆在长期对话轨迹中如何被保存、组织和演化。沿三个维度评估——记忆抽取与测试时适应、记忆推理、记忆知识管理。</p>
+<p><strong>检索端：在视觉历史里做跨模态检索。</strong> 存下来只是第一步，能否按当前需求把对的图/帧找出来是另一回事。</p>
+<p>叠加个性化：多模态 × 用户建模</p>
+<p><a href="https://huggingface.co/datasets/ClareNie/Persona-MME">Persona-MME</a> 面向长期个性化的多模态 LLM，构造持久的多模态 persona 上下文（用户画像、常出现的社交关系、用户拥有的物品），再生成显式实体、隐式事实、干扰项三类多模态对话来控制引入的记忆信号。</p>
+<p>叠加真实/具身场景。属于具身/世界模型方向。如第一人称视角（egocentric）的可穿戴助手、机器人记忆、视频世界模型的记忆能力等。（暂不属于本篇的讨论范畴）</p>
+<p>正面看，Mem-Gallery、MemLens 这批 2026 年初的工作，是对&quot;图像被 caption 掉&quot;的纠正。</p>
+<p>但这一类整体还很年轻，没有收敛出 LoCoMo 那样人人都刷的标杆，各家的模态覆盖、任务形态、评测口径都还不统一。</p>
+<h1 id="记忆生命周期能力">记忆生命周期能力<a hidden class="anchor" aria-hidden="true" href="#记忆生命周期能力">#</a></h1>
+<p>前面几类是按&quot;测什么内容&quot;划分的：对话事实、用户画像、多模态。</p>
+<p>而agent 会不会更新旧记忆、能不能处理冲突信息、知不知道什么时候该遗忘或拒答、能不能追踪偏好随时间的变化。这些就是记忆的生命周期（lifecycle）能力。</p>
+<p>lifecycle 这块是碎片化的、按单一能力切分的一堆专项 bench，且大多是 2025 下半年到 2026 年才涌现的。这本身就是一个信号：这个领域刚刚意识到&quot;<strong>正确率不够</strong>&quot;，专项评测才开始出现，还没有收敛。</p>
+<p>下面按能力维度组织，每个维度几个代表 bench，以及它对应的、区别于正确率的指标。</p>
+<p><strong>更新（Update）</strong></p>
+<p>记忆系统要记住最新版本，而不是最先说的那个。</p>
+<p>这一维度 LongMemEval 已有专门的 knowledge-update 子集（前面介绍过）。更进一步的是把它做成<strong>指标</strong>而非仅仅数据：有工作提出 <a href="https://arxiv.org/abs/2604.20006">Forgetting-Aware Memory Accuracy</a>，专门惩罚对过期或失效记忆的依赖。</p>
+<p><strong>冲突（Conflict resolution）</strong></p>
+<p>记忆里出现自相矛盾的两条信息时，系统能不能只让最新、正确的那条生效？</p>
+<p><a href="https://arxiv.org/abs/2507.05257">MemoryAgentBench</a> 关注了：把记忆能力拆成准确检索、测试时学习、长程理解、冲突消解四项，并为冲突设了专门的 Conflict Resolution Accuracy，确保有矛盾时只有最新的有效事实被采用</p>
+<p><strong>遗忘（Forgetting / 选择性保留）</strong></p>
+<p>不是所有信息都该永久保留：过期的、用户明确要求&quot;别记住&quot;的，都应该被丢弃。</p>
+<p>MemoryAgentBench 用它新构造的 FactConsolidation 数据集专门测选择性遗忘。</p>
+<p>而用户主动要求遗忘和隐私相关，如<a href="https://arxiv.org/abs/2512.06688">PersonaMem-v2</a> 的隐私场景（用户要求不要记住某偏好）。</p>
+<p><strong>拒答（Abstention）</strong></p>
+<p>不知道就说不知道。记忆系统要能识别&quot;证据不足&quot;并拒答，而不是幻觉。</p>
+<p>LongMemEval 专门设了 abstention 类问题来测这一点，对应的指标是 abstention rate / 拒答的准确性，同样不是普通正确率能覆盖的。</p>
+<p><strong>从被动回忆到记忆驱动行动</strong></p>
+<p><a href="https://arxiv.org/abs/2602.16313">MemoryArena</a> 显示，在 recall benchmark 上接近满分的模型，一旦记忆需要驱动行动就急剧下滑。很多所谓记忆 benchmark 本质是 retrieval benchmark，测的是&quot;针找不找得到&quot;，而不是&quot;记忆能不能真正被用起来&quot;。</p>
+<h1 id="评估指标除了正确率之外">评估指标：除了正确率之外<a hidden class="anchor" aria-hidden="true" href="#评估指标除了正确率之外">#</a></h1>
+<p>如果只看正确率，会漏掉什么？</p>
+<p>借用一个现成的分层框架。近期一篇 <a href="https://arxiv.org/abs/2603.07670">memory survey</a> 提出的 four-layer evaluation stack 把指标分成四层，正好可以作为这一节的骨架。</p>
+<p><strong>Layer 1：任务效果（Task effectiveness）</strong></p>
+<p>任务到底做成了没有。</p>
+<p>常见指标是 success rate、factual correctness、plan completion rate。落到对话记忆的 QA 形态上，就是我们前面反复见到的那些：token-level F1、BLEU、LLM-as-a-Judge 的二元/打分判定、以及 MCQ accuracy。</p>
+<p>这些指标彼此并不等价，选哪个会改变结论。即使LLM-as-a-Judge 更贴近语义正确性，但引入了 judge 自身的偏置。</p>
+<p>这时候&quot;谁是 SOTA&quot;取决于信哪个指标。</p>
+<p><strong>Layer 2：记忆质量（Memory quality）</strong></p>
+<p>关键指标包括：检索到的记录的 precision/recall、contradiction rate（矛盾率）、staleness distribution（过期分布）、以及对任务相关事实的 coverage。</p>
+<p>有工作在 LongMemEval-S 上，仅靠检索就能把某类问题的召回刷到近 99%——但这是检索召回，不是端到端正确率。</p>
+<p>staleness distribution 和 contradiction rate 关注的是&quot;记忆里有多少已经失效或自相矛盾的内容&quot;。</p>
+<p>相应地也出现了专门的指标，比如惩罚&quot;依赖过期记忆&quot;的 Forgetting-Aware Memory Accuracy，以及确保矛盾信息只有最新版本生效的 conflict resolution accuracy。</p>
+<p><strong>Layer 3：效率（Efficiency）</strong></p>
+<p>核心指标：latency per memory operation、记忆内容占用的 prompt tokens、每步的 retrieval 调用次数、以及存储随时间的增长。</p>
+<p>这里有个测量方法学的细节值得注意：严谨的工作（如 <a href="https://arxiv.org/abs/2601.06377">HiMem</a>）在报告 latency 时，<strong>只算记忆检索本身的耗时，排除 LLM 推理</strong>，以隔离记忆系统的效率、避免被底层模型的快慢污染。读效率数字时要留意它到底量的是哪一段。</p>
+<p><strong>Layer 4：治理（Governance）</strong></p>
+<p>记忆系统在隐私和控制上守不守规矩。</p>
+<p>指标包括：privacy leakage rate（隐私泄露率）、deletion compliance（删除合规——用户要求&quot;别记住/删掉&quot;时是否真的照做）、access-scope violations（越权访问，尤其在多用户共享记忆的场景）。</p>
+<p><a href="https://arxiv.org/abs/2512.06688">PersonaMem-v2</a> 已经把这类场景纳入：用户泄露敏感信息、或明确要求&quot;不要记住某个偏好&quot;，而模型的 target answer 被要求避免使用这些敏感/私密信息。</p>
+<p>这四层之间往往是trade-off的。</p>
+<p>所以完善的系统评测，应该是在四层上给出一条<strong>操作曲线</strong>（accuracy / store-size / latency 之间可调的权衡），而不是一个孤立的最高分。</p>
+<h2 id="数据合成方法">数据合成方法<a hidden class="anchor" aria-hidden="true" href="#数据合成方法">#</a></h2>
+<p>讨论任何一个Memory benchmark 之前，都应该先问一个更基础的问题：这些多轮对话是怎么造出来的？因为合成方式几乎决定了这个 benchmark 真正在测什么，以及它先天测不了什么。</p>
+<p>目前主流 bench 的对话来源大致分三档</p>
+<ul>
+<li>
+<p>纯人工真实数据（几乎不存在）</p>
+</li>
+<li>
+<p>LLM 生成骨架 + 人工校验（LoCoMo为代表的，基于预定义 persona 和时序事件图，用 LLM agent 架构生成对话骨架，再由人工标注者验证、编辑，以保证长程一致性）</p>
+</li>
+<li>
+<p>needle-in-a-haystack拼装式：LongMemEval为代表，问题由人类专家撰写，承载答案的证据 session 由 LLM 模拟并人工编辑，而占绝大多数的无关 session 则从 ShareGPT、UltraChat 和模拟对话里采样</p>
+</li>
+</ul>
+<p>个性化类的 bench 则更依赖 <strong>persona 驱动的全自动合成</strong>。PersonaMem 用 GPT-4o 驱动的模块化 pipeline，从 persona 出发生成多会话、带时间线的交互历史，并在对话中植入随时间演化的偏好；它的 in-situ query 是把用户当前的第一人称提问附在历史末尾，以此测&quot;模型能否用最新偏好作答&quot;。</p>
+<p>由于needle-in-a-haystack 本质上还是大海捞针测试，测的很大程度上是<strong>长上下文里的检索能力</strong>，而非记忆系统的组织与演化能力。</p>
+<p>LongMemEval 在挑选haystack session 时，刻意选取与证据话题、格式相近，但<strong>不引入冲突信息</strong>的 session，以免让问题失效。这个工程上合理的选择，恰恰意味着这个 benchmark 从构造起点就回避了知识冲突——所以它天然测不了冲突消解能力。</p>
+<p>此外，对&quot;LLM 生成的数据是否可信&quot;的常见担忧，答案不在于 LLM幻觉本身，而在于生成之后的过滤和检查。如PersonaMem-v2 ：对每个 Q&amp;A 施加四条硬性过滤——不看历史就必须答不出（杜绝题目泄露和生成 artifact）、正确选项须真实反映用户偏好、错误选项一律不得反映、格式不得残留生成痕迹；最终只有约三成生成的 Q&amp;A 能全部通过。</p>
+<p>通过率本身也反映了，未经严格过滤的合成对话里，有相当比例存在可被模型走捷径的漏洞。</p>
+<p>所以合成 pipeline 关系到了其能力边界本身。</p>
+<h2 id="结尾"><strong>结尾</strong><a hidden class="anchor" aria-hidden="true" href="#结尾">#</a></h2>
+<p><strong>没有任何单一 benchmark 能同时覆盖agent-memory这件事的全部</strong>。每一项都需要专门构造的数据和专门设计的指标，事实回忆、个性化推断、多模态、更新、冲突、遗忘、拒答、记忆驱动行动等等。</p>
+<p>所以当一个 agent-memory 项目宣称自己又 SOTA 了，值得追问的始终是同一串问题：它在哪个 bench 上 SOTA？那个 bench 测的核心是什么能力，又漏掉了哪些性质？它的数据让它能测什么、注定测不了什么？它报告了哪几层指标，没报告的那几层是不是正好是它牺牲掉的？</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/agent-memory/">Agent-Memory</a></li>
+      <li><a href="https://niraya666.github.io/tags/agent/">Agent</a></li>
+      <li><a href="https://niraya666.github.io/tags/benchmark/">Benchmark</a></li>
+      <li><a href="https://niraya666.github.io/tags/memory/">Memory</a></li>
+      <li><a href="https://niraya666.github.io/tags/llm/">LLM</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/posts/ai%E8%BD%AC%E5%9E%8B%E6%9C%80%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AFai%E8%80%8C%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B2%A1%E4%BA%BA%E6%84%BF%E6%84%8F%E5%B9%B2%E7%9A%84%E8%84%8F%E6%B4%BB/">
+    <span class="title"> »</span>
+    <br>
+    <span>AI转型最难的不是AI，而是那些没人愿意干的脏活</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on x"
+            href="https://x.com/intent/tweet/?text=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f&amp;hashtags=Agent-Memory%2cAgent%2cBenchmark%2cMemory%2cLLM">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f&amp;title=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88&amp;summary=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88&amp;source=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f&title=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on whatsapp"
+            href="https://api.whatsapp.com/send?text=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88%20-%20https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on telegram"
+            href="https://telegram.me/share/url?text=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88&amp;url=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share SOTA 之后：agent-memory benchmark 测了什么，又测不了什么 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=SOTA%20%e4%b9%8b%e5%90%8e%ef%bc%9aagent-memory%20benchmark%20%e6%b5%8b%e4%ba%86%e4%bb%80%e4%b9%88%ef%bc%8c%e5%8f%88%e6%b5%8b%e4%b8%8d%e4%ba%86%e4%bb%80%e4%b9%88&u=https%3a%2f%2fniraya666.github.io%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
