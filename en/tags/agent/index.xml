@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/en/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss</title>
+      <link>https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/</guid>
+      <description>A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory.</description>
+    </item>
     <item>
       <title>From Agent Trajectory to Agent Skill: How to Turn Experience into Compounding Returns</title>
       <link>https://niraya666.github.io/en/posts/from-agent-trajectory-to-agent-skill-compounding-returns/</link>

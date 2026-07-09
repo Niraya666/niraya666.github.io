@@ -11,8 +11,43 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Jun 2026 18:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent</title>
+      <link>https://niraya666.github.io/en/tags/agent/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/agent/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent-Memory</title>
+      <link>https://niraya666.github.io/en/tags/agent-memory/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/agent-memory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Benchmark</title>
+      <link>https://niraya666.github.io/en/tags/benchmark/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/benchmark/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>https://niraya666.github.io/en/tags/llm/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Memory</title>
+      <link>https://niraya666.github.io/en/tags/memory/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/memory/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
       <link>https://niraya666.github.io/en/tags/ai/</link>
@@ -25,13 +60,6 @@
       <link>https://niraya666.github.io/en/tags/ai-native/</link>
       <pubDate>Wed, 10 Jun 2026 11:00:00 +0800</pubDate>
       <guid>https://niraya666.github.io/en/tags/ai-native/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Agent</title>
-      <link>https://niraya666.github.io/en/tags/agent/</link>
-      <pubDate>Tue, 02 Jun 2026 20:00:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/en/tags/agent/</guid>
       <description></description>
     </item>
     <item>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LLM on LZY Blog</title>
+    <link>https://niraya666.github.io/en/tags/llm/</link>
+    <description>Recent content in LLM on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</url>
+      <link>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/en/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss</title>
+      <link>https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/</link>
+      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/</guid>
+      <description>A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory.</description>
+    </item>
+  </channel>
+</rss>

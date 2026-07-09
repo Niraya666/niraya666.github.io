@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss | LZY Blog</title>
+<meta name="keywords" content="Agent-Memory, Agent, Benchmark, Memory, LLM">
+<meta name="description" content="A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory.">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/posts/agent-memory-benchmark-summary/">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss" />
+<meta property="og:description" content="A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-07-09T19:03:00+08:00" />
+<meta property="article:modified_time" content="2026-07-09T19:03:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta name="twitter:title" content="Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss"/>
+<meta name="twitter:description" content="A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Posts",
+      "item": "https://niraya666.github.io/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss",
+      "item": "https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss",
+  "name": "Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss",
+  "description": "A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory.",
+  "keywords": [
+    "Agent-Memory", "Agent", "Benchmark", "Memory", "LLM"
+  ],
+  "articleBody": "In agent-memory research, two benchmarks are virtually inescapable — everyone runs them: LoCoMo and LongMemEval. But does a high score on either truly prove anything? Are there more targeted benchmarks better suited to specific use cases? Should memory evaluation be reduced to accuracy alone? What other metrics matter, and how are the data synthesis pipelines behind these benchmarks actually constructed?\nThese are the questions this article sets out to answer.\nOverall Agent-memory benchmarks broadly fall into two categories: conversational memory and agent task improvement. The former concerns whether the system can remember important user information; the latter focuses on whether the agent can reduce similar types of errors over time.\nNaturally, the evaluation approaches differ — for task improvement, standard coding benchmarks can often serve the purpose. This article focuses on the former: conversational memory.\nMemory benchmarks can be understood along two orthogonal axes.\nAxis 1: What content / scenario is being tested (horizontal) — factual conversational memory (LoCoMo / LongMemEval), personalization \u0026 user profiling (PersonaMem / PersonaLens), experiential / environmental memory (LongMemEval-V2), and multimodal memory.\nAxis 2: What capability dimension is being tested (vertical) — lifecycle abilities (update, conflict, forgetting, abstention, temporal reasoning). These cut across all scenarios.\nLong-term Conversational Memory The earliest and most frequently evaluated category of personal memory is long-term conversational memory: given dialogues spanning multiple turns and multiple sessions, can the agent remember user-relevant information and correctly recall it in subsequent questions or responses?\nThis type of benchmark closely resembles traditional long-context QA. The emphasis is on whether the agent can locate, understand, and apply user-related memories across very long conversation histories — both within long sessions and across sessions.\nLoCoMo 📄 LoCoMo Paper · GitHub Repository\nLoCoMo (Long Conversation Memory) is one of the most frequently cited benchmarks in agent-memory research.\nLoCoMo’s data is generated through a hybrid human-machine pipeline: starting from predefined personas and temporal event graphs, two LLM agents generate long conversation skeletons, which human annotators then verify and edit to ensure long-range consistency, event grounding, and multimodal content plausibility. The public release contains 10 ultra-long conversations, each averaging roughly 300 turns and 9K tokens, spanning up to 35 sessions.\nLoCoMo defines three evaluation tasks.\nThe first task is Question Answering. This is the part most commonly used by subsequent memory system papers. QA questions fall into five categories:\nCategory What It Tests Challenge Count Single-hop Factual recall within a single session Finding answers directly from one part of the dialogue 841 Multi-hop Synthesizing information across multiple sessions Piecing together evidence from multiple sources 282 Temporal reasoning Temporal reasoning Understanding “before,” “after,” “months later,” and other temporal relations 321 Open-domain / commonsense Dialogue information + external commonsense knowledge Not pure retrieval — requires commonsense inference 96 Adversarial Unanswerable or trick questions Preventing the model from hallucinating in long contexts 446 The second task is Event Summarization. The model must summarize the conversation history into a temporal event graph, testing whether it understands events, causal relationships, and temporal ordering in long-term dialogues.\nThe third task is Multimodal Dialogue Generation. LoCoMo’s dialogues include image sharing and image reactions, so this task evaluates whether the model can combine past dialogue and multimodal cues to generate coherent responses consistent with character state and long-term narrative.\nFrom a data structure perspective (locomo10.json), each element in the JSON array represents one complete long conversation with its annotations.\nEvaluation methodology and metrics. Evaluation is not LLM-Judge-dominated.\nQA: normalized / partial-match F1; RAG systems additionally report retrieval recall / recall@k. Event Summarization: ROUGE + FactScore, where FactScore decomposes into atomic facts and computes precision / recall / F1. Multimodal Dialogue Generation: BLEU-1/2, ROUGE-L, MM-Relevance. Its limitations, however, are clear. At roughly 9K tokens on average, the public version is no longer sufficient in 2026 to meaningfully differentiate long-context models. Furthermore, most follow-up work focuses primarily on LoCoMo’s QA component, reducing it to a text retrieval / QA benchmark; the event summarization and multimodal dialogue generation tasks remain underutilized in practical system comparisons.\nThis has led to targeted corrections such as LoCoMo-Plus and LoCoMo-Refined. LoCoMo-Plus’s direction is particularly noteworthy: it attempts to move from surface-level factual recall to cognitive memory — testing whether a model can apply implicit user states, goals, values, and constraints from earlier dialogues in subsequent scenarios.\n📄 LoCoMo-Plus Paper · LoCoMo-Refined GitHub Repository\nLongMemEval Compared to LoCoMo, LongMemEval is more directly oriented toward long-term interaction memory for chat assistants. Its goal is to evaluate whether an assistant can record, retrieve, update, and reason about user information across sustained, multi-session user interactions.\n📄 LongMemEval Paper · GitHub Repository\nLongMemEval contains 500 questions covering five categories of long-term memory capability:\nCapability Meaning Information Extraction Recalling specific details from long interaction histories, including details once mentioned by the user or assistant Multi-Session Reasoning Synthesizing information across multiple sessions for aggregation, comparison, or inference Knowledge Update Recognizing changes in user information and updating old memories with new information Temporal Reasoning Understanding temporal attributes in user information, including explicit timestamps and session timestamps Abstention Knowing when to refuse to answer rather than hallucinate, when the relevant information is absent from history LongMemEval offers different difficulty tiers. LongMemEval-S provides roughly 115K tokens of history per question, typically spanning 30–40 sessions; LongMemEval-M scales to roughly 500 sessions and 1.5M tokens. This makes it far more suitable than LoCoMo for testing the memory scalability of real personal assistants over extended use.\nFor evaluation, LongMemEval employs LLM-as-a-Judge, with GPT-4o judging whether a model’s answer is correct. It also proposes a useful memory system analysis framework: decomposing a long-term memory system into three stages — indexing, retrieval, and reading.\nFrom a personal memory perspective, LongMemEval is closer to real user-assistant scenarios than LoCoMo. It tests not only “does it remember,” but also whether user information updates over time, whether information can be synthesized across sessions, whether temporal reasoning is handled correctly, and whether the system refuses to answer when information is absent.\nThat said, LongMemEval remains fundamentally a long-context QA / retrieval-oriented benchmark. Its core evaluation format still revolves around finding evidence in chat histories and answering questions. But real-world agents face a harder problem: state is dynamic, making the benchmark susceptible to retrieval engineering.\nFrom LongMemEval to LongMemEval-V2 📄 LongMemEval-V2 GitHub Repository\nNo longer merely testing “can a chat assistant remember long-term conversations,” but rather “can an agent form long-term experiential memory in complex environments.”\nV2’s object of study is no longer ordinary user-assistant chat history, but web-agent trajectories, corresponding to five categories of memory ability:\nV2 Capability Meaning Static state recall Remembering static environmental information, such as page layouts, module functions, important locations Dynamic state tracking Tracking how states and actions change the environment over time Workflow knowledge Remembering the procedures for completing recurring tasks in specific environments Environment gotchas Recognizing recurring local failure patterns and environmental traps Premise awareness Knowing which assumptions valid in other environments do not hold in the current deployment V2’s context scale explodes:\nsmall tier: 25M tokens medium tier: 115M tokens This far exceeds mainstream context windows.\nThis represents arguably one of the biggest directional shifts in AI memory research over the past year.\n“How can LLMs remember long-term conversations” → “How can agents accumulate long-term work experience”\nOr put differently: chatbot memory → agentic / experiential memory.\nFrom a data synthesis pipeline perspective:\nLongMemEval is constructed by first designing the user memories to be tested, then embedding those memories into long chat histories. It roughly follows three steps:\nquestion curation: An ontology of 164 user attributes (e.g., lifestyle, belongings) is defined. An LLM generates user background paragraphs for each attribute, from which candidate QA pairs are generated (with human filtering, rewriting, and difficulty calibration). Annotators decompose answers into one or more evidence statements (some carrying temporal information). evidence session construction: Each evidence statement is embedded into a task-oriented user-assistant session, using self-chat to generate dialogue. The user does not explicitly state the evidence; instead, information is revealed indirectly through requests for help, advice, or task completion. history compilation: Relevant evidence sessions are inserted into a longer user-assistant chat history. Irrelevant sessions come from two sources: self-chat sessions synthesized from other non-conflicting user attributes, and ShareGPT + UltraChat. All sessions are assigned reasonable timestamps, producing a coherent, length-configurable long-term chat history. At its core, this remains needle-in-a-haystack for personal memory.\nBy contrast, LongMemEval-V2 is constructed by first collecting agent trajectories from task execution in environments, then extracting from those trajectories the knowledge an experienced agent ought to remember.\nIt roughly follows four steps:\ntrajectory collection: Web-agent trajectories are collected from WebArena, WorkArena, and WorkArena++ via the AgentLab unified interface. Each trajectory includes task goal, state observations, screenshots, accessibility tree, actions, and state transitions. Both successful and failed trajectories are collected through rejection sampling. question annotation: Questions are constructed around five memory ability categories: static state recall, dynamic state tracking, workflow knowledge, environment gotchas, and premise awareness. The model is tested on whether it can answer candidate questions without trajectory evidence — if it can, the questions are filtered or rewritten (preventing the model from answering via public knowledge alone). answer trajectory labeling: Each question requires labeling which trajectories genuinely contain answer evidence, with the requirement that evidence be verifiable in screenshots or trajectory states (a batch of seed answer-bearing trajectories is used with Codex to expand the candidate annotation pool, followed by human verification of ambiguous cases). haystack creation: The Small tier constructs one shared 100-trajectory haystack each for WebArena and ServiceNow; the Medium tier constructs roughly 500-trajectory question-specific haystacks for each question. EverMemBench 📄 EverMemBench Paper\nFrom dyadic conversations to multi-person collaboration. Can an agent embedded in long-term team collaboration maintain memory across multiple people, groups, and timelines?\nEverMemBench simulates enterprise collaboration scenarios. The data includes multiple projects, sub-projects, employees, group conversations, and evidence-grounded QA. The overall structure resembles:\nproject ├── sub-project / group chat │ ├── day 1 messages │ ├── day 2 messages │ └── ... ├── employees / personas ├── task timeline └── QA items with evidence references Evaluation pipeline:\nAdd → Search → Answer → Evaluate EverMemBench’s QA is organized across three dimensions and nine subtasks:\nDimension Subtasks Count What It Evaluates Fine-grained Recall Single-hop Retrieval, Multi-hop Trajectory, Temporal Duration 762 Whether precise facts, links, dates, people, task statuses can be found Memory Awareness Constraint, Proactivity, Update 1,097 Whether past rules, constraints, and updates can be applied to new scenarios Profile Understanding Style, Skill, Role 541 Whether long-term interaction enables understanding of personal style, skills, and roles EverMemBench’s evaluation approach can be divided into two layers: task protocol and scoring method.\nFor task protocol, it uses a streaming multi-group protocol: during the ingestion phase, the system receives daily batches in chronological order and must maintain its own memory state; during the evaluation phase, questions are posed. This protocol tests how the system writes, updates, retrieves, and uses memory while continuously receiving information, rather than dumping all history into context at once.\nFor scoring:\nQuestion Type Evaluation Method Multiple-choice Directly determine whether A/B/C/D is correct Open-ended LLM-as-a-Judge determines whether the generated answer and gold answer are semantically equivalent Memory system Add → Search → Answer → Evaluate Full-context LLM Feed the complete dialogue as context directly, without retrieval Data construction can be summarized as:\nblueprint and profile generation → chunk-wise dialogue synthesis → evidence-grounded QA construction User Profiling and Personalization PersonaMem 📄 PersonaMem Paper · GitHub Repository\nThe core question is not “can it recite a particular fact,” but: can the model form and update user profiles across long-range, multi-turn, multi-session user interaction histories, and use the most current user state to generate personalized responses?\nThree capabilities: whether the model can internalize users’ intrinsic characteristics and preferences; whether it can track the temporal evolution of user profiles / preferences; and whether it can generate personalized responses in new scenarios accordingly.\nThe setup: given the user-LLM interaction history up to a certain point in time, plus a first-person in-situ user query, the model must select the response that best matches the current user state.\nIt tests four things:\nRemembering facts / preferences users have shared: e.g., a user once expressed a preference for a certain type of music, diet, or learning style.\nUpdating memories: Preferences change — the model must not cling to old preferences, e.g., shifting from liking pizza to going gluten-free due to a gluten allergy.\nRetrieving relevant fragments from history: Information may appear far back in long histories, with “lost in the middle” problems.\nApplying memories to responses, not merely parroting: The hardest part is giving new recommendations based on current preferences, or transferring to new scenarios. V1 found models perform reasonably on simple factual recall, but are significantly weaker at “giving new suggestions” and “applying user preferences across scenarios.”\nV1 data scale: roughly 20 personas, 180+ interaction histories, each history up to 60 multi-turn sessions, covering 15 personalized task scenarios; the HF dataset provides 32K, 128K, and 1M context-length versions.\nIt defines 7 types of in-situ user queries to cover different memory / personalization skills:\nType What It Tests Recall user-shared facts Remembering facts, activities, and interests the user has shared Suggest new ideas Recommending new things not present in history, while respecting user constraints Acknowledge latest user preferences Recognizing the user’s most recent preferences, not outdated ones Track full preference evolution Tracking the complete change in preferences from past to present Revisit reasons behind preference updates Remembering the reasons behind preference changes Provide preference-aligned recommendations Proactively offering suggestions consistent with current preferences Generalize to new scenarios Transferring user characteristics learned from other scenarios to new tasks V1’s primary evaluation is 4-way multiple-choice accuracy: the model sees the full conversation history, the current user query, and four candidate responses, and selects the response that best matches the current user profile.\nV2 improvements:\nV1 Issue / Limitation V2 Corresponding Change Small scale: V1 has only ~20 personas, 180+ histories, 15 task scenarios V2 scales to 1,000 personas, 26,100 preferences / Q\u0026A pairs, 325 conversation topics, 335 user query topics. Preferences relatively explicit: V2 paper notes V1 still focused mainly on explicit preferences V2 focuses on implicit personas / implicit preferences, embedding preferences within realistic interactions like email rewriting, translation, knowledge queries, and photo sharing. Evaluation biased toward multiple-choice: V1’s primary evaluation is MCQ; generative evaluation was constrained by logit availability V2 provides both MCQ and open-ended evaluation; open-ended uses LLM-as-a-judge; the paper reports aggregating judgments from three GPT-5-Chat judges. No train/validation split for model improvement V2 is not just a benchmark — it provides train/val/test splits: text benchmark 5,000, train 18,500, val 2,600; multimodal benchmark 5,000, train 19,200, val 2,110. Insufficient privacy/control scenarios for real-world use V2 adds scenarios where the user leaks sensitive information or explicitly asks “don’t remember this preference,” and requires target answers to avoid using sensitive/private information. More like a long-context test, high cost V2 proposes/evaluates agentic memory: compressing long histories into roughly 2K-token, readable, updatable memory; the paper claims roughly 16× token savings relative to 32K context, and surpasses direct long-context models on both MCQ and open-ended. User preferences easily confused with others’ information V2 data columns include an explicit who label, distinguishing whether the current preference belongs to the user or someone else, and adds unrelated math/code questions as distractors. Single modality / limited scenario coverage V2 has both text and multimodal benchmark suites, and includes multimodal photo sharing, multilingual translation, health/medical, therapy, and other scenarios. V2’s positioning reflects a clear pivot: from “explicit/dynamic preference memory” to “implicit preference inference + trainable agentic memory.”\nV2 particularly focuses on cases where user preferences are not stated directly but are embedded in long dialogues — for instance, when a user asks the model to polish an email, the email content may inadvertently reveal seasonal allergies.\nEach benchmark row in V2 includes: persona_id, path to the full persona file, links to 32K/128K chat history, user_query, correct_answer, three incorrect_answers, current preference, preference category, relevant dialogue snippets, whether the preference belongs to the user, whether it has been updated, old preference, sensitive information, and token distance from relevant snippet to query.\n🤗 PersonaMem-v2 Dataset\nV2’s primary evaluation metrics:\nMCQ accuracy: The model selects the most personalized answer from four plausible options. Open-ended personalization accuracy / judge score: The model generates a free-form response, then LLM-as-a-judge determines whether it reflects the ground-truth preference; the paper reports aggregation from multiple GPT-5-Chat judges. Grouped analysis: Performance is broken down by preference type, scenario, whether the preference was dynamically updated, who, distance to relevant snippet, and other dimensions. The official evaluation scripts also generate these category breakdowns. PersonaLens Where PersonaMem treats personalization as a memory QA problem, PersonaLens is more concerned with whether personalization gets squeezed out by task objectives during task completion.\n📄 PersonaLens Paper\nIn terms of composition, it has 1,500 user profiles (demographic attributes drawn from the PRISM Alignment dataset, with preferences generated by an LLM based on demographics to ensure internal consistency), covering roughly 20 domains from Books, Finance, Flights to Restaurants.\nEvaluation methodology: dual-agent automatic evaluation — a user agent (implemented with Claude 3 Sonnet) simulates a user with a specific profile and context conversing with the assistant under test; a judge agent uses LLM-as-a-Judge to rate personalization, response quality, and task completion, distinguishing between single-domain (TSD) and multi-domain (TMD) tasks.\nA key finding: there exists a trade-off between task completion rate (TCR) and personalization — the more the assistant buries its head in getting the task done, the more likely it is to ignore user preferences.\nBy contrast, static QA has no “task objective” competing with personalization for attention.\nMultimodal Personal Memory Memory originates as text. But real personal memory is clearly more than that.\nCan an agent build long-term memory across text, images, and video, and then invoke those memories in downstream tasks?\nIn much of what is called multimodal memory, images are merely captioned into text and fed back into the text pipeline. LoCoMo itself includes a multimodal component (image sharing), but the vast majority of subsequent work has reduced it to pure text QA.\nA useful way to think about this is to ask: at which stage does multimodality actually play a role?\nInput / storage side: preserving visual information across sessions.\nA user shares an image in an earlier session; the system must remember its content later.\n📄 Mem-Gallery Paper\nMem-Gallery explicitly points out that existing benchmarks either evaluate memory in purely textual multi-session settings, or evaluate multimodal understanding in localized single-session contexts — none genuinely assess how multimodal memory is preserved, organized, and evolved over long dialogue trajectories. It evaluates along three dimensions: memory extraction \u0026 test-time adaptation, memory reasoning, and memory knowledge management.\nRetrieval side: cross-modal retrieval within visual history. Storage is only the first step; whether the right image / frame can be found based on the current need is another matter entirely.\nLayered with personalization: multimodal × user modeling.\nPersona-MME targets long-term personalized multimodal LLMs by constructing persistent multimodal persona contexts (user profile, frequently occurring social relationships, objects the user owns) and then generating three types of multimodal dialogue — explicit entities, implicit facts, and distractors — to control the memory signals introduced.\nLayered with real / embodied scenarios. This falls within the embodied / world model direction: egocentric wearable assistants, robot memory, video world model memory capabilities, etc. (Beyond the scope of this article.)\nOn the positive side, Mem-Gallery, MemLens, and similar work from early 2026 represent a correction to the “images get captioned away” problem.\nBut this category as a whole is still very young. It has not yet converged on a universally-adopted benchmark like LoCoMo; modality coverage, task formats, and evaluation standards remain inconsistent across efforts.\nMemory Lifecycle Capabilities The preceding sections were organized by “what content is being tested”: conversational facts, user profiles, multimodal.\nBut can the agent update old memories? Handle conflicting information? Know when to forget or abstain? Track how preferences change over time? These are the lifecycle capabilities of memory.\nThe lifecycle landscape is fragmented — a collection of specialized benchmarks each targeting a single capability, most emerging only from late 2025 through 2026. This is itself a signal: the field is only just realizing that accuracy alone is not enough. Specialized evaluations are beginning to appear but have not yet converged.\nBelow, organized by capability dimension, with representative benchmarks and the metrics — distinct from accuracy — that each introduces.\nUpdate\nA memory system must remember the most recent version, not the first thing that was said.\nLongMemEval already includes a dedicated knowledge-update subset (described earlier). Going further, some work has turned this into a metric rather than just a data split: Forgetting-Aware Memory Accuracy specifically penalizes reliance on stale or invalidated memories.\nConflict Resolution\nWhen two contradictory pieces of information coexist in memory, can the system ensure only the latest, correct one takes effect?\nMemoryAgentBench addresses this: decomposing memory capability into accurate retrieval, test-time learning, long-range comprehension, and conflict resolution, with a dedicated Conflict Resolution Accuracy metric ensuring that when contradictions exist, only the most recent valid fact is used.\nForgetting / Selective Retention\nNot all information should be kept forever: expired information and anything the user explicitly asks “don’t remember this” should be discarded.\nMemoryAgentBench uses its newly constructed FactConsolidation dataset to specifically test selective forgetting.\nUser-initiated forgetting is also tied to privacy, as in PersonaMem-v2’s privacy scenarios (user requests not to remember a certain preference).\nAbstention\nIf you don’t know, say you don’t know. A memory system must recognize “insufficient evidence” and abstain, rather than hallucinate.\nLongMemEval specifically includes abstention-type questions to test this, with corresponding metrics of abstention rate / abstention accuracy — again, not captured by standard accuracy.\nFrom Passive Recall to Memory-Driven Action\nMemoryArena shows that models scoring near-perfect on recall benchmarks plummet in performance the moment memory must drive action. Many so-called memory benchmarks are essentially retrieval benchmarks, testing “can the needle be found” rather than “can memory actually be put to use.”\nEvaluation Metrics: Beyond Accuracy If we only look at accuracy, what gets missed?\nBorrowing an existing layered framework, a recent memory survey proposed a four-layer evaluation stack that serves as a useful skeleton for this section.\nLayer 1: Task Effectiveness\nDid the task actually get done?\nCommon metrics include success rate, factual correctness, plan completion rate. In the QA format typical of conversational memory benchmarks, these are the familiar: token-level F1, BLEU, binary/rating judgments from LLM-as-a-Judge, and MCQ accuracy.\nThese metrics are not equivalent to one another — which one you choose changes the conclusion. Even though LLM-as-a-Judge is closer to semantic correctness, it introduces the judge’s own biases.\nAt this point, “who is SOTA” depends on which metric you trust.\nLayer 2: Memory Quality\nKey metrics include: precision / recall of retrieved records, contradiction rate, staleness distribution, and coverage of task-relevant facts.\nSome work on LongMemEval-S has achieved nearly 99% retrieval recall for certain question types using retrieval alone — but that’s retrieval recall, not end-to-end accuracy.\nStaleness distribution and contradiction rate focus on “how much of the stored memory has expired or is internally contradictory.”\nCorrespondingly, specialized metrics have emerged, such as Forgetting-Aware Memory Accuracy (penalizing reliance on stale memories) and conflict resolution accuracy (ensuring only the latest version of contradictory information takes effect).\nLayer 3: Efficiency\nCore metrics: latency per memory operation, prompt tokens consumed by memory content, retrieval call count per step, and storage growth over time.\nA methodological detail worth noting: rigorous work (e.g., HiMem) reports latency by measuring only the time spent on memory retrieval itself, excluding LLM inference, to isolate memory system efficiency and avoid contamination by the speed of the underlying model. When reading efficiency numbers, pay attention to which segment is actually being measured.\nLayer 4: Governance\nDoes the memory system comply with privacy and control requirements?\nMetrics include: privacy leakage rate, deletion compliance (when the user says “don’t remember / delete this,” does the system actually comply), and access-scope violations (unauthorized access, especially in multi-user shared memory scenarios).\nPersonaMem-v2 already incorporates such scenarios: users leaking sensitive information, or explicitly requesting “don’t remember this preference,” with target answers required to avoid using such sensitive / private information.\nThese four layers are often in tension with one another.\nA thorough system evaluation should therefore present an operating curve across the four layers (a tunable trade-off among accuracy / store-size / latency), rather than a single isolated best score.\nData Synthesis Methods Before discussing any memory benchmark, a more fundamental question should be asked: how were these multi-turn dialogues constructed? Because the synthesis method almost entirely determines what a benchmark actually tests — and what it is inherently incapable of testing.\nCurrent mainstream benchmark dialogue sources fall roughly into three tiers:\nPurely human-authored real data (virtually nonexistent) LLM-generated skeleton + human verification (exemplified by LoCoMo: based on predefined personas and temporal event graphs, dialogue skeletons are generated using an LLM agent architecture, then human annotators verify and edit for long-range consistency) Needle-in-a-haystack assembly (exemplified by LongMemEval: questions written by human experts, evidence-bearing sessions simulated by LLMs and manually edited, while the vast majority of irrelevant sessions are sampled from ShareGPT, UltraChat, and simulated dialogues) Personalization-oriented benchmarks rely more heavily on persona-driven fully-automated synthesis. PersonaMem uses a GPT-4o-driven modular pipeline to generate multi-session, temporally-structured interaction histories from personas, embedding preferences that evolve over time within the dialogues; its in-situ query appends the user’s current first-person question to the end of the history, testing whether “the model can answer using the most recent preferences.”\nSince needle-in-a-haystack is fundamentally a needle-finding test, what it predominantly measures is retrieval capability within long contexts, rather than the organizational and evolutionary capabilities of a memory system.\nWhen LongMemEval selects haystack sessions, it deliberately chooses sessions similar in topic and format to the evidence sessions, but without introducing conflicting information, so as not to invalidate the questions. This engineering-sound choice means that this benchmark, from its construction starting point, deliberately avoids knowledge conflicts — and is therefore inherently incapable of testing conflict resolution.\nAs for the common concern about “whether LLM-generated data is trustworthy”: the answer lies not in LLM hallucination per se, but in the filtering and verification after generation. PersonaMem-v2, for example, applies four hard filters to every Q\u0026A pair — the question must be unanswerable without the history (preventing data leakage and generation artifacts), the correct option must genuinely reflect user preferences, incorrect options must never reflect them, and the format must not retain generation traces. Ultimately, only roughly 30% of generated Q\u0026A pairs pass all filters.\nThe pass rate itself reveals that, without rigorous filtering, a significant proportion of synthetic dialogues contain shortcuts exploitable by models.\nThus, the synthesis pipeline itself defines the boundaries of what a benchmark can test.\nClosing No single benchmark can cover everything that agent-memory entails. Every facet — factual recall, personalized inference, multimodality, update, conflict, forgetting, abstention, memory-driven action — requires purpose-built data and purpose-designed metrics.\nSo when an agent-memory project claims yet another SOTA, the set of questions worth asking remains the same: SOTA on which benchmark? What core capability does that benchmark measure, and what properties does it miss? What does its data construction allow it to test, and what is it structurally unable to test? Which layers of metrics does it report, and are the missing layers precisely the ones it sacrificed?\n",
+  "wordCount" : "4539",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-07-09T19:03:00+08:00",
+  "dateModified": "2026-07-09T19:03:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/" title="中文"
+                            aria-label="中文">中文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/en/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/en/posts/">AI Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss
+    </h1>
+    <div class="post-description">
+      A comprehensive survey of agent-memory benchmarks: from LoCoMo and LongMemEval to PersonaMem, covering evaluation methodology, metrics, and data synthesis pipelines across conversational memory, user profiling, and multimodal memory.
+    </div>
+    <div class="post-meta"><span title='2026-07-09 19:03:00 +0800 CST'>July 9, 2026</span>&nbsp;·&nbsp;22 min&nbsp;·&nbsp;LZY&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="https://niraya666.github.io/posts/agent-memory-benchmark-summary/">中文</a>
+    </li>
+</ul>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul><ul>
+                <li>
+                    <a href="#overall" aria-label="Overall">Overall</a></li>
+                <li>
+                    <a href="#long-term-conversational-memory" aria-label="Long-term Conversational Memory">Long-term Conversational Memory</a><ul>
+                        
+                <li>
+                    <a href="#locomo" aria-label="LoCoMo">LoCoMo</a></li>
+                <li>
+                    <a href="#longmemeval" aria-label="LongMemEval">LongMemEval</a></li>
+                <li>
+                    <a href="#from-longmemeval-to-longmemeval-v2" aria-label="From LongMemEval to LongMemEval-V2">From LongMemEval to LongMemEval-V2</a></li>
+                <li>
+                    <a href="#evermembench" aria-label="EverMemBench">EverMemBench</a></li></ul>
+                </li></ul>
+                    
+                <li>
+                    <a href="#user-profiling-and-personalization" aria-label="User Profiling and Personalization">User Profiling and Personalization</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#personamem" aria-label="PersonaMem">PersonaMem</a></li>
+                <li>
+                    <a href="#personalens" aria-label="PersonaLens">PersonaLens</a></li></ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#multimodal-personal-memory" aria-label="Multimodal Personal Memory">Multimodal Personal Memory</a></li>
+                <li>
+                    <a href="#memory-lifecycle-capabilities" aria-label="Memory Lifecycle Capabilities">Memory Lifecycle Capabilities</a></li>
+                <li>
+                    <a href="#evaluation-metrics-beyond-accuracy" aria-label="Evaluation Metrics: Beyond Accuracy">Evaluation Metrics: Beyond Accuracy</a><ul>
+                        
+                <li>
+                    <a href="#data-synthesis-methods" aria-label="Data Synthesis Methods">Data Synthesis Methods</a></li>
+                <li>
+                    <a href="#closing" aria-label="Closing">Closing</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In agent-memory research, two benchmarks are virtually inescapable — everyone runs them: LoCoMo and LongMemEval. But does a high score on either truly prove anything? Are there more targeted benchmarks better suited to specific use cases? Should memory evaluation be reduced to accuracy alone? What other metrics matter, and how are the data synthesis pipelines behind these benchmarks actually constructed?</p>
+<p>These are the questions this article sets out to answer.</p>
+<h2 id="overall">Overall<a hidden class="anchor" aria-hidden="true" href="#overall">#</a></h2>
+<p>Agent-memory benchmarks broadly fall into two categories: conversational memory and agent task improvement. The former concerns whether the system can remember important user information; the latter focuses on whether the agent can reduce similar types of errors over time.</p>
+<p>Naturally, the evaluation approaches differ — for task improvement, standard coding benchmarks can often serve the purpose. This article focuses on the former: conversational memory.</p>
+<p>Memory benchmarks can be understood along two orthogonal axes.</p>
+<p><strong>Axis 1: What content / scenario is being tested</strong> (horizontal) — factual conversational memory (LoCoMo / LongMemEval), personalization &amp; user profiling (PersonaMem / PersonaLens), experiential / environmental memory (LongMemEval-V2), and multimodal memory.</p>
+<p><strong>Axis 2: What capability dimension is being tested</strong> (vertical) — lifecycle abilities (update, conflict, forgetting, abstention, temporal reasoning). These cut across all scenarios.</p>
+<h2 id="long-term-conversational-memory">Long-term Conversational Memory<a hidden class="anchor" aria-hidden="true" href="#long-term-conversational-memory">#</a></h2>
+<p>The earliest and most frequently evaluated category of personal memory is <strong>long-term conversational memory</strong>: given dialogues spanning multiple turns and multiple sessions, can the agent remember user-relevant information and correctly recall it in subsequent questions or responses?</p>
+<p>This type of benchmark closely resembles traditional long-context QA. The emphasis is on whether the agent can locate, understand, and apply user-related memories across very long conversation histories — both within long sessions and across sessions.</p>
+<h3 id="locomo">LoCoMo<a hidden class="anchor" aria-hidden="true" href="#locomo">#</a></h3>
+<p>📄 <a href="https://arxiv.org/abs/2402.17753">LoCoMo Paper</a> · <a href="https://github.com/snap-research/locomo">GitHub Repository</a></p>
+<p>LoCoMo (Long Conversation Memory) is one of the most frequently cited benchmarks in agent-memory research.</p>
+<p>LoCoMo&rsquo;s data is generated through a hybrid human-machine pipeline: starting from predefined personas and temporal event graphs, two LLM agents generate long conversation skeletons, which human annotators then verify and edit to ensure long-range consistency, event grounding, and multimodal content plausibility. The public release contains 10 ultra-long conversations, each averaging roughly 300 turns and 9K tokens, spanning up to 35 sessions.</p>
+<p>LoCoMo defines three evaluation tasks.</p>
+<p><img loading="lazy" src="/img/agent-memory-benchmark-assets/locomo-qa-tasks.webp" alt="LoCoMo&rsquo;s three evaluation tasks: Question Answering, Event Summarization, Multimodal Dialogue Generation"  />
+</p>
+<p>The first task is <strong>Question Answering</strong>. This is the part most commonly used by subsequent memory system papers. QA questions fall into five categories:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Category</th>
+          <th style="text-align: left">What It Tests</th>
+          <th style="text-align: left">Challenge</th>
+          <th style="text-align: left">Count</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Single-hop</td>
+          <td style="text-align: left">Factual recall within a single session</td>
+          <td style="text-align: left">Finding answers directly from one part of the dialogue</td>
+          <td style="text-align: left">841</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Multi-hop</td>
+          <td style="text-align: left">Synthesizing information across multiple sessions</td>
+          <td style="text-align: left">Piecing together evidence from multiple sources</td>
+          <td style="text-align: left">282</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Temporal reasoning</td>
+          <td style="text-align: left">Temporal reasoning</td>
+          <td style="text-align: left">Understanding &ldquo;before,&rdquo; &ldquo;after,&rdquo; &ldquo;months later,&rdquo; and other temporal relations</td>
+          <td style="text-align: left">321</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Open-domain / commonsense</td>
+          <td style="text-align: left">Dialogue information + external commonsense knowledge</td>
+          <td style="text-align: left">Not pure retrieval — requires commonsense inference</td>
+          <td style="text-align: left">96</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Adversarial</td>
+          <td style="text-align: left">Unanswerable or trick questions</td>
+          <td style="text-align: left">Preventing the model from hallucinating in long contexts</td>
+          <td style="text-align: left">446</td>
+      </tr>
+  </tbody>
+</table>
+<p>The second task is <strong>Event Summarization</strong>. The model must summarize the conversation history into a temporal event graph, testing whether it understands events, causal relationships, and temporal ordering in long-term dialogues.</p>
+<p>The third task is <strong>Multimodal Dialogue Generation</strong>. LoCoMo&rsquo;s dialogues include image sharing and image reactions, so this task evaluates whether the model can combine past dialogue and multimodal cues to generate coherent responses consistent with character state and long-term narrative.</p>
+<p>From a data structure perspective (<code>locomo10.json</code>), each element in the JSON array represents one complete long conversation with its annotations.</p>
+<p><strong>Evaluation methodology and metrics.</strong> Evaluation is not LLM-Judge-dominated.</p>
+<ul>
+<li><strong>QA</strong>: normalized / partial-match F1; RAG systems additionally report retrieval recall / recall@k.</li>
+<li><strong>Event Summarization</strong>: ROUGE + FactScore, where FactScore decomposes into atomic facts and computes precision / recall / F1.</li>
+<li><strong>Multimodal Dialogue Generation</strong>: BLEU-1/2, ROUGE-L, MM-Relevance.</li>
+</ul>
+<p>Its limitations, however, are clear. At roughly 9K tokens on average, the public version is no longer sufficient in 2026 to meaningfully differentiate long-context models. Furthermore, most follow-up work focuses primarily on LoCoMo&rsquo;s QA component, reducing it to a text retrieval / QA benchmark; the event summarization and multimodal dialogue generation tasks remain underutilized in practical system comparisons.</p>
+<p>This has led to targeted corrections such as LoCoMo-Plus and LoCoMo-Refined. LoCoMo-Plus&rsquo;s direction is particularly noteworthy: it attempts to move from surface-level factual recall to <strong>cognitive memory</strong> — testing whether a model can apply implicit user states, goals, values, and constraints from earlier dialogues in subsequent scenarios.</p>
+<p>📄 <a href="https://arxiv.org/abs/2602.10715">LoCoMo-Plus Paper</a> · <a href="https://github.com/mem-eval-suite/LoCoMo_refined">LoCoMo-Refined GitHub Repository</a></p>
+<h3 id="longmemeval">LongMemEval<a hidden class="anchor" aria-hidden="true" href="#longmemeval">#</a></h3>
+<p>Compared to LoCoMo, LongMemEval is more directly oriented toward long-term interaction memory for chat assistants. Its goal is to evaluate whether an assistant can record, retrieve, update, and reason about user information across sustained, multi-session user interactions.</p>
+<p>📄 <a href="https://arxiv.org/abs/2410.10813">LongMemEval Paper</a> · <a href="https://github.com/xiaowu0162/LongMemEval">GitHub Repository</a></p>
+<p><img loading="lazy" src="/img/agent-memory-benchmark-assets/longmemeval-overview.webp" alt="LongMemEval: overview of five long-term memory capabilities"  />
+</p>
+<p>LongMemEval contains 500 questions covering five categories of long-term memory capability:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Capability</th>
+          <th style="text-align: left">Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Information Extraction</td>
+          <td style="text-align: left">Recalling specific details from long interaction histories, including details once mentioned by the user or assistant</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Multi-Session Reasoning</td>
+          <td style="text-align: left">Synthesizing information across multiple sessions for aggregation, comparison, or inference</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Knowledge Update</td>
+          <td style="text-align: left">Recognizing changes in user information and updating old memories with new information</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Temporal Reasoning</td>
+          <td style="text-align: left">Understanding temporal attributes in user information, including explicit timestamps and session timestamps</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Abstention</td>
+          <td style="text-align: left">Knowing when to refuse to answer rather than hallucinate, when the relevant information is absent from history</td>
+      </tr>
+  </tbody>
+</table>
+<p>LongMemEval offers different difficulty tiers. LongMemEval-S provides roughly 115K tokens of history per question, typically spanning 30–40 sessions; LongMemEval-M scales to roughly 500 sessions and 1.5M tokens. This makes it far more suitable than LoCoMo for testing the memory scalability of real personal assistants over extended use.</p>
+<p>For evaluation, LongMemEval employs LLM-as-a-Judge, with GPT-4o judging whether a model&rsquo;s answer is correct. It also proposes a useful memory system analysis framework: decomposing a long-term memory system into three stages — indexing, retrieval, and reading.</p>
+<p>From a personal memory perspective, LongMemEval is closer to real user-assistant scenarios than LoCoMo. It tests not only &ldquo;does it remember,&rdquo; but also whether user information updates over time, whether information can be synthesized across sessions, whether temporal reasoning is handled correctly, and whether the system refuses to answer when information is absent.</p>
+<p>That said, LongMemEval remains fundamentally a long-context QA / retrieval-oriented benchmark. Its core evaluation format still revolves around finding evidence in chat histories and answering questions. But real-world agents face a harder problem: state is dynamic, making the benchmark susceptible to retrieval engineering.</p>
+<h3 id="from-longmemeval-to-longmemeval-v2">From LongMemEval to LongMemEval-V2<a hidden class="anchor" aria-hidden="true" href="#from-longmemeval-to-longmemeval-v2">#</a></h3>
+<p>📄 <a href="https://github.com/xiaowu0162/LongMemEval-V2">LongMemEval-V2 GitHub Repository</a></p>
+<p>No longer merely testing &ldquo;can a chat assistant remember long-term conversations,&rdquo; but rather &ldquo;can an agent form long-term experiential memory in complex environments.&rdquo;</p>
+<p>V2&rsquo;s object of study is no longer ordinary user-assistant chat history, but web-agent trajectories, corresponding to five categories of memory ability:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">V2 Capability</th>
+          <th style="text-align: left">Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Static state recall</td>
+          <td style="text-align: left">Remembering static environmental information, such as page layouts, module functions, important locations</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Dynamic state tracking</td>
+          <td style="text-align: left">Tracking how states and actions change the environment over time</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Workflow knowledge</td>
+          <td style="text-align: left">Remembering the procedures for completing recurring tasks in specific environments</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Environment gotchas</td>
+          <td style="text-align: left">Recognizing recurring local failure patterns and environmental traps</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Premise awareness</td>
+          <td style="text-align: left">Knowing which assumptions valid in other environments do not hold in the current deployment</td>
+      </tr>
+  </tbody>
+</table>
+<p>V2&rsquo;s context scale explodes:</p>
+<ul>
+<li>small tier: 25M tokens</li>
+<li>medium tier: 115M tokens</li>
+</ul>
+<p>This far exceeds mainstream context windows.</p>
+<p>This represents arguably one of the biggest directional shifts in AI memory research over the past year.</p>
+<p>&ldquo;How can LLMs remember long-term conversations&rdquo; → &ldquo;How can agents accumulate long-term work experience&rdquo;</p>
+<p>Or put differently: chatbot memory → agentic / experiential memory.</p>
+<p>From a data synthesis pipeline perspective:</p>
+<p><strong>LongMemEval</strong> is constructed by first designing the user memories to be tested, then embedding those memories into long chat histories. It roughly follows three steps:</p>
+<ul>
+<li><strong>question curation</strong>: An ontology of 164 user attributes (e.g., lifestyle, belongings) is defined. An LLM generates user background paragraphs for each attribute, from which candidate QA pairs are generated (with human filtering, rewriting, and difficulty calibration). Annotators decompose answers into one or more evidence statements (some carrying temporal information).</li>
+<li><strong>evidence session construction</strong>: Each evidence statement is embedded into a task-oriented user-assistant session, using self-chat to generate dialogue. The user does not explicitly state the evidence; instead, information is revealed indirectly through requests for help, advice, or task completion.</li>
+<li><strong>history compilation</strong>: Relevant evidence sessions are inserted into a longer user-assistant chat history. Irrelevant sessions come from two sources: self-chat sessions synthesized from other non-conflicting user attributes, and ShareGPT + UltraChat. All sessions are assigned reasonable timestamps, producing a coherent, length-configurable long-term chat history.</li>
+</ul>
+<p>At its core, this remains needle-in-a-haystack for personal memory.</p>
+<p>By contrast, <strong>LongMemEval-V2</strong> is constructed by first collecting agent trajectories from task execution in environments, then extracting from those trajectories the knowledge an experienced agent ought to remember.</p>
+<p>It roughly follows four steps:</p>
+<ul>
+<li><strong>trajectory collection</strong>: Web-agent trajectories are collected from WebArena, WorkArena, and WorkArena++ via the AgentLab unified interface. Each trajectory includes task goal, state observations, screenshots, accessibility tree, actions, and state transitions. Both successful and failed trajectories are collected through rejection sampling.</li>
+<li><strong>question annotation</strong>: Questions are constructed around five memory ability categories: static state recall, dynamic state tracking, workflow knowledge, environment gotchas, and premise awareness. The model is tested on whether it can answer candidate questions without trajectory evidence — if it can, the questions are filtered or rewritten (preventing the model from answering via public knowledge alone).</li>
+<li><strong>answer trajectory labeling</strong>: Each question requires labeling which trajectories genuinely contain answer evidence, with the requirement that evidence be verifiable in screenshots or trajectory states (a batch of seed answer-bearing trajectories is used with Codex to expand the candidate annotation pool, followed by human verification of ambiguous cases).</li>
+<li><strong>haystack creation</strong>: The Small tier constructs one shared 100-trajectory haystack each for WebArena and ServiceNow; the Medium tier constructs roughly 500-trajectory question-specific haystacks for each question.</li>
+</ul>
+<h3 id="evermembench">EverMemBench<a hidden class="anchor" aria-hidden="true" href="#evermembench">#</a></h3>
+<p>📄 <a href="https://arxiv.org/abs/2602.01313">EverMemBench Paper</a></p>
+<p>From dyadic conversations to multi-person collaboration. Can an agent embedded in long-term team collaboration maintain memory across multiple people, groups, and timelines?</p>
+<p>EverMemBench simulates enterprise collaboration scenarios. The data includes multiple projects, sub-projects, employees, group conversations, and evidence-grounded QA. The overall structure resembles:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">project
+</span></span><span class="line"><span class="cl">  ├── sub-project / group chat
+</span></span><span class="line"><span class="cl">  │     ├── day 1 messages
+</span></span><span class="line"><span class="cl">  │     ├── day 2 messages
+</span></span><span class="line"><span class="cl">  │     └── ...
+</span></span><span class="line"><span class="cl">  ├── employees / personas
+</span></span><span class="line"><span class="cl">  ├── task timeline
+</span></span><span class="line"><span class="cl">  └── QA items with evidence references
+</span></span></code></pre></div><p>Evaluation pipeline:</p>
+<pre tabindex="0"><code>Add → Search → Answer → Evaluate
+</code></pre><p>EverMemBench&rsquo;s QA is organized across three dimensions and nine subtasks:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Dimension</th>
+          <th style="text-align: left">Subtasks</th>
+          <th style="text-align: left">Count</th>
+          <th style="text-align: left">What It Evaluates</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Fine-grained Recall</strong></td>
+          <td style="text-align: left">Single-hop Retrieval, Multi-hop Trajectory, Temporal Duration</td>
+          <td style="text-align: left">762</td>
+          <td style="text-align: left">Whether precise facts, links, dates, people, task statuses can be found</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Memory Awareness</strong></td>
+          <td style="text-align: left">Constraint, Proactivity, Update</td>
+          <td style="text-align: left">1,097</td>
+          <td style="text-align: left">Whether past rules, constraints, and updates can be applied to new scenarios</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Profile Understanding</strong></td>
+          <td style="text-align: left">Style, Skill, Role</td>
+          <td style="text-align: left">541</td>
+          <td style="text-align: left">Whether long-term interaction enables understanding of personal style, skills, and roles</td>
+      </tr>
+  </tbody>
+</table>
+<p>EverMemBench&rsquo;s evaluation approach can be divided into two layers: task protocol and scoring method.</p>
+<p><strong>For task protocol</strong>, it uses a streaming multi-group protocol: during the ingestion phase, the system receives daily batches in chronological order and must maintain its own memory state; during the evaluation phase, questions are posed. This protocol tests how the system writes, updates, retrieves, and uses memory while continuously receiving information, rather than dumping all history into context at once.</p>
+<p>For scoring:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Question Type</th>
+          <th style="text-align: left">Evaluation Method</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Multiple-choice</td>
+          <td style="text-align: left">Directly determine whether A/B/C/D is correct</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Open-ended</td>
+          <td style="text-align: left">LLM-as-a-Judge determines whether the generated answer and gold answer are semantically equivalent</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Memory system</td>
+          <td style="text-align: left">Add → Search → Answer → Evaluate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Full-context LLM</td>
+          <td style="text-align: left">Feed the complete dialogue as context directly, without retrieval</td>
+      </tr>
+  </tbody>
+</table>
+<p>Data construction can be summarized as:</p>
+<pre tabindex="0"><code>blueprint and profile generation
+→ chunk-wise dialogue synthesis
+→ evidence-grounded QA construction
+</code></pre><h1 id="user-profiling-and-personalization">User Profiling and Personalization<a hidden class="anchor" aria-hidden="true" href="#user-profiling-and-personalization">#</a></h1>
+<h3 id="personamem">PersonaMem<a hidden class="anchor" aria-hidden="true" href="#personamem">#</a></h3>
+<p>📄 <a href="https://arxiv.org/abs/2504.14225">PersonaMem Paper</a> · <a href="https://github.com/bowen-upenn/PersonaMem">GitHub Repository</a></p>
+<p><img loading="lazy" src="/img/agent-memory-benchmark-assets/personamem-overview.webp" alt="PersonaMem: forming and updating user profiles from long-term interaction history"  />
+</p>
+<p>The core question is not &ldquo;can it recite a particular fact,&rdquo; but: can the model form and update user profiles across long-range, multi-turn, multi-session user interaction histories, and use the most current user state to generate personalized responses?</p>
+<p>Three capabilities: whether the model can internalize users&rsquo; intrinsic characteristics and preferences; whether it can track the temporal evolution of user profiles / preferences; and whether it can generate personalized responses in new scenarios accordingly.</p>
+<p>The setup: given the user-LLM interaction history up to a certain point in time, plus a first-person in-situ user query, the model must select the response that best matches the current user state.</p>
+<p>It tests four things:</p>
+<p><strong>Remembering facts / preferences users have shared</strong>: e.g., a user once expressed a preference for a certain type of music, diet, or learning style.</p>
+<p><strong>Updating memories</strong>: Preferences change — the model must not cling to old preferences, e.g., shifting from liking pizza to going gluten-free due to a gluten allergy.</p>
+<p><strong>Retrieving relevant fragments from history</strong>: Information may appear far back in long histories, with &ldquo;lost in the middle&rdquo; problems.</p>
+<p><strong>Applying memories to responses, not merely parroting</strong>: The hardest part is giving new recommendations based on current preferences, or transferring to new scenarios. V1 found models perform reasonably on simple factual recall, but are significantly weaker at &ldquo;giving new suggestions&rdquo; and &ldquo;applying user preferences across scenarios.&rdquo;</p>
+<p>V1 data scale: roughly <strong>20 personas, 180+ interaction histories</strong>, each history up to <strong>60 multi-turn sessions</strong>, covering <strong>15 personalized task scenarios</strong>; the HF dataset provides 32K, 128K, and 1M context-length versions.</p>
+<p>It defines <strong>7 types of in-situ user queries</strong> to cover different memory / personalization skills:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Type</th>
+          <th style="text-align: left">What It Tests</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Recall user-shared facts</td>
+          <td style="text-align: left">Remembering facts, activities, and interests the user has shared</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Suggest new ideas</td>
+          <td style="text-align: left">Recommending new things not present in history, while respecting user constraints</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Acknowledge latest user preferences</td>
+          <td style="text-align: left">Recognizing the user&rsquo;s most recent preferences, not outdated ones</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Track full preference evolution</td>
+          <td style="text-align: left">Tracking the complete change in preferences from past to present</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Revisit reasons behind preference updates</td>
+          <td style="text-align: left">Remembering the reasons behind preference changes</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Provide preference-aligned recommendations</td>
+          <td style="text-align: left">Proactively offering suggestions consistent with current preferences</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Generalize to new scenarios</td>
+          <td style="text-align: left">Transferring user characteristics learned from other scenarios to new tasks</td>
+      </tr>
+  </tbody>
+</table>
+<p>V1&rsquo;s primary evaluation is <strong>4-way multiple-choice accuracy</strong>: the model sees the full conversation history, the current user query, and four candidate responses, and selects the response that best matches the current user profile.</p>
+<p>V2 improvements:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">V1 Issue / Limitation</th>
+          <th style="text-align: left">V2 Corresponding Change</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Small scale</strong>: V1 has only ~20 personas, 180+ histories, 15 task scenarios</td>
+          <td style="text-align: left">V2 scales to <strong>1,000 personas, 26,100 preferences / Q&amp;A pairs, 325 conversation topics, 335 user query topics</strong>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Preferences relatively explicit</strong>: V2 paper notes V1 still focused mainly on explicit preferences</td>
+          <td style="text-align: left">V2 focuses on <strong>implicit personas / implicit preferences</strong>, embedding preferences within realistic interactions like email rewriting, translation, knowledge queries, and photo sharing.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Evaluation biased toward multiple-choice</strong>: V1&rsquo;s primary evaluation is MCQ; generative evaluation was constrained by logit availability</td>
+          <td style="text-align: left">V2 provides both <strong>MCQ and open-ended</strong> evaluation; open-ended uses LLM-as-a-judge; the paper reports aggregating judgments from three GPT-5-Chat judges.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>No train/validation split for model improvement</strong></td>
+          <td style="text-align: left">V2 is not just a benchmark — it provides train/val/test splits: text benchmark 5,000, train 18,500, val 2,600; multimodal benchmark 5,000, train 19,200, val 2,110.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Insufficient privacy/control scenarios for real-world use</strong></td>
+          <td style="text-align: left">V2 adds scenarios where the user leaks sensitive information or explicitly asks &ldquo;don&rsquo;t remember this preference,&rdquo; and requires target answers to avoid using sensitive/private information.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>More like a long-context test, high cost</strong></td>
+          <td style="text-align: left">V2 proposes/evaluates agentic memory: compressing long histories into roughly 2K-token, readable, updatable memory; the paper claims roughly 16× token savings relative to 32K context, and surpasses direct long-context models on both MCQ and open-ended.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>User preferences easily confused with others&rsquo; information</strong></td>
+          <td style="text-align: left">V2 data columns include an explicit <code>who</code> label, distinguishing whether the current preference belongs to the user or someone else, and adds unrelated math/code questions as distractors.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Single modality / limited scenario coverage</strong></td>
+          <td style="text-align: left">V2 has both text and multimodal benchmark suites, and includes multimodal photo sharing, multilingual translation, health/medical, therapy, and other scenarios.</td>
+      </tr>
+  </tbody>
+</table>
+<p>V2&rsquo;s positioning reflects a clear pivot: <strong>from &ldquo;explicit/dynamic preference memory&rdquo; to &ldquo;implicit preference inference + trainable agentic memory.&rdquo;</strong></p>
+<p>V2 particularly focuses on cases where user preferences are not stated directly but are embedded in long dialogues — for instance, when a user asks the model to polish an email, the email content may inadvertently reveal seasonal allergies.</p>
+<p>Each benchmark row in V2 includes: <code>persona_id</code>, path to the full persona file, links to 32K/128K chat history, <code>user_query</code>, <code>correct_answer</code>, three <code>incorrect_answers</code>, current <code>preference</code>, preference category, relevant dialogue snippets, whether the preference belongs to the user, whether it has been updated, old preference, sensitive information, and token distance from relevant snippet to query.</p>
+<p>🤗 <a href="https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2">PersonaMem-v2 Dataset</a></p>
+<p>V2&rsquo;s primary evaluation metrics:</p>
+<ol>
+<li><strong>MCQ accuracy</strong>: The model selects the most personalized answer from four plausible options.</li>
+<li><strong>Open-ended personalization accuracy / judge score</strong>: The model generates a free-form response, then LLM-as-a-judge determines whether it reflects the ground-truth preference; the paper reports aggregation from multiple GPT-5-Chat judges.</li>
+<li><strong>Grouped analysis</strong>: Performance is broken down by preference type, scenario, whether the preference was dynamically updated, <code>who</code>, distance to relevant snippet, and other dimensions. The official evaluation scripts also generate these category breakdowns.</li>
+</ol>
+<h3 id="personalens">PersonaLens<a hidden class="anchor" aria-hidden="true" href="#personalens">#</a></h3>
+<p>Where PersonaMem treats personalization as a memory QA problem, PersonaLens is more concerned with whether personalization gets squeezed out by task objectives during task completion.</p>
+<p>📄 <a href="https://arxiv.org/abs/2506.09902">PersonaLens Paper</a></p>
+<p>In terms of composition, it has 1,500 user profiles (demographic attributes drawn from the PRISM Alignment dataset, with preferences generated by an LLM based on demographics to ensure internal consistency), covering roughly 20 domains from Books, Finance, Flights to Restaurants.</p>
+<p>Evaluation methodology: <strong>dual-agent automatic evaluation</strong> — a user agent (implemented with Claude 3 Sonnet) simulates a user with a specific profile and context conversing with the assistant under test; a judge agent uses LLM-as-a-Judge to rate personalization, response quality, and task completion, distinguishing between single-domain (TSD) and multi-domain (TMD) tasks.</p>
+<p>A key finding: there exists a trade-off between task completion rate (TCR) and personalization — the more the assistant buries its head in getting the task done, the more likely it is to ignore user preferences.</p>
+<p>By contrast, static QA has no &ldquo;task objective&rdquo; competing with personalization for attention.</p>
+<h1 id="multimodal-personal-memory">Multimodal Personal Memory<a hidden class="anchor" aria-hidden="true" href="#multimodal-personal-memory">#</a></h1>
+<p>Memory originates as text. But real personal memory is clearly more than that.</p>
+<p>Can an agent build long-term memory across text, images, and video, and then invoke those memories in downstream tasks?</p>
+<p><strong>In much of what is called multimodal memory, images are merely captioned into text and fed back into the text pipeline.</strong> LoCoMo itself includes a multimodal component (image sharing), but the vast majority of subsequent work has reduced it to pure text QA.</p>
+<p>A useful way to think about this is to ask: at which stage does multimodality actually play a role?</p>
+<p><strong>Input / storage side: preserving visual information across sessions.</strong></p>
+<p>A user shares an image in an earlier session; the system must remember its content later.</p>
+<p>📄 <a href="https://arxiv.org/abs/2601.03515">Mem-Gallery Paper</a></p>
+<p>Mem-Gallery explicitly points out that existing benchmarks either evaluate memory in purely textual multi-session settings, or evaluate multimodal understanding in localized single-session contexts — none genuinely assess how multimodal memory is preserved, organized, and evolved over long dialogue trajectories. It evaluates along three dimensions: memory extraction &amp; test-time adaptation, memory reasoning, and memory knowledge management.</p>
+<p><strong>Retrieval side: cross-modal retrieval within visual history.</strong> Storage is only the first step; whether the right image / frame can be found based on the current need is another matter entirely.</p>
+<p>Layered with personalization: multimodal × user modeling.</p>
+<p><a href="https://huggingface.co/datasets/ClareNie/Persona-MME">Persona-MME</a> targets long-term personalized multimodal LLMs by constructing persistent multimodal persona contexts (user profile, frequently occurring social relationships, objects the user owns) and then generating three types of multimodal dialogue — explicit entities, implicit facts, and distractors — to control the memory signals introduced.</p>
+<p>Layered with real / embodied scenarios. This falls within the embodied / world model direction: egocentric wearable assistants, robot memory, video world model memory capabilities, etc. (Beyond the scope of this article.)</p>
+<p>On the positive side, Mem-Gallery, MemLens, and similar work from early 2026 represent a correction to the &ldquo;images get captioned away&rdquo; problem.</p>
+<p>But this category as a whole is still very young. It has not yet converged on a universally-adopted benchmark like LoCoMo; modality coverage, task formats, and evaluation standards remain inconsistent across efforts.</p>
+<h1 id="memory-lifecycle-capabilities">Memory Lifecycle Capabilities<a hidden class="anchor" aria-hidden="true" href="#memory-lifecycle-capabilities">#</a></h1>
+<p>The preceding sections were organized by &ldquo;what content is being tested&rdquo;: conversational facts, user profiles, multimodal.</p>
+<p>But can the agent update old memories? Handle conflicting information? Know when to forget or abstain? Track how preferences change over time? These are the lifecycle capabilities of memory.</p>
+<p>The lifecycle landscape is fragmented — a collection of specialized benchmarks each targeting a single capability, most emerging only from late 2025 through 2026. This is itself a signal: the field is only just realizing that <strong>accuracy alone is not enough</strong>. Specialized evaluations are beginning to appear but have not yet converged.</p>
+<p>Below, organized by capability dimension, with representative benchmarks and the metrics — distinct from accuracy — that each introduces.</p>
+<p><strong>Update</strong></p>
+<p>A memory system must remember the most recent version, not the first thing that was said.</p>
+<p>LongMemEval already includes a dedicated knowledge-update subset (described earlier). Going further, some work has turned this into a <strong>metric</strong> rather than just a data split: <a href="https://arxiv.org/abs/2604.20006">Forgetting-Aware Memory Accuracy</a> specifically penalizes reliance on stale or invalidated memories.</p>
+<p><strong>Conflict Resolution</strong></p>
+<p>When two contradictory pieces of information coexist in memory, can the system ensure only the latest, correct one takes effect?</p>
+<p><a href="https://arxiv.org/abs/2507.05257">MemoryAgentBench</a> addresses this: decomposing memory capability into accurate retrieval, test-time learning, long-range comprehension, and conflict resolution, with a dedicated Conflict Resolution Accuracy metric ensuring that when contradictions exist, only the most recent valid fact is used.</p>
+<p><strong>Forgetting / Selective Retention</strong></p>
+<p>Not all information should be kept forever: expired information and anything the user explicitly asks &ldquo;don&rsquo;t remember this&rdquo; should be discarded.</p>
+<p>MemoryAgentBench uses its newly constructed FactConsolidation dataset to specifically test selective forgetting.</p>
+<p>User-initiated forgetting is also tied to privacy, as in <a href="https://arxiv.org/abs/2512.06688">PersonaMem-v2</a>&rsquo;s privacy scenarios (user requests not to remember a certain preference).</p>
+<p><strong>Abstention</strong></p>
+<p>If you don&rsquo;t know, say you don&rsquo;t know. A memory system must recognize &ldquo;insufficient evidence&rdquo; and abstain, rather than hallucinate.</p>
+<p>LongMemEval specifically includes abstention-type questions to test this, with corresponding metrics of abstention rate / abstention accuracy — again, not captured by standard accuracy.</p>
+<p><strong>From Passive Recall to Memory-Driven Action</strong></p>
+<p><a href="https://arxiv.org/abs/2602.16313">MemoryArena</a> shows that models scoring near-perfect on recall benchmarks plummet in performance the moment memory must drive action. Many so-called memory benchmarks are essentially retrieval benchmarks, testing &ldquo;can the needle be found&rdquo; rather than &ldquo;can memory actually be put to use.&rdquo;</p>
+<h1 id="evaluation-metrics-beyond-accuracy">Evaluation Metrics: Beyond Accuracy<a hidden class="anchor" aria-hidden="true" href="#evaluation-metrics-beyond-accuracy">#</a></h1>
+<p>If we only look at accuracy, what gets missed?</p>
+<p>Borrowing an existing layered framework, a recent <a href="https://arxiv.org/abs/2603.07670">memory survey</a> proposed a four-layer evaluation stack that serves as a useful skeleton for this section.</p>
+<p><strong>Layer 1: Task Effectiveness</strong></p>
+<p>Did the task actually get done?</p>
+<p>Common metrics include success rate, factual correctness, plan completion rate. In the QA format typical of conversational memory benchmarks, these are the familiar: token-level F1, BLEU, binary/rating judgments from LLM-as-a-Judge, and MCQ accuracy.</p>
+<p>These metrics are not equivalent to one another — which one you choose changes the conclusion. Even though LLM-as-a-Judge is closer to semantic correctness, it introduces the judge&rsquo;s own biases.</p>
+<p>At this point, &ldquo;who is SOTA&rdquo; depends on which metric you trust.</p>
+<p><strong>Layer 2: Memory Quality</strong></p>
+<p>Key metrics include: precision / recall of retrieved records, contradiction rate, staleness distribution, and coverage of task-relevant facts.</p>
+<p>Some work on LongMemEval-S has achieved nearly 99% retrieval recall for certain question types using retrieval alone — but that&rsquo;s retrieval recall, not end-to-end accuracy.</p>
+<p>Staleness distribution and contradiction rate focus on &ldquo;how much of the stored memory has expired or is internally contradictory.&rdquo;</p>
+<p>Correspondingly, specialized metrics have emerged, such as Forgetting-Aware Memory Accuracy (penalizing reliance on stale memories) and conflict resolution accuracy (ensuring only the latest version of contradictory information takes effect).</p>
+<p><strong>Layer 3: Efficiency</strong></p>
+<p>Core metrics: latency per memory operation, prompt tokens consumed by memory content, retrieval call count per step, and storage growth over time.</p>
+<p>A methodological detail worth noting: rigorous work (e.g., <a href="https://arxiv.org/abs/2601.06377">HiMem</a>) reports latency by measuring <strong>only the time spent on memory retrieval itself, excluding LLM inference</strong>, to isolate memory system efficiency and avoid contamination by the speed of the underlying model. When reading efficiency numbers, pay attention to which segment is actually being measured.</p>
+<p><strong>Layer 4: Governance</strong></p>
+<p>Does the memory system comply with privacy and control requirements?</p>
+<p>Metrics include: privacy leakage rate, deletion compliance (when the user says &ldquo;don&rsquo;t remember / delete this,&rdquo; does the system actually comply), and access-scope violations (unauthorized access, especially in multi-user shared memory scenarios).</p>
+<p><a href="https://arxiv.org/abs/2512.06688">PersonaMem-v2</a> already incorporates such scenarios: users leaking sensitive information, or explicitly requesting &ldquo;don&rsquo;t remember this preference,&rdquo; with target answers required to avoid using such sensitive / private information.</p>
+<p>These four layers are often in tension with one another.</p>
+<p>A thorough system evaluation should therefore present an <strong>operating curve</strong> across the four layers (a tunable trade-off among accuracy / store-size / latency), rather than a single isolated best score.</p>
+<h2 id="data-synthesis-methods">Data Synthesis Methods<a hidden class="anchor" aria-hidden="true" href="#data-synthesis-methods">#</a></h2>
+<p>Before discussing any memory benchmark, a more fundamental question should be asked: how were these multi-turn dialogues constructed? Because the synthesis method almost entirely determines what a benchmark actually tests — and what it is inherently incapable of testing.</p>
+<p>Current mainstream benchmark dialogue sources fall roughly into three tiers:</p>
+<ul>
+<li><strong>Purely human-authored real data</strong> (virtually nonexistent)</li>
+<li><strong>LLM-generated skeleton + human verification</strong> (exemplified by LoCoMo: based on predefined personas and temporal event graphs, dialogue skeletons are generated using an LLM agent architecture, then human annotators verify and edit for long-range consistency)</li>
+<li><strong>Needle-in-a-haystack assembly</strong> (exemplified by LongMemEval: questions written by human experts, evidence-bearing sessions simulated by LLMs and manually edited, while the vast majority of irrelevant sessions are sampled from ShareGPT, UltraChat, and simulated dialogues)</li>
+</ul>
+<p>Personalization-oriented benchmarks rely more heavily on <strong>persona-driven fully-automated synthesis</strong>. PersonaMem uses a GPT-4o-driven modular pipeline to generate multi-session, temporally-structured interaction histories from personas, embedding preferences that evolve over time within the dialogues; its in-situ query appends the user&rsquo;s current first-person question to the end of the history, testing whether &ldquo;the model can answer using the most recent preferences.&rdquo;</p>
+<p>Since needle-in-a-haystack is fundamentally a needle-finding test, what it predominantly measures is <strong>retrieval capability within long contexts</strong>, rather than the organizational and evolutionary capabilities of a memory system.</p>
+<p>When LongMemEval selects haystack sessions, it deliberately chooses sessions similar in topic and format to the evidence sessions, but <strong>without introducing conflicting information</strong>, so as not to invalidate the questions. This engineering-sound choice means that this benchmark, from its construction starting point, deliberately avoids knowledge conflicts — and is therefore inherently incapable of testing conflict resolution.</p>
+<p>As for the common concern about &ldquo;whether LLM-generated data is trustworthy&rdquo;: the answer lies not in LLM hallucination per se, but in the filtering and verification after generation. PersonaMem-v2, for example, applies four hard filters to every Q&amp;A pair — the question must be unanswerable without the history (preventing data leakage and generation artifacts), the correct option must genuinely reflect user preferences, incorrect options must never reflect them, and the format must not retain generation traces. Ultimately, only roughly 30% of generated Q&amp;A pairs pass all filters.</p>
+<p>The pass rate itself reveals that, without rigorous filtering, a significant proportion of synthetic dialogues contain shortcuts exploitable by models.</p>
+<p>Thus, the synthesis pipeline itself defines the boundaries of what a benchmark can test.</p>
+<h2 id="closing">Closing<a hidden class="anchor" aria-hidden="true" href="#closing">#</a></h2>
+<p><strong>No single benchmark can cover everything that agent-memory entails.</strong> Every facet — factual recall, personalized inference, multimodality, update, conflict, forgetting, abstention, memory-driven action — requires purpose-built data and purpose-designed metrics.</p>
+<p>So when an agent-memory project claims yet another SOTA, the set of questions worth asking remains the same: SOTA on which benchmark? What core capability does that benchmark measure, and what properties does it miss? What does its data construction allow it to test, and what is it structurally unable to test? Which layers of metrics does it report, and are the missing layers precisely the ones it sacrificed?</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/en/tags/agent-memory/">Agent-Memory</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/agent/">Agent</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/benchmark/">Benchmark</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/memory/">Memory</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/llm/">LLM</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/">
+    <span class="title">Next »</span>
+    <br>
+    <span>The Hardest Part of AI Transformation Isn&#39;t AI — It&#39;s the Dirty Work Nobody Wants to Do</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on x"
+            href="https://x.com/intent/tweet/?text=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f&amp;hashtags=Agent-Memory%2cAgent%2cBenchmark%2cMemory%2cLLM">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f&amp;title=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss&amp;summary=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss&amp;source=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f&title=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on whatsapp"
+            href="https://api.whatsapp.com/send?text=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss%20-%20https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on telegram"
+            href="https://telegram.me/share/url?text=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Beyond%20SOTA%3a%20What%20Agent-Memory%20Benchmarks%20Actually%20Measure%20%e2%80%94%20and%20What%20They%20Miss&u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-memory-benchmark-summary%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/en/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

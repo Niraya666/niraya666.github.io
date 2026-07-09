@@ -2,6 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niraya666.github.io/en/tags/agent/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/agent/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/agent/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/agent-memory/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/agent-memory/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/agent-memory/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/posts/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/benchmark/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/benchmark/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/benchmark/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/agent-memory-benchmark-summary/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/llm/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/llm/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/llm/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/memory/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/memory/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/memory/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/</loc>
+    <lastmod>2026-07-09T19:03:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/"
+                />
+  </url><url>
     <loc>https://niraya666.github.io/en/tags/ai/</loc>
     <lastmod>2026-06-19T18:00:00+08:00</lastmod>
     <xhtml:link
@@ -13,19 +130,6 @@
                 rel="alternate"
                 hreflang="en-us"
                 href="https://niraya666.github.io/en/tags/ai/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/en/posts/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/posts/"
                 />
   </url><url>
     <loc>https://niraya666.github.io/en/tags/ai-native/</loc>
@@ -41,32 +145,6 @@
                 href="https://niraya666.github.io/en/tags/ai-native/"
                 />
   </url><url>
-    <loc>https://niraya666.github.io/en/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/en/tags/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/tags/"
-                />
-  </url><url>
     <loc>https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/</loc>
     <lastmod>2026-06-19T18:00:00+08:00</lastmod>
     <xhtml:link
@@ -78,19 +156,6 @@
                 rel="alternate"
                 hreflang="en-us"
                 href="https://niraya666.github.io/en/posts/ai-transformation-hardest-part-isnt-ai-but-dirty-work/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/en/tags/agent/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/tags/agent/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/tags/agent/"
                 />
   </url><url>
     <loc>https://niraya666.github.io/en/tags/agent-skills/</loc>
