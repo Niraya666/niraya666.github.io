@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Eval 实践指南 开篇01: 系统越复杂，评估越要先行</title>
+      <link>https://niraya666.github.io/posts/agent-eval-guide-01/</link>
+      <pubDate>Mon, 13 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-eval-guide-01/</guid>
+      <description>《Agent Eval 实践指南》系列开篇：为什么 LLM 系统的评估是统计性而非确定性的，为什么评估必须先于优化，以及人的判断力如何通过评测体系嵌入自动化系统。</description>
+    </item>
     <item>
       <title>SOTA 之后：agent-memory benchmark 测了什么，又测不了什么</title>
       <link>https://niraya666.github.io/posts/agent-memory-benchmark-summary/</link>

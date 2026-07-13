@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agent-Eval on LZY Blog</title>
+    <link>https://niraya666.github.io/tags/agent-eval/</link>
+    <description>Recent content in Agent-Eval on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</url>
+      <link>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 13 Jul 2026 12:00:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/tags/agent-eval/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Eval 实践指南 开篇01: 系统越复杂，评估越要先行</title>
+      <link>https://niraya666.github.io/posts/agent-eval-guide-01/</link>
+      <pubDate>Mon, 13 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-eval-guide-01/</guid>
+      <description>《Agent Eval 实践指南》系列开篇：为什么 LLM 系统的评估是统计性而非确定性的，为什么评估必须先于优化，以及人的判断力如何通过评测体系嵌入自动化系统。</description>
+    </item>
+  </channel>
+</rss>
