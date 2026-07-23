@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agent-Eval on LZY Blog</title>
+    <link>https://niraya666.github.io/en/tags/agent-eval/</link>
+    <description>Recent content in Agent-Eval on LZY Blog</description>
+    <image>
+      <title>LZY Blog</title>
+      <url>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</url>
+      <link>https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Jul 2026 12:00:00 +0800</lastBuildDate>
+    <atom:link href="https://niraya666.github.io/en/tags/agent-eval/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Eval Practical Guide 02: How to Build an Eval Set</title>
+      <link>https://niraya666.github.io/en/posts/agent-eval-guide-02/</link>
+      <pubDate>Fri, 17 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-eval-guide-02/</guid>
+      <description>Building an eval set is more than collecting queries — every case needs explicit success criteria, world state, trajectory anchors, and metadata to enable stable scoring and regression testing.</description>
+    </item>
+    <item>
+      <title>Agent Eval Practical Guide 01: The More Complex the System, the More Evaluation Must Come First</title>
+      <link>https://niraya666.github.io/en/posts/agent-eval-guide-01/</link>
+      <pubDate>Mon, 13 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-eval-guide-01/</guid>
+      <description>The opening piece of the Agent Eval Practical Guide series: why LLM system evaluation is statistical rather than deterministic, why evaluation must precede optimization, and how human judgment is embedded into automated systems through the evaluation framework.</description>
+    </item>
+  </channel>
+</rss>

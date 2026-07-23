@@ -11,13 +11,27 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jul 2026 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Agent</title>
       <link>https://niraya666.github.io/en/tags/agent/</link>
-      <pubDate>Thu, 09 Jul 2026 19:03:00 +0800</pubDate>
+      <pubDate>Fri, 17 Jul 2026 12:00:00 +0800</pubDate>
       <guid>https://niraya666.github.io/en/tags/agent/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent-Eval</title>
+      <link>https://niraya666.github.io/en/tags/agent-eval/</link>
+      <pubDate>Fri, 17 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/agent-eval/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Eval</title>
+      <link>https://niraya666.github.io/en/tags/eval/</link>
+      <pubDate>Fri, 17 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/tags/eval/</guid>
       <description></description>
     </item>
     <item>

@@ -17,12 +17,42 @@
   </url><url>
     <loc>https://niraya666.github.io/posts/agent-eval-guide-02/</loc>
     <lastmod>2026-07-17T12:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/agent-eval-guide-02/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/agent-eval-guide-02/"
+                />
   </url><url>
     <loc>https://niraya666.github.io/tags/agent-eval/</loc>
     <lastmod>2026-07-17T12:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/agent-eval/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/agent-eval/"
+                />
   </url><url>
     <loc>https://niraya666.github.io/tags/eval/</loc>
     <lastmod>2026-07-17T12:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/eval/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/eval/"
+                />
   </url><url>
     <loc>https://niraya666.github.io/</loc>
     <lastmod>2026-07-17T12:00:00+08:00</lastmod>
@@ -65,6 +95,16 @@
   </url><url>
     <loc>https://niraya666.github.io/posts/agent-eval-guide-01/</loc>
     <lastmod>2026-07-13T12:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/agent-eval-guide-01/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/agent-eval-guide-01/"
+                />
   </url><url>
     <loc>https://niraya666.github.io/tags/agent-memory/</loc>
     <lastmod>2026-07-09T19:03:00+08:00</lastmod>
@@ -353,7 +393,7 @@
     <loc>https://niraya666.github.io/monthly/2026-01-%E6%9C%88%E5%88%8A/</loc>
     <lastmod>2026-01-31T15:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</loc>
+    <loc>https://niraya666.github.io/posts/agent-infra-sandbox/</loc>
     <lastmod>2026-06-19T18:00:00+08:00</lastmod>
   </url><url>
     <loc>https://niraya666.github.io/posts/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%8F%AF%E9%9D%A0%E7%9A%84-ai-agent-%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB-%E8%AF%BB-anthropic-%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/</loc>

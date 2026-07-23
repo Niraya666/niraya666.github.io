@@ -82,9 +82,9 @@
     </item>
     <item>
       <title>Agent Infra: sandbox技术和选型</title>
-      <link>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</link>
+      <link>https://niraya666.github.io/posts/agent-infra-sandbox/</link>
       <pubDate>Mon, 26 Jan 2026 21:55:00 +0800</pubDate>
-      <guid>https://niraya666.github.io/posts/agent-infra-sandbox%E6%8A%80%E6%9C%AF%E5%92%8C%E9%80%89%E5%9E%8B/</guid>
+      <guid>https://niraya666.github.io/posts/agent-infra-sandbox/</guid>
       <description>从 Context Engineering 出发，梳理 AI Agent 沙箱需要解决的隔离、文件系统、代码执行和生命周期管理问题，并比较主流技术方案。</description>
     </item>
     <item>

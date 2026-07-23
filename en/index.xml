@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jul 2026 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Eval Practical Guide 02: How to Build an Eval Set</title>
+      <link>https://niraya666.github.io/en/posts/agent-eval-guide-02/</link>
+      <pubDate>Fri, 17 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-eval-guide-02/</guid>
+      <description>Building an eval set is more than collecting queries — every case needs explicit success criteria, world state, trajectory anchors, and metadata to enable stable scoring and regression testing.</description>
+    </item>
+    <item>
+      <title>Agent Eval Practical Guide 01: The More Complex the System, the More Evaluation Must Come First</title>
+      <link>https://niraya666.github.io/en/posts/agent-eval-guide-01/</link>
+      <pubDate>Mon, 13 Jul 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/agent-eval-guide-01/</guid>
+      <description>The opening piece of the Agent Eval Practical Guide series: why LLM system evaluation is statistical rather than deterministic, why evaluation must precede optimization, and how human judgment is embedded into automated systems through the evaluation framework.</description>
+    </item>
     <item>
       <title>Beyond SOTA: What Agent-Memory Benchmarks Actually Measure — and What They Miss</title>
       <link>https://niraya666.github.io/en/posts/agent-memory-benchmark-summary/</link>
