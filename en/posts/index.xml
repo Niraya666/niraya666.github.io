@@ -55,5 +55,12 @@
       <guid>https://niraya666.github.io/en/posts/agent-harness-minimalist-design-guide-2026/</guid>
       <description>A practical 2026 guide to the minimum architecture of an AI agent harness: loops, tools, filesystems, context management, memory, subagents, and observability.</description>
     </item>
+    <item>
+      <title>Stop Overthinking: A Practical Guide to LLM Thinking Budget Control</title>
+      <link>https://niraya666.github.io/en/posts/understanding-llm-thinking-budget-control/</link>
+      <pubDate>Tue, 05 Aug 2025 20:12:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/en/posts/understanding-llm-thinking-budget-control/</guid>
+      <description>A practical analysis of LLM overthinking and thinking budget control solutions, comparing reasoning length and compute budget configurations across mainstream model APIs.</description>
+    </item>
   </channel>
 </rss>
