@@ -11,8 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 30 Jun 2026 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2026-07 月刊</title>
+      <link>https://niraya666.github.io/monthly/2026-07-monthly/</link>
+      <pubDate>Fri, 31 Jul 2026 20:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2026-07-monthly/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/MoonshotAI/Kimi-K3&#34;&gt;Kimi K3&lt;/a&gt;: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/news/claude-opus-5&#34;&gt;Claude Opus 5&lt;/a&gt;: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2026-06 月刊</title>
       <link>https://niraya666.github.io/monthly/2026-06-monthly/</link>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-07 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+Kimi K3: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理
+Claude Opus 5: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2026-07-monthly/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/monthly/2026-07-monthly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="2026-07 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+Kimi K3: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理
+Claude Opus 5: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2026-07-monthly/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/4D4AD720-77BA-40CF-ABE8-CA332890A995_1_201_a.webp" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-07-31T20:00:00+08:00" />
+<meta property="article:modified_time" content="2026-07-31T20:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/4D4AD720-77BA-40CF-ABE8-CA332890A995_1_201_a.webp" />
+<meta name="twitter:title" content="2026-07 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+Kimi K3: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理
+Claude Opus 5: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-07 月刊",
+      "item": "https://niraya666.github.io/monthly/2026-07-monthly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-07 月刊",
+  "name": "2026-07 月刊",
+  "description": "值得关注的模型和新技术 Kimi K3: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理\nClaude Opus 5: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 Kimi K3: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理\nClaude Opus 5: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果\nGPT-5.6 Sol: OpenAI 的下一代高推理上限模型，重点增强编码、科学研究和网络安全能力，并配套更先进的安全机制\nDeepSeek-V4-Flash: 正式版本进入 API 公测，在保持 Preview 版架构与规模不变的基础上重新进行 Post-training，显著增强 Agent 能力，并原生支持 Responses API、针对 Codex 使用场景完成适配\n值得关注的开源项目 OmniRoute: 面向 Claude Code、Codex、Cursor 等 AI 工具的统一模型网关，通过单一 OpenAI-compatible endpoint 提供多供应商路由、自动故障转移和 token 压缩\nOpenWorker: 吴恩达团队开源的 Local-first 桌面 AI Coworker，可连接本地文件、终端和常用 SaaS 工具，以用户自带模型或 Ollama 完成文档、报表、邮件等交付物，并在执行关键写操作前请求确认\ngrill-me: Matt Pocock 的需求澄清 Skill，通过连续追问暴露模糊目标、隐含约束和未决问题，帮助用户与 Agent 在开始执行前建立一致理解\nai-website-cloner-template: 使用 AI Coding Agent 将任意网站逆向还原为整洁、现代的 Next.js 代码库的可复用模板\nRaven: 基于 EverOS 的自改进 Agent Harness，通过持久化用户记忆、Agent 记忆和世界知识，让成功工作流逐步演化为可复用的 Skill、Agent Template 与 Digital Worker，并支持可选的 Deep Research\n值得关注的研究和论文 AutoMem: Automated Learning of Memory as a Cognitive Skill arXiv:2607.01224\n把 Memory Management 视为可独立学习的认知技能，让 Agent 学会判断什么信息值得写入、何时检索，以及如何避免重复、过期和无用记忆污染上下文\n核心思路\n把 read、write、search、append、create 等文件系统操作提升为与环境动作同等地位的 Action 同时优化两个层面：Memory Scaffold 指 Prompt、代码、文件 Schema、Action Vocabulary 和校验逻辑等支撑记忆行为的结构；Memory Proficiency 指模型选择合适记忆动作的能力 让 Meta-LLM 读取完整 Episode Trace、Memory Directory 和 Agent Code，像 Code Reviewer 一样诊断失败模式并自动修改 Scaffold 将记忆训练与任务行动模型分离：第二个 Outer Loop 只训练负责记忆操作的 LoRA Memory Specialist，执行游戏动作的 Base Model 保持冻结 具体实现\nInner Loop：文件系统记忆 Agent。Agent 在每个 Episode 中拥有一个磁盘目录作为外部记忆；每一步包含两个 Routine：LOG 判断刚刚发生的事情是否值得记录以及写到哪里，PLAN 判断行动前需要检索哪些记忆，再选择下一步环境动作 Outer Loop #1：自动优化 Memory Scaffold。Meta-LLM 读取完整 Episode Trace、当前 Memory Files 和 Agent Code，诊断 Scaffold 中导致失败的部分，再修改代码、Prompt、文件结构或 Action Vocabulary Outer Loop #2：训练 Memory Specialist。Scaffold 收敛后，Base Model 在最终结构下运行大量 Episode；Meta-LLM 从轨迹中筛选值得强化的记忆操作样本，并联合选择 LoRA 配置 实验结果\n在 Crafter、MiniHack 和 NetHack 三个程序生成的长程游戏中，仅优化记忆能力、保持任务行动行为不变，就使 Base Agent 的表现提升约 2～4 倍，并让 32B 开源模型达到可与前沿闭源系统竞争的水平\nThe Verification Horizon: No Silver Bullet for Coding Agent Rewards arXiv:2606.26300\n分析 Coding Agent 训练中 Reward / Verifier 设计为何越来越困难，并提出按任务形态构建验证系统的框架\n过去常说“验证比生成容易”，但对今天的 Coding Agent 来说这一关系正在反转：模型越来越擅长生成复杂候选解，真正困难的是如何可靠判断结果是否满足用户意图\n作者认为任何 Verifier 都只是人类意图的 Proxy；一旦被用于训练优化，Proxy 与真实意图之间的缝隙就会被放大，最终表现为 Reward Hacking 或信号饱和\n验证信号的三个维度\nScalability：验证成本能否随任务规模和训练规模扩展 Faithfulness：验证信号是否真实反映用户意图，而不是可被钻空子的表面指标 Robustness：当策略模型持续变强时，验证器是否仍能稳定区分高低质量输出 四类任务中的验证难题\nSWE-like 代码修复：测试用例容易成为不完整的意图代理，需要结合任务质量 Judge 与轨迹行为 Monitor 前端开发：仅靠静态截图或规则难以覆盖交互体验，需要从 Static Judge 转向 Interactive Judge 真实用户 Agent 任务：用户反馈稀疏且通常只指向局部问题，需要转化为 Span-level 训练信号 长程代码生成 / 从零构建 Repo：验证成本与生成成本同步增长，需要自动化 Agent Verifier，并持续更新验证策略 论文的核心结论是：不存在能够长期固定不变的 Reward Function，验证系统必须与生成模型共同演化\nRethinking the Evaluation of Harness Evolution for Agents arXiv:2607.12227\n重新审视自动 Harness Evolution 方法的评估是否公平、可信：性能提升究竟来自可复用的 Harness 设计，还是更多推理预算、搜索和对 Benchmark 的记忆\n现有评估协议的问题\n在公开 benchmark 任务上运行 Agent； 查看轨迹、单元测试结果和失败原因； 多轮修改 Harness； 最后仍在同一批 benchmark 任务上报告性能。 缺少公平基线：Harness Evolution 没有在相同推理预算与反馈条件下，与 Parallel Sampling、Sequential Refinement 等简单 Test-time Scaling 方法比较 搜索集与测试集重合：同一批 Benchmark 同时用于 Harness 搜索和最终报告，容易产生过拟合 论文的主要贡献是提出更严格的评估框架，而不是新的 Harness 算法。该框架统一控制每种方法能够看到的反馈、额外计算的用途、被修改的对象，以及最终产物是否能跨任务复用\n方法 固定/修改对象 额外计算用途 Parallel Sampling 固定 Harness 独立生成多个解，扩展搜索宽度 Sequential Refinement 固定 Harness 根据上一次轨迹逐步修改解，扩展搜索深度 Harness Evolution 修改共享 Harness 根据一批任务的经验更新通用 Harness Harness Scaling 修改任务专属 Harness 针对单个任务逐轮修改 Harness Harness Scaling 诊断基线\nHarness Scaling 不在一批任务上学习通用 Harness，而是针对当前单个任务重复执行：运行 → 分析失败 → 修改 Harness → 再次运行。它相当于 Harness 层面的 Test-time Scaling，可用于区分：\nHarness Evolution：试图发现可跨任务复用的设计原则 Harness Scaling：针对当前任务进行临时适配和记忆 作者进一步分离 Harness 搜索任务与最终测试任务。Terminal-Bench 2.1 上的实验显示，在匹配反馈和推理预算后，自动 Harness Evolution 并不能稳定超过简单 Test-time Scaling，且在 Held-out Tasks 上的泛化能力有限\nFrom Memory to Skills: Evidence-Grounded Co-Evolution Governance for Long-Horizon LLM Agents arXiv:2607.16621\n提出无需训练的 MSCE（Memory–Skill Co-Evolution）框架，将长程 Agent 的噪声交互轨迹逐步转化为有证据支持、可验证、可维护且可安全调用的技能\n三级记忆：分离证据、程序和环境认知\n层级 保存内容 主要作用 L1 Trace Memory 状态、动作、观察、反思和步骤价值 保存可审计的原始证据 L2 Policy Memory 触发条件、操作步骤、验证规则、适用边界 归纳跨任务可复用的程序 L3 Environmental Cognition 环境结构、行为规律、约束条件 理解环境“是什么样的” 从策略晋升为技能\nMSCE 不直接从单条轨迹生成技能，而是先从多个 Episode 的证据中归纳 L2 Policy，再判断该策略是否满足晋升条件。一个 L2 Policy 只有在以下条件成立时才能变成技能：\n存在可追溯的 L1 支持证据 估计收益为正 最近证据与当前触发条件、流程和适用边界保持一致 技能中的工具和命令确实出现在支持轨迹中 通过确定性的结构与证据验证 Reflection-weighted Value Backfilling\n长程任务通常只有最终成功或失败奖励，很难判断中间哪些步骤真正重要。MSCE 同时利用：\n稀疏但相对可靠的最终反馈 密集但可能不可靠的步骤反思 对于终止步骤，价值直接等于整个 Episode 的最终奖励 $R_i$；对于更早的步骤，采用：\n$$ V_t = \\alpha_t R_i + (1-\\alpha_t)\\gamma V_{t+1} $$\n其中：\n$V_t$：当前步骤的价值 $R_i$：整个 Episode 的最终反馈 $\\gamma$：时间折扣，实验中为 0.9 $\\alpha_t$：该步骤反思的可信度和信息量 技能生命周期\nProbationary：新生成但尚未充分验证 Active：可靠度达到阈值，可默认检索 Archived：长期不用、可靠度过低或反复失败，不再默认调用 MSCE 在 EvoAgentBench 和 LoCoMo 上优于多种 Skill-augmented 与 Memory-driven Agent 基线，并展现出跨领域迁移和持续演化能力\n推荐内容 Agent 与开发工具 Vibe-Trading: 面向金融研究与量化交易的个人 Agent，集成自然语言市场研究、多 Agent 协作、跨市场回测、持久记忆、MCP 和交易安全边界\nOfficeCLI: 为 AI Agent 设计的开源 Office CLI，通过单一二进制文件创建、读取、编辑并渲染 Word、Excel 和 PowerPoint，无需安装 Microsoft Office\ncodex-plugin-cc: OpenAI 官方的 Claude Code 插件，可在 Claude Code 中调用 Codex 进行普通或对抗式 Code Review，并将任务委派给后台 Codex Agent\nAgent Skills 资源 book-to-skill: 将技术书籍、文档目录或多份资料提炼为符合 Agent Skills 开放标准的结构化 Skill，按需加载章节、术语表、模式和速查表\nGetting started with loops: Anthropic 官方介绍 Claude Code Loops 的入门教程，展示如何让 Agent 围绕目标持续执行、检查和迭代\nBaoCut: 宝玉分享的 macOS 视频字幕 Skill，可完成转录、Speaker 识别、文本润色、翻译和基于字幕的剪辑\n信息源 Tech Twitter: 每个工作日筛选 AI、Startup、Product Development 和 Developer Tools 等主题的优质 X 内容，提供每日 Digest、专题和长文入口\nAgent Pulse: 从一手证据出发追踪 AI 模型、Agent、商业化、资本、全球创新和基础设施成本等行业主线，并提供事件时间线、来源更新与行动建议\n深度文章 Harness Engineering for Self-Improvement: Lilian Weng 系统梳理 Agent Harness 的设计模式与优化路径，覆盖工作流自动化、文件系统记忆、Sub-agent、Context Engineering、Harness Evolution 和 Recursive Self-improvement\nSecurity incident disclosure — July 2026: Hugging Face 复盘一次由自主 AI Agent 端到端驱动的基础设施入侵，以及团队如何借助本地部署的开源模型分析超过 17,000 条攻击事件；文章也暴露了攻防双方在模型安全限制上的不对称\nOpenAI and Hugging Face partner to address security risks: OpenAI 对上述安全事件的回应，介绍双方围绕模型评估与 Agent 安全展开的合作\n影音记录 精选歌单 书\u0026阅读摘录 突然意识到，人生的奥德赛时期，好像就是一场盛大的FOMO 奥德修斯的漂泊，从来不是主动选择。他得罪了波塞冬，被惩罚不得归家。\n我们没人惩罚，没人流放。我们主动解开缆绳，主动驶离每一个可以靠岸的港口。不是因为我们不想回家，而是因为我们害怕——害怕此刻靠岸的那个“家”，不是所有可能性里最好的那个。所以我们漂泊，不是被神驱逐，而是被恐惧驱赶。\n于是我们拼命追逐每一艘经过的船，害怕错过任何一个可能通往“正确人生”的航向。这场名为“寻找自我”的奥德赛，最终变成了一场害怕错过一切的FOMO（Fear of Missing Out）。\n而现实一旦展开，就会显露局限、乏味、代价。你害怕的不是选错，你害怕的是选完之后必须要面对的那种“就这？”——是你翻开底牌后发现，它不如握在手里时那么光芒万丈。\n奥德赛时期的终结，不始于“找到正确的港口”，而始于你承认一个简单的事实：你无法拥有所有可能性，而且你从来就没有拥有过…终结的第一步，是亲手关掉一些门。不是“被关掉”，是主动关掉。\nHow To Build A Company With AI From The Ground Up The right person with AI tools can now build features that used to require an entire team or were just impossible\nIn the old model, companies essentially operated as open-loop systems. A decision would be made and executed, but its outcome would not necessarily be measured systematically or used to adjust the process. A closed-loop system, by contrast, continuously monitors its output and changes its process so that it can better achieve the stated objective.\nEvery important company process should be enclosed within an intelligent closed loop: the loop captures information, feeds that information back into an intelligent system, and improves the process over time.\nTo construct these closed loops, the entire company must be made queryable—in other words, the organization must be understandable to AI. Every significant action should leave behind an artifact from which the intelligence at the center of the company can learn and improve itself.\nThe individual contributor is essentially a builder-operator—someone who directly makes things and operates them. In an AI-native company, this category is not confined to engineering; people in operations, support, and sales build as well.\nThe DRI concentrates on strategy and customer outcomes. This person is not a conventional manager, but the individual who bears unambiguous responsibility for a particular result: one person, one outcome, and nowhere to hide.\nThe AI-founder type continues to build, coaches others, and leads through personal example. Founders should be at the front, demonstrating the scale of the new capabilities rather than delegating AI strategy to someone else.\nThe crucial shift will be to maximize token usage rather than headcount. Companies that adopt this structure can produce disproportionate results with substantially smaller teams. A single person equipped with AI tools may perform work that previously demanded a large engineering team in a pre-AI company.\nEarly-stage founders possess a significant advantage because they do not have legacy systems, entrenched organizational charts, or thousands of employees who must be retrained. Existing companies must continue maintaining and growing a live product while simultaneously undoing years of standard operating procedures and foundational assumptions about software development.\n从Databricks Summit聊聊，AI时代数据平台应该如何建设？ AI 这一轮，算法、算力、数据这三样里，数据是被定价得最慢的那一个。\n模型在趋同，算力能用钱买到，到头来真正还算得上护城河的，只剩数据。这句话，我越想越认同。\n数据库正在从\"存储和查询\"，慢慢长成\"事实、状态、语义、治理和行动\"的统一底座。\n也是我感受最深的：它产品的默认用户，还是人，不是 agent\n过去数据库回答的是\"这条 SQL 怎么跑得更快\"；以后它要回答的是\"一个 agent 在做决策时，怎么拿到最新、最可信、最便宜、可审计的上下文\"。\n优绩主义者迟早要经历奥德赛时期 我们将整个现代资本主义建立在竞争之上。这是一个文明的错误。…人类的欲望并非自发，而是模仿性的…竞争并非价值的标志。它只是表明大家都盯着同一个点，而没人再创造任何东西。\n我们正步入一个丰裕的世界。人工智能和机器人技术将大幅降低几乎所有产品的生产成本。在这样一个世界里，为现有市场而战变得完全荒谬。零和游戏失去意义，因为将有数量级的新价值空间出现。唯一真正有趣的游戏，将是创造。不是争夺，而是创造。未来的人类只有一个真正高贵的角色：创造真正的价值。而创造意味着摆脱模仿。不做大家都在做的事，而是让不存在的东西浮现。\n能力 + 努力 = 成功，这本是合理的公式，可在当下的教育环境中，却被异化成了：智商 + 高强度自我逼迫，就能换来人人羡慕的人生。\n优绩主义更像是一份与魔鬼的契约：人们割舍真实的自我，把自己塑造成功利化的工具，以此换取世俗定义的成功。\n“工具化自我” 也逐渐变得泛滥。这时人们才发觉，当初被丢掉的真实自我，才最珍贵。\n",
+  "wordCount" : "5276",
+  "inLanguage": "zh-cn",
+  "image":"https://niraya666.github.io/img/monthly/2026/4D4AD720-77BA-40CF-ABE8-CA332890A995_1_201_a.webp","datePublished": "2026-07-31T20:00:00+08:00",
+  "dateModified": "2026-07-31T20:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2026-07-monthly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-07 月刊
+    </h1>
+    <div class="post-meta"><span title='2026-07-31 20:00:00 +0800 CST'>July 31, 2026</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/4D4AD720-77BA-40CF-ABE8-CA332890A995_1_201_a.webp" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/4D4AD720-77BA-40CF-ABE8-CA332890A995_1_201_a.webp" alt="富士山"></a>
+        <p>富士山</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#automem-automated-learning-of-memory-as-a-cognitive-skill" aria-label="AutoMem: Automated Learning of Memory as a Cognitive Skill">AutoMem: Automated Learning of Memory as a Cognitive Skill</a></li>
+                <li>
+                    <a href="#the-verification-horizon-no-silver-bullet-for-coding-agent-rewards" aria-label="The Verification Horizon: No Silver Bullet for Coding Agent Rewards">The Verification Horizon: No Silver Bullet for Coding Agent Rewards</a></li>
+                <li>
+                    <a href="#rethinking-the-evaluation-of-harness-evolution-for-agents" aria-label="Rethinking the Evaluation of Harness Evolution for Agents">Rethinking the Evaluation of Harness Evolution for Agents</a></li>
+                <li>
+                    <a href="#from-memory-to-skills-evidence-grounded-co-evolution-governance-for-long-horizon-llm-agents" aria-label="From Memory to Skills: Evidence-Grounded Co-Evolution Governance for Long-Horizon LLM Agents">From Memory to Skills: Evidence-Grounded Co-Evolution Governance for Long-Horizon LLM Agents</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#agent-%e4%b8%8e%e5%bc%80%e5%8f%91%e5%b7%a5%e5%85%b7" aria-label="Agent 与开发工具">Agent 与开发工具</a></li>
+                <li>
+                    <a href="#agent-skills-%e8%b5%84%e6%ba%90" aria-label="Agent Skills 资源">Agent Skills 资源</a></li>
+                <li>
+                    <a href="#%e4%bf%a1%e6%81%af%e6%ba%90" aria-label="信息源">信息源</a></li>
+                <li>
+                    <a href="#%e6%b7%b1%e5%ba%a6%e6%96%87%e7%ab%a0" aria-label="深度文章">深度文章</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%aa%81%e7%84%b6%e6%84%8f%e8%af%86%e5%88%b0%e4%ba%ba%e7%94%9f%e7%9a%84%e5%a5%a5%e5%be%b7%e8%b5%9b%e6%97%b6%e6%9c%9f%e5%a5%bd%e5%83%8f%e5%b0%b1%e6%98%af%e4%b8%80%e5%9c%ba%e7%9b%9b%e5%a4%a7%e7%9a%84fomohttpsmpweixinqqcomsly7x-lctz2wu18gj6oizpgscene334" aria-label="突然意识到，人生的奥德赛时期，好像就是一场盛大的FOMO">突然意识到，人生的奥德赛时期，好像就是一场盛大的FOMO</a></li>
+                <li>
+                    <a href="#how-to-build-a-company-with-ai-from-the-ground-uphttpswwwyoutubecomwatchven7frwqibkc" aria-label="How To Build A Company With AI From The Ground Up">How To Build A Company With AI From The Ground Up</a></li>
+                <li>
+                    <a href="#%e4%bb%8edatabricks-summit%e8%81%8a%e8%81%8aai%e6%97%b6%e4%bb%a3%e6%95%b0%e6%8d%ae%e5%b9%b3%e5%8f%b0%e5%ba%94%e8%af%a5%e5%a6%82%e4%bd%95%e5%bb%ba%e8%ae%behttpsmpweixinqqcomsstw5esxmdifhkpoq3eabsgscene334" aria-label="从Databricks Summit聊聊，AI时代数据平台应该如何建设？">从Databricks Summit聊聊，AI时代数据平台应该如何建设？</a></li>
+                <li>
+                    <a href="#%e4%bc%98%e7%bb%a9%e4%b8%bb%e4%b9%89%e8%80%85%e8%bf%9f%e6%97%a9%e8%a6%81%e7%bb%8f%e5%8e%86%e5%a5%a5%e5%be%b7%e8%b5%9b%e6%97%b6%e6%9c%9fhttpsmpweixinqqcomsckyj2znuhzslzaxpjdwjtqscene334" aria-label="优绩主义者迟早要经历奥德赛时期">优绩主义者迟早要经历奥德赛时期</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://github.com/MoonshotAI/Kimi-K3">Kimi K3</a>: Moonshot AI 开源的原生多模态 Agentic 模型，总参数量 2.8T、激活参数 104B，基于 Kimi Delta Attention、Attention Residuals 和高稀疏 MoE 架构，支持 1M token 上下文，面向长程编码、知识工作与复杂推理</p>
+<p><a href="https://www.anthropic.com/news/claude-opus-5">Claude Opus 5</a>: Anthropic 面向日常高强度工作的旗舰模型，重点提升长程 Agentic Coding、知识工作、视觉输出以及执行过程中的自我验证与迭代能力，在多项软件工程和计算机操作评测中取得领先结果</p>
+<p><a href="https://openai.com/index/previewing-gpt-5-6-sol/">GPT-5.6 Sol</a>: OpenAI 的下一代高推理上限模型，重点增强编码、科学研究和网络安全能力，并配套更先进的安全机制</p>
+<p><a href="https://api-docs.deepseek.com/updates/#date-2026-07-31">DeepSeek-V4-Flash</a>: 正式版本进入 API 公测，在保持 Preview 版架构与规模不变的基础上重新进行 Post-training，显著增强 Agent 能力，并原生支持 Responses API、针对 Codex 使用场景完成适配</p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/diegosouzapw/OmniRoute">OmniRoute</a>: 面向 Claude Code、Codex、Cursor 等 AI 工具的统一模型网关，通过单一 OpenAI-compatible endpoint 提供多供应商路由、自动故障转移和 token 压缩</p>
+<p><a href="https://github.com/andrewyng/openworker">OpenWorker</a>: 吴恩达团队开源的 Local-first 桌面 AI Coworker，可连接本地文件、终端和常用 SaaS 工具，以用户自带模型或 Ollama 完成文档、报表、邮件等交付物，并在执行关键写操作前请求确认</p>
+<p><a href="https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me">grill-me</a>: Matt Pocock 的需求澄清 Skill，通过连续追问暴露模糊目标、隐含约束和未决问题，帮助用户与 Agent 在开始执行前建立一致理解</p>
+<p><a href="https://github.com/JCodesMore/ai-website-cloner-template">ai-website-cloner-template</a>: 使用 AI Coding Agent 将任意网站逆向还原为整洁、现代的 Next.js 代码库的可复用模板</p>
+<p><a href="https://github.com/EverMind-AI/Raven">Raven</a>: 基于 EverOS 的自改进 Agent Harness，通过持久化用户记忆、Agent 记忆和世界知识，让成功工作流逐步演化为可复用的 Skill、Agent Template 与 Digital Worker，并支持可选的 Deep Research</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="automem-automated-learning-of-memory-as-a-cognitive-skill">AutoMem: Automated Learning of Memory as a Cognitive Skill<a hidden class="anchor" aria-hidden="true" href="#automem-automated-learning-of-memory-as-a-cognitive-skill">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2607.01224">2607.01224</a></p>
+<p>把 Memory Management 视为可独立学习的认知技能，让 Agent 学会判断什么信息值得写入、何时检索，以及如何避免重复、过期和无用记忆污染上下文</p>
+<p><strong>核心思路</strong></p>
+<ul>
+<li>把 <code>read</code>、<code>write</code>、<code>search</code>、<code>append</code>、<code>create</code> 等文件系统操作提升为与环境动作同等地位的 Action</li>
+<li>同时优化两个层面：<strong>Memory Scaffold</strong> 指 Prompt、代码、文件 Schema、Action Vocabulary 和校验逻辑等支撑记忆行为的结构；<strong>Memory Proficiency</strong> 指模型选择合适记忆动作的能力</li>
+<li>让 Meta-LLM 读取完整 Episode Trace、Memory Directory 和 Agent Code，像 Code Reviewer 一样诊断失败模式并自动修改 Scaffold</li>
+<li>将记忆训练与任务行动模型分离：第二个 Outer Loop 只训练负责记忆操作的 LoRA Memory Specialist，执行游戏动作的 Base Model 保持冻结</li>
+</ul>
+<p><strong>具体实现</strong></p>
+<ul>
+<li><strong>Inner Loop：文件系统记忆 Agent</strong>。Agent 在每个 Episode 中拥有一个磁盘目录作为外部记忆；每一步包含两个 Routine：<strong>LOG</strong> 判断刚刚发生的事情是否值得记录以及写到哪里，<strong>PLAN</strong> 判断行动前需要检索哪些记忆，再选择下一步环境动作</li>
+<li><strong>Outer Loop #1：自动优化 Memory Scaffold</strong>。Meta-LLM 读取完整 Episode Trace、当前 Memory Files 和 Agent Code，诊断 Scaffold 中导致失败的部分，再修改代码、Prompt、文件结构或 Action Vocabulary</li>
+<li><strong>Outer Loop #2：训练 Memory Specialist</strong>。Scaffold 收敛后，Base Model 在最终结构下运行大量 Episode；Meta-LLM 从轨迹中筛选值得强化的记忆操作样本，并联合选择 LoRA 配置</li>
+</ul>
+<p><strong>实验结果</strong></p>
+<p>在 Crafter、MiniHack 和 NetHack 三个程序生成的长程游戏中，仅优化记忆能力、保持任务行动行为不变，就使 Base Agent 的表现提升约 2～4 倍，并让 32B 开源模型达到可与前沿闭源系统竞争的水平</p>
+<hr>
+<h2 id="the-verification-horizon-no-silver-bullet-for-coding-agent-rewards">The Verification Horizon: No Silver Bullet for Coding Agent Rewards<a hidden class="anchor" aria-hidden="true" href="#the-verification-horizon-no-silver-bullet-for-coding-agent-rewards">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2606.26300">2606.26300</a></p>
+<p>分析 Coding Agent 训练中 Reward / Verifier 设计为何越来越困难，并提出按任务形态构建验证系统的框架</p>
+<p>过去常说“验证比生成容易”，但对今天的 Coding Agent 来说这一关系正在反转：模型越来越擅长生成复杂候选解，真正困难的是如何可靠判断结果是否满足用户意图</p>
+<p>作者认为任何 Verifier 都只是人类意图的 Proxy；一旦被用于训练优化，Proxy 与真实意图之间的缝隙就会被放大，最终表现为 Reward Hacking 或信号饱和</p>
+<p><strong>验证信号的三个维度</strong></p>
+<ul>
+<li><strong>Scalability</strong>：验证成本能否随任务规模和训练规模扩展</li>
+<li><strong>Faithfulness</strong>：验证信号是否真实反映用户意图，而不是可被钻空子的表面指标</li>
+<li><strong>Robustness</strong>：当策略模型持续变强时，验证器是否仍能稳定区分高低质量输出</li>
+</ul>
+<p><strong>四类任务中的验证难题</strong></p>
+<ul>
+<li><strong>SWE-like 代码修复</strong>：测试用例容易成为不完整的意图代理，需要结合任务质量 Judge 与轨迹行为 Monitor</li>
+<li><strong>前端开发</strong>：仅靠静态截图或规则难以覆盖交互体验，需要从 Static Judge 转向 Interactive Judge</li>
+<li><strong>真实用户 Agent 任务</strong>：用户反馈稀疏且通常只指向局部问题，需要转化为 Span-level 训练信号</li>
+<li><strong>长程代码生成 / 从零构建 Repo</strong>：验证成本与生成成本同步增长，需要自动化 Agent Verifier，并持续更新验证策略</li>
+</ul>
+<p>论文的核心结论是：不存在能够长期固定不变的 Reward Function，验证系统必须与生成模型共同演化</p>
+<hr>
+<h2 id="rethinking-the-evaluation-of-harness-evolution-for-agents">Rethinking the Evaluation of Harness Evolution for Agents<a hidden class="anchor" aria-hidden="true" href="#rethinking-the-evaluation-of-harness-evolution-for-agents">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2607.12227">2607.12227</a></p>
+<p>重新审视自动 Harness Evolution 方法的评估是否公平、可信：性能提升究竟来自可复用的 Harness 设计，还是更多推理预算、搜索和对 Benchmark 的记忆</p>
+<p><strong>现有评估协议的问题</strong></p>
+<ol>
+<li>在公开 benchmark 任务上运行 Agent；</li>
+<li>查看轨迹、单元测试结果和失败原因；</li>
+<li>多轮修改 Harness；</li>
+<li>最后仍在同一批 benchmark 任务上报告性能。</li>
+</ol>
+<ul>
+<li><strong>缺少公平基线</strong>：Harness Evolution 没有在相同推理预算与反馈条件下，与 Parallel Sampling、Sequential Refinement 等简单 Test-time Scaling 方法比较</li>
+<li><strong>搜索集与测试集重合</strong>：同一批 Benchmark 同时用于 Harness 搜索和最终报告，容易产生过拟合</li>
+</ul>
+<p>论文的主要贡献是提出更严格的<strong>评估框架</strong>，而不是新的 Harness 算法。该框架统一控制每种方法能够看到的反馈、额外计算的用途、被修改的对象，以及最终产物是否能跨任务复用</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法</th>
+          <th style="text-align: left">固定/修改对象</th>
+          <th style="text-align: left">额外计算用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Parallel Sampling</td>
+          <td style="text-align: left">固定 Harness</td>
+          <td style="text-align: left">独立生成多个解，扩展搜索宽度</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Sequential Refinement</td>
+          <td style="text-align: left">固定 Harness</td>
+          <td style="text-align: left">根据上一次轨迹逐步修改解，扩展搜索深度</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Harness Evolution</td>
+          <td style="text-align: left">修改共享 Harness</td>
+          <td style="text-align: left">根据一批任务的经验更新通用 Harness</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Harness Scaling</td>
+          <td style="text-align: left">修改任务专属 Harness</td>
+          <td style="text-align: left">针对单个任务逐轮修改 Harness</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Harness Scaling 诊断基线</strong></p>
+<p>Harness Scaling 不在一批任务上学习通用 Harness，而是针对当前单个任务重复执行：运行 → 分析失败 → 修改 Harness → 再次运行。它相当于 Harness 层面的 Test-time Scaling，可用于区分：</p>
+<ul>
+<li><strong>Harness Evolution</strong>：试图发现可跨任务复用的设计原则</li>
+<li><strong>Harness Scaling</strong>：针对当前任务进行临时适配和记忆</li>
+</ul>
+<p>作者进一步分离 Harness 搜索任务与最终测试任务。Terminal-Bench 2.1 上的实验显示，在匹配反馈和推理预算后，自动 Harness Evolution 并不能稳定超过简单 Test-time Scaling，且在 Held-out Tasks 上的泛化能力有限</p>
+<hr>
+<h2 id="from-memory-to-skills-evidence-grounded-co-evolution-governance-for-long-horizon-llm-agents">From Memory to Skills: Evidence-Grounded Co-Evolution Governance for Long-Horizon LLM Agents<a hidden class="anchor" aria-hidden="true" href="#from-memory-to-skills-evidence-grounded-co-evolution-governance-for-long-horizon-llm-agents">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2607.16621">2607.16621</a></p>
+<p>提出无需训练的 MSCE（Memory–Skill Co-Evolution）框架，将长程 Agent 的噪声交互轨迹逐步转化为有证据支持、可验证、可维护且可安全调用的技能</p>
+<p><strong>三级记忆：分离证据、程序和环境认知</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">层级</th>
+          <th style="text-align: left">保存内容</th>
+          <th style="text-align: left">主要作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">L1 Trace Memory</td>
+          <td style="text-align: left">状态、动作、观察、反思和步骤价值</td>
+          <td style="text-align: left">保存可审计的原始证据</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">L2 Policy Memory</td>
+          <td style="text-align: left">触发条件、操作步骤、验证规则、适用边界</td>
+          <td style="text-align: left">归纳跨任务可复用的程序</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">L3 Environmental Cognition</td>
+          <td style="text-align: left">环境结构、行为规律、约束条件</td>
+          <td style="text-align: left">理解环境“是什么样的”</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>从策略晋升为技能</strong></p>
+<p>MSCE 不直接从单条轨迹生成技能，而是先从多个 Episode 的证据中归纳 L2 Policy，再判断该策略是否满足晋升条件。一个 L2 Policy 只有在以下条件成立时才能变成技能：</p>
+<ul>
+<li>存在可追溯的 L1 支持证据</li>
+<li>估计收益为正</li>
+<li>最近证据与当前触发条件、流程和适用边界保持一致</li>
+<li>技能中的工具和命令确实出现在支持轨迹中</li>
+<li>通过确定性的结构与证据验证</li>
+</ul>
+<p><strong>Reflection-weighted Value Backfilling</strong></p>
+<p>长程任务通常只有最终成功或失败奖励，很难判断中间哪些步骤真正重要。MSCE 同时利用：</p>
+<ul>
+<li>稀疏但相对可靠的最终反馈</li>
+<li>密集但可能不可靠的步骤反思</li>
+</ul>
+<p>对于终止步骤，价值直接等于整个 Episode 的最终奖励 $R_i$；对于更早的步骤，采用：</p>
+<p>$$
+V_t = \alpha_t R_i + (1-\alpha_t)\gamma V_{t+1}
+$$</p>
+<p>其中：</p>
+<ul>
+<li>$V_t$：当前步骤的价值</li>
+<li>$R_i$：整个 Episode 的最终反馈</li>
+<li>$\gamma$：时间折扣，实验中为 0.9</li>
+<li>$\alpha_t$：该步骤反思的可信度和信息量</li>
+</ul>
+<p><strong>技能生命周期</strong></p>
+<ul>
+<li><strong>Probationary</strong>：新生成但尚未充分验证</li>
+<li><strong>Active</strong>：可靠度达到阈值，可默认检索</li>
+<li><strong>Archived</strong>：长期不用、可靠度过低或反复失败，不再默认调用</li>
+</ul>
+<p>MSCE 在 EvoAgentBench 和 LoCoMo 上优于多种 Skill-augmented 与 Memory-driven Agent 基线，并展现出跨领域迁移和持续演化能力</p>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="agent-与开发工具">Agent 与开发工具<a hidden class="anchor" aria-hidden="true" href="#agent-与开发工具">#</a></h2>
+<p><a href="https://github.com/HKUDS/Vibe-Trading">Vibe-Trading</a>: 面向金融研究与量化交易的个人 Agent，集成自然语言市场研究、多 Agent 协作、跨市场回测、持久记忆、MCP 和交易安全边界</p>
+<p><a href="https://github.com/iOfficeAI/OfficeCLI">OfficeCLI</a>: 为 AI Agent 设计的开源 Office CLI，通过单一二进制文件创建、读取、编辑并渲染 Word、Excel 和 PowerPoint，无需安装 Microsoft Office</p>
+<p><a href="https://github.com/openai/codex-plugin-cc">codex-plugin-cc</a>: OpenAI 官方的 Claude Code 插件，可在 Claude Code 中调用 Codex 进行普通或对抗式 Code Review，并将任务委派给后台 Codex Agent</p>
+<h2 id="agent-skills-资源">Agent Skills 资源<a hidden class="anchor" aria-hidden="true" href="#agent-skills-资源">#</a></h2>
+<p><a href="https://github.com/virgiliojr94/book-to-skill">book-to-skill</a>: 将技术书籍、文档目录或多份资料提炼为符合 Agent Skills 开放标准的结构化 Skill，按需加载章节、术语表、模式和速查表</p>
+<p><a href="https://x.com/ClaudeDevs/status/2074208949205881033/?rw_tt_thread=True">Getting started with loops</a>: Anthropic 官方介绍 Claude Code Loops 的入门教程，展示如何让 Agent 围绕目标持续执行、检查和迭代</p>
+<p><a href="https://x.com/dotey/status/2077074912435433901">BaoCut</a>: 宝玉分享的 macOS 视频字幕 Skill，可完成转录、Speaker 识别、文本润色、翻译和基于字幕的剪辑</p>
+<h2 id="信息源">信息源<a hidden class="anchor" aria-hidden="true" href="#信息源">#</a></h2>
+<p><a href="https://www.techtwitter.com/">Tech Twitter</a>: 每个工作日筛选 AI、Startup、Product Development 和 Developer Tools 等主题的优质 X 内容，提供每日 Digest、专题和长文入口</p>
+<p><a href="https://barretlee.github.io/agent-pulse/">Agent Pulse</a>: 从一手证据出发追踪 AI 模型、Agent、商业化、资本、全球创新和基础设施成本等行业主线，并提供事件时间线、来源更新与行动建议</p>
+<h2 id="深度文章">深度文章<a hidden class="anchor" aria-hidden="true" href="#深度文章">#</a></h2>
+<p><a href="https://lilianweng.github.io/posts/2026-07-04-harness/">Harness Engineering for Self-Improvement</a>: Lilian Weng 系统梳理 Agent Harness 的设计模式与优化路径，覆盖工作流自动化、文件系统记忆、Sub-agent、Context Engineering、Harness Evolution 和 Recursive Self-improvement</p>
+<p><a href="https://huggingface.co/blog/security-incident-july-2026">Security incident disclosure — July 2026</a>: Hugging Face 复盘一次由自主 AI Agent 端到端驱动的基础设施入侵，以及团队如何借助本地部署的开源模型分析超过 17,000 条攻击事件；文章也暴露了攻防双方在模型安全限制上的不对称</p>
+<p><a href="https://openai.com/zh-Hans-CN/index/hugging-face-model-evaluation-security-incident/">OpenAI and Hugging Face partner to address security risks</a>: OpenAI 对上述安全事件的回应，介绍双方围绕模型评估与 Agent 安全展开的合作</p>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7di0oAn2jWpaNbHDTuu5wy?utm_source=generator" width="100%" height="460" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="突然意识到人生的奥德赛时期好像就是一场盛大的fomohttpsmpweixinqqcomsly7x-lctz2wu18gj6oizpgscene334"><a href="https://mp.weixin.qq.com/s/LY7X-Lctz2Wu18gj6OIZpg?scene=334">突然意识到，人生的奥德赛时期，好像就是一场盛大的FOMO</a><a hidden class="anchor" aria-hidden="true" href="#突然意识到人生的奥德赛时期好像就是一场盛大的fomohttpsmpweixinqqcomsly7x-lctz2wu18gj6oizpgscene334">#</a></h2>
+<blockquote>
+<p>奥德修斯的漂泊，从来不是主动选择。他得罪了波塞冬，被惩罚不得归家。</p>
+</blockquote>
+<blockquote>
+<p>我们没人惩罚，没人流放。我们主动解开缆绳，主动驶离每一个可以靠岸的港口。不是因为我们不想回家，而是因为我们害怕——害怕此刻靠岸的那个“家”，不是所有可能性里最好的那个。所以我们漂泊，不是被神驱逐，而是被恐惧驱赶。</p>
+</blockquote>
+<blockquote>
+<p>于是我们拼命追逐每一艘经过的船，害怕错过任何一个可能通往“正确人生”的航向。这场名为“寻找自我”的奥德赛，最终变成了一场害怕错过一切的FOMO（Fear of Missing Out）。</p>
+</blockquote>
+<blockquote>
+<p>而现实一旦展开，就会显露局限、乏味、代价。你害怕的不是选错，你害怕的是选完之后必须要面对的那种“就这？”——是你翻开底牌后发现，它不如握在手里时那么光芒万丈。</p>
+</blockquote>
+<blockquote>
+<p>奥德赛时期的终结，不始于“找到正确的港口”，而始于你承认一个简单的事实：你无法拥有所有可能性，而且你从来就没有拥有过…终结的第一步，是亲手关掉一些门。不是“被关掉”，是主动关掉。</p>
+</blockquote>
+<h2 id="how-to-build-a-company-with-ai-from-the-ground-uphttpswwwyoutubecomwatchven7frwqibkc"><a href="https://www.youtube.com/watch?v=EN7frwQIbKc">How To Build A Company With AI From The Ground Up</a><a hidden class="anchor" aria-hidden="true" href="#how-to-build-a-company-with-ai-from-the-ground-uphttpswwwyoutubecomwatchven7frwqibkc">#</a></h2>
+<blockquote>
+<p>The right person with AI tools can now build features that used to require an entire team or were just impossible</p>
+</blockquote>
+<blockquote>
+<p>In the old model, companies essentially operated as open-loop systems. A decision would be made and executed, but its outcome would not necessarily be measured systematically or used to adjust the process. A closed-loop system, by contrast, continuously monitors its output and changes its process so that it can better achieve the stated objective.</p>
+</blockquote>
+<blockquote>
+<p>Every important company process should be enclosed within an intelligent closed loop: the loop captures information, feeds that information back into an intelligent system, and improves the process over time.</p>
+</blockquote>
+<blockquote>
+<p>To construct these closed loops, the entire company must be made queryable—in other words, the organization must be understandable to AI. Every significant action should leave behind an artifact from which the intelligence at the center of the company can learn and improve itself.</p>
+</blockquote>
+<blockquote>
+<p>The individual contributor is essentially a builder-operator—someone who directly makes things and operates them. In an AI-native company, this category is not confined to engineering; people in operations, support, and sales build as well.</p>
+</blockquote>
+<blockquote>
+<p>The DRI concentrates on strategy and customer outcomes. This person is not a conventional manager, but the individual who bears unambiguous responsibility for a particular result: one person, one outcome, and nowhere to hide.</p>
+</blockquote>
+<blockquote>
+<p>The AI-founder type continues to build, coaches others, and leads through personal example. Founders should be at the front, demonstrating the scale of the new capabilities rather than delegating AI strategy to someone else.</p>
+</blockquote>
+<blockquote>
+<p>The crucial shift will be to maximize token usage rather than headcount. Companies that adopt this structure can produce disproportionate results with substantially smaller teams. A single person equipped with AI tools may perform work that previously demanded a large engineering team in a pre-AI company.</p>
+</blockquote>
+<blockquote>
+<p>Early-stage founders possess a significant advantage because they do not have legacy systems, entrenched organizational charts, or thousands of employees who must be retrained. Existing companies must continue maintaining and growing a live product while simultaneously undoing years of standard operating procedures and foundational assumptions about software development.</p>
+</blockquote>
+<h2 id="从databricks-summit聊聊ai时代数据平台应该如何建设httpsmpweixinqqcomsstw5esxmdifhkpoq3eabsgscene334"><a href="https://mp.weixin.qq.com/s/STW5esXMdIFhkpoQ3EAbsg?scene=334">从Databricks Summit聊聊，AI时代数据平台应该如何建设？</a><a hidden class="anchor" aria-hidden="true" href="#从databricks-summit聊聊ai时代数据平台应该如何建设httpsmpweixinqqcomsstw5esxmdifhkpoq3eabsgscene334">#</a></h2>
+<blockquote>
+<p>AI 这一轮，算法、算力、数据这三样里，数据是被定价得最慢的那一个。</p>
+</blockquote>
+<blockquote>
+<p>模型在趋同，算力能用钱买到，到头来真正还算得上护城河的，只剩数据。这句话，我越想越认同。</p>
+</blockquote>
+<blockquote>
+<p>数据库正在从&quot;存储和查询&quot;，慢慢长成&quot;事实、状态、语义、治理和行动&quot;的统一底座。</p>
+</blockquote>
+<blockquote>
+<p>也是我感受最深的：它产品的默认用户，还是人，不是 agent</p>
+</blockquote>
+<blockquote>
+<p>过去数据库回答的是&quot;这条 SQL 怎么跑得更快&quot;；以后它要回答的是&quot;一个 agent 在做决策时，怎么拿到最新、最可信、最便宜、可审计的上下文&quot;。</p>
+</blockquote>
+<h2 id="优绩主义者迟早要经历奥德赛时期httpsmpweixinqqcomsckyj2znuhzslzaxpjdwjtqscene334"><a href="https://mp.weixin.qq.com/s/CKyJ2ZnUhZSlzAxpjDWJtQ?scene=334">优绩主义者迟早要经历奥德赛时期</a><a hidden class="anchor" aria-hidden="true" href="#优绩主义者迟早要经历奥德赛时期httpsmpweixinqqcomsckyj2znuhzslzaxpjdwjtqscene334">#</a></h2>
+<blockquote>
+<p>我们将整个现代资本主义建立在竞争之上。这是一个文明的错误。…人类的欲望并非自发，而是模仿性的…竞争并非价值的标志。它只是表明大家都盯着同一个点，而没人再创造任何东西。</p>
+</blockquote>
+<blockquote>
+<p>我们正步入一个丰裕的世界。人工智能和机器人技术将大幅降低几乎所有产品的生产成本。在这样一个世界里，为现有市场而战变得完全荒谬。零和游戏失去意义，因为将有数量级的新价值空间出现。唯一真正有趣的游戏，将是创造。不是争夺，而是创造。未来的人类只有一个真正高贵的角色：创造真正的价值。而创造意味着摆脱模仿。不做大家都在做的事，而是让不存在的东西浮现。</p>
+</blockquote>
+<blockquote>
+<p>能力 + 努力 = 成功，这本是合理的公式，可在当下的教育环境中，却被异化成了：智商 + 高强度自我逼迫，就能换来人人羡慕的人生。</p>
+</blockquote>
+<blockquote>
+<p>优绩主义更像是一份与魔鬼的契约：人们割舍真实的自我，把自己塑造成功利化的工具，以此换取世俗定义的成功。</p>
+</blockquote>
+<blockquote>
+<p>“工具化自我” 也逐渐变得泛滥。这时人们才发觉，当初被丢掉的真实自我，才最珍贵。</p>
+</blockquote>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-07%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f&amp;title=2026-07%20%e6%9c%88%e5%88%8a&amp;summary=2026-07%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f&title=2026-07%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-07%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-07%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-07 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-07%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-07-monthly%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
