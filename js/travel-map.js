@@ -76,7 +76,13 @@ function openModal(locationIndex) {
     document.getElementById('modal-country').textContent = currentLocation.country;
     document.getElementById('modal-date').textContent = currentLocation.visitDate;
     document.getElementById('modal-description').textContent = currentLocation.description;
-    document.getElementById('modal-link').href = currentLocation.postUrl;
+    const modalLink = document.getElementById('modal-link');
+    if (currentLocation.postUrl) {
+        modalLink.href = currentLocation.postUrl;
+        modalLink.style.display = '';
+    } else {
+        modalLink.style.display = 'none';
+    }
 
     // 设置图片
     updateGalleryImage();
