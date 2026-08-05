@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Agent Eval Practical Guide 03: How to Choose Evaluation Methods | LZY Blog</title>
+<meta name="keywords" content="Eval, Agent, Agent-Eval">
+<meta name="description" content="Part three of the Agent Eval Practical Guide series: a deep comparison of three scoring approaches — Code-based Evaluators, LLM-as-a-Judge, and Human Evaluation — their applicable scenarios, selection criteria, common pitfalls, and how evaluators themselves should be calibrated.">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/en/posts/agent-eval-guide-03/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/posts/agent-eval-guide-03/">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/posts/agent-eval-guide-03/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="Agent Eval Practical Guide 03: How to Choose Evaluation Methods" />
+<meta property="og:description" content="Part three of the Agent Eval Practical Guide series: a deep comparison of three scoring approaches — Code-based Evaluators, LLM-as-a-Judge, and Human Evaluation — their applicable scenarios, selection criteria, common pitfalls, and how evaluators themselves should be calibrated." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/en/posts/agent-eval-guide-03/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-08-05T12:00:00+08:00" />
+<meta property="article:modified_time" content="2026-08-05T12:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta name="twitter:title" content="Agent Eval Practical Guide 03: How to Choose Evaluation Methods"/>
+<meta name="twitter:description" content="Part three of the Agent Eval Practical Guide series: a deep comparison of three scoring approaches — Code-based Evaluators, LLM-as-a-Judge, and Human Evaluation — their applicable scenarios, selection criteria, common pitfalls, and how evaluators themselves should be calibrated."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Posts",
+      "item": "https://niraya666.github.io/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Agent Eval Practical Guide 03: How to Choose Evaluation Methods",
+      "item": "https://niraya666.github.io/en/posts/agent-eval-guide-03/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Agent Eval Practical Guide 03: How to Choose Evaluation Methods",
+  "name": "Agent Eval Practical Guide 03: How to Choose Evaluation Methods",
+  "description": "Part three of the Agent Eval Practical Guide series: a deep comparison of three scoring approaches — Code-based Evaluators, LLM-as-a-Judge, and Human Evaluation — their applicable scenarios, selection criteria, common pitfalls, and how evaluators themselves should be calibrated.",
+  "keywords": [
+    "Eval", "Agent", "Agent-Eval"
+  ],
+  "articleBody": "Who judges? And how?\nThere are three mainstream approaches to scoring today:\n- Code-based Evaluators\n- LLM-as-a-Judge\n- Human Evaluation\nCode-based Evaluators Code-based Evaluators are suited for tasks with hard rules, explicit states, or computable answers.\nThis type of evaluation is fast, low-cost, and produces stable results — ideal for CI/CD pipelines as regression tests after every change to the model, prompt, tools, or workflow.\nFor task execution specifically, evaluation should care about the final result or system state, not just what the model said. For tasks with clearly defined answers, you can directly check whether the model output matches the expected result.\nDuring R\u0026D, we often need to quickly identify an optimization direction — choosing a model, modifying a prompt, or tuning hyperparameters. This process requires running a large number of experiments. If every round depends on human annotation and scoring, the evaluation cycle, labor cost, and subjective variance all become confounding factors, and experiments become hard to reproduce reliably.\nThis is where Code-based Evaluators come in: scoring through automated, standardized, reproducible, and quantifiable methods.\nAt its core, this involves two parts: datasets and evaluation metrics. Datasets were covered in the previous article, so this one focuses on metrics.\nHow to Choose Metrics Metric selection is fundamentally a modeling exercise — translating business objectives into quantifiable questions. Different task types call for different evaluation metrics.\nFor classification tasks, Accuracy is a common baseline metric. But in scenarios with class imbalance — medical diagnosis, for instance — relying on Accuracy alone can be highly misleading. You may need to additionally track Recall, and depending on the actual problem, choose metrics like F1-Score, MCC (Matthews Correlation Coefficient), or ROC curves.\nFor tasks with definitive answers — a final numerical value in a math problem, a classification label, or a fixed identifier — evaluation is relatively straightforward. Exact Match can directly check whether outputs are consistent; pass@k measures the probability that the model succeeds at least once across k samples.\nEvaluating LLM-generated responses, by contrast, is more challenging.\nExact Match works for scenarios where answer expression is tightly constrained, but has clear limitations for open-domain QA. N-gram metrics like BLEU and ROUGE focus on lexical overlap and struggle to capture full semantic relationships. Methods like BERTScore compute semantic similarity via embeddings, but introduce a new model variable — and similarity scores are usually relative values that still require calibration and benchmarking.\nThese open-text tasks typically call for LLM-as-a-Judge.\nAs model capabilities grow, evaluation targets are also expanding beyond accuracy to dimensions like safety, trustworthiness, stability, and cost.\nDon’t Let Metrics Replace the Task Objective BLEU, ROUGE, and Embedding Similarity can all be computed automatically by code — but “can be computed automatically” does not mean they effectively reflect business quality.\nA response with high semantic similarity can still miss a critical constraint; a response with low lexical overlap can still be entirely correct. Metrics are merely measurement proxies for business objectives. Once a proxy decouples from the real objective, optimizing the metric may actually push the system away from the problem you genuinely need to solve.\nLLM-as-a-Judge Many tasks have no single correct answer.\nFor example: determining whether a response is complete, whether it faithfully adheres to reference materials, whether it overlooks risks, or whether an analysis genuinely addresses the user’s question. These criteria can be described in words, but are exceedingly difficult to encode as an exhaustive set of rules.\nThis is where LLM-as-a-Judge comes in. Common approaches include:\nClassification: pass/fail judgment, or categorizing the type of error.\nScoring: assigning a score of 1–5 against an explicit rubric.\nPairwise comparison: comparing version A and version B, judging which better meets the criteria.\n(and more…)\nAmong these, pairwise comparison is generally more stable than assigning absolute scores. When presented with two concrete answers, humans also tend to find it easier to judge which is better, rather than precisely articulating “why this is a 3 and not a 4.”\nThe value of an LLM Judge lies in scale. It can perform initial screening and repeat evaluation across large volumes of open text, and can output error categories and scoring rationales, helping teams pinpoint issues.\nBut a Judge’s score is still a model output — a scalable approximation of judgment, one that itself needs to be evaluated and calibrated.\nWhat to Watch Out for with LLM Judges Judge one clear dimension at a time\n“Please comprehensively evaluate the quality of this response” rarely yields stable results. Break it down into factual correctness, completeness, relevance, and safety — and write observable scoring descriptors for each. The results become far more interpretable.\nMake the rubric executable\n“Professional content” and “good user experience” are both too vague. A more effective rubric spells out which facts must be included, which errors count as critical failures, and what performance each score level corresponds to.\nThis is also why the previous article recommended breaking Golden Answers into Statements and Rubrics: having a Judge verify a clear set of decision points is far more stable than comparing whether two long passages are “similar.”\nRequire evidence and reasoning\nKeeping only a score makes it hard to detect where the Judge went wrong. Have the Judge cite evidence from the evaluated response and output structured reasoning — this makes human spot-checking and downstream analysis feasible.\nAddress known biases\nJudges may favor longer answers, more familiar formats, options appearing earlier in the list, and content that matches their own stylistic patterns.\nWhen doing pairwise comparisons, randomly swap answer order to reduce position bias. For critical cases, repeat evaluation and check for consistency via self-consistency. When necessary, aggregate results from multiple Judges.\nFor content that is “partially correct but severely wrong in specific areas,” Judges can still miss failures. Knowledge boundary issues and hallucinations in specialized domains also require human review.\nPin and record versions\nThe Judge model, prompt, temperature, and rubric are all part of the evaluator. Change any one of them, and the evaluation scale may drift. Experiment logs should preserve the full version and final scores.\nCalibrate with human-annotated samples\nBefore large-scale execution, prepare a small set of samples judged by domain experts and check the Judge’s alignment with human conclusions. For high-risk or specialized domains, ongoing spot-checking is also necessary.\nHuman Evaluation Human evaluation is the most expensive and slowest approach, but it shoulders work that the other two methods cannot accomplish independently.\nHuman capacity for complex semantic understanding and value judgment gives Human Evaluation an irreplaceable position — and also accounts for its higher cost.\nSystematic Human Evaluation, depending on the completeness of available evaluation resources, can take several forms:\nWhen no ready-made dataset exists: provide complete task descriptions and structured scoring guidelines. For example, when evaluating a dialogue system, clearly define dimensions like “coherence,” “relevance,” and “safety,” and require annotators to provide scoring rationales.\nWhen a dataset already exists: provide annotators with model inputs, outputs, and scoring guidelines together.\nWhen both a dataset and automated scoring results exist: have human annotators review the results through Error Annotation.\nHuman evaluation cannot be reduced to “grab a few people and have them try it out based on gut feeling.” Systematic human evaluation requires, at minimum: task descriptions, model inputs and outputs, scoring dimensions, score definitions, and examples. When necessary, annotators should also record error categories, severity, and scoring rationales.\nCompared to vague scoring, Error Annotation is often far more useful. Having domain experts point out where the error occurred, what type it belongs to, and how severe it is — the resulting information feeds directly into error analysis and eval set iteration.\nWhat to Watch Out for with Human Evaluation Choose people who genuinely possess judgment ability\nFluency can be left to general annotators; whether a professional conclusion is reliable requires domain experts. Expert time is scarce — concentrate it on the parts that truly demand professional judgment.\nReduce the cognitive burden of annotation\nThe previous article introduced a principle: favor true/false questions over multiple choice, and multiple choice over open-ended questions. Breaking complex tasks into explicit decision points lowers costs and reduces interpretation variance across annotators.\nRun a small-scale pilot first\nBefore scaling up annotation, test a small batch of samples to check whether the instructions are clear and whether edge cases produce disagreement. If different annotators consistently fail to reach agreement, the problem likely lies in the rubric itself.\nDocument disagreements\nDisagreement is not just noise. It may signal ambiguity in the task definition, or that the business side has yet to converge on a unified standard. Further judgment is needed on whether the disagreement stems from insufficient knowledge, unclear instructions, or genuinely different value judgments.\nEvaluators Need Controlled Variables Too Regardless of which scoring method you use, evaluation results are affected by experimental setup.\nPrompts affect results. A sound prompt should include a clear task description, the context needed to complete the task, and specific, unambiguous questions.\nRepeat experiments to reduce random error. Design multiple prompt variants for the same task, vary temperature, shuffle order, and so on.\nStructured Output is also an experimental variable. Structured output helps improve evaluation controllability and reduces extraneous content, but can also alter the model’s output distribution. When your actual deployment uses JSON, Schema, or Tool Calling, evaluation should ideally run under the same interface conditions.\nSummary Code-based Evaluators are suited for tasks that can be directly verified through hard rules, definitive answers, or system state.\nLLM-as-a-Judge is suited for tasks that require open-ended semantic judgment at scale — but it carries its own randomness, biases, and scale drift.\nHuman Evaluation is responsible for defining standards, calibrating automated evaluation results, and handling samples that are high-stakes, highly specialized, or contentious.\n",
+  "wordCount" : "1608",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-08-05T12:00:00+08:00",
+  "dateModified": "2026-08-05T12:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/en/posts/agent-eval-guide-03/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/" title="中文"
+                            aria-label="中文">中文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/en/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/en/posts/">AI Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Agent Eval Practical Guide 03: How to Choose Evaluation Methods
+    </h1>
+    <div class="post-description">
+      Part three of the Agent Eval Practical Guide series: a deep comparison of three scoring approaches — Code-based Evaluators, LLM-as-a-Judge, and Human Evaluation — their applicable scenarios, selection criteria, common pitfalls, and how evaluators themselves should be calibrated.
+    </div>
+    <div class="post-meta"><span title='2026-08-05 12:00:00 +0800 +08'>August 5, 2026</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;LZY&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="https://niraya666.github.io/posts/agent-eval-guide-03/">中文</a>
+    </li>
+</ul>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#code-based-evaluators" aria-label="Code-based Evaluators">Code-based Evaluators</a><ul>
+                        
+                <li>
+                    <a href="#how-to-choose-metrics" aria-label="How to Choose Metrics">How to Choose Metrics</a></li>
+                <li>
+                    <a href="#dont-let-metrics-replace-the-task-objective" aria-label="Don&rsquo;t Let Metrics Replace the Task Objective">Don&rsquo;t Let Metrics Replace the Task Objective</a></li></ul>
+                </li>
+                <li>
+                    <a href="#llm-as-a-judge" aria-label="LLM-as-a-Judge">LLM-as-a-Judge</a><ul>
+                        
+                <li>
+                    <a href="#what-to-watch-out-for-with-llm-judges" aria-label="What to Watch Out for with LLM Judges">What to Watch Out for with LLM Judges</a></li></ul>
+                </li>
+                <li>
+                    <a href="#human-evaluation" aria-label="Human Evaluation">Human Evaluation</a><ul>
+                        
+                <li>
+                    <a href="#what-to-watch-out-for-with-human-evaluation" aria-label="What to Watch Out for with Human Evaluation">What to Watch Out for with Human Evaluation</a></li></ul>
+                </li>
+                <li>
+                    <a href="#evaluators-need-controlled-variables-too" aria-label="Evaluators Need Controlled Variables Too">Evaluators Need Controlled Variables Too</a></li>
+                <li>
+                    <a href="#summary" aria-label="Summary">Summary</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Who judges? And how?</p>
+<p>There are three mainstream approaches to scoring today:</p>
+<p>- Code-based Evaluators</p>
+<p>- LLM-as-a-Judge</p>
+<p>- Human Evaluation</p>
+<h2 id="code-based-evaluators">Code-based Evaluators<a hidden class="anchor" aria-hidden="true" href="#code-based-evaluators">#</a></h2>
+<p>Code-based Evaluators are suited for tasks with hard rules, explicit states, or computable answers.</p>
+<p>This type of evaluation is fast, low-cost, and produces stable results — ideal for CI/CD pipelines as regression tests after every change to the model, prompt, tools, or workflow.</p>
+<p>For task execution specifically, evaluation should care about the final result or system state, not just what the model said. For tasks with clearly defined answers, you can directly check whether the model output matches the expected result.</p>
+<p>During R&amp;D, we often need to quickly identify an optimization direction — choosing a model, modifying a prompt, or tuning hyperparameters. This process requires running a large number of experiments. If every round depends on human annotation and scoring, the evaluation cycle, labor cost, and subjective variance all become confounding factors, and experiments become hard to reproduce reliably.</p>
+<p>This is where Code-based Evaluators come in: scoring through automated, standardized, reproducible, and quantifiable methods.</p>
+<p>At its core, this involves two parts: datasets and evaluation metrics. Datasets were covered in the <a href="/en/posts/agent-eval-guide-02/">previous article</a>, so this one focuses on metrics.</p>
+<h3 id="how-to-choose-metrics">How to Choose Metrics<a hidden class="anchor" aria-hidden="true" href="#how-to-choose-metrics">#</a></h3>
+<p>Metric selection is fundamentally a modeling exercise — translating business objectives into quantifiable questions. Different task types call for different evaluation metrics.</p>
+<p>For classification tasks, Accuracy is a common baseline metric. But in scenarios with class imbalance — medical diagnosis, for instance — relying on Accuracy alone can be highly misleading. You may need to additionally track Recall, and depending on the actual problem, choose metrics like F1-Score, MCC (Matthews Correlation Coefficient), or ROC curves.</p>
+<p>For tasks with definitive answers — a final numerical value in a math problem, a classification label, or a fixed identifier — evaluation is relatively straightforward. Exact Match can directly check whether outputs are consistent; <code>pass@k</code> measures the probability that the model succeeds at least once across k samples.</p>
+<p>Evaluating LLM-generated responses, by contrast, is more challenging.</p>
+<p>Exact Match works for scenarios where answer expression is tightly constrained, but has clear limitations for open-domain QA. N-gram metrics like BLEU and ROUGE focus on lexical overlap and struggle to capture full semantic relationships. Methods like BERTScore compute semantic similarity via embeddings, but introduce a new model variable — and similarity scores are usually relative values that still require calibration and benchmarking.</p>
+<p>These open-text tasks typically call for LLM-as-a-Judge.</p>
+<p>As model capabilities grow, evaluation targets are also expanding beyond accuracy to dimensions like safety, trustworthiness, stability, and cost.</p>
+<h3 id="dont-let-metrics-replace-the-task-objective">Don&rsquo;t Let Metrics Replace the Task Objective<a hidden class="anchor" aria-hidden="true" href="#dont-let-metrics-replace-the-task-objective">#</a></h3>
+<p>BLEU, ROUGE, and Embedding Similarity can all be computed automatically by code — but &ldquo;can be computed automatically&rdquo; does not mean they effectively reflect business quality.</p>
+<p>A response with high semantic similarity can still miss a critical constraint; a response with low lexical overlap can still be entirely correct. Metrics are merely measurement proxies for business objectives. Once a proxy decouples from the real objective, optimizing the metric may actually push the system away from the problem you genuinely need to solve.</p>
+<h2 id="llm-as-a-judge">LLM-as-a-Judge<a hidden class="anchor" aria-hidden="true" href="#llm-as-a-judge">#</a></h2>
+<p>Many tasks have no single correct answer.</p>
+<p>For example: determining whether a response is complete, whether it faithfully adheres to reference materials, whether it overlooks risks, or whether an analysis genuinely addresses the user&rsquo;s question. These criteria can be described in words, but are exceedingly difficult to encode as an exhaustive set of rules.</p>
+<p>This is where LLM-as-a-Judge comes in. Common approaches include:</p>
+<ul>
+<li>
+<p>Classification: pass/fail judgment, or categorizing the type of error.</p>
+</li>
+<li>
+<p>Scoring: assigning a score of 1–5 against an explicit rubric.</p>
+</li>
+<li>
+<p>Pairwise comparison: comparing version A and version B, judging which better meets the criteria.</p>
+</li>
+<li>
+<p>(and more…)</p>
+</li>
+</ul>
+<p>Among these, pairwise comparison is generally more stable than assigning absolute scores. When presented with two concrete answers, humans also tend to find it easier to judge which is better, rather than precisely articulating &ldquo;why this is a 3 and not a 4.&rdquo;</p>
+<p>The value of an LLM Judge lies in scale. It can perform initial screening and repeat evaluation across large volumes of open text, and can output error categories and scoring rationales, helping teams pinpoint issues.</p>
+<p>But a Judge&rsquo;s score is still a model output — a scalable approximation of judgment, one that itself needs to be evaluated and calibrated.</p>
+<h3 id="what-to-watch-out-for-with-llm-judges">What to Watch Out for with LLM Judges<a hidden class="anchor" aria-hidden="true" href="#what-to-watch-out-for-with-llm-judges">#</a></h3>
+<blockquote>
+<p>Judge one clear dimension at a time</p>
+</blockquote>
+<p>&ldquo;Please comprehensively evaluate the quality of this response&rdquo; rarely yields stable results. Break it down into factual correctness, completeness, relevance, and safety — and write observable scoring descriptors for each. The results become far more interpretable.</p>
+<blockquote>
+<p>Make the rubric executable</p>
+</blockquote>
+<p>&ldquo;Professional content&rdquo; and &ldquo;good user experience&rdquo; are both too vague. A more effective rubric spells out which facts must be included, which errors count as critical failures, and what performance each score level corresponds to.</p>
+<p>This is also why the <a href="/en/posts/agent-eval-guide-02/">previous article</a> recommended breaking Golden Answers into Statements and Rubrics: having a Judge verify a clear set of decision points is far more stable than comparing whether two long passages are &ldquo;similar.&rdquo;</p>
+<blockquote>
+<p>Require evidence and reasoning</p>
+</blockquote>
+<p>Keeping only a score makes it hard to detect where the Judge went wrong. Have the Judge cite evidence from the evaluated response and output structured reasoning — this makes human spot-checking and downstream analysis feasible.</p>
+<blockquote>
+<p>Address known biases</p>
+</blockquote>
+<p>Judges may favor longer answers, more familiar formats, options appearing earlier in the list, and content that matches their own stylistic patterns.</p>
+<p>When doing pairwise comparisons, randomly swap answer order to reduce position bias. For critical cases, repeat evaluation and check for consistency via self-consistency. When necessary, aggregate results from multiple Judges.</p>
+<p>For content that is &ldquo;partially correct but severely wrong in specific areas,&rdquo; Judges can still miss failures. Knowledge boundary issues and hallucinations in specialized domains also require human review.</p>
+<blockquote>
+<p>Pin and record versions</p>
+</blockquote>
+<p>The Judge model, prompt, temperature, and rubric are all part of the evaluator. Change any one of them, and the evaluation scale may drift. Experiment logs should preserve the full version and final scores.</p>
+<blockquote>
+<p>Calibrate with human-annotated samples</p>
+</blockquote>
+<p>Before large-scale execution, prepare a small set of samples judged by domain experts and check the Judge&rsquo;s alignment with human conclusions. For high-risk or specialized domains, ongoing spot-checking is also necessary.</p>
+<h2 id="human-evaluation">Human Evaluation<a hidden class="anchor" aria-hidden="true" href="#human-evaluation">#</a></h2>
+<p>Human evaluation is the most expensive and slowest approach, but it shoulders work that the other two methods cannot accomplish independently.</p>
+<p>Human capacity for complex semantic understanding and value judgment gives Human Evaluation an irreplaceable position — and also accounts for its higher cost.</p>
+<p>Systematic Human Evaluation, depending on the completeness of available evaluation resources, can take several forms:</p>
+<ul>
+<li>
+<p>When no ready-made dataset exists: provide complete task descriptions and structured scoring guidelines. For example, when evaluating a dialogue system, clearly define dimensions like &ldquo;coherence,&rdquo; &ldquo;relevance,&rdquo; and &ldquo;safety,&rdquo; and require annotators to provide scoring rationales.</p>
+</li>
+<li>
+<p>When a dataset already exists: provide annotators with model inputs, outputs, and scoring guidelines together.</p>
+</li>
+<li>
+<p>When both a dataset and automated scoring results exist: have human annotators review the results through Error Annotation.</p>
+</li>
+</ul>
+<p>Human evaluation cannot be reduced to &ldquo;grab a few people and have them try it out based on gut feeling.&rdquo; Systematic human evaluation requires, at minimum: task descriptions, model inputs and outputs, scoring dimensions, score definitions, and examples. When necessary, annotators should also record error categories, severity, and scoring rationales.</p>
+<p>Compared to vague scoring, Error Annotation is often far more useful. Having domain experts point out where the error occurred, what type it belongs to, and how severe it is — the resulting information feeds directly into error analysis and eval set iteration.</p>
+<h3 id="what-to-watch-out-for-with-human-evaluation">What to Watch Out for with Human Evaluation<a hidden class="anchor" aria-hidden="true" href="#what-to-watch-out-for-with-human-evaluation">#</a></h3>
+<blockquote>
+<p>Choose people who genuinely possess judgment ability</p>
+</blockquote>
+<p>Fluency can be left to general annotators; whether a professional conclusion is reliable requires domain experts. Expert time is scarce — concentrate it on the parts that truly demand professional judgment.</p>
+<blockquote>
+<p>Reduce the cognitive burden of annotation</p>
+</blockquote>
+<p>The <a href="/en/posts/agent-eval-guide-02/">previous article</a> introduced a principle: favor true/false questions over multiple choice, and multiple choice over open-ended questions. Breaking complex tasks into explicit decision points lowers costs and reduces interpretation variance across annotators.</p>
+<blockquote>
+<p>Run a small-scale pilot first</p>
+</blockquote>
+<p>Before scaling up annotation, test a small batch of samples to check whether the instructions are clear and whether edge cases produce disagreement. If different annotators consistently fail to reach agreement, the problem likely lies in the rubric itself.</p>
+<blockquote>
+<p>Document disagreements</p>
+</blockquote>
+<p>Disagreement is not just noise. It may signal ambiguity in the task definition, or that the business side has yet to converge on a unified standard. Further judgment is needed on whether the disagreement stems from insufficient knowledge, unclear instructions, or genuinely different value judgments.</p>
+<h2 id="evaluators-need-controlled-variables-too">Evaluators Need Controlled Variables Too<a hidden class="anchor" aria-hidden="true" href="#evaluators-need-controlled-variables-too">#</a></h2>
+<p>Regardless of which scoring method you use, evaluation results are affected by experimental setup.</p>
+<p>Prompts affect results. A sound prompt should include a clear task description, the context needed to complete the task, and specific, unambiguous questions.</p>
+<p>Repeat experiments to reduce random error. Design multiple prompt variants for the same task, vary temperature, shuffle order, and so on.</p>
+<p>Structured Output is also an experimental variable. Structured output helps improve evaluation controllability and reduces extraneous content, but can also alter the model&rsquo;s output distribution. When your actual deployment uses JSON, Schema, or Tool Calling, evaluation should ideally run under the same interface conditions.</p>
+<h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
+<p>Code-based Evaluators are suited for tasks that can be directly verified through hard rules, definitive answers, or system state.</p>
+<p>LLM-as-a-Judge is suited for tasks that require open-ended semantic judgment at scale — but it carries its own randomness, biases, and scale drift.</p>
+<p>Human Evaluation is responsible for defining standards, calibrating automated evaluation results, and handling samples that are high-stakes, highly specialized, or contentious.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/en/tags/eval/">Eval</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/agent/">Agent</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/agent-eval/">Agent-Eval</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/en/posts/agent-eval-guide-02/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Agent Eval Practical Guide 02: How to Build an Eval Set</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on x"
+            href="https://x.com/intent/tweet/?text=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f&amp;hashtags=Eval%2cAgent%2cAgent-Eval">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f&amp;title=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods&amp;summary=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods&amp;source=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f&title=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on whatsapp"
+            href="https://api.whatsapp.com/send?text=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods%20-%20https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on telegram"
+            href="https://telegram.me/share/url?text=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Agent Eval Practical Guide 03: How to Choose Evaluation Methods on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Agent%20Eval%20Practical%20Guide%2003%3a%20How%20to%20Choose%20Evaluation%20Methods&u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-eval-guide-03%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/en/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
