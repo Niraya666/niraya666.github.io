@@ -117,8 +117,8 @@
   "keywords": [
     "Eval", "Agent", "Agent-Eval"
   ],
-  "articleBody": "如果你是抱着\"去哪里找 50 条评测数据\"的问题点开这篇文章，我建议先换一个问题。\n真正困难的，从来不是凑出 50 个 query，而是让每一个 query 都成为一条可以稳定判分的 case：它测试什么，什么算成功，依赖哪个时间点和数据状态，哪些过程不可省略，失败之后又该如何进入下一轮回归。\n一条 query 还不是一个 case。只有当成功标准、上下文状态和必要约束都明确时，它才真正可以用于评测。\n一条能被判分的 case，大概长这样：\ncase = { query, # 输入：问题、任务指令 judgment, # 成功标准：statements / rubric，而非一条\"标准答案\" trajectory_anchors, # 中间轨迹锚点：expect-tools、关键中间状态、forbidden 项 world_state, # 世界状态：reference_time、数据快照标识 metadata # 来源、能力维度、难度、版本 } schema 就是本文的目录：\nquery 从哪来 —— 来源与反推合成\njudgment 怎么写 —— 标准怎么写\ntrajectory_anchors 和 world_state 为什么不能省 —— 一条 case 还要带上什么\nmetadata 怎么支撑覆盖与迭代 —— 多少条才够，以及数据飞轮\nquery 从哪来 按项目阶段的可得性排序。\nDogfooding。 开发过程中，团队自己使用系统时亲眼所见的失败，成功标准往往当场就能说出来，都是一条条现成的 case。当然，也有陷阱：熟悉系统的人会不自觉绕开它不擅长的问法，这批 case 会偏向 happy path，多样性指望不上。\n需求与验收标准。 PRD 里的每一条功能描述、验收清单里的每一个检查项，天然就是一条 case 的雏形。缺陷也明显：需求文档里的语言是产品经理的语言，不是用户的语言。\n已上线的真实生产日志和系统。不论是已上线的 chatbot 应用，还是现成的 SaaS 系统。这里并非直接随机抽日志，而是从业务角度上，去挖掘高频的访问（需求）。\n合成数据。 用 LLM 生成、补充、扩展。它排在最后不是因为不重要，而是因为它不该独立存在。好的合成永远以前三种真实数据为种子。\n反推与合成 正着想问题，多半是想不出来的；但答案和原料往往就躺在现成的资源里——从它们倒推问题。\nRAG 场景。 一条 testset 是 (query, judgment, references)。凭空想 query 很难，但 references 是现成的。选一段文档，让 LLM 基于它生成\"这段内容能够回答的问题\"，QA 对就有了，而且 answer 有据可查。但这也面临着一个问题：直接合成的 query 往往不像人会问出的问题。\nText2SQL 场景。 一条 case 是 (query, golden-sql, expect-tools, expect-data, …)。缺的是自然语言 query？但 SaaS 系统里高频执行的 SQL 是现成的，带注释的报表代码也是现成的。把这些交给 LLM，反推\"业务方会怎么用一句话问出这条 SQL\"——golden-sql 甚至不用写。\n合成 pipeline。不少评估框架支持基于已有文档合成测试集（比如 DeepEval 的 synthesizer），但结果往往生硬。自建 pipeline 并不复杂，一是从真实种子变异，而不是凭空生成；二是引入 persona，合成数据不像人话，很大程度上是因为缺少\"提问的人\"——给 LLM 一组用户画像（角色、意图、表达习惯，可以基于业务本体 ontology 来构建）。\nFilter。 合成结果先过一遍自动化检查：去重、去低质（长度、格式等）、去越界。机器筛完再进人工。\nHITL。 人工检查这一步不能跳过。但人工很贵，所以有一条会在本文反复出现的原则：能做判断题就不做选择题，能做选择题就不做问答题——尽可能降低标注的摩擦。\njudgment 怎么写 怎么定义\"答对\"？\n最直觉的做法：评测集长成 (query, golden-answer)，然后让 LLM-as-a-Judge 比较系统输出与 golden-answer\"是否一致\"。judge 会立刻陷入两难——“一致\"到什么程度算一致？评分随机性极大，而且分数不可解释。\n尽可能把\"标准答案\"拆成可核对的判定点：statements（回答必须包含 / 不得包含的事实陈述），或者 rubric（得分点与扣分点清单）。\n还顺带解决了一个成本问题。请行业专家写标准答案，又贵又没用：写一条\"完美答案\"要半小时，并且也难以用于评估。\n专家不写答案，只标得分点和扣分点——他们对\"什么最关键、什么绝不能错\"的判断，才是真正稀缺的东西\n由 rubric 反推一版参考 answer，交给 LLM 来写，成本趋近于零\n（依旧是把问答题变成判断题。降低标注摩擦这个原则）\n一条 case 还要带上什么 query 和 judgment 齐了，还不够。\nworld_state：case 所依赖的世界状态\n这是一个真正踩过的坑。评估 Text2SQL 时，有一批 case 的问法是时间相对的——“上个月华东区销售怎么样”。golden-sql 是按写 case 那天的\"上个月\"生成的；几周后跑回归，同一条 case，系统理解的\"上个月\"已经是另一个月。从那以后，schema 里多了两个字段：reference_time 和数据快照标识。不论是 mock 系统时间，还是上下文注入，都能用上。\ntrajectory_anchors：中间轨迹的锚点\n对 chatbot，测最终回答也许够了；对 agent，只测 E2E 结果会漏掉大量信息。\n锚点包括但不限于：expect-tools（该调哪些工具）、关键的中间状态、以及 forbidden 项（绝不能出现的调用或状态）。至于\"哪条轨迹更好”，轮次越少越好、token 消耗越低越好这类粗指标只能兜底，锚点命中率的信息量大得多。\n标注中间过程还有一个好处：大量判定可以从 judge-LLM 降级为代码比对，又快、又便宜、还没有随机性。\n多少条才够 重要的不是总数，是分布。\n一个覆盖矩阵：一个轴是能力维度（系统应当覆盖的任务类型），一个轴是难度或场景变体（简单直问 / 多约束 / 多跳……）\nmetadata 字段在这里派上用场：每条 case 标上它所属的能力维度、难度、来源，覆盖矩阵才能自动统计，而不是靠人肉盘点。\n数据飞轮 第一版评测集是静态的，而系统会不断测出新的问题，评测集是不断更新的。\n来源自然是生产环境。上线之后（怎么采样、怎么 tracing，第五篇细讲），每一条线上失败，都是一条候选 case。“失败回流\"的管道一旦打通，评测集就从一份需要你维护的负担，变成一份随系统一起增值的资产。\n然后，将评测集版本化管理。\n附录：工具推荐 LLMOps + 评估框架\nlangfuse\nharbor\nDeepEval\nTrulens\nRAGAS\nlangsmith\n数据合成框架｜数据合成 pipeline\nDistilabel\ndataJuicer\ncocoindex\n数据标注\nargilla ",
-  "wordCount" : "2515",
+  "articleBody": "如果你是抱着\"去哪里找 50 条评测数据\"的问题点开这篇文章，我建议先换一个问题。\n真正困难的，从来不是凑出 50 个 query，而是让每一个 query 都成为一条可以稳定判分的 case：它测试什么，什么算成功，依赖哪个时间点和数据状态，哪些过程不可省略，失败之后又该如何进入下一轮回归。\n一条 query 还不是一个 case。只有当成功标准、上下文状态和必要约束都明确时，它才真正可以用于评测。\n一条能被判分的 case，大概长这样：\ncase = { query, # 输入：问题、任务指令 judgment, # 成功标准：statements / rubric，而非一条\"标准答案\" trajectory_anchors, # 中间轨迹锚点：expect-tools、关键中间状态、forbidden 项 world_state, # 世界状态：reference_time、数据快照标识 metadata # 来源、能力维度、难度、版本 } schema 就是本文的目录：\nquery 从哪来 —— 来源与反推合成\njudgment 怎么写 —— 标准怎么写\ntrajectory_anchors 和 world_state 为什么不能省 —— 一条 case 还要带上什么\nmetadata 怎么支撑覆盖与迭代 —— 多少条才够，以及数据飞轮\nquery 从哪来 按项目阶段的可得性排序。\nDogfooding。 开发过程中，团队自己使用系统时亲眼所见的失败，成功标准往往当场就能说出来，都是一条条现成的 case。当然，也有陷阱：熟悉系统的人会不自觉绕开它不擅长的问法，这批 case 会偏向 happy path，多样性指望不上。\n需求与验收标准。 PRD 里的每一条功能描述、验收清单里的每一个检查项，天然就是一条 case 的雏形。缺陷也明显：需求文档里的语言是产品经理的语言，不是用户的语言。\n已上线的真实生产日志和系统。不论是已上线的 chatbot 应用，还是现成的 SaaS 系统。这里并非直接随机抽日志，而是从业务角度上，去挖掘高频的访问（需求）。\n合成数据。 用 LLM 生成、补充、扩展。它排在最后不是因为不重要，而是因为它不该独立存在。好的合成永远以前三种真实数据为种子。\n反推与合成 正着想问题，多半是想不出来的；但答案和原料往往就躺在现成的资源里——从它们倒推问题。\nRAG 场景。 一条 testset 是 (query, judgment, references)。凭空想 query 很难，但 references 是现成的。选一段文档，让 LLM 基于它生成\"这段内容能够回答的问题\"，QA 对就有了，而且 answer 有据可查。但这也面临着一个问题：直接合成的 query 往往不像人会问出的问题。\nText2SQL 场景。 一条 case 是 (query, golden-sql, expect-tools, expect-data, …)。缺的是自然语言 query？但 SaaS 系统里高频执行的 SQL 是现成的，带注释的报表代码也是现成的。把这些交给 LLM，反推\"业务方会怎么用一句话问出这条 SQL\"——golden-sql 甚至不用写。\n合成 pipeline。不少评估框架支持基于已有文档合成测试集（比如 DeepEval 的 synthesizer），但结果往往生硬。自建 pipeline 并不复杂，一是从真实种子变异，而不是凭空生成；二是引入 persona，合成数据不像人话，很大程度上是因为缺少\"提问的人\"——给 LLM 一组用户画像（角色、意图、表达习惯，可以基于业务本体 ontology 来构建）。\nFilter。 合成结果先过一遍自动化检查：去重、去低质（长度、格式等）、去越界。机器筛完再进人工。\nHITL。 人工检查这一步不能跳过。但人工很贵，所以有一条会在本文反复出现的原则：能做判断题就不做选择题，能做选择题就不做问答题——尽可能降低标注的摩擦。\njudgment 怎么写 怎么定义\"答对\"？\n最直觉的做法：评测集长成 (query, golden-answer)，然后让 LLM-as-a-Judge 比较系统输出与 golden-answer\"是否一致\"。judge 会立刻陷入两难——“一致\"到什么程度算一致？评分随机性极大，而且分数不可解释。\n尽可能把\"标准答案\"拆成可核对的判定点：statements（回答必须包含 / 不得包含的事实陈述），或者 rubric（得分点与扣分点清单）。\n还顺带解决了一个成本问题。请行业专家写标准答案，又贵又没用：写一条\"完美答案\"要半小时，并且也难以用于评估。\n专家不写答案，只标得分点和扣分点——他们对\"什么最关键、什么绝不能错\"的判断，才是真正稀缺的东西\n由 rubric 反推一版参考 answer，交给 LLM 来写，成本趋近于零\n（依旧是把问答题变成判断题。降低标注摩擦这个原则）\n一条 case 还要带上什么 query 和 judgment 齐了，还不够。\nworld_state：case 所依赖的世界状态\n这是一个真正踩过的坑。评估 Text2SQL 时，有一批 case 的问法是时间相对的——“上个月华东区销售怎么样”。golden-sql 是按写 case 那天的\"上个月\"生成的；几周后跑回归，同一条 case，系统理解的\"上个月\"已经是另一个月。从那以后，schema 里多了两个字段：reference_time 和数据快照标识。不论是 mock 系统时间，还是上下文注入，都能用上。\ntrajectory_anchors：中间轨迹的锚点\n对 chatbot，测最终回答也许够了；对 agent，只测 E2E 结果会漏掉大量信息。\n锚点包括但不限于：expect-tools（该调哪些工具）、关键的中间状态、以及 forbidden 项（绝不能出现的调用或状态）。至于\"哪条轨迹更好”，轮次越少越好、token 消耗越低越好这类粗指标只能兜底，锚点命中率的信息量大得多。\n标注中间过程还有一个好处：大量判定可以从 judge-LLM 降级为代码比对，又快、又便宜、还没有随机性。\n多少条才够 重要的不是总数，是分布。\n一个覆盖矩阵：一个轴是能力维度（系统应当覆盖的任务类型），一个轴是难度或场景变体（简单直问 / 多约束 / 多跳……）\nmetadata 字段在这里派上用场：每条 case 标上它所属的能力维度、难度、来源，覆盖矩阵才能自动统计，而不是靠人肉盘点。\n数据飞轮 第一版评测集是静态的，而系统会不断测出新的问题，评测集是不断更新的。\n来源自然是生产环境。上线之后（怎么采样、怎么 tracing，第五篇细讲），每一条线上失败，都是一条候选 case。“失败回流\"的管道一旦打通，评测集就从一份需要你维护的负担，变成一份随系统一起增值的资产。\n然后，将评测集版本化管理。\n系列导航 上一篇：Agent Eval 实践指南 开篇01: 系统越复杂，评估越要先行 下一篇：Agent Eval 实践指南 03: 如何选择评估方法 附录：工具推荐 LLMOps + 评估框架\nlangfuse\nharbor\nDeepEval\nTrulens\nRAGAS\nlangsmith\n数据合成框架｜数据合成 pipeline\nDistilabel\ndataJuicer\ncocoindex\n数据标注\nargilla ",
+  "wordCount" : "2573",
   "inLanguage": "zh-cn",
   "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-07-17T12:00:00+08:00",
   "dateModified": "2026-07-17T12:00:00+08:00",
@@ -252,7 +252,7 @@
     <div class="post-description">
       评测集不只是凑 query——每一条 case 需要明确成功标准、世界状态、轨迹锚点和元数据，才能真正用于稳定判分和回归测试。
     </div>
-    <div class="post-meta"><span title='2026-07-17 12:00:00 +0800 CST'>July 17, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;LZY&nbsp;|&nbsp;Translations:
+    <div class="post-meta"><span title='2026-07-17 12:00:00 +0800 +08'>July 17, 2026</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;LZY&nbsp;|&nbsp;Translations:
 <ul class="i18n_list">
     <li>
         <a href="https://niraya666.github.io/en/posts/agent-eval-guide-02/">English</a>
@@ -279,6 +279,8 @@
                     <a href="#%e5%a4%9a%e5%b0%91%e6%9d%a1%e6%89%8d%e5%a4%9f" aria-label="多少条才够">多少条才够</a></li>
                 <li>
                     <a href="#%e6%95%b0%e6%8d%ae%e9%a3%9e%e8%bd%ae" aria-label="数据飞轮">数据飞轮</a></li>
+                <li>
+                    <a href="#%e7%b3%bb%e5%88%97%e5%af%bc%e8%88%aa" aria-label="系列导航">系列导航</a></li>
                 <li>
                     <a href="#%e9%99%84%e5%bd%95%e5%b7%a5%e5%85%b7%e6%8e%a8%e8%8d%90" aria-label="附录：工具推荐">附录：工具推荐</a>
                 </li>
@@ -356,6 +358,11 @@
 <p>第一版评测集是静态的，而系统会不断测出新的问题，评测集是不断更新的。</p>
 <p>来源自然是生产环境。上线之后（怎么采样、怎么 tracing，第五篇细讲），每一条线上失败，都是一条候选 case。&ldquo;失败回流&quot;的管道一旦打通，评测集就从一份需要你维护的负担，变成一份随系统一起增值的资产。</p>
 <p>然后，将评测集版本化管理。</p>
+<h2 id="系列导航">系列导航<a hidden class="anchor" aria-hidden="true" href="#系列导航">#</a></h2>
+<ul>
+<li>上一篇：<a href="/posts/agent-eval-guide-01/">Agent Eval 实践指南 开篇01: 系统越复杂，评估越要先行</a></li>
+<li>下一篇：<a href="/posts/agent-eval-guide-03/">Agent Eval 实践指南 03: 如何选择评估方法</a></li>
+</ul>
 <h2 id="附录工具推荐">附录：工具推荐<a hidden class="anchor" aria-hidden="true" href="#附录工具推荐">#</a></h2>
 <p>LLMOps + 评估框架</p>
 <ul>
@@ -405,6 +412,11 @@
       <li><a href="https://niraya666.github.io/tags/agent-eval/">Agent-Eval</a></li>
     </ul>
 <nav class="paginav">
+  <a class="prev" href="https://niraya666.github.io/posts/agent-eval-guide-03/">
+    <span class="title">« </span>
+    <br>
+    <span>Agent Eval 实践指南 03: 如何选择评估方法</span>
+  </a>
   <a class="next" href="https://niraya666.github.io/posts/agent-eval-guide-01/">
     <span class="title"> »</span>
     <br>

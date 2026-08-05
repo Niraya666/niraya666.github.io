@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 17 Jul 2026 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Eval 实践指南 03: 如何选择评估方法</title>
+      <link>https://niraya666.github.io/posts/agent-eval-guide-03/</link>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-eval-guide-03/</guid>
+      <description>《Agent Eval 实践指南》第三篇：深入对比 Code-based Evaluators、LLM-as-a-Judge 与人工评估三种判分方法的适用场景、选择依据与常见陷阱，以及评估器自身的控制变量与校准。</description>
+    </item>
     <item>
       <title>Agent Eval 实践指南 02: 如何准备评测集</title>
       <link>https://niraya666.github.io/posts/agent-eval-guide-02/</link>
