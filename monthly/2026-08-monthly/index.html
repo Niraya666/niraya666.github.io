@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-08 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+DeepSeek-V4-Flash-Vision-Exp: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供
+Qwen3.8-27B: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2026-08-monthly/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/monthly/2026-08-monthly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="2026-08 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+DeepSeek-V4-Flash-Vision-Exp: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供
+Qwen3.8-27B: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2026-08-monthly/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/A33790AA-BAEC-4CB0-BF67-9636E9775DED_1_201_a.webp" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-08-29T20:00:00+08:00" />
+<meta property="article:modified_time" content="2026-08-29T20:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/A33790AA-BAEC-4CB0-BF67-9636E9775DED_1_201_a.webp" />
+<meta name="twitter:title" content="2026-08 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+DeepSeek-V4-Flash-Vision-Exp: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供
+Qwen3.8-27B: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-08 月刊",
+      "item": "https://niraya666.github.io/monthly/2026-08-monthly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-08 月刊",
+  "name": "2026-08 月刊",
+  "description": "值得关注的模型和新技术 DeepSeek-V4-Flash-Vision-Exp: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供\nQwen3.8-27B: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 DeepSeek-V4-Flash-Vision-Exp: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供\nQwen3.8-27B: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens\nGLM-5.3-Flash: GLM-5 系列首个原生多模态模型，采用 320B 总参数、18B 激活参数的 MoE 架构，将 sparse attention 与 linear attention 结合，并引入 Manifold-Constrained Hyper-Connections（mHC）以降低长上下文推理成本\nDeepSeek Harness: DeepSeek 开源的 Agent harness，基于 Cordis 构建“Everything is a Plugin”架构，将模型、工具、Agent loop 和 UI 统一为可组合插件，当前处于 developer preview 阶段\n值得关注的开源项目 Dressage: 面向任意 Agent 和 sandbox 的可扩展强化学习框架，在统一接口下支持 Python tool loop 与 Claude Code、Codex 等 blackbox Agent，打通工具执行、rollout 和训练数据转换\ncumora: 将 AI Agent 作为一等团队成员的跨平台协作聊天工具，既支持云端 Agent，也能接入本地 Claude Code 和 Codex\ncomputer: Cloudflare 开源的持久化 Agent workspace，在 Durable Object 中以 SQLite 维护权威文件系统状态，并通过统一 runtime 接入 Linux container、isolate shell 和 JavaScript 三类可插拔执行后端\nloopx: 面向 Codex、Claude Code 等 coding agent 的长周期任务控制平面，重点解决持久执行、治理与跨 harness 编排问题\nsnitch: 面向 macOS AI coding agent 的确定性文本主张验证器，用规则化检查帮助发现生成文本中未被证据支持的 claim\n值得关注的研究和论文 Not All LLM Reasoning is Visible in the Chain-of-Thought arXiv:2607.22925\n大模型的一部分有效计算并不会以可读的 Chain-of-Thought 呈现。即使模型输出的只是固定、无语义的 filler tokens，它们对应的隐藏状态仍可以成为内部计算空间，提高任务准确率，甚至帮助模型完成输出中完全不可见的附加目标\nInvisible Reasoning\n论文将“对最终行为或答案产生实际影响，但没有在输出 token 中留下可解释痕迹的内部计算”定义为 Invisible Reasoning（不可见推理）。\n诊断方法\n在问题和答案之间插入对所有问题都完全相同的 filler token 序列；如果加入后准确率提高，说明有用信息在其隐藏状态中逐渐形成，而非写在 token 表面 性能增益依赖 filler token 的具体类型，且不同模型偏好不同的 filler token，说明这一现象与模型自身的表示空间和 attention pattern 有关 结合 token 顺序调换、activation patching、residual stream 线性探针与 attention masking，判断有用信息在哪些层形成，以及计算是否分布在整段 filler span 中 安全实验\n模型表面任务是完成四位数乘法，但系统提示要求它在答案满足某些模运算条件时输出 N/A。要正确执行，模型必须在输出答案前先计算乘积、检查隐藏条件，再决定输出数字还是 N/A，而这一过程不会出现在可见 CoT 中。\nRL 的影响\n实验中，经过 RL 训练的模型在测试时不再从 filler tokens 中获得额外收益。这说明 filler token 带来的隐藏计算能力不一定会在后训练中持续保留，但也进一步证明：仅观察可见 CoT 不足以完整审计模型的计算过程。\nDataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces arXiv:2608.03451\nKDD Cup 2026 Data Agents for Complex Data Analysis 的官方评测 benchmark，考察 Agent 能否在杂乱的数据工作区中自主找到正确证据，完成跨文件、数据库、文档与视频的数据对齐和计算，最终输出可以确定性验证的完整结果表\n三个 benchmark 缺口\nWorkspace scope：不再预先指出正确数据源，而是给 Agent 一个完整的异构 workspace Output contract：所有任务统一要求输出完整结果表，而不是单句答案或自由形式分析报告 Evaluation semantics：结果由程序确定性验证，不依赖另一个 LLM 充当 judge，同时允许列名、格式等语义等价变化 DataSpace-Builder：从 Text-to-SQL “编译”出异构 Agent 任务\nDataSpace-Builder 从 EHRSQL 和 BULL 中的 Question + Database + Gold SQL 出发，将其转换为 Question + CSV/JSON/SQLite/PDF/Markdown/Video → Complete Table。\nCross-Language Transformation：联合迁移 Question、Database 和 SQL，对 table name、column name、cell value、SQL literal 及问题中的对应概念建立统一 replacement map；完成后再检查查询等价性与 Question-SQL 语义一致性 Constraint-Aware Relational Sampling：从 Gold SQL AST 中提取 primary/foreign keys、join columns、filter values、boundary values 和 target entities 作为 safeguard constraints，先保护关键行，再沿 relational key 做 closure 并采样其他行 Multimodal Rendering：将 relational tables 重新渲染为 CSV、JSON、SQLite、Markdown、PDF 和 Video 等异构 artifact Human Review \u0026 Repair：每个任务由 11 人领域专家池中的两人独立盲审，先在不看 gold 的情况下解题，再共同检查 gold、数据充分性、问题明确性、数值精度、行序和数据类型；无法修复的任务直接删除 确定性语义评估\n严格 string match 对格式差异过于敏感，LLM Judge 则有随机性，还可能把不完整答案判为正确。DataSpace 因此设计了 semantics-aware deterministic evaluator，在保证内容完整的前提下，允许规定精度范围内的数值差异和语义等价的格式变化。\nFrom LLM Inference to Agentic Workloads: Characterization and Implications for Serving Systems arXiv:2608.15127\n当 AI 从一次 Request → LLM inference → Response 变成持续几十分钟甚至几小时、不断调用工具的 Agent 之后，现有围绕 GPU utilization、batching、KV Cache、prefill/decode 和 tokens/s 构建的 LLM serving infrastructure 已无法完整描述真实系统瓶颈\nAgentSysBench\n论文提出 benchmark 与 measurement framework AgentSysBench，覆盖 10 类代表性 Agent 应用：\n类型 Agent RAG RAG AI Search DeepResearch Multimodal HuggingGPT Coding Mini-SWE Terminal Codex Browser WebAgent GUI GUIAgent Tool-rich Assistant Claude Code Office Agent Openclaw AutoResearch Pi-AutoR 作者将 Agent workload 表示为：\n$$W=\\langle R,T,M,O\\rangle$$\n其中 $R$ 为 request distribution，$T$ 为 tools/environment，$M$ 为 models，$O$ 为 orchestration。Serving System 表示为：\n$$S=\\langle H,C,A\\rangle$$\n其中 $H$ 为 hardware，$C$ 为 component serving mechanism，$A$ 为 deployment architecture。最终观察到的系统行为为：\n$$Y=\\Phi(W,S)$$\n即 Agent 性能是 workload 与 serving system 共同作用的结果。\n主要发现\nShifting Bottleneck：LLM 并不一定是 Agent 的瓶颈，不同任务阶段会在模型推理、工具、网络、存储和 orchestration 之间转移 Token Consumption Snowball：工具输出与历史状态不断回填上下文，使 token 消耗随任务进程滚雪球式增长 Large State Machine：Agent 是由模型调用、工具执行、环境变化和重试构成的巨大状态机，不能再被当作单个 inference request Control-Plane Tax：大量 token 用于维护 Agent 的计划、状态、工具协议和错误恢复，而不是直接生成最终答案 Tool Cache：Agent infrastructure 不仅应 cache LLM prefix，还可以缓存 Search、URL、Retrieval、Tool output 和 Environment object 推荐内容 学习资源 Forward Deployed Engineering Guide: 面向生产级 AI 系统的 FDE 指南，系统覆盖价值发现、架构、evals、安全、部署与运维\nawesome-mac: 按开发、效率、设计、系统工具等类别整理的高质量 macOS 软件清单\nAgent Skills 资源 awesome-gpt-image-2: 以“Prompt as Code”为核心的 GPT-Image-2 工业级提示词引擎与模板库，包含 530+ 案例、20+ 套模板以及可复用 Skills\nreverse-skill: 面向逆向工程、授权渗透测试和安全研究的 Skill Router Pack，支持按需启动工具链与积累可复用经验\nDeepSeek Harness 生态 DSH Desktop: DeepSeek Harness 的 macOS 与 Windows 原生桌面客户端，自动启动和管理本地 Harness 服务，无需手动安装 Node.js\ndsh-TUI: 为 DeepSeek Harness 补充 Claude Code 风格终端交互的 TUI 插件，支持实时状态、流式思考、双击 Esc 回滚、上下文进度和 TPS 显示\n深度文章 Anatomy of a Frontier Lab Agent Intrusion: 以技术时间线复盘针对前沿 AI 实验室 Agent infrastructure 的入侵事件，展示 Agent 工具链、凭据与运行环境的复合攻击面\nGit at any scale: Cursor 对 Git 在超大规模代码库与 Agentic 开发工作流中的工程实践总结\n影音记录 精选歌单 书\u0026阅读摘录 Agent 能干活以后，人反而更需要会管理 我们不该退回到逐行审查代码、逐个批准命令的微观管理中，因为那种做法会彻底抵消代理带来的效率红利\n我们应当从过去的过程陪跑转向结果治理，重新定义完成标准、要求提供轻量凭证、按风险进行抽检，并建立起异常自动升级的通道\n为了避免让收据变成阻碍效率的繁琐形式主义，引入风险分级是非常必要的\n不同的任务需要的证明程度完全不同，而评估管理力度的基本单位应该是具体的任务，而不是代理本身。\nJeff Raikes: The talent debt I warned about is now showing up in the data letting AI absorb entry-level work were quietly accumulating a talent debt they didn’t yet see.\nThey’re the ability to think critically and judge AI’s outputs. Only 16 percent of workers have developed the judgment to move fluidly between directing AI and doing the work themselves.\nThe detail that stuck with me is that those workers deliberately do some tasks without AI, specifically to keep their own thinking sharp.\nAI can free up time and attention so students can go deeper into developing the skills that are hardest to automate: building relationships, collaborating, reasoning through hard ethical questions, and exercising judgment.\nAI literacy without critical thinking is not a workforce strategy\nAuto mode is now the default in Claude Code for Pro, Max, and Team plans The testers caught the dangerous command just 13.6% of the time (143 of 1,053), while auto mode blocked 89% of the same commands (937 of 1,053). Head to head, auto mode blocked 800 commands that a human approved, while humans blocked only 6 that auto mode allowed. As sessions got longer, humans did worse: they blocked about 17% of dangerous commands early in a session, dropping to about 5% after 50 or more prior prompts, while auto mode’s block rate stayed flat regardless of session length.\nWhile most prompts are likely for safe, routine commands, an approval rate that high suggests many users are clicking through reflexively rather than reviewing each command.\nThese prompts ask developers to make dozens or hundreds of important security decisions every day, often in the middle of projects, which places the review burden on users and increases the chance that something important slips through the cracks\nAI 不自动带来超级组织 十年前，企业不敢公开说自己要用机器替代人，那听起来冷酷、反社会、缺乏人味。今天，企业开始把这件事包装成远见。裁员不再只是削成本，它被讲成通往未来组织形态的一张船票。\nAI 裁员的真实含义，未必是“机器已经替代人”。它更像一种新管理语言：当企业想削掉中层、压缩白领、重写组织结构时，AI 给了它一个听起来面向未来的理由。\n于是，一个非常顺理成章的故事出现了。个人会被 AI 增强，成为“超级个体”。企业也会被 AI 增强，成为“超级组织”\n这就是“超级组织”叙事最尴尬的地方。它想同时拥有两个结论：一边说 AI 会让个体前所未有地强大，一边说大企业会在这场个体增强中变得更庞大、更稳固、更不可替代\n裁员时代有一个常见幻觉：企业裁掉的是冗余的人手。 这个说法在流水线时代比较容易成立。机器替代的是重复动作，企业减少的是可替换岗位\n当这些人离开组织，他们带走的不只是技能简历。他们还带走了组织的隐性地图\nAI 把这段距离压短了。一个被裁掉的中层经理，未必能立刻做出一家亚马逊，但只要他熟悉某个垂直环节，就能做出一个更薄、更快、更便宜的工具\n大公司的威胁不再只来自另一家大公司，它可能来自一万个非常小、非常窄、非常懂局部需求的一人公司。\n员工和创业者之间的边界正在变薄。当一个人能做十个人的活，他到底是一名员工，还是一家暂时寄居在公司里的微型企业？企业越强调 AI 提效，这个问题越难回避。\n这套结构的价值，来自一个基本事实：人类协作很贵。\n这就是 AI 对企业的第一刀，它瓦解的是公司作为一种组织形式存在的理由。\n正是大企业不愿自己处理、却又离不开的大量流程。可 AI 正在拆它\nAI 时代如果让更多小单元具备独立交付能力，风险不一定消失，但风险可以从组织内部转移到资本组合中。\n更现实的路径，可能是大公司自己把内部拆成大量更小的经营单元。\n未来的小公司、一人公司、智能体网络，也许会通过类似 Git、API、A2A 的方式协作。大家围绕标准接口交付任务，围绕协议交换数据，围绕平台建立声誉，围绕合约和支付系统完成结算。\n“超级组织”这个词的诱惑在于，它过于顺滑的将 AI 赋能个人过渡到了 AI 赋能企业。 真正退潮的，是公司作为“大量人力 + 中层管理 + 内部协调”的历史功能。\n从 Agent Flow 到 AI Native：为什么通用 Agent 是“饮鸩止渴” 用户为什么要选择某个 Agent？ 原因只有两个。 第一，只有你能解决某些问题。 第二，你真的能解决问题\n过去 20 年所有的基建都是为“人类”设计的，不是 LLM friendly 的，自然处处都是别扭。\n只要信息给够，大模型就能很好地接住。但如果是需要反复和人确认的任务，或者是一个局部但很深、需要大量交互和判断的任务，我和我的 Sub-agent 都会极其痛苦。当前的组织架构和任务流，对 LLM 是极度不友好的。\n层级再怎么包装成扁平，只要任务、权限、上下文和反馈的链路很长，它就还是厚的。 真正的扁平，不是物理空间上离得近，而是组织的链路足够短\n在乌兰察布，89个数据中心跟羊抢水喝 所有人都知道AI耗水，但颠覆很多人认知的是，AI数据中心选址，几乎清一色往极度缺水的干旱地带扎。\n所以一旦未来发生严重旱情，牧民的问题会非常直接：为什么外来的数据中心能获得稳定供水，而本地人却要被逼着节水关井？\n法律把优先级写得明明白白。但在实际操作中，一个GW级数据中心带来的投资和税收，远比几千户牧民的羊群有分量。\n中国式 FDE 注定失败 很多所谓 AI 转型，并不是因为企业需要 AI 转型，而是让企业先接受“我们必须做 AI”这个结论，才开始寻找业务场景\n哪怕在 FDE 实施的过程中，真找到了 AI 可以介入的场景，也不一定真的需要用 AI 来做。\n但是当一个项目一开始就被定义为 AI 转型，FDE 进入现场以后就不是判断客户的问题该怎么解决，而是在证明如何用 AI 解决客户的问题。\n真正的 FDE，应该回答企业到底存在什么问题，而不应该反问企业哪里可以用 AI。\n为什么超级个体不需要超级团队？ 本文想给出的判断是，超级个体是一个真概念，但超级团队是一个伪概念\n超级团队”这个词的全部说服力，建立在一个未经检验的算式上，也就是能力可以相加。但这个算式在组织学里已经被反复批驳。\n实际生产力 = 潜在生产力 - 过程损失\n向进度落后的软件项目中增加人力，只会让它更落后。\n团队的产出随人数线性增长，但沟通路径随人数的平方增长。n 个人之间的沟通路径是 n(n-1)/2 条。\n当团队规模越过某个临界点，新增的每一个人所带来的沟通负担，都会超过他所带来的产能\n团队规模不应超过两个披萨可以喂饱的的人数，通常少于 10 人），这是一条关于平方曲线的工程纪律。\n而一个超级个体的全部价值，恰恰在于他有大量自主判断、有完整的品味体系、有对“什么是对的”的独立感知。\n一个百人部门能够运转，是因为公司花了大量制度成本，把绝大多数人的判断权收拢到了少数人手里，剩下的人交付执行。层级制的真实功能不是管理人，是收缴判断权。\n因为在市场上一次次谈判太贵，把交易搬进企业内部更便宜。公司用一份雇佣合同，把未来无数次“我同意”一次性买断，而不必每次都说服。\n超级个体的核心资产，恰恰是不可让渡的判断，尤其是核心判断。 他稀缺是因为他知道什么值得做，什么做法是对的，什么细节不能妥协\n它们只提供三样东西：无限的执行力，零摩擦的对齐，随时待命的注意力。这三样，是“超级团队”都给不了的。\n现在对照一下，超级个体真正缺的是什么？第一，他不缺判断，但他缺执行带宽。一个想法从成型，到落地，中间有九成是重复劳动。这部分需要产能，而非更多的智慧。第二，他不缺方向，他缺零摩擦的对齐。他和自己是天然对齐的，这是他效率的全部来源。任何引入外部判断的动作，都在破坏这个优势。第三，他不缺勇气，他缺承担代价的能力上限。他愿意为结果负责，只是一个人能承担的后果有限。\n因为工具越公开，剩下的那部分差距，就越取决于不可让渡的东西。 它也是奥德修斯的那把弓。摆在所有人面前，谁都可以试，而拉开的人依然是少数。\n",
+  "wordCount" : "5711",
+  "inLanguage": "zh-cn",
+  "image":"https://niraya666.github.io/img/monthly/2026/A33790AA-BAEC-4CB0-BF67-9636E9775DED_1_201_a.webp","datePublished": "2026-08-29T20:00:00+08:00",
+  "dateModified": "2026-08-29T20:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2026-08-monthly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-08 月刊
+    </h1>
+    <div class="post-meta"><span title='2026-08-29 20:00:00 +0800 +08'>August 29, 2026</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/A33790AA-BAEC-4CB0-BF67-9636E9775DED_1_201_a.webp" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/A33790AA-BAEC-4CB0-BF67-9636E9775DED_1_201_a.webp" alt=""></a>
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#not-all-llm-reasoning-is-visible-in-the-chain-of-thought" aria-label="Not All LLM Reasoning is Visible in the Chain-of-Thought">Not All LLM Reasoning is Visible in the Chain-of-Thought</a></li>
+                <li>
+                    <a href="#dataspace-benchmarking-data-agents-for-verifiable-analytics-over-heterogeneous-workspaces" aria-label="DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces">DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces</a></li>
+                <li>
+                    <a href="#from-llm-inference-to-agentic-workloads-characterization-and-implications-for-serving-systems" aria-label="From LLM Inference to Agentic Workloads: Characterization and Implications for Serving Systems">From LLM Inference to Agentic Workloads: Characterization and Implications for Serving Systems</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ad%a6%e4%b9%a0%e8%b5%84%e6%ba%90" aria-label="学习资源">学习资源</a></li>
+                <li>
+                    <a href="#agent-skills-%e8%b5%84%e6%ba%90" aria-label="Agent Skills 资源">Agent Skills 资源</a></li>
+                <li>
+                    <a href="#deepseek-harness-%e7%94%9f%e6%80%81" aria-label="DeepSeek Harness 生态">DeepSeek Harness 生态</a></li>
+                <li>
+                    <a href="#%e6%b7%b1%e5%ba%a6%e6%96%87%e7%ab%a0" aria-label="深度文章">深度文章</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#agent-%e8%83%bd%e5%b9%b2%e6%b4%bb%e4%bb%a5%e5%90%8e%e4%ba%ba%e5%8f%8d%e8%80%8c%e6%9b%b4%e9%9c%80%e8%a6%81%e4%bc%9a%e7%ae%a1%e7%90%86httpsyageaisharecoding-agent-management-delegation-threshold-20260714html" aria-label="Agent 能干活以后，人反而更需要会管理">Agent 能干活以后，人反而更需要会管理</a></li>
+                <li>
+                    <a href="#jeff-raikes-the-talent-debt-i-warned-about-is-now-showing-up-in-the-datahttpsfortunecom20260726ai-literacy-talent-pipeline-entry-level-jobs-jeff-raikes-microsoft-gates-foundation-2" aria-label="Jeff Raikes: The talent debt I warned about is now showing up in the data">Jeff Raikes: The talent debt I warned about is now showing up in the data</a></li>
+                <li>
+                    <a href="#auto-mode-is-now-the-default-in-claude-code-for-pro-max-and-team-planshttpsclaudecomblogauto-mode-default-in-claude-code" aria-label="Auto mode is now the default in Claude Code for Pro, Max, and Team plans">Auto mode is now the default in Claude Code for Pro, Max, and Team plans</a></li>
+                <li>
+                    <a href="#ai-%e4%b8%8d%e8%87%aa%e5%8a%a8%e5%b8%a6%e6%9d%a5%e8%b6%85%e7%ba%a7%e7%bb%84%e7%bb%87httpsmpweixinqqcoms__bizmjm5ote0oda2mqmid2650998217idx1sn9ddcbcadbc9db6d3ecd312b3ceb56559poc_tokenhnmzemqjyyne1czezpp3bxp20tlu6ezvtgg53x27" aria-label="AI 不自动带来超级组织">AI 不自动带来超级组织</a></li>
+                <li>
+                    <a href="#%e4%bb%8e-agent-flow-%e5%88%b0-ai-native%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%9a%e7%94%a8-agent-%e6%98%af%e9%a5%ae%e9%b8%a9%e6%ad%a2%e6%b8%b4httpsmpweixinqqcoms__bizmzg4ntcznzg2oamid2247510883idx1sn1988e51340f0d9a22b2e6908fc60eddcpoc_tokenheqaemqjda2avgbr8y4sqxxkug6myfiaboas1d7v" aria-label="从 Agent Flow 到 AI Native：为什么通用 Agent 是“饮鸩止渴”">从 Agent Flow 到 AI Native：为什么通用 Agent 是“饮鸩止渴”</a></li>
+                <li>
+                    <a href="#%e5%9c%a8%e4%b9%8c%e5%85%b0%e5%af%9f%e5%b8%8389%e4%b8%aa%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83%e8%b7%9f%e7%be%8a%e6%8a%a2%e6%b0%b4%e5%96%9dhttpsmpweixinqqcomseoyg8ebg_z79aj4osbcjtqscene334" aria-label="在乌兰察布，89个数据中心跟羊抢水喝">在乌兰察布，89个数据中心跟羊抢水喝</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e5%9b%bd%e5%bc%8f-fde-%e6%b3%a8%e5%ae%9a%e5%a4%b1%e8%b4%a5httpsmpweixinqqcoms8g-aai2lj8fdur2l4hq6ya" aria-label="中国式 FDE 注定失败">中国式 FDE 注定失败</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%b6%85%e7%ba%a7%e4%b8%aa%e4%bd%93%e4%b8%8d%e9%9c%80%e8%a6%81%e8%b6%85%e7%ba%a7%e5%9b%a2%e9%98%9fhttpsmpweixinqqcomsuolp0xmkfsscw_bhmb1ddw" aria-label="为什么超级个体不需要超级团队？">为什么超级个体不需要超级团队？</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://api-docs.deepseek.com/news/news260821">DeepSeek-V4-Flash-Vision-Exp</a>: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供</p>
+<p><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen3.8-27B</a>: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens</p>
+<p><a href="https://huggingface.co/zai-org/GLM-5.3-Flash">GLM-5.3-Flash</a>: GLM-5 系列首个原生多模态模型，采用 320B 总参数、18B 激活参数的 MoE 架构，将 sparse attention 与 linear attention 结合，并引入 Manifold-Constrained Hyper-Connections（mHC）以降低长上下文推理成本</p>
+<p><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a>: DeepSeek 开源的 Agent harness，基于 Cordis 构建“Everything is a Plugin”架构，将模型、工具、Agent loop 和 UI 统一为可组合插件，当前处于 developer preview 阶段</p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/Accio-Lab/Dressage">Dressage</a>: 面向任意 Agent 和 sandbox 的可扩展强化学习框架，在统一接口下支持 Python tool loop 与 Claude Code、Codex 等 blackbox Agent，打通工具执行、rollout 和训练数据转换</p>
+<p><a href="https://github.com/yetone/cumora">cumora</a>: 将 AI Agent 作为一等团队成员的跨平台协作聊天工具，既支持云端 Agent，也能接入本地 Claude Code 和 Codex</p>
+<p><a href="https://github.com/cloudflare/computer">computer</a>: Cloudflare 开源的持久化 Agent workspace，在 Durable Object 中以 SQLite 维护权威文件系统状态，并通过统一 runtime 接入 Linux container、isolate shell 和 JavaScript 三类可插拔执行后端</p>
+<p><a href="https://github.com/huangruiteng/loopx">loopx</a>: 面向 Codex、Claude Code 等 coding agent 的长周期任务控制平面，重点解决持久执行、治理与跨 harness 编排问题</p>
+<p><a href="https://github.com/fristovic/snitch">snitch</a>: 面向 macOS AI coding agent 的确定性文本主张验证器，用规则化检查帮助发现生成文本中未被证据支持的 claim</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="not-all-llm-reasoning-is-visible-in-the-chain-of-thought">Not All LLM Reasoning is Visible in the Chain-of-Thought<a hidden class="anchor" aria-hidden="true" href="#not-all-llm-reasoning-is-visible-in-the-chain-of-thought">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2607.22925">2607.22925</a></p>
+<p>大模型的一部分有效计算并不会以可读的 Chain-of-Thought 呈现。即使模型输出的只是固定、无语义的 filler tokens，它们对应的隐藏状态仍可以成为内部计算空间，提高任务准确率，甚至帮助模型完成输出中完全不可见的附加目标</p>
+<p><strong>Invisible Reasoning</strong></p>
+<p>论文将“对最终行为或答案产生实际影响，但没有在输出 token 中留下可解释痕迹的内部计算”定义为 <strong>Invisible Reasoning（不可见推理）</strong>。</p>
+<p><strong>诊断方法</strong></p>
+<ul>
+<li>在问题和答案之间插入对所有问题都完全相同的 filler token 序列；如果加入后准确率提高，说明有用信息在其隐藏状态中逐渐形成，而非写在 token 表面</li>
+<li>性能增益依赖 filler token 的具体类型，且不同模型偏好不同的 filler token，说明这一现象与模型自身的表示空间和 attention pattern 有关</li>
+<li>结合 token 顺序调换、activation patching、residual stream 线性探针与 attention masking，判断有用信息在哪些层形成，以及计算是否分布在整段 filler span 中</li>
+</ul>
+<p><strong>安全实验</strong></p>
+<p>模型表面任务是完成四位数乘法，但系统提示要求它在答案满足某些模运算条件时输出 N/A。要正确执行，模型必须在输出答案前先计算乘积、检查隐藏条件，再决定输出数字还是 N/A，而这一过程不会出现在可见 CoT 中。</p>
+<p><strong>RL 的影响</strong></p>
+<p>实验中，经过 RL 训练的模型在测试时不再从 filler tokens 中获得额外收益。这说明 filler token 带来的隐藏计算能力不一定会在后训练中持续保留，但也进一步证明：仅观察可见 CoT 不足以完整审计模型的计算过程。</p>
+<hr>
+<h2 id="dataspace-benchmarking-data-agents-for-verifiable-analytics-over-heterogeneous-workspaces">DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces<a hidden class="anchor" aria-hidden="true" href="#dataspace-benchmarking-data-agents-for-verifiable-analytics-over-heterogeneous-workspaces">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2608.03451">2608.03451</a></p>
+<p>KDD Cup 2026 <strong>Data Agents for Complex Data Analysis</strong> 的官方评测 benchmark，考察 Agent 能否在杂乱的数据工作区中自主找到正确证据，完成跨文件、数据库、文档与视频的数据对齐和计算，最终输出可以确定性验证的完整结果表</p>
+<p><strong>三个 benchmark 缺口</strong></p>
+<ul>
+<li><strong>Workspace scope</strong>：不再预先指出正确数据源，而是给 Agent 一个完整的异构 workspace</li>
+<li><strong>Output contract</strong>：所有任务统一要求输出完整结果表，而不是单句答案或自由形式分析报告</li>
+<li><strong>Evaluation semantics</strong>：结果由程序确定性验证，不依赖另一个 LLM 充当 judge，同时允许列名、格式等语义等价变化</li>
+</ul>
+<p><strong>DataSpace-Builder：从 Text-to-SQL “编译”出异构 Agent 任务</strong></p>
+<p>DataSpace-Builder 从 EHRSQL 和 BULL 中的 Question + Database + Gold SQL 出发，将其转换为 Question + CSV/JSON/SQLite/PDF/Markdown/Video → Complete Table。</p>
+<ol>
+<li><strong>Cross-Language Transformation</strong>：联合迁移 Question、Database 和 SQL，对 table name、column name、cell value、SQL literal 及问题中的对应概念建立统一 replacement map；完成后再检查查询等价性与 Question-SQL 语义一致性</li>
+<li><strong>Constraint-Aware Relational Sampling</strong>：从 Gold SQL AST 中提取 primary/foreign keys、join columns、filter values、boundary values 和 target entities 作为 safeguard constraints，先保护关键行，再沿 relational key 做 closure 并采样其他行</li>
+<li><strong>Multimodal Rendering</strong>：将 relational tables 重新渲染为 CSV、JSON、SQLite、Markdown、PDF 和 Video 等异构 artifact</li>
+<li><strong>Human Review &amp; Repair</strong>：每个任务由 11 人领域专家池中的两人独立盲审，先在不看 gold 的情况下解题，再共同检查 gold、数据充分性、问题明确性、数值精度、行序和数据类型；无法修复的任务直接删除</li>
+</ol>
+<p><strong>确定性语义评估</strong></p>
+<p>严格 string match 对格式差异过于敏感，LLM Judge 则有随机性，还可能把不完整答案判为正确。DataSpace 因此设计了 semantics-aware deterministic evaluator，在保证内容完整的前提下，允许规定精度范围内的数值差异和语义等价的格式变化。</p>
+<hr>
+<h2 id="from-llm-inference-to-agentic-workloads-characterization-and-implications-for-serving-systems">From LLM Inference to Agentic Workloads: Characterization and Implications for Serving Systems<a hidden class="anchor" aria-hidden="true" href="#from-llm-inference-to-agentic-workloads-characterization-and-implications-for-serving-systems">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2608.15127">2608.15127</a></p>
+<p>当 AI 从一次 Request → LLM inference → Response 变成持续几十分钟甚至几小时、不断调用工具的 Agent 之后，现有围绕 GPU utilization、batching、KV Cache、prefill/decode 和 tokens/s 构建的 LLM serving infrastructure 已无法完整描述真实系统瓶颈</p>
+<p><strong>AgentSysBench</strong></p>
+<p>论文提出 benchmark 与 measurement framework AgentSysBench，覆盖 10 类代表性 Agent 应用：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">类型</th>
+          <th style="text-align: left">Agent</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">RAG</td>
+          <td style="text-align: left">RAG</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AI Search</td>
+          <td style="text-align: left">DeepResearch</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Multimodal</td>
+          <td style="text-align: left">HuggingGPT</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Coding</td>
+          <td style="text-align: left">Mini-SWE</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Terminal</td>
+          <td style="text-align: left">Codex</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Browser</td>
+          <td style="text-align: left">WebAgent</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">GUI</td>
+          <td style="text-align: left">GUIAgent</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Tool-rich Assistant</td>
+          <td style="text-align: left">Claude Code</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Office Agent</td>
+          <td style="text-align: left">Openclaw</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AutoResearch</td>
+          <td style="text-align: left">Pi-AutoR</td>
+      </tr>
+  </tbody>
+</table>
+<p>作者将 Agent workload 表示为：</p>
+<p>$$W=\langle R,T,M,O\rangle$$</p>
+<p>其中 $R$ 为 request distribution，$T$ 为 tools/environment，$M$ 为 models，$O$ 为 orchestration。Serving System 表示为：</p>
+<p>$$S=\langle H,C,A\rangle$$</p>
+<p>其中 $H$ 为 hardware，$C$ 为 component serving mechanism，$A$ 为 deployment architecture。最终观察到的系统行为为：</p>
+<p>$$Y=\Phi(W,S)$$</p>
+<p>即 Agent 性能是 workload 与 serving system 共同作用的结果。</p>
+<p><strong>主要发现</strong></p>
+<ul>
+<li><strong>Shifting Bottleneck</strong>：LLM 并不一定是 Agent 的瓶颈，不同任务阶段会在模型推理、工具、网络、存储和 orchestration 之间转移</li>
+<li><strong>Token Consumption Snowball</strong>：工具输出与历史状态不断回填上下文，使 token 消耗随任务进程滚雪球式增长</li>
+<li><strong>Large State Machine</strong>：Agent 是由模型调用、工具执行、环境变化和重试构成的巨大状态机，不能再被当作单个 inference request</li>
+<li><strong>Control-Plane Tax</strong>：大量 token 用于维护 Agent 的计划、状态、工具协议和错误恢复，而不是直接生成最终答案</li>
+<li><strong>Tool Cache</strong>：Agent infrastructure 不仅应 cache LLM prefix，还可以缓存 Search、URL、Retrieval、Tool output 和 Environment object</li>
+</ul>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="学习资源">学习资源<a hidden class="anchor" aria-hidden="true" href="#学习资源">#</a></h2>
+<p><a href="https://github.com/davidahmann/fde-guide">Forward Deployed Engineering Guide</a>: 面向生产级 AI 系统的 FDE 指南，系统覆盖价值发现、架构、evals、安全、部署与运维</p>
+<p><a href="https://github.com/jaywcjlove/awesome-mac">awesome-mac</a>: 按开发、效率、设计、系统工具等类别整理的高质量 macOS 软件清单</p>
+<h2 id="agent-skills-资源">Agent Skills 资源<a hidden class="anchor" aria-hidden="true" href="#agent-skills-资源">#</a></h2>
+<p><a href="https://github.com/freestylefly/awesome-gpt-image-2">awesome-gpt-image-2</a>: 以“Prompt as Code”为核心的 GPT-Image-2 工业级提示词引擎与模板库，包含 530+ 案例、20+ 套模板以及可复用 Skills</p>
+<p><a href="https://github.com/zhaoxuya520/reverse-skill">reverse-skill</a>: 面向逆向工程、授权渗透测试和安全研究的 Skill Router Pack，支持按需启动工具链与积累可复用经验</p>
+<h2 id="deepseek-harness-生态">DeepSeek Harness 生态<a hidden class="anchor" aria-hidden="true" href="#deepseek-harness-生态">#</a></h2>
+<p><a href="https://github.com/anywhere-labs/dsh-desktop">DSH Desktop</a>: DeepSeek Harness 的 macOS 与 Windows 原生桌面客户端，自动启动和管理本地 Harness 服务，无需手动安装 Node.js</p>
+<p><a href="https://github.com/ccch1mneyyy/dsh-TUI">dsh-TUI</a>: 为 DeepSeek Harness 补充 Claude Code 风格终端交互的 TUI 插件，支持实时状态、流式思考、双击 Esc 回滚、上下文进度和 TPS 显示</p>
+<h2 id="深度文章">深度文章<a hidden class="anchor" aria-hidden="true" href="#深度文章">#</a></h2>
+<p><a href="https://huggingface.co/blog/agent-intrusion-technical-timeline">Anatomy of a Frontier Lab Agent Intrusion</a>: 以技术时间线复盘针对前沿 AI 实验室 Agent infrastructure 的入侵事件，展示 Agent 工具链、凭据与运行环境的复合攻击面</p>
+<p><a href="https://cursor.com/cn/blog/git-at-any-scale">Git at any scale</a>: Cursor 对 Git 在超大规模代码库与 Agentic 开发工作流中的工程实践总结</p>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3NReJ0lGop9ZF8FN5AXT2n?utm_source=generator" width="100%" height="460" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="agent-能干活以后人反而更需要会管理httpsyageaisharecoding-agent-management-delegation-threshold-20260714html"><a href="https://yage.ai/share/coding-agent-management-delegation-threshold-20260714.html">Agent 能干活以后，人反而更需要会管理</a><a hidden class="anchor" aria-hidden="true" href="#agent-能干活以后人反而更需要会管理httpsyageaisharecoding-agent-management-delegation-threshold-20260714html">#</a></h2>
+<blockquote>
+<p>我们不该退回到逐行审查代码、逐个批准命令的微观管理中，因为那种做法会彻底抵消代理带来的效率红利</p>
+<p>我们应当从过去的过程陪跑转向结果治理，重新定义完成标准、要求提供轻量凭证、按风险进行抽检，并建立起异常自动升级的通道</p>
+<p>为了避免让收据变成阻碍效率的繁琐形式主义，引入风险分级是非常必要的</p>
+<p>不同的任务需要的证明程度完全不同，而评估管理力度的基本单位应该是具体的任务，而不是代理本身。</p>
+</blockquote>
+<h2 id="jeff-raikes-the-talent-debt-i-warned-about-is-now-showing-up-in-the-datahttpsfortunecom20260726ai-literacy-talent-pipeline-entry-level-jobs-jeff-raikes-microsoft-gates-foundation-2"><a href="https://fortune.com/2026/07/26/ai-literacy-talent-pipeline-entry-level-jobs-jeff-raikes-microsoft-gates-foundation-2/">Jeff Raikes: The talent debt I warned about is now showing up in the data</a><a hidden class="anchor" aria-hidden="true" href="#jeff-raikes-the-talent-debt-i-warned-about-is-now-showing-up-in-the-datahttpsfortunecom20260726ai-literacy-talent-pipeline-entry-level-jobs-jeff-raikes-microsoft-gates-foundation-2">#</a></h2>
+<blockquote>
+<p>letting AI absorb entry-level work were quietly accumulating a talent debt they didn’t yet see.</p>
+<p>They’re the ability to think critically and judge AI’s outputs. Only 16 percent of workers have developed the judgment to move fluidly between directing AI and doing the work themselves.</p>
+<p>The detail that stuck with me is that those workers deliberately do some tasks without AI, specifically to keep their own thinking sharp.</p>
+<p>AI can free up time and attention so students can go deeper into developing the skills that are hardest to automate: building relationships, collaborating, reasoning through hard ethical questions, and exercising judgment.</p>
+<p>AI literacy without critical thinking is not a workforce strategy</p>
+</blockquote>
+<h2 id="auto-mode-is-now-the-default-in-claude-code-for-pro-max-and-team-planshttpsclaudecomblogauto-mode-default-in-claude-code"><a href="https://claude.com/blog/auto-mode-default-in-claude-code">Auto mode is now the default in Claude Code for Pro, Max, and Team plans</a><a hidden class="anchor" aria-hidden="true" href="#auto-mode-is-now-the-default-in-claude-code-for-pro-max-and-team-planshttpsclaudecomblogauto-mode-default-in-claude-code">#</a></h2>
+<blockquote>
+<p>The testers caught the dangerous command just 13.6% of the time (143 of 1,053), while auto mode blocked 89% of the same commands (937 of 1,053). Head to head, auto mode blocked 800 commands that a human approved, while humans blocked only 6 that auto mode allowed. As sessions got longer, humans did worse: they blocked about 17% of dangerous commands early in a session, dropping to about 5% after 50 or more prior prompts, while auto mode&rsquo;s block rate stayed flat regardless of session length.</p>
+</blockquote>
+<blockquote>
+<p>While most prompts are likely for safe, routine commands, an approval rate that high suggests many users are clicking through reflexively rather than reviewing each command.</p>
+</blockquote>
+<blockquote>
+<p>These prompts ask developers to make dozens or hundreds of important security decisions every day, often in the middle of projects, which places the review burden on users and increases the chance that something important slips through the cracks</p>
+</blockquote>
+<h2 id="ai-不自动带来超级组织httpsmpweixinqqcoms__bizmjm5ote0oda2mqmid2650998217idx1sn9ddcbcadbc9db6d3ecd312b3ceb56559poc_tokenhnmzemqjyyne1czezpp3bxp20tlu6ezvtgg53x27"><a href="https://mp.weixin.qq.com/s?__biz=MjM5OTE0ODA2MQ==&mid=2650998217&idx=1&sn=9ddcbcadbc9db6d3ecd312b3ceb56559&poc_token=HNmZemqjyyNe1CZEZPP3bXP20TLU6EzVtgg53x27">AI 不自动带来超级组织</a><a hidden class="anchor" aria-hidden="true" href="#ai-不自动带来超级组织httpsmpweixinqqcoms__bizmjm5ote0oda2mqmid2650998217idx1sn9ddcbcadbc9db6d3ecd312b3ceb56559poc_tokenhnmzemqjyyne1czezpp3bxp20tlu6ezvtgg53x27">#</a></h2>
+<blockquote>
+<p>十年前，企业不敢公开说自己要用机器替代人，那听起来冷酷、反社会、缺乏人味。今天，企业开始把这件事包装成远见。裁员不再只是削成本，它被讲成通往未来组织形态的一张船票。</p>
+</blockquote>
+<blockquote>
+<p>AI 裁员的真实含义，未必是“机器已经替代人”。它更像一种新管理语言：当企业想削掉中层、压缩白领、重写组织结构时，AI 给了它一个听起来面向未来的理由。</p>
+</blockquote>
+<blockquote>
+<p>于是，一个非常顺理成章的故事出现了。个人会被 AI 增强，成为“超级个体”。企业也会被 AI 增强，成为“超级组织”</p>
+</blockquote>
+<blockquote>
+<p>这就是“超级组织”叙事最尴尬的地方。它想同时拥有两个结论：一边说 AI 会让个体前所未有地强大，一边说大企业会在这场个体增强中变得更庞大、更稳固、更不可替代</p>
+</blockquote>
+<blockquote>
+<p>裁员时代有一个常见幻觉：企业裁掉的是冗余的人手。
+这个说法在流水线时代比较容易成立。机器替代的是重复动作，企业减少的是可替换岗位</p>
+<p>当这些人离开组织，他们带走的不只是技能简历。他们还带走了组织的隐性地图</p>
+<p>AI 把这段距离压短了。一个被裁掉的中层经理，未必能立刻做出一家亚马逊，但只要他熟悉某个垂直环节，就能做出一个更薄、更快、更便宜的工具</p>
+</blockquote>
+<blockquote>
+<p>大公司的威胁不再只来自另一家大公司，它可能来自一万个非常小、非常窄、非常懂局部需求的一人公司。</p>
+</blockquote>
+<blockquote>
+<p>员工和创业者之间的边界正在变薄。当一个人能做十个人的活，他到底是一名员工，还是一家暂时寄居在公司里的微型企业？企业越强调 AI 提效，这个问题越难回避。</p>
+</blockquote>
+<blockquote>
+<p>这套结构的价值，来自一个基本事实：人类协作很贵。</p>
+</blockquote>
+<blockquote>
+<p>这就是 AI 对企业的第一刀，它瓦解的是公司作为一种组织形式存在的理由。</p>
+</blockquote>
+<blockquote>
+<p>正是大企业不愿自己处理、却又离不开的大量流程。可 AI 正在拆它</p>
+</blockquote>
+<blockquote>
+<p>AI 时代如果让更多小单元具备独立交付能力，风险不一定消失，但风险可以从组织内部转移到资本组合中。</p>
+</blockquote>
+<blockquote>
+<p>更现实的路径，可能是大公司自己把内部拆成大量更小的经营单元。</p>
+</blockquote>
+<blockquote>
+<p>未来的小公司、一人公司、智能体网络，也许会通过类似 Git、API、A2A 的方式协作。大家围绕标准接口交付任务，围绕协议交换数据，围绕平台建立声誉，围绕合约和支付系统完成结算。</p>
+</blockquote>
+<blockquote>
+<p>“超级组织”这个词的诱惑在于，它过于顺滑的将 AI 赋能个人过渡到了 AI 赋能企业。
+真正退潮的，是公司作为“大量人力 + 中层管理 + 内部协调”的历史功能。</p>
+</blockquote>
+<h2 id="从-agent-flow-到-ai-native为什么通用-agent-是饮鸩止渴httpsmpweixinqqcoms__bizmzg4ntcznzg2oamid2247510883idx1sn1988e51340f0d9a22b2e6908fc60eddcpoc_tokenheqaemqjda2avgbr8y4sqxxkug6myfiaboas1d7v"><a href="https://mp.weixin.qq.com/s?__biz=Mzg4NTczNzg2OA==&mid=2247510883&idx=1&sn=1988e51340f0d9a22b2e6908fc60eddc&poc_token=HEqaemqjDA2avgbr8y4sQXXKuG6myFiAbOas1d7v">从 Agent Flow 到 AI Native：为什么通用 Agent 是“饮鸩止渴”</a><a hidden class="anchor" aria-hidden="true" href="#从-agent-flow-到-ai-native为什么通用-agent-是饮鸩止渴httpsmpweixinqqcoms__bizmzg4ntcznzg2oamid2247510883idx1sn1988e51340f0d9a22b2e6908fc60eddcpoc_tokenheqaemqjda2avgbr8y4sqxxkug6myfiaboas1d7v">#</a></h2>
+<blockquote>
+<p>用户为什么要选择某个 Agent？
+原因只有两个。
+第一，只有你能解决某些问题。
+第二，你真的能解决问题</p>
+</blockquote>
+<blockquote>
+<p>过去 20 年所有的基建都是为“人类”设计的，不是 LLM friendly 的，自然处处都是别扭。</p>
+</blockquote>
+<blockquote>
+<p>只要信息给够，大模型就能很好地接住。但如果是需要反复和人确认的任务，或者是一个局部但很深、需要大量交互和判断的任务，我和我的 Sub-agent 都会极其痛苦。当前的组织架构和任务流，对 LLM 是极度不友好的。</p>
+</blockquote>
+<blockquote>
+<p>层级再怎么包装成扁平，只要任务、权限、上下文和反馈的链路很长，它就还是厚的。
+真正的扁平，不是物理空间上离得近，而是组织的链路足够短</p>
+</blockquote>
+<h2 id="在乌兰察布89个数据中心跟羊抢水喝httpsmpweixinqqcomseoyg8ebg_z79aj4osbcjtqscene334"><a href="https://mp.weixin.qq.com/s/eoyg8ebg_z79aJ4oSbCjTQ?scene=334">在乌兰察布，89个数据中心跟羊抢水喝</a><a hidden class="anchor" aria-hidden="true" href="#在乌兰察布89个数据中心跟羊抢水喝httpsmpweixinqqcomseoyg8ebg_z79aj4osbcjtqscene334">#</a></h2>
+<blockquote>
+<p>所有人都知道AI耗水，但颠覆很多人认知的是，AI数据中心选址，几乎清一色往极度缺水的干旱地带扎。</p>
+</blockquote>
+<blockquote>
+<p>所以一旦未来发生严重旱情，牧民的问题会非常直接：为什么外来的数据中心能获得稳定供水，而本地人却要被逼着节水关井？</p>
+</blockquote>
+<blockquote>
+<p>法律把优先级写得明明白白。但在实际操作中，一个GW级数据中心带来的投资和税收，远比几千户牧民的羊群有分量。</p>
+</blockquote>
+<h2 id="中国式-fde-注定失败httpsmpweixinqqcoms8g-aai2lj8fdur2l4hq6ya"><a href="https://mp.weixin.qq.com/s/8g-AAi2LJ8FDuR2L4hq6yA">中国式 FDE 注定失败</a><a hidden class="anchor" aria-hidden="true" href="#中国式-fde-注定失败httpsmpweixinqqcoms8g-aai2lj8fdur2l4hq6ya">#</a></h2>
+<blockquote>
+<p>很多所谓 AI 转型，并不是因为企业需要 AI 转型，而是让企业先接受“我们必须做 AI”这个结论，才开始寻找业务场景</p>
+</blockquote>
+<blockquote>
+<p>哪怕在 FDE 实施的过程中，真找到了 AI 可以介入的场景，也不一定真的需要用 AI 来做。</p>
+</blockquote>
+<blockquote>
+<p>但是当一个项目一开始就被定义为 AI 转型，FDE 进入现场以后就不是判断客户的问题该怎么解决，而是在证明如何用 AI 解决客户的问题。</p>
+</blockquote>
+<blockquote>
+<p>真正的 FDE，应该回答企业到底存在什么问题，而不应该反问企业哪里可以用 AI。</p>
+</blockquote>
+<h2 id="为什么超级个体不需要超级团队httpsmpweixinqqcomsuolp0xmkfsscw_bhmb1ddw"><a href="https://mp.weixin.qq.com/s/uOLP0XMkFSsCW_bhMb1DDw">为什么超级个体不需要超级团队？</a><a hidden class="anchor" aria-hidden="true" href="#为什么超级个体不需要超级团队httpsmpweixinqqcomsuolp0xmkfsscw_bhmb1ddw">#</a></h2>
+<blockquote>
+<p>本文想给出的判断是，超级个体是一个真概念，但超级团队是一个伪概念</p>
+</blockquote>
+<blockquote>
+<p>超级团队”这个词的全部说服力，建立在一个未经检验的算式上，也就是能力可以相加。但这个算式在组织学里已经被反复批驳。</p>
+</blockquote>
+<blockquote>
+<p>实际生产力 = 潜在生产力 - 过程损失</p>
+</blockquote>
+<blockquote>
+<p>向进度落后的软件项目中增加人力，只会让它更落后。</p>
+</blockquote>
+<blockquote>
+<p>团队的产出随人数线性增长，但沟通路径随人数的平方增长。n 个人之间的沟通路径是 n(n-1)/2 条。</p>
+</blockquote>
+<blockquote>
+<p>当团队规模越过某个临界点，新增的每一个人所带来的沟通负担，都会超过他所带来的产能</p>
+</blockquote>
+<blockquote>
+<p>团队规模不应超过两个披萨可以喂饱的的人数，通常少于 10 人），这是一条关于平方曲线的工程纪律。</p>
+</blockquote>
+<blockquote>
+<p>而一个超级个体的全部价值，恰恰在于他有大量自主判断、有完整的品味体系、有对“什么是对的”的独立感知。</p>
+</blockquote>
+<blockquote>
+<p>一个百人部门能够运转，是因为公司花了大量制度成本，把绝大多数人的判断权收拢到了少数人手里，剩下的人交付执行。层级制的真实功能不是管理人，是收缴判断权。</p>
+</blockquote>
+<blockquote>
+<p>因为在市场上一次次谈判太贵，把交易搬进企业内部更便宜。公司用一份雇佣合同，把未来无数次“我同意”一次性买断，而不必每次都说服。</p>
+</blockquote>
+<blockquote>
+<p>超级个体的核心资产，恰恰是不可让渡的判断，尤其是核心判断。
+他稀缺是因为他知道什么值得做，什么做法是对的，什么细节不能妥协</p>
+</blockquote>
+<blockquote>
+<p>它们只提供三样东西：无限的执行力，零摩擦的对齐，随时待命的注意力。这三样，是“超级团队”都给不了的。</p>
+</blockquote>
+<blockquote>
+<p>现在对照一下，超级个体真正缺的是什么？第一，他不缺判断，但他缺执行带宽。一个想法从成型，到落地，中间有九成是重复劳动。这部分需要产能，而非更多的智慧。第二，他不缺方向，他缺零摩擦的对齐。他和自己是天然对齐的，这是他效率的全部来源。任何引入外部判断的动作，都在破坏这个优势。第三，他不缺勇气，他缺承担代价的能力上限。他愿意为结果负责，只是一个人能承担的后果有限。</p>
+</blockquote>
+<blockquote>
+<p>因为工具越公开，剩下的那部分差距，就越取决于不可让渡的东西。
+它也是奥德修斯的那把弓。摆在所有人面前，谁都可以试，而拉开的人依然是少数。</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-08%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f&amp;title=2026-08%20%e6%9c%88%e5%88%8a&amp;summary=2026-08%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f&title=2026-08%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-08%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-08%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-08 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-08%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-08-monthly%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

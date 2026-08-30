@@ -11,8 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 31 Jul 2026 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2026-08 月刊</title>
+      <link>https://niraya666.github.io/monthly/2026-08-monthly/</link>
+      <pubDate>Sat, 29 Aug 2026 20:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2026-08-monthly/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://api-docs.deepseek.com/news/news260821&#34;&gt;DeepSeek-V4-Flash-Vision-Exp&lt;/a&gt;: DeepSeek 推出的实验性多模态视觉理解模型，纯文本能力与 DeepSeek-V4-Flash 基本持平，但在需要视觉理解的 Agent 任务上有显著提升，目前通过 API 提供&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/Qwen/Qwen3.8-27B&#34;&gt;Qwen3.8-27B&lt;/a&gt;: Qwen3.8 系列的 27B dense 开放权重模型，原生支持图像与视频理解，具备可调节的 thinking effort 和更强的长周期 Agent 执行能力，原生上下文长度为 262K，可扩展至 1M tokens&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2026-07 月刊</title>
       <link>https://niraya666.github.io/monthly/2026-07-monthly/</link>
