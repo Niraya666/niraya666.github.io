@@ -2,6 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niraya666.github.io/en/tags/ai/</loc>
+    <lastmod>2026-09-13T16:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/ai/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/ai/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/posts/ai-decouples-production-and-cultivation/</loc>
+    <lastmod>2026-09-13T16:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/ai-decouples-production-and-cultivation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/ai-decouples-production-and-cultivation/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/posts/</loc>
+    <lastmod>2026-09-13T16:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/posts/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/</loc>
+    <lastmod>2026-09-13T16:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/</loc>
+    <lastmod>2026-09-13T16:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://niraya666.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://niraya666.github.io/en/tags/"
+                />
+  </url><url>
+    <loc>https://niraya666.github.io/en/tags/talent/</loc>
+    <lastmod>2026-09-13T16:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://niraya666.github.io/en/tags/agent/</loc>
     <lastmod>2026-08-05T12:00:00+08:00</lastmod>
     <xhtml:link
@@ -41,19 +109,6 @@
                 href="https://niraya666.github.io/en/tags/agent-eval/"
                 />
   </url><url>
-    <loc>https://niraya666.github.io/en/posts/</loc>
-    <lastmod>2026-08-05T12:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/posts/"
-                />
-  </url><url>
     <loc>https://niraya666.github.io/en/tags/eval/</loc>
     <lastmod>2026-08-05T12:00:00+08:00</lastmod>
     <xhtml:link
@@ -65,32 +120,6 @@
                 rel="alternate"
                 hreflang="en-us"
                 href="https://niraya666.github.io/en/tags/eval/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/en/</loc>
-    <lastmod>2026-08-05T12:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/en/tags/</loc>
-    <lastmod>2026-08-05T12:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/tags/"
                 />
   </url><url>
     <loc>https://niraya666.github.io/en/posts/agent-eval-guide-02/</loc>
@@ -182,19 +211,6 @@
                 rel="alternate"
                 hreflang="en-us"
                 href="https://niraya666.github.io/en/tags/memory/"
-                />
-  </url><url>
-    <loc>https://niraya666.github.io/en/tags/ai/</loc>
-    <lastmod>2026-06-19T18:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://niraya666.github.io/tags/ai/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://niraya666.github.io/en/tags/ai/"
                 />
   </url><url>
     <loc>https://niraya666.github.io/en/tags/ai-native/</loc>
