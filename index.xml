@@ -11,8 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 13 Sep 2026 16:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2026-09 月刊</title>
+      <link>https://niraya666.github.io/monthly/2026-09-monthly/</link>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2026-09-monthly/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.typesafe.ai/introduction&#34;&gt;Jev&lt;/a&gt;: TypeSafe 推出的 System One 决策模型，通过 Choice、Score 和 Noul 三类问题直接返回结构化选择、评分和判断概率，支持在一次调用中对同一状态并行评估多个问题，适用于路由、评估和 Agent 动作选择&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash&#34;&gt;DeepSeek-V4.1-Flash&lt;/a&gt;: 原生支持图文输入的多模态 MoE 模型，支持百万 token 上下文，结合 Causal Encoder-Decoder 架构、Compressed Sparse Attention 2（CSA2）和 FP4 KV cache 压缩，降低长上下文 Agent 工作负载的推理开销&lt;/p&gt;</description>
+    </item>
     <item>
       <title>AI 拆开了生产与培养</title>
       <link>https://niraya666.github.io/posts/ai-decouples-production-and-cultivation/</link>
