@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>When Agents Start Managing Their Own Context | LZY Blog</title>
+<meta name="keywords" content="Agent, Agent-memory, Agent-Harness">
+<meta name="description" content="From Codex context resets and history retrieval to MemexRL, SWE-MeM, and CompactionRL: how context management becomes a trainable agent policy.">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/en/posts/agent-context-management/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/posts/agent-context-management/">
+<link rel="alternate" hreflang="en" href="https://niraya666.github.io/en/posts/agent-context-management/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="When Agents Start Managing Their Own Context" />
+<meta property="og:description" content="From Codex context resets and history retrieval to MemexRL, SWE-MeM, and CompactionRL: how context management becomes a trainable agent policy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/en/posts/agent-context-management/" />
+<meta property="og:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-10-18T00:00:00+08:00" />
+<meta property="article:modified_time" content="2026-10-18T00:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp" />
+<meta name="twitter:title" content="When Agents Start Managing Their Own Context"/>
+<meta name="twitter:description" content="From Codex context resets and history retrieval to MemexRL, SWE-MeM, and CompactionRL: how context management becomes a trainable agent policy."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Posts",
+      "item": "https://niraya666.github.io/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "When Agents Start Managing Their Own Context",
+      "item": "https://niraya666.github.io/en/posts/agent-context-management/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "When Agents Start Managing Their Own Context",
+  "name": "When Agents Start Managing Their Own Context",
+  "description": "From Codex context resets and history retrieval to MemexRL, SWE-MeM, and CompactionRL: how context management becomes a trainable agent policy.",
+  "keywords": [
+    "Agent", "Agent-memory", "Agent-Harness"
+  ],
+  "articleBody": "中文版\nIn its GPT-6 Astra announcement, OpenAI highlighted a change to context management in Codex: the model can keep notes across context windows, while earlier windows remain searchable. Even if a requirement or test result was left out of the notes, it can still be recovered from past messages and tool outputs. Official announcement\nThere are two different questions here.\nThe first concerns the mechanism: where history lives, how it leaves the active window, and which interfaces can bring it back. The second concerns the policy: when to reorganize context, what to preserve, and when to look something up.\nThis article starts with Codex’s TokenBudget path and how it separates context resets, notes, and history queries. It then turns to MemexRL, SWE-MeM, and CompactionRL to examine how context management enters model training.\nMy view is that context management is becoming part of the agent policy. The harness provides executable memory operations. The model helps decide how to use them, shaping what it will see on its next call.\nDistinguishing Context, History, and Working State When discussing compaction, it is easy to conflate “the model cannot see this right now” with “this information is gone.”\nWe need to distinguish at least three layers:\nLayer What it stores How it is used Active context Instructions, messages, and tool results for the current call Passed directly to the model History Session messages, tool outputs, and events retained by the system Requires an interface for querying or recovery Working state Summaries, notes, pending tasks, decisions, and evidence references Helps restore progress and locate details to examine A tool output removed from context may still exist in the session record. But without an access interface, or without knowing what to query, the model will struggle to use that record in subsequent decisions.\nContext management therefore involves both capacity and access. We need to limit the size of the active input while retaining usable routes to information outside the window.\nThe agent harness sits at this junction. It organizes requests, executes tools, persists state, and constructs the next model input. A common approach has been for the harness to decide when compaction is needed, then ask a model to produce a summary.\nHow Summary-Based Compaction Rebuilds the Input The OpenAI Cookbook’s SummarizingSession provides a clear example. Once the number of real user turns exceeds a threshold, it summarizes older history while preserving a number of recent turns verbatim. Cookbook example\nAt the message level, older history is replaced with a synthetic pair: a user message requesting a summary and an assistant message containing it. The next input looks roughly like this:\nRegular instructions and request configuration + user: synthetic summary request + assistant: history summary + Last N complete turns, including tool calls and results + New input The model already participates in context management here, but its main responsibility is the summary’s content. The program still determines when to trigger compaction, which history to process, how many recent messages to retain, and how to reassemble the input.\nCompaction also exists at the API level. The Responses API’s /responses/compact returns a set of context items for subsequent requests. These include an opaque, encrypted compaction item and may retain other input items. This compressed state should not be equated with a human-readable summary. Compaction documentation\nSo “compact” names an operation that can have different implementations. Comparing approaches requires examining both the resulting input structure and how removed content can be accessed.\nA Summary Can Preserve Progress While Omitting the Basis for a Decision Consider a hypothetical CSV import bug.\nAfter investigating, the agent finds that a byte order mark (BOM) at the start of the file interferes with matching the first column name. It also tries a fix that does not work. At the context boundary, the summary says only: “Working on the CSV import bug. Initial investigation complete. Continue checking the encoding.”\nThis preserves the general direction. But the next model call may need other details:\nHow exactly the BOM appeared in the original output. Which fix was already attempted, and why it failed. Which test results support the current diagnosis. If these details are absent from the summary and there is no other recovery path, the model may repeat the investigation—or repeat the same failed fix.\nThe difficulty is that whether information is worth preserving often depends on what comes next. An error message that seems incidental now may become decisive in the next step. A fluent summary that covers the main progress does not necessarily contain enough information to continue the task.\nRepeated Compaction in a Codex Retrospective This risk has also appeared in evaluations. In the compaction-frequency section of Ghosts in the Codex Machine, dated October 31, 2025, Tibo and the Codex team wrote:\nEvals confirmed that performance degrades with the number of /compact or auto-compactions used within a single session.\nThe team found that a growing share of sessions used compaction, while evaluations showed worse performance as the number of compactions within a session increased. The subsequent improvements included avoiding recursive summarization across repeated compactions and reminding users to keep sessions focused. Original report\nThe cumulative effect deserves attention. Mechanically, if the next handoff depends on the previous summary, that summary becomes the input to another round of information selection. Once a reason for failure is omitted early on, later rounds may continue without it.\nContinuing after one compaction shows that a handoff occurred. Preserving working state must be tested through task performance across repeated context transitions. Evaluations should check whether constraints disappear and whether the agent revisits approaches that already failed.\nThis observation concerns the Codex implementation at that time. The report also discusses hardware, tool behavior, and timeouts; it does not attribute the overall degradation to a single factor. Its proposed improvements also include changes to the summarization mechanism itself.\nFollowing this line of inquiry, we need to test two properties separately: whether information can be recovered, and whether the agent recovers it when needed.\nCodex’s TokenBudget Path The relevant pull requests show Codex separating several responsibilities previously grouped under compaction into independent operations.\nnew_context Lets the Model Request a Context Reset PR #27488 introduced a model-facing new_context tool behind the TokenBudget feature flag.\nIts execution flow can be summarized as follows:\nThe model calls new_context → Record the reset request → Consume the request after the current sampling phase ends → Rebuild the initial context → Continue the same task turn in a fresh window This path does not generate a handoff summary or automatically reload the old session history into the new window. It gives the model another option: when the current window no longer seems suitable for continuing the work, it can request a reset.\nLater, PR #29743 connected compaction under TokenBudget to a similar reset path. It starts a new window with the standard injected context, skipping the request for the server to summarize the old history.\nThe scope matters: this describes the TokenBudget path. Other configurations, models, and compaction entry points need to be examined separately.\nFigure 1: A mechanism diagram based on the Cookbook example and a snapshot of the Codex TokenBudget implementation. The left side retains a summary and recent turns; the right side rebuilds the initial context. Labels in this diagram are in Chinese. All images in this article can be clicked to view at full size.\nnotes Preserves Working State; history Provides a Route Back to Evidence How does the task continue after a reset?\nPR #39827 introduced two groups of model-facing tools:\nTool Operations Suitable contents notes Write, append, read, and search persistent notes Current objective, decisions, pending tasks, and evidence locations history List windows and entries, search content, and read entries Original information from earlier messages and tool outputs The division is fairly clear. Notes helps the model quickly recover its working state; history lets it check original material when needed. Notes can stay compact while detailed logs are retrieved through queries.\nThe earlier CSV example could follow this sequence:\nWindow A Investigate the problem → Write notes with progress and pending tasks → Call new_context Window B Read notes → Decide that the earlier failure needs to be checked → Search and read history → Continue the fix using the original output Figure 2: If both the summary and the notes omit the BOM detail, history offers another chance to read the original log. This is an illustrative flow; successful recovery depends on the model’s actual choices. Labels in this diagram are in Chinese.\nThese tools operate through the Codex backend. The implementation that introduced them requires the relevant configuration to be enabled, the OpenAI provider, and backend authentication.\nMechanically, the system provides a foundation for continuing tasks across windows. But writing notes and querying history both require the model to act. A reset does not guarantee that notes have been prepared, and searchable records do not guarantee that the model will find the right entry.\nOriginal evidence is more accessible. How to use it remains a policy question.\nFrom Memory Tools to Memory Policies Does giving an agent notes and history mean it knows how to manage context?\nTools define the available actions. The model still needs to judge when those actions are useful.\nMore specifically:\nWhen to reorganize. Has the current subtask ended? Is there still value in retaining the full exploration process? What to preserve. Which conclusions are stable, which hypotheses remain unverified, and which reasons for failure need to carry into the next stage? When to retrieve. Does the current state support the next action, or should the model first check the original output? These choices directly affect the rest of the task. Resetting too early can interrupt an unfinished investigation. Waiting too long can leave the context full of obsolete hypotheses. Notes that are too short raise recovery costs; notes that grow through endless appends become another long context.\nThe trigger for retrieval is particularly easy to overlook. If a note says only “continue checking the encoding,” how does the model in the new window realize that it is missing an important record of failure?\nThis is why working notes need to preserve unresolved questions and evidence locations. Alongside conclusions, they need clues that can prompt subsequent action.\nWithin the agent loop, task actions and memory actions now participate in the same decision process:\nCurrent context + task progress + budget information ↓ The model chooses an action ↙ ↘ Read code, run tests Write notes, retrieve, compact, reset context ↘ ↙ The harness executes and builds the next input ↓ Continue the task This introduces a training question: how should a memory action be evaluated?\nWhen the model records why an attempt failed, we do not yet know how many redundant attempts it will prevent. Likewise, an index is difficult to evaluate in isolation. Its value becomes apparent when a later model call actually needs the material it points to.\nMemory operations therefore have delayed benefits. Learning these policies requires connecting later task outcomes to earlier memory decisions.\nTraining Context Management MemexRL Jointly Optimizes Storing and Reading Experience Memex(RL) uses Indexed Experience Memory: compact summaries and indexes remain in the window, while detailed material moves to external storage.\nIt provides two key operations:\nCompressExperience: organize a summary and archive detailed material under indexes. ReadExperience: retrieve the corresponding content by index. Current working context → CompressExperience → Keep an indexed summary in the window; archive details externally → A later task step needs a piece of evidence → ReadExperience → The original material re-enters the context MemexRL then uses GRPO-style reinforcement learning to jointly optimize task actions and memory reads and writes. Its reward combines task success with penalties for exceeding the context budget, redundancy, and formatting problems.\nThe paper also tracks changes in memory-tool use during training: compression calls generally decrease, while retrieval calls generally increase. At least in these experiments, training changes how the model stores and retrieves information.\nFigure 3: Changes in memory-tool use during MemexRL training. Compression calls are shown above, retrieval calls below. Both plots come from the same training experiment, with Rollout Step on the horizontal axis. Call counts alone do not establish task quality. Source: Memex(RL), Figure 5.\nThis has a similar mechanical structure to notes/history: compact state retains a route back to detailed material. How indexes are organized during archiving affects whether evidence can later be retrieved accurately. Storage and retrieval therefore need to be considered together.\nThe comparison is limited to mechanisms. It does not establish that Codex uses MemexRL’s training method.\nSWE-MeM Lets the Model Choose When and What to Compress If an investigation is complete but the context is still well below its limit, should the agent reorganize it early? If only one subtask is finished, can it compress just that portion?\nSWE-MeM turns compression into a parameterized tool. The model supplies its current analysis, the starting and ending step numbers, a replacement summary, and the remaining work. The system then replaces the selected span.\nThe tool takes this form:\ncompress( analysis, start_step_number, end_step_number, content, remaining_work ) This lets the model choose a span based on the stage of the task. Completed exploration can be condensed into conclusions, while material whose details are still needed remains intact.\nFigure 4: Mechanisms for several context-management approaches. SWE-MeM lets the model choose the timing and span. This diagram explains operational differences; performance comparisons require the experimental results. Source: SWE-MeM, Figure 2.\nFor training, SWE-MeM combines curriculum-based fine-tuning with Memory-aware GRPO, jointly optimizing memory decisions and software-engineering task performance. It focuses on when, where, and how to compress, all of which depend on the current trajectory.\nFor coding agents, the useful implication is that context reorganization can follow subtask completion. Capacity limits still apply, but task progress also becomes a basis for the decision.\nCompactionRL Evaluates Summaries Through Subsequent Task Performance CompactionRL retains summary-based compaction and jointly trains task execution and summary generation with PPO.\nWhen a rollout crosses a compaction boundary, the earlier summary affects later behavior. Training must handle feedback across that boundary, as well as loss weighting across trajectory segments. CompactionRL uses token-level loss normalization and cross-trajectory GAE to connect the training signals for execution and summarization.\nThere is a clear distinction from SWE-MeM: CompactionRL’s experiments still trigger compaction at a fixed remaining-budget threshold. The main optimization targets are the summary and subsequent execution.\nOne interesting observation is that including summary generation in training produces longer, more detailed summaries. The optimized model chooses to retain more information that can support later actions.\nFigure 5: Summary length under the GLM-4.5-Air setup. Blue circles represent CompactionRL; light-blue triangles represent the variant without summary training. Summary length generally increases with training in the former. This panel shows length changes; the summaries’ task value still needs to be assessed alongside the ablation results. Source: CompactionRL, Figure 4(a).\nThis is a reminder that compression ratio is only a local metric. Saving a few hundred tokens may increase overall cost if it forces the agent to repeat exploration or tests later. Summary quality needs to be judged through subsequent execution.\nComparing the Approaches Work Memory operations Training focus Main boundary MemexRL Archive, index, and retrieve by index How storage and retrieval support task execution together Effective policies depend on usable indexes and storage SWE-MeM Select a span and replace it with a summary When, where, and how to compress Decisions depend on the specific task trajectory CompactionRL Generate a summary and continue execution The summary’s effect on subsequent work The experimental trigger threshold remains fixed These papers place different parts of context management inside the optimization objective. They also show why “the model has learned to manage context” needs to be broken down into specific capabilities. Calling a memory tool does not, by itself, validate the entire policy.\nHow the Harness and Model Need to Work Together So far, the discussion has focused mainly on which decisions the model should make. Whether a policy works also depends on what the interfaces guarantee.\nARC offers a reference from the systems side. It writes tool observations to an append-only store and addresses them with stable IDs. During compaction, a deterministic procedure replaces long, older observations with references. The model can retrieve them by address when needed. This compaction process does not call a summarization model.\nARC’s recoverability applies to archived observations. It provides a mechanism for returning to evidence; whether the model chooses the right address is a separate question.\nThis distinction applies to agent memory design more generally:\nIs the mechanism reliable? Did the write succeed? Are references stable? Is retrieved content complete? Is truncation explicitly marked? Is the policy effective? Did the model preserve useful state? Can it detect an information gap? Does it choose the right evidence? These need separate evaluations. Otherwise, when recovery fails, it is difficult to tell whether the tool interface, storage implementation, or the model’s usage policy needs to change.\nFrom an engineering perspective, I care more about the following outcomes:\nDimension What to examine Task completion Can the agent still finish the task after crossing context windows? Constraint retention Do previously confirmed requirements or limits disappear during later execution? Repeated exploration Does the agent retry failed approaches or repeat queries whose results already exist? Evidence recovery Can it retrieve the key original material, and how many calls does that take? Total cost Total tokens and elapsed time for note-taking, compaction, search, retrieval, and task execution These are suggestions for evaluation design. Actual comparisons still need controlled tasks, models, and budgets. A shorter active window can reduce the current input, but it does not establish lower end-to-end cost. Memory management consumes resources too.\nFollowing this direction, an important job for future harnesses is to expose context operations through reliable, composable, and observable interfaces. Models can then learn to use those interfaces through task feedback.\n“Internalizing” context-management ability thus has a concrete meaning: moving some context choices previously determined by external rules into the model’s trainable action policy. Storage, execution, budget boundaries, and recovery mechanisms remain responsibilities of the system.\nThis leaves two connected questions: can the system keep historical evidence available, and can the model select the context the current task actually needs within a limited budget? The first establishes the conditions for recovery. The second determines whether those conditions translate into task performance.\n",
+  "wordCount" : "3147",
+  "inLanguage": "en",
+  "image": "https://niraya666.github.io/img/基于大语言模型的%20Agent：科普向-assets/cover.webp","datePublished": "2026-10-18T00:00:00+08:00",
+  "dateModified": "2026-10-18T00:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/en/posts/agent-context-management/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/en/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/" title="中文"
+                            aria-label="中文">中文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/en/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/en/posts/">AI Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      When Agents Start Managing Their Own Context
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-description">
+      From Codex context resets and history retrieval to MemexRL, SWE-MeM, and CompactionRL: how context management becomes a trainable agent policy.
+    </div>
+    <div class="post-meta"><span title='2026-10-18 00:00:00 +0800 CST'>October 18, 2026</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;LZY&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="https://niraya666.github.io/posts/agent-context-management/">中文</a>
+    </li>
+</ul>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#distinguishing-context-history-and-working-state" aria-label="Distinguishing Context, History, and Working State">Distinguishing Context, History, and Working State</a><ul>
+                        
+                <li>
+                    <a href="#how-summary-based-compaction-rebuilds-the-input" aria-label="How Summary-Based Compaction Rebuilds the Input">How Summary-Based Compaction Rebuilds the Input</a></li>
+                <li>
+                    <a href="#a-summary-can-preserve-progress-while-omitting-the-basis-for-a-decision" aria-label="A Summary Can Preserve Progress While Omitting the Basis for a Decision">A Summary Can Preserve Progress While Omitting the Basis for a Decision</a></li>
+                <li>
+                    <a href="#repeated-compaction-in-a-codex-retrospective" aria-label="Repeated Compaction in a Codex Retrospective">Repeated Compaction in a Codex Retrospective</a></li></ul>
+                </li>
+                <li>
+                    <a href="#codexs-tokenbudget-path" aria-label="Codex&rsquo;s TokenBudget Path">Codex&rsquo;s TokenBudget Path</a><ul>
+                        
+                <li>
+                    <a href="#new_context-lets-the-model-request-a-context-reset" aria-label="new_context Lets the Model Request a Context Reset">new_context Lets the Model Request a Context Reset</a></li>
+                <li>
+                    <a href="#notes-preserves-working-state-history-provides-a-route-back-to-evidence" aria-label="notes Preserves Working State; history Provides a Route Back to Evidence">notes Preserves Working State; history Provides a Route Back to Evidence</a></li></ul>
+                </li>
+                <li>
+                    <a href="#from-memory-tools-to-memory-policies" aria-label="From Memory Tools to Memory Policies">From Memory Tools to Memory Policies</a></li>
+                <li>
+                    <a href="#training-context-management" aria-label="Training Context Management">Training Context Management</a><ul>
+                        
+                <li>
+                    <a href="#memexrl-jointly-optimizes-storing-and-reading-experience" aria-label="MemexRL Jointly Optimizes Storing and Reading Experience">MemexRL Jointly Optimizes Storing and Reading Experience</a></li>
+                <li>
+                    <a href="#swe-mem-lets-the-model-choose-when-and-what-to-compress" aria-label="SWE-MeM Lets the Model Choose When and What to Compress">SWE-MeM Lets the Model Choose When and What to Compress</a></li>
+                <li>
+                    <a href="#compactionrl-evaluates-summaries-through-subsequent-task-performance" aria-label="CompactionRL Evaluates Summaries Through Subsequent Task Performance">CompactionRL Evaluates Summaries Through Subsequent Task Performance</a></li>
+                <li>
+                    <a href="#comparing-the-approaches" aria-label="Comparing the Approaches">Comparing the Approaches</a></li></ul>
+                </li>
+                <li>
+                    <a href="#how-the-harness-and-model-need-to-work-together" aria-label="How the Harness and Model Need to Work Together">How the Harness and Model Need to Work Together</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><a href="https://niraya666.github.io/posts/agent-context-management/">中文版</a></p>
+<p>In its GPT-6 Astra announcement, OpenAI highlighted a change to context management in Codex: the model can keep notes across context windows, while earlier windows remain searchable. Even if a requirement or test result was left out of the notes, it can still be recovered from past messages and tool outputs. <a href="https://openai.com/index/gpt-6-astra/">Official announcement</a></p>
+<p>There are two different questions here.</p>
+<p>The first concerns the mechanism: where history lives, how it leaves the active window, and which interfaces can bring it back. The second concerns the policy: when to reorganize context, what to preserve, and when to look something up.</p>
+<p>This article starts with Codex&rsquo;s TokenBudget path and how it separates context resets, notes, and history queries. It then turns to MemexRL, SWE-MeM, and CompactionRL to examine how context management enters model training.</p>
+<p>My view is that <strong>context management is becoming part of the agent policy.</strong> The harness provides executable memory operations. The model helps decide how to use them, shaping what it will see on its next call.</p>
+<h2 id="distinguishing-context-history-and-working-state">Distinguishing Context, History, and Working State<a hidden class="anchor" aria-hidden="true" href="#distinguishing-context-history-and-working-state">#</a></h2>
+<p>When discussing compaction, it is easy to conflate “the model cannot see this right now” with “this information is gone.”</p>
+<p>We need to distinguish at least three layers:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Layer</th>
+          <th style="text-align: left">What it stores</th>
+          <th style="text-align: left">How it is used</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Active context</td>
+          <td style="text-align: left">Instructions, messages, and tool results for the current call</td>
+          <td style="text-align: left">Passed directly to the model</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">History</td>
+          <td style="text-align: left">Session messages, tool outputs, and events retained by the system</td>
+          <td style="text-align: left">Requires an interface for querying or recovery</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Working state</td>
+          <td style="text-align: left">Summaries, notes, pending tasks, decisions, and evidence references</td>
+          <td style="text-align: left">Helps restore progress and locate details to examine</td>
+      </tr>
+  </tbody>
+</table>
+<p>A tool output removed from context may still exist in the session record. But without an access interface, or without knowing what to query, the model will struggle to use that record in subsequent decisions.</p>
+<p>Context management therefore involves both capacity and access. We need to limit the size of the active input while retaining usable routes to information outside the window.</p>
+<p>The agent harness sits at this junction. It organizes requests, executes tools, persists state, and constructs the next model input. A common approach has been for the harness to decide when compaction is needed, then ask a model to produce a summary.</p>
+<h3 id="how-summary-based-compaction-rebuilds-the-input">How Summary-Based Compaction Rebuilds the Input<a hidden class="anchor" aria-hidden="true" href="#how-summary-based-compaction-rebuilds-the-input">#</a></h3>
+<p>The OpenAI Cookbook&rsquo;s <code>SummarizingSession</code> provides a clear example. Once the number of real user turns exceeds a threshold, it summarizes older history while preserving a number of recent turns verbatim. <a href="https://developers.openai.com/cookbook/examples/agents_sdk/session_memory">Cookbook example</a></p>
+<p>At the message level, older history is replaced with a synthetic pair: a <code>user</code> message requesting a summary and an <code>assistant</code> message containing it. The next input looks roughly like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Regular instructions and request configuration
+</span></span><span class="line"><span class="cl">+ user: synthetic summary request
+</span></span><span class="line"><span class="cl">+ assistant: history summary
+</span></span><span class="line"><span class="cl">+ Last N complete turns, including tool calls and results
+</span></span><span class="line"><span class="cl">+ New input
+</span></span></code></pre></div><p>The model already participates in context management here, but its main responsibility is the summary&rsquo;s content. The program still determines when to trigger compaction, which history to process, how many recent messages to retain, and how to reassemble the input.</p>
+<p>Compaction also exists at the API level. The Responses API&rsquo;s <code>/responses/compact</code> returns a set of context items for subsequent requests. These include an opaque, encrypted compaction item and may retain other input items. This compressed state should not be equated with a human-readable summary. <a href="https://developers.openai.com/api/docs/guides/compaction">Compaction documentation</a></p>
+<p>So “compact” names an operation that can have different implementations. Comparing approaches requires examining both the resulting input structure and how removed content can be accessed.</p>
+<h3 id="a-summary-can-preserve-progress-while-omitting-the-basis-for-a-decision">A Summary Can Preserve Progress While Omitting the Basis for a Decision<a hidden class="anchor" aria-hidden="true" href="#a-summary-can-preserve-progress-while-omitting-the-basis-for-a-decision">#</a></h3>
+<p>Consider a hypothetical CSV import bug.</p>
+<p>After investigating, the agent finds that a byte order mark (BOM) at the start of the file interferes with matching the first column name. It also tries a fix that does not work. At the context boundary, the summary says only: “Working on the CSV import bug. Initial investigation complete. Continue checking the encoding.”</p>
+<p>This preserves the general direction. But the next model call may need other details:</p>
+<ul>
+<li>How exactly the BOM appeared in the original output.</li>
+<li>Which fix was already attempted, and why it failed.</li>
+<li>Which test results support the current diagnosis.</li>
+</ul>
+<p>If these details are absent from the summary and there is no other recovery path, the model may repeat the investigation—or repeat the same failed fix.</p>
+<p>The difficulty is that <strong>whether information is worth preserving often depends on what comes next.</strong> An error message that seems incidental now may become decisive in the next step. A fluent summary that covers the main progress does not necessarily contain enough information to continue the task.</p>
+<h3 id="repeated-compaction-in-a-codex-retrospective">Repeated Compaction in a Codex Retrospective<a hidden class="anchor" aria-hidden="true" href="#repeated-compaction-in-a-codex-retrospective">#</a></h3>
+<p>This risk has also appeared in evaluations. In the compaction-frequency section of <em>Ghosts in the Codex Machine</em>, dated October 31, 2025, Tibo and the Codex team wrote:</p>
+<blockquote>
+<p>Evals confirmed that performance degrades with the number of /compact or auto-compactions used within a single session.</p>
+</blockquote>
+<p>The team found that a growing share of sessions used compaction, while evaluations showed worse performance as the number of compactions within a session increased. The subsequent improvements included avoiding recursive summarization across repeated compactions and reminding users to keep sessions focused. <a href="https://docs.google.com/document/d/1fDJc1e0itJdh0MXMFJtkRiBcxGEFtye6Xc6Ui7eMX4o/edit">Original report</a></p>
+<p>The cumulative effect deserves attention. Mechanically, if the next handoff depends on the previous summary, that summary becomes the input to another round of information selection. Once a reason for failure is omitted early on, later rounds may continue without it.</p>
+<p><strong>Continuing after one compaction shows that a handoff occurred. Preserving working state must be tested through task performance across repeated context transitions.</strong> Evaluations should check whether constraints disappear and whether the agent revisits approaches that already failed.</p>
+<p>This observation concerns the Codex implementation at that time. The report also discusses hardware, tool behavior, and timeouts; it does not attribute the overall degradation to a single factor. Its proposed improvements also include changes to the summarization mechanism itself.</p>
+<p>Following this line of inquiry, we need to test two properties separately: whether information can be recovered, and whether the agent recovers it when needed.</p>
+<h2 id="codexs-tokenbudget-path">Codex&rsquo;s TokenBudget Path<a hidden class="anchor" aria-hidden="true" href="#codexs-tokenbudget-path">#</a></h2>
+<p>The relevant pull requests show Codex separating several responsibilities previously grouped under compaction into independent operations.</p>
+<h3 id="new_context-lets-the-model-request-a-context-reset">new_context Lets the Model Request a Context Reset<a hidden class="anchor" aria-hidden="true" href="#new_context-lets-the-model-request-a-context-reset">#</a></h3>
+<p><a href="https://github.com/openai/codex/pull/27488">PR #27488</a> introduced a model-facing <code>new_context</code> tool behind the TokenBudget feature flag.</p>
+<p>Its execution flow can be summarized as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">The model calls new_context
+</span></span><span class="line"><span class="cl">→ Record the reset request
+</span></span><span class="line"><span class="cl">→ Consume the request after the current sampling phase ends
+</span></span><span class="line"><span class="cl">→ Rebuild the initial context
+</span></span><span class="line"><span class="cl">→ Continue the same task turn in a fresh window
+</span></span></code></pre></div><p>This path does not generate a handoff summary or automatically reload the old session history into the new window. It gives the model another option: when the current window no longer seems suitable for continuing the work, it can request a reset.</p>
+<p>Later, <a href="https://github.com/openai/codex/pull/29743">PR #29743</a> connected compaction under TokenBudget to a similar reset path. It starts a new window with the standard injected context, skipping the request for the server to summarize the old history.</p>
+<p>The scope matters: this describes the TokenBudget path. Other configurations, models, and compaction entry points need to be examined separately.</p>
+<p><a href="/img/agent-context-management-assets/context-switch.webp"><img loading="lazy" src="/img/agent-context-management-assets/context-switch.webp" alt="Input structures after a summary handoff and a reset without a summary"  />
+</a></p>
+<p><em>Figure 1: A mechanism diagram based on the Cookbook example and a snapshot of the Codex TokenBudget implementation. The left side retains a summary and recent turns; the right side rebuilds the initial context. Labels in this diagram are in Chinese. All images in this article can be clicked to view at full size.</em></p>
+<h3 id="notes-preserves-working-state-history-provides-a-route-back-to-evidence">notes Preserves Working State; history Provides a Route Back to Evidence<a hidden class="anchor" aria-hidden="true" href="#notes-preserves-working-state-history-provides-a-route-back-to-evidence">#</a></h3>
+<p>How does the task continue after a reset?</p>
+<p><a href="https://github.com/openai/codex/pull/39827">PR #39827</a> introduced two groups of model-facing tools:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Tool</th>
+          <th style="text-align: left">Operations</th>
+          <th style="text-align: left">Suitable contents</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>notes</code></td>
+          <td style="text-align: left">Write, append, read, and search persistent notes</td>
+          <td style="text-align: left">Current objective, decisions, pending tasks, and evidence locations</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>history</code></td>
+          <td style="text-align: left">List windows and entries, search content, and read entries</td>
+          <td style="text-align: left">Original information from earlier messages and tool outputs</td>
+      </tr>
+  </tbody>
+</table>
+<p>The division is fairly clear. Notes helps the model quickly recover its working state; history lets it check original material when needed. Notes can stay compact while detailed logs are retrieved through queries.</p>
+<p>The earlier CSV example could follow this sequence:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Window A
+</span></span><span class="line"><span class="cl">Investigate the problem
+</span></span><span class="line"><span class="cl">→ Write notes with progress and pending tasks
+</span></span><span class="line"><span class="cl">→ Call new_context
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Window B
+</span></span><span class="line"><span class="cl">Read notes
+</span></span><span class="line"><span class="cl">→ Decide that the earlier failure needs to be checked
+</span></span><span class="line"><span class="cl">→ Search and read history
+</span></span><span class="line"><span class="cl">→ Continue the fix using the original output
+</span></span></code></pre></div><p><a href="/img/agent-context-management-assets/context-recall.webp"><img loading="lazy" src="/img/agent-context-management-assets/context-recall.webp" alt="The model restores progress from notes and retrieves original logs from history"  />
+</a></p>
+<p><em>Figure 2: If both the summary and the notes omit the BOM detail, history offers another chance to read the original log. This is an illustrative flow; successful recovery depends on the model&rsquo;s actual choices. Labels in this diagram are in Chinese.</em></p>
+<p>These tools operate through the Codex backend. The implementation that introduced them requires the relevant configuration to be enabled, the OpenAI provider, and backend authentication.</p>
+<p>Mechanically, the system provides a foundation for continuing tasks across windows. But writing notes and querying history both require the model to act. A reset does not guarantee that notes have been prepared, and searchable records do not guarantee that the model will find the right entry.</p>
+<p><strong>Original evidence is more accessible. How to use it remains a policy question.</strong></p>
+<h2 id="from-memory-tools-to-memory-policies">From Memory Tools to Memory Policies<a hidden class="anchor" aria-hidden="true" href="#from-memory-tools-to-memory-policies">#</a></h2>
+<p>Does giving an agent <code>notes</code> and <code>history</code> mean it knows how to manage context?</p>
+<p>Tools define the available actions. The model still needs to judge when those actions are useful.</p>
+<p>More specifically:</p>
+<ul>
+<li><strong>When to reorganize.</strong> Has the current subtask ended? Is there still value in retaining the full exploration process?</li>
+<li><strong>What to preserve.</strong> Which conclusions are stable, which hypotheses remain unverified, and which reasons for failure need to carry into the next stage?</li>
+<li><strong>When to retrieve.</strong> Does the current state support the next action, or should the model first check the original output?</li>
+</ul>
+<p>These choices directly affect the rest of the task. Resetting too early can interrupt an unfinished investigation. Waiting too long can leave the context full of obsolete hypotheses. Notes that are too short raise recovery costs; notes that grow through endless appends become another long context.</p>
+<p>The trigger for retrieval is particularly easy to overlook. If a note says only “continue checking the encoding,” how does the model in the new window realize that it is missing an important record of failure?</p>
+<p>This is why working notes need to preserve unresolved questions and evidence locations. Alongside conclusions, they need clues that can prompt subsequent action.</p>
+<p>Within the agent loop, task actions and memory actions now participate in the same decision process:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Current context + task progress + budget information
+</span></span><span class="line"><span class="cl">                         ↓
+</span></span><span class="line"><span class="cl">              The model chooses an action
+</span></span><span class="line"><span class="cl">                ↙                    ↘
+</span></span><span class="line"><span class="cl">     Read code, run tests     Write notes, retrieve,
+</span></span><span class="line"><span class="cl">                              compact, reset context
+</span></span><span class="line"><span class="cl">                ↘                    ↙
+</span></span><span class="line"><span class="cl">       The harness executes and builds the next input
+</span></span><span class="line"><span class="cl">                         ↓
+</span></span><span class="line"><span class="cl">                  Continue the task
+</span></span></code></pre></div><p>This introduces a training question: how should a memory action be evaluated?</p>
+<p>When the model records why an attempt failed, we do not yet know how many redundant attempts it will prevent. Likewise, an index is difficult to evaluate in isolation. Its value becomes apparent when a later model call actually needs the material it points to.</p>
+<p>Memory operations therefore have delayed benefits. Learning these policies requires connecting later task outcomes to earlier memory decisions.</p>
+<h2 id="training-context-management">Training Context Management<a hidden class="anchor" aria-hidden="true" href="#training-context-management">#</a></h2>
+<h3 id="memexrl-jointly-optimizes-storing-and-reading-experience">MemexRL Jointly Optimizes Storing and Reading Experience<a hidden class="anchor" aria-hidden="true" href="#memexrl-jointly-optimizes-storing-and-reading-experience">#</a></h3>
+<p><a href="https://arxiv.org/html/2603.04257v1">Memex(RL)</a> uses Indexed Experience Memory: compact summaries and indexes remain in the window, while detailed material moves to external storage.</p>
+<p>It provides two key operations:</p>
+<ul>
+<li><code>CompressExperience</code>: organize a summary and archive detailed material under indexes.</li>
+<li><code>ReadExperience</code>: retrieve the corresponding content by index.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Current working context
+</span></span><span class="line"><span class="cl">→ CompressExperience
+</span></span><span class="line"><span class="cl">→ Keep an indexed summary in the window; archive details externally
+</span></span><span class="line"><span class="cl">→ A later task step needs a piece of evidence
+</span></span><span class="line"><span class="cl">→ ReadExperience
+</span></span><span class="line"><span class="cl">→ The original material re-enters the context
+</span></span></code></pre></div><p>MemexRL then uses GRPO-style reinforcement learning to jointly optimize task actions and memory reads and writes. Its reward combines task success with penalties for exceeding the context budget, redundancy, and formatting problems.</p>
+<p>The paper also tracks changes in memory-tool use during training: compression calls generally decrease, while retrieval calls generally increase. At least in these experiments, training changes how the model stores and retrieves information.</p>
+<p><a href="/img/agent-context-management-assets/memex-compress-count.webp"><img loading="lazy" src="/img/agent-context-management-assets/memex-compress-count.webp" alt="Average compression calls per task during MemexRL training"  />
+</a></p>
+<p><a href="/img/agent-context-management-assets/memex-retrieve-count.webp"><img loading="lazy" src="/img/agent-context-management-assets/memex-retrieve-count.webp" alt="Average retrieval calls per task during MemexRL training"  />
+</a></p>
+<p><em>Figure 3: Changes in memory-tool use during MemexRL training. Compression calls are shown above, retrieval calls below. Both plots come from the same training experiment, with Rollout Step on the horizontal axis. Call counts alone do not establish task quality. Source: <a href="https://arxiv.org/html/2603.04257v1#S5.F5">Memex(RL), Figure 5</a>.</em></p>
+<p>This has a similar mechanical structure to notes/history: compact state retains a route back to detailed material. How indexes are organized during archiving affects whether evidence can later be retrieved accurately. Storage and retrieval therefore need to be considered together.</p>
+<p>The comparison is limited to mechanisms. It does not establish that Codex uses MemexRL&rsquo;s training method.</p>
+<h3 id="swe-mem-lets-the-model-choose-when-and-what-to-compress">SWE-MeM Lets the Model Choose When and What to Compress<a hidden class="anchor" aria-hidden="true" href="#swe-mem-lets-the-model-choose-when-and-what-to-compress">#</a></h3>
+<p>If an investigation is complete but the context is still well below its limit, should the agent reorganize it early? If only one subtask is finished, can it compress just that portion?</p>
+<p><a href="https://arxiv.org/html/2606.28434v1">SWE-MeM</a> turns compression into a parameterized tool. The model supplies its current analysis, the starting and ending step numbers, a replacement summary, and the remaining work. The system then replaces the selected span.</p>
+<p>The tool takes this form:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">compress(
+</span></span><span class="line"><span class="cl">    analysis,
+</span></span><span class="line"><span class="cl">    start_step_number,
+</span></span><span class="line"><span class="cl">    end_step_number,
+</span></span><span class="line"><span class="cl">    content,
+</span></span><span class="line"><span class="cl">    remaining_work
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></div><p>This lets the model choose a span based on the stage of the task. Completed exploration can be condensed into conclusions, while material whose details are still needed remains intact.</p>
+<p><a href="/img/agent-context-management-assets/swe-mem-comparison.webp"><img loading="lazy" src="/img/agent-context-management-assets/swe-mem-comparison.webp" alt="SWE-MeM compared with no compression, threshold-triggered compression, and fixed-span compression"  />
+</a></p>
+<p><em>Figure 4: Mechanisms for several context-management approaches. SWE-MeM lets the model choose the timing and span. This diagram explains operational differences; performance comparisons require the experimental results. Source: <a href="https://arxiv.org/html/2606.28434v1#S2.F2">SWE-MeM, Figure 2</a>.</em></p>
+<p>For training, SWE-MeM combines curriculum-based fine-tuning with Memory-aware GRPO, jointly optimizing memory decisions and software-engineering task performance. It focuses on when, where, and how to compress, all of which depend on the current trajectory.</p>
+<p>For coding agents, the useful implication is that context reorganization can follow subtask completion. Capacity limits still apply, but task progress also becomes a basis for the decision.</p>
+<h3 id="compactionrl-evaluates-summaries-through-subsequent-task-performance">CompactionRL Evaluates Summaries Through Subsequent Task Performance<a hidden class="anchor" aria-hidden="true" href="#compactionrl-evaluates-summaries-through-subsequent-task-performance">#</a></h3>
+<p><a href="https://arxiv.org/html/2607.05378v1">CompactionRL</a> retains summary-based compaction and jointly trains task execution and summary generation with PPO.</p>
+<p>When a rollout crosses a compaction boundary, the earlier summary affects later behavior. Training must handle feedback across that boundary, as well as loss weighting across trajectory segments. CompactionRL uses token-level loss normalization and cross-trajectory GAE to connect the training signals for execution and summarization.</p>
+<p>There is a clear distinction from SWE-MeM: CompactionRL&rsquo;s experiments still trigger compaction at a fixed remaining-budget threshold. The main optimization targets are the summary and subsequent execution.</p>
+<p>One interesting observation is that including summary generation in training produces longer, more detailed summaries. The optimized model chooses to retain more information that can support later actions.</p>
+<p><a href="/img/agent-context-management-assets/compactionrl-summary-length.webp"><img loading="lazy" src="/img/agent-context-management-assets/compactionrl-summary-length.webp" alt="Summary length during training for CompactionRL and the variant without summary training"  />
+</a></p>
+<p><em>Figure 5: Summary length under the GLM-4.5-Air setup. Blue circles represent CompactionRL; light-blue triangles represent the variant without summary training. Summary length generally increases with training in the former. This panel shows length changes; the summaries&rsquo; task value still needs to be assessed alongside the ablation results. Source: <a href="https://arxiv.org/html/2607.05378v1#S5.F4">CompactionRL, Figure 4(a)</a>.</em></p>
+<p>This is a reminder that compression ratio is only a local metric. Saving a few hundred tokens may increase overall cost if it forces the agent to repeat exploration or tests later. Summary quality needs to be judged through subsequent execution.</p>
+<h3 id="comparing-the-approaches">Comparing the Approaches<a hidden class="anchor" aria-hidden="true" href="#comparing-the-approaches">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Work</th>
+          <th style="text-align: left">Memory operations</th>
+          <th style="text-align: left">Training focus</th>
+          <th style="text-align: left">Main boundary</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">MemexRL</td>
+          <td style="text-align: left">Archive, index, and retrieve by index</td>
+          <td style="text-align: left">How storage and retrieval support task execution together</td>
+          <td style="text-align: left">Effective policies depend on usable indexes and storage</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SWE-MeM</td>
+          <td style="text-align: left">Select a span and replace it with a summary</td>
+          <td style="text-align: left">When, where, and how to compress</td>
+          <td style="text-align: left">Decisions depend on the specific task trajectory</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CompactionRL</td>
+          <td style="text-align: left">Generate a summary and continue execution</td>
+          <td style="text-align: left">The summary&rsquo;s effect on subsequent work</td>
+          <td style="text-align: left">The experimental trigger threshold remains fixed</td>
+      </tr>
+  </tbody>
+</table>
+<p>These papers place different parts of context management inside the optimization objective. They also show why “the model has learned to manage context” needs to be broken down into specific capabilities. Calling a memory tool does not, by itself, validate the entire policy.</p>
+<h2 id="how-the-harness-and-model-need-to-work-together">How the Harness and Model Need to Work Together<a hidden class="anchor" aria-hidden="true" href="#how-the-harness-and-model-need-to-work-together">#</a></h2>
+<p>So far, the discussion has focused mainly on which decisions the model should make. Whether a policy works also depends on what the interfaces guarantee.</p>
+<p><a href="https://arxiv.org/html/2607.25066v1">ARC</a> offers a reference from the systems side. It writes tool observations to an append-only store and addresses them with stable IDs. During compaction, a deterministic procedure replaces long, older observations with references. The model can retrieve them by address when needed. This compaction process does not call a summarization model.</p>
+<p>ARC&rsquo;s recoverability applies to archived observations. It provides a mechanism for returning to evidence; whether the model chooses the right address is a separate question.</p>
+<p>This distinction applies to agent memory design more generally:</p>
+<ul>
+<li><strong>Is the mechanism reliable?</strong> Did the write succeed? Are references stable? Is retrieved content complete? Is truncation explicitly marked?</li>
+<li><strong>Is the policy effective?</strong> Did the model preserve useful state? Can it detect an information gap? Does it choose the right evidence?</li>
+</ul>
+<p>These need separate evaluations. Otherwise, when recovery fails, it is difficult to tell whether the tool interface, storage implementation, or the model&rsquo;s usage policy needs to change.</p>
+<p>From an engineering perspective, I care more about the following outcomes:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Dimension</th>
+          <th style="text-align: left">What to examine</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Task completion</td>
+          <td style="text-align: left">Can the agent still finish the task after crossing context windows?</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Constraint retention</td>
+          <td style="text-align: left">Do previously confirmed requirements or limits disappear during later execution?</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Repeated exploration</td>
+          <td style="text-align: left">Does the agent retry failed approaches or repeat queries whose results already exist?</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Evidence recovery</td>
+          <td style="text-align: left">Can it retrieve the key original material, and how many calls does that take?</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Total cost</td>
+          <td style="text-align: left">Total tokens and elapsed time for note-taking, compaction, search, retrieval, and task execution</td>
+      </tr>
+  </tbody>
+</table>
+<p>These are suggestions for evaluation design. Actual comparisons still need controlled tasks, models, and budgets. A shorter active window can reduce the current input, but it does not establish lower end-to-end cost. Memory management consumes resources too.</p>
+<p>Following this direction, an important job for future harnesses is to expose context operations through reliable, composable, and observable interfaces. Models can then learn to use those interfaces through task feedback.</p>
+<p>“Internalizing” context-management ability thus has a concrete meaning: <strong>moving some context choices previously determined by external rules into the model&rsquo;s trainable action policy.</strong> Storage, execution, budget boundaries, and recovery mechanisms remain responsibilities of the system.</p>
+<p>This leaves two connected questions: can the system keep historical evidence available, and can the model select the context the current task actually needs within a limited budget? The first establishes the conditions for recovery. The second determines whether those conditions translate into task performance.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/en/tags/agent/">Agent</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/agent-memory/">Agent-Memory</a></li>
+      <li><a href="https://niraya666.github.io/en/tags/agent-harness/">Agent-Harness</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://niraya666.github.io/en/posts/ai-decouples-production-and-cultivation/">
+    <span class="title">Next »</span>
+    <br>
+    <span>AI Decouples Production from Cultivation</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on x"
+            href="https://x.com/intent/tweet/?text=When%20Agents%20Start%20Managing%20Their%20Own%20Context&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f&amp;hashtags=Agent%2cAgent-memory%2cAgent-Harness">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f&amp;title=When%20Agents%20Start%20Managing%20Their%20Own%20Context&amp;summary=When%20Agents%20Start%20Managing%20Their%20Own%20Context&amp;source=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f&title=When%20Agents%20Start%20Managing%20Their%20Own%20Context">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on whatsapp"
+            href="https://api.whatsapp.com/send?text=When%20Agents%20Start%20Managing%20Their%20Own%20Context%20-%20https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on telegram"
+            href="https://telegram.me/share/url?text=When%20Agents%20Start%20Managing%20Their%20Own%20Context&amp;url=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share When Agents Start Managing Their Own Context on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=When%20Agents%20Start%20Managing%20Their%20Own%20Context&u=https%3a%2f%2fniraya666.github.io%2fen%2fposts%2fagent-context-management%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/en/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

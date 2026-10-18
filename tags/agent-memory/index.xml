@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 09 Jul 2026 19:03:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/tags/agent-memory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>当 Agent 开始管理自己的上下文</title>
+      <link>https://niraya666.github.io/posts/agent-context-management/</link>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/posts/agent-context-management/</guid>
+      <description>从 Codex 的 TokenBudget 换窗、notes 与 history 接口出发，结合 MemexRL、SWE-MeM、CompactionRL 和 ARC，拆解上下文管理如何成为可训练的 Agent 策略。</description>
+    </item>
     <item>
       <title>SOTA 之后：agent-memory benchmark 测了什么，又测不了什么</title>
       <link>https://niraya666.github.io/posts/agent-memory-benchmark-summary/</link>
