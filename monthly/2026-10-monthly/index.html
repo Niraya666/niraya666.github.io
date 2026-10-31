@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2026-10 月刊 | LZY Blog</title>
+<meta name="keywords" content="月刊">
+<meta name="description" content="值得关注的模型和新技术
+DeepInfer: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力
+DeepSeek-V4.1-Flash-1017: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search &amp; Fetch API">
+<meta name="author" content="LZY">
+<link rel="canonical" href="https://niraya666.github.io/monthly/2026-10-monthly/">
+<meta name="google-site-verification" content="M1YUxY_qHBmACigKjjJbDVeIPpRzBmrbklcOs1NvowQ">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://niraya666.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://niraya666.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://niraya666.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://niraya666.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://niraya666.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://niraya666.github.io/monthly/2026-10-monthly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KEC0300HT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9KEC0300HT');
+        }
+      </script><meta property="og:title" content="2026-10 月刊" />
+<meta property="og:description" content="值得关注的模型和新技术
+DeepInfer: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力
+DeepSeek-V4.1-Flash-1017: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search &amp; Fetch API" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niraya666.github.io/monthly/2026-10-monthly/" />
+<meta property="og:image" content="https://niraya666.github.io/img/monthly/2026/2026-10-cover.jpg" /><meta property="article:section" content="monthly" />
+<meta property="article:published_time" content="2026-10-29T00:00:00+08:00" />
+<meta property="article:modified_time" content="2026-10-29T00:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://niraya666.github.io/img/monthly/2026/2026-10-cover.jpg" />
+<meta name="twitter:title" content="2026-10 月刊"/>
+<meta name="twitter:description" content="值得关注的模型和新技术
+DeepInfer: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力
+DeepSeek-V4.1-Flash-1017: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search &amp; Fetch API"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Monthlies",
+      "item": "https://niraya666.github.io/monthly/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2026-10 月刊",
+      "item": "https://niraya666.github.io/monthly/2026-10-monthly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2026-10 月刊",
+  "name": "2026-10 月刊",
+  "description": "值得关注的模型和新技术 DeepInfer: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力\nDeepSeek-V4.1-Flash-1017: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search \u0026amp; Fetch API\n",
+  "keywords": [
+    "月刊"
+  ],
+  "articleBody": "值得关注的模型和新技术 DeepInfer: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力\nDeepSeek-V4.1-Flash-1017: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search \u0026 Fetch API\n值得关注的开源项目 Replica: GitHub Design 开源的 AI 原型工具，以团队已有组件、设计规范和文档引导交互原型生成，支持本地预览及可选的自托管 Replica Hub，方便团队分享原型和收集评论\nAgent S4: Simular 开源的电脑操作接口演化框架，通过 meta-agent 分析任务轨迹并迭代 Python 工具接口与使用知识，在保持任务模型和 harness 不变的情况下提升 Agent 的操作能力\nsemantica: 面向 AI 系统的图原生上下文基础设施，将多源数据组织为知识图谱和 Context Graph，结合 GraphRAG、确定性规则推理、事实溯源与决策记录，为 Agent 提供可查询、可审计的共享上下文\nsecurity-audit-skill: Cloudflare 开源的代码安全审计 Skill，以覆盖台账驱动多阶段漏洞搜寻，通过独立 Agent 验证候选问题与最终记录，输出区分已确认、待验证和被否定问题的机器可读审计结果\ntext-to-cad: 面向 AI Agent 的本地 CAD 插件与 Skills 集合，引导 Agent 用 build123d 和 Open CASCADE 将自然语言或图像需求转为 Python 建模脚本，支持 STEP、STL、3MF 和 GLB 导出、工程图生成与可制造性检查\n值得关注的研究和论文 The Tasteful Agent: Measuring and Improving Taste in Long-Horizon Tasks arXiv:2609.25804\n把 Agent 的 taste 操作化为“在尚未看到后续结果时，能否选对技术方向”：从既有运行轨迹挖掘决策分叉，隐藏后续结果测试判断力，再将拥有结果信息的教师推理蒸馏给学生。\n从运行轨迹构造判断题\n最终成功率混合了路线选择、执行质量与环境因素。Taste-Bench 将评测截在具体分叉处，只提供任务、分叉前历史和两个候选方向，要求模型提前选择。\nParallel：配对同一任务的成功与失败尝试，定位两条轨迹选择不同方向的位置。 Detour：从单条轨迹提取“走错 → 观察到失败 → 改换方向 → 成功”，把题目放在首次走错之前。 过滤：剔除仅看候选措辞就容易猜中的题，以及完整后续记录仍不能支持标签的题；4,657 个候选最终保留 502 题，其中工程题 390 道、研究题 112 道。 每题交换选项顺序评估两次，只有两次都答对才计分；headline 分数为工程与研究严格准确率的等权平均。因此，两次独立随机猜测的基线为 25%，不能直接与普通二选一准确率混用。（§3、附录A/C）\n特权上下文蒸馏\n教师与学生使用相同的 Qwen3.6-27B 基座，教师额外知道正确方向，学生只见决策当时的信息。教师生成推理与最终选择，在教师续写序列上计算 token-level KL，训练学生的 LoRA；随后让学生自由推理，以真实标签对最终答案位置做 cross-entropy 校准。390 道工程题按任务分为两折，分别训练、交叉评估。（§5.1、附录G）\n在执行实验中，学生把每个分叉转为“适用情境—避免方向—建议方向”的短建议，提前放入固定执行器的任务上下文，并要求执行器自行测试验证。\nFollow the Entities: A Corpus Map for Agentic Search arXiv:2609.37226\nCorpusMap 将跨文档反复出现的实体整理成可复用的语料地图，让 Agent 沿实体页找到互补证据，减少每次查询都重新发现文档关系的开销。\n核心方法：实体身份约束的导航层\n传统原文搜索容易漏掉措辞不同、分散在多个来源中的证据。CorpusMap 在保留全部原文的同时，建立实体—文档二部图：一篇文档可以属于多个实体邻域，未关联实体的文档仍可直接搜索；默认不增加显式实体—实体关系边。（§3.1–3.2）\n离线构建分为四步：\nCataloging：从样本文档归纳实体类型目录，为每类对象定义身份判别规则和原文例子，随后固定目录。 Extraction：逐文档抽取实体，把同一对象在该文档内的不同名称合并，名称须来自原文。 Resolution：对照共享 registry 做跨文档消歧，以 LINK 关联现有对象、ADD 新建对象，证据不足时保留 UNRESOLVED。 Rendering：仅为关联至少两份文档的实体生成 Entity Page，汇总别名、概览、带来源的关键事实和原文路径。（§3.3，算法1） 查询时先用 BM25 检索相关实体页，汇总其关联文档，再按标题和内容重排，给 Agent 候选文档的标题、路径与 ID。Agent 可继续用 shell 搜索实体页和原文、沿链接补证据，候选入口不会限制可访问范围。（§3.4，附录B.3）\nGitSwarm: Decentralized Compounding Inference arXiv:2610.04862\n将多轮推理留下的代码、实验、失败与验证证据组织成可分支、可追溯的成果图，让后续 Agent 能检查、接力和组合已有工作，形成跨 episode 的 compounding inference；模型权重保持固定，持续演化的是外部工作状态。\n核心设计：贡献、分支与语义依赖\n共享 Git 仓库同时承担三种职责：用不可变 commit 持久保存成果，用分支保留竞争路线，用显式依赖记录跨路线借鉴。\n一个贡献有两种来源关系：物理父节点表示继承哪棵文件树，informed_by 则列出实际依赖的先前贡献，且必须包含父节点。因此，worker 可以从 A 的实现继续开发，同时引用 B 分支发现的反例，而无需先合并两个分支。语义边记录声明的影响关系，不代表自动代码合并或因果贡献归因。（§2.1–2.2）\nworker 如何协作\n在隔离 worktree 中查看历史与在途工作，自主选择起点和下一步，公开工作范围。 一次 episode 可以贡献一个原子 commit、提名已有候选，或因重复和缺少收益而主动退出。 每个贡献保留 MY_THOUGHTS.md 与 EVALUATION.md，记录假设、来源使用方式、实际检查、不确定性和下一步；分析或失败实验也须继承一个满足任务结构要求的候选。 解题任务按精确候选 SHA 的有效提名数选出最终版本；架构研究按验证指标选择，不采用投票。 dashboard 和活动日志用于发现正在进行的工作；未提交内容须落成 commit、经过检查并被引用，才可作为持久来源。中央 harness 仍负责调度、校验和发布，“去中心化”主要体现为 worker 自主选择工作；发布校验通过不等于答案正确。（§2.3–2.5、附录 H）\nDiscoveryRSI: Recursively Learning to Discover Valuable Hypotheses arXiv:2610.23839\n将科研提案的版本演化、证据与 Agent 行动连接起来，通过贡献加权微调和研究工作流回放，让系统从已有研究经历中学习如何提出更可检验的假设\n把假设定义成可检验的研究对象\n论文将假设表示为 $H=(c,\\pi,d,a)$：主张、调查计划、判断标准和替代解释。每个对象还绑定证据与资源约束，在获得结果前就说明什么观察支持、削弱或仍不足以区分主张。一个脚本执行成功、一个提案获得高分、一个科学结论被独立证实，分别记录。\n系统维护三类相互关联的记录：\n假设发展图：保存版本、修订与多父节点组合，描述科研内容怎样演化，实际可以是 DAG Agent 调用轨迹：保存指令、动作和工具观察，用于定位可以监督的响应与工具参数 贡献与证据关系：通过发布记录、草稿、文件哈希和执行依赖，将评价连接到有依据的参与记录 共享同一材料不自动构成假设祖先关系，出现在同一研究轮次也不自动获得训练 credit。（§2–3；附录 A/B）\n内层搜索与外层学习\nLead 选择研究方向，Generation/Evolution 生成、修复或组合提案；Critique 隐去模型身份比较方案，Progress 对照祖先判断实质进步、必要修复、重复或证据不足。Compiler 将入选计算计划封装为带输入、环境、输出和验证条件的 Harbor 任务。\n外层包含三条机制：\nHypothesis Credit Optimization：根据提案评价与贡献记录分配 credit，施加限额后再计算训练权重 Harness Replay：固定模型，从失败轨迹诊断协调、工具、证据访问与完成检查的问题，再回放比较工作流修改 Rediscovery：将开发集接受的模型与工作流更新用于新问题，采集下一轮研究经历 DFM-Bench 分别评价单个假设、一次修订、发展路径、整轮研究与去重后的科学贡献；任务交付成熟度另记，整轮研究分数也不由路径均分代替。（§3–4；算法 1）\n推荐内容 深度文章 Automation and Repression Daron Acemoglu、A. Arda Gitmez 与 Mehdi Shadmehr 在这篇 2026 年 6 月的理论论文中，将自动化放进政治经济学框架：当国家代表资本所有者、劳动者可能反抗时，限制自动化、再分配与镇压之间会形成怎样的权衡？文章提供了理解技术选择与收入分配关系的一种机制，其结论依赖模型中的政治与成本假设。\nMore automation requires more redistribution in order to counterbalance the unequalizing effects of automation.\nThe Next Era of Knowledge Work OpenAI 在这份 2026 年 6 月报告中，从搜索、协调、审批与验证三类摩擦切入，结合 Codex 的使用数据和案例，讨论 Agent 如何将跨工具、碎片化的知识工作组织为可并行、可检查的工作流。值得关注的是围绕 Agent 重构流程、分工与验证机制的思路；报告中的平台数据与案例尚不足以单独证明普遍的生产率收益。\nThe user becomes the orchestrator of workstreams rather than executing a single task at a time.\n企业的未来 Hemanth Asirvatham 与 Elliott Mokski 从 AI 成为下属、同事或协调中间层三种情景出发，讨论人机混合型企业如何改变员工自主权、企业规模和薪酬差距。这篇代表作者个人观点的文章，把问题推进到组织与权力如何重排；不同走向取决于需求增长、监督方式，以及人类仍能提供的价值。\nLLMs are making formal software verification feasible at a much larger scale Anthropic 与 Theorem 将既有 fuzz tests 转为形式化规格，由 Claude 生成证明、Rocq 核验，在 123 个开源库的 239 个测试入口上验证特定条件下的无崩溃性质。文章展示了从测试走向可检查证明的工程路径，也交代了结论的适用范围：所建模的单线程静态 RISC-V/Linux 环境，以及小于 64 MB 的输入。\n“Formally verified” does not mean “bug-free.”\n前线部署工程在 OpenAI 意味着什么 OpenAI 前线部署工程负责人 Colin Jarvis 结合客户案例，解释 FDE 如何弥合模型能力与生产可用性之间的鸿沟：先围绕业务结果构建和评估系统，再把有效流程沉淀为通用能力、Skills 与插件，并将能力缺口反馈给研究团队。值得关注的是，如何让一次定制成为下一次部署的起点。\n我们的目标是让每一次合作都为下一位客户留下更好的起点。\n影音记录 精选歌单 2026-10 精选歌单：16 首，约 79 分钟。\n书\u0026阅读摘录 How to Be More Ambitious: A Tutorial for Humans With Models I think of ambition in four types: Speed, Altitude, Depth, and Range.\nSpeed: The same work in less time, the bread and butter for AI’s economic value\nAltitude: Going up in abstraction and considering the outcome rather than the individual task.\nDepth: Considering a task the way a field-leading expert would.\n• Range: Drawing on multiple fields rather than just the one the task might need at the surface, using knowledge, tools, and techniques you normally wouldn’t.\nBuilding Agents: When to Fold Subagents Into Your Main Agent Loop one clear system prompt, 4-5 thin data tools, and firm output guardrails would cover most of the use case.\nTo be clear, subagents still have their place, including at the research frontier. Use them when:\nCompanies often want to build an agent that unites multiple products and capabilities into a single customer interface.\nEvery team ships its own subagent, so companies end up with hundreds of overlapping subagents with no enforced standards and no specific owner.\nThe Frankenprompt: Every team adds a sentence to the system prompt, resulting in conflicting rules and no consistent voice.\nbut often a more effective approach can be progressively disclosing context via skills and progressively disclosing tools via tool search.\nKnowledge bases are the right fit for reference material the agent only needs some of the time.\nPersonal Agent是个很移动互联网的事 我理解，美国投资人都在抢一样东西：AI to C的话语权。\n而 Personal Agent 则提供了另一种解法：模型层逐渐降低成本和对最先进模型的依赖，但用户关系、使用习惯，以及交易前面的位置，可以留在应用公司手中。\n先回答一个很普遍的问题：Muse 能做的事，OpenClaw 不早就能做了吗？\nMuse 做的一个关键步骤，是把自行部署维护，变成云端托管、注册即用。用户不必先成为半个工程师，才能拥有一个替自己办事的 Agent 。\n因为AI办公产品从第一天起，就不是围绕普通人的生活来设计的。办公 Agent 的记忆和上下文可以围绕项目和任务构建，但一个普通人的日常里哪有那么多值得“专门立项”的任务？\n它们可能不值得专门打开一个工作台，却最好能有个什么东西一直替你盯着。\n用 Manus 改造 Manus，AI Native 组织改造的实践和思考 人亲手执行的部分越来越少；指挥 AI 干活、为 AI 的工作结果承担责任占的比重越来越大。\n组织方式、人与 AI 的关系，信息流动，每个人的能力边界，都在不知不觉中被调整，甚至是重塑。\n最大的损耗在联调。\n探索 AI 的使用边界本来就是我们的追求。\n团队无法忍受低效。\n组织足够扁平。这使得大部分决策，不管是自上而下，还是自下而上，都能快速覆盖到整个组织。\n这个链路上的人很多，信息每经过一个人就会丢一点。同一份需求文档，产品和设计做出的原型可能完全不同。\nClaude Code 和 Codex 出现后，工程师的效率大幅提升，新的问题却来了：产品经理不够用了，来不及提供足够多的高质量需求。\nta 会主动跨团队对齐。\n我们给网站开放了一个反馈接口。ta 用得不顺手时，可以直接通过这个接口提需求。\n很多以前要“找人问”的事，现在不必打断那个人了。在 Manus 内部，我们逐渐形成了一些共识\n我们做了一个目前只在内部使用的协作功能：同一项目的成员默认能看到彼此的 Session，也可以申请进入对话发言。\n这笔钱买的不是人力，而是时间和注意力\n用 AI 省下的是每个人的注意力，让每个人对自己负责的事更有完整的掌控。\n贵是因为用最好的模型，这是了解 AI 边界的核心方法\n一方面也帮助我们在理解当下模型的能力边界到底进化到哪了。他觉得这可能是公司最划算的一笔支出。\nSession 本身会成为多人协作的工作对象。\nAgent 主动发现解法。进入公司的系统和知识库后，Agent 不只执行交代的任务，也能利用已有工具、知识和资源，找到人没想到的解法。\n这不只是效率提高了，而是组织运转的方式在改变\n还有很重要的一点：与 AI 共同成长。\n在清迈做数字游民，我观察到的东西方文化差异 后来我慢慢意识到，对于流动性极强的圈层来说，small talk恰恰是社交最有效率的方式之一。它可以让你在新的地方，迅速地让别人对你有一个印象，之后才更容易建立更深的连接。\n有一个理论是椰子和水蜜桃文化，椰子文化的人外表是硬的， 看起来好像很不好接触，但是如果你能穿透那个壳，让ta把你当作自己人，那ta会很愿意和你分享深度的东西。\n水蜜桃文化则相反，看起来好像和谁都能聊，但实则内心很有距离感。\n在东亚文化中，我们更倾向于顺从和附和，谁在这个圈子里最有权威，我们就听ta的，尽管有时内心并不人认可。如果提出反对的意见，很多时候我们会觉得“驳了面子”，容易上升到个人层面。\n西方文化并非是没有“驳面子”之说，不同国家的人在做辩论时反驳方式也都有区别\n",
+  "wordCount" : "5350",
+  "inLanguage": "zh-cn",
+  "image":"https://niraya666.github.io/img/monthly/2026/2026-10-cover.jpg","datePublished": "2026-10-29T00:00:00+08:00",
+  "dateModified": "2026-10-29T00:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "LZY"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://niraya666.github.io/monthly/2026-10-monthly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LZY Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://niraya666.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://niraya666.github.io/" accesskey="h" title="LZY Blog (Alt + H)">LZY Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://niraya666.github.io/en/" title="English"
+                            aria-label="English">English</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://niraya666.github.io/posts/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/monthly/" title="月刊">
+                    <span>月刊</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel/" title="游记">
+                    <span>游记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/travel-map/" title="足迹">
+                    <span>足迹</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/musik/" title="Musik!">
+                    <span>Musik!</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/essay/" title="杂文">
+                    <span>杂文</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://niraya666.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://niraya666.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://niraya666.github.io/monthly/">Monthlies</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2026-10 月刊
+    </h1>
+    <div class="post-meta"><span title='2026-10-29 00:00:00 +0800 CST'>October 29, 2026</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;LZY
+
+</div>
+  </header> 
+<figure class="entry-cover"><a href="https://niraya666.github.io/img/monthly/2026/2026-10-cover.jpg" target="_blank"
+            rel="noopener noreferrer"><img loading="eager" src="https://niraya666.github.io/img/monthly/2026/2026-10-cover.jpg" alt="塔什干飞机制造工人文化宫内景"></a>
+        <p>摄于塔什干飞机制造工人文化宫</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e6%a8%a1%e5%9e%8b%e5%92%8c%e6%96%b0%e6%8a%80%e6%9c%af" aria-label="值得关注的模型和新技术">值得关注的模型和新技术</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" aria-label="值得关注的开源项目">值得关注的开源项目</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e7%a0%94%e7%a9%b6%e5%92%8c%e8%ae%ba%e6%96%87" aria-label="值得关注的研究和论文">值得关注的研究和论文</a><ul>
+                        
+                <li>
+                    <a href="#the-tasteful-agent-measuring-and-improving-taste-in-long-horizon-tasks" aria-label="The Tasteful Agent: Measuring and Improving Taste in Long-Horizon Tasks">The Tasteful Agent: Measuring and Improving Taste in Long-Horizon Tasks</a></li>
+                <li>
+                    <a href="#follow-the-entities-a-corpus-map-for-agentic-search" aria-label="Follow the Entities: A Corpus Map for Agentic Search">Follow the Entities: A Corpus Map for Agentic Search</a></li>
+                <li>
+                    <a href="#gitswarm-decentralized-compounding-inference" aria-label="GitSwarm: Decentralized Compounding Inference">GitSwarm: Decentralized Compounding Inference</a></li>
+                <li>
+                    <a href="#discoveryrsi-recursively-learning-to-discover-valuable-hypotheses" aria-label="DiscoveryRSI: Recursively Learning to Discover Valuable Hypotheses">DiscoveryRSI: Recursively Learning to Discover Valuable Hypotheses</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8e%a8%e8%8d%90%e5%86%85%e5%ae%b9" aria-label="推荐内容">推荐内容</a><ul>
+                        
+                <li>
+                    <a href="#%e6%b7%b1%e5%ba%a6%e6%96%87%e7%ab%a0" aria-label="深度文章">深度文章</a><ul>
+                        
+                <li>
+                    <a href="#automation-and-repressionhttpseconomicsmitedusitesdefaultfiles2026-06automation20and20repressionpdf" aria-label="Automation and Repression">Automation and Repression</a></li>
+                <li>
+                    <a href="#the-next-era-of-knowledge-workhttpscdnopenaicompdfthe-next-era-of-knowledge-workpdf" aria-label="The Next Era of Knowledge Work">The Next Era of Knowledge Work</a></li>
+                <li>
+                    <a href="#%e4%bc%81%e4%b8%9a%e7%9a%84%e6%9c%aa%e6%9d%a5httpsopenaicomzh-hans-cnindexthe-future-of-the-firm" aria-label="企业的未来">企业的未来</a></li>
+                <li>
+                    <a href="#llms-are-making-formal-software-verification-feasible-at-a-much-larger-scalehttpswwwanthropiccomresearchformal-verification" aria-label="LLMs are making formal software verification feasible at a much larger scale">LLMs are making formal software verification feasible at a much larger scale</a></li>
+                <li>
+                    <a href="#%e5%89%8d%e7%ba%bf%e9%83%a8%e7%bd%b2%e5%b7%a5%e7%a8%8b%e5%9c%a8-openai-%e6%84%8f%e5%91%b3%e7%9d%80%e4%bb%80%e4%b9%88httpsopenaicomzh-hans-cnindexforward-deployed-engineering-means" aria-label="前线部署工程在 OpenAI 意味着什么">前线部署工程在 OpenAI 意味着什么</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e9%9f%b3%e8%ae%b0%e5%bd%95" aria-label="影音记录">影音记录</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b2%be%e9%80%89%e6%ad%8c%e5%8d%95" aria-label="精选歌单">精选歌单</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%a6%e9%98%85%e8%af%bb%e6%91%98%e5%bd%95" aria-label="书&amp;阅读摘录">书&amp;阅读摘录</a><ul>
+                        
+                <li>
+                    <a href="#how-to-be-more-ambitious-a-tutorial-for-humans-with-modelshttpsfelixriesebergcomhow-to-be-more-ambitious-a-tutorial-for-humans-with-models" aria-label="How to Be More Ambitious: A Tutorial for Humans With Models">How to Be More Ambitious: A Tutorial for Humans With Models</a></li>
+                <li>
+                    <a href="#building-agents-when-to-fold-subagents-into-your-main-agent-loophttpsclaudecomresourcesarticlesbuilding-agents-when-to-fold-subagents-into-your-main-agent-loop" aria-label="Building Agents: When to Fold Subagents Into Your Main Agent Loop">Building Agents: When to Fold Subagents Into Your Main Agent Loop</a></li>
+                <li>
+                    <a href="#personal-agent%e6%98%af%e4%b8%aa%e5%be%88%e7%a7%bb%e5%8a%a8%e4%ba%92%e8%81%94%e7%bd%91%e7%9a%84%e4%ba%8bhttpsmpweixinqqcoms_0p-rfp2qb8rw0bs2my7fw" aria-label="Personal Agent是个很移动互联网的事">Personal Agent是个很移动互联网的事</a></li>
+                <li>
+                    <a href="#%e7%94%a8-manus-%e6%94%b9%e9%80%a0-manusai-native-%e7%bb%84%e7%bb%87%e6%94%b9%e9%80%a0%e7%9a%84%e5%ae%9e%e8%b7%b5%e5%92%8c%e6%80%9d%e8%80%83httpsmpweixinqqcomsi_hnnaf7lfbf5nj0rejhig" aria-label="用 Manus 改造 Manus，AI Native 组织改造的实践和思考">用 Manus 改造 Manus，AI Native 组织改造的实践和思考</a></li>
+                <li>
+                    <a href="#%e5%9c%a8%e6%b8%85%e8%bf%88%e5%81%9a%e6%95%b0%e5%ad%97%e6%b8%b8%e6%b0%91%e6%88%91%e8%a7%82%e5%af%9f%e5%88%b0%e7%9a%84%e4%b8%9c%e8%a5%bf%e6%96%b9%e6%96%87%e5%8c%96%e5%b7%ae%e5%bc%82httpsmpweixinqqcomsbzt_sxrjvzzsg399rxt7ywscene334" aria-label="在清迈做数字游民，我观察到的东西方文化差异">在清迈做数字游民，我观察到的东西方文化差异</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="值得关注的模型和新技术">值得关注的模型和新技术<a hidden class="anchor" aria-hidden="true" href="#值得关注的模型和新技术">#</a></h1>
+<p><a href="https://github.com/deepseek-ai/DeepInfer">DeepInfer</a>: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力</p>
+<p><a href="https://api-docs.deepseek.com/news/news261017/">DeepSeek-V4.1-Flash-1017</a>: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search &amp; Fetch API</p>
+<h1 id="值得关注的开源项目">值得关注的开源项目<a hidden class="anchor" aria-hidden="true" href="#值得关注的开源项目">#</a></h1>
+<p><a href="https://github.com/github/replica">Replica</a>: GitHub Design 开源的 AI 原型工具，以团队已有组件、设计规范和文档引导交互原型生成，支持本地预览及可选的自托管 Replica Hub，方便团队分享原型和收集评论</p>
+<p><a href="https://github.com/simular-ai/Agent-S">Agent S4</a>: Simular 开源的电脑操作接口演化框架，通过 meta-agent 分析任务轨迹并迭代 Python 工具接口与使用知识，在保持任务模型和 harness 不变的情况下提升 Agent 的操作能力</p>
+<p><a href="https://github.com/semantica-agi/semantica">semantica</a>: 面向 AI 系统的图原生上下文基础设施，将多源数据组织为知识图谱和 Context Graph，结合 GraphRAG、确定性规则推理、事实溯源与决策记录，为 Agent 提供可查询、可审计的共享上下文</p>
+<p><a href="https://github.com/cloudflare/security-audit-skill">security-audit-skill</a>: Cloudflare 开源的代码安全审计 Skill，以覆盖台账驱动多阶段漏洞搜寻，通过独立 Agent 验证候选问题与最终记录，输出区分已确认、待验证和被否定问题的机器可读审计结果</p>
+<p><a href="https://github.com/earthtojake/text-to-cad">text-to-cad</a>: 面向 AI Agent 的本地 CAD 插件与 Skills 集合，引导 Agent 用 build123d 和 Open CASCADE 将自然语言或图像需求转为 Python 建模脚本，支持 STEP、STL、3MF 和 GLB 导出、工程图生成与可制造性检查</p>
+<h1 id="值得关注的研究和论文">值得关注的研究和论文<a hidden class="anchor" aria-hidden="true" href="#值得关注的研究和论文">#</a></h1>
+<h2 id="the-tasteful-agent-measuring-and-improving-taste-in-long-horizon-tasks">The Tasteful Agent: Measuring and Improving Taste in Long-Horizon Tasks<a hidden class="anchor" aria-hidden="true" href="#the-tasteful-agent-measuring-and-improving-taste-in-long-horizon-tasks">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2609.25804v2">2609.25804</a></p>
+<p>把 Agent 的 taste 操作化为“在尚未看到后续结果时，能否选对技术方向”：从既有运行轨迹挖掘决策分叉，隐藏后续结果测试判断力，再将拥有结果信息的教师推理蒸馏给学生。</p>
+<p><strong>从运行轨迹构造判断题</strong></p>
+<p>最终成功率混合了路线选择、执行质量与环境因素。Taste-Bench 将评测截在具体分叉处，只提供任务、分叉前历史和两个候选方向，要求模型提前选择。</p>
+<ul>
+<li><strong>Parallel</strong>：配对同一任务的成功与失败尝试，定位两条轨迹选择不同方向的位置。</li>
+<li><strong>Detour</strong>：从单条轨迹提取“走错 → 观察到失败 → 改换方向 → 成功”，把题目放在首次走错之前。</li>
+<li><strong>过滤</strong>：剔除仅看候选措辞就容易猜中的题，以及完整后续记录仍不能支持标签的题；4,657 个候选最终保留 502 题，其中工程题 390 道、研究题 112 道。</li>
+</ul>
+<p>每题交换选项顺序评估两次，只有两次都答对才计分；headline 分数为工程与研究严格准确率的等权平均。因此，两次独立随机猜测的基线为 25%，不能直接与普通二选一准确率混用。（§3、附录A/C）</p>
+<p><strong>特权上下文蒸馏</strong></p>
+<p>教师与学生使用相同的 Qwen3.6-27B 基座，教师额外知道正确方向，学生只见决策当时的信息。教师生成推理与最终选择，在教师续写序列上计算 token-level KL，训练学生的 LoRA；随后让学生自由推理，以真实标签对最终答案位置做 cross-entropy 校准。390 道工程题按任务分为两折，分别训练、交叉评估。（§5.1、附录G）</p>
+<p>在执行实验中，学生把每个分叉转为“适用情境—避免方向—建议方向”的短建议，提前放入固定执行器的任务上下文，并要求执行器自行测试验证。</p>
+<hr>
+<h2 id="follow-the-entities-a-corpus-map-for-agentic-search">Follow the Entities: A Corpus Map for Agentic Search<a hidden class="anchor" aria-hidden="true" href="#follow-the-entities-a-corpus-map-for-agentic-search">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2609.37226v1">2609.37226</a></p>
+<p>CorpusMap 将跨文档反复出现的实体整理成可复用的语料地图，让 Agent 沿实体页找到互补证据，减少每次查询都重新发现文档关系的开销。</p>
+<p><strong>核心方法：实体身份约束的导航层</strong></p>
+<p>传统原文搜索容易漏掉措辞不同、分散在多个来源中的证据。CorpusMap 在保留全部原文的同时，建立实体—文档二部图：一篇文档可以属于多个实体邻域，未关联实体的文档仍可直接搜索；默认不增加显式实体—实体关系边。（§3.1–3.2）</p>
+<p>离线构建分为四步：</p>
+<ol>
+<li><strong>Cataloging</strong>：从样本文档归纳实体类型目录，为每类对象定义身份判别规则和原文例子，随后固定目录。</li>
+<li><strong>Extraction</strong>：逐文档抽取实体，把同一对象在该文档内的不同名称合并，名称须来自原文。</li>
+<li><strong>Resolution</strong>：对照共享 registry 做跨文档消歧，以 LINK 关联现有对象、ADD 新建对象，证据不足时保留 UNRESOLVED。</li>
+<li><strong>Rendering</strong>：仅为关联至少两份文档的实体生成 Entity Page，汇总别名、概览、带来源的关键事实和原文路径。（§3.3，算法1）</li>
+</ol>
+<p>查询时先用 BM25 检索相关实体页，汇总其关联文档，再按标题和内容重排，给 Agent 候选文档的标题、路径与 ID。Agent 可继续用 shell 搜索实体页和原文、沿链接补证据，候选入口不会限制可访问范围。（§3.4，附录B.3）</p>
+<hr>
+<h2 id="gitswarm-decentralized-compounding-inference">GitSwarm: Decentralized Compounding Inference<a hidden class="anchor" aria-hidden="true" href="#gitswarm-decentralized-compounding-inference">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2610.04862v1">2610.04862</a></p>
+<p>将多轮推理留下的代码、实验、失败与验证证据组织成可分支、可追溯的成果图，让后续 Agent 能检查、接力和组合已有工作，形成跨 episode 的 <strong>compounding inference</strong>；模型权重保持固定，持续演化的是外部工作状态。</p>
+<p><strong>核心设计：贡献、分支与语义依赖</strong></p>
+<p>共享 Git 仓库同时承担三种职责：用不可变 commit 持久保存成果，用分支保留竞争路线，用显式依赖记录跨路线借鉴。</p>
+<p>一个贡献有两种来源关系：物理父节点表示继承哪棵文件树，<code>informed_by</code> 则列出实际依赖的先前贡献，且必须包含父节点。因此，worker 可以从 A 的实现继续开发，同时引用 B 分支发现的反例，而无需先合并两个分支。语义边记录声明的影响关系，不代表自动代码合并或因果贡献归因。（§2.1–2.2）</p>
+<p><strong>worker 如何协作</strong></p>
+<ol>
+<li>在隔离 worktree 中查看历史与在途工作，自主选择起点和下一步，公开工作范围。</li>
+<li>一次 episode 可以贡献一个原子 commit、提名已有候选，或因重复和缺少收益而主动退出。</li>
+<li>每个贡献保留 <code>MY_THOUGHTS.md</code> 与 <code>EVALUATION.md</code>，记录假设、来源使用方式、实际检查、不确定性和下一步；分析或失败实验也须继承一个满足任务结构要求的候选。</li>
+<li>解题任务按精确候选 SHA 的有效提名数选出最终版本；架构研究按验证指标选择，不采用投票。</li>
+</ol>
+<p>dashboard 和活动日志用于发现正在进行的工作；未提交内容须落成 commit、经过检查并被引用，才可作为持久来源。中央 harness 仍负责调度、校验和发布，“去中心化”主要体现为 worker 自主选择工作；发布校验通过不等于答案正确。（§2.3–2.5、附录 H）</p>
+<hr>
+<h2 id="discoveryrsi-recursively-learning-to-discover-valuable-hypotheses">DiscoveryRSI: Recursively Learning to Discover Valuable Hypotheses<a hidden class="anchor" aria-hidden="true" href="#discoveryrsi-recursively-learning-to-discover-valuable-hypotheses">#</a></h2>
+<p>arXiv:<a href="https://arxiv.org/abs/2610.23839v2">2610.23839</a></p>
+<p>将科研提案的版本演化、证据与 Agent 行动连接起来，通过贡献加权微调和研究工作流回放，让系统从已有研究经历中学习如何提出更可检验的假设</p>
+<p><strong>把假设定义成可检验的研究对象</strong></p>
+<p>论文将假设表示为 $H=(c,\pi,d,a)$：主张、调查计划、判断标准和替代解释。每个对象还绑定证据与资源约束，在获得结果前就说明什么观察支持、削弱或仍不足以区分主张。一个脚本执行成功、一个提案获得高分、一个科学结论被独立证实，分别记录。</p>
+<p>系统维护三类相互关联的记录：</p>
+<ul>
+<li><strong>假设发展图</strong>：保存版本、修订与多父节点组合，描述科研内容怎样演化，实际可以是 DAG</li>
+<li><strong>Agent 调用轨迹</strong>：保存指令、动作和工具观察，用于定位可以监督的响应与工具参数</li>
+<li><strong>贡献与证据关系</strong>：通过发布记录、草稿、文件哈希和执行依赖，将评价连接到有依据的参与记录</li>
+</ul>
+<p>共享同一材料不自动构成假设祖先关系，出现在同一研究轮次也不自动获得训练 credit。（§2–3；附录 A/B）</p>
+<p><strong>内层搜索与外层学习</strong></p>
+<p>Lead 选择研究方向，Generation/Evolution 生成、修复或组合提案；Critique 隐去模型身份比较方案，Progress 对照祖先判断实质进步、必要修复、重复或证据不足。Compiler 将入选计算计划封装为带输入、环境、输出和验证条件的 Harbor 任务。</p>
+<p>外层包含三条机制：</p>
+<ol>
+<li><strong>Hypothesis Credit Optimization</strong>：根据提案评价与贡献记录分配 credit，施加限额后再计算训练权重</li>
+<li><strong>Harness Replay</strong>：固定模型，从失败轨迹诊断协调、工具、证据访问与完成检查的问题，再回放比较工作流修改</li>
+<li><strong>Rediscovery</strong>：将开发集接受的模型与工作流更新用于新问题，采集下一轮研究经历</li>
+</ol>
+<p>DFM-Bench 分别评价单个假设、一次修订、发展路径、整轮研究与去重后的科学贡献；任务交付成熟度另记，整轮研究分数也不由路径均分代替。（§3–4；算法 1）</p>
+<h1 id="推荐内容">推荐内容<a hidden class="anchor" aria-hidden="true" href="#推荐内容">#</a></h1>
+<h2 id="深度文章">深度文章<a hidden class="anchor" aria-hidden="true" href="#深度文章">#</a></h2>
+<h3 id="automation-and-repressionhttpseconomicsmitedusitesdefaultfiles2026-06automation20and20repressionpdf"><a href="https://economics.mit.edu/sites/default/files/2026-06/Automation%20and%20Repression.pdf">Automation and Repression</a><a hidden class="anchor" aria-hidden="true" href="#automation-and-repressionhttpseconomicsmitedusitesdefaultfiles2026-06automation20and20repressionpdf">#</a></h3>
+<p>Daron Acemoglu、A. Arda Gitmez 与 Mehdi Shadmehr 在这篇 2026 年 6 月的理论论文中，将自动化放进政治经济学框架：当国家代表资本所有者、劳动者可能反抗时，限制自动化、再分配与镇压之间会形成怎样的权衡？文章提供了理解技术选择与收入分配关系的一种机制，其结论依赖模型中的政治与成本假设。</p>
+<blockquote>
+<p>More automation requires more redistribution in order to counterbalance the unequalizing effects of automation.</p>
+</blockquote>
+<h3 id="the-next-era-of-knowledge-workhttpscdnopenaicompdfthe-next-era-of-knowledge-workpdf"><a href="https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf">The Next Era of Knowledge Work</a><a hidden class="anchor" aria-hidden="true" href="#the-next-era-of-knowledge-workhttpscdnopenaicompdfthe-next-era-of-knowledge-workpdf">#</a></h3>
+<p>OpenAI 在这份 2026 年 6 月报告中，从搜索、协调、审批与验证三类摩擦切入，结合 Codex 的使用数据和案例，讨论 Agent 如何将跨工具、碎片化的知识工作组织为可并行、可检查的工作流。值得关注的是围绕 Agent 重构流程、分工与验证机制的思路；报告中的平台数据与案例尚不足以单独证明普遍的生产率收益。</p>
+<blockquote>
+<p>The user becomes the orchestrator of workstreams rather than executing a single task at a time.</p>
+</blockquote>
+<h3 id="企业的未来httpsopenaicomzh-hans-cnindexthe-future-of-the-firm"><a href="https://openai.com/zh-Hans-CN/index/the-future-of-the-firm/">企业的未来</a><a hidden class="anchor" aria-hidden="true" href="#企业的未来httpsopenaicomzh-hans-cnindexthe-future-of-the-firm">#</a></h3>
+<p>Hemanth Asirvatham 与 Elliott Mokski 从 AI 成为下属、同事或协调中间层三种情景出发，讨论人机混合型企业如何改变员工自主权、企业规模和薪酬差距。这篇代表作者个人观点的文章，把问题推进到组织与权力如何重排；不同走向取决于需求增长、监督方式，以及人类仍能提供的价值。</p>
+<h3 id="llms-are-making-formal-software-verification-feasible-at-a-much-larger-scalehttpswwwanthropiccomresearchformal-verification"><a href="https://www.anthropic.com/research/formal-verification">LLMs are making formal software verification feasible at a much larger scale</a><a hidden class="anchor" aria-hidden="true" href="#llms-are-making-formal-software-verification-feasible-at-a-much-larger-scalehttpswwwanthropiccomresearchformal-verification">#</a></h3>
+<p>Anthropic 与 Theorem 将既有 fuzz tests 转为形式化规格，由 Claude 生成证明、Rocq 核验，在 123 个开源库的 239 个测试入口上验证特定条件下的无崩溃性质。文章展示了从测试走向可检查证明的工程路径，也交代了结论的适用范围：所建模的单线程静态 RISC-V/Linux 环境，以及小于 64 MB 的输入。</p>
+<blockquote>
+<p>“Formally verified” does not mean “bug-free.”</p>
+</blockquote>
+<h3 id="前线部署工程在-openai-意味着什么httpsopenaicomzh-hans-cnindexforward-deployed-engineering-means"><a href="https://openai.com/zh-Hans-CN/index/forward-deployed-engineering-means/">前线部署工程在 OpenAI 意味着什么</a><a hidden class="anchor" aria-hidden="true" href="#前线部署工程在-openai-意味着什么httpsopenaicomzh-hans-cnindexforward-deployed-engineering-means">#</a></h3>
+<p>OpenAI 前线部署工程负责人 Colin Jarvis 结合客户案例，解释 FDE 如何弥合模型能力与生产可用性之间的鸿沟：先围绕业务结果构建和评估系统，再把有效流程沉淀为通用能力、Skills 与插件，并将能力缺口反馈给研究团队。值得关注的是，如何让一次定制成为下一次部署的起点。</p>
+<blockquote>
+<p>我们的目标是让每一次合作都为下一位客户留下更好的起点。</p>
+</blockquote>
+<h1 id="影音记录">影音记录<a hidden class="anchor" aria-hidden="true" href="#影音记录">#</a></h1>
+<h2 id="精选歌单">精选歌单<a hidden class="anchor" aria-hidden="true" href="#精选歌单">#</a></h2>
+<p><a href="https://open.spotify.com/playlist/6MWCOznHESHwUOznrNSnHu">2026-10 精选歌单</a>：16 首，约 79 分钟。</p>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6MWCOznHESHwUOznrNSnHu?utm_source=generator" width="100%" height="460" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<h1 id="书阅读摘录">书&amp;阅读摘录<a hidden class="anchor" aria-hidden="true" href="#书阅读摘录">#</a></h1>
+<h2 id="how-to-be-more-ambitious-a-tutorial-for-humans-with-modelshttpsfelixriesebergcomhow-to-be-more-ambitious-a-tutorial-for-humans-with-models"><a href="https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/">How to Be More Ambitious: A Tutorial for Humans With Models</a><a hidden class="anchor" aria-hidden="true" href="#how-to-be-more-ambitious-a-tutorial-for-humans-with-modelshttpsfelixriesebergcomhow-to-be-more-ambitious-a-tutorial-for-humans-with-models">#</a></h2>
+<blockquote>
+<p>I think of ambition in four types: Speed, Altitude, Depth, and Range.</p>
+</blockquote>
+<blockquote>
+<p><strong>Speed:</strong> The same work in less time, the bread and butter for AI’s economic value</p>
+</blockquote>
+<blockquote>
+<p><strong>Altitude:</strong> Going up in abstraction and considering the outcome rather than the individual task.</p>
+</blockquote>
+<blockquote>
+<p><strong>Depth:</strong> Considering a task the way a field-leading expert would.</p>
+</blockquote>
+<blockquote>
+<p>•   <strong>Range:</strong> Drawing on multiple fields rather than just the one the task might need at the surface, using knowledge, tools, and techniques you normally wouldn’t.</p>
+</blockquote>
+<h2 id="building-agents-when-to-fold-subagents-into-your-main-agent-loophttpsclaudecomresourcesarticlesbuilding-agents-when-to-fold-subagents-into-your-main-agent-loop"><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Building Agents: When to Fold Subagents Into Your Main Agent Loop</a><a hidden class="anchor" aria-hidden="true" href="#building-agents-when-to-fold-subagents-into-your-main-agent-loophttpsclaudecomresourcesarticlesbuilding-agents-when-to-fold-subagents-into-your-main-agent-loop">#</a></h2>
+<blockquote>
+<p>one clear system prompt, 4-5 thin data tools, and firm output guardrails would cover most of the use case.</p>
+</blockquote>
+<blockquote>
+<p>To be clear, subagents still have their place, including at the research frontier. Use them when:</p>
+</blockquote>
+<blockquote>
+<p>Companies often want to build an agent that unites multiple products and capabilities into a single customer interface.</p>
+</blockquote>
+<blockquote>
+<p>Every team ships its own subagent, so companies end up with hundreds of overlapping subagents with no enforced standards and no specific owner.</p>
+</blockquote>
+<blockquote>
+<p><strong>The Frankenprompt</strong>: Every team adds a sentence to the system prompt, resulting in conflicting rules and no consistent voice.</p>
+</blockquote>
+<blockquote>
+<p>but often a more effective approach can be <strong>progressively disclosing context via skills</strong> and <strong>progressively disclosing tools via tool search</strong>.</p>
+</blockquote>
+<blockquote>
+<p>Knowledge bases are the right fit for reference material the agent only needs some of the time.</p>
+</blockquote>
+<h2 id="personal-agent是个很移动互联网的事httpsmpweixinqqcoms_0p-rfp2qb8rw0bs2my7fw"><a href="https://mp.weixin.qq.com/s/_0P-rFP2qb8rW0BS2My7Fw">Personal Agent是个很移动互联网的事</a><a hidden class="anchor" aria-hidden="true" href="#personal-agent是个很移动互联网的事httpsmpweixinqqcoms_0p-rfp2qb8rw0bs2my7fw">#</a></h2>
+<blockquote>
+<p>我理解，美国投资人都在抢一样东西：AI to C的话语权。</p>
+</blockquote>
+<blockquote>
+<p>而 Personal Agent 则提供了另一种解法：模型层逐渐降低成本和对最先进模型的依赖，但用户关系、使用习惯，以及交易前面的位置，可以留在应用公司手中。</p>
+</blockquote>
+<blockquote>
+<p>先回答一个很普遍的问题：Muse 能做的事，OpenClaw 不早就能做了吗？</p>
+</blockquote>
+<blockquote>
+<p>Muse 做的一个关键步骤，是把自行部署维护，变成云端托管、注册即用。用户不必先成为半个工程师，才能拥有一个替自己办事的 Agent 。</p>
+</blockquote>
+<blockquote>
+<p>因为AI办公产品从第一天起，就不是围绕普通人的生活来设计的。办公 Agent 的记忆和上下文可以围绕项目和任务构建，但一个普通人的日常里哪有那么多值得“专门立项”的任务？</p>
+</blockquote>
+<blockquote>
+<p>它们可能不值得专门打开一个工作台，却最好能有个什么东西一直替你盯着。</p>
+</blockquote>
+<h2 id="用-manus-改造-manusai-native-组织改造的实践和思考httpsmpweixinqqcomsi_hnnaf7lfbf5nj0rejhig"><a href="https://mp.weixin.qq.com/s/I_hNNAf7LFBf5nJ0rEJHig">用 Manus 改造 Manus，AI Native 组织改造的实践和思考</a><a hidden class="anchor" aria-hidden="true" href="#用-manus-改造-manusai-native-组织改造的实践和思考httpsmpweixinqqcomsi_hnnaf7lfbf5nj0rejhig">#</a></h2>
+<blockquote>
+<p>人亲手执行的部分越来越少；指挥 AI 干活、为 AI 的工作结果承担责任占的比重越来越大。</p>
+</blockquote>
+<blockquote>
+<p>组织方式、人与 AI 的关系，信息流动，每个人的能力边界，都在不知不觉中被调整，甚至是重塑。</p>
+</blockquote>
+<blockquote>
+<p>最大的损耗在联调。</p>
+</blockquote>
+<blockquote>
+<p>探索 AI 的使用边界本来就是我们的追求。</p>
+</blockquote>
+<blockquote>
+<p>团队无法忍受低效。</p>
+</blockquote>
+<blockquote>
+<p>组织足够扁平。这使得大部分决策，不管是自上而下，还是自下而上，都能快速覆盖到整个组织。</p>
+</blockquote>
+<blockquote>
+<p>这个链路上的人很多，信息每经过一个人就会丢一点。同一份需求文档，产品和设计做出的原型可能完全不同。</p>
+</blockquote>
+<blockquote>
+<p>Claude Code 和 Codex 出现后，工程师的效率大幅提升，新的问题却来了：产品经理不够用了，来不及提供足够多的高质量需求。</p>
+</blockquote>
+<blockquote>
+<p>ta 会主动跨团队对齐。</p>
+</blockquote>
+<blockquote>
+<p>我们给网站开放了一个反馈接口。ta 用得不顺手时，可以直接通过这个接口提需求。</p>
+</blockquote>
+<blockquote>
+<p>很多以前要“找人问”的事，现在不必打断那个人了。在 Manus 内部，我们逐渐形成了一些共识</p>
+</blockquote>
+<blockquote>
+<p>我们做了一个目前只在内部使用的协作功能：同一项目的成员默认能看到彼此的 Session，也可以申请进入对话发言。</p>
+</blockquote>
+<blockquote>
+<p>这笔钱买的不是人力，而是时间和注意力</p>
+</blockquote>
+<blockquote>
+<p>用 AI 省下的是每个人的注意力，让每个人对自己负责的事更有完整的掌控。</p>
+</blockquote>
+<blockquote>
+<p>贵是因为用最好的模型，这是了解 AI 边界的核心方法</p>
+</blockquote>
+<blockquote>
+<p>一方面也帮助我们在理解当下模型的能力边界到底进化到哪了。他觉得这可能是公司最划算的一笔支出。</p>
+</blockquote>
+<blockquote>
+<p>Session 本身会成为多人协作的工作对象。</p>
+</blockquote>
+<blockquote>
+<p>Agent 主动发现解法。进入公司的系统和知识库后，Agent 不只执行交代的任务，也能利用已有工具、知识和资源，找到人没想到的解法。</p>
+</blockquote>
+<blockquote>
+<p>这不只是效率提高了，而是组织运转的方式在改变</p>
+</blockquote>
+<blockquote>
+<p>还有很重要的一点：与 AI 共同成长。</p>
+</blockquote>
+<h2 id="在清迈做数字游民我观察到的东西方文化差异httpsmpweixinqqcomsbzt_sxrjvzzsg399rxt7ywscene334"><a href="https://mp.weixin.qq.com/s/bZT_SXrjVZZSg399rxt7yw?scene=334">在清迈做数字游民，我观察到的东西方文化差异</a><a hidden class="anchor" aria-hidden="true" href="#在清迈做数字游民我观察到的东西方文化差异httpsmpweixinqqcomsbzt_sxrjvzzsg399rxt7ywscene334">#</a></h2>
+<blockquote>
+<p>后来我慢慢意识到，对于流动性极强的圈层来说，small talk恰恰是社交最有效率的方式之一。它可以让你在新的地方，迅速地让别人对你有一个印象，之后才更容易建立更深的连接。</p>
+</blockquote>
+<blockquote>
+<p>有一个理论是椰子和水蜜桃文化，椰子文化的人外表是硬的， 看起来好像很不好接触，但是如果你能穿透那个壳，让ta把你当作自己人，那ta会很愿意和你分享深度的东西。</p>
+</blockquote>
+<blockquote>
+<p>水蜜桃文化则相反，看起来好像和谁都能聊，但实则内心很有距离感。</p>
+</blockquote>
+<blockquote>
+<p>在东亚文化中，我们更倾向于顺从和附和，谁在这个圈子里最有权威，我们就听ta的，尽管有时内心并不人认可。如果提出反对的意见，很多时候我们会觉得“驳了面子”，容易上升到个人层面。</p>
+</blockquote>
+<blockquote>
+<p>西方文化并非是没有“驳面子”之说，不同国家的人在做辩论时反驳方式也都有区别</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://niraya666.github.io/tags/%E6%9C%88%E5%88%8A/">月刊</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on x"
+            href="https://x.com/intent/tweet/?text=2026-10%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f&amp;hashtags=%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f&amp;title=2026-10%20%e6%9c%88%e5%88%8a&amp;summary=2026-10%20%e6%9c%88%e5%88%8a&amp;source=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f&title=2026-10%20%e6%9c%88%e5%88%8a">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on whatsapp"
+            href="https://api.whatsapp.com/send?text=2026-10%20%e6%9c%88%e5%88%8a%20-%20https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on telegram"
+            href="https://telegram.me/share/url?text=2026-10%20%e6%9c%88%e5%88%8a&amp;url=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 2026-10 月刊 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=2026-10%20%e6%9c%88%e5%88%8a&u=https%3a%2f%2fniraya666.github.io%2fmonthly%2f2026-10-monthly%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+<div id="utterances">
+  <script src="https://utteranc.es/client.js"
+        repo="Niraya666/niraya666.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
+</div>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['ams']}
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2026 <a href="https://niraya666.github.io/">LZY Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

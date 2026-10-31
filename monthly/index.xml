@@ -11,8 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Oct 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://niraya666.github.io/monthly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2026-10 月刊</title>
+      <link>https://niraya666.github.io/monthly/2026-10-monthly/</link>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 +0800</pubDate>
+      <guid>https://niraya666.github.io/monthly/2026-10-monthly/</guid>
+      <description>&lt;h1 id=&#34;值得关注的模型和新技术&#34;&gt;值得关注的模型和新技术&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/deepseek-ai/DeepInfer&#34;&gt;DeepInfer&lt;/a&gt;: DeepSeek 开源的大规模推理框架，面向 DeepSeek-V4.1-Flash 结合优化算子、专家并行、DSpark 投机解码和异步调度，公开版本提供离线推理及规模化服务所需的核心引擎能力&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://api-docs.deepseek.com/news/news261017/&#34;&gt;DeepSeek-V4.1-Flash-1017&lt;/a&gt;: V4.1 Flash 的项目开发能力升级，通过 self-feedback RL 强化从游戏制作到 3D 建模的端到端交付，并减少任务耗时和输出长度；同期开放自研 Search &amp;amp; Fetch API&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2026-09 月刊</title>
       <link>https://niraya666.github.io/monthly/2026-09-monthly/</link>
